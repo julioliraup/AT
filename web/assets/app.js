@@ -9,12 +9,13 @@ async function load() {
   let domains_count = 0;
   for(let row of DATA) {
       if(row.domains_count) {
-          domains_count += row.domains_count;
+          domains_count = row.domains_count;
+          break;
       }
   }
   
   if (domains_count === 0) {
-      const dnsRule = DATA.find(x => x.protocol === 'dns');
+      const dnsRule = DATA.find(x => x.protocol === 'dns' || x.protocol === 'tls');
       if (dnsRule) {
           try {
               const res = await fetch(`./db/sid/${dnsRule.sid}.json`);
@@ -42,6 +43,10 @@ async function load() {
       <div class="visualizer-orb" style="border-color: rgba(255, 0, 85, 0.3);">
         <span class="v-value" style="color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink);">${domains_count}</span>
         <span class="v-label">DNS Domains</span>
+      </div>
+      <div class="visualizer-orb" style="border-color: rgba(0, 255, 128, 0.3);">
+        <span class="v-value" style="color: #00ff80; text-shadow: 0 0 15px #00ff80;">${domains_count}</span>
+        <span class="v-label">TLS SNI</span>
       </div>
       <div class="visualizer-orb" style="border-color: rgba(138, 43, 226, 0.5);">
         <span class="v-value" style="color: #b050ff; text-shadow: 0 0 15px #b050ff;">${malicious_vectors}</span>

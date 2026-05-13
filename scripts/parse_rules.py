@@ -22,8 +22,16 @@ def parse_rule(line):
     action, proto, header, body = m.groups()
     fields = dict(KV_RE.findall(body))
     sid = fields.get('sid')
-    url_path = URL_RE.findall(line.strip())[0][2] if URL_RE.findall(line.strip()) else 'unknown'
-    url_base = URL_RE.findall(line.strip())[1][2] if URL_RE.findall(line.strip()) else 'unknown'
+    
+    url_matches = URL_RE.findall(line.strip())
+    url_path = 'unknown'
+    url_base = 'unknown'
+    for match in url_matches:
+        if match[0] == 'http.uri':
+            url_path = match[2]
+        elif match[0] == 'http.host':
+            url_base = match[2]
+            
     reference = REF_RE.findall(line.strip()) if REF_RE.findall(line.strip()) else 'unknown'
 
     if not sid:
@@ -51,7 +59,7 @@ def parse_rule(line):
     return obj
 
 def enrich_dns(obj, domains_file):
-    if obj['protocol'] != 'dns':
+    if obj['protocol'] not in ('dns', 'tls'):
         return obj
     domains = []
     if os.path.exists(domains_file):
