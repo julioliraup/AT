@@ -51,7 +51,8 @@ def parse_rule(line):
         'intel': {
             'virustotal': None,
             'urlhaus': None,
-            'shodan': None
+            'shodan': None,
+            'ipinfo': None  # Inicializa o campo para o ipinfo
         },
         'rule_raw': line.strip(),
         'updated_at': datetime.utcnow().isoformat() + 'Z'
@@ -98,6 +99,19 @@ def enrich_phishstats(obj):
     obj['phishstats'] = None
     return obj
 
+def enrich_ipinfo(obj):
+    """Resolve o IP da máquina executando o script e adiciona os dados ao objeto intel."""
+    api_url = "ipinfo.io"
+    try:
+        req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=5) as response:
+            ip_data = json.loads(response.read().decode())
+            obj['intel']['ipinfo'] = ip_data
+    except Exception:
+        # Mantém como None caso a requisição falhe (ex: sem internet)
+        obj['intel']['ipinfo'] = None
+    return obj
+
 def main():
     if len(sys.argv) < 3:
         print('Usage: parse_rules.py <rules_file> <domains_file>')
@@ -114,9 +128,11 @@ def main():
                 continue
             obj = enrich_dns(obj, domains_path)
             obj = enrich_phishstats(obj)
+            obj = enrich_ipinfo(obj)  # Executa o enriquecimento com o ipinfo
             out_file = OUT / f"{obj['sid']}.json"
             with open(out_file, 'w') as wf:
                 json.dump(obj, wf, indent=2)
 
 if __name__ == '__main__':
     main()
+
