@@ -306,10 +306,11 @@ const buildFileAnalysisHtml = (otx) => {
 /**
  * Build the complete AlienVault OTX intelligence card.
  *
- * @param {object|null} otx - Content of intel.alienvault, or null.
+ * @param {object|null} otx    - Content of intel.alienvault, or null.
+ * @param {object|null} ipinfo - Content of intel.ipinfo, used as a geo fallback.
  * @returns {string}
  */
-const buildOtxHtml = (otx) => {
+const buildOtxHtml = (otx, ipinfo) => {
     if (!otx) {
         return `
         <h2 class="section-title">ALIENVAULT OTX INTELLIGENCE</h2>
@@ -356,9 +357,22 @@ const buildOtxHtml = (otx) => {
            </span>`
         : '';
 
-    const mapHtml  = (otx.latitude && otx.longitude)
-        ? buildMapHtml(parseFloat(otx.latitude), parseFloat(otx.longitude))
-        : '';
+    // Resolve map coordinates: prefer OTX ip_geo; fall back to ipinfo.loc
+    // ("lat,lon" string) when OTX did not return geographic data.
+    let mapLat = otx.latitude  ? parseFloat(otx.latitude)  : null;
+    let mapLon = otx.longitude ? parseFloat(otx.longitude) : null;
+    if ((!mapLat || !mapLon) && ipinfo && ipinfo.loc) {
+        const parts = ipinfo.loc.split(',');
+        if (parts.length === 2) {
+            const parsedLat = parseFloat(parts[0]);
+            const parsedLon = parseFloat(parts[1]);
+            if (!isNaN(parsedLat) && !isNaN(parsedLon)) {
+                mapLat = parsedLat;
+                mapLon = parsedLon;
+            }
+        }
+    }
+    const mapHtml = (mapLat && mapLon) ? buildMapHtml(mapLat, mapLon) : '';
 
     return `
     <h2 class="section-title">ALIENVAULT OTX INTELLIGENCE</h2>
@@ -511,7 +525,7 @@ async function load() {
             </div>
         </div>
 
-        ${buildOtxHtml(d.intel && d.intel.alienvault)}`;
+        ${buildOtxHtml(d.intel && d.intel.alienvault, d.intel && d.intel.ipinfo)}`;  
 
     } catch (err) {
         console.error('[signature]', err);
