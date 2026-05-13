@@ -6,6 +6,7 @@ from pathlib import Path
 from datetime import datetime
 import hashlib
 import urllib.request
+import shutil
 
 RULE_RE = re.compile(r'^(alert|drop|pass)\s+(\w+)\s+(.*?)\((.*)\)$')
 KV_RE = re.compile(r'(\w+):\s*"?([^;]+?)"?;')
@@ -13,6 +14,8 @@ URL_RE = re.compile(r'(http.uri|http.host); (bsize:\S*; content:|content:)"(\S*)
 REF_RE = re.compile(r'reference:url,(\S*);')
 
 OUT = Path('web/db/sid')
+if OUT.exists():
+    shutil.rmtree(OUT)
 OUT.mkdir(parents=True, exist_ok=True)
 
 def parse_rule(line):
