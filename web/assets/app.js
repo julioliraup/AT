@@ -62,15 +62,21 @@ function render(rows) {
     el.innerHTML = `<div class="card" style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 40px;">[ NO MATCHING RECORDS ]</div>`;
     return;
   }
-  el.innerHTML = rows.map(x => `
-    <div class="card glow" onclick="go(${x.sid})">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-         <h3 style="margin: 0; color: var(--cyan); font-size: 1.1em;">SID ${x.sid}</h3>
-         <span class="badge ${x.severity?.toLowerCase() === 'high' ? 'high' : ''}" style="font-size: 0.7em;">${x.protocol}</span>
+  el.innerHTML = rows.map(x => {
+    const staleTag = x.is_stale ? '<span class="badge stale" style="margin-left: 8px;">STALE</span>' : '';
+    return `
+      <div class="card glow" onclick="go(${x.sid})">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+           <h3 style="margin: 0; color: var(--cyan); font-size: 1.1em;">SID ${x.sid}</h3>
+           <div>
+             <span class="badge ${x.severity?.toLowerCase() === 'high' ? 'high' : ''}" style="font-size: 0.7em;">${x.protocol}</span>
+             ${staleTag}
+           </div>
+        </div>
+        <p style="font-size: 0.9em; color: var(--text-muted); margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${x.name}</p>
       </div>
-      <p style="font-size: 0.9em; color: var(--text-muted); margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${x.name}</p>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 function go(sid){

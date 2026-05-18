@@ -477,6 +477,26 @@ async function load() {
             ? `<ul class="ref-list">${d.references.map(r => `<li>${r}</li>`).join('')}</ul>`
             : `<span class="data-value">No references</span>`;
 
+        const staleBadge = d.rule_status === 'stale'
+            ? '<span class="badge stale" style="margin-left:8px;">STALE</span>'
+            : '';
+
+        const probeHtml = d.probe ? `
+            <div class="data-group" style="margin-top:20px;">
+                <span class="data-label">Rule Health</span>
+                <span class="data-value" style="color:var(--neon-pink);">
+                    DNS: ${d.probe.dns === true ? 'responsive' : d.probe.dns === false ? 'unresponsive' : 'unknown'}
+                    &#x2022;
+                    WHOIS: ${d.probe.whois === true ? 'responsive' : d.probe.whois === false ? 'unresponsive' : 'unavailable'}
+                </span>
+            </div>
+            ${d.rule_status === 'stale' ? `
+            <div class="data-group stale-note">
+                <span class="data-label">Status</span>
+                <span class="data-value">This signature is probably stale: DNS + WHOIS probes are unresponsive.</span>
+            </div>` : ''}
+        ` : '';
+
         el.innerHTML = `
         <div class="card glow" style="border-top:4px solid var(--neon-pink);">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;
@@ -487,6 +507,7 @@ async function load() {
                 <div>
                     <span class="badge ${severityClass}">${val(d.severity, 'Unknown')} Severity</span>
                     <span class="badge ${actionClass}">${val(d.action, 'Unknown')}</span>
+                    ${staleBadge}
                 </div>
             </div>
 
@@ -518,6 +539,7 @@ async function load() {
                 <span class="data-label">Raw Rule</span>
                 <pre class="code-block">${val(d.rule_raw, 'Rule unavailable')}</pre>
             </div>
+            ${probeHtml}
 
             <div class="data-group" style="margin-top:20px;">
                 <span class="data-label">References</span>

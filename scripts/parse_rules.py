@@ -30,7 +30,9 @@ Each valid rule produces one JSON file under ``web/db/sid/<sid>.json``.
 
 import json
 import os
+import shutil
 import socket
+import subprocess
 import re
 import sys
 import urllib.error
@@ -450,6 +452,60 @@ def _resolve_domain_ip(obj):
     return None
 
 
+def _whois_responsive(domain):
+    """Probe WHOIS for the monitored domain.
+
+    Return ``True`` when WHOIS returns content, ``False`` when the lookup
+    appears to have failed, or ``None`` when the local WHOIS tool is not
+    available.
+    """
+    if not domain or domain == 'unknown':
+        return None
+    if shutil.which('whois') is None:
+        return None
+
+    try:
+        result = subprocess.run(
+            ['whois', domain],
+            capture_output=True,
+            text=True,
+            timeout=6,
+        )
+        stdout = (result.stdout or '').strip()
+        if result.returncode == 0 and stdout:
+            return True
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+    return False
+
+
+def enrich_staleness(obj):
+    """Mark rules that no longer resolve by both DNS and WHOIS probes."""
+    url_base = obj.get('url_base', 'unknown')
+    if url_base == 'unknown':
+        return obj
+
+    dns_ok = _resolve_domain_ip(obj) is not None
+    whois_ok = _whois_responsive(url_base)
+
+    if dns_ok or whois_ok is None:
+        obj['probe'] = {
+            'dns': dns_ok,
+            'whois': whois_ok,
+            'status': 'active' if dns_ok or whois_ok else 'unknown',
+        }
+        return obj
+
+    obj['probe'] = {
+        'dns': False,
+        'whois': False,
+        'status': 'stale',
+        'note': 'dns-and-whois-unresponsive',
+    }
+    obj['rule_status'] = 'stale'
+    return obj
+
+
 def enrich_ipinfo(obj):
     """Query ipinfo.io for geolocation and ASN data of the rule's target IP.
 
@@ -504,6 +560,7 @@ def main():
 
             obj = enrich_dns(obj, domains_path)
             obj = enrich_otx(obj)
+            obj = enrich_staleness(obj)
             obj = enrich_ipinfo(obj)
 
             out_file = OUT_DIR / f"{obj['sid']}.json"
