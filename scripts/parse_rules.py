@@ -127,6 +127,7 @@ def parse_rule(line):
             'shodan':     None,
             'ipinfo':     None,
             'alienvault': None,
+            'phishdestroy': None,
         },
         'rule_raw':   line.strip(),
         'updated_at': datetime.now(timezone.utc).isoformat(),
@@ -506,6 +507,29 @@ def enrich_staleness(obj):
     return obj
 
 
+def enrich_phishdestroy(obj):
+    """Query analyze.destroy.tools for domain intelligence.
+
+    Mutate *obj* in place and return it.
+    """
+    domain = obj.get('url_base', 'unknown')
+    if domain == 'unknown':
+        obj['intel']['phishdestroy'] = None
+        return obj
+
+    req = urllib.request.Request(
+        f'https://analyze.destroy.tools/v1/analyze?domain={domain}',
+        headers={'User-Agent': 'Mozilla/5.0'},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            obj['intel']['phishdestroy'] = json.loads(resp.read().decode('utf-8'))
+    except (urllib.error.URLError, json.JSONDecodeError, OSError) as exc:
+        print(f'[phishdestroy] Request failed for {domain}: {exc}', file=sys.stderr)
+        obj['intel']['phishdestroy'] = None
+    return obj
+
+
 def enrich_ipinfo(obj):
     """Query ipinfo.io for geolocation and ASN data of the rule's target IP.
 
@@ -561,7 +585,10 @@ def main():
             obj = enrich_dns(obj, domains_path)
             obj = enrich_otx(obj)
             obj = enrich_staleness(obj)
-            obj = enrich_ipinfo(obj)
+            
+            obj = enrich_phishdestroy(obj)
+            if not obj['intel'].get('phishdestroy'):
+                obj = enrich_ipinfo(obj)
 
             out_file = OUT_DIR / f"{obj['sid']}.json"
             with open(out_file, 'w', encoding='utf-8') as wf:

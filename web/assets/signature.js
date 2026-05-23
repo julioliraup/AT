@@ -446,6 +446,120 @@ const buildOtxHtml = (otx, ipinfo) => {
     </div>`;
 };
 
+/**
+ * Build the PhishDestroy intelligence card.
+ *
+ * @param {object|null} pd - Content of intel.phishdestroy, or null.
+ * @returns {string}
+ */
+const buildPhishDestroyHtml = (pd) => {
+    if (!pd) return '';
+
+    const vt = pd.intel?.virustotal || {};
+    const us = pd.intel?.urlscan || {};
+    const infra = pd.infrastructure || {};
+    const ipinfo = infra.ipinfo || {};
+
+    const geoLine = [ipinfo.city, ipinfo.region, ipinfo.country].filter(Boolean).join(', ') || null;
+    
+    const vtBadge = vt.total
+        ? `<span class="badge ${vt.malicious > 0 ? 'high' : ''}" style="font-size:0.7em;">
+               VT: ${vt.malicious}/${vt.total}
+           </span>`
+        : '';
+
+    const usBadge = us.score !== undefined
+        ? `<span class="badge ${us.malicious ? 'high' : ''}" style="font-size:0.7em;">
+               URLSCAN: ${us.score}
+           </span>`
+        : '';
+
+    let screenshotHtml = '';
+    if (us.screenshot) {
+        screenshotHtml = `
+        <div class="data-group" style="margin-top:20px;">
+            <span class="data-label">Screenshot</span>
+            <div style="border:1px solid var(--cyan);border-radius:8px;overflow:hidden;
+                        max-width:100%;box-shadow:0 0 15px rgba(0,229,255,0.1);">
+                <img src="${us.screenshot}" style="width:100%;display:block;filter:brightness(90%);" alt="URLScan Screenshot"/>
+            </div>
+        </div>`;
+    }
+
+    const detectionsHtml = (pd.detections && pd.detections.length > 0)
+        ? `<div class="data-group" style="margin-top:20px;border-top:1px dashed rgba(255,0,85,0.25);padding-top:20px;">
+               <span class="data-label" style="color:var(--neon-pink);">&#x26A0; Threat Detections (${pd.detections.length})</span>
+               <div style="margin-top:10px;">
+                   ${pd.detections.map(d => \`
+                   <div style="background:rgba(255,0,85,0.07);border:1px solid var(--neon-pink);border-radius:6px;padding:10px 14px;margin-bottom:8px;">
+                       <span class="badge" style="border-color:var(--neon-pink);color:var(--neon-pink);background:rgba(255,0,85,0.1);font-size:0.7em;">
+                           \${val(d.type).toUpperCase()}
+                       </span>
+                       <span style="margin-left:8px;font-size:0.85em;color:var(--text-muted);">
+                           Source: <strong style="color:var(--text);">\${val(d.source)}</strong>
+                       </span>
+                   </div>\`).join('')}
+               </div>
+           </div>`
+        : '';
+
+    const dnsA = (infra.dns?.A || []).join(', ') || 'N/A';
+    const dnsAAAA = (infra.dns?.AAAA || []).join(', ') || 'N/A';
+
+    return `
+    <h2 class="section-title" style="margin-top:40px;">PHISHDESTROY INTELLIGENCE</h2>
+    <div class="card">
+        <!-- Header badges -->
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+            <span class="badge" style="border-color:#ff6600;color:#ff6600;
+                                       background:rgba(255,102,0,0.1);font-size:0.7em;">
+                PHISHDESTROY
+            </span>
+            ${vtBadge}${usBadge}
+        </div>
+
+        <div class="grid-2">
+            <div class="data-group">
+                <span class="data-label">Defanged Domain</span>
+                <span class="data-value" style="color:var(--neon-pink);">${val(pd.domain_defanged)}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Analyzed At</span>
+                <span class="data-value">${fmtDate(pd.analyzed_at)}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Domain Age (Days)</span>
+                <span class="data-value">${val(pd.domain_info?.age_days)}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">IP Address</span>
+                <span class="data-value">${val(infra.ip)}</span>
+            </div>
+            ${geoLine ? `
+            <div class="data-group">
+                <span class="data-label">Location</span>
+                <span class="data-value">${geoLine}</span>
+            </div>` : ''}
+            <div class="data-group">
+                <span class="data-label">Organization</span>
+                <span class="data-value">${val(ipinfo.org)}</span>
+            </div>
+        </div>
+
+        <div class="data-group" style="margin-top:15px;">
+            <span class="data-label">DNS A Records</span>
+            <span class="data-value" style="font-size:0.82em;color:var(--text-muted);word-break:break-all;">${dnsA}</span>
+        </div>
+        <div class="data-group" style="margin-top:15px;">
+            <span class="data-label">DNS AAAA Records</span>
+            <span class="data-value" style="font-size:0.82em;color:var(--text-muted);word-break:break-all;">${dnsAAAA}</span>
+        </div>
+
+        ${detectionsHtml}
+        ${screenshotHtml}
+    </div>`;
+};
+
 // ---------------------------------------------------------------------------
 // Main loader
 // ---------------------------------------------------------------------------
@@ -497,6 +611,9 @@ async function load() {
             </div>` : ''}
         ` : '';
 
+        const pdData = d.intel?.phishdestroy;
+        const ipinfoFallback = d.intel?.ipinfo || pdData?.infrastructure?.ipinfo;
+
         el.innerHTML = `
         <div class="card glow" style="border-top:4px solid var(--neon-pink);">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;
@@ -547,7 +664,8 @@ async function load() {
             </div>
         </div>
 
-        ${buildOtxHtml(d.intel && d.intel.alienvault, d.intel && d.intel.ipinfo)}`;  
+        ${buildOtxHtml(d.intel?.alienvault, ipinfoFallback)}
+        ${buildPhishDestroyHtml(pdData)}`;  
 
     } catch (err) {
         console.error('[signature]', err);
