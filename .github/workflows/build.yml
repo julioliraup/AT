@@ -24,23 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install deps
-        run: pip install -r requirements.txt
-
-      - name: Build DB
-        env:
-          OTX_API_KEY: ${{ secrets.OTX_API_KEY }}
-        run: |
-          echo "OTX_API_KEY=${OTX_API_KEY}" > .env
-          python scripts/parse_rules.py rules/antiphishing.rules rules/phishing.lst
-          python scripts/build_index.py
-          python scripts/validate.py
-
       - name: Prepare static site
         run: |
           mkdir -p dist

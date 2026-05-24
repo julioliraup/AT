@@ -490,15 +490,15 @@ const buildPhishDestroyHtml = (pd) => {
         ? `<div class="data-group" style="margin-top:20px;border-top:1px dashed rgba(255,0,85,0.25);padding-top:20px;">
                <span class="data-label" style="color:var(--neon-pink);">&#x26A0; Threat Detections (${pd.detections.length})</span>
                <div style="margin-top:10px;">
-                   ${pd.detections.map(d => \`
+                   ${pd.detections.map(d => `
                    <div style="background:rgba(255,0,85,0.07);border:1px solid var(--neon-pink);border-radius:6px;padding:10px 14px;margin-bottom:8px;">
                        <span class="badge" style="border-color:var(--neon-pink);color:var(--neon-pink);background:rgba(255,0,85,0.1);font-size:0.7em;">
-                           \${val(d.type).toUpperCase()}
+                           ${val(d.type).toUpperCase()}
                        </span>
                        <span style="margin-left:8px;font-size:0.85em;color:var(--text-muted);">
-                           Source: <strong style="color:var(--text);">\${val(d.source)}</strong>
+                           Source: <strong style="color:var(--text);">${val(d.source)}</strong>
                        </span>
-                   </div>\`).join('')}
+                   </div>`).join('')}
                </div>
            </div>`
         : '';
@@ -679,3 +679,26 @@ async function load() {
 }
 
 load();
+
+// Banner logic: Show "Too many requests" after 5 seconds, only once.
+setTimeout(() => {
+    if (localStorage.getItem('donateBannerShown')) return;
+    localStorage.setItem('donateBannerShown', 'true');
+    
+    const banner = document.createElement('div');
+    banner.innerHTML = `
+        <div style="position:fixed; bottom:20px; right:20px; background:rgba(20,20,20,0.95); border:1px solid var(--cyan); border-radius:8px; padding:20px; box-shadow:0 0 20px rgba(0,229,255,0.2); z-index:9999; max-width:350px; color:var(--text); font-family:'Orbitron', sans-serif;">
+            <button onclick="this.parentElement.remove()" style="position:absolute; top:10px; right:10px; background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:20px; padding:0; line-height:1;">&times;</button>
+            <h3 style="margin-top:0; color:var(--neon-pink); font-size:1.1em; display:flex; align-items:center; gap:8px;">
+                &#x26A0; Too many requests
+            </h3>
+            <p style="font-size:0.9em; line-height:1.4; color:var(--text-muted); margin-bottom:15px;">
+                This is what we get when we try to list detailed information of the vectors. We can solve this by paying for APIs that meet our demand.
+            </p>
+            <a href="https://github.com/julioliraup/AT/#how-to-donate" target="_blank" style="display:inline-block; background:rgba(0,229,255,0.1); border:1px solid var(--cyan); color:var(--cyan); padding:8px 15px; text-decoration:none; border-radius:4px; font-size:0.85em; transition:0.3s; text-transform:uppercase; letter-spacing:1px;" onmouseover="this.style.background='var(--cyan)'; this.style.color='#000';" onmouseout="this.style.background='rgba(0,229,255,0.1)'; this.style.color='var(--cyan)';">
+                Contribute
+            </a>
+        </div>
+    `;
+    document.body.appendChild(banner.firstElementChild);
+}, 5000);
