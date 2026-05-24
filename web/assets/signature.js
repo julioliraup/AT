@@ -70,21 +70,54 @@ const tlpColour = (tlp) => {
 // ---------------------------------------------------------------------------
 
 /**
- * Build the OpenStreetMap overlay fragment.
+ * Build a global map section using the best available geographic data.
+ * Falls back to text-based search (Google Maps) if coordinates are missing.
  *
- * @param {number} lat
- * @param {number} lon
+ * @param {object} d The signature detail data object.
  * @returns {string}
  */
-const buildMapHtml = (lat, lon) => {
-    const bbox = `${lon - 0.05},${lat - 0.05},${lon + 0.05},${lat + 0.05}`;
-    const src  = `https://www.openstreetmap.org/export/embed.html`
-               + `?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lon}`;
+const buildGlobalMapHtml = (d) => {
+    let lat = null, lon = null, query = null;
+    const otx = d.intel?.alienvault;
+    if (otx && otx.latitude && otx.longitude) {
+        lat = parseFloat(otx.latitude);
+        lon = parseFloat(otx.longitude);
+    }
+
+    const ipinfo = d.intel?.ipinfo || d.intel?.phishdestroy?.infrastructure?.ipinfo;
+    if ((lat === null || lon === null || isNaN(lat) || isNaN(lon)) && ipinfo) {
+        if (ipinfo.loc) {
+            const parts = ipinfo.loc.split(',');
+            if (parts.length === 2) {
+                lat = parseFloat(parts[0]);
+                lon = parseFloat(parts[1]);
+            }
+        }
+        if (lat === null || lon === null || isNaN(lat) || isNaN(lon)) {
+            query = [ipinfo.city, ipinfo.region, ipinfo.country].filter(Boolean).join(', ');
+        }
+    }
+
+    if ((lat === null || lon === null) && !query && otx) {
+        const q = [otx.city, otx.country_name].filter(Boolean).join(', ');
+        if (q) query = q;
+    }
+
+    let src = '';
+    if (lat !== null && lon !== null && !isNaN(lat) && !isNaN(lon)) {
+        const bbox = `${lon - 0.05},${lat - 0.05},${lon + 0.05},${lat + 0.05}`;
+        src  = `https://www.openstreetmap.org/export/embed.html`
+             + `?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lon}`;
+    } else if (query) {
+        src = `https://maps.google.com/maps?q=${encodeURIComponent(query)}&t=&z=10&ie=UTF8&iwloc=&output=embed`;
+    } else {
+        return '';
+    }
+
     return `
-    <div class="data-group" style="margin-top:25px;border-top:1px dashed rgba(255,255,255,0.1);padding-top:20px;">
-        <span class="data-label">Origin Map Overlay</span>
-        <div style="border:1px solid var(--cyan);border-radius:8px;overflow:hidden;
-                    height:250px;box-shadow:0 0 15px rgba(0,229,255,0.1);background:#000;position:relative;">
+    <h2 class="section-title" style="margin-top:40px;">GEOGRAPHIC LOCATION</h2>
+    <div class="card" style="padding:0;overflow:hidden;border-color:var(--cyan);">
+        <div style="height:350px;background:#000;position:relative;">
             <div style="position:absolute;top:0;left:0;width:100%;height:100%;
                         pointer-events:none;background:rgba(0,229,255,0.05);z-index:10;"></div>
             <iframe width="100%" height="100%" frameborder="0" scrolling="no"
@@ -357,23 +390,6 @@ const buildOtxHtml = (otx, ipinfo) => {
            </span>`
         : '';
 
-    // Resolve map coordinates: prefer OTX ip_geo; fall back to ipinfo.loc
-    // ("lat,lon" string) when OTX did not return geographic data.
-    let mapLat = otx.latitude  ? parseFloat(otx.latitude)  : null;
-    let mapLon = otx.longitude ? parseFloat(otx.longitude) : null;
-    if ((!mapLat || !mapLon) && ipinfo && ipinfo.loc) {
-        const parts = ipinfo.loc.split(',');
-        if (parts.length === 2) {
-            const parsedLat = parseFloat(parts[0]);
-            const parsedLon = parseFloat(parts[1]);
-            if (!isNaN(parsedLat) && !isNaN(parsedLon)) {
-                mapLat = parsedLat;
-                mapLon = parsedLon;
-            }
-        }
-    }
-    const mapHtml = (mapLat && mapLon) ? buildMapHtml(mapLat, mapLon) : '';
-
     return `
     <h2 class="section-title">ALIENVAULT OTX INTELLIGENCE</h2>
     <div class="card">
@@ -440,9 +456,6 @@ const buildOtxHtml = (otx, ipinfo) => {
 
         <!-- File analysis -->
         ${buildFileAnalysisHtml(otx)}
-
-        <!-- Geographic map -->
-        ${mapHtml}
     </div>`;
 };
 
@@ -489,14 +502,14 @@ const buildPhishDestroyHtml = (pd) => {
     const detectionsHtml = (pd.detections && pd.detections.length > 0)
         ? `<div class="data-group" style="margin-top:20px;border-top:1px dashed rgba(255,0,85,0.25);padding-top:20px;">
                <span class="data-label" style="color:var(--neon-pink);">&#x26A0; Threat Detections (${pd.detections.length})</span>
-               <div style="margin-top:10px;">
+               <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
                    ${pd.detections.map(d => `
-                   <div style="background:rgba(255,0,85,0.07);border:1px solid var(--neon-pink);border-radius:6px;padding:10px 14px;margin-bottom:8px;">
-                       <span class="badge" style="border-color:var(--neon-pink);color:var(--neon-pink);background:rgba(255,0,85,0.1);font-size:0.7em;">
-                           ${val(d.type).toUpperCase()}
+                   <div style="background:rgba(255,0,85,0.07);border:1px solid var(--neon-pink);border-radius:6px;padding:6px 10px;display:flex;align-items:center;gap:8px;">
+                       <span style="font-size:0.85em;color:var(--text-muted);">
+                           <strong style="color:var(--text);">${val(d.source)}</strong>
                        </span>
-                       <span style="margin-left:8px;font-size:0.85em;color:var(--text-muted);">
-                           Source: <strong style="color:var(--text);">${val(d.source)}</strong>
+                       <span class="badge" style="border-color:var(--neon-pink);color:var(--neon-pink);background:rgba(255,0,85,0.1);font-size:0.65em;padding:2px 6px;">
+                           ${val(d.type).toUpperCase()}
                        </span>
                    </div>`).join('')}
                </div>
@@ -665,7 +678,8 @@ async function load() {
         </div>
 
         ${buildOtxHtml(d.intel?.alienvault, ipinfoFallback)}
-        ${buildPhishDestroyHtml(pdData)}`;  
+        ${buildPhishDestroyHtml(pdData)}
+        ${buildGlobalMapHtml(d)}`;  
 
     } catch (err) {
         console.error('[signature]', err);
