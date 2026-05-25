@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "waddyworks.com",
       "domain_defanged": "waddyworks[.]com",
-      "case_id": "PD-20260523-412909",
-      "analyzed_at": "2026-05-23T22:27:04.561Z",
+      "case_id": "PD-20260525-412909",
+      "analyzed_at": "2026-05-25T00:56:04.065Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e56f2-f785-70eb-8351-cc019899889e/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5708-783f-72f8-a46d-22adffe59bb2.png",
+          "url": "https://urlscan.io/result/019e5708-783f-72f8-a46d-22adffe59bb2/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Wild West Domains, LLC",
         "created": "2014-11-09T13:06:46Z",
         "expires": "2026-11-09T13:06:46Z",
-        "age_days": 4213,
+        "age_days": 4214,
         "nameservers": [
           "NS19.DOMAINCONTROL.COM",
           "NS20.DOMAINCONTROL.COM"
@@ -246,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.waddyworks.com/-/EB-app/)\"; flow:established,to_server; http.uri; content:\"/-/EB-app/\"; startswith; fast_pattern; http.host; content:\"www.waddyworks.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002713; classtype:social-engineering; sid:6002713; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-24T19:19:07.540193+00:00",
+  "updated_at": "2026-05-25T01:19:09.292005+00:00",
   "probe": {
     "dns": true,
     "whois": false,

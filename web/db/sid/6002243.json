@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "aktifkaaann-danaa-paylateerr.acdgx.my.id",
       "domain_defanged": "aktifkaaann-danaa-paylateerr[.]acdgx[.]my[.]id",
-      "case_id": "PD-20260523-144379",
-      "analyzed_at": "2026-05-23T22:21:31.706Z",
+      "case_id": "PD-20260525-144379",
+      "analyzed_at": "2026-05-25T00:47:50.648Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e56ed-e394-76d0-adb0-3241fc5193df/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e58bf-56b2-7558-b911-4284d6a5ff3b.png",
+          "url": "https://urlscan.io/result/019e58bf-56b2-7558-b911-4284d6a5ff3b/",
+          "title": "DANA - Apa pun transaksinya selalu ada DANA"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.134.42",
+        "ip": "104.21.6.17",
         "ipinfo": {
-          "ip": "172.67.134.42",
+          "ip": "104.21.6.17",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "A": [
+            "104.21.6.17",
+            "172.67.134.42"
+          ],
           "AAAA": [
             "2606:4700:3034::ac43:862a",
             "2606:4700:3036::6815:611"
-          ],
-          "A": [
-            "172.67.134.42",
-            "104.21.6.17"
           ]
         }
       },
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aktifkaaann-danaa-paylateerr.acdgx.my.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aktifkaaann-danaa-paylateerr.acdgx.my.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002243; classtype:social-engineering; sid:6002243; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-05-24T19:02:53.302488+00:00",
+  "updated_at": "2026-05-25T00:47:47.248852+00:00",
   "probe": {
     "dns": true,
     "whois": true,

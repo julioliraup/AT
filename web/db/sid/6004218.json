@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "business-for-quay-workshop.pages.dev",
       "domain_defanged": "business-for-quay-workshop[.]pages[.]dev",
-      "case_id": "PD-20260523-467165",
-      "analyzed_at": "2026-05-23T23:54:41.605Z",
+      "case_id": "PD-20260525-467165",
+      "analyzed_at": "2026-05-25T02:37:45.544Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e5cfe-d59c-753b-ab74-04aac9005d30/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,11 +75,18 @@
       },
       "infrastructure": {
         "ip": "172.66.47.88",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.88",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f58",
-            "2606:4700:310c::ac42:2ca8"
+            "2606:4700:310c::ac42:2ca8",
+            "2606:4700:310c::ac42:2f58"
           ],
           "A": [
             "172.66.47.88",
@@ -89,7 +100,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (business-for-quay-workshop.pages.dev/login/)\"; flow:established,to_server; http.uri; content:\"/login/\"; startswith; fast_pattern; http.host; content:\"business-for-quay-workshop.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004218; classtype:social-engineering; sid:6004218; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-24T20:10:03.532762+00:00",
+  "updated_at": "2026-05-25T02:37:43.532710+00:00",
   "probe": {
     "dns": true,
     "whois": false,

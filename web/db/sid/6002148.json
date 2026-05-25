@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "customer-sp-alexk.pages.dev",
       "domain_defanged": "customer-sp-alexk[.]pages[.]dev",
-      "case_id": "PD-20260523-1381C8",
-      "analyzed_at": "2026-05-23T22:11:55.675Z",
+      "case_id": "PD-20260525-1381C8",
+      "analyzed_at": "2026-05-25T00:33:02.972Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e56e5-1973-705d-8671-0bcb4491659b.png",
           "url": "https://urlscan.io/result/019e56e5-1973-705d-8671-0bcb4491659b/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -83,8 +92,8 @@
             "172.66.47.197"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2fc5",
-            "2606:4700:310c::ac42:2c3b"
+            "2606:4700:310c::ac42:2c3b",
+            "2606:4700:310c::ac42:2fc5"
           ],
           "NS": [
             "anderson.ns.cloudflare.com.",
@@ -229,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (customer-sp-alexk.pages.dev/help/contact/644044422532087)\"; flow:established,to_server; http.uri; content:\"/help/contact/644044422532087\"; startswith; fast_pattern; http.host; content:\"customer-sp-alexk.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002148; classtype:social-engineering; sid:6002148; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-05-24T19:00:01.259938+00:00",
+  "updated_at": "2026-05-25T00:40:52.935594+00:00",
   "probe": {
     "dns": true,
     "whois": false,

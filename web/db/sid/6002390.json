@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "localizar-find.my",
       "domain_defanged": "localizar-find[.]my",
-      "case_id": "PD-20260523-730BF8",
-      "analyzed_at": "2026-05-23T22:25:22.839Z",
+      "case_id": "PD-20260525-730BF8",
+      "analyzed_at": "2026-05-25T00:54:12.416Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e389a-93f0-744e-99fc-3e85821dbf62.png",
+          "url": "https://urlscan.io/result/019e389a-93f0-744e-99fc-3e85821dbf62/",
+          "title": "iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "130.49.186.117",
+        "ipinfo": {
+          "ip": "130.49.186.117",
+          "hostname": "678113.myvds.top",
+          "city": "Moscow",
+          "region": "Moscow",
+          "country": "RU",
+          "org": "AS212913 TIME-HOST LTD",
+          "asn": "AS212913"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Time-Host",
+          "abuse": "",
+          "url": "",
+          "logo": "https://i.ibb.co/d4vPgDmP/pr-Time-Host.png",
+          "method": "email",
+          "asn": "AS212913"
+        }
       },
       "report_services": [
         {
@@ -197,7 +226,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (localizar-find.my/script/navigation_compass_find_devices_login_b4_passcode4/2026)\"; flow:established,to_server; http.uri; content:\"/script/navigation_compass_find_devices_login_b4_passcode4/2026\"; startswith; fast_pattern; http.host; content:\"localizar-find.my\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002390; classtype:social-engineering; sid:6002390; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-24T19:07:36.268718+00:00",
+  "updated_at": "2026-05-25T00:57:40.976575+00:00",
   "probe": {
     "dns": false,
     "whois": false,

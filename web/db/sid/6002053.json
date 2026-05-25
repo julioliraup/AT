@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "fbcloned.vercel.app",
       "domain_defanged": "fbcloned[.]vercel[.]app",
-      "case_id": "PD-20260523-10E172",
-      "analyzed_at": "2026-05-23T22:12:32.901Z",
+      "case_id": "PD-20260525-10E172",
+      "analyzed_at": "2026-05-25T00:33:56.245Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e56e5-aade-7647-ac8b-a1509f37b879.png",
           "url": "https://urlscan.io/result/019e56e5-aade-7647-ac8b-a1509f37b879/",
-          "pending": true
+          "title": "Facebook Login - Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.66",
+        "ip": "64.29.17.194",
         "ipinfo": {
-          "ip": "64.29.17.66",
+          "ip": "64.29.17.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.66",
-            "216.198.79.66"
+            "64.29.17.194",
+            "216.198.79.194"
           ]
         }
       },
@@ -240,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.fbcloned.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.fbcloned.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002053; classtype:social-engineering; sid:6002053; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-05-24T18:56:34.816837+00:00",
+  "updated_at": "2026-05-25T00:33:54.423497+00:00",
   "probe": {
     "dns": true,
     "whois": false,

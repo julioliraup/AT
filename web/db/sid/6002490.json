@@ -74,29 +74,76 @@
     "phishdestroy": {
       "domain": "qrco.de",
       "domain_defanged": "qrco[.]de",
-      "case_id": "PD-20260523-21CEE3",
-      "analyzed_at": "2026-05-23T22:32:49.460Z",
+      "case_id": "PD-20260525-21CEE3",
+      "analyzed_at": "2026-05-25T01:04:06.727Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "DNS8",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Sucuri SiteCheck",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e56f8-3b08-73ad-b8c4-7dafb7b2e386/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e5c9d-8d8d-765d-919a-d6b2dae7effa.png",
+          "url": "https://urlscan.io/result/019e5c9d-8d8d-765d-919a-d6b2dae7effa/",
+          "title": "QR Code Generator - Shortener"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: DNS8",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Sucuri SiteCheck",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.175.14.94",
+        "ip": "3.175.14.129",
         "ipinfo": {
-          "ip": "3.175.14.94",
-          "hostname": "server-3-175-14-94.for50.r.cloudfront.net",
+          "ip": "3.175.14.129",
+          "hostname": "server-3-175-14-129.for50.r.cloudfront.net",
           "city": "Fortaleza",
           "region": "Ceará",
           "country": "BR",
@@ -104,17 +151,17 @@
           "asn": "AS16509"
         },
         "dns": {
-          "A": [
-            "3.175.14.94",
-            "3.175.14.129",
-            "3.175.14.51",
-            "3.175.14.43"
-          ],
           "NS": [
             "ns-1422.awsdns-49.org.",
             "ns-1888.awsdns-44.co.uk.",
             "ns-341.awsdns-42.com.",
             "ns-678.awsdns-20.net."
+          ],
+          "A": [
+            "3.175.14.129",
+            "3.175.14.43",
+            "3.175.14.51",
+            "3.175.14.94"
           ]
         }
       },
@@ -250,12 +297,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (qrco.de/bgoA6d)\"; flow:established,to_server; http.uri; content:\"/bgoA6d\"; startswith; fast_pattern; http.host; content:\"qrco.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002490; classtype:social-engineering; sid:6002490; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-24T19:10:47.628407+00:00",
+  "updated_at": "2026-05-25T01:04:03.242222+00:00",
   "probe": {
     "dns": true,
     "whois": true,

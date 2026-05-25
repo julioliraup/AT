@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "ithelptoday.net",
       "domain_defanged": "ithelptoday[.]net",
-      "case_id": "PD-20260523-624564",
-      "analyzed_at": "2026-05-23T22:23:40.134Z",
+      "case_id": "PD-20260525-624564",
+      "analyzed_at": "2026-05-25T00:51:52.578Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e56ef-d808-7589-8e58-6b8821b79f99/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e58a3-ea16-720f-8213-cf1e8f476238.png",
+          "url": "https://urlscan.io/result/019e58a3-ea16-720f-8213-cf1e8f476238/",
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Amazon Registrar, Inc.",
         "created": "2024-03-15T07:57:16Z",
         "expires": "2027-03-15T07:57:16Z",
-        "age_days": 799,
+        "age_days": 800,
         "nameservers": [
           "NS-1433.AWSDNS-51.ORG",
           "NS-1564.AWSDNS-03.CO.UK",
@@ -77,10 +86,10 @@
         ]
       },
       "infrastructure": {
-        "ip": "54.155.125.223",
+        "ip": "52.208.239.200",
         "ipinfo": {
-          "ip": "54.155.125.223",
-          "hostname": "ec2-54-155-125-223.eu-west-1.compute.amazonaws.com",
+          "ip": "52.208.239.200",
+          "hostname": "ec2-52-208-239-200.eu-west-1.compute.amazonaws.com",
           "city": "Dublin",
           "region": "Leinster",
           "country": "IE",
@@ -88,13 +97,13 @@
           "asn": "AS16509"
         },
         "dns": {
+          "A": [
+            "52.208.239.200",
+            "34.255.155.118",
+            "54.155.125.223"
+          ],
           "MX": [
             "10 inbound-smtp.eu-west-1.amazonaws.com."
-          ],
-          "A": [
-            "54.155.125.223",
-            "52.208.239.200",
-            "34.255.155.118"
           ],
           "NS": [
             "ns-1433.awsdns-51.org.",
@@ -243,12 +252,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ithelptoday.net/d5ca0d8a-16df-415b-ab28-06203f45739b/a/b605427b-b078-4dbe-9533-b003eeeb2032/ccp?lid=c7847fdc-9af1-4e9e-9190-b58574c0f31c)\"; flow:established,to_server; http.uri; content:\"/d5ca0d8a-16df-415b-ab28-06203f45739b/a/b605427b-b078-4dbe-9533-b003eeeb2032/ccp?lid=c7847fdc-9af1-4e9e-9190-b58574c0f31c\"; startswith; fast_pattern; http.host; content:\"ithelptoday.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002296; classtype:social-engineering; sid:6002296; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-24T19:04:19.027210+00:00",
+  "updated_at": "2026-05-25T00:51:48.918884+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "111obmen.net",
       "domain_defanged": "111obmen[.]net",
-      "case_id": "PD-20260523-13A316",
-      "analyzed_at": "2026-05-23T23:47:27.420Z",
+      "case_id": "PD-20260525-13A316",
+      "analyzed_at": "2026-05-25T02:29:15.271Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e5cf7-0bdd-705f-923b-db1ed8251b02/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,7 +74,7 @@
         "registrar": "Amazon Registrar, Inc.",
         "created": "2026-05-18T09:42:17Z",
         "expires": "2027-05-18T09:42:17Z",
-        "age_days": 5,
+        "age_days": 6,
         "nameservers": [
           "NS-1147.AWSDNS-15.ORG",
           "NS-1717.AWSDNS-22.CO.UK",
@@ -80,7 +84,15 @@
       },
       "infrastructure": {
         "ip": "45.59.187.104",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "45.59.187.104",
+          "hostname": "host-by.dmit.com",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS906 DMIT Cloud Services",
+          "asn": "AS906"
+        },
         "dns": {
           "A": [
             "45.59.187.104"
@@ -102,7 +114,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "DMIT",
+          "abuse": "abuse@dmit.com",
+          "url": "mailto:abuse@dmit.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS906"
+        }
       },
       "report_services": [
         {
@@ -225,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (111obmen.net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"111obmen.net\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004049; classtype:social-engineering; sid:6004049; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-24T20:05:21.378381+00:00",
+  "updated_at": "2026-05-25T02:29:13.064894+00:00",
   "probe": {
     "dns": true,
     "whois": true,

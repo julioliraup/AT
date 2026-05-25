@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "paypay-card.trtwowf.cn",
       "domain_defanged": "paypay-card[.]trtwowf[.]cn",
-      "case_id": "PD-20260523-349E05",
-      "analyzed_at": "2026-05-23T22:09:23.285Z",
+      "case_id": "PD-20260525-349E05",
+      "analyzed_at": "2026-05-25T00:30:15.949Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e2e17-081f-705e-90ab-71759282cc21.png",
+          "url": "https://urlscan.io/result/019e2e17-081f-705e-90ab-71759282cc21/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.3.248",
+        "ipinfo": {
+          "ip": "104.21.3.248",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (paypay-card.trtwowf.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"paypay-card.trtwowf.cn\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6001994; classtype:social-engineering; sid:6001994; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-05-24T18:54:51.599584+00:00",
+  "updated_at": "2026-05-25T00:30:11.907601+00:00",
   "probe": {
     "dns": false,
     "whois": false,

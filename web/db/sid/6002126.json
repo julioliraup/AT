@@ -18,25 +18,85 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://service-portal.partner-programhub.com/",
+      "domain": "service-portal.partner-programhub.com",
+      "url_count": 2,
+      "city_data": false,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.66.0.96",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "9ff2f1650eac1561-PDX",
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "a5153f91879072ac3d22aa1b23d0764aade2bf3ff4793bddb202d6c845b1600d",
+      "md5": "59cc873056849d24d4eb4107cc06b74c",
+      "cert": {
+        "subject_cn": "service-portal.partner-programhub.com",
+        "subject_alt_names": [
+          "service-portal.partner-programhub.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-14T16:39:54+00:00",
+        "not_valid_after": "2026-08-12T17:39:40+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "229620898646518139909682461899716158830",
+        "fingerprint_sha1": "AD B0 25 7B D2 B1 AE 30 E5 D3 3B 84 93 B8 18 35 79 BA D3 6C",
+        "fingerprint_sha256": "D6 F3 E8 53 C2 64 F2 93 F9 D7 CE 84 C4 B1 1B A1 E8 5E 28 B6 CB D9 27 FA 50 E0 4D 52 DC 6C DD 1B"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-05-21T10:36:56",
+      "first_seen_secs": 1779359816.0
+    },
     "phishdestroy": {
       "domain": "service-portal.partner-programhub.com",
       "domain_defanged": "service-portal[.]partner-programhub[.]com",
-      "case_id": "PD-20260523-286CB8",
-      "analyzed_at": "2026-05-23T22:15:52.871Z",
+      "case_id": "PD-20260525-286CB8",
+      "analyzed_at": "2026-05-25T00:39:10.172Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook",
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e56e8-b7fb-7369-bb24-1c6c4bfbfce8.png",
           "url": "https://urlscan.io/result/019e56e8-b7fb-7369-bb24-1c6c4bfbfce8/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook, Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -44,13 +104,13 @@
         "ip": "jellyfish-app-jsmsz.ondigitalocean.app.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "jellyfish-app-jsmsz.ondigitalocean.app."
-          ],
           "A": [
             "jellyfish-app-jsmsz.ondigitalocean.app.",
-            "162.159.140.98",
-            "172.66.0.96"
+            "172.66.0.96",
+            "162.159.140.98"
+          ],
+          "MX": [
+            "jellyfish-app-jsmsz.ondigitalocean.app."
           ],
           "AAAA": [
             "jellyfish-app-jsmsz.ondigitalocean.app.",
@@ -67,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -190,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (service-portal.partner-programhub.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"service-portal.partner-programhub.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002126; classtype:social-engineering; sid:6002126; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-05-24T18:59:00.035125+00:00",
+  "updated_at": "2026-05-25T00:39:07.257130+00:00",
   "probe": {
     "dns": true,
     "whois": false,

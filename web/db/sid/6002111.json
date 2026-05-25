@@ -18,81 +18,39 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://b35aaa.com/fish/288",
-      "domain": "b35aaa.com",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.67.161.125",
-      "http_code": 200,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "9fc232a85f16ff12-PDX",
-        "cf_cache_status": "DYNAMIC",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (14334)",
-      "sha256": "0bd7a2cec9c22bef7d6ce9f68d8836296774e2921f5df49c2c9ec521fdb2023b",
-      "md5": "4c2073ae7be43de96129ad7a80abd7fd",
-      "cert": {
-        "subject_cn": "b35aaa.com",
-        "subject_alt_names": [
-          "b35aaa.com",
-          "*.b35aaa.com"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-03-18T17:25:34+00:00",
-        "not_valid_after": "2026-06-16T18:23:19+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "300062767557972892892901802067227743830",
-        "fingerprint_sha1": "AB 03 52 72 53 8F 9B B1 38 D0 07 19 FE 66 EB D8 55 CD 0F 94",
-        "fingerprint_sha256": "31 8C C7 C1 D3 CC AE 7C 86 6D 8A B7 72 4D 86 BF 04 82 C4 8E 26 2F 94 C7 33 00 3B C6 B6 F2 22 00"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-05-15T12:23:08",
-      "first_seen_secs": 1778847788.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "b35aaa.com",
       "domain_defanged": "b35aaa[.]com",
-      "case_id": "PD-20260523-458D8F",
-      "analyzed_at": "2026-05-23T22:10:10.577Z",
+      "case_id": "PD-20260525-458D8F",
+      "analyzed_at": "2026-05-25T00:31:14.813Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e56e3-7eeb-7123-8973-22065b0946aa.png",
           "url": "https://urlscan.io/result/019e56e3-7eeb-7123-8973-22065b0946aa/",
-          "pending": true
+          "title": "bet365英国上市官网"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameSilo, LLC",
         "created": "2018-12-03T13:09:51Z",
         "expires": "2027-12-03T13:09:51Z",
-        "age_days": 2728,
+        "age_days": 2729,
         "nameservers": [
           "GANZ.NS.CLOUDFLARE.COM",
           "GLORIA.NS.CLOUDFLARE.COM"
@@ -109,13 +67,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:3031::6815:4299",
+            "2606:4700:3037::ac43:a17d"
+          ],
           "A": [
             "104.21.66.153",
             "172.67.161.125"
-          ],
-          "AAAA": [
-            "2606:4700:3037::ac43:a17d",
-            "2606:4700:3031::6815:4299"
           ],
           "NS": [
             "ganz.ns.cloudflare.com.",
@@ -267,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (b35aaa.com/fish/288)\"; flow:established,to_server; http.uri; content:\"/fish/288\"; startswith; fast_pattern; http.host; content:\"b35aaa.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002111; classtype:social-engineering; sid:6002111; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-05-24T18:58:30.842090+00:00",
+  "updated_at": "2026-05-25T00:37:53.119457+00:00",
   "probe": {
     "dns": true,
     "whois": true,

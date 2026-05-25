@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "info.mailer.testbook.com",
       "domain_defanged": "info[.]mailer[.]testbook[.]com",
-      "case_id": "PD-20260523-4550C8",
-      "analyzed_at": "2026-05-23T22:08:43.274Z",
+      "case_id": "PD-20260525-4550C8",
+      "analyzed_at": "2026-05-25T00:29:29.513Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e56e2-29e3-73a9-a4b7-b5ff70d9dbf4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "SNCF"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5af3-0cc9-74de-90a3-5929d95eb0d8.png",
+          "url": "https://urlscan.io/result/019e5af3-0cc9-74de-90a3-5929d95eb0d8/",
+          "title": "Nous devons nous assurer que vous n'êtes pas un robot."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: SNCF",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -72,9 +81,6 @@
         "ip": "eapi.sslind.netcorecloud.net.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "eapi.sslind.netcorecloud.net."
-          ],
           "MX": [
             "eapi.sslind.netcorecloud.net.",
             "5 bounceapi.netcorecloud.net."
@@ -82,6 +88,9 @@
           "A": [
             "eapi.sslind.netcorecloud.net.",
             "107.178.250.77"
+          ],
+          "AAAA": [
+            "eapi.sslind.netcorecloud.net."
           ],
           "CNAME": [
             "eapi.sslind.netcorecloud.net."
@@ -216,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (info .mailer .testbook .com/BAKREVOJUT?id=178324=dxpUVVQKAVNQTVUCAVcFBQhQVVALUgBTAVAMBFRSCgcHUFxRAAoEVwUBBwJXB1QPDQJPUlEdW1hED0F3UAhZCFhIBwsOTgNWUwlQVVwGAAUAAAQEAQEOS14VQEdEXxdOXQgCC01fUwgIVBZIEFRFQlpaXFgcUFdaGSN1fGUgbi5+MzBbClZOF1c=&amp\\;fl=XBIQFBAIHU4BXAUPCBxFWFtTHlBdXVZSVRUaVFgI)\"; flow:established,to_server; http.uri; content:\"/BAKREVOJUT?id=178324=dxpUVVQKAVNQTVUCAVcFBQhQVVALUgBTAVAMBFRSCgcHUFxRAAoEVwUBBwJXB1QPDQJPUlEdW1hED0F3UAhZCFhIBwsOTgNWUwlQVVwGAAUAAAQEAQEOS14VQEdEXxdOXQgCC01fUwgIVBZIEFRFQlpaXFgcUFdaGSN1fGUgbi5+MzBbClZOF1c=&amp|3b|fl=XBIQFBAIHU4BXAUPCBxFWFtTHlBdXVZSVRUaVFgI\"; startswith; fast_pattern; http.host;  content:\"info.mailer.testbook.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001980; classtype:social-engineering; sid:6001980; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-05-24T18:54:34.082759+00:00",
+  "updated_at": "2026-05-25T00:29:26.953778+00:00",
   "probe": {
     "dns": true,
     "whois": false,

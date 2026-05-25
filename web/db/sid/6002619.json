@@ -72,21 +72,37 @@
     "phishdestroy": {
       "domain": "main012responfd.wasmer.app",
       "domain_defanged": "main012responfd[.]wasmer[.]app",
-      "case_id": "PD-20260523-7A63C5",
-      "analyzed_at": "2026-05-23T22:39:35.276Z",
+      "case_id": "PD-20260525-7A63C5",
+      "analyzed_at": "2026-05-25T01:13:35.227Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e56fe-6bf0-749e-b231-c2aeaaca1cb8/",
+          "url": "https://urlscan.io/result/019e5cb1-c5d0-725d-b7f0-ee53e044eaea/",
           "pending": true
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,11 +118,11 @@
           "asn": "AS213230"
         },
         "dns": {
-          "A": [
-            "5.161.17.219"
-          ],
           "AAAA": [
             "2a01:4ff:f2:2007::1"
+          ],
+          "A": [
+            "5.161.17.219"
           ],
           "NS": [
             "alpha.ns.wasmernet.com.",
@@ -239,12 +255,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (main012responfd.wasmer.app/vick-medicamentos)\"; flow:established,to_server; http.uri; content:\"/vick-medicamentos\"; startswith; fast_pattern; http.host; content:\"main012responfd.wasmer.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002619; classtype:social-engineering; sid:6002619; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-24T19:14:56.456818+00:00",
+  "updated_at": "2026-05-25T01:13:33.410498+00:00",
   "probe": {
     "dns": true,
     "whois": false,

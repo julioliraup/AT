@@ -50,27 +50,59 @@
     "phishdestroy": {
       "domain": "invoice-paymen.accounts-admin-agency.com",
       "domain_defanged": "invoice-paymen[.]accounts-admin-agency[.]com",
-      "case_id": "PD-20260523-4258B6",
-      "analyzed_at": "2026-05-23T21:55:48.051Z",
+      "case_id": "PD-20260525-4258B6",
+      "analyzed_at": "2026-05-25T00:14:10.041Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1c47-1ab8-767e-9a5f-9091070967ae.png",
+          "url": "https://urlscan.io/result/019e1c47-1ab8-767e-9a5f-9091070967ae/",
+          "title": "Accounts Centre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:7::60",
+        "ipinfo": {
+          "ip": "2606:4700:7::60",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -193,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (invoice-paymen .accounts-admin-agency .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"invoice-paymen.accounts-admin-agency.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001687; classtype:social-engineering; sid:6001687; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-05-24T18:45:54.898932+00:00",
+  "updated_at": "2026-05-25T00:13:59.218191+00:00",
   "probe": {
     "dns": false,
     "whois": false,

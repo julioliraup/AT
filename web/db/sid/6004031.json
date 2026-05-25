@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "praadconsulting.com",
       "domain_defanged": "praadconsulting[.]com",
-      "case_id": "PD-20260523-52DC6B",
-      "analyzed_at": "2026-05-23T23:46:41.845Z",
+      "case_id": "PD-20260525-52DC6B",
+      "analyzed_at": "2026-05-25T02:28:20.320Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e5cf6-33ce-7069-9b4c-138584754af6/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,7 +68,7 @@
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2026-04-04T01:12:40Z",
         "expires": "2027-04-04T01:12:40Z",
-        "age_days": 49,
+        "age_days": 51,
         "nameservers": [
           "NS1.DOCENTEACTIVO.COM",
           "NS2.DOCENTEACTIVO.COM"
@@ -72,13 +76,21 @@
       },
       "infrastructure": {
         "ip": "213.136.74.139",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "213.136.74.139",
+          "hostname": "m29839.contaboserver.net",
+          "city": "Lauterbourg",
+          "region": "Grand Est",
+          "country": "FR",
+          "org": "AS51167 Contabo GmbH",
+          "asn": "AS51167"
+        },
         "dns": {
-          "MX": [
-            "0 praadconsulting.com."
-          ],
           "A": [
             "213.136.74.139"
+          ],
+          "MX": [
+            "0 praadconsulting.com."
           ],
           "NS": [
             "ns1.docenteactivo.com.",
@@ -95,7 +107,14 @@
           "method": "form",
           "iana_ids": "1509"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Contabo",
+          "abuse": "abuse@contabo.com",
+          "url": "mailto:abuse@contabo.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS51167"
+        }
       },
       "report_services": [
         {
@@ -218,12 +237,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (praadconsulting.com/xmx/secure_access-5.html)\"; flow:established,to_server; http.uri; content:\"/xmx/secure_access-5.html\"; startswith; fast_pattern; http.host; content:\"praadconsulting.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004031; classtype:social-engineering; sid:6004031; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-24T20:04:53.227339+00:00",
+  "updated_at": "2026-05-25T02:28:02.786766+00:00",
   "probe": {
     "dns": true,
     "whois": false,

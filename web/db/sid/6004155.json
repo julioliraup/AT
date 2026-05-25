@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "jnlgt.com",
       "domain_defanged": "jnlgt[.]com",
-      "case_id": "PD-20260523-E7476A",
-      "analyzed_at": "2026-05-23T23:51:59.954Z",
+      "case_id": "PD-20260525-E7476A",
+      "analyzed_at": "2026-05-25T02:34:57.979Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e5cfc-4647-70be-bfdf-8870bc384abe/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,7 +92,7 @@
         "registrar": "Edomains LLC",
         "created": "2026-05-19T09:16:06Z",
         "expires": "2027-05-19T09:16:06Z",
-        "age_days": 4,
+        "age_days": 5,
         "nameservers": [
           "DNS3.EDOMAINS.COM",
           "DNS4.EDOMAINS.COM"
@@ -96,17 +100,24 @@
       },
       "infrastructure": {
         "ip": "20.98.156.105",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "20.98.156.105",
+          "city": "Des Moines",
+          "region": "Iowa",
+          "country": "US",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": {
-          "A": [
-            "20.98.156.105"
-          ],
           "MX": [
             "0 jnlgt.com."
           ],
+          "A": [
+            "20.98.156.105"
+          ],
           "NS": [
-            "dns4.edomains.com.",
-            "dns3.edomains.com."
+            "dns3.edomains.com.",
+            "dns4.edomains.com."
           ]
         }
       },
@@ -119,7 +130,14 @@
           "method": "form",
           "iana_ids": "299"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -242,12 +260,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.jnlgt.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.jnlgt.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004155; classtype:social-engineering; sid:6004155; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-24T20:08:14.654520+00:00",
+  "updated_at": "2026-05-25T02:34:55.390209+00:00",
   "probe": {
     "dns": true,
     "whois": false,

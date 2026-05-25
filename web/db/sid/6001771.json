@@ -74,27 +74,54 @@
     "phishdestroy": {
       "domain": "dpd.rdfgty-ie.org",
       "domain_defanged": "dpd[.]rdfgty-ie[.]org",
-      "case_id": "PD-20260523-3E0643",
-      "analyzed_at": "2026-05-23T21:59:40.491Z",
+      "case_id": "PD-20260525-3E0643",
+      "analyzed_at": "2026-05-25T00:18:49.137Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1c46-5cae-71e8-b9b2-ec65a6b2f36f.png",
+          "url": "https://urlscan.io/result/019e1c46-5cae-71e8-b9b2-ec65a6b2f36f/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3033::6815:5bb9",
+        "ipinfo": {
+          "ip": "2606:4700:3033::6815:5bb9",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -217,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd .rdfgty-ie .org/track/)\"; flow:established,to_server; http.uri; content:\"/track/\"; startswith; fast_pattern; http.host;  content:\"dpd.rdfgty-ie.org\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001771; classtype:social-engineering; sid:6001771; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-05-24T18:49:19.204290+00:00",
+  "updated_at": "2026-05-25T00:18:45.314885+00:00",
   "probe": {
     "dns": true,
     "whois": true,

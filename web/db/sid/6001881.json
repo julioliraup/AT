@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "t-mobile.jybzes.top",
       "domain_defanged": "t-mobile[.]jybzes[.]top",
-      "case_id": "PD-20260523-4048A8",
-      "analyzed_at": "2026-05-23T22:04:35.757Z",
+      "case_id": "PD-20260525-4048A8",
+      "analyzed_at": "2026-05-25T00:24:46.046Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1c45-eb66-703e-961b-edd3c3a38d0d.png",
+          "url": "https://urlscan.io/result/019e1c45-eb66-703e-961b-edd3c3a38d0d/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.204.205",
+        "ipinfo": {
+          "ip": "172.67.204.205",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -193,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile .jybzes .top/pay?eGv=YkP8q?Esb=iL80O)\"; flow:established,to_server; http.uri; content:\"/pay?eGv=YkP8q?Esb=iL80O\"; startswith; fast_pattern; http.host;  content:\"t-mobile.jybzes.top\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001881; classtype:social-engineering; sid:6001881; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-05-24T18:52:00.137506+00:00",
+  "updated_at": "2026-05-25T00:24:42.690571+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -22,7 +22,7 @@
       "url": "http://auth.dbsbank.digital/sign-in",
       "domain": "auth.dbsbank.digital",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,65 +49,27 @@
     "phishdestroy": {
       "domain": "auth.dbsbank.digital",
       "domain_defanged": "auth[.]dbsbank[.]digital",
-      "case_id": "PD-20260524-323D10",
-      "analyzed_at": "2026-05-24T00:50:04.721Z",
+      "case_id": "PD-20260525-323D10",
+      "analyzed_at": "2026-05-25T03:28:09.726Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Generic Cloudflare"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019e5230-da4e-7300-97b9-cd9f2e56ffac.png",
-          "url": "https://urlscan.io/result/019e5230-da4e-7300-97b9-cd9f2e56ffac/",
-          "title": "Suspected Phishing | Cloudflare"
+          "error": "no_results"
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Generic Cloudflare",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "cname.hercules-auth.com.",
         "ipinfo": null,
-        "dns": {
-          "AAAA": [
-            "cname.hercules-auth.com.",
-            "2606:4700::6812:1e6a",
-            "2606:4700::6812:1f6a"
-          ],
-          "A": [
-            "cname.hercules-auth.com.",
-            "104.18.30.106",
-            "104.18.31.106"
-          ],
-          "MX": [
-            "cname.hercules-auth.com."
-          ],
-          "CNAME": [
-            "cname.hercules-auth.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -230,15 +192,16 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (auth.dbsbank.digital/sign-in)\"; flow:established,to_server; http.uri; content:\"/sign-in\"; startswith; fast_pattern; http.host; content:\"auth.dbsbank.digital\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005097; classtype:social-engineering; sid:6005097; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-05-24T20:43:07.993362+00:00",
+  "updated_at": "2026-05-25T03:28:07.230615+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

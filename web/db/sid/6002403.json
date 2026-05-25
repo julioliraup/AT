@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "vnshort.com",
       "domain_defanged": "vnshort[.]com",
-      "case_id": "PD-20260523-200651",
-      "analyzed_at": "2026-05-23T22:29:15.824Z",
+      "case_id": "PD-20260525-200651",
+      "analyzed_at": "2026-05-25T00:58:34.702Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e56f4-f774-73e8-9f52-bc7c64c88cc4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5b31-071b-7297-93a1-1eb8d9089366.png",
+          "url": "https://urlscan.io/result/019e5b31-071b-7297-93a1-1eb8d9089366/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2023-09-22T04:19:01Z",
         "expires": "2026-09-22T04:19:01Z",
-        "age_days": 974,
+        "age_days": 975,
         "nameservers": [
           "PAM.NS.CLOUDFLARE.COM",
           "TOM.NS.CLOUDFLARE.COM"
@@ -90,8 +99,8 @@
             "104.21.55.140"
           ],
           "AAAA": [
-            "2606:4700:3032::6815:378c",
-            "2606:4700:3030::ac43:94f1"
+            "2606:4700:3030::ac43:94f1",
+            "2606:4700:3032::6815:378c"
           ],
           "NS": [
             "pam.ns.cloudflare.com.",
@@ -238,12 +247,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (vnshort.com/MJo5)\"; flow:established,to_server; http.uri; content:\"/MJo5\"; startswith; fast_pattern; http.host; content:\"vnshort.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002403; classtype:social-engineering; sid:6002403; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-24T19:07:55.175242+00:00",
+  "updated_at": "2026-05-25T00:58:26.544638+00:00",
   "probe": {
     "dns": true,
     "whois": false,

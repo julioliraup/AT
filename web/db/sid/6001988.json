@@ -74,14 +74,19 @@
     "phishdestroy": {
       "domain": "marlo.direct-8812171.pro",
       "domain_defanged": "marlo[.]direct-8812171[.]pro",
-      "case_id": "PD-20260523-413FF7",
-      "analyzed_at": "2026-05-23T22:08:47.765Z",
+      "case_id": "PD-20260525-413FF7",
+      "analyzed_at": "2026-05-25T00:29:35.155Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e1ccf-b009-705f-9b83-e9eca28f878d.png",
+          "url": "https://urlscan.io/result/019e1ccf-b009-705f-9b83-e9eca28f878d/",
+          "title": "Attention Required! | Cloudflare"
         }
       },
       "detections": [],
@@ -89,12 +94,27 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.128.80",
+        "ipinfo": {
+          "ip": "172.67.128.80",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -222,7 +242,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (marlo .direct-8812171 .pro/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"marlo.direct-8812171.pro\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001988; classtype:social-engineering; sid:6001988; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-05-24T18:54:44.430687+00:00",
+  "updated_at": "2026-05-25T00:29:56.444658+00:00",
   "probe": {
     "dns": true,
     "whois": true,

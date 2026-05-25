@@ -56,31 +56,21 @@
     "phishdestroy": {
       "domain": "gwenet.org",
       "domain_defanged": "gwenet[.]org",
-      "case_id": "PD-20260523-610D04",
-      "analyzed_at": "2026-05-23T21:08:07.114Z",
+      "case_id": "PD-20260524-610D04",
+      "analyzed_at": "2026-05-24T23:19:02.397Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Microsoft",
-            "Office 365"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019e13b2-61ab-7174-b2d2-0108eafd2e01.png",
-          "url": "https://urlscan.io/result/019e13b2-61ab-7174-b2d2-0108eafd2e01/",
-          "title": "Sign in to your account"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e5c48-e63b-775d-80e0-6c282de990d6/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Microsoft, Office 365",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
@@ -97,18 +87,18 @@
         },
         "dns": {
           "MX": [
-            "10 mx1c38.carrierzone.com.",
-            "110 mx3c38.carrierzone.com.",
             "100 mx2c38.carrierzone.com.",
-            "120 mx4c38.carrierzone.com."
+            "10 mx1c38.carrierzone.com.",
+            "120 mx4c38.carrierzone.com.",
+            "110 mx3c38.carrierzone.com."
+          ],
+          "NS": [
+            "dns2.earthlink.net.",
+            "dns1.earthlink.net.",
+            "dns3.earthlink.net."
           ],
           "A": [
             "66.175.58.9"
-          ],
-          "NS": [
-            "dns3.earthlink.net.",
-            "dns2.earthlink.net.",
-            "dns1.earthlink.net."
           ]
         }
       },
@@ -244,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .gwenet .org/office/)\"; flow:established,to_server; http.uri; content:\"/office/\"; startswith; fast_pattern; http.host;  content:\"www.gwenet.org\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000710; classtype:social-engineering; sid:6000710; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-24T18:15:21.522397+00:00",
+  "updated_at": "2026-05-24T23:19:00.150033+00:00",
   "probe": {
     "dns": true,
     "whois": true,

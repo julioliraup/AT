@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "nsbrestrictcare.weebly.com",
       "domain_defanged": "nsbrestrictcare[.]weebly[.]com",
-      "case_id": "PD-20260523-5BA262",
-      "analyzed_at": "2026-05-23T23:47:53.053Z",
+      "case_id": "PD-20260525-5BA262",
+      "analyzed_at": "2026-05-25T02:29:42.616Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e5cf7-772c-776e-8a82-5aa9a8d27068/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,18 +68,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "74.115.51.9",
-        "ipinfo": null,
+        "ip": "74.115.51.8",
+        "ipinfo": {
+          "ip": "74.115.51.8",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
         "dns": {
           "A": [
-            "74.115.51.9",
-            "74.115.51.8"
+            "74.115.51.8",
+            "74.115.51.9"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -198,12 +217,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nsbrestrictcare.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"nsbrestrictcare.weebly.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004058; classtype:social-engineering; sid:6004058; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-24T20:05:35.311270+00:00",
+  "updated_at": "2026-05-25T02:29:40.098178+00:00",
   "probe": {
     "dns": true,
     "whois": false,

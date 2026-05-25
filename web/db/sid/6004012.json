@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "track.freshpetals.info",
       "domain_defanged": "track[.]freshpetals[.]info",
-      "case_id": "PD-20260523-CC5405",
-      "analyzed_at": "2026-05-23T23:45:38.892Z",
+      "case_id": "PD-20260525-CC5405",
+      "analyzed_at": "2026-05-25T02:26:54.820Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e5cf4-e7b7-75bb-9ca1-9ab6eb138a3e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,21 +75,35 @@
       },
       "infrastructure": {
         "ip": "172.67.209.124",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.209.124",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3036::6815:1745",
-            "2606:4700:3035::ac43:d17c"
-          ],
           "A": [
             "172.67.209.124",
             "104.21.23.69"
+          ],
+          "AAAA": [
+            "2606:4700:3036::6815:1745",
+            "2606:4700:3035::ac43:d17c"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -208,12 +226,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (track.freshpetals.info/ga/click/2-17710760-34-7252-14165-7739-c7eaf3d1e6-63188a4c5a)\"; flow:established,to_server; http.uri; content:\"/ga/click/2-17710760-34-7252-14165-7739-c7eaf3d1e6-63188a4c5a\"; startswith; fast_pattern; http.host; content:\"track.freshpetals.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004012; classtype:social-engineering; sid:6004012; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-24T20:04:18.000967+00:00",
+  "updated_at": "2026-05-25T02:26:52.545399+00:00",
   "probe": {
     "dns": true,
     "whois": true,

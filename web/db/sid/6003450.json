@@ -49,26 +49,92 @@
     "phishdestroy": {
       "domain": "valueser.com",
       "domain_defanged": "valueser[.]com",
-      "case_id": "PD-20260523-3AC614",
-      "analyzed_at": "2026-05-23T23:19:24.606Z",
+      "case_id": "PD-20260525-3AC614",
+      "analyzed_at": "2026-05-25T02:00:38.208Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e5722-e083-7347-9838-b17d031d6d93/",
+          "url": "https://urlscan.io/result/019e5cdc-d914-715b-be42-273991de4efa/",
           "pending": true
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gandi SAS",
         "created": "2007-07-19T16:41:02Z",
         "expires": "2027-07-19T16:41:02Z",
-        "age_days": 6883,
+        "age_days": 6884,
         "nameservers": [
           "NS-1093.AWSDNS-08.ORG",
           "NS-131.AWSDNS-16.COM",
@@ -78,7 +144,15 @@
       },
       "infrastructure": {
         "ip": "185.81.4.146",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.81.4.146",
+          "hostname": "d00lc5-mediatools.sphostserver.com",
+          "city": "Rome",
+          "region": "Lazio",
+          "country": "IT",
+          "org": "AS52030 Server Plan S.r.l.",
+          "asn": "AS52030"
+        },
         "dns": {
           "A": [
             "185.81.4.146"
@@ -103,7 +177,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "SERVERPLAN-AS, IT",
+          "abuse": "abuse@serverplan.com",
+          "url": "mailto:abuse@serverplan.com",
+          "logo": "https://i.ibb.co/qL1qGxYQ/pr-SERVERPLAN-AS-IT.png",
+          "method": "email",
+          "asn": "AS52030"
+        }
       },
       "report_services": [
         {
@@ -226,12 +307,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (valueser.com/?p=89028)\"; flow:established,to_server; http.uri; content:\"/?p=89028\"; startswith; fast_pattern; http.host; content:\"valueser.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003450; classtype:social-engineering; sid:6003450; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-24T19:46:51.226509+00:00",
+  "updated_at": "2026-05-25T02:00:34.360879+00:00",
   "probe": {
     "dns": true,
     "whois": true,
