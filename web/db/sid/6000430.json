@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "jus-sup-21399932.pages.dev",
       "domain_defanged": "jus-sup-21399932[.]pages[.]dev",
-      "case_id": "PD-20260524-655DDB",
-      "analyzed_at": "2026-05-24T23:05:04.605Z",
+      "case_id": "PD-20260526-655DDB",
+      "analyzed_at": "2026-05-26T02:37:44.746Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5c3c-1d63-72f3-9dd3-533721a8a405.png",
           "url": "https://urlscan.io/result/019e5c3c-1d63-72f3-9dd3-533721a8a405/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (jus-sup-21399932 .pages .dev/help/contact/604035074640293/)\"; flow:established,to_server; http.uri; content:\"/help/contact/604035074640293/\"; startswith; fast_pattern; http.host;  content:\"jus-sup-21399932.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000430; classtype:social-engineering; sid:6000430; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:11:20.874856+00:00",
+  "updated_at": "2026-05-26T02:37:42.561964+00:00",
   "probe": {
     "dns": true,
     "whois": false,

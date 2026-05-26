@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "surl.li",
       "domain_defanged": "surl[.]li",
-      "case_id": "PD-20260524-6E7417",
-      "analyzed_at": "2026-05-24T23:56:00.815Z",
+      "case_id": "PD-20260526-6E7417",
+      "analyzed_at": "2026-05-26T03:44:38.881Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6262-6eab-74da-b448-b4580028e4bc/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,21 +69,28 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.5.19",
-        "ipinfo": null,
+        "ip": "104.26.4.19",
+        "ipinfo": {
+          "ip": "104.26.4.19",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:20::681a:513",
+            "2606:4700:20::ac43:454c",
+            "2606:4700:20::681a:413"
+          ],
           "A": [
-            "104.26.5.19",
             "104.26.4.19",
+            "104.26.5.19",
             "172.67.69.76"
           ],
           "MX": [
             "0 mail.surl.li."
-          ],
-          "AAAA": [
-            "2606:4700:20::681a:413",
-            "2606:4700:20::681a:513",
-            "2606:4700:20::ac43:454c"
           ],
           "NS": [
             "dina.ns.cloudflare.com.",
@@ -89,7 +100,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (surl .li/nkayto)\"; flow:established,to_server; http.uri; content:\"/nkayto\"; startswith; fast_pattern; http.host;  content:\"surl.li\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001382; classtype:social-engineering; sid:6001382; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:38:34.771311+00:00",
+  "updated_at": "2026-05-26T03:44:31.353727+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "work-with-us-31m.pages.dev",
       "domain_defanged": "work-with-us-31m[.]pages[.]dev",
-      "case_id": "PD-20260524-34BD72",
-      "analyzed_at": "2026-05-24T23:03:56.614Z",
+      "case_id": "PD-20260526-34BD72",
+      "analyzed_at": "2026-05-26T02:36:12.393Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5c3b-1495-707e-811d-2c01a69445fa.png",
           "url": "https://urlscan.io/result/019e5c3b-1495-707e-811d-2c01a69445fa/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,13 +88,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.44.172",
-            "172.66.47.84"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2f54",
             "2606:4700:310c::ac42:2cac"
+          ],
+          "A": [
+            "172.66.44.172",
+            "172.66.47.84"
           ],
           "NS": [
             "jakub.ns.cloudflare.com.",
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (work-with-us-31m .pages .dev/help/contact/38281068143898/)\"; flow:established,to_server; http.uri; content:\"/help/contact/38281068143898/\"; startswith; fast_pattern; http.host;  content:\"work-with-us-31m.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000403; classtype:social-engineering; sid:6000403; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:10:26.485534+00:00",
+  "updated_at": "2026-05-26T02:36:09.991679+00:00",
   "probe": {
     "dns": true,
     "whois": false,

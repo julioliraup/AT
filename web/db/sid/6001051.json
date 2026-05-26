@@ -50,35 +50,51 @@
     "phishdestroy": {
       "domain": "atendimento-flow-sp-free.my.id",
       "domain_defanged": "atendimento-flow-sp-free[.]my[.]id",
-      "case_id": "PD-20260524-13AC50",
-      "analyzed_at": "2026-05-24T23:39:00.447Z",
+      "case_id": "PD-20260526-13AC50",
+      "analyzed_at": "2026-05-26T03:22:40.198Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e5c5b-2eb1-7786-ab5b-7a5a4433c0c4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5df9-5741-74b2-9c70-fa757e94d9dd.png",
+          "url": "https://urlscan.io/result/019e5df9-5741-74b2-9c70-fa757e94d9dd/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.58.72",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.58.72",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.21.58.72",
             "172.67.157.122"
           ],
           "AAAA": [
-            "2606:4700:3032::ac43:9d7a",
-            "2606:4700:3035::6815:3a48"
+            "2606:4700:3035::6815:3a48",
+            "2606:4700:3032::ac43:9d7a"
           ],
           "NS": [
             "giancarlo.ns.cloudflare.com.",
@@ -88,7 +104,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -211,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (atendimento-flow-sp-free .my .id/via2/)\"; flow:established,to_server; http.uri; content:\"/via2/\"; startswith; fast_pattern; http.host;  content:\"atendimento-flow-sp-free.my.id\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001051; classtype:social-engineering; sid:6001051; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:29:59.277542+00:00",
+  "updated_at": "2026-05-26T03:22:36.424896+00:00",
   "probe": {
     "dns": true,
     "whois": true,

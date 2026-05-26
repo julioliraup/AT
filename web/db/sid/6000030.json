@@ -50,30 +50,75 @@
     "phishdestroy": {
       "domain": "ivorytowertattoo.com",
       "domain_defanged": "ivorytowertattoo[.]com",
-      "case_id": "PD-20260524-1C5B3A",
-      "analyzed_at": "2026-05-24T22:45:52.836Z",
+      "case_id": "PD-20260526-1C5B3A",
+      "analyzed_at": "2026-05-26T02:11:12.862Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Nudity, Phishing, Society/Lifestyle (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "phishing and other frauds"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e160d-895d-70b5-8835-47322314fcb9.png",
+          "url": "https://urlscan.io/result/019e160d-895d-70b5-8835-47322314fcb9/",
+          "title": "www.ivorytowertattoo.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname 279 Inc",
         "created": "2025-05-24T18:10:00Z",
-        "expires": "2026-05-24T18:10:00Z",
-        "age_days": 365,
+        "expires": "2027-05-24T18:10:00Z",
+        "age_days": 366,
         "nameservers": [
-          "HERA.NS.CLOUDFLARE.COM",
-          "JOHNNY.NS.CLOUDFLARE.COM"
+          "EXPIRE1.GNAME-DNS.COM",
+          "EXPIRE2.GNAME-DNS.COM"
         ]
       },
       "infrastructure": {
+        "ip": "exp.gname.net.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "NS": [
+            "expire1.gname-dns.com.",
+            "expire2.gname-dns.com."
+          ],
+          "AAAA": [
+            "exp.gname.net."
+          ],
+          "MX": [
+            "exp.gname.net."
+          ],
+          "A": [
+            "exp.gname.net.",
+            "172.65.211.209"
+          ],
+          "CNAME": [
+            "exp.gname.net."
+          ]
+        }
       },
       "report_to": {
         "registrar": {
@@ -207,12 +252,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .ivorytowertattoo .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.ivorytowertattoo.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000030; classtype:social-engineering; sid:6000030; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T20:59:20.359534+00:00",
+  "updated_at": "2026-05-26T02:11:09.703154+00:00",
   "probe": {
     "dns": true,
     "whois": false,

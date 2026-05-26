@@ -74,33 +74,60 @@
     "phishdestroy": {
       "domain": "clone-vert-nu.vercel.app",
       "domain_defanged": "clone-vert-nu[.]vercel[.]app",
-      "case_id": "PD-20260524-6636A1",
-      "analyzed_at": "2026-05-24T23:39:13.255Z",
+      "case_id": "PD-20260526-6636A1",
+      "analyzed_at": "2026-05-26T03:22:55.894Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e56bb-09e3-776a-96a6-965a25d1407c.png",
+          "url": "https://urlscan.io/result/019e56bb-09e3-776a-96a6-965a25d1407c/",
+          "title": "Netflix Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.194",
-        "ipinfo": null,
+        "ip": "64.29.17.130",
+        "ipinfo": {
+          "ip": "64.29.17.130",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.198.79.194",
-            "64.29.17.194"
+            "64.29.17.130",
+            "216.198.79.130"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -228,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .clone-vert-nu .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.clone-vert-nu.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001127; classtype:social-engineering; sid:6001127; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:31:52.332805+00:00",
+  "updated_at": "2026-05-26T03:26:15.462076+00:00",
   "probe": {
     "dns": true,
     "whois": false,

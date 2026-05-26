@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "account-mi.info",
       "domain_defanged": "account-mi[.]info",
-      "case_id": "PD-20260525-56CC5D",
-      "analyzed_at": "2026-05-25T03:53:57.579Z",
+      "case_id": "PD-20260526-56CC5D",
+      "analyzed_at": "2026-05-26T07:28:36.540Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e632f-7993-754b-ae50-e50b7512a998/",
+          "pending": true
         }
       },
       "detections": [],
@@ -67,15 +71,15 @@
         "ip": "45.130.151.54",
         "ipinfo": null,
         "dns": {
+          "MX": [
+            "0 account-mi.info."
+          ],
           "NS": [
             "ns1.193-3-23-132.cprapid.com.",
             "ns2.193-3-23-132.cprapid.com."
           ],
           "A": [
             "45.130.151.54"
-          ],
-          "MX": [
-            "0 account-mi.info."
           ]
         }
       },
@@ -204,12 +208,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (account-mi.info/help?qmw)\"; flow:established,to_server; http.uri; content:\"/help?qmw\"; startswith; fast_pattern; http.host; content:\"account-mi.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005559; classtype:social-engineering; sid:6005559; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-05-26T00:10:45.902698+00:00",
+  "updated_at": "2026-05-26T07:28:31.994030+00:00",
   "probe": {
     "dns": true,
     "whois": true,

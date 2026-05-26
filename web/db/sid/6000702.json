@@ -50,21 +50,29 @@
     "phishdestroy": {
       "domain": "ipfs.io",
       "domain_defanged": "ipfs[.]io",
-      "case_id": "PD-20260524-775F71",
-      "analyzed_at": "2026-05-24T23:18:37.559Z",
+      "case_id": "PD-20260526-775F71",
+      "analyzed_at": "2026-05-26T02:57:13.203Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e5c48-8553-7688-a7e2-dccd43cb2a1b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e622f-7aae-7008-86bc-c9783b1b3c18.png",
+          "url": "https://urlscan.io/result/019e622f-7aae-7008-86bc-c9783b1b3c18/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,11 +87,11 @@
           "asn": "AS40680"
         },
         "dns": {
-          "AAAA": [
-            "2602:fea2:2::1"
-          ],
           "A": [
             "209.94.90.1"
+          ],
+          "AAAA": [
+            "2602:fea2:2::1"
           ],
           "MX": [
             "1 aspmx.l.google.com.",
@@ -230,12 +238,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ipfs .io/ipfs/bafkreiatmr6qgs4jzvvqgllrbnpdyslwy6rfazygzkdr74zspvpwwhqdcy)\"; flow:established,to_server; http.uri; content:\"/ipfs/bafkreiatmr6qgs4jzvvqgllrbnpdyslwy6rfazygzkdr74zspvpwwhqdcy\"; startswith; fast_pattern; http.host;  content:\"ipfs.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000702; classtype:social-engineering; sid:6000702; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:18:06.890600+00:00",
+  "updated_at": "2026-05-26T02:57:05.940790+00:00",
   "probe": {
     "dns": true,
     "whois": true,

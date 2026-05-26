@@ -74,28 +74,44 @@
     "phishdestroy": {
       "domain": "is.gd",
       "domain_defanged": "is[.]gd",
-      "case_id": "PD-20260524-5FCA42",
-      "analyzed_at": "2026-05-24T22:53:17.329Z",
+      "case_id": "PD-20260526-5FCA42",
+      "analyzed_at": "2026-05-26T02:21:19.760Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e5c31-510f-73a2-9c55-0cfcef75c3cb/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e61cb-89c4-734e-a044-d09f67935722.png",
+          "url": "https://urlscan.io/result/019e61cb-89c4-734e-a044-d09f67935722/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.83.132",
+        "ip": "104.25.233.53",
         "ipinfo": {
-          "ip": "172.67.83.132",
+          "ip": "104.25.233.53",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,22 +119,22 @@
           "asn": "AS13335"
         },
         "dns": {
+          "A": [
+            "104.25.233.53",
+            "172.67.83.132",
+            "104.25.234.53"
+          ],
+          "AAAA": [
+            "2606:4700:20::6819:e935",
+            "2606:4700:20::ac43:5384",
+            "2606:4700:20::6819:ea35"
+          ],
           "MX": [
             "1 aspmx.l.google.com.",
             "10 alt3.aspmx.l.google.com.",
             "10 alt4.aspmx.l.google.com.",
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com."
-          ],
-          "A": [
-            "172.67.83.132",
-            "104.25.234.53",
-            "104.25.233.53"
-          ],
-          "AAAA": [
-            "2606:4700:20::ac43:5384",
-            "2606:4700:20::6819:ea35",
-            "2606:4700:20::6819:e935"
           ],
           "NS": [
             "gwen.ns.cloudflare.com.",
@@ -263,7 +279,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (is .gd/GgieGX)\"; flow:established,to_server; http.uri; content:\"/GgieGX\"; startswith; fast_pattern; http.host;  content:\"is.gd\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001387; classtype:social-engineering; sid:6001387; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:38:56.495837+00:00",
+  "updated_at": "2026-05-26T03:45:04.491632+00:00",
   "probe": {
     "dns": true,
     "whois": true,

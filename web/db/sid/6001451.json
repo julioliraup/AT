@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "banque-online.com",
       "domain_defanged": "banque-online[.]com",
-      "case_id": "PD-20260524-3852E8",
-      "analyzed_at": "2026-05-24T23:59:02.306Z",
+      "case_id": "PD-20260526-3852E8",
+      "analyzed_at": "2026-05-26T03:49:24.219Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6266-c94a-7219-b7d8-f7e612d5e1c5/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,7 +69,7 @@
         "registrar": "NameCheap, Inc.",
         "created": "2021-01-15T13:27:40Z",
         "expires": "2027-01-15T13:27:40Z",
-        "age_days": 1955,
+        "age_days": 1956,
         "nameservers": [
           "DANE.NS.CLOUDFLARE.COM",
           "JESSICA.NS.CLOUDFLARE.COM"
@@ -73,7 +77,15 @@
       },
       "infrastructure": {
         "ip": "98.91.9.77",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "98.91.9.77",
+          "hostname": "ec2-98-91-9-77.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "A": [
             "98.91.9.77"
@@ -93,7 +105,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -216,15 +235,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (banque-online .com/?r=ad85ef05-2f84-483c-9666-7f58616606bd&rg=eu)\"; flow:established,to_server; http.uri; content:\"/?r=ad85ef05-2f84-483c-9666-7f58616606bd&rg=eu\"; startswith; fast_pattern; http.host;  content:\"banque-online.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001451; classtype:social-engineering; sid:6001451; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:40:25.291165+00:00",
+  "updated_at": "2026-05-26T03:49:21.237360+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

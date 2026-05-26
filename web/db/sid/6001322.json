@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "pqsolutions.org",
       "domain_defanged": "pqsolutions[.]org",
-      "case_id": "PD-20260524-7024D8",
-      "analyzed_at": "2026-05-24T23:53:05.108Z",
+      "case_id": "PD-20260526-7024D8",
+      "analyzed_at": "2026-05-26T03:41:17.011Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e625f-5a23-714f-88b4-9b4f5b647759/",
+          "pending": true
         }
       },
       "detections": [],
@@ -66,7 +70,15 @@
       },
       "infrastructure": {
         "ip": "196.41.122.245",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "196.41.122.245",
+          "hostname": "cpanel32.mywebserver.co.za",
+          "city": "Cape Town",
+          "region": "Western Cape",
+          "country": "ZA",
+          "org": "AS36874 Cybersmart",
+          "asn": "AS36874"
+        },
         "dns": {
           "A": [
             "196.41.122.245"
@@ -76,14 +88,21 @@
           ],
           "NS": [
             "ns3.mywebserver.co.za.",
-            "ns1.mywebserver.co.za.",
-            "ns2.mywebserver.co.za."
+            "ns2.mywebserver.co.za.",
+            "ns1.mywebserver.co.za."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cybersmart, ZA",
+          "abuse": "",
+          "url": "",
+          "logo": "",
+          "method": "email",
+          "asn": "AS36874"
+        }
       },
       "report_services": [
         {
@@ -206,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pqsolutions .org/yak/rogers/login .html)\"; flow:established,to_server; http.uri; content:\"/yak/rogers/login.html\"; startswith; fast_pattern; http.host;  content:\"pqsolutions.org\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001322; classtype:social-engineering; sid:6001322; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:36:38.346101+00:00",
+  "updated_at": "2026-05-26T03:41:12.898022+00:00",
   "probe": {
     "dns": true,
     "whois": true,

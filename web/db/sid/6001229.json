@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "luohesmw.com",
       "domain_defanged": "luohesmw[.]com",
-      "case_id": "PD-20260524-CFC7F7",
-      "analyzed_at": "2026-05-24T23:48:23.633Z",
+      "case_id": "PD-20260526-CFC7F7",
+      "analyzed_at": "2026-05-26T03:33:41.527Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6258-66dd-7451-bfa9-cf7b6c3c2d8a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,7 +69,7 @@
         "registrar": "Gname 129 Inc",
         "created": "2025-05-25T18:41:16Z",
         "expires": "2026-05-25T18:41:16Z",
-        "age_days": 364,
+        "age_days": 365,
         "nameservers": [
           "JOCELYN.NS.CLOUDFLARE.COM",
           "MARK.NS.CLOUDFLARE.COM"
@@ -73,11 +77,18 @@
       },
       "infrastructure": {
         "ip": "104.21.52.90",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.52.90",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3032::6815:345a",
-            "2606:4700:3034::ac43:c58e"
+            "2606:4700:3034::ac43:c58e",
+            "2606:4700:3032::6815:345a"
           ],
           "A": [
             "104.21.52.90",
@@ -98,7 +109,14 @@
           "method": "form",
           "iana_ids": "1923"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -221,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .luohesmw .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.luohesmw.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001229; classtype:social-engineering; sid:6001229; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:34:05.427004+00:00",
+  "updated_at": "2026-05-26T03:33:33.309937+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "lhv-baaaa-promo1.com",
       "domain_defanged": "lhv-baaaa-promo1[.]com",
-      "case_id": "PD-20260524-48C403",
-      "analyzed_at": "2026-05-24T23:55:02.873Z",
+      "case_id": "PD-20260526-48C403",
+      "analyzed_at": "2026-05-26T03:43:13.548Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6261-2166-711c-8ca6-6401c2b179aa/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,7 +69,7 @@
         "registrar": "GMO Internet Group, Inc. d/b/a Onamae.com",
         "created": "2025-05-05T21:32:50Z",
         "expires": "2027-05-05T21:32:50Z",
-        "age_days": 384,
+        "age_days": 385,
         "nameservers": [
           "DNS10.PARKPAGE.FOUNDATIONAPI.COM",
           "DNS11.PARKPAGE.FOUNDATIONAPI.COM"
@@ -73,7 +77,15 @@
       },
       "infrastructure": {
         "ip": "15.197.240.20",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "15.197.240.20",
+          "hostname": "acf3b736b777428f5.awsglobalaccelerator.com",
+          "city": "Seattle",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "15.197.240.20"
@@ -89,7 +101,14 @@
           "method": "form",
           "iana_ids": "49"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -212,15 +231,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lhv-baaaa-promo1 .com/LHV/)\"; flow:established,to_server; http.uri; content:\"/LHV/\"; startswith; fast_pattern; http.host;  content:\"lhv-baaaa-promo1.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001362; classtype:social-engineering; sid:6001362; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:37:43.055518+00:00",
+  "updated_at": "2026-05-26T03:43:05.066815+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

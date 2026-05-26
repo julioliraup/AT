@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "auth-metasmskchrrm.gitbook.io",
       "domain_defanged": "auth-metasmskchrrm[.]gitbook[.]io",
-      "case_id": "PD-20260524-5BC5BC",
-      "analyzed_at": "2026-05-24T23:57:22.842Z",
+      "case_id": "PD-20260526-5BC5BC",
+      "analyzed_at": "2026-05-26T03:47:11.516Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6264-c2e4-725a-9a41-a7823d093e99/",
+          "pending": true
         }
       },
       "detections": [],
@@ -90,21 +94,35 @@
       },
       "infrastructure": {
         "ip": "104.18.40.47",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.40.47",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:4407::6812:282f",
-            "2606:4700:4402::ac40:93d1"
-          ],
           "A": [
             "104.18.40.47",
             "172.64.147.209"
+          ],
+          "AAAA": [
+            "2606:4700:4402::ac40:93d1",
+            "2606:4700:4407::6812:282f"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -227,12 +245,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (auth-metasmskchrrm .gitbook .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"auth-metasmskchrrm.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001410; classtype:social-engineering; sid:6001410; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:39:26.457902+00:00",
+  "updated_at": "2026-05-26T03:47:09.053903+00:00",
   "probe": {
     "dns": true,
     "whois": true,

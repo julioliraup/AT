@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "s.eu.premiumisp.net",
       "domain_defanged": "s[.]eu[.]premiumisp[.]net",
-      "case_id": "PD-20260524-171935",
-      "analyzed_at": "2026-05-24T23:19:25.281Z",
+      "case_id": "PD-20260526-171935",
+      "analyzed_at": "2026-05-26T02:58:04.693Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5c49-4036-7064-a07e-53f344736daa.png",
           "url": "https://urlscan.io/result/019e5c49-4036-7064-a07e-53f344736daa/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -223,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s .eu .premiumisp .net/education_redirect_second?475d964a-0243-46bf-aefd-66da26254efa)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?475d964a-0243-46bf-aefd-66da26254efa\"; startswith; fast_pattern; http.host;  content:\"s.eu.premiumisp.net\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000725; classtype:social-engineering; sid:6000725; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:18:47.533503+00:00",
+  "updated_at": "2026-05-26T02:58:36.259719+00:00",
   "probe": {
     "dns": true,
     "whois": false,

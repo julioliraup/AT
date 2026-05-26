@@ -50,14 +50,19 @@
     "phishdestroy": {
       "domain": "licensingterms.azurewebsites.net",
       "domain_defanged": "licensingterms[.]azurewebsites[.]net",
-      "case_id": "PD-20260524-1262A5",
-      "analyzed_at": "2026-05-24T23:39:28.803Z",
+      "case_id": "PD-20260526-1262A5",
+      "analyzed_at": "2026-05-26T03:23:08.820Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e608d-8ac9-73a8-b744-62389852c650.png",
+          "url": "https://urlscan.io/result/019e608d-8ac9-73a8-b744-62389852c650/",
+          "title": "Microsoft Product Terms"
         }
       },
       "detections": [],
@@ -68,16 +73,16 @@
         "ip": "waws-prod-blu-117.sip.azurewebsites.windows.net.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "waws-prod-blu-117.sip.azurewebsites.windows.net.",
-            "waws-prod-blu-117.eastus.cloudapp.azure.com."
-          ],
           "A": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net.",
             "waws-prod-blu-117.eastus.cloudapp.azure.com.",
             "40.114.68.21"
           ],
           "AAAA": [
+            "waws-prod-blu-117.sip.azurewebsites.windows.net.",
+            "waws-prod-blu-117.eastus.cloudapp.azure.com."
+          ],
+          "MX": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net.",
             "waws-prod-blu-117.eastus.cloudapp.azure.com."
           ],
@@ -92,7 +97,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -220,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (licensingterms .azurewebsites .net/licensing/terms/productoffering/MicrosoftDynamics365Service)\"; flow:established,to_server; http.uri; content:\"/licensing/terms/productoffering/MicrosoftDynamics365Service\"; startswith; fast_pattern; http.host;  content:\"licensingterms.azurewebsites.net\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001167; classtype:social-engineering; sid:6001167; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:32:48.278962+00:00",
+  "updated_at": "2026-05-26T03:28:34.212562+00:00",
   "probe": {
     "dns": true,
     "whois": false,

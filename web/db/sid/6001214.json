@@ -74,23 +74,43 @@
     "phishdestroy": {
       "domain": "amazon-clone-blue-ten.vercel.app",
       "domain_defanged": "amazon-clone-blue-ten[.]vercel[.]app",
-      "case_id": "PD-20260524-3E57D2",
-      "analyzed_at": "2026-05-24T23:45:10.151Z",
+      "case_id": "PD-20260526-3E57D2",
+      "analyzed_at": "2026-05-26T03:28:31.125Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e56bf-151a-74fe-9c6e-2be3eeda4d57.png",
+          "url": "https://urlscan.io/result/019e56bf-151a-74fe-9c6e-2be3eeda4d57/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "216.198.79.66",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.198.79.66",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "216.198.79.66",
@@ -100,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -228,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .amazon-clone-blue-ten .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.amazon-clone-blue-ten.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001214; classtype:social-engineering; sid:6001214; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:33:44.985538+00:00",
+  "updated_at": "2026-05-26T03:32:35.017223+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "varkel-sonvik-biz-denter-halrex-sp7ct12.pages.dev",
       "domain_defanged": "varkel-sonvik-biz-denter-halrex-sp7ct12[.]pages[.]dev",
-      "case_id": "PD-20260524-29825F",
-      "analyzed_at": "2026-05-24T23:05:09.783Z",
+      "case_id": "PD-20260526-29825F",
+      "analyzed_at": "2026-05-26T02:38:06.798Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e5c3c-326d-71f1-be07-ff60e51da41a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5c52-a34a-75a8-b9de-5580b3bd3cbe.png",
+          "url": "https://urlscan.io/result/019e5c52-a34a-75a8-b9de-5580b3bd3cbe/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,8 +93,8 @@
             "172.66.47.84"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f54",
-            "2606:4700:310c::ac42:2cac"
+            "2606:4700:310c::ac42:2cac",
+            "2606:4700:310c::ac42:2f54"
           ],
           "NS": [
             "jerry.ns.cloudflare.com.",
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (varkel-sonvik-biz-denter-halrex-sp7ct12 .pages .dev/form_submit_appeal/)\"; flow:established,to_server; http.uri; content:\"/form_submit_appeal/\"; startswith; fast_pattern; http.host;  content:\"varkel-sonvik-biz-denter-halrex-sp7ct12.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000432; classtype:social-engineering; sid:6000432; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:11:27.849530+00:00",
+  "updated_at": "2026-05-26T02:37:56.181664+00:00",
   "probe": {
     "dns": true,
     "whois": false,

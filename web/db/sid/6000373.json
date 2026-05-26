@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "smatr-5064-metropolitan.pages.dev",
       "domain_defanged": "smatr-5064-metropolitan[.]pages[.]dev",
-      "case_id": "PD-20260524-755FEB",
-      "analyzed_at": "2026-05-24T23:02:38.003Z",
+      "case_id": "PD-20260526-755FEB",
+      "analyzed_at": "2026-05-26T02:33:46.308Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5c39-e0e6-7724-ab78-76f8cef4dd63.png",
           "url": "https://urlscan.io/result/019e5c39-e0e6-7724-ab78-76f8cef4dd63/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.148",
+        "ip": "172.66.44.108",
         "ipinfo": {
-          "ip": "172.66.47.148",
+          "ip": "172.66.44.108",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,8 +89,8 @@
         },
         "dns": {
           "A": [
-            "172.66.47.148",
-            "172.66.44.108"
+            "172.66.44.108",
+            "172.66.47.148"
           ],
           "AAAA": [
             "2606:4700:310c::ac42:2f94",
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (smatr-5064-metropolitan .pages .dev/help/contact/853878858675975/)\"; flow:established,to_server; http.uri; content:\"/help/contact/853878858675975/\"; startswith; fast_pattern; http.host;  content:\"smatr-5064-metropolitan.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000373; classtype:social-engineering; sid:6000373; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:09:42.343140+00:00",
+  "updated_at": "2026-05-26T02:33:44.576293+00:00",
   "probe": {
     "dns": true,
     "whois": false,

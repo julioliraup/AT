@@ -50,18 +50,23 @@
     "phishdestroy": {
       "domain": "s3-external-2.amazonaws.com",
       "domain_defanged": "s3-external-2[.]amazonaws[.]com",
-      "case_id": "PD-20260524-6E56EB",
-      "analyzed_at": "2026-05-24T22:46:42.180Z",
+      "case_id": "PD-20260526-6E56EB",
+      "analyzed_at": "2026-05-26T02:12:37.413Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e5c2b-4bd7-745b-bafc-70ad82d2ec0d.png",
           "url": "https://urlscan.io/result/019e5c2b-4bd7-745b-bafc-70ad82d2ec0d/",
-          "pending": true
+          "title": "Cloud Object Storage – Amazon S3 – Amazon Web Services"
         }
       },
       "detections": [],
@@ -72,28 +77,28 @@
         "ip": "s3-external-1.amazonaws.com.",
         "ipinfo": null,
         "dns": {
-          "A": [
+          "AAAA": [
             "s3-external-1.amazonaws.com.",
-            "s3-external.us-east-1.amazonaws.com.",
-            "52.217.137.43",
-            "54.231.138.43",
-            "16.182.67.171",
-            "52.217.90.170",
-            "52.217.117.219",
-            "16.182.64.131",
-            "52.217.164.171",
-            "54.231.224.123"
+            "s3-external.us-east-1.amazonaws.com."
           ],
           "MX": [
             "s3-external-1.amazonaws.com.",
             "s3-external.us-east-1.amazonaws.com."
           ],
+          "A": [
+            "s3-external-1.amazonaws.com.",
+            "s3-external.us-east-1.amazonaws.com.",
+            "52.216.38.131",
+            "52.217.75.211",
+            "52.217.74.146",
+            "16.182.33.19",
+            "16.182.107.251",
+            "16.182.102.147",
+            "54.231.161.139",
+            "52.216.52.67"
+          ],
           "CNAME": [
             "s3-external-1.amazonaws.com."
-          ],
-          "AAAA": [
-            "s3-external-1.amazonaws.com.",
-            "s3-external.us-east-1.amazonaws.com."
           ],
           "NS": [
             "s3-external-1.amazonaws.com.",
@@ -107,7 +112,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -235,7 +247,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s3-external-2 .amazonaws .com/rtsrtgfsgvhgvjhsd5211gvvxtcj .068 .udjhss .jnxjnnjn/index .html)\"; flow:established,to_server; http.uri; content:\"/rtsrtgfsgvhgvjhsd5211gvvxtcj.068.udjhss.jnxjnnjn/index.html\"; startswith; fast_pattern; http.host;  content:\"s3-external-2.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000254; classtype:social-engineering; sid:6000254; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:06:23.808788+00:00",
+  "updated_at": "2026-05-26T02:25:49.440958+00:00",
   "probe": {
     "dns": true,
     "whois": false,

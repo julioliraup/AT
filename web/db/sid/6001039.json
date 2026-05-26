@@ -74,27 +74,43 @@
     "phishdestroy": {
       "domain": "netflix-clone-khaki-seven.vercel.app",
       "domain_defanged": "netflix-clone-khaki-seven[.]vercel[.]app",
-      "case_id": "PD-20260524-368DD7",
-      "analyzed_at": "2026-05-24T23:38:21.232Z",
+      "case_id": "PD-20260526-368DD7",
+      "analyzed_at": "2026-05-26T03:22:00.823Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5c5a-9587-720c-bab3-3e27a6ffb900.png",
           "url": "https://urlscan.io/result/019e5c5a-9587-720c-bab3-3e27a6ffb900/",
-          "pending": true
+          "title": "Netflix || swamithedev"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "216.198.79.194",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "216.198.79.194",
@@ -104,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -227,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netflix-clone-khaki-seven .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"netflix-clone-khaki-seven.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001039; classtype:social-engineering; sid:6001039; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:29:45.683651+00:00",
+  "updated_at": "2026-05-26T03:21:58.113082+00:00",
   "probe": {
     "dns": true,
     "whois": false,

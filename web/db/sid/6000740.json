@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "ledhgyta-zbxncg.pages.dev",
       "domain_defanged": "ledhgyta-zbxncg[.]pages[.]dev",
-      "case_id": "PD-20260524-786966",
-      "analyzed_at": "2026-05-24T23:20:29.504Z",
+      "case_id": "PD-20260526-786966",
+      "analyzed_at": "2026-05-26T02:59:41.078Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e5c4a-3b10-759c-a4e6-1e1de99809db/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5f38-b3d4-745d-ac56-75671a389427.png",
+          "url": "https://urlscan.io/result/019e5f38-b3d4-745d-ac56-75671a389427/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.138",
+        "ip": "172.66.44.118",
         "ipinfo": {
-          "ip": "172.66.47.138",
+          "ip": "172.66.44.118",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,13 +88,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.47.138",
-            "172.66.44.118"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2c76",
             "2606:4700:310c::ac42:2f8a"
+          ],
+          "A": [
+            "172.66.44.118",
+            "172.66.47.138"
           ],
           "NS": [
             "howard.ns.cloudflare.com.",
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledhgyta-zbxncg .pages .dev/index .htm)\"; flow:established,to_server; http.uri; content:\"/index.htm\"; startswith; fast_pattern; http.host;  content:\"ledhgyta-zbxncg.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000740; classtype:social-engineering; sid:6000740; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:19:09.305288+00:00",
+  "updated_at": "2026-05-26T02:59:33.404715+00:00",
   "probe": {
     "dns": true,
     "whois": false,

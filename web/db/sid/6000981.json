@@ -50,18 +50,23 @@
     "phishdestroy": {
       "domain": "siraba.ci",
       "domain_defanged": "siraba[.]ci",
-      "case_id": "PD-20260524-6FB78C",
-      "analyzed_at": "2026-05-24T23:35:28.266Z",
+      "case_id": "PD-20260526-6FB78C",
+      "analyzed_at": "2026-05-26T03:18:31.121Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e5c57-f1de-7668-b779-a94b548f5cbd.png",
           "url": "https://urlscan.io/result/019e5c57-f1de-7668-b779-a94b548f5cbd/",
-          "pending": true
+          "title": "Not Found"
         }
       },
       "detections": [],
@@ -70,25 +75,40 @@
       },
       "infrastructure": {
         "ip": "94.23.204.172",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "94.23.204.172",
+          "hostname": "ns335906.ip-94-23-204.eu",
+          "city": "Lille",
+          "region": "Hauts-de-France",
+          "country": "FR",
+          "org": "AS16276 OVH SAS",
+          "asn": "AS16276"
+        },
         "dns": {
           "MX": [
             "10 mx1.netim.net.",
             "10 mx2.netim.net."
           ],
-          "NS": [
-            "ns1.routing.net.",
-            "ns2.routing.net.",
-            "ns3.routing.net."
-          ],
           "A": [
             "94.23.204.172"
+          ],
+          "NS": [
+            "ns2.routing.net.",
+            "ns1.routing.net.",
+            "ns3.routing.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "OVH",
+          "abuse": "abuse@ovh.net",
+          "url": "https://www.ovh.com/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16276"
+        }
       },
       "report_services": [
         {
@@ -211,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .siraba .ci/news .html)\"; flow:established,to_server; http.uri; content:\"/news.html\"; startswith; fast_pattern; http.host;  content:\"www.siraba.ci\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000981; classtype:social-engineering; sid:6000981; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-25T21:26:00.586925+00:00",
+  "updated_at": "2026-05-26T03:18:27.791777+00:00",
   "probe": {
     "dns": true,
     "whois": true,
