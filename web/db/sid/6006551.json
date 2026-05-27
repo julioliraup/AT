@@ -55,29 +55,170 @@
     "phishdestroy": {
       "domain": "ifindphone.us",
       "domain_defanged": "ifindphone[.]us",
-      "case_id": "PD-20260525-73B0C9",
-      "analyzed_at": "2026-05-25T19:41:50.679Z",
+      "case_id": "PD-20260527-73B0C9",
+      "analyzed_at": "2026-05-27T00:55:16.089Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 12,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing, Spam (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e60a8-69a1-752e-b448-8f6875d432fb.png",
           "url": "https://urlscan.io/result/019e60a8-69a1-752e-b448-8f6875d432fb/",
-          "pending": true
+          "title": "Account Suspended"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "162.222.225.119",
+        "ip": "162.251.80.247",
         "ipinfo": {
-          "ip": "162.222.225.119",
-          "hostname": "162-222-225-119.unifiedlayer.com",
+          "ip": "162.251.80.247",
+          "hostname": "162-251-80-247.unifiedlayer.com",
           "city": "Provo",
           "region": "Utah",
           "country": "US",
@@ -85,15 +226,15 @@
           "asn": "AS46606"
         },
         "dns": {
+          "A": [
+            "162.251.80.247"
+          ],
           "MX": [
             "0 mail.ifindphone.us."
           ],
-          "A": [
-            "162.222.225.119"
-          ],
           "NS": [
-            "ns2.md-2.webhostbox.net.",
-            "ns1.md-2.webhostbox.net."
+            "ns2.md-79.webhostbox.net.",
+            "ns1.md-79.webhostbox.net."
           ]
         }
       },
@@ -229,12 +370,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ifindphone.us/ICL266/)\"; flow:established,to_server; http.uri; content:\"/ICL266/\"; startswith; fast_pattern; http.host; content:\"ifindphone.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6006551; classtype:social-engineering; sid:6006551; rev:1; metadata: signature_severity Major, created_et 2026_05_24;)",
-  "updated_at": "2026-05-26T19:17:47.971785+00:00",
+  "updated_at": "2026-05-27T00:55:09.007027+00:00",
   "probe": {
     "dns": true,
     "whois": true,
