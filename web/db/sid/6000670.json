@@ -50,22 +50,30 @@
     "phishdestroy": {
       "domain": "imshauryaa.github.io",
       "domain_defanged": "imshauryaa[.]github[.]io",
-      "case_id": "PD-20260526-52D38B",
-      "analyzed_at": "2026-05-26T02:53:53.610Z",
+      "case_id": "PD-20260527-52D38B",
+      "analyzed_at": "2026-05-27T03:14:14.313Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019e5c45-eaf2-7219-9b53-30a3ce02a390.png",
-          "url": "https://urlscan.io/result/019e5c45-eaf2-7219-9b53-30a3ce02a390/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6707-a0dc-772c-8c88-05ae11837b40.png",
+          "url": "https://urlscan.io/result/019e6707-a0dc-772c-8c88-05ae11837b40/",
+          "title": "Amazon Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -227,15 +235,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (imshauryaa .github .io/amazon-clone/)\"; flow:established,to_server; http.uri; content:\"/amazon-clone/\"; startswith; fast_pattern; http.host;  content:\"imshauryaa.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000670; classtype:social-engineering; sid:6000670; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-26T21:17:29.372377+00:00",
+  "updated_at": "2026-05-27T03:14:05.685999+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }
