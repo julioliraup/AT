@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "viso26.pages.dev",
       "domain_defanged": "viso26[.]pages[.]dev",
-      "case_id": "PD-20260527-468892",
-      "analyzed_at": "2026-05-27T05:57:18.938Z",
+      "case_id": "PD-20260528-468892",
+      "analyzed_at": "2026-05-28T11:33:42.256Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6e5c-95c6-77f6-acba-5de47d7a3d56/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,15 +75,22 @@
       },
       "infrastructure": {
         "ip": "172.66.47.143",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.143",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.66.47.143",
-            "172.66.44.113"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2f8f",
             "2606:4700:310c::ac42:2c71"
+          ],
+          "A": [
+            "172.66.47.143",
+            "172.66.44.113"
           ],
           "NS": [
             "daisy.ns.cloudflare.com.",
@@ -89,7 +100,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (viso26.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"viso26.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003654; classtype:social-engineering; sid:6003654; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-28T03:54:56.564191+00:00",
+  "updated_at": "2026-05-28T11:33:40.490860+00:00",
   "probe": {
     "dns": true,
     "whois": false,

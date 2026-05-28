@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "azuriu.com",
       "domain_defanged": "azuriu[.]com",
-      "case_id": "PD-20260527-56B562",
-      "analyzed_at": "2026-05-27T05:56:16.560Z",
+      "case_id": "PD-20260528-56B562",
+      "analyzed_at": "2026-05-28T11:33:10.061Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6e5c-1795-763b-ba2f-bad2c36d5dac/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,7 +74,7 @@
         "registrar": "Vautron Rechenzentrum AG",
         "created": "2022-12-22T18:01:16Z",
         "expires": "2026-12-22T18:01:16Z",
-        "age_days": 1251,
+        "age_days": 1252,
         "nameservers": [
           "NS1.CONTABO.NET",
           "NS2.CONTABO.NET",
@@ -79,7 +83,15 @@
       },
       "infrastructure": {
         "ip": "213.136.93.164",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "213.136.93.164",
+          "hostname": "m14200.contabo.net",
+          "city": "Lauterbourg",
+          "region": "Grand Est",
+          "country": "FR",
+          "org": "AS51167 Contabo GmbH",
+          "asn": "AS51167"
+        },
         "dns": {
           "A": [
             "213.136.93.164"
@@ -88,15 +100,22 @@
             "10 mail.azuriu.com."
           ],
           "NS": [
-            "ns2.contabo.net.",
             "ns3.contabo.net.",
-            "ns1.contabo.net."
+            "ns1.contabo.net.",
+            "ns2.contabo.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Contabo",
+          "abuse": "abuse@contabo.com",
+          "url": "mailto:abuse@contabo.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS51167"
+        }
       },
       "report_services": [
         {
@@ -219,12 +238,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.azuriu.com/crosslake/)\"; flow:established,to_server; http.uri; content:\"/crosslake/\"; startswith; fast_pattern; http.host; content:\"www.azuriu.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003638; classtype:social-engineering; sid:6003638; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-28T03:54:22.499051+00:00",
+  "updated_at": "2026-05-28T11:33:07.606040+00:00",
   "probe": {
     "dns": true,
     "whois": false,

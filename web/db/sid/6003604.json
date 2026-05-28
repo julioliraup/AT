@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "mapodi.it",
       "domain_defanged": "mapodi[.]it",
-      "case_id": "PD-20260527-654AC0",
-      "analyzed_at": "2026-05-27T05:52:22.915Z",
+      "case_id": "PD-20260528-654AC0",
+      "analyzed_at": "2026-05-28T11:29:34.646Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6e58-cd7d-7698-87c7-b3691ca69ecf/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,28 +75,43 @@
       },
       "infrastructure": {
         "ip": "89.46.105.37",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "89.46.105.37",
+          "hostname": "webx1068.aruba.it",
+          "city": "Arezzo",
+          "region": "Tuscany",
+          "country": "IT",
+          "org": "AS31034 Aruba S.p.A.",
+          "asn": "AS31034"
+        },
         "dns": {
           "MX": [
             "10 mx.mapodi.it."
           ],
-          "A": [
-            "89.46.105.37"
-          ],
           "AAAA": [
             "2a00:6d40:4:3::c217:37"
           ],
+          "A": [
+            "89.46.105.37"
+          ],
           "NS": [
             "dns3.arubadns.net.",
-            "dns.technorail.com.",
             "dns4.arubadns.cz.",
-            "dns2.technorail.com."
+            "dns2.technorail.com.",
+            "dns.technorail.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ARUBACLOUD-ASN",
+          "abuse": "abuse@staff.aruba.it",
+          "url": "mailto:abuse@staff.aruba.it",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31034"
+        }
       },
       "report_services": [
         {
@@ -220,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.mapodi.it/der/error.html)\"; flow:established,to_server; http.uri; content:\"/der/error.html\"; startswith; fast_pattern; http.host; content:\"www.mapodi.it\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003604; classtype:social-engineering; sid:6003604; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-28T03:52:17.141783+00:00",
+  "updated_at": "2026-05-28T11:30:53.831091+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "txdmv.org-ars.shop",
       "domain_defanged": "txdmv[.]org-ars[.]shop",
-      "case_id": "PD-20260527-17D25A",
-      "analyzed_at": "2026-05-27T07:57:42.563Z",
+      "case_id": "PD-20260528-17D25A",
+      "analyzed_at": "2026-05-28T13:39:39.191Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6ecf-e50c-71af-a522-9f9bfef443c3/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,21 +93,35 @@
       },
       "infrastructure": {
         "ip": "172.67.203.116",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.203.116",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3035::ac43:cb74",
-            "2606:4700:3033::6815:164d"
-          ],
           "A": [
             "172.67.203.116",
             "104.21.22.77"
+          ],
+          "AAAA": [
+            "2606:4700:3035::ac43:cb74",
+            "2606:4700:3033::6815:164d"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -226,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (txdmv.org-ars.shop/pay/_frame/a_index.html)\"; flow:established,to_server; http.uri; content:\"/pay/_frame/a_index.html\"; startswith; fast_pattern; http.host; content:\"txdmv.org-ars.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005809; classtype:social-engineering; sid:6005809; rev:1; metadata: signature_severity Major, created_et 2026_05_23;)",
-  "updated_at": "2026-05-28T05:29:26.566563+00:00",
+  "updated_at": "2026-05-28T13:39:36.706588+00:00",
   "probe": {
     "dns": true,
     "whois": true,
