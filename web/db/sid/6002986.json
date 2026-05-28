@@ -18,96 +18,68 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://ldgrsafkh87f.sameera-45.workers.dev/",
-      "domain": "ldgrsafkh87f.sameera-45.workers.dev",
-      "url_count": 3,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "104.21.70.37",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "9ff3659d7f83ef0c-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "8f4e2eb7bca925b30d7fb2fa9c64b90e9ee0a5a9bb3250c86947401e6e3f32a0",
-      "md5": "45e9a884c22a6f61d6308c5a1d8be3da",
-      "cert": {
-        "subject_cn": "sameera-45.workers.dev",
-        "subject_alt_names": [
-          "sameera-45.workers.dev",
-          "*.sameera-45.workers.dev"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-05-06T16:10:02+00:00",
-        "not_valid_after": "2026-08-04T17:09:54+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "96485897241196850721086923642973509093",
-        "fingerprint_sha1": "DE 9A 5C 16 27 60 20 50 0B 68 43 16 1A 98 9F 63 A5 AF 81 AD",
-        "fingerprint_sha256": "6A 75 AD B8 D4 DF B2 7E 86 0C 86 65 AC 53 13 C9 38 19 9E 66 D9 FE B2 05 30 7B 14 19 7B 67 25 40"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-05-21T11:48:27",
-      "first_seen_secs": 1779364107.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "ldgrsafkh87f.sameera-45.workers.dev",
       "domain_defanged": "ldgrsafkh87f[.]sameera-45[.]workers[.]dev",
-      "case_id": "PD-20260527-48769D",
-      "analyzed_at": "2026-05-27T05:21:13.268Z",
+      "case_id": "PD-20260528-48769D",
+      "analyzed_at": "2026-05-28T03:18:23.176Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e67e1-350d-708e-a85b-23b550bacd08.png",
           "url": "https://urlscan.io/result/019e67e1-350d-708e-a85b-23b550bacd08/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.219.110",
-        "ipinfo": null,
+        "ip": "104.21.70.37",
+        "ipinfo": {
+          "ip": "104.21.70.37",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3030::6815:4625",
-            "2606:4700:3034::ac43:db6e"
+            "2606:4700:3034::ac43:db6e",
+            "2606:4700:3030::6815:4625"
           ],
           "A": [
-            "172.67.219.110",
-            "104.21.70.37"
+            "104.21.70.37",
+            "172.67.219.110"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,12 +202,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ldgrsafkh87f.sameera-45.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ldgrsafkh87f.sameera-45.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002986; classtype:social-engineering; sid:6002986; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-27T12:13:54.474771+00:00",
+  "updated_at": "2026-05-28T03:18:11.440230+00:00",
   "probe": {
     "dns": true,
     "whois": false,

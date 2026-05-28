@@ -73,21 +73,34 @@
     "phishdestroy": {
       "domain": "accounts.bmwweb.systems",
       "domain_defanged": "accounts[.]bmwweb[.]systems",
-      "case_id": "PD-20260527-21F741",
-      "analyzed_at": "2026-05-27T03:58:33.244Z",
+      "case_id": "PD-20260528-21F741",
+      "analyzed_at": "2026-05-28T02:01:48.535Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e6795-85c7-77ef-b6fc-7691a631f026/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Binance"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6c4f-ef90-7561-a0c2-14b8925b19a1.png",
+          "url": "https://urlscan.io/result/019e6c4f-ef90-7561-a0c2-14b8925b19a1/",
+          "title": "Log In | Binance"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Binance",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -95,12 +108,12 @@
         "ip": "accounts.bmwweb.systems.eo.dnse5.com.",
         "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "accounts.bmwweb.systems.eo.dnse5.com."
+          ],
           "A": [
             "accounts.bmwweb.systems.eo.dnse5.com.",
             "43.159.94.13"
-          ],
-          "AAAA": [
-            "accounts.bmwweb.systems.eo.dnse5.com."
           ],
           "MX": [
             "accounts.bmwweb.systems.eo.dnse5.com."
@@ -115,7 +128,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -238,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (accounts .bmwweb .systems/en/login)\"; flow:established,to_server; http.uri; content:\"/en/login\"; startswith; fast_pattern; http.host;  content:\"accounts.bmwweb.systems\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001471; classtype:social-engineering; sid:6001471; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-27T11:18:44.938059+00:00",
+  "updated_at": "2026-05-28T02:01:45.083551+00:00",
   "probe": {
     "dns": true,
     "whois": true,

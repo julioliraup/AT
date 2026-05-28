@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "whetsapp-sfdw.icu",
       "domain_defanged": "whetsapp-sfdw[.]icu",
-      "case_id": "PD-20260527-7F29CA",
-      "analyzed_at": "2026-05-27T05:56:54.014Z",
+      "case_id": "PD-20260528-7F29CA",
+      "analyzed_at": "2026-05-28T03:54:39.383Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e42e7-0ece-7469-ba92-5d2e9d23c16d.png",
+          "url": "https://urlscan.io/result/019e42e7-0ece-7469-ba92-5d2e9d23c16d/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (whetsapp-sfdw.icu/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"whetsapp-sfdw.icu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003647; classtype:social-engineering; sid:6003647; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:34:42.215771+00:00",
+  "updated_at": "2026-05-28T03:54:35.546294+00:00",
   "probe": {
     "dns": false,
     "whois": false,

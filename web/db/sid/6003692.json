@@ -171,36 +171,63 @@
     "phishdestroy": {
       "domain": "central-bet365.com.cn",
       "domain_defanged": "central-bet365[.]com[.]cn",
-      "case_id": "PD-20260527-25F408",
-      "analyzed_at": "2026-05-27T05:59:37.672Z",
+      "case_id": "PD-20260528-25F408",
+      "analyzed_at": "2026-05-28T03:56:35.363Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e62d0-c450-734e-ad3e-1e9a9caba7b4.png",
+          "url": "https://urlscan.io/result/019e62d0-c450-734e-ad3e-1e9a9caba7b4/",
+          "title": "Bet365官网:尽享无与伦比的在线博彩体验-Bet365中国"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "154.212.99.238",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "154.212.99.238",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS134548 DXTL Tseung Kwan O Service",
+          "asn": "AS134548"
+        },
         "dns": {
+          "A": [
+            "154.212.99.238"
+          ],
           "NS": [
             "ns1.nowcndns.com.",
             "ns2.nowcndns.com."
-          ],
-          "A": [
-            "154.212.99.238"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DXTL-HK",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS134548"
+        }
       },
       "report_services": [
         {
@@ -323,12 +350,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.central-bet365.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.central-bet365.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003692; classtype:social-engineering; sid:6003692; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:36:50.651023+00:00",
+  "updated_at": "2026-05-28T03:56:30.144503+00:00",
   "probe": {
     "dns": true,
     "whois": true,

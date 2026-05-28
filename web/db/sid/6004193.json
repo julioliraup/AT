@@ -22,7 +22,7 @@
       "url": "http://www.ujghy.com/",
       "domain": "www.ujghy.com",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "ujghy.com",
       "domain_defanged": "ujghy[.]com",
-      "case_id": "PD-20260527-38A351",
-      "analyzed_at": "2026-05-27T06:27:13.400Z",
+      "case_id": "PD-20260528-38A351",
+      "analyzed_at": "2026-05-28T04:16:43.255Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6ccc-83cd-77ea-98ec-b1e77549a1b2/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,15 +92,34 @@
         "registrar": "Edomains LLC",
         "created": "2026-05-19T09:16:23Z",
         "expires": "2027-05-19T09:16:23Z",
-        "age_days": 7,
+        "age_days": 8,
         "nameservers": [
           "DNS3.EDOMAINS.COM",
           "DNS4.EDOMAINS.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "20.98.156.105",
+        "ipinfo": {
+          "ip": "20.98.156.105",
+          "city": "Des Moines",
+          "region": "Iowa",
+          "country": "US",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
+        "dns": {
+          "A": [
+            "20.98.156.105"
+          ],
+          "MX": [
+            "0 ujghy.com."
+          ],
+          "NS": [
+            "dns3.edomains.com.",
+            "dns4.edomains.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": {
@@ -107,7 +130,14 @@
           "method": "form",
           "iana_ids": "299"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -230,12 +260,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ujghy.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ujghy.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004193; classtype:social-engineering; sid:6004193; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-27T12:59:16.797495+00:00",
+  "updated_at": "2026-05-28T04:16:40.910839+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -55,41 +55,64 @@
     "phishdestroy": {
       "domain": "allegrolokalne.925389h451.shop",
       "domain_defanged": "allegrolokalne[.]925389h451[.]shop",
-      "case_id": "PD-20260527-5D7E44",
-      "analyzed_at": "2026-05-27T06:06:50.468Z",
+      "case_id": "PD-20260528-5D7E44",
+      "analyzed_at": "2026-05-28T04:02:14.038Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e680a-f93a-7118-862a-82e6c034dd69.png",
           "url": "https://urlscan.io/result/019e680a-f93a-7118-862a-82e6c034dd69/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.44.98",
-        "ipinfo": null,
+        "ip": "172.67.198.134",
+        "ipinfo": {
+          "ip": "172.67.198.134",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.21.44.98",
-            "172.67.198.134"
-          ],
           "AAAA": [
-            "2606:4700:3034::6815:2c62",
-            "2606:4700:3033::ac43:c686"
+            "2606:4700:3033::ac43:c686",
+            "2606:4700:3034::6815:2c62"
+          ],
+          "A": [
+            "172.67.198.134",
+            "104.21.44.98"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (allegrolokalne.925389h451.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"allegrolokalne.925389h451.shop\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003825; classtype:social-engineering; sid:6003825; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-27T12:42:04.670007+00:00",
+  "updated_at": "2026-05-28T04:02:11.341267+00:00",
   "probe": {
     "dns": true,
     "whois": true,

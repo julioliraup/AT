@@ -81,21 +81,30 @@
     "phishdestroy": {
       "domain": "roblox.com.ml",
       "domain_defanged": "roblox[.]com[.]ml",
-      "case_id": "PD-20260527-394232",
-      "analyzed_at": "2026-05-27T04:43:22.531Z",
+      "case_id": "PD-20260528-394232",
+      "analyzed_at": "2026-05-28T02:42:13.319Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e67be-8dc2-70bf-b6d0-b7621cbaee28/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6c50-a170-7258-940f-cddb906f6bba.png",
+          "url": "https://urlscan.io/result/019e6c50-a170-7258-940f-cddb906f6bba/",
+          "title": "CyberSab - Roblox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -249,7 +258,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.roblox.com.ml/users/477113844589/profile)\"; flow:established,to_server; http.uri; content:\"/users/477113844589/profile\"; startswith; fast_pattern; http.host; content:\"www.roblox.com.ml\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002500; classtype:social-engineering; sid:6002500; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-27T11:57:16.575216+00:00",
+  "updated_at": "2026-05-28T02:51:04.290913+00:00",
   "probe": {
     "dns": true,
     "whois": false,

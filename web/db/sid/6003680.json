@@ -49,27 +49,43 @@
     "phishdestroy": {
       "domain": "cool-bet365.com.cn",
       "domain_defanged": "cool-bet365[.]com[.]cn",
-      "case_id": "PD-20260527-24F5F8",
-      "analyzed_at": "2026-05-27T12:36:17.133Z",
+      "case_id": "PD-20260528-24F5F8",
+      "analyzed_at": "2026-05-28T03:55:55.175Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e696f-8535-7198-9bde-1b08b77ba3f1.png",
           "url": "https://urlscan.io/result/019e696f-8535-7198-9bde-1b08b77ba3f1/",
-          "pending": true
+          "title": "Bet365官网:尽享无与伦比的在线博彩体验-Bet365中国"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "154.212.79.198",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "154.212.79.198",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS134548 DXTL Tseung Kwan O Service",
+          "asn": "AS134548"
+        },
         "dns": {
           "A": [
             "154.212.79.198"
@@ -82,7 +98,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DXTL-HK",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS134548"
+        }
       },
       "report_services": [
         {
@@ -209,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.cool-bet365.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.cool-bet365.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003680; classtype:social-engineering; sid:6003680; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:36:12.041587+00:00",
+  "updated_at": "2026-05-28T03:55:51.587990+00:00",
   "probe": {
     "dns": true,
     "whois": true,

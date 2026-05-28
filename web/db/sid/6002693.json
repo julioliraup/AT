@@ -72,29 +72,50 @@
     "phishdestroy": {
       "domain": "pedagiodigital-flow.com",
       "domain_defanged": "pedagiodigital-flow[.]com",
-      "case_id": "PD-20260527-436AC7",
-      "analyzed_at": "2026-05-27T05:05:34.742Z",
+      "case_id": "PD-20260528-436AC7",
+      "analyzed_at": "2026-05-28T03:01:55.337Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Pedágio Digital"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3b30-4837-7132-abbe-3a5ef1f6c2f6.png",
+          "url": "https://urlscan.io/result/019e3b30-4837-7132-abbe-3a5ef1f6c2f6/",
+          "title": "Pedágio Digital - Consulte seus débitos de forma rápida e segura"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Pedágio Digital",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2026-05-15T01:01:06Z",
         "expires": "2027-05-15T01:01:06Z",
-        "age_days": 12,
+        "age_days": 13,
         "nameservers": [
           "NS09.DOMAINCONTROL.COM",
           "NS10.DOMAINCONTROL.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "165.154.255.153",
+        "ipinfo": {
+          "ip": "165.154.255.153",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS142002 Scloud Pte Ltd",
+          "asn": "AS142002"
+        },
         "dns": null
       },
       "report_to": {
@@ -106,7 +127,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "SCLOUDPTELTD-AS",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "https://i.ibb.co/KxTmK0HF/pr-SCLOUDPTELTD-AS.png",
+          "method": "email",
+          "asn": "AS142002"
+        }
       },
       "report_services": [
         {
@@ -229,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pedagiodigital-flow.com/vias/home.php)\"; flow:established,to_server; http.uri; content:\"/vias/home.php\"; startswith; fast_pattern; http.host; content:\"pedagiodigital-flow.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002693; classtype:social-engineering; sid:6002693; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-27T12:04:15.389692+00:00",
+  "updated_at": "2026-05-28T03:01:52.655967+00:00",
   "probe": {
     "dns": true,
     "whois": true,

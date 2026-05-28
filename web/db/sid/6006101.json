@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://ansr.pt.ha009.t.mydomain.zone/",
       "domain": "ansr.pt.ha009.t.mydomain.zone",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "38.114.101.32",
+      "http_code": 403,
+      "http_response": {
+        "server": "LiteSpeed",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,42 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with CRLF, LF line terminators",
+      "sha256": "036bacf3bd34365006eac2a78e4520a953a6250e9550dcf9c9d4b0678c225b4c",
+      "md5": "ff715af41f83fb38cd35c4e91c77c46d",
+      "cert": {
+        "subject_cn": "ansr.pt.ha009.t.mydomain.zone",
+        "subject_alt_names": [
+          "ansr.pt.ha009.t.mydomain.zone",
+          "ftp.ansr.pt.ha009.t.mydomain.zone",
+          "mail.ansr.pt.ha009.t.mydomain.zone",
+          "pop.ansr.pt.ha009.t.mydomain.zone",
+          "smtp.ansr.pt.ha009.t.mydomain.zone",
+          "www.ansr.pt.ha009.t.mydomain.zone"
+        ],
+        "issuer_cn": "E7",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-18T09:57:10+00:00",
+        "not_valid_after": "2026-08-16T09:57:09+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "577210555257727226274568767610764026410876",
+        "fingerprint_sha1": "0E C2 97 3E BD E8 C9 59 B4 FF 20 11 7D 5B B6 7E 1A EB 4B 4D",
+        "fingerprint_sha256": "B7 8B A3 89 74 E6 C0 0F 72 7A 68 0C F5 F0 97 EA 2F 49 C7 96 01 27 DE 50 60 95 3C E2 59 02 1D 00"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-05-28T05:23:12",
+      "first_seen_secs": 1779945792.0
     },
     "phishdestroy": {
       "domain": "ansr.pt.ha009.t.mydomain.zone",
       "domain_defanged": "ansr[.]pt[.]ha009[.]t[.]mydomain[.]zone",
-      "case_id": "PD-20260527-338035",
-      "analyzed_at": "2026-05-27T14:32:19.495Z",
+      "case_id": "PD-20260528-338035",
+      "analyzed_at": "2026-05-28T05:44:20.817Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +87,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e69d9-c1f4-77ea-8319-6f0e5f660a6b/",
+          "url": "https://urlscan.io/result/019e6d1c-bd27-7348-9358-0310af326a4e/",
           "pending": true
         }
       },
@@ -69,26 +97,41 @@
       },
       "infrastructure": {
         "ip": "38.114.101.32",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "38.114.101.32",
+          "hostname": "ha009.justhost.ru",
+          "city": "Dallas",
+          "region": "Texas",
+          "country": "US",
+          "org": "AS398343 Baxet Group Inc.",
+          "asn": "AS398343"
+        },
         "dns": {
-          "A": [
-            "38.114.101.32"
-          ],
           "AAAA": [
             "2605:e440::1:7"
+          ],
+          "A": [
+            "38.114.101.32"
           ],
           "MX": [
             "10 mail.ansr.pt.ha009.t.mydomain.zone."
           ],
           "NS": [
-            "ns2.justhost.ru.",
-            "ns1.justhost.ru."
+            "ns1.justhost.ru.",
+            "ns2.justhost.ru."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ASBAXETN",
+          "abuse": "",
+          "url": "",
+          "logo": "https://i.ibb.co/ZRSKN3xG/pr-ASBAXET.png",
+          "method": "email",
+          "asn": "AS398343"
+        }
       },
       "report_services": [
         {
@@ -215,7 +258,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ansr.pt.ha009.t.mydomain.zone/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ansr.pt.ha009.t.mydomain.zone\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6006101; classtype:social-engineering; sid:6006101; rev:1; metadata: signature_severity Major, created_et 2026_05_24;)",
-  "updated_at": "2026-05-27T14:32:16.871737+00:00",
+  "updated_at": "2026-05-28T05:44:18.482249+00:00",
   "probe": {
     "dns": true,
     "whois": true,

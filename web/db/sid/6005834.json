@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "metamaskloginjn.webflow.io",
       "domain_defanged": "metamaskloginjn[.]webflow[.]io",
-      "case_id": "PD-20260527-5572CA",
-      "analyzed_at": "2026-05-27T07:59:49.637Z",
+      "case_id": "PD-20260528-5572CA",
+      "analyzed_at": "2026-05-28T05:30:44.495Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6d10-4864-722e-a8ae-c21f2811f75b/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,22 +68,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
-        "ipinfo": null,
+        "ip": "172.64.151.8",
+        "ipinfo": {
+          "ip": "172.64.151.8",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "172.64.151.8",
+            "104.18.36.248"
+          ],
           "AAAA": [
             "2606:4700:440c::ac40:9708",
             "2a06:98c1:3100::6812:24f8"
-          ],
-          "A": [
-            "104.18.36.248",
-            "172.64.151.8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -202,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (metamaskloginjn.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"metamaskloginjn.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005834; classtype:social-engineering; sid:6005834; rev:1; metadata: signature_severity Major, created_et 2026_05_23;)",
-  "updated_at": "2026-05-27T14:15:07.303326+00:00",
+  "updated_at": "2026-05-28T05:30:39.275337+00:00",
   "probe": {
     "dns": true,
     "whois": true,

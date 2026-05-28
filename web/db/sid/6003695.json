@@ -55,36 +55,63 @@
     "phishdestroy": {
       "domain": "basic-bet365.com.cn",
       "domain_defanged": "basic-bet365[.]com[.]cn",
-      "case_id": "PD-20260527-225AC8",
-      "analyzed_at": "2026-05-27T05:59:53.192Z",
+      "case_id": "PD-20260528-225AC8",
+      "analyzed_at": "2026-05-28T03:56:50.489Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e62d0-f0c3-7265-b008-172692b51d93.png",
+          "url": "https://urlscan.io/result/019e62d0-f0c3-7265-b008-172692b51d93/",
+          "title": "Bet365官网:尽享无与伦比的在线博彩体验-Bet365中国"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "177.210.110.8",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "177.210.110.8",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS134175 SH2206",
+          "asn": "AS134175"
+        },
         "dns": {
-          "A": [
-            "177.210.110.8"
-          ],
           "NS": [
             "ns1.nowcndns.com.",
             "ns2.nowcndns.com."
+          ],
+          "A": [
+            "177.210.110.8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "SH2206-AP UNIT A17,9F SILVERCORP INTL TOWER 707-713 NATHAN RD, HK",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS134175"
+        }
       },
       "report_services": [
         {
@@ -207,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.basic-bet365.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.basic-bet365.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003695; classtype:social-engineering; sid:6003695; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:37:00.270029+00:00",
+  "updated_at": "2026-05-28T03:56:46.933051+00:00",
   "probe": {
     "dns": true,
     "whois": true,

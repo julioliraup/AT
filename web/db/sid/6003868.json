@@ -55,27 +55,54 @@
     "phishdestroy": {
       "domain": "dpd.bvnqzrp.cfd",
       "domain_defanged": "dpd[.]bvnqzrp[.]cfd",
-      "case_id": "PD-20260527-60738E",
-      "analyzed_at": "2026-05-27T12:43:54.262Z",
+      "case_id": "PD-20260528-60738E",
+      "analyzed_at": "2026-05-28T04:04:01.350Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e45a4-b8c3-7163-b7ec-1866f18711af.png",
+          "url": "https://urlscan.io/result/019e45a4-b8c3-7163-b7ec-1866f18711af/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.27.12",
+        "ipinfo": {
+          "ip": "104.21.27.12",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -202,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.bvnqzrp.cfd/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"dpd.bvnqzrp.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003868; classtype:social-engineering; sid:6003868; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-27T12:43:50.474611+00:00",
+  "updated_at": "2026-05-28T04:03:56.356164+00:00",
   "probe": {
     "dns": true,
     "whois": true,

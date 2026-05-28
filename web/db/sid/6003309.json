@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "tax-en-lrs.elreydistribuidor.com",
       "domain_defanged": "tax-en-lrs[.]elreydistribuidor[.]com",
-      "case_id": "PD-20260526-106244",
-      "analyzed_at": "2026-05-26T17:20:36.692Z",
+      "case_id": "PD-20260528-106244",
+      "analyzed_at": "2026-05-28T03:37:24.165Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "IRS"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4056-9e7d-76ee-914f-f5b72a716ca1.png",
+          "url": "https://urlscan.io/result/019e4056-9e7d-76ee-914f-f5b72a716ca1/",
+          "title": "Internal Revenue Service | An official website of the United States government"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: IRS",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "38.133.213.184",
+        "ipinfo": {
+          "ip": "38.133.213.184",
+          "city": "Dronten",
+          "region": "Flevoland",
+          "country": "NL",
+          "org": "AS45839 Shinjiru Technology Sdn Bhd",
+          "asn": "AS45839"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "SHINJIRU-MY-AS-AP",
+          "abuse": "abuse@shinjiru.com.my",
+          "url": "mailto:abuse@shinjiru.com.my",
+          "logo": "https://i.ibb.co/p6vRb8dz/pr-SHINJIRU-MY-AS-AP.jpg",
+          "method": "email",
+          "asn": "AS45839"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tax-en-lrs.elreydistribuidor.com/irs/)\"; flow:established,to_server; http.uri; content:\"/irs/\"; startswith; fast_pattern; http.host; content:\"tax-en-lrs.elreydistribuidor.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003309; classtype:social-engineering; sid:6003309; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:23:50.654107+00:00",
+  "updated_at": "2026-05-28T03:37:21.663692+00:00",
   "probe": {
     "dns": false,
     "whois": false,

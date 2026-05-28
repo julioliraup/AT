@@ -74,26 +74,173 @@
     "phishdestroy": {
       "domain": "summitalarm.com",
       "domain_defanged": "summitalarm[.]com",
-      "case_id": "PD-20260527-437F6D",
-      "analyzed_at": "2026-05-27T03:44:58.133Z",
+      "case_id": "PD-20260528-437F6D",
+      "analyzed_at": "2026-05-28T01:51:51.705Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 14,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e6789-15ec-715a-bf2f-88ea8142a044.png",
           "url": "https://urlscan.io/result/019e6789-15ec-715a-bf2f-88ea8142a044/",
-          "pending": true
+          "title": "Summit Alarm Secuirty, Inc"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Name.com, Inc.",
         "created": "2019-11-10T12:24:47Z",
         "expires": "2028-11-10T12:24:47Z",
-        "age_days": 2389,
+        "age_days": 2390,
         "nameservers": [
           "NS1GLR.NAME.COM",
           "NS2LNS.NAME.COM",
@@ -113,15 +260,15 @@
           "asn": "AS22612"
         },
         "dns": {
-          "A": [
-            "198.54.116.181"
-          ],
           "MX": [
             "1 aspmx.l.google.com.",
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com.",
             "10 alt3.aspmx.l.google.com.",
             "10 alt4.aspmx.l.google.com."
+          ],
+          "A": [
+            "198.54.116.181"
           ],
           "NS": [
             "ns1glr.name.com.",
@@ -270,12 +417,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (summitalarm .com/cgi-bin/)\"; flow:established,to_server; http.uri; content:\"/cgi-bin/\"; startswith; fast_pattern; http.host;  content:\"summitalarm.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001238; classtype:social-engineering; sid:6001238; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-27T11:10:56.202161+00:00",
+  "updated_at": "2026-05-28T01:51:47.428397+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -18,66 +18,54 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.dbjbattery.com/",
-      "domain": "www.dbjbattery.com",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "161.248.15.126",
-      "http_code": 200,
-      "http_response": {
-        "server": "nginx",
-        "content_type": "text/html",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (5348)",
-      "sha256": "845f02cc9e7ef618c1e2a42572741916c0606a62cf88cd8dd86102a68b16450a",
-      "md5": "6b6cc08bf4fa652fb9b39af25d297cfd",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-05-21T09:07:15",
-      "first_seen_secs": 1779354435.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "dbjbattery.com",
       "domain_defanged": "dbjbattery[.]com",
-      "case_id": "PD-20260527-30E202",
-      "analyzed_at": "2026-05-27T05:29:35.134Z",
+      "case_id": "PD-20260528-30E202",
+      "analyzed_at": "2026-05-28T03:28:58.092Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fake Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4055-b18d-7558-8b9f-dbe57d727ec3.png",
+          "url": "https://urlscan.io/result/019e4055-b18d-7558-8b9f-dbe57d727ec3/",
+          "title": "TikTok-Wholesale"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fake Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "InterNetX GmbH",
         "created": "2025-05-22T03:16:50Z",
         "expires": "2027-05-22T03:16:50Z",
-        "age_days": 370,
+        "age_days": 371,
         "nameservers": [
           "A7.SHARE-DNS.COM",
           "B7.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "161.248.15.126",
+        "ipinfo": {
+          "ip": "161.248.15.126",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS4907 BGPNET PTE. LTD.",
+          "asn": "AS4907"
+        },
         "dns": null
       },
       "report_to": {
@@ -212,15 +200,16 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.dbjbattery.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.dbjbattery.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003153; classtype:social-engineering; sid:6003153; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:18:58.883050+00:00",
+  "updated_at": "2026-05-28T03:28:45.357644+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

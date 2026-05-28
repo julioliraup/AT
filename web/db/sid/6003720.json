@@ -49,27 +49,43 @@
     "phishdestroy": {
       "domain": "icuwtzw.cloudaccess.host",
       "domain_defanged": "icuwtzw[.]cloudaccess[.]host",
-      "case_id": "PD-20260527-1111D7",
-      "analyzed_at": "2026-05-27T06:00:59.138Z",
+      "case_id": "PD-20260528-1111D7",
+      "analyzed_at": "2026-05-28T03:57:55.321Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6805-9cd4-722e-89e0-d5bd0f29460b.png",
           "url": "https://urlscan.io/result/019e6805-9cd4-722e-89e0-d5bd0f29460b/",
-          "pending": true
+          "title": "Rechnung Apple-ID"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.37.86.66",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.37.86.66",
+          "city": "Detroit",
+          "region": "Michigan",
+          "country": "US",
+          "org": "AS54456 CloudAccess.net, LLC",
+          "asn": "AS54456"
+        },
         "dns": {
           "AAAA": [
             "2607:1b00:93b2:e42c::9f3"
@@ -81,7 +97,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CLOUDACCESS-NETWORK",
+          "abuse": "abuse@cloudaccess.net",
+          "url": "mailto:abuse@cloudaccess.net",
+          "logo": "https://i.ibb.co/fVbKT2P1/pr-CLOUDACCESS-NETWORK.png",
+          "method": "email",
+          "asn": "AS54456"
+        }
       },
       "report_services": [
         {
@@ -204,12 +227,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (icuwtzw.cloudaccess.host/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"icuwtzw.cloudaccess.host\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003720; classtype:social-engineering; sid:6003720; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:38:17.888345+00:00",
+  "updated_at": "2026-05-28T03:57:52.250717+00:00",
   "probe": {
     "dns": true,
     "whois": true,

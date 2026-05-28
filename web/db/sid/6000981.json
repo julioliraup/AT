@@ -50,21 +50,88 @@
     "phishdestroy": {
       "domain": "siraba.ci",
       "domain_defanged": "siraba[.]ci",
-      "case_id": "PD-20260527-6FB78C",
-      "analyzed_at": "2026-05-27T03:32:25.731Z",
+      "case_id": "PD-20260528-6FB78C",
+      "analyzed_at": "2026-05-28T01:40:04.828Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e677d-9ad8-76bd-a514-a1dca792aad8.png",
           "url": "https://urlscan.io/result/019e677d-9ad8-76bd-a514-a1dca792aad8/",
-          "pending": true
+          "title": "Simulateur d'examen de code"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -80,16 +147,16 @@
           "asn": "AS16276"
         },
         "dns": {
+          "MX": [
+            "10 mx1.netim.net.",
+            "10 mx2.netim.net."
+          ],
           "A": [
             "94.23.204.172"
           ],
-          "MX": [
-            "10 mx2.netim.net.",
-            "10 mx1.netim.net."
-          ],
           "NS": [
-            "ns1.routing.net.",
             "ns2.routing.net.",
+            "ns1.routing.net.",
             "ns3.routing.net."
           ]
         }
@@ -226,12 +293,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .siraba .ci/news .html)\"; flow:established,to_server; http.uri; content:\"/news.html\"; startswith; fast_pattern; http.host;  content:\"www.siraba.ci\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000981; classtype:social-engineering; sid:6000981; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-27T11:02:40.844695+00:00",
+  "updated_at": "2026-05-28T01:40:00.036841+00:00",
   "probe": {
     "dns": true,
     "whois": true,

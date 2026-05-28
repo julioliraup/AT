@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "b35n.com",
       "domain_defanged": "b35n[.]com",
-      "case_id": "PD-20260527-5159A7",
-      "analyzed_at": "2026-05-27T05:21:55.302Z",
+      "case_id": "PD-20260528-5159A7",
+      "analyzed_at": "2026-05-28T03:19:18.497Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3df8-c198-71b9-862f-5c4be46898e2.png",
+          "url": "https://urlscan.io/result/019e3df8-c198-71b9-862f-5c4be46898e2/",
+          "title": "bet365英国上市官网"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameSilo, LLC",
         "created": "2024-06-15T13:32:50Z",
         "expires": "2026-06-15T13:32:50Z",
-        "age_days": 710,
+        "age_days": 711,
         "nameservers": [
           "LEONIDAS.NS.CLOUDFLARE.COM",
           "VEDA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.72.84",
+        "ipinfo": {
+          "ip": "104.21.72.84",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (b35n.com/poker/109)\"; flow:established,to_server; http.uri; content:\"/poker/109\"; startswith; fast_pattern; http.host; content:\"b35n.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003002; classtype:social-engineering; sid:6003002; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-27T12:14:25.388114+00:00",
+  "updated_at": "2026-05-28T03:19:15.642021+00:00",
   "probe": {
     "dns": false,
     "whois": false,

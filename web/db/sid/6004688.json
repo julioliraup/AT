@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "sgenerale.bolt.host",
       "domain_defanged": "sgenerale[.]bolt[.]host",
-      "case_id": "PD-20260527-6AE7E2",
-      "analyzed_at": "2026-05-27T06:53:16.423Z",
+      "case_id": "PD-20260528-6AE7E2",
+      "analyzed_at": "2026-05-28T04:37:32.946Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6cdf-9566-7754-b420-e6386eafe8ca/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,24 +68,38 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.13.118",
-        "ipinfo": null,
+        "ip": "172.67.75.9",
+        "ipinfo": {
+          "ip": "172.67.75.9",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.26.13.118",
-            "172.67.75.9",
-            "104.26.12.118"
-          ],
           "AAAA": [
-            "2606:4700:20::681a:d76",
+            "2606:4700:20::681a:c76",
             "2606:4700:20::ac43:4b09",
-            "2606:4700:20::681a:c76"
+            "2606:4700:20::681a:d76"
+          ],
+          "A": [
+            "172.67.75.9",
+            "104.26.12.118",
+            "104.26.13.118"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -204,12 +222,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sgenerale.bolt.host/index.html)\"; flow:established,to_server; http.uri; content:\"/index.html\"; startswith; fast_pattern; http.host; content:\"sgenerale.bolt.host\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004688; classtype:social-engineering; sid:6004688; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-05-27T13:18:16.732381+00:00",
+  "updated_at": "2026-05-28T04:37:30.921752+00:00",
   "probe": {
     "dns": true,
     "whois": true,

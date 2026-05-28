@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "tyhhgfghjtik.sbs",
       "domain_defanged": "tyhhgfghjtik[.]sbs",
-      "case_id": "PD-20260527-434943",
-      "analyzed_at": "2026-05-27T05:39:23.914Z",
+      "case_id": "PD-20260528-434943",
+      "analyzed_at": "2026-05-28T03:39:47.967Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fake Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3f41-1405-750e-b305-4ff57f6da64a.png",
+          "url": "https://urlscan.io/result/019e3f41-1405-750e-b305-4ff57f6da64a/",
+          "title": "TikTok-Wholesale"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fake Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "161.248.15.126",
+        "ipinfo": {
+          "ip": "161.248.15.126",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS4907 BGPNET PTE. LTD.",
+          "asn": "AS4907"
+        },
         "dns": null
       },
       "report_to": {
@@ -192,12 +213,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.tyhhgfghjtik.sbs/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.tyhhgfghjtik.sbs\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003343; classtype:social-engineering; sid:6003343; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:24:48.074478+00:00",
+  "updated_at": "2026-05-28T03:39:44.032462+00:00",
   "probe": {
     "dns": false,
     "whois": false,

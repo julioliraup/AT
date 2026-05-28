@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.zukvof.top",
       "domain_defanged": "t-mobile[.]zukvof[.]top",
-      "case_id": "PD-20260527-1778E9",
-      "analyzed_at": "2026-05-27T05:32:31.315Z",
+      "case_id": "PD-20260528-1778E9",
+      "analyzed_at": "2026-05-28T03:32:37.283Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4053-3438-724f-8d82-aee7c1499d57.png",
+          "url": "https://urlscan.io/result/019e4053-3438-724f-8d82-aee7c1499d57/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.64.234",
+        "ipinfo": {
+          "ip": "104.21.64.234",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +219,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.zukvof.top/pay)\"; flow:established,to_server; http.uri; content:\"/pay\"; startswith; fast_pattern; http.host; content:\"t-mobile.zukvof.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003217; classtype:social-engineering; sid:6003217; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:20:48.965743+00:00",
+  "updated_at": "2026-05-28T03:32:34.766201+00:00",
   "probe": {
     "dns": false,
     "whois": false,

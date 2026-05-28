@@ -74,8 +74,8 @@
     "phishdestroy": {
       "domain": "inner.website",
       "domain_defanged": "inner[.]website",
-      "case_id": "PD-20260527-773A89",
-      "analyzed_at": "2026-05-27T02:38:32.539Z",
+      "case_id": "PD-20260528-773A89",
+      "analyzed_at": "2026-05-28T00:56:21.132Z",
       "intel": {
         "virustotal": {
           "malicious": 11,
@@ -148,15 +148,21 @@
               "result": "malicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "Forcepoint ThreatSeeker": "malicious web sites. information technology",
+            "Webroot": "Phishing and Other Frauds",
+            "alphaMountain.ai": "Information/Computer Security, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019e6730-a601-700c-87ef-97ee42a21d3f.png",
-          "url": "https://urlscan.io/result/019e6730-a601-700c-87ef-97ee42a21d3f/",
-          "title": "404 page"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6be3-4fc8-7669-9b26-75038081318c.png",
+          "url": "https://urlscan.io/result/019e6be3-4fc8-7669-9b26-75038081318c/",
+          "title": "Sign in to your account"
         }
       },
       "detections": [
@@ -224,15 +230,20 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
         }
       ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.73.56",
+        "ip": "104.26.2.170",
         "ipinfo": {
-          "ip": "172.67.73.56",
+          "ip": "104.26.2.170",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -240,19 +251,19 @@
           "asn": "AS13335"
         },
         "dns": {
-          "MX": [
-            "0 smtp.secureserver.net.",
-            "10 mailstore1.secureserver.net."
-          ],
           "AAAA": [
             "2606:4700:20::681a:3aa",
             "2606:4700:20::681a:2aa",
             "2606:4700:20::ac43:4938"
           ],
+          "MX": [
+            "0 smtp.secureserver.net.",
+            "10 mailstore1.secureserver.net."
+          ],
           "A": [
-            "172.67.73.56",
+            "104.26.2.170",
             "104.26.3.170",
-            "104.26.2.170"
+            "172.67.73.56"
           ],
           "NS": [
             "mona.ns.cloudflare.com.",
@@ -397,7 +408,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (inner .website/104e0f6021ac9941affa1a9f3f1f3b57ef70 .html)\"; flow:established,to_server; http.uri; content:\"/104e0f6021ac9941affa1a9f3f1f3b57ef70.html\"; startswith; fast_pattern; http.host;  content:\"inner.website\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000185; classtype:social-engineering; sid:6000185; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-27T10:37:36.587200+00:00",
+  "updated_at": "2026-05-28T00:58:47.350940+00:00",
   "probe": {
     "dns": true,
     "whois": true,

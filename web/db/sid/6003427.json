@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "network.collabcryptoresolver.online",
       "domain_defanged": "network[.]collabcryptoresolver[.]online",
-      "case_id": "PD-20260527-2B3CF7",
-      "analyzed_at": "2026-05-27T05:43:18.214Z",
+      "case_id": "PD-20260528-2B3CF7",
+      "analyzed_at": "2026-05-28T03:44:21.833Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Crypto"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4056-1e4a-7078-bc5a-3a5059c9be89.png",
+          "url": "https://urlscan.io/result/019e4056-1e4a-7078-bc5a-3a5059c9be89/",
+          "title": "Connect Wallet - Collabhub"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Crypto",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "185.247.225.7",
+        "ipinfo": {
+          "ip": "185.247.225.7",
+          "hostname": "ro8.flokinet.is",
+          "city": "Bucharest",
+          "region": "Bucharest",
+          "country": "RO",
+          "org": "AS200651 FlokiNET ehf",
+          "asn": "AS200651"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "FlokiNET",
+          "abuse": "abuse@flokinet.is",
+          "url": "mailto:abuse@flokinet.is",
+          "logo": "https://i.ibb.co/DDJz3Bpy/pr-Floki-NET.png",
+          "method": "email",
+          "asn": "AS200651"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (network.collabcryptoresolver.online/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"network.collabcryptoresolver.online\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003427; classtype:social-engineering; sid:6003427; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-27T12:27:41.673313+00:00",
+  "updated_at": "2026-05-28T03:44:19.187226+00:00",
   "probe": {
     "dns": false,
     "whois": false,

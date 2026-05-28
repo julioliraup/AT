@@ -74,35 +74,44 @@
     "phishdestroy": {
       "domain": "contact-account-client.com",
       "domain_defanged": "contact-account-client[.]com",
-      "case_id": "PD-20260527-62C08B",
-      "analyzed_at": "2026-05-27T03:55:43.259Z",
+      "case_id": "PD-20260528-62C08B",
+      "analyzed_at": "2026-05-28T01:59:59.277Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6792-edf3-73ca-92dd-01cd186f09ef.png",
           "url": "https://urlscan.io/result/019e6792-edf3-73ca-92dd-01cd186f09ef/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-04-22T11:11:51Z",
         "expires": "2027-04-22T11:11:51Z",
-        "age_days": 34,
+        "age_days": 35,
         "nameservers": [
           "KIANCHAU.NS.CLOUDFLARE.COM",
           "MELISSA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.21.24.122",
+        "ip": "172.67.218.134",
         "ipinfo": {
-          "ip": "104.21.24.122",
+          "ip": "172.67.218.134",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -111,8 +120,8 @@
         },
         "dns": {
           "A": [
-            "104.21.24.122",
-            "172.67.218.134"
+            "172.67.218.134",
+            "104.21.24.122"
           ],
           "AAAA": [
             "2606:4700:3032::6815:187a",
@@ -263,12 +272,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (contact-account-client .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"contact-account-client.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001426; classtype:social-engineering; sid:6001426; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-27T11:17:23.354905+00:00",
+  "updated_at": "2026-05-28T01:59:56.961694+00:00",
   "probe": {
     "dns": true,
     "whois": true,
