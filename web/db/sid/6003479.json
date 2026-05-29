@@ -74,27 +74,36 @@
       "domain": "www-currently-sign-in-6fdb9c.webflow.io",
       "domain_defanged": "www-currently-sign-in-6fdb9c[.]webflow[.]io",
       "case_id": "PD-20260528-61E6B8",
-      "analyzed_at": "2026-05-28T11:23:25.228Z",
+      "analyzed_at": "2026-05-28T03:47:46.248Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e6e53-2b33-74dd-a016-54d0422d1351/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e67f7-da54-735d-8d9d-8b2be96fafca.png",
+          "url": "https://urlscan.io/result/019e67f7-da54-735d-8d9d-8b2be96fafca/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.151.8",
+        "ip": "104.18.36.248",
         "ipinfo": {
-          "ip": "172.64.151.8",
+          "ip": "104.18.36.248",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "AAAA": [
-            "2a06:98c1:3100::6812:24f8",
-            "2606:4700:440c::ac40:9708"
+            "2606:4700:440c::ac40:9708",
+            "2a06:98c1:3100::6812:24f8"
           ],
           "A": [
-            "172.64.151.8",
-            "104.18.36.248"
+            "104.18.36.248",
+            "172.64.151.8"
           ]
         }
       },
@@ -244,14 +253,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www-currently-sign-in-6fdb9c.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www-currently-sign-in-6fdb9c.webflow.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003479; classtype:social-engineering; sid:6003479; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-28T11:23:17.772090+00:00",
+  "updated_at": "2026-05-28T20:39:38.723954+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

@@ -18,32 +18,74 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://die-swiss-post.bolt.host/",
+      "domain": "die-swiss-post.bolt.host",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.67.75.9",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "9ff346fb19f9054d-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "37e8193749ad22822cf63678dab695942e1a91af905dbfe633c33031c6de9874",
+      "md5": "5239a98f3f319688a120604fabed64df",
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-05-21T11:32:28",
+      "first_seen_secs": 1779363148.0
+    },
     "phishdestroy": {
       "domain": "die-swiss-post.bolt.host",
       "domain_defanged": "die-swiss-post[.]bolt[.]host",
       "case_id": "PD-20260528-3F2910",
-      "analyzed_at": "2026-05-28T10:54:57.165Z",
+      "analyzed_at": "2026-05-28T03:15:46.748Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e6e39-1a97-7113-8442-d3b001854f4b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e67de-55f8-767f-ac39-8b7c377113f8.png",
+          "url": "https://urlscan.io/result/019e67de-55f8-767f-ac39-8b7c377113f8/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.75.9",
+        "ip": "104.26.12.118",
         "ipinfo": {
-          "ip": "172.67.75.9",
+          "ip": "104.26.12.118",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -51,15 +93,15 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.67.75.9",
-            "104.26.13.118",
-            "104.26.12.118"
-          ],
           "AAAA": [
-            "2606:4700:20::ac43:4b09",
+            "2606:4700:20::681a:c76",
             "2606:4700:20::681a:d76",
-            "2606:4700:20::681a:c76"
+            "2606:4700:20::ac43:4b09"
+          ],
+          "A": [
+            "104.26.12.118",
+            "104.26.13.118",
+            "172.67.75.9"
           ]
         }
       },
@@ -195,14 +237,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (die-swiss-post.bolt.host/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"die-swiss-post.bolt.host\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002940; classtype:social-engineering; sid:6002940; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-28T10:54:34.742211+00:00",
+  "updated_at": "2026-05-28T20:04:27.114927+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

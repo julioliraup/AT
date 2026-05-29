@@ -51,13 +51,17 @@
       "domain": "fazexmd.com",
       "domain_defanged": "fazexmd[.]com",
       "case_id": "PD-20260528-12EA4B",
-      "analyzed_at": "2026-05-28T09:51:07.426Z",
+      "analyzed_at": "2026-05-28T18:50:09.980Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e6fec-2c19-70e0-8e53-4e0bf72fccfa/",
+          "pending": true
         }
       },
       "detections": [],
@@ -85,15 +89,15 @@
           "asn": "AS25773"
         },
         "dns": {
+          "NS": [
+            "dns2.name-services.com.",
+            "dns5.name-services.com.",
+            "dns4.name-services.com.",
+            "dns1.name-services.com.",
+            "dns3.name-services.com."
+          ],
           "A": [
             "66.22.16.138"
-          ],
-          "NS": [
-            "dns1.name-services.com.",
-            "dns2.name-services.com.",
-            "dns4.name-services.com.",
-            "dns3.name-services.com.",
-            "dns5.name-services.com."
           ]
         }
       },
@@ -233,10 +237,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fazexmd .com/wordpress/fark/)\"; flow:established,to_server; http.uri; content:\"/wordpress/fark/\"; startswith; fast_pattern; http.host;  content:\"fazexmd.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001670; classtype:social-engineering; sid:6001670; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-05-28T09:50:57.541261+00:00",
+  "updated_at": "2026-05-28T18:50:05.150501+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }
