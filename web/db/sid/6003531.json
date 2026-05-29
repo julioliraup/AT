@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "compr1sw.webcindario.com",
       "domain_defanged": "compr1sw[.]webcindario[.]com",
-      "case_id": "PD-20260528-403E45",
-      "analyzed_at": "2026-05-28T11:26:00.622Z",
+      "case_id": "PD-20260529-403E45",
+      "analyzed_at": "2026-05-29T05:32:24.823Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6e55-8a85-7442-bfd9-41925dd73a22.png",
           "url": "https://urlscan.io/result/019e6e55-8a85-7442-bfd9-41925dd73a22/",
-          "pending": true
+          "title": "Iniciar"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,12 +80,12 @@
         "ip": "server.webcindario.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "server.webcindario.com."
-          ],
           "A": [
             "server.webcindario.com.",
             "5.57.226.202"
+          ],
+          "AAAA": [
+            "server.webcindario.com."
           ],
           "MX": [
             "server.webcindario.com."
@@ -91,7 +100,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ABANSYS_AND_HOSTYTEC-AS",
+          "abuse": "abuse@abansysandhostytec.com",
+          "url": "mailto:abuse@abansysandhostytec.com",
+          "logo": "https://i.ibb.co/Nn7t7bhZ/pr-ABANSYS-AND-HOSTYTEC-AS.png",
+          "method": "email",
+          "asn": "AS29119"
+        }
       },
       "report_services": [
         {
@@ -214,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (compr1sw.webcindario.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"compr1sw.webcindario.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003531; classtype:social-engineering; sid:6003531; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-28T20:42:17.506548+00:00",
+  "updated_at": "2026-05-29T05:32:22.380070+00:00",
   "probe": {
     "dns": true,
     "whois": false,

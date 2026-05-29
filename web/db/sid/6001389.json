@@ -50,22 +50,30 @@
     "phishdestroy": {
       "domain": "anusriyacp.github.io",
       "domain_defanged": "anusriyacp[.]github[.]io",
-      "case_id": "PD-20260528-63CF22",
-      "analyzed_at": "2026-05-28T01:58:34.427Z",
+      "case_id": "PD-20260529-63CF22",
+      "analyzed_at": "2026-05-29T03:43:26.373Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019e6790-dbef-7632-87e4-44222ff1ca6f.png",
-          "url": "https://urlscan.io/result/019e6790-dbef-7632-87e4-44222ff1ca6f/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e715f-4628-736d-954e-4e8b24e0bcb4.png",
+          "url": "https://urlscan.io/result/019e715f-4628-736d-954e-4e8b24e0bcb4/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -81,17 +89,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
             "185.199.108.153",
             "185.199.109.153",
             "185.199.110.153",
             "185.199.111.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
@@ -227,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (anusriyacp .github .io/amazon-clone/)\"; flow:established,to_server; http.uri; content:\"/amazon-clone/\"; startswith; fast_pattern; http.host;  content:\"anusriyacp.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001389; classtype:social-engineering; sid:6001389; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-28T18:34:42.494382+00:00",
+  "updated_at": "2026-05-29T03:43:24.215700+00:00",
   "probe": {
     "dns": true,
     "whois": true,

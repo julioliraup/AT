@@ -73,11 +73,11 @@
     "phishdestroy": {
       "domain": "pub-fbf3a87d05664d999912dfd2bd8b8dcc.r2.dev",
       "domain_defanged": "pub-fbf3a87d05664d999912dfd2bd8b8dcc[.]r2[.]dev",
-      "case_id": "PD-20260528-1788CD",
-      "analyzed_at": "2026-05-28T00:57:21.969Z",
+      "case_id": "PD-20260529-1788CD",
+      "analyzed_at": "2026-05-29T02:46:24.530Z",
       "intel": {
         "virustotal": {
-          "malicious": 15,
+          "malicious": 16,
           "suspicious": 0,
           "total": 91,
           "detections": [
@@ -85,6 +85,11 @@
               "engine": "ADMINUSLabs",
               "category": "malicious",
               "result": "malicious"
+            },
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
             },
             {
               "engine": "alphaMountain.ai",
@@ -157,7 +162,12 @@
               "result": "malicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "Forcepoint ThreatSeeker": "web hosting",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
@@ -172,6 +182,11 @@
         {
           "source": "VT: ADMINUSLabs",
           "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
           "severity": "high"
         },
         {
@@ -259,13 +274,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.18.54.45",
-            "104.18.50.34"
-          ],
           "AAAA": [
             "2606:4700:3117::6812:3222",
             "2606:4700:3113::6812:362d"
+          ],
+          "A": [
+            "104.18.54.45",
+            "104.18.50.34"
           ]
         }
       },
@@ -401,12 +416,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pub-fbf3a87d05664d999912dfd2bd8b8dcc .r2 .dev/index .html)\"; flow:established,to_server; http.uri; content:\"/index.html\"; startswith; fast_pattern; http.host;  content:\"pub-fbf3a87d05664d999912dfd2bd8b8dcc.r2.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000129; classtype:social-engineering; sid:6000129; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-28T17:39:12.786187+00:00",
+  "updated_at": "2026-05-29T02:46:20.409901+00:00",
   "probe": {
     "dns": true,
     "whois": false,

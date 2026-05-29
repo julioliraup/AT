@@ -74,86 +74,11 @@
     "phishdestroy": {
       "domain": "central.pr-universe.com",
       "domain_defanged": "central[.]pr-universe[.]com",
-      "case_id": "PD-20260528-DD04A3",
-      "analyzed_at": "2026-05-28T02:03:35.039Z",
+      "case_id": "PD-20260529-DD04A3",
+      "analyzed_at": "2026-05-29T03:46:58.737Z",
       "intel": {
         "virustotal": {
-          "malicious": 13,
-          "suspicious": 1,
-          "total": 91,
-          "detections": [
-            {
-              "engine": "ADMINUSLabs",
-              "category": "malicious",
-              "result": "malicious"
-            },
-            {
-              "engine": "BitDefender",
-              "category": "malicious",
-              "result": "malware"
-            },
-            {
-              "engine": "Chong Lua Dao",
-              "category": "malicious",
-              "result": "malicious"
-            },
-            {
-              "engine": "CyRadar",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "ESET",
-              "category": "suspicious",
-              "result": "suspicious"
-            },
-            {
-              "engine": "Emsisoft",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Forcepoint ThreatSeeker",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Fortinet",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "G-Data",
-              "category": "malicious",
-              "result": "malware"
-            },
-            {
-              "engine": "Lionic",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "SOCRadar",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Sophos",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "VIPRE",
-              "category": "malicious",
-              "result": "malware"
-            },
-            {
-              "engine": "Webroot",
-              "category": "malicious",
-              "result": "malicious"
-            }
-          ],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
           "malicious": true,
@@ -168,76 +93,6 @@
       },
       "detections": [
         {
-          "source": "VT: ADMINUSLabs",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: BitDefender",
-          "type": "malware",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Chong Lua Dao",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: CyRadar",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: ESET",
-          "type": "suspicious",
-          "severity": "medium"
-        },
-        {
-          "source": "VT: Emsisoft",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Forcepoint ThreatSeeker",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Fortinet",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: G-Data",
-          "type": "malware",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Lionic",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: SOCRadar",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Sophos",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: VIPRE",
-          "type": "malware",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Webroot",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
           "source": "URLScan.io",
           "type": "Targeting: Phishing Simulation",
           "severity": "high"
@@ -247,10 +102,10 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "34.194.247.17",
+        "ip": "52.204.246.179",
         "ipinfo": {
-          "ip": "34.194.247.17",
-          "hostname": "ec2-34-194-247-17.compute-1.amazonaws.com",
+          "ip": "52.204.246.179",
+          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
           "city": "Ashburn",
           "region": "Virginia",
           "country": "US",
@@ -259,8 +114,8 @@
         },
         "dns": {
           "A": [
-            "34.194.247.17",
-            "52.204.246.179"
+            "52.204.246.179",
+            "34.194.247.17"
           ]
         }
       },
@@ -396,12 +251,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (central .pr-universe .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/\"; startswith; fast_pattern; http.host;  content:\"central.pr-universe.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001515; classtype:social-engineering; sid:6001515; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-28T18:41:59.646883+00:00",
+  "updated_at": "2026-05-29T03:46:55.327013+00:00",
   "probe": {
     "dns": true,
     "whois": false,
