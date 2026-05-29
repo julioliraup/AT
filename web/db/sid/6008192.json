@@ -22,7 +22,7 @@
       "url": "http://stanroad.com/",
       "domain": "stanroad.com",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -50,25 +50,82 @@
       "domain": "stanroad.com",
       "domain_defanged": "stanroad[.]com",
       "case_id": "PD-20260529-EE1320",
-      "analyzed_at": "2026-05-29T09:32:24.398Z",
+      "analyzed_at": "2026-05-29T01:22:28.154Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Abusix",
+              "category": "suspicious",
+              "result": "spam"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e7313-e497-77de-843b-dfc36e85f68e/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e70fc-4c74-72bf-a592-17a300a6cb8f.png",
+          "url": "https://urlscan.io/result/019e70fc-4c74-72bf-a592-17a300a6cb8f/",
+          "title": "stanroad.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Abusix",
+          "type": "spam",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2023-06-02T08:52:22Z",
         "expires": "2026-06-02T08:52:22Z",
-        "age_days": 1092,
+        "age_days": 1091,
         "nameservers": [
           "ALLA.NS.CLOUDFLARE.COM",
           "WILL.NS.CLOUDFLARE.COM"
@@ -238,14 +295,17 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (stanroad.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"stanroad.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6008192; classtype:social-engineering; sid:6008192; rev:1; metadata: signature_severity Major, created_et 2026_05_28;)",
-  "updated_at": "2026-05-29T09:32:20.907118+00:00",
+  "updated_at": "2026-05-29T19:10:45.694022+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

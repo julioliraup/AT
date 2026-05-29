@@ -78,14 +78,18 @@
     "phishdestroy": {
       "domain": "kcoinlogin.github.io",
       "domain_defanged": "kcoinlogin[.]github[.]io",
-      "case_id": "PD-20260528-603699",
-      "analyzed_at": "2026-05-28T09:41:10.139Z",
+      "case_id": "PD-20260529-603699",
+      "analyzed_at": "2026-05-29T12:21:10.103Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e73ae-65bc-71c5-9e34-b5630ed2463a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -104,17 +108,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
             "185.199.108.153",
             "185.199.109.153",
             "185.199.110.153",
             "185.199.111.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
@@ -250,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kcoinlogin .github .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"kcoinlogin.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001465; classtype:social-engineering; sid:6001465; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-29T03:45:40.925310+00:00",
+  "updated_at": "2026-05-29T12:21:07.615583+00:00",
   "probe": {
     "dns": true,
     "whois": true,
