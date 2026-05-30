@@ -19,12 +19,65 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://bafkreicbmqquwxmgcjiinvicxanjtip42fcnej5mdgdqtgv2q5jwffo7aa.ipfs.dweb.link/",
+      "domain": "bafkreicbmqquwxmgcjiinvicxanjtip42fcnej5mdgdqtgv2q5jwffo7aa.ipfs.dweb.link",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "209.94.90.3",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html",
+        "cf_ray": "9d4e54c5edc51509-PDX",
+        "cf_cache_status": "HIT",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with CRLF line terminators",
+      "sha256": "4164214b5d86125086d502b81a99a1fcd144d227ac1987099aba87536295df00",
+      "md5": "7c585bf63f43a49e7973ff13eb82de15",
+      "cert": {
+        "subject_cn": "dweb.link",
+        "subject_alt_names": [
+          "*.dweb.link",
+          "*.ipfs.dweb.link",
+          "*.ipns.dweb.link",
+          "dweb.link"
+        ],
+        "issuer_cn": "E7",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-01-25T09:56:11+00:00",
+        "not_valid_after": "2026-04-25T09:56:10+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "550633772481430317950419557561071341689162",
+        "fingerprint_sha1": "62 0A D7 0E 88 6C 5C CA A1 6D 66 E4 D1 EB 25 45 77 B2 1D EE",
+        "fingerprint_sha256": "B0 F8 01 13 26 DD 0E 8A 1A E8 48 15 40 20 8A DF C8 88 BB 71 27 3B 3B D3 BC 56 E9 27 49 F9 F5 DB"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-02-26T03:44:11",
+      "first_seen_secs": 1772077451.0
+    },
     "phishdestroy": {
       "domain": "bafkreicbmqquwxmgcjiinvicxanjtip42fcnej5mdgdqtgv2q5jwffo7aa.ipfs.dweb.link",
       "domain_defanged": "bafkreicbmqquwxmgcjiinvicxanjtip42fcnej5mdgdqtgv2q5jwffo7aa[.]ipfs[.]dweb[.]link",
-      "case_id": "PD-20260529-60D502",
-      "analyzed_at": "2026-05-29T21:14:12.575Z",
+      "case_id": "PD-20260530-60D502",
+      "analyzed_at": "2026-05-30T06:53:43.267Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -33,7 +86,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e7596-694b-722a-82cb-45acd4f90fe6/",
+          "url": "https://urlscan.io/result/019e77a8-f8b8-719a-a135-077c4c94de1f/",
           "pending": true
         }
       },
@@ -42,22 +95,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "209.94.90.3",
-        "ipinfo": null,
+        "ip": "209.94.90.2",
+        "ipinfo": {
+          "ip": "209.94.90.2",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS40680 Protocol Labs",
+          "asn": "AS40680"
+        },
         "dns": {
+          "A": [
+            "209.94.90.2",
+            "209.94.90.3"
+          ],
           "AAAA": [
             "2602:fea2:2::3",
             "2602:fea2:2::2"
-          ],
-          "A": [
-            "209.94.90.3",
-            "209.94.90.2"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "PROTOCOL",
+          "abuse": "abuse@protocol.ai",
+          "url": "mailto:abuse@protocol.ai",
+          "logo": "https://i.ibb.co/4nbxLg8d/pr-PROTOCOL.png",
+          "method": "email",
+          "asn": "AS40680"
+        }
       },
       "report_services": [
         {
@@ -184,7 +251,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bafkreicbmqquwxmgcjiinvicxanjtip42fcnej5mdgdqtgv2q5jwffo7aa .ipfs .dweb .link/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"bafkreicbmqquwxmgcjiinvicxanjtip42fcnej5mdgdqtgv2q5jwffo7aa.ipfs.dweb.link\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000516; classtype:social-engineering; sid:6000516; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-29T21:14:00.321889+00:00",
+  "updated_at": "2026-05-30T06:53:40.332577+00:00",
   "probe": {
     "dns": true,
     "whois": true,

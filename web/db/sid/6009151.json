@@ -1,0 +1,42 @@
+{
+  "sid": 6009151,
+  "url_path": "/pay/",
+  "url_base": "t-mobile.dmltur.top",
+  "msg": "AT related malicious URL (t-mobile.dmltur.top/pay/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/ET/signature.html?sid=6009151"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "172.67.204.218",
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US",
+      "loc": "37.7621,-122.3971",
+      "org": "AS13335 Cloudflare, Inc.",
+      "postal": "94107",
+      "timezone": "America/Los_Angeles",
+      "readme": "https://ipinfo.io/missingauth",
+      "anycast": true
+    },
+    "alienvault": null,
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.dmltur.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.dmltur.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009151; classtype:social-engineering; sid:6009151; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
+  "updated_at": "2026-05-30T13:23:48.294350+00:00",
+  "probe": {
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
+}
