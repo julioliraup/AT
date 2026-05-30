@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "cc.wtes.as.whatsppeb.com",
       "domain_defanged": "cc[.]wtes[.]as[.]whatsppeb[.]com",
-      "case_id": "PD-20260528-7D08DD",
-      "analyzed_at": "2026-05-28T21:02:20.668Z",
+      "case_id": "PD-20260530-7D08DD",
+      "analyzed_at": "2026-05-30T00:37:06.786Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WhatsApp"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e42a1-4d81-70cc-b7a3-761d26e995c2.png",
+          "url": "https://urlscan.io/result/019e42a1-4d81-70cc-b7a3-761d26e995c2/",
+          "title": "whatsapp"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WhatsApp",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "18.136.168.181",
+        "ipinfo": {
+          "ip": "18.136.168.181",
+          "hostname": "ec2-18-136-168-181.ap-southeast-1.compute.amazonaws.com",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cc.wtes.as.whatsppeb.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cc.wtes.as.whatsppeb.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003840; classtype:social-engineering; sid:6003840; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-29T14:49:02.495434+00:00",
+  "updated_at": "2026-05-30T00:37:02.307660+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -18,58 +18,59 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.pcn-noticut.cyou/com",
-      "domain": "www.pcn-noticut.cyou",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "pcn-noticut.cyou",
       "domain_defanged": "pcn-noticut[.]cyou",
-      "case_id": "PD-20260528-153211",
-      "analyzed_at": "2026-05-28T22:07:58.797Z",
+      "case_id": "PD-20260530-153211",
+      "analyzed_at": "2026-05-30T01:54:41.014Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4f82-422d-7546-a9c4-ec9ec96c92dc.png",
+          "url": "https://urlscan.io/result/019e4f82-422d-7546-a9c4-ec9ec96c92dc/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.166.221.236",
+        "ipinfo": {
+          "ip": "43.166.221.236",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -192,12 +193,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.pcn-noticut.cyou/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.pcn-noticut.cyou\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004992; classtype:social-engineering; sid:6004992; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-05-29T16:01:14.848922+00:00",
+  "updated_at": "2026-05-30T01:54:28.754343+00:00",
   "probe": {
     "dns": false,
     "whois": false,

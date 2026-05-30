@@ -171,21 +171,30 @@
     "phishdestroy": {
       "domain": "apex-bet365.com",
       "domain_defanged": "apex-bet365[.]com",
-      "case_id": "PD-20260529-437FD0",
-      "analyzed_at": "2026-05-29T14:44:20.584Z",
+      "case_id": "PD-20260530-437FD0",
+      "analyzed_at": "2026-05-30T00:32:34.078Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7431-7a04-736d-aedc-1ecbc87c8206.png",
           "url": "https://urlscan.io/result/019e7431-7a04-736d-aedc-1ecbc87c8206/",
-          "pending": true
+          "title": "Bet365官网:尽享无与伦比的在线博彩体验-Bet365中国"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2026-03-11T10:11:41Z",
@@ -198,14 +207,21 @@
       },
       "infrastructure": {
         "ip": "177.210.114.206",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "177.210.114.206",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS134175 SH2206",
+          "asn": "AS134175"
+        },
         "dns": {
           "A": [
             "177.210.114.206"
           ],
           "NS": [
-            "ns2.domainnamedns.com.",
             "ns3.domainnamedns.com.",
+            "ns2.domainnamedns.com.",
             "ns4.domainnamedns.com.",
             "ns1.domainnamedns.com."
           ]
@@ -220,7 +236,14 @@
           "method": "form",
           "iana_ids": "1509"
         },
-        "hosting": null
+        "hosting": {
+          "name": "SH2206-AP UNIT A17,9F SILVERCORP INTL TOWER 707-713 NATHAN RD, HK",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS134175"
+        }
       },
       "report_services": [
         {
@@ -347,7 +370,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.apex-bet365.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.apex-bet365.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003760; classtype:social-engineering; sid:6003760; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-29T14:44:17.761923+00:00",
+  "updated_at": "2026-05-30T00:32:31.251767+00:00",
   "probe": {
     "dns": true,
     "whois": false,

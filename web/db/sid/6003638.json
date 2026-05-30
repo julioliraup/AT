@@ -55,26 +55,73 @@
     "phishdestroy": {
       "domain": "azuriu.com",
       "domain_defanged": "azuriu[.]com",
-      "case_id": "PD-20260528-56B562",
-      "analyzed_at": "2026-05-28T20:49:28.183Z",
+      "case_id": "PD-20260530-56B562",
+      "analyzed_at": "2026-05-30T00:24:15.935Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e7059-674f-7449-95bc-f0de36098079.png",
           "url": "https://urlscan.io/result/019e7059-674f-7449-95bc-f0de36098079/",
-          "pending": true
+          "title": "Account Suspended"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "registrar": "Vautron Rechenzentrum AG",
         "created": "2022-12-22T18:01:16Z",
         "expires": "2026-12-22T18:01:16Z",
-        "age_days": 1253,
+        "age_days": 1254,
         "nameservers": [
           "NS1.CONTABO.NET",
           "NS2.CONTABO.NET",
@@ -100,9 +147,9 @@
             "213.136.93.164"
           ],
           "NS": [
-            "ns3.contabo.net.",
+            "ns1.contabo.net.",
             "ns2.contabo.net.",
-            "ns1.contabo.net."
+            "ns3.contabo.net."
           ]
         }
       },
@@ -238,12 +285,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.azuriu.com/crosslake/)\"; flow:established,to_server; http.uri; content:\"/crosslake/\"; startswith; fast_pattern; http.host; content:\"www.azuriu.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003638; classtype:social-engineering; sid:6003638; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-29T14:37:47.219268+00:00",
+  "updated_at": "2026-05-30T00:24:10.310190+00:00",
   "probe": {
     "dns": true,
     "whois": false,

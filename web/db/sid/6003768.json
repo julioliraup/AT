@@ -171,23 +171,43 @@
     "phishdestroy": {
       "domain": "meek-bet365.com.cn",
       "domain_defanged": "meek-bet365[.]com[.]cn",
-      "case_id": "PD-20260529-388C1B",
-      "analyzed_at": "2026-05-29T14:45:01.079Z",
+      "case_id": "PD-20260530-388C1B",
+      "analyzed_at": "2026-05-30T00:33:17.209Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6e61-1a1c-7286-9790-db1cc934f450.png",
+          "url": "https://urlscan.io/result/019e6e61-1a1c-7286-9790-db1cc934f450/",
+          "title": "Bet365官网:尽享无与伦比的在线博彩体验-Bet365中国"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "154.212.99.239",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "154.212.99.239",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS134548 DXTL Tseung Kwan O Service",
+          "asn": "AS134548"
+        },
         "dns": {
           "A": [
             "154.212.99.239"
@@ -200,7 +220,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DXTL-HK",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS134548"
+        }
       },
       "report_services": [
         {
@@ -327,7 +354,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.meek-bet365.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.meek-bet365.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003768; classtype:social-engineering; sid:6003768; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-29T14:44:56.430995+00:00",
+  "updated_at": "2026-05-30T00:33:14.055716+00:00",
   "probe": {
     "dns": true,
     "whois": true,

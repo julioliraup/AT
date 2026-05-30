@@ -49,21 +49,38 @@
     "phishdestroy": {
       "domain": "scnv.io",
       "domain_defanged": "scnv[.]io",
-      "case_id": "PD-20260529-72A0DA",
-      "analyzed_at": "2026-05-29T14:27:22.929Z",
+      "case_id": "PD-20260530-72A0DA",
+      "analyzed_at": "2026-05-30T00:13:43.347Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e7421-f2d5-71a8-9f5b-0f59919d71d8/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e756c-f2ce-76ac-a0c8-49164ab81c22.png",
+          "url": "https://urlscan.io/result/019e756c-f2ce-76ac-a0c8-49164ab81c22/",
+          "title": "Verarbeitung von QR -Code"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -233,7 +250,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (scnv.io/debix/)\"; flow:established,to_server; http.uri; content:\"/debix/\"; startswith; fast_pattern; http.host; content:\"scnv.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003452; classtype:social-engineering; sid:6003452; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-29T14:27:18.910616+00:00",
+  "updated_at": "2026-05-30T00:13:36.848817+00:00",
   "probe": {
     "dns": true,
     "whois": true,

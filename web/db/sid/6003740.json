@@ -49,22 +49,34 @@
     "phishdestroy": {
       "domain": "aml-dichiarazione-bybit.com",
       "domain_defanged": "aml-dichiarazione-bybit[.]com",
-      "case_id": "PD-20260528-5EAD99",
-      "analyzed_at": "2026-05-28T20:55:37.409Z",
+      "case_id": "PD-20260530-5EAD99",
+      "analyzed_at": "2026-05-30T00:30:56.955Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bybit"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e42e6-4920-711c-925e-74d1c7cf45ad.png",
+          "url": "https://urlscan.io/result/019e42e6-4920-711c-925e-74d1c7cf45ad/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bybit",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "OwnRegistrar, Inc.",
         "created": "2026-05-18T11:16:08Z",
         "expires": "2027-05-18T11:16:08Z",
-        "age_days": 10,
+        "age_days": 11,
         "nameservers": [
           "A.DNSPOD.COM",
           "B.DNSPOD.COM",
@@ -72,7 +84,15 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "91.215.85.149",
+        "ipinfo": {
+          "ip": "91.215.85.149",
+          "city": "Saint Petersburg",
+          "region": "St.-Petersburg",
+          "country": "RU",
+          "org": "AS200593 PROSPERO OOO",
+          "asn": "AS200593"
+        },
         "dns": null
       },
       "report_to": {
@@ -84,7 +104,14 @@
           "method": "form",
           "iana_ids": "1250"
         },
-        "hosting": null
+        "hosting": {
+          "name": "PROSPERO-AS",
+          "abuse": "abuse@pro-spero.ru",
+          "url": "mailto:abuse@pro-spero.ru",
+          "logo": "",
+          "method": "email",
+          "asn": "AS200593"
+        }
       },
       "report_services": [
         {
@@ -207,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aml-dichiarazione-bybit.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aml-dichiarazione-bybit.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003740; classtype:social-engineering; sid:6003740; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-29T14:43:10.445478+00:00",
+  "updated_at": "2026-05-30T00:30:54.176786+00:00",
   "probe": {
     "dns": false,
     "whois": false,

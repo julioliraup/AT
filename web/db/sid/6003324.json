@@ -49,21 +49,77 @@
     "phishdestroy": {
       "domain": "official-website.com.in",
       "domain_defanged": "official-website[.]com[.]in",
-      "case_id": "PD-20260529-C94537",
-      "analyzed_at": "2026-05-29T14:20:17.146Z",
+      "case_id": "PD-20260530-C94537",
+      "analyzed_at": "2026-05-30T00:04:12.150Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e741b-70d7-712a-b3ed-c987046234d4/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e741b-70d7-712a-b3ed-c987046234d4.png",
+          "url": "https://urlscan.io/result/019e741b-70d7-712a-b3ed-c987046234d4/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -82,12 +138,12 @@
           "MX": [
             "0 official-website.com.in."
           ],
+          "NS": [
+            "ns13.indiancloudserver.com.",
+            "ns14.indiancloudserver.com."
+          ],
           "A": [
             "103.235.104.153"
-          ],
-          "NS": [
-            "ns14.indiancloudserver.com.",
-            "ns13.indiancloudserver.com."
           ]
         }
       },
@@ -227,7 +283,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (official-website.com.in/site/index/ppl1.php)\"; flow:established,to_server; http.uri; content:\"/site/index/ppl1.php\"; startswith; fast_pattern; http.host; content:\"official-website.com.in\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003324; classtype:social-engineering; sid:6003324; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-29T14:20:10.645142+00:00",
+  "updated_at": "2026-05-30T00:04:06.171856+00:00",
   "probe": {
     "dns": true,
     "whois": false,

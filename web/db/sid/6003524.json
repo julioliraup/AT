@@ -73,26 +73,43 @@
     "phishdestroy": {
       "domain": "parama-ekspresskargo.com",
       "domain_defanged": "parama-ekspresskargo[.]com",
-      "case_id": "PD-20260528-17C12A",
-      "analyzed_at": "2026-05-28T20:41:38.355Z",
+      "case_id": "PD-20260530-17C12A",
+      "analyzed_at": "2026-05-30T00:17:12.036Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e7052-3ab0-746a-8c02-ccacf19c8093.png",
           "url": "https://urlscan.io/result/019e7052-3ab0-746a-8c02-ccacf19c8093/",
-          "pending": true
+          "title": "404 Not Found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: SOCRadar",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2013-12-17T03:52:01Z",
         "expires": "2026-12-17T03:52:01Z",
-        "age_days": 4545,
+        "age_days": 4546,
         "nameservers": [
           "DNS1.DAPURHOSTING.NET",
           "DNS2.DAPURHOSTING.NET",
@@ -112,17 +129,17 @@
           "asn": "AS59135"
         },
         "dns": {
-          "MX": [
-            "0 parama-ekspresskargo.com."
-          ],
           "A": [
             "103.7.226.43"
           ],
+          "MX": [
+            "0 parama-ekspresskargo.com."
+          ],
           "NS": [
-            "dns3.dapurhosting.net.",
             "dns2.dapurhosting.net.",
+            "dns1.dapurhosting.net.",
             "dns4.dapurhosting.net.",
-            "dns1.dapurhosting.net."
+            "dns3.dapurhosting.net."
           ]
         }
       },
@@ -265,12 +282,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (parama-ekspresskargo.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"parama-ekspresskargo.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003524; classtype:social-engineering; sid:6003524; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-29T14:30:47.014021+00:00",
+  "updated_at": "2026-05-30T00:17:07.862185+00:00",
   "probe": {
     "dns": true,
     "whois": true,

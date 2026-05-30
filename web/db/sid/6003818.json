@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "formulario-registro-gestion-2026-aklm.cr-web.workers.dev",
       "domain_defanged": "formulario-registro-gestion-2026-aklm[.]cr-web[.]workers[.]dev",
-      "case_id": "PD-20260528-4F2776",
-      "analyzed_at": "2026-05-28T21:01:32.190Z",
+      "case_id": "PD-20260530-4F2776",
+      "analyzed_at": "2026-05-30T00:35:44.627Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7064-7379-7114-8f63-ca813af298a1.png",
           "url": "https://urlscan.io/result/019e7064-7379-7114-8f63-ca813af298a1/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3035::6815:21c1",
-            "2606:4700:3037::ac43:bff7"
-          ],
           "A": [
             "172.67.191.247",
             "104.21.33.193"
+          ],
+          "AAAA": [
+            "2606:4700:3037::ac43:bff7",
+            "2606:4700:3035::6815:21c1"
           ]
         }
       },
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (formulario-registro-gestion-2026-aklm.cr-web.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"formulario-registro-gestion-2026-aklm.cr-web.workers.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003818; classtype:social-engineering; sid:6003818; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-29T14:47:54.197684+00:00",
+  "updated_at": "2026-05-30T00:35:41.924017+00:00",
   "probe": {
     "dns": true,
     "whois": false,

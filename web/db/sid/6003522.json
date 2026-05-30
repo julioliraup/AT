@@ -55,21 +55,88 @@
     "phishdestroy": {
       "domain": "ec2-100-24-254-151.compute-1.amazonaws.com",
       "domain_defanged": "ec2-100-24-254-151[.]compute-1[.]amazonaws[.]com",
-      "case_id": "PD-20260528-7A82C0",
-      "analyzed_at": "2026-05-28T20:41:32.936Z",
+      "case_id": "PD-20260530-7A82C0",
+      "analyzed_at": "2026-05-30T00:17:04.742Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e7052-26ca-760c-a2d1-7206e4b104fd.png",
           "url": "https://urlscan.io/result/019e7052-26ca-760c-a2d1-7206e4b104fd/",
-          "pending": true
+          "title": "EDM Central Site"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -222,12 +289,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ec2-100-24-254-151.compute-1.amazonaws.com/login)\"; flow:established,to_server; http.uri; content:\"/login\"; startswith; fast_pattern; http.host; content:\"ec2-100-24-254-151.compute-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003522; classtype:social-engineering; sid:6003522; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-29T14:30:41.602725+00:00",
+  "updated_at": "2026-05-30T00:17:02.329238+00:00",
   "probe": {
     "dns": true,
     "whois": false,

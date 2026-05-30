@@ -49,21 +49,78 @@
     "phishdestroy": {
       "domain": "naazoms.co.za",
       "domain_defanged": "naazoms[.]co[.]za",
-      "case_id": "PD-20260528-279DD8",
-      "analyzed_at": "2026-05-28T21:30:19.227Z",
+      "case_id": "PD-20260530-279DD8",
+      "analyzed_at": "2026-05-30T01:04:37.410Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e707e-cc82-7488-ac65-409e3cf8cc2e.png",
           "url": "https://urlscan.io/result/019e707e-cc82-7488-ac65-409e3cf8cc2e/",
-          "pending": true
+          "title": "Account Suspended"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,15 +135,15 @@
           "asn": "AS328364"
         },
         "dns": {
-          "A": [
-            "102.130.118.247"
-          ],
           "MX": [
             "0 naazoms.co.za."
           ],
+          "A": [
+            "102.130.118.247"
+          ],
           "NS": [
-            "ns2.host-ww.net.",
-            "ns1.host-ww.net."
+            "ns1.host-ww.net.",
+            "ns2.host-ww.net."
           ]
         }
       },
@@ -222,12 +279,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.naazoms.co.za/assets/js/ie/budget.php)\"; flow:established,to_server; http.uri; content:\"/assets/js/ie/budget.php\"; startswith; fast_pattern; http.host; content:\"www.naazoms.co.za\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004270; classtype:social-engineering; sid:6004270; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-29T15:13:08.244874+00:00",
+  "updated_at": "2026-05-30T01:04:31.478726+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -171,21 +171,30 @@
     "phishdestroy": {
       "domain": "posh-bet365.com.cn",
       "domain_defanged": "posh-bet365[.]com[.]cn",
-      "case_id": "PD-20260529-AB3AEF",
-      "analyzed_at": "2026-05-29T14:43:05.095Z",
+      "case_id": "PD-20260530-AB3AEF",
+      "analyzed_at": "2026-05-30T00:30:43.869Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7430-5193-72dd-a727-1fbde553b639.png",
           "url": "https://urlscan.io/result/019e7430-5193-72dd-a727-1fbde553b639/",
-          "pending": true
+          "title": "Bet365官网:尽享无与伦比的在线博彩体验-Bet365中国"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -200,12 +209,12 @@
           "asn": "AS134548"
         },
         "dns": {
-          "A": [
-            "154.212.122.245"
-          ],
           "NS": [
             "ns1.nowcndns.com.",
             "ns2.nowcndns.com."
+          ],
+          "A": [
+            "154.212.122.245"
           ]
         }
       },
@@ -345,7 +354,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (posh-bet365.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"posh-bet365.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003737; classtype:social-engineering; sid:6003737; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-29T14:42:59.228498+00:00",
+  "updated_at": "2026-05-30T00:30:39.942297+00:00",
   "probe": {
     "dns": true,
     "whois": true,

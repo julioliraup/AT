@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "phi-go.com",
       "domain_defanged": "phi-go[.]com",
-      "case_id": "PD-20260529-4647D4",
-      "analyzed_at": "2026-05-29T16:06:27.979Z",
+      "case_id": "PD-20260530-4647D4",
+      "analyzed_at": "2026-05-30T01:59:34.427Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e6a84-87d1-71ef-892c-8de3d4bb3c2b.png",
+          "url": "https://urlscan.io/result/019e6a84-87d1-71ef-892c-8de3d4bb3c2b/"
         }
       },
       "detections": [],
@@ -72,7 +76,15 @@
       },
       "infrastructure": {
         "ip": "15.197.240.20",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "15.197.240.20",
+          "hostname": "acf3b736b777428f5.awsglobalaccelerator.com",
+          "city": "Seattle",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "15.197.240.20"
@@ -88,7 +100,14 @@
           "method": "form",
           "iana_ids": "49"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -215,7 +234,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (phi-go.com/v3/signin/identifier)\"; flow:established,to_server; http.uri; content:\"/v3/signin/identifier\"; startswith; fast_pattern; http.host; content:\"phi-go.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005058; classtype:social-engineering; sid:6005058; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-05-29T16:06:21.956532+00:00",
+  "updated_at": "2026-05-30T01:59:29.174046+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "16501.xyz",
       "domain_defanged": "16501[.]xyz",
-      "case_id": "PD-20260529-6D0B2D",
-      "analyzed_at": "2026-05-29T14:54:27.188Z",
+      "case_id": "PD-20260530-6D0B2D",
+      "analyzed_at": "2026-05-30T00:43:22.945Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e457b-f0e0-71be-903c-1821f4b85f20.png",
+          "url": "https://urlscan.io/result/019e457b-f0e0-71be-903c-1821f4b85f20/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "154.39.104.128",
+        "ipinfo": {
+          "ip": "154.39.104.128",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS18186 Nebula Global LLC",
+          "asn": "AS18186"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (16501.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"16501.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003925; classtype:social-engineering; sid:6003925; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-29T14:54:22.877691+00:00",
+  "updated_at": "2026-05-30T00:43:17.693968+00:00",
   "probe": {
     "dns": false,
     "whois": false,

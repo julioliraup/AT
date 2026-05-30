@@ -55,27 +55,43 @@
     "phishdestroy": {
       "domain": "paiement-boncoin.duckdns.org",
       "domain_defanged": "paiement-boncoin[.]duckdns[.]org",
-      "case_id": "PD-20260529-188DFA",
-      "analyzed_at": "2026-05-29T15:47:21.181Z",
+      "case_id": "PD-20260530-188DFA",
+      "analyzed_at": "2026-05-30T01:40:58.012Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Leboncoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e746b-2a19-7438-8dd6-d761a797e842.png",
           "url": "https://urlscan.io/result/019e746b-2a19-7438-8dd6-d761a797e842/",
-          "pending": true
+          "title": "leboncoin - connexion"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Leboncoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "64.89.160.102",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "64.89.160.102",
+          "city": "Luxembourg",
+          "region": "Luxembourg",
+          "country": "LU",
+          "org": "AS205759 Ghosty Networks LLC",
+          "asn": "AS205759"
+        },
         "dns": {
           "MX": [
             "50 paiement-boncoin.duckdns.org."
@@ -214,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (paiement-boncoin.duckdns.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"paiement-boncoin.duckdns.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004843; classtype:social-engineering; sid:6004843; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-05-29T15:47:17.585157+00:00",
+  "updated_at": "2026-05-30T01:40:53.947291+00:00",
   "probe": {
     "dns": true,
     "whois": true,

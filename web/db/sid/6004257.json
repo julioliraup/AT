@@ -49,21 +49,78 @@
     "phishdestroy": {
       "domain": "creditoradvice.co.uk",
       "domain_defanged": "creditoradvice[.]co[.]uk",
-      "case_id": "PD-20260528-77C1EB",
-      "analyzed_at": "2026-05-28T21:29:53.678Z",
+      "case_id": "PD-20260530-77C1EB",
+      "analyzed_at": "2026-05-30T01:03:58.046Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e707e-67be-7060-a587-bffd7d2467ad.png",
           "url": "https://urlscan.io/result/019e707e-67be-7060-a587-bffd7d2467ad/",
-          "pending": true
+          "title": "WordPress › Error"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,16 +136,16 @@
           "asn": "AS12488"
         },
         "dns": {
-          "MX": [
-            "10 mx1.krystal.io.",
-            "20 mx2.krystal.io."
-          ],
-          "NS": [
-            "ns1.krystal.uk.",
-            "ns2.krystal.uk."
-          ],
           "A": [
             "185.194.90.32"
+          ],
+          "MX": [
+            "20 mx2.krystal.io.",
+            "10 mx1.krystal.io."
+          ],
+          "NS": [
+            "ns2.krystal.uk.",
+            "ns1.krystal.uk."
           ]
         }
       },
@@ -224,15 +281,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (creditoradvice.co.uk/buzz/pages/redraiffeisen.php)\"; flow:established,to_server; http.uri; content:\"/buzz/pages/redraiffeisen.php\"; startswith; fast_pattern; http.host; content:\"creditoradvice.co.uk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004257; classtype:social-engineering; sid:6004257; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-29T15:12:35.938947+00:00",
+  "updated_at": "2026-05-30T01:03:46.933837+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

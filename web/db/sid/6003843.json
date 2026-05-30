@@ -18,58 +18,34 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://dpd.jvqlrkbnp.cloud/com/",
-      "domain": "dpd.jvqlrkbnp.cloud",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "104.21.56.202",
-      "http_code": 200,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html;charset=utf-8",
-        "cf_ray": "9feb65bbec392095-PDX",
-        "cf_cache_status": "DYNAMIC",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (503), with CRLF, CR, LF line terminators",
-      "sha256": "6d937ef860f6a0aacd532a4a599a8958f0c4580bad13cf23649e3ce527861e0b",
-      "md5": "52bc8883fce185c4105b482aa4016c61",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-05-20T12:37:55",
-      "first_seen_secs": 1779280675.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "dpd.jvqlrkbnp.cloud",
       "domain_defanged": "dpd[.]jvqlrkbnp[.]cloud",
-      "case_id": "PD-20260528-7F2AA3",
-      "analyzed_at": "2026-05-28T21:02:30.344Z",
+      "case_id": "PD-20260530-7F2AA3",
+      "analyzed_at": "2026-05-30T00:37:35.245Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7065-56a1-707d-aaf0-f27fc6383d52.png",
           "url": "https://urlscan.io/result/019e7065-56a1-707d-aaf0-f27fc6383d52/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -89,8 +65,8 @@
             "172.67.187.219"
           ],
           "AAAA": [
-            "2606:4700:3036::ac43:bbdb",
-            "2606:4700:3032::6815:38ca"
+            "2606:4700:3032::6815:38ca",
+            "2606:4700:3036::ac43:bbdb"
           ]
         }
       },
@@ -226,12 +202,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.jvqlrkbnp.cloud/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"dpd.jvqlrkbnp.cloud\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003843; classtype:social-engineering; sid:6003843; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-29T14:49:12.841241+00:00",
+  "updated_at": "2026-05-30T00:37:18.488934+00:00",
   "probe": {
     "dns": true,
     "whois": true,

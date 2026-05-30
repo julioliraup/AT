@@ -73,26 +73,35 @@
     "phishdestroy": {
       "domain": "int-ccbleasing.com",
       "domain_defanged": "int-ccbleasing[.]com",
-      "case_id": "PD-20260528-4F5EA8",
-      "analyzed_at": "2026-05-28T21:09:04.378Z",
+      "case_id": "PD-20260530-4F5EA8",
+      "analyzed_at": "2026-05-30T00:43:16.220Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e706b-5908-724f-a3d8-5f35b0268d18.png",
           "url": "https://urlscan.io/result/019e706b-5908-724f-a3d8-5f35b0268d18/",
-          "pending": true
+          "title": "Confirming your browser"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Wild West Domains, LLC",
         "created": "2026-03-31T10:32:05Z",
         "expires": "2027-03-31T10:32:05Z",
-        "age_days": 58,
+        "age_days": 59,
         "nameservers": [
           "NS1.BDM.MICROSOFTONLINE.COM",
           "NS2.BDM.MICROSOFTONLINE.COM"
@@ -109,11 +118,11 @@
           "asn": "AS31863"
         },
         "dns": {
-          "MX": [
-            "1 smtp.google.com."
-          ],
           "A": [
             "103.114.217.74"
+          ],
+          "MX": [
+            "1 smtp.google.com."
           ],
           "NS": [
             "ns1.bdm.microsoftonline.com.",
@@ -262,12 +271,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (int-ccbleasing.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"int-ccbleasing.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003923; classtype:social-engineering; sid:6003923; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-05-29T14:54:12.003558+00:00",
+  "updated_at": "2026-05-30T00:43:13.614530+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -18,58 +18,59 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.pcn-notictm.cyou/com",
-      "domain": "www.pcn-notictm.cyou",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "pcn-notictm.cyou",
       "domain_defanged": "pcn-notictm[.]cyou",
-      "case_id": "PD-20260529-560A38",
-      "analyzed_at": "2026-05-29T16:09:22.417Z",
+      "case_id": "PD-20260530-560A38",
+      "analyzed_at": "2026-05-30T02:05:15.142Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4fab-e657-771d-b87d-a3ee01681406.png",
+          "url": "https://urlscan.io/result/019e4fab-e657-771d-b87d-a3ee01681406/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.133.55.35",
+        "ipinfo": {
+          "ip": "43.133.55.35",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -196,7 +197,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.pcn-notictm.cyou/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.pcn-notictm.cyou\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005112; classtype:social-engineering; sid:6005112; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-05-29T16:09:20.349078+00:00",
+  "updated_at": "2026-05-30T02:05:02.100635+00:00",
   "probe": {
     "dns": false,
     "whois": false,

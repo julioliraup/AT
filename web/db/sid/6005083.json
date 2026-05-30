@@ -18,58 +18,173 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://t-mobile.lvnsxe.top/pay",
-      "domain": "t-mobile.lvnsxe.top",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "t-mobile.lvnsxe.top",
       "domain_defanged": "t-mobile[.]lvnsxe[.]top",
-      "case_id": "PD-20260529-8087BE",
-      "analyzed_at": "2026-05-29T16:07:42.667Z",
+      "case_id": "PD-20260530-8087BE",
+      "analyzed_at": "2026-05-30T02:02:29.862Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 11,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "PrecisionSec",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4fc7-421b-724b-89e0-0d0e12371f34.png",
+          "url": "https://urlscan.io/result/019e4fc7-421b-724b-89e0-0d0e12371f34/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: PrecisionSec",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.172.72",
+        "ipinfo": {
+          "ip": "172.67.172.72",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +311,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.lvnsxe.top/pay)\"; flow:established,to_server; http.uri; content:\"/pay\"; startswith; fast_pattern; http.host; content:\"t-mobile.lvnsxe.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005083; classtype:social-engineering; sid:6005083; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-05-29T16:07:36.939494+00:00",
+  "updated_at": "2026-05-30T02:02:17.236296+00:00",
   "probe": {
     "dns": false,
     "whois": false,
