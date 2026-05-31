@@ -87,21 +87,67 @@
     "phishdestroy": {
       "domain": "source-13903.s3.us-east-2.amazonaws.com",
       "domain_defanged": "source-13903[.]s3[.]us-east-2[.]amazonaws[.]com",
-      "case_id": "PD-20260529-1EDDD0",
-      "analyzed_at": "2026-05-29T21:57:23.238Z",
+      "case_id": "PD-20260531-1EDDD0",
+      "analyzed_at": "2026-05-31T00:08:09.948Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e75bd-f183-70e9-b27f-cc60ab2168ce/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e75bd-f183-70e9-b27f-cc60ab2168ce.png",
+          "url": "https://urlscan.io/result/019e75bd-f183-70e9-b27f-cc60ab2168ce/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -112,20 +158,6 @@
           "AAAA": [
             "s3-r-w.us-east-2.amazonaws.com."
           ],
-          "A": [
-            "s3-r-w.us-east-2.amazonaws.com.",
-            "3.5.89.84",
-            "3.5.88.97",
-            "52.219.111.74",
-            "3.5.133.75",
-            "3.5.93.90",
-            "3.5.88.18",
-            "3.5.133.117",
-            "3.5.89.33"
-          ],
-          "CNAME": [
-            "s3-r-w.us-east-2.amazonaws.com."
-          ],
           "NS": [
             "s3-r-w.us-east-2.amazonaws.com.",
             "ns-1009.awsdns-62.net.",
@@ -133,14 +165,35 @@
             "ns-1974.awsdns-54.co.uk.",
             "ns-90.awsdns-11.com."
           ],
+          "CNAME": [
+            "s3-r-w.us-east-2.amazonaws.com."
+          ],
           "MX": [
             "s3-r-w.us-east-2.amazonaws.com."
+          ],
+          "A": [
+            "s3-r-w.us-east-2.amazonaws.com.",
+            "3.5.89.44",
+            "3.5.128.104",
+            "3.5.89.60",
+            "52.219.107.66",
+            "3.5.131.184",
+            "3.5.91.81",
+            "3.5.91.62",
+            "52.219.94.202"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -263,12 +316,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (source-13903 .s3 .us-east-2 .amazonaws .com/reset/profile/config .html)\"; flow:established,to_server; http.uri; content:\"/reset/profile/config.html\"; startswith; fast_pattern; http.host;  content:\"source-13903.s3.us-east-2.amazonaws.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001353; classtype:social-engineering; sid:6001353; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-30T15:30:09.040577+00:00",
+  "updated_at": "2026-05-31T00:08:07.042338+00:00",
   "probe": {
     "dns": true,
     "whois": false,

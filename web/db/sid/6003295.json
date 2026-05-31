@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "tikkw.shop",
       "domain_defanged": "tikkw[.]shop",
-      "case_id": "PD-20260529-297FEB",
-      "analyzed_at": "2026-05-29T23:58:05.508Z",
+      "case_id": "PD-20260531-297FEB",
+      "analyzed_at": "2026-05-31T01:48:34.268Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "TikTok Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3e56-d485-705a-a1bd-0dd65c3d2bac.png",
+          "url": "https://urlscan.io/result/019e3e56-d485-705a-a1bd-0dd65c3d2bac/",
+          "title": "Tk"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, TikTok Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.133.244",
+        "ipinfo": {
+          "ip": "172.67.133.244",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -197,7 +226,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.tikkw.shop/index/user/login.html)\"; flow:established,to_server; http.uri; content:\"/index/user/login.html\"; startswith; fast_pattern; http.host; content:\"www.tikkw.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003295; classtype:social-engineering; sid:6003295; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-30T16:57:13.131767+00:00",
+  "updated_at": "2026-05-31T01:51:56.501603+00:00",
   "probe": {
     "dns": false,
     "whois": false,

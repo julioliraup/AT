@@ -73,37 +73,60 @@
     "phishdestroy": {
       "domain": "clone-facebook-one.vercel.app",
       "domain_defanged": "clone-facebook-one[.]vercel[.]app",
-      "case_id": "PD-20260529-313B8F",
-      "analyzed_at": "2026-05-29T23:43:29.552Z",
+      "case_id": "PD-20260531-313B8F",
+      "analyzed_at": "2026-05-31T01:38:51.813Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e761f-15e4-75c6-b7a6-3f243a08f149.png",
           "url": "https://urlscan.io/result/019e761f-15e4-75c6-b7a6-3f243a08f149/",
-          "pending": true
+          "title": "Facebook – entre ou cadastre-se"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.194",
-        "ipinfo": null,
+        "ip": "216.198.79.66",
+        "ipinfo": {
+          "ip": "216.198.79.66",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.194",
-            "216.198.79.194"
+            "216.198.79.66",
+            "64.29.17.66"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -231,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.clone-facebook-one.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.clone-facebook-one.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003226; classtype:social-engineering; sid:6003226; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-05-30T16:54:25.394857+00:00",
+  "updated_at": "2026-05-31T01:47:38.348082+00:00",
   "probe": {
     "dns": true,
     "whois": false,

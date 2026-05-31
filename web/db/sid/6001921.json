@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "2097lka.top",
       "domain_defanged": "2097lka[.]top",
-      "case_id": "PD-20260529-443296",
-      "analyzed_at": "2026-05-29T22:28:46.091Z",
+      "case_id": "PD-20260531-443296",
+      "analyzed_at": "2026-05-31T00:38:52.354Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1c61-cfef-7109-ad5f-43bb75523a7d.png",
+          "url": "https://urlscan.io/result/019e1c61-cfef-7109-ad5f-43bb75523a7d/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.206.191",
+        "ipinfo": {
+          "ip": "172.67.206.191",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -193,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (2097lka .top/1ul311yx/G0trut/ovlzZZ)\"; flow:established,to_server; http.uri; content:\"/1ul311yx/G0trut/ovlzZZ\"; startswith; fast_pattern; http.host;  content:\"2097lka.top\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001921; classtype:social-engineering; sid:6001921; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-05-30T15:55:23.247556+00:00",
+  "updated_at": "2026-05-31T00:38:49.753348+00:00",
   "probe": {
     "dns": false,
     "whois": false,

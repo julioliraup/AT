@@ -50,27 +50,59 @@
     "phishdestroy": {
       "domain": "meta-id2337.agency-manager-support.com",
       "domain_defanged": "meta-id2337[.]agency-manager-support[.]com",
-      "case_id": "PD-20260529-57864F",
-      "analyzed_at": "2026-05-29T22:13:48.103Z",
+      "case_id": "PD-20260531-57864F",
+      "analyzed_at": "2026-05-31T00:24:14.691Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1cec-f1b5-7245-ba47-55a0a947104e.png",
+          "url": "https://urlscan.io/result/019e1cec-f1b5-7245-ba47-55a0a947104e/",
+          "title": "Accounts Centre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.66.0.96",
+        "ipinfo": {
+          "ip": "172.66.0.96",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -193,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-id2337 .agency-manager-support .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"meta-id2337.agency-manager-support.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001688; classtype:social-engineering; sid:6001688; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-05-30T15:44:56.614652+00:00",
+  "updated_at": "2026-05-31T00:24:11.350255+00:00",
   "probe": {
     "dns": false,
     "whois": false,

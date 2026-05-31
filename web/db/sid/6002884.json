@@ -49,27 +49,113 @@
     "phishdestroy": {
       "domain": "redjezelfps.info",
       "domain_defanged": "redjezelfps[.]info",
-      "case_id": "PD-20260529-1EBDCB",
-      "analyzed_at": "2026-05-29T23:33:22.645Z",
+      "case_id": "PD-20260531-1EBDCB",
+      "analyzed_at": "2026-05-31T01:29:35.352Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 4,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Suspicious, Newly Registered (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e7615-d327-722f-b76a-9eafbe1c02f1/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e7615-d327-722f-b76a-9eafbe1c02f1.png",
+          "url": "https://urlscan.io/result/019e7615-d327-722f-b76a-9eafbe1c02f1/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "162.213.253.112",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "162.213.253.112",
+          "hostname": "server402-3.web-hosting.com",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS22612 Namecheap, Inc.",
+          "asn": "AS22612"
+        },
         "dns": {
           "A": [
             "162.213.253.112"
@@ -87,7 +173,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Namecheap Hosting",
+          "abuse": "abuse@namecheap.com",
+          "url": "https://support.namecheap.com/index.php?/Tickets/Submit",
+          "logo": "",
+          "method": "form",
+          "asn": "AS22612"
+        }
       },
       "report_services": [
         {
@@ -210,15 +303,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (redjezelfps.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"redjezelfps.info\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6002884; classtype:social-engineering; sid:6002884; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-30T16:37:15.819363+00:00",
+  "updated_at": "2026-05-31T01:29:26.959837+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

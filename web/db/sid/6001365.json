@@ -50,27 +50,181 @@
     "phishdestroy": {
       "domain": "etoll-ezpass-notify.bumbleshrimp.com",
       "domain_defanged": "etoll-ezpass-notify[.]bumbleshrimp[.]com",
-      "case_id": "PD-20260529-70D73D",
-      "analyzed_at": "2026-05-29T21:57:50.232Z",
+      "case_id": "PD-20260531-70D73D",
+      "analyzed_at": "2026-05-31T00:08:38.513Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 13,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Dr.Web",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e75be-598c-701e-9053-3295277409ba.png",
           "url": "https://urlscan.io/result/019e75be-598c-701e-9053-3295277409ba/",
-          "pending": true
+          "title": "etoll-ezpass-notify.bumbleshrimp.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Dr.Web",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "malware",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "150.136.252.61",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "150.136.252.61",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": {
           "A": [
             "150.136.252.61"
@@ -79,7 +233,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -202,12 +363,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (etoll-ezpass-notify .bumbleshrimp .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"etoll-ezpass-notify.bumbleshrimp.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001365; classtype:social-engineering; sid:6001365; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-30T15:30:34.273431+00:00",
+  "updated_at": "2026-05-31T00:08:31.824625+00:00",
   "probe": {
     "dns": true,
     "whois": false,

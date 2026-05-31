@@ -50,18 +50,23 @@
     "phishdestroy": {
       "domain": "sw.run",
       "domain_defanged": "sw[.]run",
-      "case_id": "PD-20260529-351F1F",
-      "analyzed_at": "2026-05-29T22:11:41.692Z",
+      "case_id": "PD-20260531-351F1F",
+      "analyzed_at": "2026-05-31T00:21:56.478Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e75cb-0a62-7069-9a59-e855f390d218/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e76b3-079d-73b9-aafc-3f1b0c237e3b.png",
+          "url": "https://urlscan.io/result/019e76b3-079d-73b9-aafc-3f1b0c237e3b/",
+          "title": "10 Practical Saving Tips to Cut Monthly Expenses Fast - Melrose Finance"
         }
       },
       "detections": [],
@@ -69,30 +74,44 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.60.61",
-        "ipinfo": null,
+        "ip": "172.67.192.180",
+        "ipinfo": {
+          "ip": "172.67.192.180",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3034::6815:3c3d",
-            "2606:4700:3030::ac43:c0b4"
-          ],
-          "MX": [
-            "1 smtp.google.com.",
-            "15 k2afqnr7o2nkemumds5ijtusdjpqxodcpi5lfaut5gd7zhzkri7a.mx-verification.google.com."
-          ],
           "A": [
-            "104.21.60.61",
-            "172.67.192.180"
+            "172.67.192.180",
+            "104.21.60.61"
+          ],
+          "AAAA": [
+            "2606:4700:3030::ac43:c0b4",
+            "2606:4700:3034::6815:3c3d"
           ],
           "NS": [
             "grant.ns.cloudflare.com.",
             "yolanda.ns.cloudflare.com."
+          ],
+          "MX": [
+            "1 smtp.google.com.",
+            "15 k2afqnr7o2nkemumds5ijtusdjpqxodcpi5lfaut5gd7zhzkri7a.mx-verification.google.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -215,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sw .run/page-contacts)\"; flow:established,to_server; http.uri; content:\"/page-contacts\"; startswith; fast_pattern; http.host;  content:\"sw.run\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001653; classtype:social-engineering; sid:6001653; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-05-30T15:43:20.245699+00:00",
+  "updated_at": "2026-05-31T00:21:53.212629+00:00",
   "probe": {
     "dns": true,
     "whois": true,

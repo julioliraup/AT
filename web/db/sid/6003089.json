@@ -55,35 +55,51 @@
     "phishdestroy": {
       "domain": "18feb38d-9304-49ed-8a45-4b919bb3ed9f-netflix-clone-fixed.pages.dev",
       "domain_defanged": "18feb38d-9304-49ed-8a45-4b919bb3ed9f-netflix-clone-fixed[.]pages[.]dev",
-      "case_id": "PD-20260529-3206D7",
-      "analyzed_at": "2026-05-29T23:46:24.538Z",
+      "case_id": "PD-20260531-3206D7",
+      "analyzed_at": "2026-05-31T01:41:05.576Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7621-c170-70f9-9d35-0666641782d9.png",
           "url": "https://urlscan.io/result/019e7621-c170-70f9-9d35-0666641782d9/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.52",
-        "ipinfo": null,
+        "ip": "172.66.44.204",
+        "ipinfo": {
+          "ip": "172.66.44.204",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.66.47.52",
-            "172.66.44.204"
+            "172.66.44.204",
+            "172.66.47.52"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2ccc",
-            "2606:4700:310c::ac42:2f34"
+            "2606:4700:310c::ac42:2f34",
+            "2606:4700:310c::ac42:2ccc"
           ],
           "NS": [
             "alina.ns.cloudflare.com.",
@@ -93,7 +109,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (18feb38d-9304-49ed-8a45-4b919bb3ed9f-netflix-clone-fixed.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"18feb38d-9304-49ed-8a45-4b919bb3ed9f-netflix-clone-fixed.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003089; classtype:social-engineering; sid:6003089; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-05-30T16:48:14.605293+00:00",
+  "updated_at": "2026-05-31T01:41:02.089598+00:00",
   "probe": {
     "dns": true,
     "whois": false,
