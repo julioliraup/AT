@@ -50,42 +50,66 @@
     "phishdestroy": {
       "domain": "microsoft.account.trustedentity.com",
       "domain_defanged": "microsoft[.]account[.]trustedentity[.]com",
-      "case_id": "PD-20260530-787541",
-      "analyzed_at": "2026-05-30T23:18:49.916Z",
+      "case_id": "PD-20260601-787541",
+      "analyzed_at": "2026-06-01T04:01:01.226Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7b2e-dd57-7332-a082-4a6a9a9081ce/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7eaa-3aa8-73a3-a1c5-99d391b81f48.png",
+          "url": "https://urlscan.io/result/019e7eaa-3aa8-73a3-a1c5-99d391b81f48/",
+          "title": "Sign in to your Microsoft account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "3.174.26.116",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "3.174.26.116",
+          "hostname": "server-3-174-26-116.for50.r.cloudfront.net",
+          "city": "Fortaleza",
+          "region": "Ceará",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "MX": [
             "0 trustedentity-com.mail.protection.outlook.com."
           ],
           "A": [
             "3.174.26.116",
-            "3.174.26.56",
             "3.174.26.69",
+            "3.174.26.56",
             "3.174.26.84"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -208,12 +232,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (microsoft .account .trustedentity .com/http:/microsoft .authorised-support .com/new-account/EOzAFbYj1bjLmgufSIlKJJR9Kpvsy5kc3UkY=3Ag==5WFxWR1pGWlNBallaUlxbakJcQV1qRVRGRkJaR1E=/6Xx5KG1mKRNjeU3rSnC8diFTM7R4V1de/)\"; flow:established,to_server; http.uri; content:\"/http:/microsoft.authorised-support.com/new-account/EOzAFbYj1bjLmgufSIlKJJR9Kpvsy5kc3UkY=3Ag==5WFxWR1pGWlNBallaUlxbakJcQV1qRVRGRkJaR1E=/6Xx5KG1mKRNjeU3rSnC8diFTM7R4V1de/\"; startswith; fast_pattern; http.host;  content:\"microsoft.account.trustedentity.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000169; classtype:social-engineering; sid:6000169; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-31T16:30:16.555998+00:00",
+  "updated_at": "2026-06-01T04:00:57.403114+00:00",
   "probe": {
     "dns": true,
     "whois": false,

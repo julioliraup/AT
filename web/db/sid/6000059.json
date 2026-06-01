@@ -50,27 +50,43 @@
     "phishdestroy": {
       "domain": "aicc108-demo.pages.dev",
       "domain_defanged": "aicc108-demo[.]pages[.]dev",
-      "case_id": "PD-20260530-681EA7",
-      "analyzed_at": "2026-05-30T23:15:26.728Z",
+      "case_id": "PD-20260601-681EA7",
+      "analyzed_at": "2026-06-01T03:56:48.258Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7b2b-c458-7344-97b6-76f016e3aaf1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e80b3-995b-779d-8a82-26a1bac77356.png",
+          "url": "https://urlscan.io/result/019e80b3-995b-779d-8a82-26a1bac77356/",
+          "title": "Series | Sitio oficial de Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.44.107",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.44.107",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
             "2606:4700:310c::ac42:2c6b",
@@ -88,7 +104,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -211,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aicc108-demo .pages .dev/title/80104198 .html)\"; flow:established,to_server; http.uri; content:\"/title/80104198.html\"; startswith; fast_pattern; http.host;  content:\"aicc108-demo.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000059; classtype:social-engineering; sid:6000059; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-31T16:24:38.057258+00:00",
+  "updated_at": "2026-06-01T03:56:45.611161+00:00",
   "probe": {
     "dns": true,
     "whois": false,

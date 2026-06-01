@@ -74,35 +74,51 @@
     "phishdestroy": {
       "domain": "sarvo-rixan-biz-paxru-zxgt22526r-pravix.pages.dev",
       "domain_defanged": "sarvo-rixan-biz-paxru-zxgt22526r-pravix[.]pages[.]dev",
-      "case_id": "PD-20260530-3148EC",
-      "analyzed_at": "2026-05-30T23:17:20.008Z",
+      "case_id": "PD-20260601-3148EC",
+      "analyzed_at": "2026-06-01T03:58:50.796Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7b2d-7edd-778a-8a27-72bc62a891cc.png",
           "url": "https://urlscan.io/result/019e7b2d-7edd-778a-8a27-72bc62a891cc/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.47.116",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.116",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2f74",
-            "2606:4700:310c::ac42:2c8c"
-          ],
           "A": [
             "172.66.47.116",
             "172.66.44.140"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2f74",
+            "2606:4700:310c::ac42:2c8c"
           ],
           "NS": [
             "brady.ns.cloudflare.com.",
@@ -112,7 +128,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -235,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sarvo-rixan-biz-paxru-zxgt22526r-pravix .pages .dev/system_violation_notification/)\"; flow:established,to_server; http.uri; content:\"/system_violation_notification/\"; startswith; fast_pattern; http.host;  content:\"sarvo-rixan-biz-paxru-zxgt22526r-pravix.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000118; classtype:social-engineering; sid:6000118; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-31T16:27:32.526261+00:00",
+  "updated_at": "2026-06-01T03:58:48.916843+00:00",
   "probe": {
     "dns": true,
     "whois": false,

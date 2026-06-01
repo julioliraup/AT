@@ -74,41 +74,64 @@
     "phishdestroy": {
       "domain": "nnewsdana-lyanindonx.safaather.biz.id",
       "domain_defanged": "nnewsdana-lyanindonx[.]safaather[.]biz[.]id",
-      "case_id": "PD-20260530-5C35F4",
-      "analyzed_at": "2026-05-30T23:14:06.517Z",
+      "case_id": "PD-20260601-5C35F4",
+      "analyzed_at": "2026-06-01T03:55:38.088Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7b2a-83c7-72ec-a703-ca93c47a5761.png",
           "url": "https://urlscan.io/result/019e7b2a-83c7-72ec-a703-ca93c47a5761/",
-          "pending": true
+          "title": "𝗗𝗔𝗡𝗔 | 𝗖𝘂𝘀𝘁𝗼𝗺𝗲𝗿 𝗖𝗮𝗿𝗲 𝗗𝗔𝗡𝗔"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.215.130",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.215.130",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3033::6815:25ef",
-            "2606:4700:3031::ac43:d782"
-          ],
           "A": [
             "172.67.215.130",
             "104.21.37.239"
+          ],
+          "AAAA": [
+            "2606:4700:3033::6815:25ef",
+            "2606:4700:3031::ac43:d782"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -231,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nnewsdana-lyanindonx .safaather .biz .id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"nnewsdana-lyanindonx.safaather.biz.id\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000027; classtype:social-engineering; sid:6000027; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-31T16:22:48.698500+00:00",
+  "updated_at": "2026-06-01T03:55:34.301230+00:00",
   "probe": {
     "dns": true,
     "whois": true,

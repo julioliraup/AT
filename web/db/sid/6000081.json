@@ -50,31 +50,47 @@
     "phishdestroy": {
       "domain": "customer-sp-brantison1.pages.dev",
       "domain_defanged": "customer-sp-brantison1[.]pages[.]dev",
-      "case_id": "PD-20260530-633F56",
-      "analyzed_at": "2026-05-30T23:15:11.586Z",
+      "case_id": "PD-20260601-633F56",
+      "analyzed_at": "2026-06-01T03:56:33.399Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7b2b-887b-75a0-86c9-a3b67c6f1ebc/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7ef8-c7f9-745a-a412-513ef4e20771.png",
+          "url": "https://urlscan.io/result/019e7ef8-c7f9-745a-a412-513ef4e20771/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.131",
-        "ipinfo": null,
+        "ip": "172.66.47.125",
+        "ipinfo": {
+          "ip": "172.66.47.125",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.66.44.131",
-            "172.66.47.125"
+            "172.66.47.125",
+            "172.66.44.131"
           ],
           "AAAA": [
             "2606:4700:310c::ac42:2c83",
@@ -88,7 +104,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (customer-sp-brantison1 .pages .dev/help/contact/678967077354235)\"; flow:established,to_server; http.uri; content:\"/help/contact/678967077354235\"; startswith; fast_pattern; http.host;  content:\"customer-sp-brantison1.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000081; classtype:social-engineering; sid:6000081; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-05-31T16:25:26.147387+00:00",
+  "updated_at": "2026-06-01T03:57:40.206162+00:00",
   "probe": {
     "dns": true,
     "whois": false,
