@@ -72,26 +72,35 @@
     "phishdestroy": {
       "domain": "roblozn.com",
       "domain_defanged": "roblozn[.]com",
-      "case_id": "PD-20260530-6AF77C",
-      "analyzed_at": "2026-05-30T22:00:22.030Z",
+      "case_id": "PD-20260601-6AF77C",
+      "analyzed_at": "2026-06-01T02:19:57.746Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7ae7-07e6-724d-80c6-5ed1b7d48b10/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d36-e0aa-73bd-b7dc-73eb5141ef7e.png",
+          "url": "https://urlscan.io/result/019e7d36-e0aa-73bd-b7dc-73eb5141ef7e/",
+          "title": "Log in to Roblox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "IONOS SE",
         "created": "2026-05-16T23:52:38Z",
         "expires": "2027-05-16T23:52:38Z",
-        "age_days": 13,
+        "age_days": 15,
         "nameservers": [
           "NS1.EGGYWALL.ORG",
           "NS2.EGGYWALL.ORG"
@@ -99,15 +108,22 @@
       },
       "infrastructure": {
         "ip": "91.240.20.15",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "91.240.20.15",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS59939 WIBO Baltic UAB",
+          "asn": "AS59939"
+        },
         "dns": {
+          "NS": [
+            "ns2.eggywall.org.",
+            "ns1.eggywall.org."
+          ],
           "A": [
             "91.240.20.15",
             "91.240.20.16"
-          ],
-          "NS": [
-            "ns1.eggywall.org.",
-            "ns2.eggywall.org."
           ]
         }
       },
@@ -120,7 +136,14 @@
           "method": "form",
           "iana_ids": "83"
         },
-        "hosting": null
+        "hosting": {
+          "name": "WIBO-AS, LT",
+          "abuse": "abuse@hooray.solutions",
+          "url": "mailto:abuse@hooray.solutions",
+          "logo": "",
+          "method": "email",
+          "asn": "AS59939"
+        }
       },
       "report_services": [
         {
@@ -243,12 +266,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (roblozn.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"roblozn.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009390; classtype:social-engineering; sid:6009390; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:51:39.539110+00:00",
+  "updated_at": "2026-06-01T02:19:52.585735+00:00",
   "probe": {
     "dns": true,
     "whois": true,

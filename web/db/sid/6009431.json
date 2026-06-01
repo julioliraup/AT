@@ -49,31 +49,47 @@
     "phishdestroy": {
       "domain": "yhgw.app",
       "domain_defanged": "yhgw[.]app",
-      "case_id": "PD-20260530-4D5CBF",
-      "analyzed_at": "2026-05-30T22:03:44.841Z",
+      "case_id": "PD-20260601-4D5CBF",
+      "analyzed_at": "2026-06-01T02:23:40.552Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7aea-2014-742f-91fa-bd35c5363794/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d52-2069-7582-bedc-f2b9f3254bf7.png",
+          "url": "https://urlscan.io/result/019e7d52-2069-7582-bedc-f2b9f3254bf7/",
+          "title": "世界杯指定网站（中国区）有限公司"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "45.144.136.33",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "45.144.136.33",
+          "city": "Tsuen Wan",
+          "region": "Tsuen Wan",
+          "country": "HK",
+          "org": "AS139659 LUCIDACLOUD LIMITED",
+          "asn": "AS139659"
+        },
         "dns": {
           "NS": [
-            "ns1.taoadns.com.",
-            "ns2.taoadns.com."
+            "ns2.taoadns.com.",
+            "ns1.taoadns.com."
           ],
           "A": [
             "45.144.136.33"
@@ -82,7 +98,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "LUCID-AS-AP",
+          "abuse": "abuse@yecaoyun.com",
+          "url": "mailto:abuse@yecaoyun.com",
+          "logo": "https://i.ibb.co/hRwsdDFF/pr-LUCID-AS-AP.png",
+          "method": "email",
+          "asn": "AS139659"
+        }
       },
       "report_services": [
         {
@@ -205,12 +228,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (yhgw.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"yhgw.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009431; classtype:social-engineering; sid:6009431; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:53:36.094315+00:00",
+  "updated_at": "2026-06-01T02:23:36.990683+00:00",
   "probe": {
     "dns": true,
     "whois": false,

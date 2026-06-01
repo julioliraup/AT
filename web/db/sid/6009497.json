@@ -73,27 +73,44 @@
     "phishdestroy": {
       "domain": "getstemgames.shop",
       "domain_defanged": "getstemgames[.]shop",
-      "case_id": "PD-20260530-7AF352",
-      "analyzed_at": "2026-05-30T22:07:51.518Z",
+      "case_id": "PD-20260601-7AF352",
+      "analyzed_at": "2026-06-01T02:29:03.145Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7aed-de6c-733b-b8eb-b0d3a94bf3c9/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d7b-f125-729f-aa70-a58e92db9d4a.png",
+          "url": "https://urlscan.io/result/019e7d7b-f125-729f-aa70-a58e92db9d4a/",
+          "title": "App"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "64.118.144.242",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "64.118.144.242",
+          "city": "Tokyo",
+          "region": "Tokyo",
+          "country": "JP",
+          "org": "AS138997 Eons Data Communications Limited",
+          "asn": "AS138997"
+        },
         "dns": {
           "A": [
             "64.118.144.242"
@@ -229,12 +246,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.getstemgames.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.getstemgames.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009497; classtype:social-engineering; sid:6009497; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:56:21.374665+00:00",
+  "updated_at": "2026-06-01T02:29:00.169266+00:00",
   "probe": {
     "dns": true,
     "whois": true,

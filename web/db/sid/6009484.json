@@ -73,41 +73,63 @@
     "phishdestroy": {
       "domain": "dpd.tvqrmplnzx.icu",
       "domain_defanged": "dpd[.]tvqrmplnzx[.]icu",
-      "case_id": "PD-20260530-6821F5",
-      "analyzed_at": "2026-05-30T22:06:49.278Z",
+      "case_id": "PD-20260601-6821F5",
+      "analyzed_at": "2026-06-01T02:28:06.061Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7aec-f096-77cb-b8fc-62f4b19a9093/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7e99-210f-73b9-b011-6d4696b86df7.png",
+          "url": "https://urlscan.io/result/019e7e99-210f-73b9-b011-6d4696b86df7/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.170.134",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.170.134",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3036::ac43:aa86",
+            "2606:4700:3036::6815:4f76"
+          ],
           "A": [
             "172.67.170.134",
             "104.21.79.118"
-          ],
-          "AAAA": [
-            "2606:4700:3036::6815:4f76",
-            "2606:4700:3036::ac43:aa86"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,12 +252,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.tvqrmplnzx.icu/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"dpd.tvqrmplnzx.icu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009484; classtype:social-engineering; sid:6009484; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:55:52.055734+00:00",
+  "updated_at": "2026-06-01T02:28:03.643595+00:00",
   "probe": {
     "dns": true,
     "whois": true,

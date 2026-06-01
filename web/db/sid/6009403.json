@@ -49,27 +49,44 @@
     "phishdestroy": {
       "domain": "manab-haldar.github.io",
       "domain_defanged": "manab-haldar[.]github[.]io",
-      "case_id": "PD-20260530-247EBC",
-      "analyzed_at": "2026-05-30T22:01:28.048Z",
+      "case_id": "PD-20260601-247EBC",
+      "analyzed_at": "2026-06-01T02:21:14.448Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7ae7-ec9f-72ee-a357-bb17000d36a6/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d97-a95f-72dc-ac5e-05e738bf1c3b.png",
+          "url": "https://urlscan.io/result/019e7d97-a95f-72dc-ac5e-05e738bf1c3b/",
+          "title": "Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
             "185.199.108.153",
@@ -87,7 +104,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -210,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (manab-haldar.github.io/amazon-clone/)\"; flow:established,to_server; http.uri; content:\"/amazon-clone/\"; startswith; fast_pattern; http.host; content:\"manab-haldar.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009403; classtype:social-engineering; sid:6009403; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:52:09.567174+00:00",
+  "updated_at": "2026-06-01T02:21:10.966963+00:00",
   "probe": {
     "dns": true,
     "whois": true,

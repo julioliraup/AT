@@ -49,26 +49,36 @@
     "phishdestroy": {
       "domain": "fix999.net",
       "domain_defanged": "fix999[.]net",
-      "case_id": "PD-20260530-2A2DD9",
-      "analyzed_at": "2026-05-30T22:11:07.022Z",
+      "case_id": "PD-20260601-2A2DD9",
+      "analyzed_at": "2026-06-01T02:31:19.894Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7af0-df63-73a7-8749-f0d213aaea09/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email",
+            "Rakuten"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7dc0-3c2c-76d9-bd8d-47660ee9f3c3.png",
+          "url": "https://urlscan.io/result/019e7dc0-3c2c-76d9-bd8d-47660ee9f3c3/",
+          "title": "Login - Rakuten"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email, Rakuten",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameSilo, LLC",
         "created": "2024-08-22T22:46:09Z",
         "expires": "2026-08-22T22:46:09Z",
-        "age_days": 645,
+        "age_days": 647,
         "nameservers": [
           "NS1.ULTAHOOST.CYOU",
           "NS2.ULTAHOOST.CYOU"
@@ -76,17 +86,24 @@
       },
       "infrastructure": {
         "ip": "86.38.247.249",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "86.38.247.249",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS212238 Datacamp Limited",
+          "asn": "AS212238"
+        },
         "dns": {
-          "A": [
-            "86.38.247.249"
-          ],
           "MX": [
             "10 mail.fix999.net."
           ],
+          "A": [
+            "86.38.247.249"
+          ],
           "NS": [
-            "ns1.fix999.net.",
-            "ns2.fix999.net."
+            "ns2.fix999.net.",
+            "ns1.fix999.net."
           ]
         }
       },
@@ -99,7 +116,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "CDNEXT",
+          "abuse": "abuse@datacamp.co.uk",
+          "url": "mailto:abuse@datacamp.co.uk",
+          "logo": "https://i.ibb.co/cSsj0z0M/pr-CDN77-GB.png",
+          "method": "email",
+          "asn": "AS212238"
+        }
       },
       "report_services": [
         {
@@ -222,12 +246,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fix999.net/wp-includes/raxs)\"; flow:established,to_server; http.uri; content:\"/wp-includes/raxs\"; startswith; fast_pattern; http.host; content:\"fix999.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009533; classtype:social-engineering; sid:6009533; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:57:43.089322+00:00",
+  "updated_at": "2026-06-01T02:31:12.517302+00:00",
   "probe": {
     "dns": true,
     "whois": true,

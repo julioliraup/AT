@@ -73,41 +73,64 @@
     "phishdestroy": {
       "domain": "id528.agency-digital-engine.com",
       "domain_defanged": "id528[.]agency-digital-engine[.]com",
-      "case_id": "PD-20260530-5005FB",
-      "analyzed_at": "2026-05-30T22:04:53.883Z",
+      "case_id": "PD-20260601-5005FB",
+      "analyzed_at": "2026-06-01T02:25:13.848Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7aeb-2d76-76bc-8035-a975e8efb498/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d97-cf04-700d-b3d9-32e4755ba122.png",
+          "url": "https://urlscan.io/result/019e7d97-cf04-700d-b3d9-32e4755ba122/",
+          "title": "Help us confirm it's you"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.49.173",
-        "ipinfo": null,
+        "ip": "172.67.191.127",
+        "ipinfo": {
+          "ip": "172.67.191.127",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.21.49.173",
-            "172.67.191.127"
-          ],
           "AAAA": [
             "2606:4700:3033::6815:31ad",
             "2606:4700:3033::ac43:bf7f"
+          ],
+          "A": [
+            "172.67.191.127",
+            "104.21.49.173"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (id528.agency-digital-engine.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"id528.agency-digital-engine.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009451; classtype:social-engineering; sid:6009451; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:54:31.400658+00:00",
+  "updated_at": "2026-06-01T02:25:10.790279+00:00",
   "probe": {
     "dns": true,
     "whois": false,

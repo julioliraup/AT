@@ -22,7 +22,7 @@
       "url": "http://meta.businesads-manager.com/",
       "domain": "meta.businesads-manager.com",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -74,36 +74,56 @@
     "phishdestroy": {
       "domain": "meta.businesads-manager.com",
       "domain_defanged": "meta[.]businesads-manager[.]com",
-      "case_id": "PD-20260530-164F2F",
-      "analyzed_at": "2026-05-30T22:06:11.897Z",
+      "case_id": "PD-20260601-164F2F",
+      "analyzed_at": "2026-06-01T02:27:25.454Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7aec-5e92-74d9-8a33-a13e0fef2fcb/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d89-7c57-7338-8f78-b1fe21498a07.png",
+          "url": "https://urlscan.io/result/019e7d89-7c57-7338-8f78-b1fe21498a07/",
+          "title": "Log in to Facebook"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "45.32.121.41",
-        "ipinfo": null,
-        "dns": {
-          "A": [
-            "45.32.121.41"
-          ]
-        }
+        "ipinfo": {
+          "ip": "45.32.121.41",
+          "hostname": "45.32.121.41.vultrusercontent.com",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS20473 The Constant Company, LLC",
+          "asn": "AS20473"
+        },
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Vultr/Choopa",
+          "abuse": "abuse@vultr.com",
+          "url": "mailto:abuse@vultr.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS20473"
+        }
       },
       "report_services": [
         {
@@ -226,12 +246,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta.businesads-manager.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"meta.businesads-manager.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009473; classtype:social-engineering; sid:6009473; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:55:24.442222+00:00",
+  "updated_at": "2026-06-01T02:27:23.501788+00:00",
   "probe": {
     "dns": true,
     "whois": false,

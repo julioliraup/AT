@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "www3344666.com",
       "domain_defanged": "www3344666[.]com",
-      "case_id": "PD-20260530-7BD101",
-      "analyzed_at": "2026-05-30T22:00:47.582Z",
+      "case_id": "PD-20260601-7BD101",
+      "analyzed_at": "2026-06-01T02:20:20.949Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7ae7-6bb7-72ee-8566-12da84e8d1a7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d52-1f3c-712f-8610-08e76645ce24.png",
+          "url": "https://urlscan.io/result/019e7d52-1f3c-712f-8610-08e76645ce24/",
+          "title": "世界杯指定网站（中国区）有限公司"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Eranet International Limited",
         "created": "2025-08-23T07:39:47Z",
         "expires": "2026-08-23T07:39:47Z",
-        "age_days": 280,
+        "age_days": 281,
         "nameservers": [
           "NS1.TAOA.COM",
           "NS2.TAOA.COM"
@@ -76,7 +85,14 @@
       },
       "infrastructure": {
         "ip": "45.144.136.33",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "45.144.136.33",
+          "city": "Tsuen Wan",
+          "region": "Tsuen Wan",
+          "country": "HK",
+          "org": "AS139659 LUCIDACLOUD LIMITED",
+          "asn": "AS139659"
+        },
         "dns": {
           "A": [
             "45.144.136.33"
@@ -96,7 +112,14 @@
           "method": "form",
           "iana_ids": "1868"
         },
-        "hosting": null
+        "hosting": {
+          "name": "LUCID-AS-AP",
+          "abuse": "abuse@yecaoyun.com",
+          "url": "mailto:abuse@yecaoyun.com",
+          "logo": "https://i.ibb.co/hRwsdDFF/pr-LUCID-AS-AP.png",
+          "method": "email",
+          "asn": "AS139659"
+        }
       },
       "report_services": [
         {
@@ -219,12 +242,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www3344666.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www3344666.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009395; classtype:social-engineering; sid:6009395; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:51:58.208347+00:00",
+  "updated_at": "2026-06-01T02:20:17.002064+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,27 +49,45 @@
     "phishdestroy": {
       "domain": "drishtiguptaa.github.io",
       "domain_defanged": "drishtiguptaa[.]github[.]io",
-      "case_id": "PD-20260530-4ACF2B",
-      "analyzed_at": "2026-05-30T22:06:24.145Z",
+      "case_id": "PD-20260601-4ACF2B",
+      "analyzed_at": "2026-06-01T02:27:42.908Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7aec-8e68-7564-92f0-34d20558216d/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon Japan",
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d29-8339-727e-b514-81da2e728f38.png",
+          "url": "https://urlscan.io/result/019e7d29-8339-727e-b514-81da2e728f38/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon Japan, Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "AAAA": [
             "2606:50c0:8000::153",
@@ -87,7 +105,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -210,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (drishtiguptaa.github.io/amazon-ui-clone)\"; flow:established,to_server; http.uri; content:\"/amazon-ui-clone\"; startswith; fast_pattern; http.host; content:\"drishtiguptaa.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009477; classtype:social-engineering; sid:6009477; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:55:32.142148+00:00",
+  "updated_at": "2026-06-01T02:27:38.096312+00:00",
   "probe": {
     "dns": true,
     "whois": true,

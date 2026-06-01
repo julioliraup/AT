@@ -49,27 +49,42 @@
     "phishdestroy": {
       "domain": "dpd.dpdccab.cfd",
       "domain_defanged": "dpd[.]dpdccab[.]cfd",
-      "case_id": "PD-20260530-47D698",
-      "analyzed_at": "2026-05-30T22:00:17.518Z",
+      "case_id": "PD-20260601-47D698",
+      "analyzed_at": "2026-06-01T02:19:50.572Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7ae6-f441-746f-b62e-938a24f99a19/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d61-07d6-7484-9e61-0aed2a730a9e.png",
+          "url": "https://urlscan.io/result/019e7d61-07d6-7484-9e61-0aed2a730a9e/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "43.165.0.236",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "43.165.0.236",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": {
           "A": [
             "43.165.0.236"
@@ -78,7 +93,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -206,7 +228,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.dpdccab.cfd/co.uk)\"; flow:established,to_server; http.uri; content:\"/co.uk\"; startswith; fast_pattern; http.host; content:\"dpd.dpdccab.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009462; classtype:social-engineering; sid:6009462; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:54:50.845192+00:00",
+  "updated_at": "2026-06-01T02:26:23.802371+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -73,26 +73,36 @@
     "phishdestroy": {
       "domain": "supersteaym.com",
       "domain_defanged": "supersteaym[.]com",
-      "case_id": "PD-20260530-FD2A65",
-      "analyzed_at": "2026-05-30T21:59:35.091Z",
+      "case_id": "PD-20260601-FD2A65",
+      "analyzed_at": "2026-06-01T02:19:17.482Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7ae6-5040-77da-b1a8-b4e80a1cc711/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d6d-eb45-77da-8270-1c524f494a5f.png",
+          "url": "https://urlscan.io/result/019e7d6d-eb45-77da-8270-1c524f494a5f/",
+          "title": "App"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2026-05-29T04:36:29Z",
         "expires": "2027-05-29T04:36:29Z",
-        "age_days": 1,
+        "age_days": 2,
         "nameservers": [
           "A4.SHARE-DNS.COM",
           "B4.SHARE-DNS.NET"
@@ -100,7 +110,14 @@
       },
       "infrastructure": {
         "ip": "64.118.144.242",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "64.118.144.242",
+          "city": "Tokyo",
+          "region": "Tokyo",
+          "country": "JP",
+          "org": "AS138997 Eons Data Communications Limited",
+          "asn": "AS138997"
+        },
         "dns": {
           "A": [
             "64.118.144.242"
@@ -243,12 +260,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.supersteaym.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.supersteaym.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009380; classtype:social-engineering; sid:6009380; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:51:13.396892+00:00",
+  "updated_at": "2026-06-01T02:19:10.441385+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -18,86 +18,50 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://dpd.qvxtrzlmnp.cfd/com",
-      "domain": "dpd.qvxtrzlmnp.cfd",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "104.21.20.57",
-      "http_code": 200,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html;charset=utf-8",
-        "cf_ray": "a0403eddda1cda91-PDX",
-        "cf_cache_status": "DYNAMIC",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (503), with CRLF, CR, LF line terminators",
-      "sha256": "12e4c2a9f2fe0467cae7f37f371db13af82b574dd663400b53ceb004bdc926f5",
-      "md5": "5c2b239ba1ea234525ef4720b9e9b03f",
-      "cert": {
-        "subject_cn": "qvxtrzlmnp.cfd",
-        "subject_alt_names": [
-          "*.qvxtrzlmnp.cfd",
-          "qvxtrzlmnp.cfd"
-        ],
-        "issuer_cn": "E7",
-        "issuer_org": "Let's Encrypt",
-        "issuer_country": "US",
-        "not_valid_before": "2026-05-28T07:33:25+00:00",
-        "not_valid_after": "2026-08-26T07:33:24+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha384_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "466650957956375237657354628847020554946457",
-        "fingerprint_sha1": "66 95 C3 74 3E CB AA ED 15 F4 3F 4B 94 10 8F 95 28 9C 16 BF",
-        "fingerprint_sha256": "6E 1F CB BB F9 06 B0 D0 30 B4 F3 F1 B8 BE FF 18 96 B6 B7 7D F4 04 F6 E5 2E 63 87 C1 AE FE 1B C2"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-05-30T19:46:17",
-      "first_seen_secs": 1780170377.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "dpd.qvxtrzlmnp.cfd",
       "domain_defanged": "dpd[.]qvxtrzlmnp[.]cfd",
-      "case_id": "PD-20260530-67CC10",
-      "analyzed_at": "2026-05-30T22:05:12.163Z",
+      "case_id": "PD-20260601-67CC10",
+      "analyzed_at": "2026-06-01T02:26:17.235Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7aeb-7539-71b8-bd99-4c57d3d6b786/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7e2e-2b0b-730b-a139-85d3f580b185.png",
+          "url": "https://urlscan.io/result/019e7e2e-2b0b-730b-a139-85d3f580b185/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.191.206",
-        "ipinfo": null,
+        "ip": "104.21.20.57",
+        "ipinfo": {
+          "ip": "104.21.20.57",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.67.191.206",
-            "104.21.20.57"
+            "104.21.20.57",
+            "172.67.191.206"
           ],
           "AAAA": [
             "2606:4700:3037::6815:1439",
@@ -107,7 +71,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,12 +201,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.qvxtrzlmnp.cfd/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"dpd.qvxtrzlmnp.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009458; classtype:social-engineering; sid:6009458; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:54:44.310020+00:00",
+  "updated_at": "2026-06-01T02:25:59.101528+00:00",
   "probe": {
     "dns": true,
     "whois": true,

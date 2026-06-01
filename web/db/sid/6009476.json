@@ -22,7 +22,7 @@
       "url": "http://microsoft365office.duckdns.org/",
       "domain": "microsoft365office.duckdns.org",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -73,33 +73,49 @@
     "phishdestroy": {
       "domain": "microsoft365office.duckdns.org",
       "domain_defanged": "microsoft365office[.]duckdns[.]org",
-      "case_id": "PD-20260530-47F500",
-      "analyzed_at": "2026-05-30T22:02:18.016Z",
+      "case_id": "PD-20260601-47F500",
+      "analyzed_at": "2026-06-01T02:22:16.976Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7ae8-ca0f-738d-a17b-c69ab21f348d/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d36-f2cc-705e-8130-2fc7d39716ed.png",
+          "url": "https://urlscan.io/result/019e7d36-f2cc-705e-8130-2fc7d39716ed/",
+          "title": "Download Microsoft Office 365 for Windows and Mac | Microsoft 365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "138.226.236.115",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "138.226.236.115",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS205775 NEON CORE NETWORK LLC",
+          "asn": "AS205775"
+        },
         "dns": {
-          "A": [
-            "138.226.236.115"
-          ],
           "MX": [
             "50 microsoft365office.duckdns.org."
+          ],
+          "A": [
+            "138.226.236.115"
           ]
         }
       },
@@ -233,7 +249,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (microsoft365office.duckdns.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"microsoft365office.duckdns.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009476; classtype:social-engineering; sid:6009476; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:55:29.974751+00:00",
+  "updated_at": "2026-06-01T02:27:33.231284+00:00",
   "probe": {
     "dns": true,
     "whois": true,

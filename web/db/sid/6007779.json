@@ -55,27 +55,55 @@
     "phishdestroy": {
       "domain": "gov-parkimgf.cyou",
       "domain_defanged": "gov-parkimgf[.]cyou",
-      "case_id": "PD-20260530-123C2B",
-      "analyzed_at": "2026-05-30T20:35:17.467Z",
+      "case_id": "PD-20260601-123C2B",
+      "analyzed_at": "2026-06-01T00:55:48.210Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6933-4156-7005-a74a-698959ccf035.png",
+          "url": "https://urlscan.io/result/019e6933-4156-7005-a74a-698959ccf035/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "129.226.204.78",
+        "ipinfo": {
+          "ip": "129.226.204.78",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -198,12 +226,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkimgf.cyou/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkimgf.cyou\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6007779; classtype:social-engineering; sid:6007779; rev:1; metadata: signature_severity Major, created_et 2026_05_27;)",
-  "updated_at": "2026-05-31T13:24:24.726482+00:00",
+  "updated_at": "2026-06-01T00:55:45.319298+00:00",
   "probe": {
     "dns": true,
     "whois": true,

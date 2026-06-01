@@ -22,7 +22,7 @@
       "url": "http://www.businesads-manager.com/",
       "domain": "www.businesads-manager.com",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -74,26 +74,35 @@
     "phishdestroy": {
       "domain": "businesads-manager.com",
       "domain_defanged": "businesads-manager[.]com",
-      "case_id": "PD-20260530-100B52",
-      "analyzed_at": "2026-05-30T22:09:34.705Z",
+      "case_id": "PD-20260601-100B52",
+      "analyzed_at": "2026-06-01T02:30:27.099Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7aef-768a-7182-90f0-4c923f0e6239/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d89-7c57-7338-8f78-b1fe21498a07.png",
+          "url": "https://urlscan.io/result/019e7d89-7c57-7338-8f78-b1fe21498a07/",
+          "title": "Log in to Facebook"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2026-05-29T06:34:43Z",
         "expires": "2027-05-29T06:34:43Z",
-        "age_days": 1,
+        "age_days": 2,
         "nameservers": [
           "NDNS1.COSMOTOWN.COM",
           "NDNS2.COSMOTOWN.COM"
@@ -101,16 +110,16 @@
       },
       "infrastructure": {
         "ip": "45.32.121.41",
-        "ipinfo": null,
-        "dns": {
-          "A": [
-            "45.32.121.41"
-          ],
-          "NS": [
-            "ndns1.cosmotown.com.",
-            "ndns2.cosmotown.com."
-          ]
-        }
+        "ipinfo": {
+          "ip": "45.32.121.41",
+          "hostname": "45.32.121.41.vultrusercontent.com",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS20473 The Constant Company, LLC",
+          "asn": "AS20473"
+        },
+        "dns": null
       },
       "report_to": {
         "registrar": {
@@ -121,7 +130,14 @@
           "method": "form",
           "iana_ids": "1509"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Vultr/Choopa",
+          "abuse": "abuse@vultr.com",
+          "url": "mailto:abuse@vultr.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS20473"
+        }
       },
       "report_services": [
         {
@@ -244,12 +260,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.businesads-manager.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.businesads-manager.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009520; classtype:social-engineering; sid:6009520; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:57:11.750471+00:00",
+  "updated_at": "2026-06-01T02:30:25.171718+00:00",
   "probe": {
     "dns": true,
     "whois": false,

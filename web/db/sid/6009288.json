@@ -49,21 +49,60 @@
     "phishdestroy": {
       "domain": "startbridges-com.wixstudio.com",
       "domain_defanged": "startbridges-com[.]wixstudio[.]com",
-      "case_id": "PD-20260530-4849D0",
-      "analyzed_at": "2026-05-30T21:51:54.317Z",
+      "case_id": "PD-20260601-4849D0",
+      "analyzed_at": "2026-06-01T02:11:05.359Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e7adf-48a5-719a-95e3-4f67428d2fdb/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e7d7b-f9b4-70eb-9b97-ad285c8f4dbf.png",
+          "url": "https://urlscan.io/result/019e7d7b-f9b4-70eb-9b97-ad285c8f4dbf/",
+          "title": "404 Error: Page Not Found | Wix Studio"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,6 +110,11 @@
         "ip": "username.wix.com.",
         "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "username.wix.com.",
+            "username-ccm.wixsite.com.",
+            "username-ccm-206-118.wixsite.com."
+          ],
           "A": [
             "username.wix.com.",
             "username-ccm.wixsite.com.",
@@ -78,11 +122,6 @@
             "34.144.206.118"
           ],
           "MX": [
-            "username.wix.com.",
-            "username-ccm.wixsite.com.",
-            "username-ccm-206-118.wixsite.com."
-          ],
-          "AAAA": [
             "username.wix.com.",
             "username-ccm.wixsite.com.",
             "username-ccm-206-118.wixsite.com."
@@ -99,7 +138,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -222,12 +268,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (startbridges-com.wixstudio.com/bridge-en-us)\"; flow:established,to_server; http.uri; content:\"/bridge-en-us\"; startswith; fast_pattern; http.host; content:\"startbridges-com.wixstudio.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6009288; classtype:social-engineering; sid:6009288; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:46:49.110547+00:00",
+  "updated_at": "2026-06-01T02:11:02.705085+00:00",
   "probe": {
     "dns": true,
     "whois": false,

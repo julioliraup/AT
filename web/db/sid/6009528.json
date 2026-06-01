@@ -49,46 +49,62 @@
     "phishdestroy": {
       "domain": "badgeauth.net",
       "domain_defanged": "badgeauth[.]net",
-      "case_id": "PD-20260530-7FA7A4",
-      "analyzed_at": "2026-05-30T22:10:25.281Z",
+      "case_id": "PD-20260601-7FA7A4",
+      "analyzed_at": "2026-06-01T02:30:54.274Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7af0-3c51-77fc-9708-6129854755fa/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "TikTok"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d45-168f-7020-ace8-56918825bc34.png",
+          "url": "https://urlscan.io/result/019e7d45-168f-7020-ace8-56918825bc34/",
+          "title": "Filling in the form"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: TikTok",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Squarespace Domains LLC",
         "created": "2025-09-20T23:34:33Z",
         "expires": "2026-09-20T23:34:33Z",
-        "age_days": 251,
+        "age_days": 253,
         "nameservers": [
           "DIMITRIS.NS.CLOUDFLARE.COM",
           "LOVE.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.144.98",
-        "ipinfo": null,
+        "ip": "104.21.71.102",
+        "ipinfo": {
+          "ip": "104.21.71.102",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "104.21.71.102",
+            "172.67.144.98"
+          ],
+          "AAAA": [
+            "2606:4700:3033::6815:4766",
+            "2606:4700:3032::ac43:9062"
+          ],
           "NS": [
             "dimitris.ns.cloudflare.com.",
             "love.ns.cloudflare.com."
-          ],
-          "A": [
-            "172.67.144.98",
-            "104.21.71.102"
-          ],
-          "AAAA": [
-            "2606:4700:3032::ac43:9062",
-            "2606:4700:3033::6815:4766"
           ]
         }
       },
@@ -101,7 +117,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -224,12 +247,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (badgeauth.net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"badgeauth.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009528; classtype:social-engineering; sid:6009528; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:57:33.578615+00:00",
+  "updated_at": "2026-06-01T02:30:51.171198+00:00",
   "probe": {
     "dns": true,
     "whois": true,

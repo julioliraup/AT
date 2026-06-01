@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "j70i.vip",
       "domain_defanged": "j70i[.]vip",
-      "case_id": "PD-20260530-4785BD",
-      "analyzed_at": "2026-05-30T22:04:41.944Z",
+      "case_id": "PD-20260601-4785BD",
+      "analyzed_at": "2026-06-01T02:24:49.861Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7aea-ed7a-77ad-b18f-77d157fe8bb3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d60-d7ed-726c-96f1-d00af24215de.png",
+          "url": "https://urlscan.io/result/019e7d60-d7ed-726c-96f1-d00af24215de/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -73,7 +82,7 @@
         "dns": {
           "A": [
             "huayang.302.gn301.xyz.",
-            "122.114.10.129"
+            "217.194.134.148"
           ],
           "CNAME": [
             "huayang.302.gn301.xyz."
@@ -209,12 +218,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (j70i.vip/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"j70i.vip\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009447; classtype:social-engineering; sid:6009447; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:54:23.372837+00:00",
+  "updated_at": "2026-06-01T02:24:41.747909+00:00",
   "probe": {
     "dns": true,
     "whois": true,

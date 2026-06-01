@@ -18,53 +18,75 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://s.teamcommunity-friends.com/p/yres-fgs/gfht",
-      "domain": "s.teamcommunity-friends.com",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "s.teamcommunity-friends.com",
       "domain_defanged": "s[.]teamcommunity-friends[.]com",
-      "case_id": "PD-20260530-3BA232",
-      "analyzed_at": "2026-05-30T20:03:32.153Z",
+      "case_id": "PD-20260601-3BA232",
+      "analyzed_at": "2026-06-01T00:11:25.410Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e61cd-b591-724a-92f4-4f940b643a02.png",
+          "url": "https://urlscan.io/result/019e61cd-b591-724a-92f4-4f940b643a02/",
+          "title": "404 Not Found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "malware",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "146.19.128.91",
+        "ipinfo": {
+          "ip": "146.19.128.91",
+          "city": "Moscow",
+          "region": "Moscow",
+          "country": "RU",
+          "org": "AS207957 SERV.HOST GROUP LTD",
+          "asn": "AS207957"
+        },
         "dns": null
       },
       "report_to": {
@@ -192,12 +214,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s.teamcommunity-friends.com/p/yres-fgs/gfht)\"; flow:established,to_server; http.uri; content:\"/p/yres-fgs/gfht\"; startswith; fast_pattern; http.host; content:\"s.teamcommunity-friends.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6007147; classtype:social-engineering; sid:6007147; rev:1; metadata: signature_severity Major, created_et 2026_05_25;)",
-  "updated_at": "2026-05-31T12:45:44.985899+00:00",
+  "updated_at": "2026-06-01T00:11:04.945860+00:00",
   "probe": {
     "dns": false,
     "whois": false,

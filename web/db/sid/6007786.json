@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.nksvgy.top",
       "domain_defanged": "t-mobile[.]nksvgy[.]top",
-      "case_id": "PD-20260530-BC9A6E",
-      "analyzed_at": "2026-05-30T20:35:33.331Z",
+      "case_id": "PD-20260601-BC9A6E",
+      "analyzed_at": "2026-06-01T00:56:15.524Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e67cf-80e8-712b-9276-98d7225ecd1e.png",
+          "url": "https://urlscan.io/result/019e67cf-80e8-712b-9276-98d7225ecd1e/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.49.13",
+        "ipinfo": {
+          "ip": "104.21.49.13",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +219,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.nksvgy.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.nksvgy.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6007786; classtype:social-engineering; sid:6007786; rev:1; metadata: signature_severity Major, created_et 2026_05_27;)",
-  "updated_at": "2026-05-31T13:24:38.193142+00:00",
+  "updated_at": "2026-06-01T00:56:12.776071+00:00",
   "probe": {
     "dns": false,
     "whois": false,

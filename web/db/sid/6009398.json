@@ -73,41 +73,65 @@
     "phishdestroy": {
       "domain": "matamaskcriptologgin.webflow.io",
       "domain_defanged": "matamaskcriptologgin[.]webflow[.]io",
-      "case_id": "PD-20260530-23D51B",
-      "analyzed_at": "2026-05-30T22:00:57.303Z",
+      "case_id": "PD-20260601-23D51B",
+      "analyzed_at": "2026-06-01T02:20:39.589Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7ae7-879d-743d-9f8b-3bcde9b813f8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Crypto",
+            "Metamask"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d45-4bd6-7490-bf6c-b502aed6c62d.png",
+          "url": "https://urlscan.io/result/019e7d45-4bd6-7490-bf6c-b502aed6c62d/",
+          "title": "metamask login, metamask sign in, metamask login error"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Crypto, Metamask",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.18.36.248",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.36.248",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2a06:98c1:3100::6812:24f8",
+            "2606:4700:440c::ac40:9708"
+          ],
           "A": [
             "104.18.36.248",
             "172.64.151.8"
-          ],
-          "AAAA": [
-            "2606:4700:440c::ac40:9708",
-            "2a06:98c1:3100::6812:24f8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (matamaskcriptologgin.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"matamaskcriptologgin.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009398; classtype:social-engineering; sid:6009398; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-05-31T14:52:03.017006+00:00",
+  "updated_at": "2026-06-01T02:20:29.451329+00:00",
   "probe": {
     "dns": true,
     "whois": true,

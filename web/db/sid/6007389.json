@@ -49,22 +49,94 @@
     "phishdestroy": {
       "domain": "maivangdaycare.com",
       "domain_defanged": "maivangdaycare[.]com",
-      "case_id": "PD-20260530-294236",
-      "analyzed_at": "2026-05-30T20:14:15.046Z",
+      "case_id": "PD-20260601-294236",
+      "analyzed_at": "2026-06-01T00:29:39.828Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e74f4-5245-7240-8e06-25ad1626a665.png",
+          "url": "https://urlscan.io/result/019e74f4-5245-7240-8e06-25ad1626a665/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2017-05-10T17:53:34Z",
         "expires": "2028-05-10T17:53:34Z",
-        "age_days": 3307,
+        "age_days": 3308,
         "nameservers": [
           "NS27.DOMAINCONTROL.COM",
           "NS28.DOMAINCONTROL.COM"
@@ -72,14 +144,22 @@
       },
       "infrastructure": {
         "ip": "104.247.73.113",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.247.73.113",
+          "hostname": "vps34134.inmotionhosting.com",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS22611 InMotion Hosting, Inc.",
+          "asn": "AS22611"
+        },
         "dns": {
-          "A": [
-            "104.247.73.113"
-          ],
           "MX": [
             "10 mailstore1.secureserver.net.",
             "0 smtp.secureserver.net."
+          ],
+          "A": [
+            "104.247.73.113"
           ],
           "NS": [
             "ns27.domaincontrol.com.",
@@ -96,7 +176,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "INMOTION, US",
+          "abuse": "abuse@inmotionhosting.com",
+          "url": "mailto:abuse@inmotionhosting.com",
+          "logo": "https://i.ibb.co/YFYJYwHg/pr-IMH-IAD-US.png",
+          "method": "email",
+          "asn": "AS22611"
+        }
       },
       "report_services": [
         {
@@ -219,12 +306,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.maivangdaycare.com/263c607d-1759-4b2c-8ff5-3adb9ac3de7b)\"; flow:established,to_server; http.uri; content:\"/263c607d-1759-4b2c-8ff5-3adb9ac3de7b\"; startswith; fast_pattern; http.host; content:\"www.maivangdaycare.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6007389; classtype:social-engineering; sid:6007389; rev:1; metadata: signature_severity Major, created_et 2026_05_26;)",
-  "updated_at": "2026-05-31T13:00:35.588029+00:00",
+  "updated_at": "2026-06-01T00:29:36.708304+00:00",
   "probe": {
     "dns": true,
     "whois": false,
