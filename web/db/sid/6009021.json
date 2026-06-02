@@ -22,7 +22,7 @@
       "url": "http://wizzair.cloud/",
       "domain": "wizzair.cloud",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "wizzair.cloud",
       "domain_defanged": "wizzair[.]cloud",
-      "case_id": "PD-20260531-12B697",
-      "analyzed_at": "2026-05-31T14:27:57.862Z",
+      "case_id": "PD-20260601-12B697",
+      "analyzed_at": "2026-06-01T23:15:01.382Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e8578-1954-75ff-94a3-d1b59ea9bd35/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,22 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "3.175.14.115",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "3.175.14.115",
+            "3.175.14.45",
+            "3.175.14.98",
+            "3.175.14.10"
+          ],
+          "NS": [
+            "ns-1131.awsdns-13.org.",
+            "ns-1538.awsdns-00.co.uk.",
+            "ns-443.awsdns-55.com.",
+            "ns-519.awsdns-00.net."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,17 +210,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wizzair.cloud/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"wizzair.cloud\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009021; classtype:social-engineering; sid:6009021; rev:1; metadata: signature_severity Major, created_et 2026_05_30;)",
-  "updated_at": "2026-06-01T12:41:09.649878+00:00",
+  "updated_at": "2026-06-01T23:14:52.336631+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }
