@@ -73,38 +73,54 @@
     "phishdestroy": {
       "domain": "zyexx.com",
       "domain_defanged": "zyexx[.]com",
-      "case_id": "PD-20260531-745776",
-      "analyzed_at": "2026-05-31T19:01:46.383Z",
+      "case_id": "PD-20260602-745776",
+      "analyzed_at": "2026-06-02T03:24:31.872Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e7f69-dfc4-776b-884d-7047b5b61a27/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8611-d0bb-731e-aae3-4bfb21f33845.png",
+          "url": "https://urlscan.io/result/019e8611-d0bb-731e-aae3-4bfb21f33845/",
+          "title": "היכנס לחשבון שלך"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Cloudflare, Inc.",
         "created": "2018-02-12T06:32:33Z",
         "expires": "2027-02-12T06:32:33Z",
-        "age_days": 3030,
+        "age_days": 3031,
         "nameservers": [
           "MONA.NS.CLOUDFLARE.COM",
           "SEAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.26.0.115",
-        "ipinfo": null,
+        "ip": "172.67.73.221",
+        "ipinfo": {
+          "ip": "172.67.73.221",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "104.26.0.115",
             "172.67.73.221",
+            "104.26.0.115",
             "104.26.1.115"
           ],
           "AAAA": [
@@ -127,7 +143,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -250,12 +273,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zyexx.com/cef8c85d76d83d432dp9b1ef647dffe97e13.html)\"; flow:established,to_server; http.uri; content:\"/cef8c85d76d83d432dp9b1ef647dffe97e13.html\"; startswith; fast_pattern; http.host; content:\"zyexx.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002209; classtype:social-engineering; sid:6002209; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-06-01T16:52:22.898882+00:00",
+  "updated_at": "2026-06-02T03:24:29.838747+00:00",
   "probe": {
     "dns": true,
     "whois": true,

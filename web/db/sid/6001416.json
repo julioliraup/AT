@@ -74,27 +74,43 @@
     "phishdestroy": {
       "domain": "secure-web-ndxxa-cdns.typedream.app",
       "domain_defanged": "secure-web-ndxxa-cdns[.]typedream[.]app",
-      "case_id": "PD-20260531-F6CADC",
-      "analyzed_at": "2026-05-31T17:59:19.214Z",
+      "case_id": "PD-20260602-F6CADC",
+      "analyzed_at": "2026-06-02T02:39:09.642Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ndax"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7f30-b2fd-7794-8654-accd9288b6d3.png",
           "url": "https://urlscan.io/result/019e7f30-b2fd-7794-8654-accd9288b6d3/",
-          "pending": true
+          "title": "NDAX® | Login | Canada’s Most Secure Crypto Exchange"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ndax",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.37.85",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.37.85",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.21.37.85",
@@ -104,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -227,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (secure-web-ndxxa-cdns .typedream .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"secure-web-ndxxa-cdns.typedream.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001416; classtype:social-engineering; sid:6001416; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-01T16:05:23.434133+00:00",
+  "updated_at": "2026-06-02T02:39:06.900017+00:00",
   "probe": {
     "dns": true,
     "whois": false,

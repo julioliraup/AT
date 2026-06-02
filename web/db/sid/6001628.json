@@ -50,8 +50,8 @@
     "phishdestroy": {
       "domain": "aspiresafety.co.uk",
       "domain_defanged": "aspiresafety[.]co[.]uk",
-      "case_id": "PD-20260531-B91D55",
-      "analyzed_at": "2026-05-31T18:19:44.075Z",
+      "case_id": "PD-20260602-B91D55",
+      "analyzed_at": "2026-06-02T02:51:18.002Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -60,8 +60,9 @@
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e7f43-63ab-7396-addb-104e20a7e17a.png",
           "url": "https://urlscan.io/result/019e7f43-63ab-7396-addb-104e20a7e17a/",
-          "pending": true
+          "title": "aspiresafety.co.uk | 522: Connection timed out"
         }
       },
       "detections": [],
@@ -70,30 +71,44 @@
       },
       "infrastructure": {
         "ip": "172.67.143.147",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.143.147",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3036::ac43:8f93",
-            "2606:4700:3031::6815:1bcc"
+          "MX": [
+            "41 route3.mx.cloudflare.net.",
+            "70 route2.mx.cloudflare.net.",
+            "88 route1.mx.cloudflare.net."
           ],
           "A": [
             "172.67.143.147",
             "104.21.27.204"
           ],
+          "AAAA": [
+            "2606:4700:3036::ac43:8f93",
+            "2606:4700:3031::6815:1bcc"
+          ],
           "NS": [
             "maeve.ns.cloudflare.com.",
             "stan.ns.cloudflare.com."
-          ],
-          "MX": [
-            "41 route3.mx.cloudflare.net.",
-            "70 route2.mx.cloudflare.net.",
-            "88 route1.mx.cloudflare.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,15 +231,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aspiresafety .co .uk/login-check .html)\"; flow:established,to_server; http.uri; content:\"/login-check.html\"; startswith; fast_pattern; http.host;  content:\"aspiresafety.co.uk\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001628; classtype:social-engineering; sid:6001628; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-01T16:14:16.161942+00:00",
+  "updated_at": "2026-06-02T02:51:08.077090+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

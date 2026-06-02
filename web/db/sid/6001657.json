@@ -74,22 +74,43 @@
     "phishdestroy": {
       "domain": "dbs.xjpdbsrmkf.com",
       "domain_defanged": "dbs[.]xjpdbsrmkf[.]com",
-      "case_id": "PD-20260531-F50D80",
-      "analyzed_at": "2026-05-31T18:24:14.176Z",
+      "case_id": "PD-20260602-F50D80",
+      "analyzed_at": "2026-06-02T02:52:49.300Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e19eb-9eb1-768d-8bce-4e613421f6ba.png",
+          "url": "https://urlscan.io/result/019e19eb-9eb1-768d-8bce-4e613421f6ba/",
+          "title": "首页"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "23.145.4.76",
+        "ipinfo": {
+          "ip": "23.145.4.76",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS32205 ECHO45 ADVISORS LLC",
+          "asn": "AS32205"
+        },
         "dns": null
       },
       "report_to": {
@@ -217,12 +238,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dbs .xjpdbsrmkf .com/index .html)\"; flow:established,to_server; http.uri; content:\"/index.html\"; startswith; fast_pattern; http.host;  content:\"dbs.xjpdbsrmkf.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001657; classtype:social-engineering; sid:6001657; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-01T16:17:01.846372+00:00",
+  "updated_at": "2026-06-02T02:52:46.584686+00:00",
   "probe": {
     "dns": true,
     "whois": false,

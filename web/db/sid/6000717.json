@@ -50,21 +50,69 @@
     "phishdestroy": {
       "domain": "t37y2vok1cuywyu.s3-website-us-east-1.amazonaws.com",
       "domain_defanged": "t37y2vok1cuywyu[.]s3-website-us-east-1[.]amazonaws[.]com",
-      "case_id": "PD-20260531-616752",
-      "analyzed_at": "2026-05-31T17:01:55.415Z",
+      "case_id": "PD-20260602-616752",
+      "analyzed_at": "2026-06-02T02:05:10.555Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e7efc-26c3-7126-9dad-05aae3af1b8e/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e7efc-26c3-7126-9dad-05aae3af1b8e.png",
+          "url": "https://urlscan.io/result/019e7efc-26c3-7126-9dad-05aae3af1b8e/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -75,22 +123,22 @@
           "AAAA": [
             "s3-website.us-east-1.amazonaws.com."
           ],
+          "A": [
+            "s3-website.us-east-1.amazonaws.com.",
+            "16.15.229.111",
+            "54.231.203.45",
+            "52.217.126.189",
+            "52.217.200.93",
+            "16.15.252.111",
+            "52.216.210.53",
+            "16.15.254.228",
+            "54.231.135.37"
+          ],
           "MX": [
             "s3-website.us-east-1.amazonaws.com."
           ],
           "CNAME": [
             "s3-website.us-east-1.amazonaws.com."
-          ],
-          "A": [
-            "s3-website.us-east-1.amazonaws.com.",
-            "52.216.49.45",
-            "16.15.223.111",
-            "16.182.35.181",
-            "52.217.70.99",
-            "54.231.129.117",
-            "52.217.166.37",
-            "16.15.207.160",
-            "54.231.204.125"
           ],
           "NS": [
             "s3-website.us-east-1.amazonaws.com.",
@@ -226,12 +274,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t37y2vok1cuywyu .s3-website-us-east-1 .amazonaws .com/m30pnuxqli .html?email=redacted@anonymized .invalid)\"; flow:established,to_server; http.uri; content:\"/m30pnuxqli.html?email=redacted@anonymized.invalid\"; startswith; fast_pattern; http.host;  content:\"t37y2vok1cuywyu.s3-website-us-east-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000717; classtype:social-engineering; sid:6000717; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-01T15:26:40.958162+00:00",
+  "updated_at": "2026-06-02T02:05:07.476622+00:00",
   "probe": {
     "dns": true,
     "whois": false,

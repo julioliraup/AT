@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "dhlsupplychaintest.earcu.com",
       "domain_defanged": "dhlsupplychaintest[.]earcu[.]com",
-      "case_id": "PD-20260531-3FA952",
-      "analyzed_at": "2026-05-31T18:03:01.759Z",
+      "case_id": "PD-20260602-3FA952",
+      "analyzed_at": "2026-06-02T02:40:07.171Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DHL"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7f34-12d4-76ca-965a-d0a877d1685a.png",
           "url": "https://urlscan.io/result/019e7f34-12d4-76ca-965a-d0a877d1685a/",
-          "pending": true
+          "title": "DHLSupplyChain | Careers"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DHL",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -75,35 +84,42 @@
           "MX": [
             "d2276ojiatciv4.cloudfront.net."
           ],
+          "AAAA": [
+            "d2276ojiatciv4.cloudfront.net.",
+            "2600:9000:2342:6e00:6:f21b:e000:93a1",
+            "2600:9000:2342:f200:6:f21b:e000:93a1",
+            "2600:9000:2342:7200:6:f21b:e000:93a1",
+            "2600:9000:2342:d200:6:f21b:e000:93a1",
+            "2600:9000:2342:9800:6:f21b:e000:93a1",
+            "2600:9000:2342:4600:6:f21b:e000:93a1",
+            "2600:9000:2342:5000:6:f21b:e000:93a1",
+            "2600:9000:2342:3000:6:f21b:e000:93a1"
+          ],
           "A": [
             "d2276ojiatciv4.cloudfront.net.",
             "18.64.174.22",
-            "18.64.174.70",
             "18.64.174.20",
+            "18.64.174.70",
             "18.64.174.66"
           ],
-          "AAAA": [
-            "d2276ojiatciv4.cloudfront.net.",
-            "2600:9000:2342:6400:6:f21b:e000:93a1",
-            "2600:9000:2342:0:6:f21b:e000:93a1",
-            "2600:9000:2342:3c00:6:f21b:e000:93a1",
-            "2600:9000:2342:dc00:6:f21b:e000:93a1",
-            "2600:9000:2342:aa00:6:f21b:e000:93a1",
-            "2600:9000:2342:7000:6:f21b:e000:93a1",
-            "2600:9000:2342:7600:6:f21b:e000:93a1",
-            "2600:9000:2342:de00:6:f21b:e000:93a1"
-          ],
-          "CNAME": [
+          "NS": [
             "d2276ojiatciv4.cloudfront.net."
           ],
-          "NS": [
+          "CNAME": [
             "d2276ojiatciv4.cloudfront.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -226,12 +242,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dhlsupplychaintest .earcu .com/jobs/login)\"; flow:established,to_server; http.uri; content:\"/jobs/login\"; startswith; fast_pattern; http.host;  content:\"dhlsupplychaintest.earcu.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001443; classtype:social-engineering; sid:6001443; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-01T16:06:15.848924+00:00",
+  "updated_at": "2026-06-02T02:40:03.268690+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,27 +49,43 @@
     "phishdestroy": {
       "domain": "netlixrenouvellement.my",
       "domain_defanged": "netlixrenouvellement[.]my",
-      "case_id": "PD-20260531-72E3F3",
-      "analyzed_at": "2026-05-31T18:49:49.582Z",
+      "case_id": "PD-20260602-72E3F3",
+      "analyzed_at": "2026-06-02T03:12:54.213Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7f5e-f1e2-7588-be97-7c56fe6590c5.png",
           "url": "https://urlscan.io/result/019e7f5e-f1e2-7588-be97-7c56fe6590c5/",
-          "pending": true
+          "title": "Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "138.226.236.169",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "138.226.236.169",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS205775 NEON CORE NETWORK LLC",
+          "asn": "AS205775"
+        },
         "dns": {
           "A": [
             "138.226.236.169"
@@ -210,7 +226,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netlixrenouvellement.my/pages/index.php)\"; flow:established,to_server; http.uri; content:\"/pages/index.php\"; startswith; fast_pattern; http.host; content:\"netlixrenouvellement.my\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002212; classtype:social-engineering; sid:6002212; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-06-01T16:52:29.303736+00:00",
+  "updated_at": "2026-06-02T03:24:35.815760+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -74,27 +74,44 @@
     "phishdestroy": {
       "domain": "kkuiiicnn110giin.godaddysites.com",
       "domain_defanged": "kkuiiicnn110giin[.]godaddysites[.]com",
-      "case_id": "PD-20260531-4AD940",
-      "analyzed_at": "2026-05-31T18:34:22.662Z",
+      "case_id": "PD-20260602-4AD940",
+      "analyzed_at": "2026-06-02T02:59:48.360Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7f50-cb80-779b-85df-f847246acf65.png",
           "url": "https://urlscan.io/result/019e7f50-cb80-779b-85df-f847246acf65/",
-          "pending": true
+          "title": "Kucoin Loℊin | Loℊ In Kucoin"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "13.248.243.5",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "13.248.243.5",
+          "hostname": "a16e665f42988324c.awsglobalaccelerator.com",
+          "city": "Seattle",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "13.248.243.5",
@@ -104,7 +121,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -227,12 +251,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kkuiiicnn110giin .godaddysites .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"kkuiiicnn110giin.godaddysites.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001781; classtype:social-engineering; sid:6001781; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-01T16:24:16.749282+00:00",
+  "updated_at": "2026-06-02T02:59:46.079926+00:00",
   "probe": {
     "dns": true,
     "whois": false,

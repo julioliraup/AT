@@ -70,14 +70,18 @@
     "phishdestroy": {
       "domain": "whats-mx-whatsapp.com.cn",
       "domain_defanged": "whats-mx-whatsapp[.]com[.]cn",
-      "case_id": "PD-20260531-553F9B",
-      "analyzed_at": "2026-05-31T22:25:17.994Z",
+      "case_id": "PD-20260602-553F9B",
+      "analyzed_at": "2026-06-02T05:23:54.530Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e86c9-d2f7-74c1-8ab0-321d288e605f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -86,20 +90,34 @@
       },
       "infrastructure": {
         "ip": "43.226.17.69",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "43.226.17.69",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS64050 BGP Network Limited",
+          "asn": "AS64050"
+        },
         "dns": {
-          "A": [
-            "43.226.17.69"
-          ],
           "NS": [
             "ns1.kenpains.com.",
             "ns2.kenpains.com."
+          ],
+          "A": [
+            "43.226.17.69"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "BCPL-SG BGPNET Global ASN, SG",
+          "abuse": "abuse@bgp.net",
+          "url": "mailto:abuse@bgp.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS64050"
+        }
       },
       "report_services": [
         {
@@ -222,12 +240,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.whats-mx-whatsapp.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.whats-mx-whatsapp.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005171; classtype:social-engineering; sid:6005171; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-01T19:42:03.393911+00:00",
+  "updated_at": "2026-06-02T05:23:49.378919+00:00",
   "probe": {
     "dns": true,
     "whois": true,

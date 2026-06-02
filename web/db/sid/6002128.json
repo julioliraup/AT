@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.suetyh.top",
       "domain_defanged": "t-mobile[.]suetyh[.]top",
-      "case_id": "PD-20260531-5E700C",
-      "analyzed_at": "2026-05-31T18:56:13.777Z",
+      "case_id": "PD-20260602-5E700C",
+      "analyzed_at": "2026-06-02T03:18:59.531Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e2bba-80e2-71cb-8c3a-93813556bc71.png",
+          "url": "https://urlscan.io/result/019e2bba-80e2-71cb-8c3a-93813556bc71/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +219,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.suetyh.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.suetyh.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002128; classtype:social-engineering; sid:6002128; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-06-01T16:46:46.389606+00:00",
+  "updated_at": "2026-06-02T03:18:51.395520+00:00",
   "probe": {
     "dns": false,
     "whois": false,

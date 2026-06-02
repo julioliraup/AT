@@ -50,42 +50,184 @@
     "phishdestroy": {
       "domain": "armt.cloud",
       "domain_defanged": "armt[.]cloud",
-      "case_id": "PD-20260531-1DA50A",
-      "analyzed_at": "2026-05-31T17:05:01.849Z",
+      "case_id": "PD-20260602-1DA50A",
+      "analyzed_at": "2026-06-02T02:07:04.199Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 12,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e7eff-0000-72ad-90cd-7d8befb351dd.png",
           "url": "https://urlscan.io/result/019e7eff-0000-72ad-90cd-7d8befb351dd/",
-          "pending": true
+          "title": "ARMT Cloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "35.190.118.211",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "35.190.118.211",
+          "hostname": "211.118.190.35.bc.googleusercontent.com",
+          "city": "Kansas City",
+          "region": "Missouri",
+          "country": "US",
+          "org": "AS396982 Google LLC",
+          "asn": "AS396982"
+        },
         "dns": {
           "A": [
             "35.190.118.211"
           ],
           "NS": [
+            "ns-cloud-e3.googledomains.com.",
             "ns-cloud-e4.googledomains.com.",
-            "ns-cloud-e1.googledomains.com.",
             "ns-cloud-e2.googledomains.com.",
-            "ns-cloud-e3.googledomains.com."
+            "ns-cloud-e1.googledomains.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -208,12 +350,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (armt .cloud/devices/297905DB5084)\"; flow:established,to_server; http.uri; content:\"/devices/297905DB5084\"; startswith; fast_pattern; http.host;  content:\"armt.cloud\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000764; classtype:social-engineering; sid:6000764; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-01T15:28:38.370420+00:00",
+  "updated_at": "2026-06-02T02:07:00.417408+00:00",
   "probe": {
     "dns": true,
     "whois": true,

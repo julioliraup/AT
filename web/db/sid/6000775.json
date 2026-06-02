@@ -50,21 +50,45 @@
     "phishdestroy": {
       "domain": "accounts.bmwweb.biz",
       "domain_defanged": "accounts[.]bmwweb[.]biz",
-      "case_id": "PD-20260531-6E7714",
-      "analyzed_at": "2026-05-31T17:05:32.596Z",
+      "case_id": "PD-20260602-6E7714",
+      "analyzed_at": "2026-06-02T02:07:24.244Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Binance"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7eff-786c-723f-9805-6bf15d81569e.png",
           "url": "https://urlscan.io/result/019e7eff-786c-723f-9805-6bf15d81569e/",
-          "pending": true
+          "title": "Bitcoin Exchange | Cryptocurrency Exchange | Binance"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Binance",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,10 +103,10 @@
           "AAAA": [
             "accounts.bmwweb.biz.eo.dnse5.com."
           ],
-          "CNAME": [
+          "MX": [
             "accounts.bmwweb.biz.eo.dnse5.com."
           ],
-          "MX": [
+          "CNAME": [
             "accounts.bmwweb.biz.eo.dnse5.com."
           ],
           "NS": [
@@ -92,7 +116,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -215,12 +246,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (accounts .bmwweb .biz/en/login)\"; flow:established,to_server; http.uri; content:\"/en/login\"; startswith; fast_pattern; http.host;  content:\"accounts.bmwweb.biz\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000775; classtype:social-engineering; sid:6000775; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-01T15:28:55.817544+00:00",
+  "updated_at": "2026-06-02T02:07:20.634999+00:00",
   "probe": {
     "dns": true,
     "whois": true,

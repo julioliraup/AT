@@ -74,44 +74,68 @@
     "phishdestroy": {
       "domain": "ratiphysiotherapy.co.za",
       "domain_defanged": "ratiphysiotherapy[.]co[.]za",
-      "case_id": "PD-20260531-7E1C4A",
-      "analyzed_at": "2026-05-31T17:12:19.742Z",
+      "case_id": "PD-20260602-7E1C4A",
+      "analyzed_at": "2026-06-02T02:12:27.779Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7f05-ab18-75e5-bbd0-5e7de9744092.png",
           "url": "https://urlscan.io/result/019e7f05-ab18-75e5-bbd0-5e7de9744092/",
-          "pending": true
+          "title": "booking.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "196.41.123.211",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "196.41.123.211",
+          "hostname": "cpanel10.mywebserver.co.za",
+          "city": "Cape Town",
+          "region": "Western Cape",
+          "country": "ZA",
+          "org": "AS36874 Cybersmart",
+          "asn": "AS36874"
+        },
         "dns": {
+          "MX": [
+            "0 ratiphysiotherapy.co.za."
+          ],
           "A": [
             "196.41.123.211"
           ],
           "NS": [
+            "ns2.mywebserver.co.za.",
             "ns3.mywebserver.co.za.",
-            "ns1.mywebserver.co.za.",
-            "ns2.mywebserver.co.za."
-          ],
-          "MX": [
-            "0 ratiphysiotherapy.co.za."
+            "ns1.mywebserver.co.za."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cybersmart, ZA",
+          "abuse": "",
+          "url": "",
+          "logo": "",
+          "method": "email",
+          "asn": "AS36874"
+        }
       },
       "report_services": [
         {
@@ -234,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .ratiphysiotherapy .co .za/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.ratiphysiotherapy.co.za\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000900; classtype:social-engineering; sid:6000900; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-01T15:36:36.595098+00:00",
+  "updated_at": "2026-06-02T02:12:23.641752+00:00",
   "probe": {
     "dns": true,
     "whois": true,

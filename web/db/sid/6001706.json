@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "admin-meta.busines-help-center.com",
       "domain_defanged": "admin-meta[.]busines-help-center[.]com",
-      "case_id": "PD-20260531-318B9C",
-      "analyzed_at": "2026-05-31T18:28:56.431Z",
+      "case_id": "PD-20260602-318B9C",
+      "analyzed_at": "2026-06-02T02:55:53.515Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1c47-2f6f-741d-8d95-ea5f93ad87e1.png",
+          "url": "https://urlscan.io/result/019e1c47-2f6f-741d-8d95-ea5f93ad87e1/",
+          "title": "Accounts Centre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "162.159.140.98",
+        "ipinfo": {
+          "ip": "162.159.140.98",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -193,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (admin-meta .busines-help-center .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"admin-meta.busines-help-center.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001706; classtype:social-engineering; sid:6001706; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-01T16:19:48.696536+00:00",
+  "updated_at": "2026-06-02T02:55:50.833293+00:00",
   "probe": {
     "dns": false,
     "whois": false,

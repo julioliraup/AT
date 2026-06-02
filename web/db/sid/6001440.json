@@ -74,31 +74,48 @@
     "phishdestroy": {
       "domain": "free-antivir.us",
       "domain_defanged": "free-antivir[.]us",
-      "case_id": "PD-20260531-75CA69",
-      "analyzed_at": "2026-05-31T18:02:46.254Z",
+      "case_id": "PD-20260602-75CA69",
+      "analyzed_at": "2026-06-02T02:40:01.098Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7f33-dca8-774f-b95a-59d554342e19.png",
           "url": "https://urlscan.io/result/019e7f33-dca8-774f-b95a-59d554342e19/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "52.204.246.179",
-        "ipinfo": null,
+        "ip": "34.194.247.17",
+        "ipinfo": {
+          "ip": "34.194.247.17",
+          "hostname": "ec2-34-194-247-17.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "A": [
-            "52.204.246.179",
-            "34.194.247.17"
+            "34.194.247.17",
+            "52.204.246.179"
           ],
           "MX": [
             "10 mx0.us.cf-ops.net."
@@ -113,7 +130,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -236,12 +260,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (free-antivir .us/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"free-antivir.us\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001440; classtype:social-engineering; sid:6001440; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-01T16:06:11.042025+00:00",
+  "updated_at": "2026-06-02T02:39:58.188068+00:00",
   "probe": {
     "dns": true,
     "whois": true,
