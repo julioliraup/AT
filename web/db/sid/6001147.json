@@ -74,37 +74,60 @@
     "phishdestroy": {
       "domain": "amazon-clone-three-sandy.vercel.app",
       "domain_defanged": "amazon-clone-three-sandy[.]vercel[.]app",
-      "case_id": "PD-20260601-2B197A",
-      "analyzed_at": "2026-06-01T15:52:16.299Z",
+      "case_id": "PD-20260603-2B197A",
+      "analyzed_at": "2026-06-03T21:13:44.872Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e83e2-bf84-760a-8735-8b719905da38/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8b07-8107-779b-b879-18590e5e312c.png",
+          "url": "https://urlscan.io/result/019e8b07-8107-779b-b879-18590e5e312c/",
+          "title": "Amezon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.2",
-        "ipinfo": null,
+        "ip": "216.198.79.2",
+        "ipinfo": {
+          "ip": "216.198.79.2",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.2",
-            "216.198.79.2"
+            "216.198.79.2",
+            "64.29.17.2"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -232,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazon-clone-three-sandy .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"amazon-clone-three-sandy.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001147; classtype:social-engineering; sid:6001147; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T02:23:48.868659+00:00",
+  "updated_at": "2026-06-03T21:14:30.534215+00:00",
   "probe": {
     "dns": true,
     "whois": false,

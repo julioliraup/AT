@@ -49,18 +49,23 @@
     "phishdestroy": {
       "domain": "scnv.io",
       "domain_defanged": "scnv[.]io",
-      "case_id": "PD-20260601-72A0DA",
-      "analyzed_at": "2026-06-01T06:58:32.463Z",
+      "case_id": "PD-20260604-72A0DA",
+      "analyzed_at": "2026-06-04T01:19:19.140Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e81fa-156f-75a9-8bd6-3755671f002e/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e8848-cd5c-75d9-a853-2d448f1189c6.png",
+          "url": "https://urlscan.io/result/019e8848-cd5c-75d9-a853-2d448f1189c6/",
+          "title": "Not Found"
         }
       },
       "detections": [],
@@ -79,6 +84,12 @@
           "asn": "AS16509"
         },
         "dns": {
+          "A": [
+            "35.84.157.148",
+            "44.240.86.9",
+            "52.40.252.194",
+            "54.186.166.232"
+          ],
           "AAAA": [
             "2600:1f14:28ae:3c01:1100:1bdd:5481:ba3b",
             "2600:1f14:28ae:3c02:7ad:f32d:6321:3ae9",
@@ -88,12 +99,6 @@
           "NS": [
             "dee.ns.cloudflare.com.",
             "boyd.ns.cloudflare.com."
-          ],
-          "A": [
-            "35.84.157.148",
-            "44.240.86.9",
-            "52.40.252.194",
-            "54.186.166.232"
           ]
         }
       },
@@ -229,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (scnv.io/debix/)\"; flow:established,to_server; http.uri; content:\"/debix/\"; startswith; fast_pattern; http.host; content:\"scnv.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003452; classtype:social-engineering; sid:6003452; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:15:20.334518+00:00",
+  "updated_at": "2026-06-04T01:19:14.657312+00:00",
   "probe": {
     "dns": true,
     "whois": true,

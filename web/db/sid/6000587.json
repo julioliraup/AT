@@ -50,8 +50,8 @@
     "phishdestroy": {
       "domain": "adityachaurasia1676.github.io",
       "domain_defanged": "adityachaurasia1676[.]github[.]io",
-      "case_id": "PD-20260602-54EA43",
-      "analyzed_at": "2026-06-02T01:59:44.497Z",
+      "case_id": "PD-20260603-54EA43",
+      "analyzed_at": "2026-06-03T20:09:44.074Z",
       "intel": {
         "virustotal": {
           "malicious": 11,
@@ -117,12 +117,14 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019e7ef4-6c1c-717d-ad80-11c69cae95ec.png",
-          "url": "https://urlscan.io/result/019e7ef4-6c1c-717d-ad80-11c69cae95ec/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8d92-cbaf-755e-b693-b17da658cf30.png",
+          "url": "https://urlscan.io/result/019e8d92-cbaf-755e-b693-b17da658cf30/",
+          "title": "Netflix Layout"
         }
       },
       "detections": [
@@ -180,6 +182,11 @@
           "source": "VT: VIPRE",
           "type": "phishing",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
         }
       ],
       "domain_info": {
@@ -199,15 +206,15 @@
         "dns": {
           "AAAA": [
             "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
             "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
+            "2606:50c0:8003::153",
+            "2606:50c0:8001::153"
           ],
           "A": [
             "185.199.108.153",
             "185.199.109.153",
-            "185.199.110.153",
-            "185.199.111.153"
+            "185.199.111.153",
+            "185.199.110.153"
           ]
         }
       },
@@ -347,10 +354,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (adityachaurasia1676 .github .io/Netflix/)\"; flow:established,to_server; http.uri; content:\"/Netflix/\"; startswith; fast_pattern; http.host;  content:\"adityachaurasia1676.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000587; classtype:social-engineering; sid:6000587; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T01:59:42.158839+00:00",
+  "updated_at": "2026-06-03T20:09:22.425969+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

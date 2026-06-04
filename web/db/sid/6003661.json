@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "atgamipost.web.app",
       "domain_defanged": "atgamipost[.]web[.]app",
-      "case_id": "PD-20260602-5E8E41",
-      "analyzed_at": "2026-06-02T04:22:24.783Z",
+      "case_id": "PD-20260604-5E8E41",
+      "analyzed_at": "2026-06-04T01:45:04.629Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8691-8542-710c-a0de-a8ef040ef60d.png",
           "url": "https://urlscan.io/result/019e8691-8542-710c-a0de-a8ef040ef60d/",
-          "pending": true
+          "title": "Monty python series netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -228,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (atgamipost.web.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"atgamipost.web.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003661; classtype:social-engineering; sid:6003661; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:22:22.703256+00:00",
+  "updated_at": "2026-06-04T01:44:50.870221+00:00",
   "probe": {
     "dns": true,
     "whois": false,

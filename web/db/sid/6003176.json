@@ -18,60 +18,55 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://govauinboxmsg-alert.com/",
-      "domain": "govauinboxmsg-alert.com",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-05-21T07:21:13",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "govauinboxmsg-alert.com",
       "domain_defanged": "govauinboxmsg-alert[.]com",
-      "case_id": "PD-20260601-4351F1",
-      "analyzed_at": "2026-06-01T06:42:19.039Z",
+      "case_id": "PD-20260604-4351F1",
+      "analyzed_at": "2026-06-04T00:48:13.805Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Australian Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3fc9-a896-7218-b253-ec5ee78be7e1.png",
+          "url": "https://urlscan.io/result/019e3fc9-a896-7218-b253-ec5ee78be7e1/",
+          "title": "Sign in with myGov - myGov"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Australian Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2026-05-19T06:07:13Z",
         "expires": "2027-05-19T06:07:13Z",
-        "age_days": 13,
+        "age_days": 15,
         "nameservers": [
           "NS1.SUSPENDED-DOMAIN.COM",
           "NS2.SUSPENDED-DOMAIN.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "45.61.149.204",
+        "ipinfo": {
+          "ip": "45.61.149.204",
+          "hostname": "204.149.61.45.static.cloudzy.com",
+          "city": "Las Vegas",
+          "region": "Nevada",
+          "country": "US",
+          "org": "AS14956 RouterHosting LLC",
+          "asn": "AS14956"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +78,14 @@
           "method": "form",
           "iana_ids": "1917"
         },
-        "hosting": null
+        "hosting": {
+          "name": "ROUTERHOSTING",
+          "abuse": "abuse-reports@cloudzy.com",
+          "url": "mailto:abuse-reports@cloudzy.com",
+          "logo": "https://i.ibb.co/dsFkFMby/pr-ROUTERHOSTING.png",
+          "method": "email",
+          "asn": "AS14956"
+        }
       },
       "report_services": [
         {
@@ -206,12 +208,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (govauinboxmsg-alert.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"govauinboxmsg-alert.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003176; classtype:social-engineering; sid:6003176; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:05:26.923750+00:00",
+  "updated_at": "2026-06-04T00:47:54.350786+00:00",
   "probe": {
     "dns": false,
     "whois": false,

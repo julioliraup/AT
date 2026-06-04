@@ -49,112 +49,26 @@
     "phishdestroy": {
       "domain": "smartconsulate.com",
       "domain_defanged": "smartconsulate[.]com",
-      "case_id": "PD-20260602-3164A6",
-      "analyzed_at": "2026-06-02T00:25:52.069Z",
+      "case_id": "PD-20260604-3164A6",
+      "analyzed_at": "2026-06-04T12:37:21.336Z",
       "intel": {
         "virustotal": {
-          "malicious": 5,
-          "suspicious": 3,
-          "total": 91,
-          "detections": [
-            {
-              "engine": "Abusix",
-              "category": "suspicious",
-              "result": "spam"
-            },
-            {
-              "engine": "alphaMountain.ai",
-              "category": "suspicious",
-              "result": "suspicious"
-            },
-            {
-              "engine": "Cluster25",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "CRDF",
-              "category": "malicious",
-              "result": "malicious"
-            },
-            {
-              "engine": "Gridinsoft",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "MalwareURL",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Netcraft",
-              "category": "malicious",
-              "result": "malicious"
-            },
-            {
-              "engine": "SOCRadar",
-              "category": "suspicious",
-              "result": "suspicious"
-            }
-          ],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e85b8-f560-775c-bea5-48bba729e13d/",
+          "url": "https://urlscan.io/result/019e92a3-5e0d-74ae-a18c-50c1ad9574fa/",
           "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "VT: Abusix",
-          "type": "spam",
-          "severity": "medium"
-        },
-        {
-          "source": "VT: alphaMountain.ai",
-          "type": "suspicious",
-          "severity": "medium"
-        },
-        {
-          "source": "VT: Cluster25",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: CRDF",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Gridinsoft",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: MalwareURL",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Netcraft",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: SOCRadar",
-          "type": "suspicious",
-          "severity": "medium"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2020-10-04T00:33:16Z",
         "expires": "2026-10-04T00:33:16Z",
-        "age_days": 2066,
+        "age_days": 2069,
         "nameservers": [
           "NS1045.UI-DNS.BIZ",
           "NS1045.UI-DNS.COM",
@@ -164,19 +78,8 @@
       },
       "infrastructure": {
         "ip": "217.160.0.160",
-        "ipinfo": {
-          "ip": "217.160.0.160",
-          "hostname": "217-160-0-160.elastic-ssl.ui-r.com",
-          "city": "Frankfurt am Main",
-          "region": "Hesse",
-          "country": "DE",
-          "org": "AS8560 IONOS SE",
-          "asn": "AS8560"
-        },
+        "ipinfo": null,
         "dns": {
-          "A": [
-            "217.160.0.160"
-          ],
           "AAAA": [
             "2001:8d8:100f:f000::2b3"
           ],
@@ -184,11 +87,14 @@
             "10 mx00.ionos.co.uk.",
             "10 mx01.ionos.co.uk."
           ],
+          "A": [
+            "217.160.0.160"
+          ],
           "NS": [
-            "ns1045.ui-dns.org.",
-            "ns1045.ui-dns.com.",
+            "ns1045.ui-dns.de.",
             "ns1045.ui-dns.biz.",
-            "ns1045.ui-dns.de."
+            "ns1045.ui-dns.com.",
+            "ns1045.ui-dns.org."
           ]
         }
       },
@@ -201,14 +107,7 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": {
-          "name": "CRONON-AS",
-          "abuse": "abuse@vautron.de",
-          "url": "mailto:abuse@vautron.de",
-          "logo": "https://i.ibb.co/F4bxDB72/pr-CRONON-AS.png",
-          "method": "email",
-          "asn": "AS8560"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -331,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (smartconsulate.com/wp-includes/talibansource.html?eta=belel@c637c1b9dd79b16c6ad663c55d60260e89fd.net)\"; flow:established,to_server; http.uri; content:\"/wp-includes/talibansource.html?eta=belel@c637c1b9dd79b16c6ad663c55d60260e89fd.net\"; startswith; fast_pattern; http.host; content:\"smartconsulate.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010305; classtype:social-engineering; sid:6010305; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-02T09:26:24.367980+00:00",
+  "updated_at": "2026-06-04T12:37:11.669667+00:00",
   "probe": {
     "dns": true,
     "whois": true,

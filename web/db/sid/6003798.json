@@ -49,51 +49,82 @@
     "phishdestroy": {
       "domain": "urlz.fr",
       "domain_defanged": "urlz[.]fr",
-      "case_id": "PD-20260601-A145B5",
-      "analyzed_at": "2026-06-01T18:30:56.974Z",
+      "case_id": "PD-20260604-A145B5",
+      "analyzed_at": "2026-06-04T02:01:15.460Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e8474-05a7-778c-b974-43472979b40a/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e8c80-1eaf-728e-8d71-bc18a11e1a36.png",
+          "url": "https://urlscan.io/result/019e8c80-1eaf-728e-8d71-bc18a11e1a36/",
+          "title": "seoteamdashboard.xyz"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.91.223",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.91.223",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3031::6815:5bdf",
+            "2606:4700:3037::ac43:b4d3"
+          ],
+          "NS": [
+            "igor.ns.cloudflare.com.",
+            "nina.ns.cloudflare.com."
+          ],
           "MX": [
             "1 mx0.mail.ovh.net.",
             "5 mx1.mail.ovh.net.",
             "50 mx2.mail.ovh.net.",
             "100 mx3.mail.ovh.net."
           ],
-          "AAAA": [
-            "2606:4700:3031::6815:5bdf",
-            "2606:4700:3037::ac43:b4d3"
-          ],
           "A": [
             "104.21.91.223",
             "172.67.180.211"
-          ],
-          "NS": [
-            "igor.ns.cloudflare.com.",
-            "nina.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,15 +247,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (urlz.fr/uxrS)\"; flow:established,to_server; http.uri; content:\"/uxrS\"; startswith; fast_pattern; http.host; content:\"urlz.fr\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003798; classtype:social-engineering; sid:6003798; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-02T04:27:00.722932+00:00",
+  "updated_at": "2026-06-04T02:01:07.509857+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

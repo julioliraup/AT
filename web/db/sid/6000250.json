@@ -50,27 +50,82 @@
     "phishdestroy": {
       "domain": "anubhav1450.github.io",
       "domain_defanged": "anubhav1450[.]github[.]io",
-      "case_id": "PD-20260601-3DD988",
-      "analyzed_at": "2026-06-01T15:02:59.649Z",
+      "case_id": "PD-20260603-3DD988",
+      "analyzed_at": "2026-06-03T19:25:57.097Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e83b5-a21a-74b8-9eda-ede6639ba7e2.png",
           "url": "https://urlscan.io/result/019e83b5-a21a-74b8-9eda-ede6639ba7e2/",
-          "pending": true
+          "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "AAAA": [
             "2606:50c0:8000::153",
@@ -88,7 +143,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -211,12 +273,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (anubhav1450 .github .io/Javascript-Amazon-Project/)\"; flow:established,to_server; http.uri; content:\"/Javascript-Amazon-Project/\"; startswith; fast_pattern; http.host;  content:\"anubhav1450.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000250; classtype:social-engineering; sid:6000250; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T01:44:48.375044+00:00",
+  "updated_at": "2026-06-03T19:25:53.596196+00:00",
   "probe": {
     "dns": true,
     "whois": true,

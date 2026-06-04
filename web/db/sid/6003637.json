@@ -73,37 +73,60 @@
     "phishdestroy": {
       "domain": "clone-netflix-debs.vercel.app",
       "domain_defanged": "clone-netflix-debs[.]vercel[.]app",
-      "case_id": "PD-20260601-4A6850",
-      "analyzed_at": "2026-06-01T18:22:14.995Z",
+      "case_id": "PD-20260604-4A6850",
+      "analyzed_at": "2026-06-04T01:40:49.293Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e846c-0934-70fa-ad2e-b99fe5128d6a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8609-afcf-71ee-b9ea-b3f5d9fdc893.png",
+          "url": "https://urlscan.io/result/019e8609-afcf-71ee-b9ea-b3f5d9fdc893/",
+          "title": "Clone Netflix (Projeto de Estudo)"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.194",
-        "ipinfo": null,
+        "ip": "64.29.17.2",
+        "ipinfo": {
+          "ip": "64.29.17.2",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.194",
-            "216.198.79.194"
+            "64.29.17.2",
+            "216.198.79.2"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -226,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (clone-netflix-debs.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"clone-netflix-debs.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003637; classtype:social-engineering; sid:6003637; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:21:40.650420+00:00",
+  "updated_at": "2026-06-04T01:40:42.168078+00:00",
   "probe": {
     "dns": true,
     "whois": false,

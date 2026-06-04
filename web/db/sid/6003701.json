@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "forthubs.com",
       "domain_defanged": "forthubs[.]com",
-      "case_id": "PD-20260601-59FEB8",
-      "analyzed_at": "2026-06-01T18:25:43.216Z",
+      "case_id": "PD-20260604-59FEB8",
+      "analyzed_at": "2026-06-04T01:50:12.193Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e846f-3825-730d-bee9-0ca1995a5f6f.png",
           "url": "https://urlscan.io/result/019e846f-3825-730d-bee9-0ca1995a5f6f/",
-          "pending": true
+          "title": "Fortnite Reichtum-Rangliste | Epic Games"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Global Domain Group LLC",
         "created": "2026-02-04T12:29:59Z",
         "expires": "2027-02-04T12:29:59Z",
-        "age_days": 117,
+        "age_days": 119,
         "nameservers": [
           "COLETTE.NS.CLOUDFLARE.COM",
           "KARL.NS.CLOUDFLARE.COM"
@@ -76,15 +85,22 @@
       },
       "infrastructure": {
         "ip": "172.67.165.130",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.165.130",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3033::ac43:a582",
-            "2606:4700:3031::6815:31b1"
-          ],
           "A": [
             "172.67.165.130",
             "104.21.49.177"
+          ],
+          "AAAA": [
+            "2606:4700:3033::ac43:a582",
+            "2606:4700:3031::6815:31b1"
           ],
           "NS": [
             "colette.ns.cloudflare.com.",
@@ -101,7 +117,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -224,12 +247,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (forthubs.com/id/login)\"; flow:established,to_server; http.uri; content:\"/id/login\"; startswith; fast_pattern; http.host; content:\"forthubs.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003701; classtype:social-engineering; sid:6003701; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:23:56.559394+00:00",
+  "updated_at": "2026-06-04T01:50:03.135408+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -171,21 +171,30 @@
     "phishdestroy": {
       "domain": "chunky-bet365.com.cn",
       "domain_defanged": "chunky-bet365[.]com[.]cn",
-      "case_id": "PD-20260601-78B365",
-      "analyzed_at": "2026-06-01T07:15:52.550Z",
+      "case_id": "PD-20260604-78B365",
+      "analyzed_at": "2026-06-04T01:53:08.044Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e8209-f93d-70eb-9431-8a4cd521d90f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8c18-c95e-7270-915f-e8863ba04a9c.png",
+          "url": "https://urlscan.io/result/019e8c18-c95e-7270-915f-e8863ba04a9c/",
+          "title": "Bet365官网:尽享无与伦比的在线博彩体验-Bet365中国"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -200,12 +209,12 @@
           "asn": "AS134548"
         },
         "dns": {
+          "A": [
+            "154.212.99.139"
+          ],
           "NS": [
             "ns1.nowcndns.com.",
             "ns2.nowcndns.com."
-          ],
-          "A": [
-            "154.212.99.139"
           ]
         }
       },
@@ -341,12 +350,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (chunky-bet365.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"chunky-bet365.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003736; classtype:social-engineering; sid:6003736; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:25:06.986055+00:00",
+  "updated_at": "2026-06-04T01:53:04.130378+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -73,37 +73,60 @@
     "phishdestroy": {
       "domain": "docu-share-direct-lnk-5378edjksjhdb.vercel.app",
       "domain_defanged": "docu-share-direct-lnk-5378edjksjhdb[.]vercel[.]app",
-      "case_id": "PD-20260601-3812C5",
-      "analyzed_at": "2026-06-01T15:27:38.270Z",
+      "case_id": "PD-20260603-3812C5",
+      "analyzed_at": "2026-06-03T20:27:49.368Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e83cc-260a-726f-90af-3d01a6243334/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8ee2-ab38-7239-87e2-ce35d2b06937.png",
+          "url": "https://urlscan.io/result/019e8ee2-ab38-7239-87e2-ce35d2b06937/",
+          "title": "Adobe Digital"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.2",
-        "ipinfo": null,
+        "ip": "64.29.17.66",
+        "ipinfo": {
+          "ip": "64.29.17.66",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.2",
-            "216.198.79.2"
+            "64.29.17.66",
+            "216.198.79.66"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -226,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (docu-share-direct-lnk-5378edjksjhdb .vercel .app/docu-share-download98yhjkfdyidy8idyi .html)\"; flow:established,to_server; http.uri; content:\"/docu-share-download98yhjkfdyidy8idyi.html\"; startswith; fast_pattern; http.host;  content:\"docu-share-direct-lnk-5378edjksjhdb.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000738; classtype:social-engineering; sid:6000738; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T02:05:59.438257+00:00",
+  "updated_at": "2026-06-03T20:27:46.972740+00:00",
   "probe": {
     "dns": true,
     "whois": false,

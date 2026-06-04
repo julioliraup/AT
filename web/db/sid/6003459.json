@@ -49,21 +49,78 @@
     "phishdestroy": {
       "domain": "startledgersso.ghost.io",
       "domain_defanged": "startledgersso[.]ghost[.]io",
-      "case_id": "PD-20260601-4D7652",
-      "analyzed_at": "2026-06-01T18:13:19.871Z",
+      "case_id": "PD-20260604-4D7652",
+      "analyzed_at": "2026-06-04T01:20:18.862Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e8463-e453-7531-8225-723002a825af.png",
           "url": "https://urlscan.io/result/019e8463-e453-7531-8225-723002a825af/",
-          "pending": true
+          "title": "Domain error"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,15 +135,15 @@
             "151.101.131.7",
             "151.101.195.7"
           ],
-          "MX": [
-            "ghost.map.fastly.net."
-          ],
           "AAAA": [
             "ghost.map.fastly.net.",
             "2a04:4e42::775",
             "2a04:4e42:200::775",
             "2a04:4e42:400::775",
             "2a04:4e42:600::775"
+          ],
+          "MX": [
+            "ghost.map.fastly.net."
           ],
           "CNAME": [
             "ghost.map.fastly.net."
@@ -98,7 +155,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -221,12 +285,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (startledgersso.ghost.io/en-ldgrlive)\"; flow:established,to_server; http.uri; content:\"/en-ldgrlive\"; startswith; fast_pattern; http.host; content:\"startledgersso.ghost.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003459; classtype:social-engineering; sid:6003459; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:15:34.365111+00:00",
+  "updated_at": "2026-06-04T01:20:11.009417+00:00",
   "probe": {
     "dns": true,
     "whois": true,

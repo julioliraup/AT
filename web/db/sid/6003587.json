@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "ledgers.at",
       "domain_defanged": "ledgers[.]at",
-      "case_id": "PD-20260601-1D67D0",
-      "analyzed_at": "2026-06-01T07:05:44.990Z",
+      "case_id": "PD-20260604-1D67D0",
+      "analyzed_at": "2026-06-04T01:35:15.538Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e8200-b3f5-73d9-b85c-32dcebacf0cf/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8eac-5402-71e9-b63d-2044eb09a654.png",
+          "url": "https://urlscan.io/result/019e8eac-5402-71e9-b63d-2044eb09a654/",
+          "title": "Ledger官网 - 全球领先的 DeFi 与 Web3 安全存储硬件钱包"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ledgers.at/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ledgers.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003587; classtype:social-engineering; sid:6003587; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:19:31.443931+00:00",
+  "updated_at": "2026-06-04T01:35:11.908740+00:00",
   "probe": {
     "dns": true,
     "whois": true,

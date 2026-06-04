@@ -50,11 +50,21 @@
     "phishdestroy": {
       "domain": "meta-id19239238.invoice-ads-program.com",
       "domain_defanged": "meta-id19239238[.]invoice-ads-program[.]com",
-      "case_id": "PD-20260601-917A4F",
-      "analyzed_at": "2026-06-01T03:57:50.334Z",
+      "case_id": "PD-20260603-917A4F",
+      "analyzed_at": "2026-06-03T19:09:08.732Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": true,
@@ -68,6 +78,11 @@
         }
       },
       "detections": [
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
         {
           "source": "URLScan.io",
           "type": "Targeting: Facebook",
@@ -221,12 +236,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-id19239238 .invoice-ads-program .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"meta-id19239238.invoice-ads-program.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000085; classtype:social-engineering; sid:6000085; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T01:33:35.806253+00:00",
+  "updated_at": "2026-06-03T19:09:00.312993+00:00",
   "probe": {
     "dns": false,
     "whois": false,

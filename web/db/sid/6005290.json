@@ -22,7 +22,7 @@
       "url": "http://zed12.com/5-21-2026-EXCH032/",
       "domain": "zed12.com",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "zed12.com",
       "domain_defanged": "zed12[.]com",
-      "case_id": "PD-20260602-5B28C7",
-      "analyzed_at": "2026-06-02T05:28:24.129Z",
+      "case_id": "PD-20260604-5B28C7",
+      "analyzed_at": "2026-06-04T04:45:50.697Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e90f3-af71-726c-9263-a68b34049f71/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,15 +68,34 @@
         "registrar": "NameCheap, Inc.",
         "created": "2025-09-10T14:05:17Z",
         "expires": "2026-09-10T14:05:17Z",
-        "age_days": 264,
+        "age_days": 266,
         "nameservers": [
-          "NS1.CHADIPRESS.COM",
-          "NS2.CHADIPRESS.COM"
+          "NS1.BRECIP.COM",
+          "NS2.BRECIP.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "162.0.233.247",
+        "ipinfo": {
+          "ip": "162.0.233.247",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS22612 Namecheap, Inc.",
+          "asn": "AS22612"
+        },
+        "dns": {
+          "A": [
+            "162.0.233.247"
+          ],
+          "MX": [
+            "0 zed12.com."
+          ],
+          "NS": [
+            "ns2.brecip.com.",
+            "ns1.brecip.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": {
@@ -83,7 +106,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Namecheap Hosting",
+          "abuse": "abuse@namecheap.com",
+          "url": "https://support.namecheap.com/index.php?/Tickets/Submit",
+          "logo": "",
+          "method": "form",
+          "asn": "AS22612"
+        }
       },
       "report_services": [
         {
@@ -210,12 +240,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zed12.com/5-21-2026-EXCH032/)\"; flow:established,to_server; http.uri; content:\"/5-21-2026-EXCH032/\"; startswith; fast_pattern; http.host; content:\"zed12.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005290; classtype:social-engineering; sid:6005290; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-02T05:28:18.658534+00:00",
+  "updated_at": "2026-06-04T04:45:36.713088+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

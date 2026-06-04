@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "ndaxlogen.webflow.io",
       "domain_defanged": "ndaxlogen[.]webflow[.]io",
-      "case_id": "PD-20260601-A48DBE",
-      "analyzed_at": "2026-06-01T04:48:36.504Z",
+      "case_id": "PD-20260603-A48DBE",
+      "analyzed_at": "2026-06-03T21:13:01.734Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ndax"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8183-1ffb-7105-adc3-a5a131e93de6.png",
           "url": "https://urlscan.io/result/019e8183-1ffb-7105-adc3-a5a131e93de6/",
-          "pending": true
+          "title": "NDAX Login: Manage Your Digital Assets Confidently"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ndax",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
+        "ip": "172.64.151.8",
         "ipinfo": {
-          "ip": "104.18.36.248",
+          "ip": "172.64.151.8",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "104.18.36.248",
-            "172.64.151.8"
+            "172.64.151.8",
+            "104.18.36.248"
           ],
           "AAAA": [
             "2606:4700:440c::ac40:9708",
@@ -245,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ndaxlogen .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"ndaxlogen.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001126; classtype:social-engineering; sid:6001126; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T02:23:01.687115+00:00",
+  "updated_at": "2026-06-03T21:12:53.155018+00:00",
   "probe": {
     "dns": true,
     "whois": true,

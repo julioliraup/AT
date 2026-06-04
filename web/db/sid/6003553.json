@@ -171,21 +171,30 @@
     "phishdestroy": {
       "domain": "icy-bet365.com.cn",
       "domain_defanged": "icy-bet365[.]com[.]cn",
-      "case_id": "PD-20260601-100DA0",
-      "analyzed_at": "2026-06-01T07:04:19.830Z",
+      "case_id": "PD-20260604-100DA0",
+      "analyzed_at": "2026-06-04T01:32:14.004Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e81ff-66cb-749e-9054-b728151ab611/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8b07-f635-70eb-8e68-d9ea7fa5f492.png",
+          "url": "https://urlscan.io/result/019e8b07-f635-70eb-8e68-d9ea7fa5f492/",
+          "title": "Bet365官网:尽享无与伦比的在线博彩体验-Bet365中国"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -200,12 +209,12 @@
           "asn": "AS134548"
         },
         "dns": {
+          "A": [
+            "154.212.99.140"
+          ],
           "NS": [
             "ns1.nowcndns.com.",
             "ns2.nowcndns.com."
-          ],
-          "A": [
-            "154.212.99.140"
           ]
         }
       },
@@ -341,12 +350,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (icy-bet365.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"icy-bet365.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003553; classtype:social-engineering; sid:6003553; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:18:35.475284+00:00",
+  "updated_at": "2026-06-04T01:32:09.788101+00:00",
   "probe": {
     "dns": true,
     "whois": true,

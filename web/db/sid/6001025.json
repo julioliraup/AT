@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "akash-muddhana.github.io",
       "domain_defanged": "akash-muddhana[.]github[.]io",
-      "case_id": "PD-20260601-24EE34",
-      "analyzed_at": "2026-06-01T04:43:56.705Z",
+      "case_id": "PD-20260603-24EE34",
+      "analyzed_at": "2026-06-03T21:02:10.620Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e817e-e07d-770a-bb5f-f7bfd8b8cbe7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e85e1-0a9e-720c-829e-51507884967f.png",
+          "url": "https://urlscan.io/result/019e85e1-0a9e-720c-829e-51507884967f/",
+          "title": "Amazon Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -83,14 +92,14 @@
           "AAAA": [
             "2606:50c0:8002::153",
             "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8003::153"
+            "2606:50c0:8003::153",
+            "2606:50c0:8001::153"
           ],
           "A": [
             "185.199.108.153",
-            "185.199.111.153",
             "185.199.109.153",
-            "185.199.110.153"
+            "185.199.110.153",
+            "185.199.111.153"
           ]
         }
       },
@@ -226,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (akash-muddhana .github .io/Amazon-clone)\"; flow:established,to_server; http.uri; content:\"/Amazon-clone\"; startswith; fast_pattern; http.host;  content:\"akash-muddhana.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001025; classtype:social-engineering; sid:6001025; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T02:19:25.834303+00:00",
+  "updated_at": "2026-06-03T21:02:03.222321+00:00",
   "probe": {
     "dns": true,
     "whois": true,

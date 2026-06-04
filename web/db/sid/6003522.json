@@ -55,27 +55,102 @@
     "phishdestroy": {
       "domain": "ec2-100-24-254-151.compute-1.amazonaws.com",
       "domain_defanged": "ec2-100-24-254-151[.]compute-1[.]amazonaws[.]com",
-      "case_id": "PD-20260601-7A82C0",
-      "analyzed_at": "2026-06-01T18:16:07.301Z",
+      "case_id": "PD-20260604-7A82C0",
+      "analyzed_at": "2026-06-04T01:28:30.827Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e8466-70cf-75cc-9bbb-704d953ca3e0.png",
           "url": "https://urlscan.io/result/019e8466-70cf-75cc-9bbb-704d953ca3e0/",
-          "pending": true
+          "title": "EDM Central Site"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "100.24.254.151",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "100.24.254.151",
+          "hostname": "ec2-100-24-254-151.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "A": [
             "100.24.254.151"
@@ -84,7 +159,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -207,12 +289,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ec2-100-24-254-151.compute-1.amazonaws.com/login)\"; flow:established,to_server; http.uri; content:\"/login\"; startswith; fast_pattern; http.host; content:\"ec2-100-24-254-151.compute-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003522; classtype:social-engineering; sid:6003522; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:17:25.895876+00:00",
+  "updated_at": "2026-06-04T01:28:27.848824+00:00",
   "probe": {
     "dns": true,
     "whois": false,

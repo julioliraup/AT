@@ -22,7 +22,7 @@
       "url": "http://stanroad.com/",
       "domain": "stanroad.com",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,33 +49,51 @@
     "phishdestroy": {
       "domain": "stanroad.com",
       "domain_defanged": "stanroad[.]com",
-      "case_id": "PD-20260601-EE1320",
-      "analyzed_at": "2026-06-01T11:45:29.102Z",
+      "case_id": "PD-20260604-EE1320",
+      "analyzed_at": "2026-06-04T09:32:43.019Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e91fa-5584-7064-afb1-b682d121e4a4/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2023-06-02T08:52:22Z",
-        "expires": "2026-06-02T08:52:22Z",
-        "age_days": 1095,
+        "expires": "2027-06-02T08:52:22Z",
+        "age_days": 1098,
         "nameservers": [
-          "A12.SHARE-DNS.COM",
-          "B12.SHARE-DNS.NET"
+          "EXPIRE1.GNAME-DNS.COM",
+          "EXPIRE2.GNAME-DNS.COM"
         ]
       },
       "infrastructure": {
+        "ip": "exp.gname.net.",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "exp.gname.net.",
+            "172.65.211.209"
+          ],
+          "MX": [
+            "exp.gname.net."
+          ],
+          "AAAA": [
+            "exp.gname.net."
+          ],
           "NS": [
-            "a.share-dns.com.",
-            "b.share-dns.net."
+            "expire1.gname-dns.com.",
+            "expire2.gname-dns.com."
+          ],
+          "CNAME": [
+            "exp.gname.net."
           ]
         }
       },
@@ -211,17 +229,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (stanroad.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"stanroad.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6008192; classtype:social-engineering; sid:6008192; rev:1; metadata: signature_severity Major, created_et 2026_05_28;)",
-  "updated_at": "2026-06-02T07:39:43.936346+00:00",
+  "updated_at": "2026-06-04T09:32:33.245313+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

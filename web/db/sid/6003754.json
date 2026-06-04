@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "fnshop.vu",
       "domain_defanged": "fnshop[.]vu",
-      "case_id": "PD-20260602-3139F6",
-      "analyzed_at": "2026-06-02T04:25:43.754Z",
+      "case_id": "PD-20260604-3139F6",
+      "analyzed_at": "2026-06-04T01:55:31.074Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8694-8f1c-73f8-a524-c4c35896492d.png",
           "url": "https://urlscan.io/result/019e8694-8f1c-73f8-a524-c4c35896492d/",
-          "pending": true
+          "title": "Fortnite Inventory Checker | Epic Games"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.12.123",
+        "ip": "172.67.194.118",
         "ipinfo": {
-          "ip": "104.21.12.123",
+          "ip": "172.67.194.118",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,8 +94,8 @@
         },
         "dns": {
           "A": [
-            "104.21.12.123",
-            "172.67.194.118"
+            "172.67.194.118",
+            "104.21.12.123"
           ],
           "AAAA": [
             "2606:4700:3033::ac43:c276",
@@ -234,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fnshop.vu/id/login)\"; flow:established,to_server; http.uri; content:\"/id/login\"; startswith; fast_pattern; http.host; content:\"fnshop.vu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003754; classtype:social-engineering; sid:6003754; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:25:41.258562+00:00",
+  "updated_at": "2026-06-04T01:55:28.248238+00:00",
   "probe": {
     "dns": true,
     "whois": true,

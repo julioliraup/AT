@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "clone-facebook-one.vercel.app",
       "domain_defanged": "clone-facebook-one[.]vercel[.]app",
-      "case_id": "PD-20260601-313B8F",
-      "analyzed_at": "2026-06-01T06:34:38.381Z",
+      "case_id": "PD-20260604-313B8F",
+      "analyzed_at": "2026-06-04T00:35:00.731Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e81e4-37e5-766e-a804-551a48b6c8e0/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e872c-ddcf-769c-bd05-26cea6b77a6e.png",
+          "url": "https://urlscan.io/result/019e872c-ddcf-769c-bd05-26cea6b77a6e/",
+          "title": "Facebook – entre ou cadastre-se"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.194",
+        "ip": "64.29.17.130",
         "ipinfo": {
-          "ip": "216.198.79.194",
+          "ip": "64.29.17.130",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.194",
-            "64.29.17.194"
+            "64.29.17.130",
+            "216.198.79.130"
           ]
         }
       },
@@ -245,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.clone-facebook-one.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.clone-facebook-one.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003226; classtype:social-engineering; sid:6003226; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:06:55.326039+00:00",
+  "updated_at": "2026-06-04T00:54:05.864123+00:00",
   "probe": {
     "dns": true,
     "whois": false,

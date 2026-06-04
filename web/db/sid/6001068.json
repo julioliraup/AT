@@ -50,27 +50,44 @@
     "phishdestroy": {
       "domain": "demo.printincbelize.com",
       "domain_defanged": "demo[.]printincbelize[.]com",
-      "case_id": "PD-20260601-490273",
-      "analyzed_at": "2026-06-01T15:48:34.545Z",
+      "case_id": "PD-20260603-490273",
+      "analyzed_at": "2026-06-03T21:06:40.766Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e83df-5cd3-768d-b558-8544a0d415e5/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Network Solutions"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e85f7-4193-77d4-8a75-7eb03f60a148.png",
+          "url": "https://urlscan.io/result/019e85f7-4193-77d4-8a75-7eb03f60a148/",
+          "title": "Sign in - Professional Email"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Network Solutions",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "108.167.140.199",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "108.167.140.199",
+          "hostname": "gator4164.hostgator.com",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS46606 Unified Layer",
+          "asn": "AS46606"
+        },
         "dns": {
           "A": [
             "108.167.140.199"
@@ -79,7 +96,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
+          "abuse": "abuse@hostopia.com.au",
+          "url": "mailto:abuse@hostopia.com.au",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS46606"
+        }
       },
       "report_services": [
         {
@@ -202,12 +226,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (demo .printincbelize .com/wp-content/uploads/wcdp-uploads/xr/)\"; flow:established,to_server; http.uri; content:\"/wp-content/uploads/wcdp-uploads/xr/\"; startswith; fast_pattern; http.host;  content:\"demo.printincbelize.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001068; classtype:social-engineering; sid:6001068; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T02:21:04.620377+00:00",
+  "updated_at": "2026-06-03T21:06:32.325893+00:00",
   "probe": {
     "dns": true,
     "whois": false,

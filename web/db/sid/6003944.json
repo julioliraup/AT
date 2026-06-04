@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "coinbase-cloned.vercel.app",
       "domain_defanged": "coinbase-cloned[.]vercel[.]app",
-      "case_id": "PD-20260601-80A1AF",
-      "analyzed_at": "2026-06-01T07:06:39.470Z",
+      "case_id": "PD-20260604-80A1AF",
+      "analyzed_at": "2026-06-04T01:36:58.316Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8201-8828-73bb-8b1d-e8f5f99551d2.png",
           "url": "https://urlscan.io/result/019e8201-8828-73bb-8b1d-e8f5f99551d2/",
-          "pending": true
+          "title": "Coinbase - Buy, sell and track your crypto"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.130",
+        "ip": "64.29.17.66",
         "ipinfo": {
-          "ip": "64.29.17.130",
+          "ip": "64.29.17.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.130",
-            "216.198.79.130"
+            "64.29.17.66",
+            "216.198.79.66"
           ]
         }
       },
@@ -245,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.coinbase-cloned.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.coinbase-cloned.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003944; classtype:social-engineering; sid:6003944; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-02T04:33:08.366863+00:00",
+  "updated_at": "2026-06-04T02:18:16.792673+00:00",
   "probe": {
     "dns": true,
     "whois": false,

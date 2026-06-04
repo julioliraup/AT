@@ -55,26 +55,35 @@
     "phishdestroy": {
       "domain": "66666365.com",
       "domain_defanged": "66666365[.]com",
-      "case_id": "PD-20260601-57D7E3",
-      "analyzed_at": "2026-06-01T06:36:23.187Z",
+      "case_id": "PD-20260604-57D7E3",
+      "analyzed_at": "2026-06-04T00:37:22.897Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e81e5-caef-747b-be17-ca2692b458a9/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8ffa-564a-72cb-8fe4-ff1729842d7e.png",
+          "url": "https://urlscan.io/result/019e8ffa-564a-72cb-8fe4-ff1729842d7e/",
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Internet Domain Service BS Corp",
         "created": "2014-10-18T07:34:16Z",
         "expires": "2026-10-18T07:34:16Z",
-        "age_days": 4243,
+        "age_days": 4246,
         "nameservers": [
           "NS1.DNSIP.COM",
           "NS2.DNSIP.COM"
@@ -84,19 +93,14 @@
         "ip": "cejhu.dn2nd.com.",
         "ipinfo": null,
         "dns": {
+          "CNAME": [
+            "cejhu.dn2nd.com."
+          ],
           "NS": [
             "ns1.dnsip.com.",
             "ns2.dnsip.com."
           ],
-          "CNAME": [
-            "cejhu.dn2nd.com."
-          ],
           "MX": [
-            "cejhu.dn2nd.com.",
-            "hqddsc.webdotdot.com.",
-            "cejhu.g.webdotdot.com."
-          ],
-          "AAAA": [
             "cejhu.dn2nd.com.",
             "hqddsc.webdotdot.com.",
             "cejhu.g.webdotdot.com."
@@ -107,6 +111,11 @@
             "cejhu.g.webdotdot.com.",
             "52.175.17.154",
             "20.2.172.139"
+          ],
+          "AAAA": [
+            "cejhu.dn2nd.com.",
+            "hqddsc.webdotdot.com.",
+            "cejhu.g.webdotdot.com."
           ]
         }
       },
@@ -119,7 +128,14 @@
           "method": "form",
           "iana_ids": "49"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -242,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.66666365.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.66666365.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003067; classtype:social-engineering; sid:6003067; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-02T04:01:20.665466+00:00",
+  "updated_at": "2026-06-04T00:37:13.574004+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -55,29 +55,50 @@
     "phishdestroy": {
       "domain": "dbjbattery.com",
       "domain_defanged": "dbjbattery[.]com",
-      "case_id": "PD-20260601-30E202",
-      "analyzed_at": "2026-06-01T17:58:26.880Z",
+      "case_id": "PD-20260604-30E202",
+      "analyzed_at": "2026-06-04T00:45:08.514Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fake Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4055-b18d-7558-8b9f-dbe57d727ec3.png",
+          "url": "https://urlscan.io/result/019e4055-b18d-7558-8b9f-dbe57d727ec3/",
+          "title": "TikTok-Wholesale"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fake Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "InterNetX GmbH",
         "created": "2025-05-22T03:16:50Z",
         "expires": "2027-05-22T03:16:50Z",
-        "age_days": 375,
+        "age_days": 377,
         "nameservers": [
           "A7.SHARE-DNS.COM",
           "B7.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "161.248.15.126",
+        "ipinfo": {
+          "ip": "161.248.15.126",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS4907 IENS TECHNOLOGY PTE. LTD",
+          "asn": "AS4907"
+        },
         "dns": null
       },
       "report_to": {
@@ -212,12 +233,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.dbjbattery.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.dbjbattery.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003153; classtype:social-engineering; sid:6003153; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:04:38.508867+00:00",
+  "updated_at": "2026-06-04T00:45:05.746099+00:00",
   "probe": {
     "dns": true,
     "whois": false,

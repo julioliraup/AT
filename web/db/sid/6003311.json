@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "netflixportal.com",
       "domain_defanged": "netflixportal[.]com",
-      "case_id": "PD-20260601-5F5DEF",
-      "analyzed_at": "2026-06-01T17:59:02.836Z",
+      "case_id": "PD-20260604-5F5DEF",
+      "analyzed_at": "2026-06-04T00:45:24.913Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e8456-cfe7-75fa-8df0-c39d6ece687c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8ead-52d5-747b-adae-13213b556580.png",
+          "url": "https://urlscan.io/result/019e8ead-52d5-747b-adae-13213b556580/",
+          "title": "Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Amazon Registrar, Inc.",
         "created": "2019-09-30T10:42:34Z",
         "expires": "2026-09-30T10:42:34Z",
-        "age_days": 2436,
+        "age_days": 2438,
         "nameservers": [
           "NS1-07.AZURE-DNS.COM",
           "NS2-07.AZURE-DNS.NET",
@@ -77,15 +86,21 @@
         ]
       },
       "infrastructure": {
-        "ip": "13.107.226.33",
-        "ipinfo": null,
+        "ip": "150.171.110.40",
+        "ipinfo": {
+          "ip": "150.171.110.40",
+          "city": "Redmond",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": {
           "MX": [
             "10 mx.sendgrid.net."
           ],
           "A": [
-            "13.107.226.33",
-            "13.107.253.33"
+            "150.171.110.40"
           ],
           "NS": [
             "ns1-07.azure-dns.com.",
@@ -104,7 +119,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -232,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netflixportal.com/l/eyJzIjoiY2I0ZWE1YzItZDA4Ny00ODFmLWJhY2UtOGVlNjQzODAyNTEzIiwiZSI6Ijk1ZGQxOGM3LTMzYTgtNGQ1Yy05NjE3LWIwNzQzNzcxMGY4OSIsInNjIjoxMDYsInQiOjg3fQ.c1slpgyulTwK7conQBksi9oZ5Z7BfbiW9I2pTvdMdtY)\"; flow:established,to_server; http.uri; content:\"/l/eyJzIjoiY2I0ZWE1YzItZDA4Ny00ODFmLWJhY2UtOGVlNjQzODAyNTEzIiwiZSI6Ijk1ZGQxOGM3LTMzYTgtNGQ1Yy05NjE3LWIwNzQzNzcxMGY4OSIsInNjIjoxMDYsInQiOjg3fQ.c1slpgyulTwK7conQBksi9oZ5Z7BfbiW9I2pTvdMdtY\"; startswith; fast_pattern; http.host; content:\"netflixportal.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003311; classtype:social-engineering; sid:6003311; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:10:18.423144+00:00",
+  "updated_at": "2026-06-04T01:04:13.992800+00:00",
   "probe": {
     "dns": true,
     "whois": true,

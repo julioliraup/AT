@@ -49,21 +49,117 @@
     "phishdestroy": {
       "domain": "punchnextgen.s3.eu-west-1.amazonaws.com",
       "domain_defanged": "punchnextgen[.]s3[.]eu-west-1[.]amazonaws[.]com",
-      "case_id": "PD-20260601-A55E4A",
-      "analyzed_at": "2026-06-01T06:27:12.700Z",
+      "case_id": "PD-20260604-A55E4A",
+      "analyzed_at": "2026-06-04T00:24:36.524Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 9,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e81dd-4f1d-776f-86c2-6a764c7e4260/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e81dd-4f1d-776f-86c2-6a764c7e4260.png",
+          "url": "https://urlscan.io/result/019e81dd-4f1d-776f-86c2-6a764c7e4260/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "malware",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,14 +175,17 @@
           ],
           "A": [
             "s3-r-w.eu-west-1.amazonaws.com.",
-            "3.5.74.45",
-            "3.5.74.71",
-            "52.92.19.74",
-            "3.5.72.103",
-            "52.92.2.234",
-            "52.92.36.210",
-            "3.5.75.31",
-            "52.92.16.114"
+            "52.92.33.26",
+            "3.5.74.17",
+            "3.5.75.68",
+            "3.5.75.57",
+            "3.5.73.29",
+            "3.5.75.115",
+            "3.5.74.47",
+            "3.5.73.102"
+          ],
+          "CNAME": [
+            "s3-r-w.eu-west-1.amazonaws.com."
           ],
           "NS": [
             "s3-r-w.eu-west-1.amazonaws.com.",
@@ -94,15 +193,19 @@
             "ns-1961.awsdns-53.co.uk.",
             "ns-56.awsdns-07.com.",
             "ns-777.awsdns-33.net."
-          ],
-          "CNAME": [
-            "s3-r-w.eu-west-1.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -225,12 +328,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (punchnextgen.s3.eu-west-1.amazonaws.com/iqqfwzvz07l0?utm_sourc)\"; flow:established,to_server; http.uri; content:\"/iqqfwzvz07l0?utm_sourc\"; startswith; fast_pattern; http.host; content:\"punchnextgen.s3.eu-west-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002941; classtype:social-engineering; sid:6002941; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-02T03:55:52.656512+00:00",
+  "updated_at": "2026-06-04T00:24:32.939703+00:00",
   "probe": {
     "dns": true,
     "whois": false,

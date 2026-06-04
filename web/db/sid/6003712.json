@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "cliff.spahotel.guru",
       "domain_defanged": "cliff[.]spahotel[.]guru",
-      "case_id": "PD-20260602-FDFC73",
-      "analyzed_at": "2026-06-02T04:24:15.395Z",
+      "case_id": "PD-20260604-FDFC73",
+      "analyzed_at": "2026-06-04T01:51:03.890Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8693-3467-756d-9092-5340d86d932a.png",
           "url": "https://urlscan.io/result/019e8693-3467-756d-9092-5340d86d932a/",
-          "pending": true
+          "title": "The Cliff Hotel & Spa Cardigan - Cardigan, United Kingdom"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -220,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cliff.spahotel.guru/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cliff.spahotel.guru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003712; classtype:social-engineering; sid:6003712; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:24:11.898100+00:00",
+  "updated_at": "2026-06-04T01:50:59.593637+00:00",
   "probe": {
     "dns": true,
     "whois": true,

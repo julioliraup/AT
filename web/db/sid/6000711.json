@@ -50,11 +50,11 @@
     "phishdestroy": {
       "domain": "kentakahashi0523.github.io",
       "domain_defanged": "kentakahashi0523[.]github[.]io",
-      "case_id": "PD-20260602-557AA9",
-      "analyzed_at": "2026-06-02T02:04:55.821Z",
+      "case_id": "PD-20260603-557AA9",
+      "analyzed_at": "2026-06-03T20:25:06.044Z",
       "intel": {
         "virustotal": {
-          "malicious": 11,
+          "malicious": 10,
           "suspicious": 1,
           "total": 91,
           "detections": [
@@ -72,11 +72,6 @@
               "engine": "BitDefender",
               "category": "malicious",
               "result": "phishing"
-            },
-            {
-              "engine": "Chong Lua Dao",
-              "category": "malicious",
-              "result": "malicious"
             },
             {
               "engine": "CyRadar",
@@ -122,12 +117,14 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019e7efb-2b60-73f8-9bdf-80cf8f996c69.png",
-          "url": "https://urlscan.io/result/019e7efb-2b60-73f8-9bdf-80cf8f996c69/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Rakuten"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8879-2236-72a7-8492-096d14d5f310.png",
+          "url": "https://urlscan.io/result/019e8879-2236-72a7-8492-096d14d5f310/",
+          "title": "Rakuten Smart Match Prototype"
         }
       },
       "detections": [
@@ -144,11 +141,6 @@
         {
           "source": "VT: BitDefender",
           "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Chong Lua Dao",
-          "type": "malicious",
           "severity": "high"
         },
         {
@@ -190,16 +182,21 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Rakuten",
+          "severity": "high"
         }
       ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "185.199.109.153",
         "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -207,17 +204,17 @@
           "asn": "AS54113"
         },
         "dns": {
+          "A": [
+            "185.199.109.153",
+            "185.199.111.153",
+            "185.199.110.153",
+            "185.199.108.153"
+          ],
           "AAAA": [
-            "2606:50c0:8000::153",
             "2606:50c0:8001::153",
+            "2606:50c0:8000::153",
             "2606:50c0:8002::153",
             "2606:50c0:8003::153"
-          ],
-          "A": [
-            "185.199.108.153",
-            "185.199.109.153",
-            "185.199.110.153",
-            "185.199.111.153"
           ]
         }
       },
@@ -357,7 +354,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kentakahashi0523 .github .io/rakutenaimatching/)\"; flow:established,to_server; http.uri; content:\"/rakutenaimatching/\"; startswith; fast_pattern; http.host;  content:\"kentakahashi0523.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000711; classtype:social-engineering; sid:6000711; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T02:04:53.692363+00:00",
+  "updated_at": "2026-06-03T20:24:56.233889+00:00",
   "probe": {
     "dns": true,
     "whois": true,

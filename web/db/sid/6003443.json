@@ -49,29 +49,66 @@
     "phishdestroy": {
       "domain": "link.sbstck.com",
       "domain_defanged": "link[.]sbstck[.]com",
-      "case_id": "PD-20260601-2E3E1D",
-      "analyzed_at": "2026-06-01T06:58:09.386Z",
+      "case_id": "PD-20260604-2E3E1D",
+      "analyzed_at": "2026-06-04T01:18:37.518Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ChainPatrol",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Certego",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e81f9-c042-77f5-80ab-dfa2d0b34fe3.png",
           "url": "https://urlscan.io/result/019e81f9-c042-77f5-80ab-dfa2d0b34fe3/",
-          "pending": true
+          "title": "Substack - A new economic engine for culture"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ChainPatrol",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Certego",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "32.194.239.189",
+        "ip": "52.72.140.36",
         "ipinfo": {
-          "ip": "32.194.239.189",
-          "hostname": "ec2-32-194-239-189.compute-1.amazonaws.com",
+          "ip": "52.72.140.36",
+          "hostname": "ec2-52-72-140-36.compute-1.amazonaws.com",
           "city": "Ashburn",
           "region": "Virginia",
           "country": "US",
@@ -80,12 +117,14 @@
         },
         "dns": {
           "A": [
-            "32.194.239.189",
-            "35.168.92.7",
-            "3.229.63.74",
-            "52.72.85.206",
-            "54.163.100.13",
-            "52.87.84.230"
+            "52.72.140.36",
+            "52.72.242.197",
+            "44.199.29.206",
+            "52.22.152.51",
+            "3.214.254.105",
+            "32.199.85.227",
+            "52.7.75.85",
+            "3.218.227.163"
           ]
         }
       },
@@ -221,12 +260,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (link.sbstck.com/redirect/432813e1-fdef-419d-8f43-8011888df53c?j=eyJ1IjoiNW9oZHVhIn0.EylumtAMfqXg01buj_5H-y5kD7sbF8gowbiwSM0O4c4)\"; flow:established,to_server; http.uri; content:\"/redirect/432813e1-fdef-419d-8f43-8011888df53c?j=eyJ1IjoiNW9oZHVhIn0.EylumtAMfqXg01buj_5H-y5kD7sbF8gowbiwSM0O4c4\"; startswith; fast_pattern; http.host; content:\"link.sbstck.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003443; classtype:social-engineering; sid:6003443; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:14:59.466614+00:00",
+  "updated_at": "2026-06-04T01:18:34.722638+00:00",
   "probe": {
     "dns": true,
     "whois": false,

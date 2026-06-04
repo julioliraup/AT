@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "dpd.zqplrvbnk.club",
       "domain_defanged": "dpd[.]zqplrvbnk[.]club",
-      "case_id": "PD-20260602-37E17B",
-      "analyzed_at": "2026-06-02T04:21:25.791Z",
+      "case_id": "PD-20260604-37E17B",
+      "analyzed_at": "2026-06-04T01:39:37.130Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7fd7-4268-7613-957c-aee99d62d8ba.png",
+          "url": "https://urlscan.io/result/019e7fd7-4268-7613-957c-aee99d62d8ba/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -220,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.zqplrvbnk.club/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"dpd.zqplrvbnk.club\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003628; classtype:social-engineering; sid:6003628; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:21:24.274524+00:00",
+  "updated_at": "2026-06-04T01:39:33.942834+00:00",
   "probe": {
     "dns": true,
     "whois": true,

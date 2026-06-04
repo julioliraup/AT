@@ -73,39 +73,62 @@
     "phishdestroy": {
       "domain": "mnmbk-6c118.firebaseapp.com",
       "domain_defanged": "mnmbk-6c118[.]firebaseapp[.]com",
-      "case_id": "PD-20260601-558EBF",
-      "analyzed_at": "2026-06-01T17:57:13.927Z",
+      "case_id": "PD-20260604-558EBF",
+      "analyzed_at": "2026-06-04T00:43:41.358Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8455-1b0f-718e-9bab-615bea4abdf9.png",
           "url": "https://urlscan.io/result/019e8455-1b0f-718e-9bab-615bea4abdf9/",
-          "pending": true
+          "title": "Secure Payment Portal"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "199.36.158.100",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "199.36.158.100",
+          "city": "Mountain View",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
-          "A": [
-            "199.36.158.100"
-          ],
           "AAAA": [
             "2620:0:890::100"
+          ],
+          "A": [
+            "199.36.158.100"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -228,12 +251,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mnmbk-6c118.firebaseapp.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mnmbk-6c118.firebaseapp.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003133; classtype:social-engineering; sid:6003133; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:03:49.842784+00:00",
+  "updated_at": "2026-06-04T00:43:37.564311+00:00",
   "probe": {
     "dns": true,
     "whois": false,

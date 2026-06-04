@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "easybank-landing-page-gamma.vercel.app",
       "domain_defanged": "easybank-landing-page-gamma[.]vercel[.]app",
-      "case_id": "PD-20260601-5FE875",
-      "analyzed_at": "2026-06-01T04:42:38.459Z",
+      "case_id": "PD-20260603-5FE875",
+      "analyzed_at": "2026-06-03T20:58:04.958Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e817d-ae52-7731-a1f7-a31998f93e33/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Banking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8c18-5534-76bb-b24e-e21cc6255d2c.png",
+          "url": "https://urlscan.io/result/019e8c18-5534-76bb-b24e-e21cc6255d2c/",
+          "title": "Frontend Mentor | Easybank landing page"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Banking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
+        "ip": "64.29.17.194",
         "ipinfo": {
-          "ip": "216.198.79.66",
+          "ip": "64.29.17.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "64.29.17.194",
+            "216.198.79.194"
           ]
         }
       },
@@ -246,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (easybank-landing-page-gamma .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"easybank-landing-page-gamma.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001033; classtype:social-engineering; sid:6001033; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T02:19:56.867197+00:00",
+  "updated_at": "2026-06-03T21:02:50.123716+00:00",
   "probe": {
     "dns": true,
     "whois": false,

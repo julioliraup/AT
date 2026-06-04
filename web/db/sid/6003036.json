@@ -238,29 +238,50 @@
     "phishdestroy": {
       "domain": "365168888.com",
       "domain_defanged": "365168888[.]com",
-      "case_id": "PD-20260602-523C06",
-      "analyzed_at": "2026-06-02T04:00:00.793Z",
+      "case_id": "PD-20260604-523C06",
+      "analyzed_at": "2026-06-04T00:34:43.191Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e62b5-3204-73ca-8305-0694a52dd00e.png",
+          "url": "https://urlscan.io/result/019e62b5-3204-73ca-8305-0694a52dd00e/",
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2022-10-13T12:13:12Z",
         "expires": "2026-10-13T12:13:12Z",
-        "age_days": 1327,
+        "age_days": 1329,
         "nameservers": [
           "NS61.DOMAINCONTROL.COM",
           "NS62.DOMAINCONTROL.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "20.2.172.139",
+        "ipinfo": {
+          "ip": "20.2.172.139",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": null
       },
       "report_to": {
@@ -272,7 +293,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -399,7 +427,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.365168888.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.365168888.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003036; classtype:social-engineering; sid:6003036; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-02T03:59:58.283116+00:00",
+  "updated_at": "2026-06-04T00:34:40.173702+00:00",
   "probe": {
     "dns": true,
     "whois": false,

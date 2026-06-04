@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://www.visualez.com/PDF/testambiences/mmmimge.html",
       "domain": "www.visualez.com",
-      "url_count": 1,
+      "url_count": 0,
       "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
@@ -43,32 +43,53 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2025-06-02T10:23:25",
+      "first_seen": null,
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "visualez.com",
       "domain_defanged": "visualez[.]com",
-      "case_id": "PD-20260601-7E8E2C",
-      "analyzed_at": "2026-06-01T18:31:01.725Z",
+      "case_id": "PD-20260604-7E8E2C",
+      "analyzed_at": "2026-06-04T02:01:29.016Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "Forcepoint ThreatSeeker": "information technology",
+            "Xcitium Verdict Cloud": "marketing & merchandising",
+            "alphaMountain.ai": "Information Technology (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e8474-17a4-702b-aed3-7889af797ae3.png",
           "url": "https://urlscan.io/result/019e8474-17a4-702b-aed3-7889af797ae3/",
-          "pending": true
+          "title": "Leading Advanced Tile Visualizers | AI Wall and Floor Tile Visualizer Software - Visualez"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2015-10-29T17:36:24Z",
         "expires": "2028-10-29T17:36:24Z",
-        "age_days": 3868,
+        "age_days": 3870,
         "nameservers": [
           "NS-1304.AWSDNS-35.ORG",
           "NS-1574.AWSDNS-04.CO.UK",
@@ -78,11 +99,19 @@
       },
       "infrastructure": {
         "ip": "3.7.99.221",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "3.7.99.221",
+          "hostname": "ec2-3-7-99-221.ap-south-1.compute.amazonaws.com",
+          "city": "Mumbai",
+          "region": "Maharashtra",
+          "country": "IN",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "3.7.99.221",
-            "13.206.44.120",
+            "3.109.149.104",
             "13.207.103.157"
           ],
           "MX": [
@@ -109,7 +138,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -232,12 +268,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.visualez.com/PDF/testambiences/mmmimge.html)\"; flow:established,to_server; http.uri; content:\"/PDF/testambiences/mmmimge.html\"; startswith; fast_pattern; http.host; content:\"www.visualez.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003801; classtype:social-engineering; sid:6003801; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-02T04:27:06.253351+00:00",
+  "updated_at": "2026-06-04T02:01:23.616707+00:00",
   "probe": {
     "dns": true,
     "whois": false,

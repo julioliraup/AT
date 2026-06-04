@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "ledgere.com.cn",
       "domain_defanged": "ledgere[.]com[.]cn",
-      "case_id": "PD-20260602-1F6E35",
-      "analyzed_at": "2026-06-02T04:23:48.331Z",
+      "case_id": "PD-20260604-1F6E35",
+      "analyzed_at": "2026-06-04T01:49:23.411Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e8692-cc43-7774-be7d-89d1b7f01bb9/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8968-f1c8-714a-8f1b-98abdfbf29af.png",
+          "url": "https://urlscan.io/result/019e8968-f1c8-714a-8f1b-98abdfbf29af/",
+          "title": "Ledger官网｜全球领先的加密货币硬件冷钱包｜安全管理Defi和Web3资产"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -247,7 +256,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledgere.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledgere.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003694; classtype:social-engineering; sid:6003694; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:23:43.909594+00:00",
+  "updated_at": "2026-06-04T01:49:11.151251+00:00",
   "probe": {
     "dns": true,
     "whois": true,

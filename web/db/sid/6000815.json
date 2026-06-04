@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "mconnect.028426.com",
       "domain_defanged": "mconnect[.]028426[.]com",
-      "case_id": "PD-20260601-42DFDB",
-      "analyzed_at": "2026-06-01T04:31:48.491Z",
+      "case_id": "PD-20260603-42DFDB",
+      "analyzed_at": "2026-06-03T20:36:22.942Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8173-c3ac-705d-b617-b64cc96b88cb.png",
           "url": "https://urlscan.io/result/019e8173-c3ac-705d-b617-b64cc96b88cb/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -242,12 +251,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mconnect .028426 .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"mconnect.028426.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000815; classtype:social-engineering; sid:6000815; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T02:08:35.331083+00:00",
+  "updated_at": "2026-06-03T20:36:06.876225+00:00",
   "probe": {
     "dns": true,
     "whois": false,

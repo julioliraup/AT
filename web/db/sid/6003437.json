@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "cmctecnologia.com.br",
       "domain_defanged": "cmctecnologia[.]com[.]br",
-      "case_id": "PD-20260601-61AFD7",
-      "analyzed_at": "2026-06-01T18:12:20.669Z",
+      "case_id": "PD-20260604-61AFD7",
+      "analyzed_at": "2026-06-04T01:18:15.760Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "BitDefender": "parked",
+            "Forcepoint ThreatSeeker": "business and economy"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e8462-fc79-77be-a78f-43b7c5ac1330.png",
           "url": "https://urlscan.io/result/019e8462-fc79-77be-a78f-43b7c5ac1330/",
-          "pending": true
+          "title": "Site em manutenção"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "108.167.188.194",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "108.167.188.194",
+          "hostname": "srv142-ip05.prodns.com.br",
+          "city": "Vinhedo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS19871 Network Solutions, LLC",
+          "asn": "AS19871"
+        },
         "dns": {
           "A": [
             "108.167.188.194"
@@ -85,7 +113,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "NETWORK-SOLUTIONS-HOSTING, US",
+          "abuse": "net-eng-team@newfold.com",
+          "url": "mailto:net-eng-team@newfold.com",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS19871"
+        }
       },
       "report_services": [
         {
@@ -208,12 +243,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.cmctecnologia.com.br/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.cmctecnologia.com.br\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003437; classtype:social-engineering; sid:6003437; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:14:36.204516+00:00",
+  "updated_at": "2026-06-04T01:18:13.337108+00:00",
   "probe": {
     "dns": true,
     "whois": true,

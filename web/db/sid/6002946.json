@@ -49,21 +49,58 @@
     "phishdestroy": {
       "domain": "usertrek.github.io",
       "domain_defanged": "usertrek[.]github[.]io",
-      "case_id": "PD-20260602-3EBE9A",
-      "analyzed_at": "2026-06-02T03:55:28.591Z",
+      "case_id": "PD-20260604-3EBE9A",
+      "analyzed_at": "2026-06-04T00:23:40.594Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e8678-dc84-76f0-a4d8-4872d7936cbd.png",
           "url": "https://urlscan.io/result/019e8678-dc84-76f0-a4d8-4872d7936cbd/",
-          "pending": true
+          "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -82,8 +119,8 @@
           "AAAA": [
             "2606:50c0:8000::153",
             "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
+            "2606:50c0:8003::153",
+            "2606:50c0:8002::153"
           ],
           "A": [
             "185.199.108.153",
@@ -230,7 +267,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (usertrek.github.io/Apple.Support/)\"; flow:established,to_server; http.uri; content:\"/Apple.Support/\"; startswith; fast_pattern; http.host; content:\"usertrek.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002946; classtype:social-engineering; sid:6002946; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-02T03:56:26.351055+00:00",
+  "updated_at": "2026-06-04T00:25:25.598417+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -72,26 +72,35 @@
     "phishdestroy": {
       "domain": "unlimitedcss.net",
       "domain_defanged": "unlimitedcss[.]net",
-      "case_id": "PD-20260601-2D9F73",
-      "analyzed_at": "2026-06-01T06:33:23.403Z",
+      "case_id": "PD-20260604-2D9F73",
+      "analyzed_at": "2026-06-04T00:33:02.304Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "AT&T"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e81e3-05d6-70e8-8db2-8bb555997c74.png",
           "url": "https://urlscan.io/result/019e81e3-05d6-70e8-8db2-8bb555997c74/",
-          "pending": true
+          "title": "AT&T Underconstruction"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: AT&T",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2020-09-09T21:47:24Z",
         "expires": "2026-09-09T21:47:24Z",
-        "age_days": 2090,
+        "age_days": 2093,
         "nameservers": [
           "NS1.DIGITALSPACEPORTAL.NET",
           "NS2.DIGITALSPACEPORTAL.NET"
@@ -110,17 +119,17 @@
         },
         "dns": {
           "MX": [
-            "120 mx4c45.carrierzone.com.",
-            "10 mx1c45.carrierzone.com.",
             "100 mx2c45.carrierzone.com.",
+            "10 mx1c45.carrierzone.com.",
+            "120 mx4c45.carrierzone.com.",
             "110 mx3c45.carrierzone.com."
           ],
           "A": [
             "216.55.149.9"
           ],
           "NS": [
-            "ns1.digitalspaceportal.net.",
-            "ns2.digitalspaceportal.net."
+            "ns2.digitalspaceportal.net.",
+            "ns1.digitalspaceportal.net."
           ]
         }
       },
@@ -263,12 +272,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (unlimitedcss.net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"unlimitedcss.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003016; classtype:social-engineering; sid:6003016; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-02T03:58:52.917326+00:00",
+  "updated_at": "2026-06-04T00:32:58.076188+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,29 +49,38 @@
     "phishdestroy": {
       "domain": "vishal07xi.github.io",
       "domain_defanged": "vishal07xi[.]github[.]io",
-      "case_id": "PD-20260601-4FD622",
-      "analyzed_at": "2026-06-01T07:16:56.634Z",
+      "case_id": "PD-20260604-4FD622",
+      "analyzed_at": "2026-06-04T01:56:14.407Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e820a-f391-7218-ac8f-b27b12182ee7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e89a4-6cdb-763e-8cd6-c3acc8dd5dae.png",
+          "url": "https://urlscan.io/result/019e89a4-6cdb-763e-8cd6-c3acc8dd5dae/",
+          "title": "Netflix India – Watch TV Shows Online, Watch Movies Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "185.199.109.153",
         "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,17 +88,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
-            "185.199.108.153",
             "185.199.109.153",
+            "185.199.111.153",
             "185.199.110.153",
-            "185.199.111.153"
+            "185.199.108.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8002::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8000::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (vishal07xi.github.io/Netflix-clone/)\"; flow:established,to_server; http.uri; content:\"/Netflix-clone/\"; startswith; fast_pattern; http.host; content:\"vishal07xi.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003759; classtype:social-engineering; sid:6003759; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:25:48.877619+00:00",
+  "updated_at": "2026-06-04T01:56:04.972672+00:00",
   "probe": {
     "dns": true,
     "whois": true,

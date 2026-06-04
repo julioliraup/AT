@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "viso26.pages.dev",
       "domain_defanged": "viso26[.]pages[.]dev",
-      "case_id": "PD-20260602-468892",
-      "analyzed_at": "2026-06-02T04:22:13.542Z",
+      "case_id": "PD-20260604-468892",
+      "analyzed_at": "2026-06-04T01:43:49.985Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e8691-59fb-7578-82d6-c8c1981f896c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8eb3-ac35-718f-bac1-ad5fcf165484.png",
+          "url": "https://urlscan.io/result/019e8eb3-ac35-718f-bac1-ad5fcf165484/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.143",
+        "ip": "172.66.44.113",
         "ipinfo": {
-          "ip": "172.66.47.143",
+          "ip": "172.66.44.113",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,12 +94,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f8f",
-            "2606:4700:310c::ac42:2c71"
+            "2606:4700:310c::ac42:2c71",
+            "2606:4700:310c::ac42:2f8f"
           ],
           "A": [
-            "172.66.47.143",
-            "172.66.44.113"
+            "172.66.44.113",
+            "172.66.47.143"
           ],
           "NS": [
             "daisy.ns.cloudflare.com.",
@@ -234,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (viso26.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"viso26.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003654; classtype:social-engineering; sid:6003654; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:22:11.881086+00:00",
+  "updated_at": "2026-06-04T01:43:41.038874+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -73,27 +73,56 @@
     "phishdestroy": {
       "domain": "netflixbet.top",
       "domain_defanged": "netflixbet[.]top",
-      "case_id": "PD-20260601-7A2C1A",
-      "analyzed_at": "2026-06-01T18:23:38.374Z",
+      "case_id": "PD-20260604-7A2C1A",
+      "analyzed_at": "2026-06-04T01:45:49.207Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Crypto",
+            "Crypto Scam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e705a-c3a0-76b9-83b2-fdb56067a2c8.png",
+          "url": "https://urlscan.io/result/019e705a-c3a0-76b9-83b2-fdb56067a2c8/",
+          "title": "Netflixbet: Most Popular Online Crypto Casino Based on Blockchain"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Crypto, Crypto Scam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3034::6815:11b",
+        "ipinfo": {
+          "ip": "2606:4700:3034::6815:11b",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,15 +245,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netflixbet.top/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"netflixbet.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003666; classtype:social-engineering; sid:6003666; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:22:41.712833+00:00",
+  "updated_at": "2026-06-04T01:45:42.422321+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

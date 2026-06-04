@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "ressourceshumains.com",
       "domain_defanged": "ressourceshumains[.]com",
-      "case_id": "PD-20260601-3F2EDD",
-      "analyzed_at": "2026-06-01T06:35:06.854Z",
+      "case_id": "PD-20260604-3F2EDD",
+      "analyzed_at": "2026-06-04T00:35:32.508Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e81e4-a7b9-72b7-820b-b891be1ae779/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8ee7-77d4-7789-b295-4f2be69202c0.png",
+          "url": "https://urlscan.io/result/019e8ee7-77d4-7789-b295-4f2be69202c0/",
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameCheap, Inc.",
         "created": "2021-01-15T13:28:11Z",
         "expires": "2027-01-15T13:28:11Z",
-        "age_days": 1962,
+        "age_days": 1965,
         "nameservers": [
           "DANE.NS.CLOUDFLARE.COM",
           "JESSICA.NS.CLOUDFLARE.COM"
@@ -234,15 +243,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ressourceshumains.com/?r=0e4f4175-63b5-47e5-b1fb-381adfb5094b&rg=eu)\"; flow:established,to_server; http.uri; content:\"/?r=0e4f4175-63b5-47e5-b1fb-381adfb5094b&rg=eu\"; startswith; fast_pattern; http.host; content:\"ressourceshumains.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003049; classtype:social-engineering; sid:6003049; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-02T04:00:18.763369+00:00",
+  "updated_at": "2026-06-04T00:35:24.303688+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

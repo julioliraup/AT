@@ -73,26 +73,73 @@
     "phishdestroy": {
       "domain": "nelsonngdriving.com",
       "domain_defanged": "nelsonngdriving[.]com",
-      "case_id": "PD-20260602-709C13",
-      "analyzed_at": "2026-06-02T03:55:09.233Z",
+      "case_id": "PD-20260604-709C13",
+      "analyzed_at": "2026-06-04T00:22:31.923Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e8678-905b-7035-9eba-d131dfb42a1a.png",
           "url": "https://urlscan.io/result/019e8678-905b-7035-9eba-d131dfb42a1a/",
-          "pending": true
+          "title": "Nelson Ng Driving Instructor | San Francisco, CA 94118, US"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2022-07-02T21:02:48Z",
         "expires": "2026-07-02T21:02:48Z",
-        "age_days": 1430,
+        "age_days": 1432,
         "nameservers": [
           "CPNS3.MYPREMIUMDNS.COM",
           "CPNS4.MYPREMIUMDNS.COM"
@@ -110,11 +157,11 @@
           "asn": "AS19318"
         },
         "dns": {
-          "MX": [
-            "0 nelsonngdriving.com."
-          ],
           "A": [
             "64.20.56.218"
+          ],
+          "MX": [
+            "0 nelsonngdriving.com."
           ],
           "NS": [
             "cpns4.mypreiumdns.com.",
@@ -265,7 +312,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.nelsonngdriving.com/pssupplies/llc.html.php)\"; flow:established,to_server; http.uri; content:\"/pssupplies/llc.html.php\"; startswith; fast_pattern; http.host; content:\"www.nelsonngdriving.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002917; classtype:social-engineering; sid:6002917; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-02T03:55:07.107107+00:00",
+  "updated_at": "2026-06-04T00:22:27.433425+00:00",
   "probe": {
     "dns": true,
     "whois": false,

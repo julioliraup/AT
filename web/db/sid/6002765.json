@@ -49,21 +49,48 @@
     "phishdestroy": {
       "domain": "urls.fr",
       "domain_defanged": "urls[.]fr",
-      "case_id": "PD-20260601-A1789E",
-      "analyzed_at": "2026-06-01T06:17:29.427Z",
+      "case_id": "PD-20260604-A1789E",
+      "analyzed_at": "2026-06-04T00:06:03.100Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e81d4-8327-7708-9ed8-2dee08d63171/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e88a6-74cd-723f-857d-1cb89d7ccef1.png",
+          "url": "https://urlscan.io/result/019e88a6-74cd-723f-857d-1cb89d7ccef1/",
+          "title": "Lien court désactivé"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,10 +105,6 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3033::6815:53e1",
-            "2606:4700:3036::ac43:b663"
-          ],
           "A": [
             "104.21.83.225",
             "172.67.182.99"
@@ -92,6 +115,10 @@
             "10 alt4.aspmx.l.google.com.",
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com."
+          ],
+          "AAAA": [
+            "2606:4700:3036::ac43:b663",
+            "2606:4700:3033::6815:53e1"
           ],
           "NS": [
             "elma.ns.cloudflare.com.",
@@ -231,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.urls.fr/T6hyQb/)\"; flow:established,to_server; http.uri; content:\"/T6hyQb/\"; startswith; fast_pattern; http.host; content:\"www.urls.fr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002765; classtype:social-engineering; sid:6002765; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-02T03:48:09.089558+00:00",
+  "updated_at": "2026-06-04T00:05:54.392846+00:00",
   "probe": {
     "dns": true,
     "whois": true,

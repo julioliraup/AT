@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "t-mobile.jwadrt.top",
       "domain_defanged": "t-mobile[.]jwadrt[.]top",
-      "case_id": "PD-20260601-3A529D",
-      "analyzed_at": "2026-06-01T07:14:27.873Z",
+      "case_id": "PD-20260604-3A529D",
+      "analyzed_at": "2026-06-04T01:49:56.735Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4446-8503-765b-b2b7-b2f1f1bffe84.png",
+          "url": "https://urlscan.io/result/019e4446-8503-765b-b2b7-b2f1f1bffe84/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.151.176",
+        "ipinfo": {
+          "ip": "172.67.151.176",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.jwadrt.top/pay?FDI=iDMt9?stj=RDI4r)\"; flow:established,to_server; http.uri; content:\"/pay?FDI=iDMt9?stj=RDI4r\"; startswith; fast_pattern; http.host; content:\"t-mobile.jwadrt.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003698; classtype:social-engineering; sid:6003698; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:23:53.259128+00:00",
+  "updated_at": "2026-06-04T01:49:52.053993+00:00",
   "probe": {
     "dns": false,
     "whois": false,

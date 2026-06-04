@@ -18,60 +18,100 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://bancopichinchastage.prod.acquia-sites.com/restrict_ip/access_denied",
-      "domain": "bancopichinchastage.prod.acquia-sites.com",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "bancopichinchastage.prod.acquia-sites.com",
       "domain_defanged": "bancopichinchastage[.]prod[.]acquia-sites[.]com",
-      "case_id": "PD-20260602-3FD577",
-      "analyzed_at": "2026-06-02T04:16:52.576Z",
+      "case_id": "PD-20260604-3FD577",
+      "analyzed_at": "2026-06-04T01:25:50.815Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Google Safebrowsing",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e868c-7434-759a-af7b-9eb389ace3db.png",
           "url": "https://urlscan.io/result/019e868c-7434-759a-af7b-9eb389ace3db/",
-          "pending": true
+          "title": "Acceso Denegado | Banco Pichincha"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Google Safebrowsing",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "23.22.76.132",
+        "ip": "44.219.167.206",
         "ipinfo": {
-          "ip": "23.22.76.132",
-          "hostname": "ec2-23-22-76-132.compute-1.amazonaws.com",
+          "ip": "44.219.167.206",
+          "hostname": "ec2-44-219-167-206.compute-1.amazonaws.com",
           "city": "Ashburn",
           "region": "Virginia",
           "country": "US",
@@ -80,8 +120,8 @@
         },
         "dns": {
           "A": [
-            "23.22.76.132",
-            "44.219.167.206"
+            "44.219.167.206",
+            "23.22.76.132"
           ]
         }
       },
@@ -221,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bancopichinchastage.prod.acquia-sites.com/restrict_ip/access_denied)\"; flow:established,to_server; http.uri; content:\"/restrict_ip/access_denied\"; startswith; fast_pattern; http.host; content:\"bancopichinchastage.prod.acquia-sites.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003498; classtype:social-engineering; sid:6003498; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:16:50.415658+00:00",
+  "updated_at": "2026-06-04T01:25:32.213680+00:00",
   "probe": {
     "dns": true,
     "whois": false,

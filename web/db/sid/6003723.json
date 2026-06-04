@@ -73,29 +73,38 @@
     "phishdestroy": {
       "domain": "cips.verifytoken.com",
       "domain_defanged": "cips[.]verifytoken[.]com",
-      "case_id": "PD-20260601-6ADBF4",
-      "analyzed_at": "2026-06-01T07:15:23.712Z",
+      "case_id": "PD-20260604-6ADBF4",
+      "analyzed_at": "2026-06-04T01:52:09.316Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8209-8897-710b-b639-2d7d3484d830.png",
           "url": "https://urlscan.io/result/019e8209-8897-710b-b639-2d7d3484d830/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "34.194.247.17",
+        "ip": "52.204.246.179",
         "ipinfo": {
-          "ip": "34.194.247.17",
-          "hostname": "ec2-34-194-247-17.compute-1.amazonaws.com",
+          "ip": "52.204.246.179",
+          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
           "city": "Ashburn",
           "region": "Virginia",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "34.194.247.17",
-            "52.204.246.179"
+            "52.204.246.179",
+            "34.194.247.17"
           ]
         }
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cips.verifytoken.com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host; content:\"cips.verifytoken.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003723; classtype:social-engineering; sid:6003723; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:24:40.259828+00:00",
+  "updated_at": "2026-06-04T01:52:01.098439+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -74,37 +74,61 @@
     "phishdestroy": {
       "domain": "s.eu.premiumisp.net",
       "domain_defanged": "s[.]eu[.]premiumisp[.]net",
-      "case_id": "PD-20260601-171935",
-      "analyzed_at": "2026-06-01T15:26:47.879Z",
+      "case_id": "PD-20260603-171935",
+      "analyzed_at": "2026-06-03T20:25:52.751Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e83cb-6bda-76de-b2ac-3f746629bfb3.png",
           "url": "https://urlscan.io/result/019e83cb-6bda-76de-b2ac-3f746629bfb3/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "18.198.182.56",
-        "ipinfo": null,
+        "ip": "63.176.245.164",
+        "ipinfo": {
+          "ip": "63.176.245.164",
+          "hostname": "ec2-63-176-245-164.eu-central-1.compute.amazonaws.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "18.198.182.56",
-            "63.176.245.164"
+            "63.176.245.164",
+            "18.198.182.56"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -227,12 +251,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s .eu .premiumisp .net/107519/8af662/475d964a-0243-46bf-aefd-66da26254efa/)\"; flow:established,to_server; http.uri; content:\"/107519/8af662/475d964a-0243-46bf-aefd-66da26254efa/\"; startswith; fast_pattern; http.host;  content:\"s.eu.premiumisp.net\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000719; classtype:social-engineering; sid:6000719; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-02T02:05:13.728761+00:00",
+  "updated_at": "2026-06-03T20:25:49.887486+00:00",
   "probe": {
     "dns": true,
     "whois": false,

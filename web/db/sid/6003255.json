@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "vadreauv.site",
       "domain_defanged": "vadreauv[.]site",
-      "case_id": "PD-20260601-5E9C52",
-      "analyzed_at": "2026-06-01T06:48:23.544Z",
+      "case_id": "PD-20260604-5E9C52",
+      "analyzed_at": "2026-06-04T00:57:33.232Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WeTransfer"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4056-7088-7744-9f0a-5131de565f49.png",
+          "url": "https://urlscan.io/result/019e4056-7088-7744-9f0a-5131de565f49/",
+          "title": "Lien de téléchargement unique | WeTransfer"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WeTransfer",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "176.125.242.51",
+        "ipinfo": {
+          "ip": "176.125.242.51",
+          "hostname": "svr.champi.com",
+          "city": "Chisinau",
+          "region": "Chișinău Municipality",
+          "country": "MD",
+          "org": "AS200019 ALEXHOST SRL",
+          "asn": "AS200019"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AlexHost",
+          "abuse": "abuse@alexhost.com",
+          "url": "mailto:abuse@alexhost.com",
+          "logo": "https://i.ibb.co/1Y9tB9js/pr-Alex-Host.png",
+          "method": "email",
+          "asn": "AS200019"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (vadreauv.site/auth/?email=alor7%40e19321315905222902645edd2aa1740a4f97.com)\"; flow:established,to_server; http.uri; content:\"/auth/?email=alor7%40e19321315905222902645edd2aa1740a4f97.com\"; startswith; fast_pattern; http.host; content:\"vadreauv.site\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003255; classtype:social-engineering; sid:6003255; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:08:23.997049+00:00",
+  "updated_at": "2026-06-04T00:57:24.149888+00:00",
   "probe": {
     "dns": false,
     "whois": false,

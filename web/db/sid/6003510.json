@@ -73,37 +73,60 @@
     "phishdestroy": {
       "domain": "we-tl-t-omj-s1b-qr-ci-sigma.vercel.app",
       "domain_defanged": "we-tl-t-omj-s1b-qr-ci-sigma[.]vercel[.]app",
-      "case_id": "PD-20260601-7A95DD",
-      "analyzed_at": "2026-06-01T18:15:29.731Z",
+      "case_id": "PD-20260604-7A95DD",
+      "analyzed_at": "2026-06-04T00:51:17.432Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e8465-df9e-709a-b012-a103dddfe231/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WeTransfer"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9016-1b9c-7582-a35e-4b302507f25a.png",
+          "url": "https://urlscan.io/result/019e9016-1b9c-7582-a35e-4b302507f25a/",
+          "title": "WeTransfer - Download Files"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WeTransfer",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.130",
-        "ipinfo": null,
+        "ip": "64.29.17.2",
+        "ipinfo": {
+          "ip": "64.29.17.2",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.198.79.130",
-            "64.29.17.130"
+            "64.29.17.2",
+            "216.198.79.2"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -231,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.we-tl-t-omj-s1b-qr-ci-sigma.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.we-tl-t-omj-s1b-qr-ci-sigma.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003510; classtype:social-engineering; sid:6003510; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:17:08.160666+00:00",
+  "updated_at": "2026-06-04T01:27:08.334609+00:00",
   "probe": {
     "dns": true,
     "whois": false,

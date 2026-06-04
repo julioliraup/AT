@@ -49,29 +49,55 @@
     "phishdestroy": {
       "domain": "siginjai99.com",
       "domain_defanged": "siginjai99[.]com",
-      "case_id": "PD-20260601-43C8D9",
-      "analyzed_at": "2026-06-01T17:44:30.873Z",
+      "case_id": "PD-20260604-43C8D9",
+      "analyzed_at": "2026-06-04T00:25:25.511Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email",
+            "Bank of America"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3df8-b033-76be-b67c-c6e8d9615884.png",
+          "url": "https://urlscan.io/result/019e3df8-b033-76be-b67c-c6e8d9615884/",
+          "title": "Bank of America | Online Banking | Log In | User ID"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email, Bank of America",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "CV. Jogjacamp",
         "created": "2023-11-12T16:40:39Z",
         "expires": "2026-11-12T16:40:39Z",
-        "age_days": 932,
+        "age_days": 934,
         "nameservers": [
           "SUSPEND1.LIQU.ID",
           "SUSPEND2.LIQU.ID"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.138.46",
+        "ipinfo": {
+          "ip": "172.67.138.46",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +109,14 @@
           "method": "form",
           "iana_ids": "1478"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (siginjai99.com/bank0famericasecuritymail/?amrldmluzubwywxtywlyzwdvbgyuy29t=)\"; flow:established,to_server; http.uri; content:\"/bank0famericasecuritymail/?amrldmluzubwywxtywlyzwdvbgyuy29t=\"; startswith; fast_pattern; http.host; content:\"siginjai99.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002945; classtype:social-engineering; sid:6002945; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-02T03:55:59.316869+00:00",
+  "updated_at": "2026-06-04T00:24:48.190497+00:00",
   "probe": {
     "dns": false,
     "whois": false,

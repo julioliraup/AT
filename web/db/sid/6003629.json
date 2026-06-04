@@ -18,60 +18,54 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://greatcbec.com/",
-      "domain": "greatcbec.com",
-      "url_count": 2,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-05-21T07:46:03",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "greatcbec.com",
       "domain_defanged": "greatcbec[.]com",
-      "case_id": "PD-20260601-1020D2",
-      "analyzed_at": "2026-06-01T07:08:01.601Z",
+      "case_id": "PD-20260604-1020D2",
+      "analyzed_at": "2026-06-04T01:39:51.674Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "IRS"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e42e7-71a8-735e-8a45-7386b683a602.png",
+          "url": "https://urlscan.io/result/019e42e7-71a8-735e-8a45-7386b683a602/",
+          "title": "Internal Revenue Service | An official website of the United States government"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: IRS",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "BigRock Solutions Ltd",
         "created": "2023-04-25T12:58:30Z",
         "expires": "2028-04-25T12:58:30Z",
-        "age_days": 1132,
+        "age_days": 1135,
         "nameservers": [
           "NS1.SUSPENDED-DOMAIN.COM",
           "NS2.SUSPENDED-DOMAIN.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "38.133.213.184",
+        "ipinfo": {
+          "ip": "38.133.213.184",
+          "city": "Dronten",
+          "region": "Flevoland",
+          "country": "NL",
+          "org": "AS45839 Shinjiru Technology Sdn Bhd",
+          "asn": "AS45839"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +77,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "SHINJIRU-MY-AS-AP",
+          "abuse": "abuse@shinjiru.com.my",
+          "url": "mailto:abuse@shinjiru.com.my",
+          "logo": "https://i.ibb.co/p6vRb8dz/pr-SHINJIRU-MY-AS-AP.jpg",
+          "method": "email",
+          "asn": "AS45839"
+        }
       },
       "report_services": [
         {
@@ -206,12 +207,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (greatcbec.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"greatcbec.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003629; classtype:social-engineering; sid:6003629; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-02T04:21:25.807731+00:00",
+  "updated_at": "2026-06-04T01:39:37.188247+00:00",
   "probe": {
     "dns": false,
     "whois": false,
