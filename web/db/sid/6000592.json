@@ -74,165 +74,21 @@
     "phishdestroy": {
       "domain": "forkandtablemag.com",
       "domain_defanged": "forkandtablemag[.]com",
-      "case_id": "PD-20260603-35584A",
-      "analyzed_at": "2026-06-03T20:10:26.824Z",
+      "case_id": "PD-20260604-35584A",
+      "analyzed_at": "2026-06-04T15:14:58.499Z",
       "intel": {
         "virustotal": {
-          "malicious": 12,
-          "suspicious": 1,
-          "total": 91,
-          "detections": [
-            {
-              "engine": "ADMINUSLabs",
-              "category": "malicious",
-              "result": "malicious"
-            },
-            {
-              "engine": "alphaMountain.ai",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "BitDefender",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Chong Lua Dao",
-              "category": "malicious",
-              "result": "malicious"
-            },
-            {
-              "engine": "CyRadar",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "ESET",
-              "category": "suspicious",
-              "result": "suspicious"
-            },
-            {
-              "engine": "Fortinet",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "G-Data",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Lionic",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "MalwareURL",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "SOCRadar",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Sophos",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "VIPRE",
-              "category": "malicious",
-              "result": "malware"
-            }
-          ],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Phishing Simulation"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019e8adb-7305-7145-ad2a-d8d871c6b57a.png",
-          "url": "https://urlscan.io/result/019e8adb-7305-7145-ad2a-d8d871c6b57a/",
-          "title": "Adobe-PDF Online"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019e9333-ac15-7409-b509-6e095fc4f9e2/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "VT: ADMINUSLabs",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: alphaMountain.ai",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: BitDefender",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Chong Lua Dao",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: CyRadar",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: ESET",
-          "type": "suspicious",
-          "severity": "medium"
-        },
-        {
-          "source": "VT: Fortinet",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: G-Data",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Lionic",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: MalwareURL",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: SOCRadar",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Sophos",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: VIPRE",
-          "type": "malware",
-          "severity": "high"
-        },
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Phishing Simulation",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2014-11-13T19:44:55Z",
@@ -257,12 +113,12 @@
           "asn": "AS14618"
         },
         "dns": {
-          "MX": [
-            "10 mx0.us.cf-ops.net."
-          ],
           "A": [
             "52.204.246.179",
             "34.194.247.17"
+          ],
+          "MX": [
+            "10 mx0.us.cf-ops.net."
           ],
           "NS": [
             "ns-1034.awsdns-01.org.",
@@ -415,7 +271,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (forkandtablemag .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"forkandtablemag.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000592; classtype:social-engineering; sid:6000592; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-03T20:10:19.444345+00:00",
+  "updated_at": "2026-06-04T15:14:53.345850+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "netflixclone-mu-nine.vercel.app",
       "domain_defanged": "netflixclone-mu-nine[.]vercel[.]app",
-      "case_id": "PD-20260604-1B4E6A",
-      "analyzed_at": "2026-06-04T03:03:35.718Z",
+      "case_id": "PD-20260605-1B4E6A",
+      "analyzed_at": "2026-06-05T05:46:09.208Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9096-14b3-71cd-be03-cfcdc536036e/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e961c-a89d-77d6-bbae-2a0c4293bf03.png",
+          "url": "https://urlscan.io/result/019e961c-a89d-77d6-bbae-2a0c4293bf03/",
+          "title": "Netflix Pakistan - Watch TV Shows Online, Watch Movies Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.2",
+        "ip": "216.198.79.130",
         "ipinfo": {
-          "ip": "216.198.79.2",
+          "ip": "216.198.79.130",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.2",
-            "64.29.17.2"
+            "216.198.79.130",
+            "64.29.17.130"
           ]
         }
       },
@@ -240,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.netflixclone-mu-nine.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.netflixclone-mu-nine.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009956; classtype:social-engineering; sid:6009956; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-04T11:59:41.006465+00:00",
+  "updated_at": "2026-06-05T05:46:00.943098+00:00",
   "probe": {
     "dns": true,
     "whois": false,

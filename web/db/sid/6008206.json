@@ -49,21 +49,47 @@
     "phishdestroy": {
       "domain": "objectstorage.us-ashburn-1.oraclecloud.com",
       "domain_defanged": "objectstorage[.]us-ashburn-1[.]oraclecloud[.]com",
-      "case_id": "PD-20260604-1EDE7F",
-      "analyzed_at": "2026-06-04T09:34:05.465Z",
+      "case_id": "PD-20260605-1EDE7F",
+      "analyzed_at": "2026-06-05T03:27:16.307Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e91fb-974e-758f-8510-9eeeb8c95ea2/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e91fb-974e-758f-8510-9eeeb8c95ea2.png",
+          "url": "https://urlscan.io/result/019e91fb-974e-758f-8510-9eeeb8c95ea2/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,29 +97,36 @@
         "ip": "objectstorage.us-ashburn-1.oci.oraclecloud.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "objectstorage.us-ashburn-1.oci.oraclecloud.com."
-          ],
           "A": [
             "objectstorage.us-ashburn-1.oci.oraclecloud.com.",
             "134.70.28.1",
             "134.70.32.1",
             "134.70.24.1"
           ],
+          "AAAA": [
+            "objectstorage.us-ashburn-1.oci.oraclecloud.com."
+          ],
+          "MX": [
+            "objectstorage.us-ashburn-1.oci.oraclecloud.com."
+          ],
           "CNAME": [
             "objectstorage.us-ashburn-1.oci.oraclecloud.com."
           ],
           "NS": [
-            "objectstorage.us-ashburn-1.oci.oraclecloud.com."
-          ],
-          "MX": [
             "objectstorage.us-ashburn-1.oci.oraclecloud.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -220,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (objectstorage.us-ashburn-1.oraclecloud.com/n/idhi4ea4t8if/b/documentation-approvalandpreloaded-on/o/deeperindex3958365.htm?e=hello@gmail.com)\"; flow:established,to_server; http.uri; content:\"/n/idhi4ea4t8if/b/documentation-approvalandpreloaded-on/o/deeperindex3958365.htm?e=hello@gmail.com\"; startswith; fast_pattern; http.host; content:\"objectstorage.us-ashburn-1.oraclecloud.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6008206; classtype:social-engineering; sid:6008206; rev:1; metadata: signature_severity Major, created_et 2026_05_28;)",
-  "updated_at": "2026-06-04T09:34:02.654143+00:00",
+  "updated_at": "2026-06-05T03:27:13.576934+00:00",
   "probe": {
     "dns": true,
     "whois": false,

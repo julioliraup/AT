@@ -49,21 +49,38 @@
     "phishdestroy": {
       "domain": "store-dofus.fr",
       "domain_defanged": "store-dofus[.]fr",
-      "case_id": "PD-20260604-28A2C2",
-      "analyzed_at": "2026-06-04T07:37:22.686Z",
+      "case_id": "PD-20260605-28A2C2",
+      "analyzed_at": "2026-06-05T01:40:11.393Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e9190-bcfc-724c-804f-ebbe74b6509b.png",
           "url": "https://urlscan.io/result/019e9190-bcfc-724c-804f-ebbe74b6509b/",
-          "pending": true
+          "title": "Plesk Obsidian 18.0.78"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -224,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.store-dofus.fr/mmorpg/actualites/recompenses/grimoires1/succes)\"; flow:established,to_server; http.uri; content:\"/mmorpg/actualites/recompenses/grimoires1/succes\"; startswith; fast_pattern; http.host; content:\"www.store-dofus.fr\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6006964; classtype:social-engineering; sid:6006964; rev:1; metadata: signature_severity Major, created_et 2026_05_25;)",
-  "updated_at": "2026-06-04T07:37:13.408191+00:00",
+  "updated_at": "2026-06-05T01:40:03.229309+00:00",
   "probe": {
     "dns": true,
     "whois": true,
