@@ -49,21 +49,58 @@
     "phishdestroy": {
       "domain": "desktops-unknown.wixstudio.com",
       "domain_defanged": "desktops-unknown[.]wixstudio[.]com",
-      "case_id": "PD-20260604-6CC431",
-      "analyzed_at": "2026-06-04T02:35:47.213Z",
+      "case_id": "PD-20260606-6CC431",
+      "analyzed_at": "2026-06-06T00:06:28.617Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e907c-9f8d-778d-ade3-5d8171190243.png",
           "url": "https://urlscan.io/result/019e907c-9f8d-778d-ade3-5d8171190243/",
-          "pending": true
+          "title": "404 Error: Page Not Found | Wix Studio"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -77,11 +114,6 @@
             "username-ccm-206-118.wixsite.com.",
             "34.144.206.118"
           ],
-          "MX": [
-            "username.wix.com.",
-            "username-ccm.wixsite.com.",
-            "username-ccm-206-118.wixsite.com."
-          ],
           "AAAA": [
             "username.wix.com.",
             "username-ccm.wixsite.com.",
@@ -89,6 +121,11 @@
           ],
           "CNAME": [
             "username.wix.com."
+          ],
+          "MX": [
+            "username.wix.com.",
+            "username-ccm.wixsite.com.",
+            "username-ccm-206-118.wixsite.com."
           ],
           "NS": [
             "username.wix.com.",
@@ -99,7 +136,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -222,12 +266,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (desktops-unknown.wixstudio.com/enus)\"; flow:established,to_server; http.uri; content:\"/enus\"; startswith; fast_pattern; http.host; content:\"desktops-unknown.wixstudio.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004097; classtype:social-engineering; sid:6004097; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-04T21:07:15.667301+00:00",
+  "updated_at": "2026-06-06T00:06:19.629685+00:00",
   "probe": {
     "dns": true,
     "whois": false,

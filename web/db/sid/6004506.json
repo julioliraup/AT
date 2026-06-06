@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "capitalone.zhygr.com",
       "domain_defanged": "capitalone[.]zhygr[.]com",
-      "case_id": "PD-20260604-120BAE",
-      "analyzed_at": "2026-06-04T03:19:19.589Z",
+      "case_id": "PD-20260606-120BAE",
+      "analyzed_at": "2026-06-06T00:58:47.282Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e90a4-7ad7-770b-9426-4e8d78c95411.png",
           "url": "https://urlscan.io/result/019e90a4-7ad7-770b-9426-4e8d78c95411/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,8 +112,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:3034::6815:1b14",
-            "2606:4700:3030::ac43:8cd5"
+            "2606:4700:3030::ac43:8cd5",
+            "2606:4700:3034::6815:1b14"
           ],
           "A": [
             "172.67.140.213",
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (capitalone.zhygr.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"capitalone.zhygr.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004506; classtype:social-engineering; sid:6004506; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-04T21:50:39.391471+00:00",
+  "updated_at": "2026-06-06T00:58:33.432449+00:00",
   "probe": {
     "dns": true,
     "whois": false,

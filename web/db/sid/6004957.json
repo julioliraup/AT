@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "admin.flexcontrol.app",
       "domain_defanged": "admin[.]flexcontrol[.]app",
-      "case_id": "PD-20260604-967AFD",
-      "analyzed_at": "2026-06-04T04:12:31.054Z",
+      "case_id": "PD-20260606-967AFD",
+      "analyzed_at": "2026-06-06T01:55:40.101Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "AT&T"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e90d5-2eca-77da-9d51-0296e8cc1375.png",
           "url": "https://urlscan.io/result/019e90d5-2eca-77da-9d51-0296e8cc1375/",
-          "pending": true
+          "title": "FlexControl"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: AT&T",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -240,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (admin.flexcontrol.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"admin.flexcontrol.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004957; classtype:social-engineering; sid:6004957; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-04T22:36:33.311209+00:00",
+  "updated_at": "2026-06-06T01:55:37.069814+00:00",
   "probe": {
     "dns": true,
     "whois": false,

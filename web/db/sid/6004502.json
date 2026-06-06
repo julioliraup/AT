@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "super.vipfb.sbs",
       "domain_defanged": "super[.]vipfb[.]sbs",
-      "case_id": "PD-20260604-774A88",
-      "analyzed_at": "2026-06-04T03:18:47.304Z",
+      "case_id": "PD-20260606-774A88",
+      "analyzed_at": "2026-06-06T00:58:03.854Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fake Shop",
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e486c-6e0f-74a5-8a9b-a2eca9ad2485.png",
+          "url": "https://urlscan.io/result/019e486c-6e0f-74a5-8a9b-a2eca9ad2485/",
+          "title": "Facebook"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fake Shop, Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "170.106.199.68",
+        "ipinfo": {
+          "ip": "170.106.199.68",
+          "city": "Santa Clara",
+          "region": "California",
+          "country": "US",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (super.vipfb.sbs/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"super.vipfb.sbs\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004502; classtype:social-engineering; sid:6004502; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-04T21:50:25.869817+00:00",
+  "updated_at": "2026-06-06T00:58:00.137614+00:00",
   "probe": {
     "dns": false,
     "whois": false,

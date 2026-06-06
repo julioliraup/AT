@@ -72,17 +72,50 @@
     "phishdestroy": {
       "domain": "changee.biz",
       "domain_defanged": "changee[.]biz",
-      "case_id": "PD-20260604-626899",
-      "analyzed_at": "2026-06-04T02:34:15.833Z",
+      "case_id": "PD-20260606-626899",
+      "analyzed_at": "2026-06-06T00:03:12.822Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing, Newly Registered (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e40dc-6435-76cb-97b4-b3c51baf657c.png",
+          "url": "https://urlscan.io/result/019e40dc-6435-76cb-97b4-b3c51baf657c/",
+          "title": "changee.biz"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -215,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (changee.biz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"changee.biz\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004076; classtype:social-engineering; sid:6004076; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-04T21:05:02.731437+00:00",
+  "updated_at": "2026-06-06T00:03:07.083016+00:00",
   "probe": {
     "dns": true,
     "whois": true,

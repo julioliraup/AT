@@ -49,50 +49,167 @@
     "phishdestroy": {
       "domain": "bonailspatra.gr",
       "domain_defanged": "bonailspatra[.]gr",
-      "case_id": "PD-20260604-3E8E04",
-      "analyzed_at": "2026-06-04T03:40:00.722Z",
+      "case_id": "PD-20260606-3E8E04",
+      "analyzed_at": "2026-06-06T01:21:06.229Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 11,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e90b7-6c4d-75c5-97ef-d9669fbdc8c3.png",
           "url": "https://urlscan.io/result/019e90b7-6c4d-75c5-97ef-d9669fbdc8c3/",
-          "pending": true
+          "title": "Αρχική - BÖ Nails & More"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "2.57.91.144",
+        "ip": "84.32.84.67",
         "ipinfo": {
-          "ip": "2.57.91.144",
-          "city": "Larnaca",
-          "region": "Larnaka",
-          "country": "CY",
+          "ip": "84.32.84.67",
+          "city": "Vilnius",
+          "region": "Vilnius",
+          "country": "LT",
           "org": "AS47583 Hostinger International Limited",
           "asn": "AS47583"
         },
         "dns": {
+          "MX": [
+            "5 mx1.hostinger.com.",
+            "10 mx2.hostinger.com."
+          ],
           "A": [
-            "2.57.91.144",
-            "84.32.84.179"
+            "84.32.84.67",
+            "88.222.222.100"
           ],
           "AAAA": [
-            "2a02:4780:84:553e:846b:b433:dd57:df94",
-            "2a02:4780:84:1b5a:96aa:d98d:73af:e536"
-          ],
-          "MX": [
-            "10 mx2.hostinger.com.",
-            "5 mx1.hostinger.com."
+            "2a02:4780:84:dbee:b97e:990d:816c:9778",
+            "2a02:4780:84:d0f4:903b:c05e:6bb2:c6fd"
           ],
           "NS": [
-            "ns1.dns-parking.com.",
-            "ns2.dns-parking.com."
+            "ns2.dns-parking.com.",
+            "ns1.dns-parking.com."
           ]
         }
       },
@@ -228,12 +345,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bonailspatra.gr/services/)\"; flow:established,to_server; http.uri; content:\"/services/\"; startswith; fast_pattern; http.host; content:\"bonailspatra.gr\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004691; classtype:social-engineering; sid:6004691; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-04T22:12:22.450421+00:00",
+  "updated_at": "2026-06-06T01:20:57.696836+00:00",
   "probe": {
     "dns": true,
     "whois": false,

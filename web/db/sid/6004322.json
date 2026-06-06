@@ -49,26 +49,47 @@
     "phishdestroy": {
       "domain": "metamask-work.com",
       "domain_defanged": "metamask-work[.]com",
-      "case_id": "PD-20260604-2AE761",
-      "analyzed_at": "2026-06-04T21:30:03.575Z",
+      "case_id": "PD-20260606-2AE761",
+      "analyzed_at": "2026-06-06T00:36:22.398Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Metamask"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e455d-b822-74eb-975c-7b6db3443f62.png",
+          "url": "https://urlscan.io/result/019e455d-b822-74eb-975c-7b6db3443f62/",
+          "title": "MetaMask Global Recruitment"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Metamask",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-04-30T14:26:44Z",
         "expires": "2027-04-30T14:26:44Z",
-        "age_days": 35,
+        "age_days": 36,
         "nameservers": []
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "156.239.47.95",
+        "ipinfo": {
+          "ip": "156.239.47.95",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS400619 AROSSCLOUD INC.",
+          "asn": "AS400619"
+        },
         "dns": null
       },
       "report_to": {
@@ -80,7 +101,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "AROSS-AS",
+          "abuse": "mark.chow@arosscloud.com",
+          "url": "mailto:mark.chow@arosscloud.com",
+          "logo": "https://i.ibb.co/bRqBZ8xh/pr-AROSS-AS.png",
+          "method": "email",
+          "asn": "AS400619"
+        }
       },
       "report_services": [
         {
@@ -207,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (metamask-work.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"metamask-work.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004322; classtype:social-engineering; sid:6004322; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-04T21:29:59.589865+00:00",
+  "updated_at": "2026-06-06T00:36:12.587666+00:00",
   "probe": {
     "dns": false,
     "whois": false,

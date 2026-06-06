@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "bundaumamtomsiungon.pages.dev",
       "domain_defanged": "bundaumamtomsiungon[.]pages[.]dev",
-      "case_id": "PD-20260604-7FAD84",
-      "analyzed_at": "2026-06-04T04:26:36.679Z",
+      "case_id": "PD-20260606-7FAD84",
+      "analyzed_at": "2026-06-06T02:13:05.724Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e90e2-15fd-7047-b5c8-f8422143f9f7.png",
           "url": "https://urlscan.io/result/019e90e2-15fd-7047-b5c8-f8422143f9f7/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,13 +87,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2cc8",
+            "2606:4700:310c::ac42:2f38"
+          ],
           "A": [
             "172.66.44.200",
             "172.66.47.56"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2f38",
-            "2606:4700:310c::ac42:2cc8"
           ],
           "NS": [
             "dora.ns.cloudflare.com.",
@@ -229,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bundaumamtomsiungon.pages.dev/help/contact/508448533301679)\"; flow:established,to_server; http.uri; content:\"/help/contact/508448533301679\"; startswith; fast_pattern; http.host; content:\"bundaumamtomsiungon.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005247; classtype:social-engineering; sid:6005247; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-04T23:02:12.002949+00:00",
+  "updated_at": "2026-06-06T02:28:48.821509+00:00",
   "probe": {
     "dns": true,
     "whois": false,

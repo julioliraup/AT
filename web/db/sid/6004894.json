@@ -49,22 +49,44 @@
     "phishdestroy": {
       "domain": "gov-lrs.numero123.com",
       "domain_defanged": "gov-lrs[.]numero123[.]com",
-      "case_id": "PD-20260604-66D64B",
-      "analyzed_at": "2026-06-04T22:31:56.015Z",
+      "case_id": "PD-20260606-66D64B",
+      "analyzed_at": "2026-06-06T01:48:26.255Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "IRS"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4be8-c6ca-73bc-8521-017b5d9e1394.png",
+          "url": "https://urlscan.io/result/019e4be8-c6ca-73bc-8521-017b5d9e1394/",
+          "title": "Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: IRS",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "185.58.73.249",
+        "ipinfo": {
+          "ip": "185.58.73.249",
+          "hostname": "aluminij.avalon.hr",
+          "city": "Đurđevac",
+          "region": "Koprivnica-Križevci",
+          "country": "HR",
+          "org": "AS201563 cyber_Folks d.o.o",
+          "asn": "AS201563"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +218,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gov-lrs.numero123.com/irs/data/index.html)\"; flow:established,to_server; http.uri; content:\"/irs/data/index.html\"; startswith; fast_pattern; http.host; content:\"gov-lrs.numero123.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004894; classtype:social-engineering; sid:6004894; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-04T22:31:51.044437+00:00",
+  "updated_at": "2026-06-06T01:48:21.344942+00:00",
   "probe": {
     "dns": false,
     "whois": false,

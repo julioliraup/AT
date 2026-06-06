@@ -19,52 +19,62 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://surl.li/nkayto",
-      "domain": "surl.li",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "surl.li",
       "domain_defanged": "surl[.]li",
-      "case_id": "PD-20260603-6E7417",
-      "analyzed_at": "2026-06-03T21:39:07.000Z",
+      "case_id": "PD-20260605-6E7417",
+      "analyzed_at": "2026-06-05T02:22:23.242Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019e8f6d-0378-740a-a12f-04bc67fd9d56/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019e956b-b509-739a-8246-dbfa6c05c8c4.png",
+          "url": "https://urlscan.io/result/019e956b-b509-739a-8246-dbfa6c05c8c4/",
+          "title": "Surli"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,18 +89,18 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:20::ac43:454c",
-            "2606:4700:20::681a:413",
-            "2606:4700:20::681a:513"
-          ],
-          "MX": [
-            "0 mail.surl.li."
-          ],
           "A": [
             "104.26.4.19",
             "172.67.69.76",
             "104.26.5.19"
+          ],
+          "MX": [
+            "0 mail.surl.li."
+          ],
+          "AAAA": [
+            "2606:4700:20::ac43:454c",
+            "2606:4700:20::681a:513",
+            "2606:4700:20::681a:413"
           ],
           "NS": [
             "dina.ns.cloudflare.com.",
@@ -235,7 +245,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (surl .li/nkayto)\"; flow:established,to_server; http.uri; content:\"/nkayto\"; startswith; fast_pattern; http.host;  content:\"surl.li\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001382; classtype:social-engineering; sid:6001382; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-04T16:25:13.494938+00:00",
+  "updated_at": "2026-06-05T19:26:01.511287+00:00",
   "probe": {
     "dns": true,
     "whois": true,

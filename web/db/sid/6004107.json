@@ -55,26 +55,43 @@
     "phishdestroy": {
       "domain": "host-services.com",
       "domain_defanged": "host-services[.]com",
-      "case_id": "PD-20260604-4CC9BB",
-      "analyzed_at": "2026-06-04T02:36:51.487Z",
+      "case_id": "PD-20260606-4CC9BB",
+      "analyzed_at": "2026-06-06T00:07:42.240Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e907d-9a97-71fa-874e-5f4bdfbb2f35.png",
           "url": "https://urlscan.io/result/019e907d-9a97-71fa-874e-5f4bdfbb2f35/",
-          "pending": true
+          "title": "host-services.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "registrar": "eNom, LLC",
         "created": "2002-05-13T17:23:33Z",
         "expires": "2032-05-13T17:23:33Z",
-        "age_days": 8787,
+        "age_days": 8789,
         "nameservers": [
           "DNS1.HOST-REDIRECT.COM",
           "DNS2.HOST-REDIRECT.COM",
@@ -102,8 +119,8 @@
             "194.8.30.20"
           ],
           "NS": [
-            "dns1.host-redirect.com.",
             "dns4.host-redirect.com.",
+            "dns1.host-redirect.com.",
             "dns2.host-redirect.com.",
             "dns3.host-redirect.com."
           ]
@@ -248,12 +265,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (host-services.com/suspended/pri.html)\"; flow:established,to_server; http.uri; content:\"/suspended/pri.html\"; startswith; fast_pattern; http.host; content:\"host-services.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004107; classtype:social-engineering; sid:6004107; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-04T21:08:32.940712+00:00",
+  "updated_at": "2026-06-06T00:07:29.675377+00:00",
   "probe": {
     "dns": true,
     "whois": true,

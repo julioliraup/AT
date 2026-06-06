@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "secure-page-builder-1--makiuzoma.replit.app",
       "domain_defanged": "secure-page-builder-1--makiuzoma[.]replit[.]app",
-      "case_id": "PD-20260604-4E63AB",
-      "analyzed_at": "2026-06-04T03:00:50.393Z",
+      "case_id": "PD-20260606-4E63AB",
+      "analyzed_at": "2026-06-06T00:38:14.211Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9093-8f4c-7246-a099-b59c73139576.png",
           "url": "https://urlscan.io/result/019e9093-8f4c-7246-a099-b59c73139576/",
-          "pending": true
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -240,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (secure-page-builder-1--makiuzoma.replit.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"secure-page-builder-1--makiuzoma.replit.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004343; classtype:social-engineering; sid:6004343; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-04T21:32:23.532711+00:00",
+  "updated_at": "2026-06-06T00:38:09.036670+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,28 +49,52 @@
     "phishdestroy": {
       "domain": "donex-helor-biz-vamin-qelur-nd11kt12.pages.dev",
       "domain_defanged": "donex-helor-biz-vamin-qelur-nd11kt12[.]pages[.]dev",
-      "case_id": "PD-20260604-70829E",
-      "analyzed_at": "2026-06-04T02:50:13.795Z",
+      "case_id": "PD-20260606-70829E",
+      "analyzed_at": "2026-06-06T00:26:04.537Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9089-d8a5-7347-8317-af4ac50aec77.png",
           "url": "https://urlscan.io/result/019e9089-d8a5-7347-8317-af4ac50aec77/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.110",
+        "ip": "172.66.44.146",
         "ipinfo": {
-          "ip": "172.66.47.110",
+          "ip": "172.66.44.146",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -78,17 +102,17 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2f6e",
+            "2606:4700:310c::ac42:2c92"
+          ],
           "A": [
-            "172.66.47.110",
-            "172.66.44.146"
+            "172.66.44.146",
+            "172.66.47.110"
           ],
           "NS": [
             "agustin.ns.cloudflare.com.",
             "kiki.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c92",
-            "2606:4700:310c::ac42:2f6e"
           ]
         }
       },
@@ -224,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (donex-helor-biz-vamin-qelur-nd11kt12.pages.dev/form_submit_appeal/)\"; flow:established,to_server; http.uri; content:\"/form_submit_appeal/\"; startswith; fast_pattern; http.host; content:\"donex-helor-biz-vamin-qelur-nd11kt12.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004243; classtype:social-engineering; sid:6004243; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-04T21:22:30.070511+00:00",
+  "updated_at": "2026-06-06T00:26:01.642258+00:00",
   "probe": {
     "dns": true,
     "whois": false,

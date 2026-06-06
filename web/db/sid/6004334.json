@@ -73,29 +73,50 @@
     "phishdestroy": {
       "domain": "blucex.com",
       "domain_defanged": "blucex[.]com",
-      "case_id": "PD-20260604-4D068B",
-      "analyzed_at": "2026-06-04T03:00:17.617Z",
+      "case_id": "PD-20260606-4D068B",
+      "analyzed_at": "2026-06-06T00:37:24.233Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e50f5-71f1-76f7-9786-a9ab59dc0e93.png",
+          "url": "https://urlscan.io/result/019e50f5-71f1-76f7-9786-a9ab59dc0e93/",
+          "title": "404 — Page not found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NICENIC INTERNATIONAL GROUP CO., LIMITED",
         "created": "2026-03-24T14:57:20Z",
         "expires": "2027-03-24T14:57:20Z",
-        "age_days": 71,
+        "age_days": 73,
         "nameservers": [
           "SLOAN.NS.CLOUDFLARE.COM",
           "SULLIVAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3031::ac43:c5f7",
+        "ipinfo": {
+          "ip": "2606:4700:3031::ac43:c5f7",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -107,7 +128,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (blucex.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"blucex.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004334; classtype:social-engineering; sid:6004334; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-04T21:31:19.861995+00:00",
+  "updated_at": "2026-06-06T00:37:15.347862+00:00",
   "probe": {
     "dns": true,
     "whois": false,

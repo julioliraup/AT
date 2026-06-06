@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.vfducs.top",
       "domain_defanged": "t-mobile[.]vfducs[.]top",
-      "case_id": "PD-20260604-767F39",
-      "analyzed_at": "2026-06-04T02:59:46.432Z",
+      "case_id": "PD-20260606-767F39",
+      "analyzed_at": "2026-06-06T00:36:48.340Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e480e-9645-7128-8b50-b6f4cb6ee541.png",
+          "url": "https://urlscan.io/result/019e480e-9645-7128-8b50-b6f4cb6ee541/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.148.17",
+        "ipinfo": {
+          "ip": "172.67.148.17",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +219,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.vfducs.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.vfducs.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004327; classtype:social-engineering; sid:6004327; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-04T21:30:33.323770+00:00",
+  "updated_at": "2026-06-06T00:36:44.073504+00:00",
   "probe": {
     "dns": false,
     "whois": false,

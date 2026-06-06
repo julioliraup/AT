@@ -49,21 +49,38 @@
     "phishdestroy": {
       "domain": "boerse.raiffeisen.ch",
       "domain_defanged": "boerse[.]raiffeisen[.]ch",
-      "case_id": "PD-20260604-3CC52B",
-      "analyzed_at": "2026-06-04T21:20:35.733Z",
+      "case_id": "PD-20260606-3CC52B",
+      "analyzed_at": "2026-06-06T00:23:08.590Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e9482-693b-714d-9d0c-01cce73a8930.png",
           "url": "https://urlscan.io/result/019e9482-693b-714d-9d0c-01cce73a8930/",
-          "pending": true
+          "title": "Raiffeisen Börse: Aktuelle Börsenkurse & globale Märkte"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -212,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (boerse.raiffeisen.ch/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"boerse.raiffeisen.ch\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004220; classtype:social-engineering; sid:6004220; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-04T21:20:30.959333+00:00",
+  "updated_at": "2026-06-06T00:23:04.822541+00:00",
   "probe": {
     "dns": true,
     "whois": true,

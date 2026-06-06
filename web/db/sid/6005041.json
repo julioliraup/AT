@@ -49,29 +49,37 @@
     "phishdestroy": {
       "domain": "firebasestorage.googleapis.com",
       "domain_defanged": "firebasestorage[.]googleapis[.]com",
-      "case_id": "PD-20260604-1BDE58",
-      "analyzed_at": "2026-06-04T04:20:16.094Z",
+      "case_id": "PD-20260606-1BDE58",
+      "analyzed_at": "2026-06-06T02:05:31.836Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e90dc-4751-729f-9ca8-aebbc1995391/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9aa8-6519-7141-a252-26ca35c18ebd.png",
+          "url": "https://urlscan.io/result/019e9aa8-6519-7141-a252-26ca35c18ebd/",
+          "title": "Webmail - Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "142.250.218.234",
+        "ip": "216.239.34.223",
         "ipinfo": {
-          "ip": "142.250.218.234",
-          "hostname": "gru14s26-in-f10.1e100.net",
+          "ip": "216.239.34.223",
           "city": "Mountain View",
           "region": "California",
           "country": "US",
@@ -79,24 +87,17 @@
           "asn": "AS15169"
         },
         "dns": {
-          "A": [
-            "142.250.218.234",
-            "142.251.132.42",
-            "172.217.172.10",
-            "142.251.129.234",
-            "142.250.78.170",
-            "142.250.219.10",
-            "172.217.162.202",
-            "142.250.219.138",
-            "142.250.219.42",
-            "142.251.132.234",
-            "142.250.78.202"
-          ],
           "AAAA": [
-            "2800:3f0:4004:80f::200a",
-            "2800:3f0:4004:811::200a",
-            "2800:3f0:4004:812::200a",
-            "2800:3f0:4004:80c::200a"
+            "2001:4860:4802:36::223",
+            "2001:4860:4802:38::223",
+            "2001:4860:4802:34::223",
+            "2001:4860:4802:32::223"
+          ],
+          "A": [
+            "216.239.34.223",
+            "216.239.38.223",
+            "216.239.36.223",
+            "216.239.32.223"
           ]
         }
       },
@@ -232,12 +233,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (firebasestorage.googleapis.com/v0/b/thtnwallnwdmn11.appspot.com/o/R1-mmmnneuusuumm.html?alt=media&token=cfc51f89-70e9-4bd8-9687-ac00c985f612)\"; flow:established,to_server; http.uri; content:\"/v0/b/thtnwallnwdmn11.appspot.com/o/R1-mmmnneuusuumm.html?alt=media&token=cfc51f89-70e9-4bd8-9687-ac00c985f612\"; startswith; fast_pattern; http.host; content:\"firebasestorage.googleapis.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6005041; classtype:social-engineering; sid:6005041; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-04T22:44:16.469895+00:00",
+  "updated_at": "2026-06-06T02:05:28.670639+00:00",
   "probe": {
     "dns": true,
     "whois": false,
