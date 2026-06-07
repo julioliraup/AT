@@ -49,27 +49,63 @@
     "phishdestroy": {
       "domain": "pixelora.sbs",
       "domain_defanged": "pixelora[.]sbs",
-      "case_id": "PD-20260606-444E05",
-      "analyzed_at": "2026-06-06T10:59:36.882Z",
+      "case_id": "PD-20260607-444E05",
+      "analyzed_at": "2026-06-07T04:47:09.565Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e954b-8ddb-739b-bc7d-f5573accb071.png",
+          "url": "https://urlscan.io/result/019e954b-8ddb-739b-bc7d-f5573accb071/",
+          "title": "Amazo - Your Online Shopping Platform"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.171.3",
+        "ipinfo": {
+          "ip": "172.67.171.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.pixelora.sbs/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.pixelora.sbs\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010958; classtype:social-engineering; sid:6010958; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-06T10:59:34.423574+00:00",
+  "updated_at": "2026-06-07T04:47:05.604156+00:00",
   "probe": {
     "dns": false,
     "whois": false,

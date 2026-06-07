@@ -49,27 +49,91 @@
     "phishdestroy": {
       "domain": "user-cembraaap-bitrefill.b-cdn.net",
       "domain_defanged": "user-cembraaap-bitrefill[.]b-cdn[.]net",
-      "case_id": "PD-20260606-235EBB",
-      "analyzed_at": "2026-06-06T11:06:49.997Z",
+      "case_id": "PD-20260607-235EBB",
+      "analyzed_at": "2026-06-07T04:54:54.745Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e9c9d-3752-74d7-8afa-239c21261466.png",
           "url": "https://urlscan.io/result/019e9c9d-3752-74d7-8afa-239c21261466/",
-          "pending": true
+          "title": "BunnyCDN Node DE1-1331"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "193.162.131.16",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "193.162.131.16",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS200325 BUNNYWAY, informacijske storitve d.o.o.",
+          "asn": "AS200325"
+        },
         "dns": {
           "A": [
             "193.162.131.16"
@@ -78,7 +142,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "BunnyCDN",
+          "abuse": "abuse@bunnycdn.com",
+          "url": "mailto:abuse@bunnycdn.com",
+          "logo": "https://i.ibb.co/SXfVJxZP/pr-Bunny-CDN.png",
+          "method": "email",
+          "asn": "AS200325"
+        }
       },
       "report_services": [
         {
@@ -205,7 +276,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (user-cembraaap-bitrefill.b-cdn.net/B92x5T/d9fe07c.html)\"; flow:established,to_server; http.uri; content:\"/B92x5T/d9fe07c.html\"; startswith; fast_pattern; http.host; content:\"user-cembraaap-bitrefill.b-cdn.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011061; classtype:social-engineering; sid:6011061; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-06T11:06:41.683249+00:00",
+  "updated_at": "2026-06-07T04:54:50.224915+00:00",
   "probe": {
     "dns": true,
     "whois": false,
