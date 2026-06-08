@@ -22,7 +22,7 @@
       "url": "http://microsoft-1ogin.duckdns.org/",
       "domain": "microsoft-1ogin.duckdns.org",
       "url_count": 4,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "microsoft-1ogin.duckdns.org",
       "domain_defanged": "microsoft-1ogin[.]duckdns[.]org",
-      "case_id": "PD-20260606-7F070D",
-      "analyzed_at": "2026-06-06T09:10:50.223Z",
+      "case_id": "PD-20260607-7F070D",
+      "analyzed_at": "2026-06-07T21:10:21.991Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ea3ec-20ee-735c-8e47-57a633e1798c/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,19 +92,33 @@
       },
       "infrastructure": {
         "ip": "216.198.79.1",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.198.79.1",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
-          "MX": [
-            "50 microsoft-1ogin.duckdns.org."
-          ],
           "A": [
             "216.198.79.1"
+          ],
+          "MX": [
+            "50 microsoft-1ogin.duckdns.org."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -223,12 +241,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (microsoft-1ogin.duckdns.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"microsoft-1ogin.duckdns.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6009594; classtype:social-engineering; sid:6009594; rev:1; metadata: signature_severity Major, created_et 2026_05_31;)",
-  "updated_at": "2026-06-07T03:04:00.101742+00:00",
+  "updated_at": "2026-06-07T21:10:12.613678+00:00",
   "probe": {
     "dns": true,
     "whois": true,

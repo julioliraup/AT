@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "booking-clone-sigma.vercel.app",
       "domain_defanged": "booking-clone-sigma[.]vercel[.]app",
-      "case_id": "PD-20260605-350707",
-      "analyzed_at": "2026-06-05T19:13:12.387Z",
+      "case_id": "PD-20260607-350707",
+      "analyzed_at": "2026-06-07T07:46:46.792Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9934-25cb-70c6-ae89-b4bed4f61e08.png",
           "url": "https://urlscan.io/result/019e9934-25cb-70c6-ae89-b4bed4f61e08/",
-          "pending": true
+          "title": "Booking.com clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.130",
+        "ip": "64.29.17.194",
         "ipinfo": {
-          "ip": "64.29.17.130",
+          "ip": "64.29.17.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.130",
-            "216.198.79.130"
+            "64.29.17.194",
+            "216.198.79.194"
           ]
         }
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (booking-clone-sigma .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"booking-clone-sigma.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001067; classtype:social-engineering; sid:6001067; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T13:53:56.343512+00:00",
+  "updated_at": "2026-06-07T07:46:44.015618+00:00",
   "probe": {
     "dns": true,
     "whois": false,

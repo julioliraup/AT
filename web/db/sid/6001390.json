@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "agency-network.accounts-admin-agency.com",
       "domain_defanged": "agency-network[.]accounts-admin-agency[.]com",
-      "case_id": "PD-20260606-40AA80",
-      "analyzed_at": "2026-06-06T14:27:54.232Z",
+      "case_id": "PD-20260607-40AA80",
+      "analyzed_at": "2026-06-07T08:06:50.990Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1bdd-d2da-708b-857c-2cfbc522466a.png",
+          "url": "https://urlscan.io/result/019e1bdd-d2da-708b-857c-2cfbc522466a/",
+          "title": "Accounts Centre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:7::60",
+        "ipinfo": {
+          "ip": "2606:4700:7::60",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -197,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (agency-network .accounts-admin-agency .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"agency-network.accounts-admin-agency.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001390; classtype:social-engineering; sid:6001390; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T14:27:45.437429+00:00",
+  "updated_at": "2026-06-07T08:06:46.346983+00:00",
   "probe": {
     "dns": false,
     "whois": false,

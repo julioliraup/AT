@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "newsalerts.eu",
       "domain_defanged": "newsalerts[.]eu",
-      "case_id": "PD-20260605-21926D",
-      "analyzed_at": "2026-06-05T19:00:45.230Z",
+      "case_id": "PD-20260607-21926D",
+      "analyzed_at": "2026-06-07T07:25:37.218Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9928-bed0-7508-8307-97ee089c46f5.png",
           "url": "https://urlscan.io/result/019e9928-bed0-7508-8307-97ee089c46f5/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -227,12 +236,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (newsalerts .eu/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/\"; startswith; fast_pattern; http.host;  content:\"newsalerts.eu\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000733; classtype:social-engineering; sid:6000733; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T13:21:14.978607+00:00",
+  "updated_at": "2026-06-07T07:25:32.053984+00:00",
   "probe": {
     "dns": true,
     "whois": true,

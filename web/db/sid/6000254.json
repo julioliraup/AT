@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "s3-external-2.amazonaws.com",
       "domain_defanged": "s3-external-2[.]amazonaws[.]com",
-      "case_id": "PD-20260605-6E56EB",
-      "analyzed_at": "2026-06-05T18:38:20.142Z",
+      "case_id": "PD-20260607-6E56EB",
+      "analyzed_at": "2026-06-07T06:40:10.925Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9914-380a-776e-8d8d-a6940598b131/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea02b-51bf-7149-9aba-ea8bc5d49d20.png",
+          "url": "https://urlscan.io/result/019ea02b-51bf-7149-9aba-ea8bc5d49d20/",
+          "title": "DHL Express | Track Shipment"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -76,20 +85,24 @@
             "s3-external-1.amazonaws.com.",
             "s3-external.us-east-1.amazonaws.com."
           ],
+          "CNAME": [
+            "s3-external-1.amazonaws.com."
+          ],
+          "MX": [
+            "s3-external-1.amazonaws.com.",
+            "s3-external.us-east-1.amazonaws.com."
+          ],
           "A": [
             "s3-external-1.amazonaws.com.",
             "s3-external.us-east-1.amazonaws.com.",
-            "52.217.171.219",
-            "54.231.160.139",
-            "54.231.129.83",
-            "52.217.120.75",
-            "52.217.236.155",
-            "54.231.193.59",
-            "16.182.64.147",
-            "52.217.132.155"
-          ],
-          "CNAME": [
-            "s3-external-1.amazonaws.com."
+            "54.231.164.51",
+            "16.182.97.251",
+            "16.182.66.27",
+            "16.182.67.27",
+            "52.217.236.187",
+            "54.231.229.19",
+            "52.217.165.43",
+            "52.216.211.195"
           ],
           "NS": [
             "s3-external-1.amazonaws.com.",
@@ -98,16 +111,19 @@
             "ns-1784.awsdns-31.co.uk.",
             "ns-225.awsdns-28.com.",
             "ns-580.awsdns-08.net."
-          ],
-          "MX": [
-            "s3-external-1.amazonaws.com.",
-            "s3-external.us-east-1.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -235,7 +251,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s3-external-2 .amazonaws .com/rtsrtgfsgvhgvjhsd5211gvvxtcj .068 .udjhss .jnxjnnjn/index .html)\"; flow:established,to_server; http.uri; content:\"/rtsrtgfsgvhgvjhsd5211gvvxtcj.068.udjhss.jnxjnnjn/index.html\"; startswith; fast_pattern; http.host;  content:\"s3-external-2.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000254; classtype:social-engineering; sid:6000254; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T12:41:56.470382+00:00",
+  "updated_at": "2026-06-07T06:52:51.266672+00:00",
   "probe": {
     "dns": true,
     "whois": false,

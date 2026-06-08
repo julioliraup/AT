@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "meta-id17632.invoice-ads-manager.com",
       "domain_defanged": "meta-id17632[.]invoice-ads-manager[.]com",
-      "case_id": "PD-20260606-76248F",
-      "analyzed_at": "2026-06-06T12:53:35.109Z",
+      "case_id": "PD-20260607-76248F",
+      "analyzed_at": "2026-06-07T07:02:19.053Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e136c-8f5b-77c9-a87a-da8d9c3ceb87.png",
+          "url": "https://urlscan.io/result/019e136c-8f5b-77c9-a87a-da8d9c3ceb87/",
+          "title": "Accounts Centre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "162.159.140.98",
+        "ipinfo": {
+          "ip": "162.159.140.98",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -197,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-id17632 .invoice-ads-manager .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"meta-id17632.invoice-ads-manager.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000399; classtype:social-engineering; sid:6000399; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T12:53:30.748228+00:00",
+  "updated_at": "2026-06-07T07:02:16.109390+00:00",
   "probe": {
     "dns": false,
     "whois": false,

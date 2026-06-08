@@ -49,28 +49,41 @@
     "phishdestroy": {
       "domain": "sp10ct6-vrolvik-biz-qortem-glurnax.pages.dev",
       "domain_defanged": "sp10ct6-vrolvik-biz-qortem-glurnax[.]pages[.]dev",
-      "case_id": "PD-20260606-2C91F8",
-      "analyzed_at": "2026-06-06T11:22:16.358Z",
+      "case_id": "PD-20260608-2C91F8",
+      "analyzed_at": "2026-06-08T00:02:37.345Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9cab-5a5b-703f-a0f4-9b8be4aff001.png",
           "url": "https://urlscan.io/result/019e9cab-5a5b-703f-a0f4-9b8be4aff001/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.90",
+        "ip": "172.66.44.166",
         "ipinfo": {
-          "ip": "172.66.47.90",
+          "ip": "172.66.44.166",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,12 +92,12 @@
         },
         "dns": {
           "A": [
-            "172.66.47.90",
-            "172.66.44.166"
+            "172.66.44.166",
+            "172.66.47.90"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2ca6",
-            "2606:4700:310c::ac42:2f5a"
+            "2606:4700:310c::ac42:2f5a",
+            "2606:4700:310c::ac42:2ca6"
           ],
           "NS": [
             "aaden.ns.cloudflare.com.",
@@ -224,12 +237,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-vrolvik-biz-qortem-glurnax.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-vrolvik-biz-qortem-glurnax.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011274; classtype:social-engineering; sid:6011274; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-07T05:12:10.093283+00:00",
+  "updated_at": "2026-06-08T00:02:28.742243+00:00",
   "probe": {
     "dns": true,
     "whois": false,

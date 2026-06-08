@@ -72,26 +72,35 @@
     "phishdestroy": {
       "domain": "uspsmailjourney.com",
       "domain_defanged": "uspsmailjourney[.]com",
-      "case_id": "PD-20260606-247EA7",
-      "analyzed_at": "2026-06-06T05:04:23.841Z",
+      "case_id": "PD-20260607-247EA7",
+      "analyzed_at": "2026-06-07T08:09:24.667Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9b51-6622-757d-9298-89cbda26521a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "USPS"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9fc5-f4b0-7309-bf18-a051e007d6fc.png",
+          "url": "https://urlscan.io/result/019e9fc5-f4b0-7309-bf18-a051e007d6fc/",
+          "title": "USPS® Marketing Education Portal - United States Postal Service"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: USPS",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Amazon Registrar, Inc.",
         "created": "2019-04-30T21:22:36Z",
         "expires": "2027-04-30T21:22:36Z",
-        "age_days": 2593,
+        "age_days": 2594,
         "nameservers": [
           "NS-1097.AWSDNS-09.ORG",
           "NS-161.AWSDNS-20.COM",
@@ -265,7 +274,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (uspsmailjourney.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"uspsmailjourney.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6006830; classtype:social-engineering; sid:6006830; rev:1; metadata: signature_severity Major, created_et 2026_05_25;)",
-  "updated_at": "2026-06-06T23:18:42.287490+00:00",
+  "updated_at": "2026-06-07T16:01:39.534476+00:00",
   "probe": {
     "dns": true,
     "whois": true,

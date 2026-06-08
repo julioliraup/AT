@@ -74,22 +74,35 @@
     "phishdestroy": {
       "domain": "hoematreselob.com",
       "domain_defanged": "hoematreselob[.]com",
-      "case_id": "PD-20260606-67D1B1",
-      "analyzed_at": "2026-06-06T14:20:20.560Z",
+      "case_id": "PD-20260607-67D1B1",
+      "analyzed_at": "2026-06-07T08:02:40.885Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "SEB Group"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1901-bada-772f-8876-c8ddfa71e0d4.png",
+          "url": "https://urlscan.io/result/019e1901-bada-772f-8876-c8ddfa71e0d4/",
+          "title": "SEB Prisijungimas"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: SEB Group",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MAT BAO CORPORATION",
         "created": "2026-05-09T04:48:49Z",
         "expires": "2027-05-09T04:48:49Z",
-        "age_days": 28,
+        "age_days": 29,
         "nameservers": [
           "NS1.QHOSTER.NET",
           "NS2.QHOSTER.NET",
@@ -98,12 +111,28 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "185.38.151.11",
+        "ipinfo": {
+          "ip": "185.38.151.11",
+          "hostname": "cphost17.qhoster.net",
+          "city": "London",
+          "region": "England",
+          "country": "GB",
+          "org": "AS25369 Hydra Communications Ltd",
+          "asn": "AS25369"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "BANDWIDTH-AS, GB",
+          "abuse": "abuse@zare.com",
+          "url": "mailto:abuse@zare.com",
+          "logo": "https://i.ibb.co/WNk2qJbK/pr-BANDWIDTH-AS-GB.png",
+          "method": "email",
+          "asn": "AS25369"
+        }
       },
       "report_services": [
         {
@@ -230,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hoematreselob .com/HoseMatar/)\"; flow:established,to_server; http.uri; content:\"/HoseMatar/\"; startswith; fast_pattern; http.host;  content:\"hoematreselob.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001335; classtype:social-engineering; sid:6001335; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T14:20:11.983567+00:00",
+  "updated_at": "2026-06-07T08:02:34.867986+00:00",
   "probe": {
     "dns": true,
     "whois": true,

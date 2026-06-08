@@ -19,39 +19,99 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://atendimentosuportenetempresa.com/",
+      "domain": "atendimentosuportenetempresa.com",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.67.198.134",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "9fb706fdde92acc8-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (926)",
+      "sha256": "b0502177578abd5adf6f8fff902a05a561b1ec08e0df1bb0b689f98e12b12f3b",
+      "md5": "f490725a42f642f33ee347b7df4e3563",
+      "cert": {
+        "subject_cn": "atendimentosuportenetempresa.com",
+        "subject_alt_names": [
+          "*.atendimentosuportenetempresa.com",
+          "atendimentosuportenetempresa.com"
+        ],
+        "issuer_cn": "E8",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-04T19:09:18+00:00",
+        "not_valid_after": "2026-08-02T19:09:17+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "566742191405908696747553178168579910566723",
+        "fingerprint_sha1": "68 7F 96 95 6A 3D 05 5E 1D 08 A1 98 BB D2 C4 C3 EE 66 32 F2",
+        "fingerprint_sha256": "2F 3E 3F 53 58 92 CF 66 F9 96 20 88 2E 01 9D 2F F2 B5 39 B9 75 C9 4A FD 1C 92 F9 F8 95 6A AB E4"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-05-14T03:57:58",
+      "first_seen_secs": 1778731078.0
+    },
     "phishdestroy": {
       "domain": "atendimentosuportenetempresa.com",
       "domain_defanged": "atendimentosuportenetempresa[.]com",
-      "case_id": "PD-20260605-564FE0",
-      "analyzed_at": "2026-06-05T19:09:18.083Z",
+      "case_id": "PD-20260607-564FE0",
+      "analyzed_at": "2026-06-07T07:40:05.638Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9930-90cc-74ab-90b5-c0d18fe1ba29.png",
           "url": "https://urlscan.io/result/019e9930-90cc-74ab-90b5-c0d18fe1ba29/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-04-23T15:16:38Z",
         "expires": "2027-04-23T15:16:38Z",
-        "age_days": 43,
+        "age_days": 44,
         "nameservers": [
           "BOB.NS.CLOUDFLARE.COM",
           "MINA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.198.134",
+        "ip": "104.21.44.98",
         "ipinfo": {
-          "ip": "172.67.198.134",
+          "ip": "104.21.44.98",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -59,13 +119,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3033::ac43:c686",
-            "2606:4700:3034::6815:2c62"
-          ],
           "A": [
-            "172.67.198.134",
-            "104.21.44.98"
+            "104.21.44.98",
+            "172.67.198.134"
+          ],
+          "AAAA": [
+            "2606:4700:3034::6815:2c62",
+            "2606:4700:3033::ac43:c686"
           ],
           "NS": [
             "bob.ns.cloudflare.com.",
@@ -212,12 +272,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (atendimentosuportenetempresa .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"atendimentosuportenetempresa.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000971; classtype:social-engineering; sid:6000971; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T13:44:18.018878+00:00",
+  "updated_at": "2026-06-07T07:40:00.864815+00:00",
   "probe": {
     "dns": true,
     "whois": true,

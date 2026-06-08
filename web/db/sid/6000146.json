@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "kukoenvee-idd.gitbook.io",
       "domain_defanged": "kukoenvee-idd[.]gitbook[.]io",
-      "case_id": "PD-20260605-56E2B0",
-      "analyzed_at": "2026-06-05T18:42:53.040Z",
+      "case_id": "PD-20260607-56E2B0",
+      "analyzed_at": "2026-06-07T06:46:52.269Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9918-62f5-76f4-a181-580cdf53eb33.png",
           "url": "https://urlscan.io/result/019e9918-62f5-76f4-a181-580cdf53eb33/",
-          "pending": true
+          "title": "Bitcổin & Cryptổ Exchange | Kúcổin Lổgin"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,13 +112,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:4407::6812:282f",
-            "2606:4700:4402::ac40:93d1"
-          ],
           "A": [
             "104.18.40.47",
             "172.64.147.209"
+          ],
+          "AAAA": [
+            "2606:4700:4402::ac40:93d1",
+            "2606:4700:4407::6812:282f"
           ]
         }
       },
@@ -245,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kukoenvee-idd .gitbook .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"kukoenvee-idd.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000146; classtype:social-engineering; sid:6000146; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T12:34:04.374055+00:00",
+  "updated_at": "2026-06-07T06:46:49.042395+00:00",
   "probe": {
     "dns": true,
     "whois": true,

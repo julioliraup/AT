@@ -72,26 +72,35 @@
     "phishdestroy": {
       "domain": "postailedger.com",
       "domain_defanged": "postailedger[.]com",
-      "case_id": "PD-20260606-495ADE",
-      "analyzed_at": "2026-06-06T03:08:11.946Z",
+      "case_id": "PD-20260607-495ADE",
+      "analyzed_at": "2026-06-07T05:28:33.201Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9ae6-ff1d-77fe-966b-68ce42e9fc2b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea008-477a-759d-9eeb-aac71d79c21e.png",
+          "url": "https://urlscan.io/result/019ea008-477a-759d-9eeb-aac71d79c21e/",
+          "title": "Ledger by Post AI — The AI bookkeeper for service businesses."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2026-04-23T17:46:11Z",
         "expires": "2027-04-23T17:46:11Z",
-        "age_days": 43,
+        "age_days": 44,
         "nameservers": [
           "NS37.DOMAINCONTROL.COM",
           "NS38.DOMAINCONTROL.COM"
@@ -261,7 +270,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.postailedger.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.postailedger.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005606; classtype:social-engineering; sid:6005606; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-06T21:31:41.951723+00:00",
+  "updated_at": "2026-06-07T13:53:34.713450+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -78,29 +78,38 @@
     "phishdestroy": {
       "domain": "kcoinlogin.github.io",
       "domain_defanged": "kcoinlogin[.]github[.]io",
-      "case_id": "PD-20260605-603699",
-      "analyzed_at": "2026-06-05T19:29:25.025Z",
+      "case_id": "PD-20260607-603699",
+      "analyzed_at": "2026-06-07T08:12:27.263Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9942-fd26-77b7-b677-3eb0c18b3d1e.png",
           "url": "https://urlscan.io/result/019e9942-fd26-77b7-b677-3eb0c18b3d1e/",
-          "pending": true
+          "title": "Kucoin® Loᘜin - Your Gateway to a World of Digital Assets"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "185.199.111.153",
         "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
+          "ip": "185.199.111.153",
+          "hostname": "cdn-185-199-111-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -108,17 +117,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "A": [
-            "185.199.108.153",
-            "185.199.110.153",
-            "185.199.111.153",
-            "185.199.109.153"
-          ],
           "AAAA": [
+            "2606:50c0:8000::153",
             "2606:50c0:8001::153",
             "2606:50c0:8002::153",
-            "2606:50c0:8000::153",
             "2606:50c0:8003::153"
+          ],
+          "A": [
+            "185.199.111.153",
+            "185.199.108.153",
+            "185.199.110.153",
+            "185.199.109.153"
           ]
         }
       },
@@ -254,12 +263,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kcoinlogin .github .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"kcoinlogin.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001465; classtype:social-engineering; sid:6001465; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T14:33:56.659239+00:00",
+  "updated_at": "2026-06-07T08:12:22.189883+00:00",
   "probe": {
     "dns": true,
     "whois": true,

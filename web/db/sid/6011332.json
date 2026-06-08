@@ -55,14 +55,19 @@
     "phishdestroy": {
       "domain": "webmail.au.newsalerts.com.sg",
       "domain_defanged": "webmail[.]au[.]newsalerts[.]com[.]sg",
-      "case_id": "PD-20260607-5D639F",
-      "analyzed_at": "2026-06-07T05:17:27.945Z",
+      "case_id": "PD-20260608-5D639F",
+      "analyzed_at": "2026-06-08T00:07:08.067Z",
       "intel": {
         "virustotal": {
-          "malicious": 6,
-          "suspicious": 2,
+          "malicious": 10,
+          "suspicious": 1,
           "total": 91,
           "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
             {
               "engine": "Cluster25",
               "category": "malicious",
@@ -72,6 +77,11 @@
               "engine": "CRDF",
               "category": "malicious",
               "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
             },
             {
               "engine": "Emsisoft",
@@ -84,14 +94,19 @@
               "result": "phishing"
             },
             {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
               "engine": "MalwareURL",
               "category": "malicious",
               "result": "phishing"
             },
             {
               "engine": "SOCRadar",
-              "category": "suspicious",
-              "result": "suspicious"
+              "category": "malicious",
+              "result": "phishing"
             },
             {
               "engine": "Sophos",
@@ -104,7 +119,9 @@
               "result": "suspicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "Sophos": "phishing and fraud"
+          }
         },
         "urlscan": {
           "malicious": true,
@@ -119,6 +136,11 @@
       },
       "detections": [
         {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
           "source": "VT: Cluster25",
           "type": "phishing",
           "severity": "high"
@@ -126,6 +148,11 @@
         {
           "source": "VT: CRDF",
           "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
           "severity": "high"
         },
         {
@@ -139,14 +166,19 @@
           "severity": "high"
         },
         {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
           "source": "VT: MalwareURL",
           "type": "phishing",
           "severity": "high"
         },
         {
           "source": "VT: SOCRadar",
-          "type": "suspicious",
-          "severity": "medium"
+          "type": "phishing",
+          "severity": "high"
         },
         {
           "source": "VT: Sophos",
@@ -321,7 +353,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webmail.au.newsalerts.com.sg/secure/training/6422c2/8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/secure/training/6422c2/8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"webmail.au.newsalerts.com.sg\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011332; classtype:social-engineering; sid:6011332; rev:1; metadata: signature_severity Major, created_et 2026_06_06;)",
-  "updated_at": "2026-06-07T05:17:12.958154+00:00",
+  "updated_at": "2026-06-08T00:07:04.047528+00:00",
   "probe": {
     "dns": true,
     "whois": true,

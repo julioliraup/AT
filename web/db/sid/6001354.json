@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "rgilf.thespeedyway.com",
       "domain_defanged": "rgilf[.]thespeedyway[.]com",
-      "case_id": "PD-20260605-4BF96C",
-      "analyzed_at": "2026-06-05T19:24:41.634Z",
+      "case_id": "PD-20260607-4BF96C",
+      "analyzed_at": "2026-06-07T08:03:48.320Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e993e-a924-72ee-9b4d-323b144cd5ae.png",
           "url": "https://urlscan.io/result/019e993e-a924-72ee-9b4d-323b144cd5ae/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.0.182",
+        "ip": "172.67.128.46",
         "ipinfo": {
-          "ip": "104.21.0.182",
+          "ip": "172.67.128.46",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,12 +89,12 @@
         },
         "dns": {
           "A": [
-            "104.21.0.182",
-            "172.67.128.46"
+            "172.67.128.46",
+            "104.21.0.182"
           ],
           "AAAA": [
-            "2606:4700:3031::6815:b6",
-            "2606:4700:3032::ac43:802e"
+            "2606:4700:3032::ac43:802e",
+            "2606:4700:3031::6815:b6"
           ]
         }
       },
@@ -221,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rgilf .thespeedyway .com/p6f88d0/691364425d2eafe234edc268 .html#BB)\"; flow:established,to_server; http.uri; content:\"/p6f88d0/691364425d2eafe234edc268.html#BB\"; startswith; fast_pattern; http.host;  content:\"rgilf.thespeedyway.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001354; classtype:social-engineering; sid:6001354; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T14:23:28.207712+00:00",
+  "updated_at": "2026-06-07T08:03:44.589161+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "amazon-clone-alpha-nine.vercel.app",
       "domain_defanged": "amazon-clone-alpha-nine[.]vercel[.]app",
-      "case_id": "PD-20260605-45EA32",
-      "analyzed_at": "2026-06-05T19:10:37.702Z",
+      "case_id": "PD-20260607-45EA32",
+      "analyzed_at": "2026-06-07T07:42:21.866Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9931-c989-734b-98f8-ce6e814eabf4.png",
           "url": "https://urlscan.io/result/019e9931-c989-734b-98f8-ce6e814eabf4/",
-          "pending": true
+          "title": "Amazon Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.194",
+        "ip": "64.29.17.66",
         "ipinfo": {
-          "ip": "64.29.17.194",
+          "ip": "64.29.17.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.194",
-            "216.198.79.194"
+            "64.29.17.66",
+            "216.198.79.66"
           ]
         }
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .amazon-clone-alpha-nine .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.amazon-clone-alpha-nine.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000997; classtype:social-engineering; sid:6000997; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T13:48:11.408048+00:00",
+  "updated_at": "2026-06-07T07:42:17.886738+00:00",
   "probe": {
     "dns": true,
     "whois": false,

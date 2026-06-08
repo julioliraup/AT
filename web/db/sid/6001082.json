@@ -50,22 +50,43 @@
     "phishdestroy": {
       "domain": "v23m.xyz",
       "domain_defanged": "v23m[.]xyz",
-      "case_id": "PD-20260605-6C1FDA",
-      "analyzed_at": "2026-06-05T19:13:52.854Z",
+      "case_id": "PD-20260607-6C1FDA",
+      "analyzed_at": "2026-06-07T07:47:41.706Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e18bd-58bc-767c-b863-8a8a74e23b96.png",
+          "url": "https://urlscan.io/result/019e18bd-58bc-767c-b863-8a8a74e23b96/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "154.39.104.132",
+        "ipinfo": {
+          "ip": "154.39.104.132",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS18186 Nebula Global LLC",
+          "asn": "AS18186"
+        },
         "dns": null
       },
       "report_to": {
@@ -193,12 +214,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (v23m .xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"v23m.xyz\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001082; classtype:social-engineering; sid:6001082; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T13:55:35.196233+00:00",
+  "updated_at": "2026-06-07T07:47:37.583456+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -50,26 +50,35 @@
     "phishdestroy": {
       "domain": "uspsmailjourney.com",
       "domain_defanged": "uspsmailjourney[.]com",
-      "case_id": "PD-20260606-247EA7",
-      "analyzed_at": "2026-06-06T05:04:23.841Z",
+      "case_id": "PD-20260607-247EA7",
+      "analyzed_at": "2026-06-07T08:09:24.667Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9b51-6622-757d-9298-89cbda26521a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "USPS"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9fc5-f4b0-7309-bf18-a051e007d6fc.png",
+          "url": "https://urlscan.io/result/019e9fc5-f4b0-7309-bf18-a051e007d6fc/",
+          "title": "USPS® Marketing Education Portal - United States Postal Service"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: USPS",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Amazon Registrar, Inc.",
         "created": "2019-04-30T21:22:36Z",
         "expires": "2027-04-30T21:22:36Z",
-        "age_days": 2593,
+        "age_days": 2594,
         "nameservers": [
           "NS-1097.AWSDNS-09.ORG",
           "NS-161.AWSDNS-20.COM",
@@ -238,12 +247,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .uspsmailjourney .com/home)\"; flow:established,to_server; http.uri; content:\"/home\"; startswith; fast_pattern; http.host;  content:\"www.uspsmailjourney.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001423; classtype:social-engineering; sid:6001423; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T14:30:38.082134+00:00",
+  "updated_at": "2026-06-07T08:09:09.399347+00:00",
   "probe": {
     "dns": true,
     "whois": false,

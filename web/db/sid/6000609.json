@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "bafkreiaf5xobv77iwcgq66bn3jmaqskzspnohb46kg5nypzmkuq5ake5pi.ipfs.dweb.link",
       "domain_defanged": "bafkreiaf5xobv77iwcgq66bn3jmaqskzspnohb46kg5nypzmkuq5ake5pi[.]ipfs[.]dweb[.]link",
-      "case_id": "PD-20260605-5BAE0F",
-      "analyzed_at": "2026-06-05T18:56:48.872Z",
+      "case_id": "PD-20260607-5BAE0F",
+      "analyzed_at": "2026-06-07T07:16:22.198Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9925-23e4-779a-b504-26048aa0d023.png",
           "url": "https://urlscan.io/result/019e9925-23e4-779a-b504-26048aa0d023/",
-          "pending": true
+          "title": "Security verification - Microsoft account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "209.94.90.3",
+        "ip": "209.94.90.2",
         "ipinfo": {
-          "ip": "209.94.90.3",
+          "ip": "209.94.90.2",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,13 +88,13 @@
           "asn": "AS40680"
         },
         "dns": {
-          "AAAA": [
-            "2602:fea2:2::2",
-            "2602:fea2:2::3"
-          ],
           "A": [
-            "209.94.90.3",
-            "209.94.90.2"
+            "209.94.90.2",
+            "209.94.90.3"
+          ],
+          "AAAA": [
+            "2602:fea2:2::3",
+            "2602:fea2:2::2"
           ]
         }
       },
@@ -221,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bafkreiaf5xobv77iwcgq66bn3jmaqskzspnohb46kg5nypzmkuq5ake5pi .ipfs .dweb .link/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"bafkreiaf5xobv77iwcgq66bn3jmaqskzspnohb46kg5nypzmkuq5ake5pi.ipfs.dweb.link\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000609; classtype:social-engineering; sid:6000609; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T13:11:51.888714+00:00",
+  "updated_at": "2026-06-07T07:16:18.718361+00:00",
   "probe": {
     "dns": true,
     "whois": true,

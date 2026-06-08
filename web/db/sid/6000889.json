@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "sso-en--netcoins-io-cdn-s.webflow.io",
       "domain_defanged": "sso-en--netcoins-io-cdn-s[.]webflow[.]io",
-      "case_id": "PD-20260606-27478E",
-      "analyzed_at": "2026-06-06T13:37:14.713Z",
+      "case_id": "PD-20260607-27478E",
+      "analyzed_at": "2026-06-07T07:34:49.623Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netcoins"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d26-ecd5-7599-ac81-45fff9fbe851.png",
           "url": "https://urlscan.io/result/019e9d26-ecd5-7599-ac81-45fff9fbe851/",
-          "pending": true
+          "title": "Log In | NetCoins"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netcoins",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -108,8 +117,8 @@
             "172.64.151.8"
           ],
           "AAAA": [
-            "2a06:98c1:3100::6812:24f8",
-            "2606:4700:440c::ac40:9708"
+            "2606:4700:440c::ac40:9708",
+            "2a06:98c1:3100::6812:24f8"
           ]
         }
       },
@@ -249,7 +258,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso-en--netcoins-io-cdn-s .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sso-en--netcoins-io-cdn-s.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000889; classtype:social-engineering; sid:6000889; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-06T13:37:05.876870+00:00",
+  "updated_at": "2026-06-07T07:34:45.617875+00:00",
   "probe": {
     "dns": true,
     "whois": true,
