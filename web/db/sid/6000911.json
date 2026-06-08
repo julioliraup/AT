@@ -50,26 +50,35 @@
     "phishdestroy": {
       "domain": "ohmybargains.com",
       "domain_defanged": "ohmybargains[.]com",
-      "case_id": "PD-20260606-2B7A47",
-      "analyzed_at": "2026-06-06T13:39:04.980Z",
+      "case_id": "PD-20260608-2B7A47",
+      "analyzed_at": "2026-06-08T03:15:59.951Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9d28-9b8e-773a-af0f-8872681fc221/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9e1e-387d-734c-a121-ec3d5973b762.png",
+          "url": "https://urlscan.io/result/019e9e1e-387d-734c-a121-ec3d5973b762/",
+          "title": "Adobe-PDF Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2014-12-01T19:03:32Z",
         "expires": "2026-12-01T19:03:32Z",
-        "age_days": 4204,
+        "age_days": 4206,
         "nameservers": [
           "NS-1233.AWSDNS-26.ORG",
           "NS-1563.AWSDNS-03.CO.UK",
@@ -79,7 +88,15 @@
       },
       "infrastructure": {
         "ip": "52.204.246.179",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "52.204.246.179",
+          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "A": [
             "52.204.246.179",
@@ -105,7 +122,14 @@
           "method": "form",
           "iana_ids": "292"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -228,12 +252,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ohmybargains .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/\"; startswith; fast_pattern; http.host;  content:\"ohmybargains.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000911; classtype:social-engineering; sid:6000911; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:35:57.295065+00:00",
+  "updated_at": "2026-06-08T03:15:54.437057+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -136,44 +136,53 @@
     "phishdestroy": {
       "domain": "amazonwebservices.security-unauthorised-request.com",
       "domain_defanged": "amazonwebservices[.]security-unauthorised-request[.]com",
-      "case_id": "PD-20260606-5C10A5",
-      "analyzed_at": "2026-06-06T13:23:02.896Z",
+      "case_id": "PD-20260608-5C10A5",
+      "analyzed_at": "2026-06-08T03:00:05.269Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9d19-ed6c-76b0-84d4-8ce0e37a897c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea48d-9627-7579-826c-680c28fa1cd7.png",
+          "url": "https://urlscan.io/result/019ea48d-9627-7579-826c-680c28fa1cd7/",
+          "title": "Simulation Link Expired"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.174.59.128",
+        "ip": "3.174.26.69",
         "ipinfo": {
-          "ip": "3.174.59.128",
-          "hostname": "server-3-174-59-128.gig52.r.cloudfront.net",
-          "city": "Rio de Janeiro",
-          "region": "Rio de Janeiro",
+          "ip": "3.174.26.69",
+          "hostname": "server-3-174-26-69.for50.r.cloudfront.net",
+          "city": "Fortaleza",
+          "region": "Ceará",
           "country": "BR",
           "org": "AS16509 Amazon.com, Inc.",
           "asn": "AS16509"
         },
         "dns": {
-          "A": [
-            "3.174.59.128",
-            "3.174.59.74",
-            "3.174.59.126",
-            "3.174.59.11"
-          ],
           "MX": [
             "0 security-unauthorised-request-com.mail.protection.outlook.com."
+          ],
+          "A": [
+            "3.174.26.69",
+            "3.174.26.84",
+            "3.174.26.116",
+            "3.174.26.56"
           ]
         }
       },
@@ -309,12 +318,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazonwebservices .security-unauthorised-request .com/login/Mgk-WCxcfmgseLHDblkV8Onp_5Wk9ykC3UkY=2Aw==5VFhUT1pballaUlxb/U5vi3iQc2ZYY-EdD-wtEnZbBycRD5f72/)\"; flow:established,to_server; http.uri; content:\"/login/Mgk-WCxcfmgseLHDblkV8Onp_5Wk9ykC3UkY=2Aw==5VFhUT1pballaUlxb/U5vi3iQc2ZYY-EdD-wtEnZbBycRD5f72/\"; startswith; fast_pattern; http.host;  content:\"amazonwebservices.security-unauthorised-request.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000747; classtype:social-engineering; sid:6000747; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:26:57.020127+00:00",
+  "updated_at": "2026-06-08T02:59:58.937166+00:00",
   "probe": {
     "dns": true,
     "whois": false,

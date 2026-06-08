@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "netflix-clone-jose-pimentas-projects.vercel.app",
       "domain_defanged": "netflix-clone-jose-pimentas-projects[.]vercel[.]app",
-      "case_id": "PD-20260606-6FA49F",
-      "analyzed_at": "2026-06-06T14:03:33.255Z",
+      "case_id": "PD-20260608-6FA49F",
+      "analyzed_at": "2026-06-08T03:43:04.869Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d3f-0302-76ef-b174-85068b670672.png",
           "url": "https://urlscan.io/result/019e9d3f-0302-76ef-b174-85068b670672/",
-          "pending": true
+          "title": "Netflix Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.66",
+        "ip": "216.198.79.194",
         "ipinfo": {
-          "ip": "64.29.17.66",
+          "ip": "216.198.79.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.66",
-            "216.198.79.66"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .netflix-clone-jose-pimentas-projects .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.netflix-clone-jose-pimentas-projects.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001161; classtype:social-engineering; sid:6001161; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:52:04.039950+00:00",
+  "updated_at": "2026-06-08T03:43:01.120784+00:00",
   "probe": {
     "dns": true,
     "whois": false,

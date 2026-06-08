@@ -74,27 +74,44 @@
     "phishdestroy": {
       "domain": "sp378794.sitebeat.crazydomains.com",
       "domain_defanged": "sp378794[.]sitebeat[.]crazydomains[.]com",
-      "case_id": "PD-20260606-D30338",
-      "analyzed_at": "2026-06-06T13:44:52.976Z",
+      "case_id": "PD-20260608-D30338",
+      "analyzed_at": "2026-06-08T03:23:11.876Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "BT"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d2d-eabd-73a2-a31a-ff18365edec2.png",
           "url": "https://urlscan.io/result/019e9d2d-eabd-73a2-a31a-ff18365edec2/",
-          "pending": true
+          "title": "Home Living Tips"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: BT",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "103.67.235.120",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "103.67.235.120",
+          "hostname": "ip6743eb78.ipv4.syd02.ds.network",
+          "city": "Sydney",
+          "region": "New South Wales",
+          "country": "AU",
+          "org": "AS38719 Dreamscape Networks Limited",
+          "asn": "AS38719"
+        },
         "dns": {
           "A": [
             "103.67.235.120"
@@ -103,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DREAMSCAPE-AS-AP Dreamscape Networks Limited, AU",
+          "abuse": "abuse@dreamscapenetworks.com",
+          "url": "mailto:abuse@dreamscapenetworks.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS38719"
+        }
       },
       "report_services": [
         {
@@ -226,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp378794 .sitebeat .crazydomains .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sp378794.sitebeat.crazydomains.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000974; classtype:social-engineering; sid:6000974; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:40:15.568961+00:00",
+  "updated_at": "2026-06-08T03:23:07.487236+00:00",
   "probe": {
     "dns": true,
     "whois": false,

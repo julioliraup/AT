@@ -74,41 +74,64 @@
     "phishdestroy": {
       "domain": "sso-cad-netcoins-com-auth.webflow.io",
       "domain_defanged": "sso-cad-netcoins-com-auth[.]webflow[.]io",
-      "case_id": "PD-20260606-48A6E4",
-      "analyzed_at": "2026-06-06T13:20:20.273Z",
+      "case_id": "PD-20260608-48A6E4",
+      "analyzed_at": "2026-06-08T02:56:33.130Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netcoins"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d17-7233-74bf-9926-261e6c2c47e2.png",
           "url": "https://urlscan.io/result/019e9d17-7233-74bf-9926-261e6c2c47e2/",
-          "pending": true
+          "title": "Netcoins | Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netcoins",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.151.8",
-        "ipinfo": null,
+        "ip": "104.18.36.248",
+        "ipinfo": {
+          "ip": "104.18.36.248",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2a06:98c1:3100::6812:24f8",
-            "2606:4700:440c::ac40:9708"
-          ],
           "A": [
-            "172.64.151.8",
-            "104.18.36.248"
+            "104.18.36.248",
+            "172.64.151.8"
+          ],
+          "AAAA": [
+            "2606:4700:440c::ac40:9708",
+            "2a06:98c1:3100::6812:24f8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -231,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso-cad-netcoins-com-auth .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sso-cad-netcoins-com-auth.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000716; classtype:social-engineering; sid:6000716; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:24:02.981896+00:00",
+  "updated_at": "2026-06-08T02:56:29.439685+00:00",
   "probe": {
     "dns": true,
     "whois": true,

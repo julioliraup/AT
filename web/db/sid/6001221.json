@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "mariana-noreply-sp1100879.pages.dev",
       "domain_defanged": "mariana-noreply-sp1100879[.]pages[.]dev",
-      "case_id": "PD-20260606-113AC4",
-      "analyzed_at": "2026-06-06T14:08:53.834Z",
+      "case_id": "PD-20260608-113AC4",
+      "analyzed_at": "2026-06-08T03:49:09.316Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9d43-e745-718a-902d-4a04950b0af1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea363-bd11-718b-a19e-293918e7b2ff.png",
+          "url": "https://urlscan.io/result/019ea363-bd11-718b-a19e-293918e7b2ff/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.66",
+        "ip": "172.66.47.190",
         "ipinfo": {
-          "ip": "172.66.44.66",
+          "ip": "172.66.47.190",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "172.66.44.66",
-            "172.66.47.190"
+            "172.66.47.190",
+            "172.66.44.66"
           ],
           "AAAA": [
             "2606:4700:310c::ac42:2c42",
@@ -249,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mariana-noreply-sp1100879 .pages .dev/help/contact/7337)\"; flow:established,to_server; http.uri; content:\"/help/contact/7337\"; startswith; fast_pattern; http.host;  content:\"mariana-noreply-sp1100879.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001221; classtype:social-engineering; sid:6001221; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:55:35.625507+00:00",
+  "updated_at": "2026-06-08T03:48:59.547719+00:00",
   "probe": {
     "dns": true,
     "whois": false,

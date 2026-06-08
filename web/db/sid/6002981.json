@@ -55,37 +55,60 @@
     "phishdestroy": {
       "domain": "insta-clone-application.vercel.app",
       "domain_defanged": "insta-clone-application[.]vercel[.]app",
-      "case_id": "PD-20260606-170E8B",
-      "analyzed_at": "2026-06-06T13:29:00.087Z",
+      "case_id": "PD-20260608-170E8B",
+      "analyzed_at": "2026-06-08T03:06:11.976Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9d1f-60b5-77dc-abaf-363ce4d42aee/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Instagram"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea4ab-7ff9-7786-a31d-5dc63dd82c87.png",
+          "url": "https://urlscan.io/result/019ea4ab-7ff9-7786-a31d-5dc63dd82c87/",
+          "title": "Авторизация | Instagram"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Instagram",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.130",
-        "ipinfo": null,
+        "ip": "216.198.79.194",
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.198.79.130",
-            "64.29.17.130"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -213,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.insta-clone-application.vercel.app/auth/)\"; flow:established,to_server; http.uri; content:\"/auth/\"; startswith; fast_pattern; http.host; content:\"www.insta-clone-application.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002981; classtype:social-engineering; sid:6002981; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-07T09:57:28.892559+00:00",
+  "updated_at": "2026-06-08T06:44:51.853329+00:00",
   "probe": {
     "dns": true,
     "whois": false,

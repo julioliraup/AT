@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "ledhgyta-zbxncg.pages.dev",
       "domain_defanged": "ledhgyta-zbxncg[.]pages[.]dev",
-      "case_id": "PD-20260606-786966",
-      "analyzed_at": "2026-06-06T13:21:48.671Z",
+      "case_id": "PD-20260608-786966",
+      "analyzed_at": "2026-06-08T02:58:59.289Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9d18-cb7b-74ce-8aec-93a1cb939a7f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9e5c-91d6-736e-b091-96b356e4898f.png",
+          "url": "https://urlscan.io/result/019e9e5c-91d6-736e-b091-96b356e4898f/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,8 +93,8 @@
             "172.66.44.118"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2c76",
-            "2606:4700:310c::ac42:2f8a"
+            "2606:4700:310c::ac42:2f8a",
+            "2606:4700:310c::ac42:2c76"
           ],
           "NS": [
             "howard.ns.cloudflare.com.",
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledhgyta-zbxncg .pages .dev/index .htm)\"; flow:established,to_server; http.uri; content:\"/index.htm\"; startswith; fast_pattern; http.host;  content:\"ledhgyta-zbxncg.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000740; classtype:social-engineering; sid:6000740; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:26:04.112857+00:00",
+  "updated_at": "2026-06-08T02:58:55.437993+00:00",
   "probe": {
     "dns": true,
     "whois": false,

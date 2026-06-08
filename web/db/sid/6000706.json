@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "baradua.it",
       "domain_defanged": "baradua[.]it",
-      "case_id": "PD-20260606-4F3005",
-      "analyzed_at": "2026-06-06T13:19:41.039Z",
+      "case_id": "PD-20260608-4F3005",
+      "analyzed_at": "2026-06-08T02:55:42.348Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9d16-d8e8-77f6-a8a8-b92dddda2a27/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Chunghwa Telecom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea34d-8cd8-7026-991b-9656164ed991.png",
+          "url": "https://urlscan.io/result/019ea34d-8cd8-7026-991b-9656164ed991/",
+          "title": "HiNet Webmail"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Chunghwa Telecom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -86,8 +95,8 @@
             "213.158.79.22"
           ],
           "NS": [
-            "ns2.register.it.",
-            "ns1.register.it."
+            "ns1.register.it.",
+            "ns2.register.it."
           ]
         }
       },
@@ -223,12 +232,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .baradua .it/wp/wp-content/plugins/MADE/files/top .html)\"; flow:established,to_server; http.uri; content:\"/wp/wp-content/plugins/MADE/files/top.html\"; startswith; fast_pattern; http.host;  content:\"www.baradua.it\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000706; classtype:social-engineering; sid:6000706; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:23:21.101858+00:00",
+  "updated_at": "2026-06-08T02:55:38.772182+00:00",
   "probe": {
     "dns": true,
     "whois": true,

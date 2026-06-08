@@ -50,35 +50,51 @@
     "phishdestroy": {
       "domain": "lzlwj.pages.dev",
       "domain_defanged": "lzlwj[.]pages[.]dev",
-      "case_id": "PD-20260606-7F5546",
-      "analyzed_at": "2026-06-06T13:20:17.495Z",
+      "case_id": "PD-20260608-7F5546",
+      "analyzed_at": "2026-06-08T02:56:29.258Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d17-6755-734a-83e3-b33982bb17c5.png",
           "url": "https://urlscan.io/result/019e9d17-6755-734a-83e3-b33982bb17c5/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.114",
-        "ipinfo": null,
+        "ip": "172.66.47.142",
+        "ipinfo": {
+          "ip": "172.66.47.142",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.66.44.114",
-            "172.66.47.142"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2c72",
             "2606:4700:310c::ac42:2f8e"
+          ],
+          "A": [
+            "172.66.47.142",
+            "172.66.44.114"
           ],
           "NS": [
             "etta.ns.cloudflare.com.",
@@ -88,7 +104,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -211,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lzlwj .pages .dev/-/zh/gp/most-gifted/pc/2348629011/ref=zg_mg_nav_pc_2_2516700011)\"; flow:established,to_server; http.uri; content:\"/-/zh/gp/most-gifted/pc/2348629011/ref=zg_mg_nav_pc_2_2516700011\"; startswith; fast_pattern; http.host;  content:\"lzlwj.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000715; classtype:social-engineering; sid:6000715; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:24:00.814391+00:00",
+  "updated_at": "2026-06-08T02:56:21.365898+00:00",
   "probe": {
     "dns": true,
     "whois": false,

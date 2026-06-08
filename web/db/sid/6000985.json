@@ -74,27 +74,55 @@
     "phishdestroy": {
       "domain": "hubert.form8899533.pro",
       "domain_defanged": "hubert[.]form8899533[.]pro",
-      "case_id": "PD-20260606-7BD0DC",
-      "analyzed_at": "2026-06-06T13:46:23.632Z",
+      "case_id": "PD-20260608-7BD0DC",
+      "analyzed_at": "2026-06-08T03:24:45.347Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1841-bc67-720c-be10-e6cd08fb4fec.png",
+          "url": "https://urlscan.io/result/019e1841-bc67-720c-be10-e6cd08fb4fec/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.34.197",
+        "ipinfo": {
+          "ip": "104.21.34.197",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -217,12 +245,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hubert .form8899533 .pro/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"hubert.form8899533.pro\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000985; classtype:social-engineering; sid:6000985; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:41:06.848009+00:00",
+  "updated_at": "2026-06-08T03:24:40.504486+00:00",
   "probe": {
     "dns": true,
     "whois": true,

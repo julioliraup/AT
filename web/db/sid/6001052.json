@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "coinsqqareloggin.webflow.io",
       "domain_defanged": "coinsqqareloggin[.]webflow[.]io",
-      "case_id": "PD-20260606-8EB308",
-      "analyzed_at": "2026-06-06T13:53:01.333Z",
+      "case_id": "PD-20260608-8EB308",
+      "analyzed_at": "2026-06-08T03:32:43.890Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinsquare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d35-5e89-76ef-bd2c-38a0fcc647ba.png",
           "url": "https://urlscan.io/result/019e9d35-5e89-76ef-bd2c-38a0fcc647ba/",
-          "pending": true
+          "title": "Coinsquare® Login® - Sign in to yøur account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinsquare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -104,8 +113,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:440c::ac40:9708",
-            "2a06:98c1:3100::6812:24f8"
+            "2a06:98c1:3100::6812:24f8",
+            "2606:4700:440c::ac40:9708"
           ],
           "A": [
             "172.64.151.8",
@@ -245,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (coinsqqareloggin .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"coinsqqareloggin.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001052; classtype:social-engineering; sid:6001052; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:45:47.513235+00:00",
+  "updated_at": "2026-06-08T03:32:35.218042+00:00",
   "probe": {
     "dns": true,
     "whois": true,

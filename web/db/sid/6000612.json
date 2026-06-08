@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "james-huston49823563.pages.dev",
       "domain_defanged": "james-huston49823563[.]pages[.]dev",
-      "case_id": "PD-20260606-12A5C7",
-      "analyzed_at": "2026-06-06T13:11:17.633Z",
+      "case_id": "PD-20260608-12A5C7",
+      "analyzed_at": "2026-06-08T02:43:55.608Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9d0f-2a78-7550-95ca-660d9e3c677a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea490-6a5a-701d-a92d-28358253391e.png",
+          "url": "https://urlscan.io/result/019ea490-6a5a-701d-a92d-28358253391e/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,13 +88,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2fc9",
+            "2606:4700:310c::ac42:2c37"
+          ],
           "A": [
             "172.66.47.201",
             "172.66.44.55"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c37",
-            "2606:4700:310c::ac42:2fc9"
           ],
           "NS": [
             "jean.ns.cloudflare.com.",
@@ -230,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (james-huston49823563 .pages .dev/help/contact/665625920517716/)\"; flow:established,to_server; http.uri; content:\"/help/contact/665625920517716/\"; startswith; fast_pattern; http.host;  content:\"james-huston49823563.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000612; classtype:social-engineering; sid:6000612; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:16:27.251241+00:00",
+  "updated_at": "2026-06-08T02:45:08.527778+00:00",
   "probe": {
     "dns": true,
     "whois": false,

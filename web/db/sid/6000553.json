@@ -50,41 +50,64 @@
     "phishdestroy": {
       "domain": "gimnixnlogen.gitbook.io",
       "domain_defanged": "gimnixnlogen[.]gitbook[.]io",
-      "case_id": "PD-20260606-6C4268",
-      "analyzed_at": "2026-06-06T13:07:02.014Z",
+      "case_id": "PD-20260608-6C4268",
+      "analyzed_at": "2026-06-08T02:38:48.929Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Gemini"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d0b-43f8-748d-8121-d55a100b6e27.png",
           "url": "https://urlscan.io/result/019e9d0b-43f8-748d-8121-d55a100b6e27/",
-          "pending": true
+          "title": "G𝓮miñi : Login | Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Gemini",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.18.40.47",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.40.47",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:4402::ac40:93d1",
+            "2606:4700:4407::6812:282f"
+          ],
           "A": [
             "104.18.40.47",
             "172.64.147.209"
-          ],
-          "AAAA": [
-            "2606:4700:4407::6812:282f",
-            "2606:4700:4402::ac40:93d1"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gimnixnlogen .gitbook .io/sign-in)\"; flow:established,to_server; http.uri; content:\"/sign-in\"; startswith; fast_pattern; http.host;  content:\"gimnixnlogen.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000553; classtype:social-engineering; sid:6000553; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:12:16.078865+00:00",
+  "updated_at": "2026-06-08T02:38:49.099688+00:00",
   "probe": {
     "dns": true,
     "whois": true,

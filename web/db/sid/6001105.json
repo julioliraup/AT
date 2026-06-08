@@ -79,45 +79,69 @@
     "phishdestroy": {
       "domain": "ankitdoi-coder.github.io",
       "domain_defanged": "ankitdoi-coder[.]github[.]io",
-      "case_id": "PD-20260606-F9D43D",
-      "analyzed_at": "2026-06-06T13:58:22.918Z",
+      "case_id": "PD-20260608-F9D43D",
+      "analyzed_at": "2026-06-08T03:37:56.010Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019e9d3a-46b1-726e-96ef-987c0237e041/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d44-2b7e-7519-8920-3fa093817778.png",
+          "url": "https://urlscan.io/result/019e9d44-2b7e-7519-8920-3fa093817778/",
+          "title": "Netflix Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ip": "185.199.110.153",
+        "ipinfo": {
+          "ip": "185.199.110.153",
+          "hostname": "cdn-185-199-110-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8000::153"
-          ],
           "A": [
-            "185.199.108.153",
-            "185.199.109.153",
             "185.199.110.153",
-            "185.199.111.153"
+            "185.199.111.153",
+            "185.199.108.153",
+            "185.199.109.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -240,12 +264,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ankitdoi-coder .github .io/Netflix-Clone)\"; flow:established,to_server; http.uri; content:\"/Netflix-Clone\"; startswith; fast_pattern; http.host;  content:\"ankitdoi-coder.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001105; classtype:social-engineering; sid:6001105; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:49:08.932930+00:00",
+  "updated_at": "2026-06-08T03:37:45.836719+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -74,26 +74,35 @@
     "phishdestroy": {
       "domain": "netempresasenegocios.net",
       "domain_defanged": "netempresasenegocios[.]net",
-      "case_id": "PD-20260606-5B4665",
-      "analyzed_at": "2026-06-06T13:44:40.142Z",
+      "case_id": "PD-20260608-5B4665",
+      "analyzed_at": "2026-06-08T03:23:00.666Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d2d-b7f3-72fd-a514-195497700fb2.png",
           "url": "https://urlscan.io/result/019e9d2d-b7f3-72fd-a514-195497700fb2/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2026-05-08T15:27:08Z",
         "expires": "2027-05-08T15:27:08Z",
-        "age_days": 28,
+        "age_days": 30,
         "nameservers": [
           "NICOLAS.NS.CLOUDFLARE.COM",
           "OPHELIA.NS.CLOUDFLARE.COM"
@@ -115,8 +124,8 @@
             "172.67.223.203"
           ],
           "AAAA": [
-            "2606:4700:3037::ac43:dfcb",
-            "2606:4700:3037::6815:3e81"
+            "2606:4700:3037::6815:3e81",
+            "2606:4700:3037::ac43:dfcb"
           ],
           "NS": [
             "nicolas.ns.cloudflare.com.",
@@ -263,12 +272,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netempresasenegocios .net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"netempresasenegocios.net\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000972; classtype:social-engineering; sid:6000972; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-07T07:40:05.786494+00:00",
+  "updated_at": "2026-06-08T03:22:43.642536+00:00",
   "probe": {
     "dns": true,
     "whois": false,
