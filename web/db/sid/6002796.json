@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "secure-domainrenew.com",
       "domain_defanged": "secure-domainrenew[.]com",
-      "case_id": "PD-20260607-9F0C3F",
-      "analyzed_at": "2026-06-07T09:43:01.686Z",
+      "case_id": "PD-20260609-9F0C3F",
+      "analyzed_at": "2026-06-09T04:27:45.207Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3e2d-e655-762a-abf7-e5ab6099d9f3.png",
+          "url": "https://urlscan.io/result/019e3e2d-e655-762a-abf7-e5ab6099d9f3/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2026-04-29T05:03:16Z",
         "expires": "2027-04-29T05:03:16Z",
-        "age_days": 39,
+        "age_days": 40,
         "nameservers": [
           "NS1.SUSPENDED-DOMAIN.COM",
           "NS2.SUSPENDED-DOMAIN.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.19.12",
+        "ipinfo": {
+          "ip": "104.21.19.12",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": "1917"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (secure-domainrenew.com/fat-ar/?captcha)\"; flow:established,to_server; http.uri; content:\"/fat-ar/?captcha\"; startswith; fast_pattern; http.host; content:\"secure-domainrenew.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6002796; classtype:social-engineering; sid:6002796; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-08T06:26:44.562436+00:00",
+  "updated_at": "2026-06-09T04:27:40.323816+00:00",
   "probe": {
     "dns": false,
     "whois": false,

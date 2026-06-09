@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.nwezrd.top",
       "domain_defanged": "t-mobile[.]nwezrd[.]top",
-      "case_id": "PD-20260607-35E4B5",
-      "analyzed_at": "2026-06-07T10:29:02.404Z",
+      "case_id": "PD-20260609-35E4B5",
+      "analyzed_at": "2026-06-09T05:16:29.462Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4053-5355-72cc-bed5-3c71da6f6370.png",
+          "url": "https://urlscan.io/result/019e4053-5355-72cc-bed5-3c71da6f6370/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2a06:98c1:3120::3",
+        "ipinfo": {
+          "ip": "2a06:98c1:3120::3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +219,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.nwezrd.top/pay)\"; flow:established,to_server; http.uri; content:\"/pay\"; startswith; fast_pattern; http.host; content:\"t-mobile.nwezrd.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003412; classtype:social-engineering; sid:6003412; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-08T07:30:38.819288+00:00",
+  "updated_at": "2026-06-09T05:16:25.887021+00:00",
   "probe": {
     "dns": false,
     "whois": false,

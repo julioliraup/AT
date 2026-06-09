@@ -50,21 +50,158 @@
     "phishdestroy": {
       "domain": "licensingterms.azurewebsites.net",
       "domain_defanged": "licensingterms[.]azurewebsites[.]net",
-      "case_id": "PD-20260607-1262A5",
-      "analyzed_at": "2026-06-07T07:46:35.152Z",
+      "case_id": "PD-20260609-1262A5",
+      "analyzed_at": "2026-06-09T01:21:50.003Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 12,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019e9d35-fb27-7258-b089-59dd463ca983.png",
-          "url": "https://urlscan.io/result/019e9d35-fb27-7258-b089-59dd463ca983/"
+          "screenshot": "https://urlscan.io/screenshots/019ea344-43c8-70f0-a53e-540dc58afcee.png",
+          "url": "https://urlscan.io/result/019ea344-43c8-70f0-a53e-540dc58afcee/",
+          "title": "Microsoft Product Terms"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -76,14 +213,14 @@
             "waws-prod-blu-117.sip.azurewebsites.windows.net.",
             "waws-prod-blu-117.eastus.cloudapp.azure.com."
           ],
+          "MX": [
+            "waws-prod-blu-117.sip.azurewebsites.windows.net.",
+            "waws-prod-blu-117.eastus.cloudapp.azure.com."
+          ],
           "A": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net.",
             "waws-prod-blu-117.eastus.cloudapp.azure.com.",
             "40.114.68.21"
-          ],
-          "MX": [
-            "waws-prod-blu-117.sip.azurewebsites.windows.net.",
-            "waws-prod-blu-117.eastus.cloudapp.azure.com."
           ],
           "CNAME": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net."
@@ -231,7 +368,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (licensingterms .azurewebsites .net/licensing/terms/product/Notices/EAEAS)\"; flow:established,to_server; http.uri; content:\"/licensing/terms/product/Notices/EAEAS\"; startswith; fast_pattern; http.host;  content:\"licensingterms.azurewebsites.net\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001100; classtype:social-engineering; sid:6001100; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-08T03:37:25.603832+00:00",
+  "updated_at": "2026-06-09T01:25:39.495378+00:00",
   "probe": {
     "dns": true,
     "whois": false,

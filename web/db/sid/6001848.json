@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "member09.marketing-agency-network.com",
       "domain_defanged": "member09[.]marketing-agency-network[.]com",
-      "case_id": "PD-20260607-9F1B6E",
-      "analyzed_at": "2026-06-07T08:42:04.863Z",
+      "case_id": "PD-20260609-9F1B6E",
+      "analyzed_at": "2026-06-09T02:53:44.946Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ea13f-0dba-7102-8b09-dd8b9bd0c4c5/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea4b5-8d38-729d-8792-f54110ef66da.png",
+          "url": "https://urlscan.io/result/019ea4b5-8d38-729d-8792-f54110ef66da/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -245,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (member09 .marketing-agency-network .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"member09.marketing-agency-network.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001848; classtype:social-engineering; sid:6001848; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-08T04:50:16.440991+00:00",
+  "updated_at": "2026-06-09T02:53:39.796835+00:00",
   "probe": {
     "dns": true,
     "whois": false,

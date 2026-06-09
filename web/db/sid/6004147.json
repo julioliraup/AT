@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "295cb424-62fa-f87d-7967-adobe2.reynoldsjace5.workers.dev",
       "domain_defanged": "295cb424-62fa-f87d-7967-adobe2[.]reynoldsjace5[.]workers[.]dev",
-      "case_id": "PD-20260607-288C42",
-      "analyzed_at": "2026-06-07T11:26:41.924Z",
+      "case_id": "PD-20260609-288C42",
+      "analyzed_at": "2026-06-09T06:16:33.559Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea1d5-c409-77ab-baaa-0666048077e1.png",
           "url": "https://urlscan.io/result/019ea1d5-c409-77ab-baaa-0666048077e1/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -107,8 +116,8 @@
             "104.21.89.75"
           ],
           "AAAA": [
-            "2606:4700:3034::6815:594b",
-            "2606:4700:3035::ac43:9cf5"
+            "2606:4700:3035::ac43:9cf5",
+            "2606:4700:3034::6815:594b"
           ]
         }
       },
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (295cb424-62fa-f87d-7967-adobe2.reynoldsjace5.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"295cb424-62fa-f87d-7967-adobe2.reynoldsjace5.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004147; classtype:social-engineering; sid:6004147; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-08T08:37:34.735116+00:00",
+  "updated_at": "2026-06-09T06:16:26.399188+00:00",
   "probe": {
     "dns": true,
     "whois": false,

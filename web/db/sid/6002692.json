@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "att-bonus.com.mx",
       "domain_defanged": "att-bonus[.]com[.]mx",
-      "case_id": "PD-20260607-740316",
-      "analyzed_at": "2026-06-07T09:36:47.689Z",
+      "case_id": "PD-20260609-740316",
+      "analyzed_at": "2026-06-09T04:19:15.390Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ea171-2493-75e8-a6e3-15a749132b7f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "AT&T"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eaa04-41b4-71c5-902e-8aefc28a52ed.png",
+          "url": "https://urlscan.io/result/019eaa04-41b4-71c5-902e-8aefc28a52ed/",
+          "title": "AT&T | Bonus"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: AT&T",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -88,9 +97,9 @@
             "185.127.160.192"
           ],
           "MX": [
-            "1 mx1.mail.ovh.net.",
             "5 mx2.mail.ovh.net.",
-            "100 mx3.mail.ovh.net."
+            "100 mx3.mail.ovh.net.",
+            "1 mx1.mail.ovh.net."
           ],
           "NS": [
             "ns19.ovh.net.",
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (att-bonus.com.mx/historialrecargas)\"; flow:established,to_server; http.uri; content:\"/historialrecargas\"; startswith; fast_pattern; http.host; content:\"att-bonus.com.mx\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002692; classtype:social-engineering; sid:6002692; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-08T06:16:55.346547+00:00",
+  "updated_at": "2026-06-09T04:19:10.899543+00:00",
   "probe": {
     "dns": true,
     "whois": true,

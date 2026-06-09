@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "schoenerblick-hotel.de",
       "domain_defanged": "schoenerblick-hotel[.]de",
-      "case_id": "PD-20260608-472273",
-      "analyzed_at": "2026-06-08T08:02:42.846Z",
+      "case_id": "PD-20260609-472273",
+      "analyzed_at": "2026-06-09T05:43:20.401Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ea641-5f20-7330-9efd-a5575197a5fe/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea642-17be-715a-9c65-63c0fc346d3c.png",
+          "url": "https://urlscan.io/result/019ea642-17be-715a-9c65-63c0fc346d3c/",
+          "title": "Unfamiliar - Netflix Series"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.schoenerblick-hotel.de/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.schoenerblick-hotel.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003746; classtype:social-engineering; sid:6003746; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-08T08:02:39.170465+00:00",
+  "updated_at": "2026-06-09T05:43:15.406996+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -72,29 +72,51 @@
     "phishdestroy": {
       "domain": "testdomain17122223.com",
       "domain_defanged": "testdomain17122223[.]com",
-      "case_id": "PD-20260607-4AB8F5",
-      "analyzed_at": "2026-06-07T11:33:39.590Z",
+      "case_id": "PD-20260609-4AB8F5",
+      "analyzed_at": "2026-06-09T06:26:52.283Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Barclays"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e48e4-9ed3-72ae-a281-d2fb3843a90b.png",
+          "url": "https://urlscan.io/result/019e48e4-9ed3-72ae-a281-d2fb3843a90b/",
+          "title": "Loading..."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Barclays",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "OwnRegistrar, Inc.",
         "created": "2026-05-15T10:19:11Z",
         "expires": "2027-05-15T10:19:11Z",
-        "age_days": 23,
+        "age_days": 24,
         "nameservers": [
           "NS1.NSNAMEDNS.NET",
           "NS2.NSNAMEDNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "31.7.61.48",
+        "ipinfo": {
+          "ip": "31.7.61.48",
+          "hostname": "hostedby.privatelayer.com",
+          "city": "Bellinzona",
+          "region": "Ticino",
+          "country": "CH",
+          "org": "AS51852 Private Layer INC",
+          "asn": "AS51852"
+        },
         "dns": null
       },
       "report_to": {
@@ -106,7 +128,14 @@
           "method": "form",
           "iana_ids": "1250"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Private Layer",
+          "abuse": "abuse@privatelayer.com",
+          "url": "mailto:abuse@privatelayer.com",
+          "logo": "https://i.ibb.co/N2vQqJpr/pr-Private-Layer.png",
+          "method": "email",
+          "asn": "AS51852"
+        }
       },
       "report_services": [
         {
@@ -229,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (testdomain17122223.com/home/index.php)\"; flow:established,to_server; http.uri; content:\"/home/index.php\"; startswith; fast_pattern; http.host; content:\"testdomain17122223.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004213; classtype:social-engineering; sid:6004213; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-08T08:44:18.283200+00:00",
+  "updated_at": "2026-06-09T06:26:46.811522+00:00",
   "probe": {
     "dns": true,
     "whois": true,

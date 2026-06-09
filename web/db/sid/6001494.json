@@ -74,35 +74,61 @@
     "phishdestroy": {
       "domain": "956882coinbase.com",
       "domain_defanged": "956882coinbase[.]com",
-      "case_id": "PD-20260607-43C417",
-      "analyzed_at": "2026-06-07T08:14:56.578Z",
+      "case_id": "PD-20260609-43C417",
+      "analyzed_at": "2026-06-09T02:07:37.369Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ea126-3535-709a-8766-dc1b52ceab95/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ea126-3535-709a-8766-dc1b52ceab95.png",
+          "url": "https://urlscan.io/result/019ea126-3535-709a-8766-dc1b52ceab95/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NICENIC INTERNATIONAL GROUP CO., LIMITED",
         "created": "2026-03-27T01:38:56Z",
         "expires": "2027-03-27T01:38:56Z",
-        "age_days": 72,
+        "age_days": 74,
         "nameservers": [
           "ALBERTO.NS.CLOUDFLARE.COM",
           "SERENA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.21.63.117",
+        "ip": "172.67.145.116",
         "ipinfo": {
-          "ip": "104.21.63.117",
+          "ip": "172.67.145.116",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -111,12 +137,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:3031::ac43:9174",
-            "2606:4700:3036::6815:3f75"
+            "2606:4700:3036::6815:3f75",
+            "2606:4700:3031::ac43:9174"
           ],
           "A": [
-            "104.21.63.117",
-            "172.67.145.116"
+            "172.67.145.116",
+            "104.21.63.117"
           ],
           "NS": [
             "alberto.ns.cloudflare.com.",
@@ -263,15 +289,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (956882coinbase .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"956882coinbase.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001494; classtype:social-engineering; sid:6001494; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-08T04:15:54.882203+00:00",
+  "updated_at": "2026-06-09T02:07:32.869472+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

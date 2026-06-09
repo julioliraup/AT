@@ -55,26 +55,35 @@
     "phishdestroy": {
       "domain": "coinbaseinv.com",
       "domain_defanged": "coinbaseinv[.]com",
-      "case_id": "PD-20260608-6BC4BA",
-      "analyzed_at": "2026-06-08T07:46:29.428Z",
+      "case_id": "PD-20260609-6BC4BA",
+      "analyzed_at": "2026-06-09T05:29:30.347Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ea632-84b5-7132-afe3-d90c8244934b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea93b-3d9f-76f3-b653-c037132cedaf.png",
+          "url": "https://urlscan.io/result/019ea93b-3d9f-76f3-b653-c037132cedaf/",
+          "title": "Coinbase INV"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2026-05-19T10:07:55Z",
         "expires": "2027-05-19T10:07:55Z",
-        "age_days": 19,
+        "age_days": 20,
         "nameservers": [
           "BLAKELY.NS.CLOUDFLARE.COM",
           "LEONARD.NS.CLOUDFLARE.COM"
@@ -95,13 +104,13 @@
             "2606:4700:3033::ac43:aa05",
             "2606:4700:3032::6815:3705"
           ],
-          "A": [
-            "172.67.170.5",
-            "104.21.55.5"
-          ],
           "MX": [
             "0 smtp.secureserver.net.",
             "10 mailstore1.secureserver.net."
+          ],
+          "A": [
+            "172.67.170.5",
+            "104.21.55.5"
           ],
           "NS": [
             "blakely.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.coinbaseinv.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.coinbaseinv.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003572; classtype:social-engineering; sid:6003572; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-08T07:46:26.461221+00:00",
+  "updated_at": "2026-06-09T05:29:25.281146+00:00",
   "probe": {
     "dns": true,
     "whois": false,

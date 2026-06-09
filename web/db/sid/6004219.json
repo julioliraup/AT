@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "fenor-lexav-biz-qerin-melot-nd11kt12.pages.dev",
       "domain_defanged": "fenor-lexav-biz-qerin-melot-nd11kt12[.]pages[.]dev",
-      "case_id": "PD-20260607-351CAE",
-      "analyzed_at": "2026-06-07T11:34:06.876Z",
+      "case_id": "PD-20260609-351CAE",
+      "analyzed_at": "2026-06-09T06:27:28.427Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea1dc-8dd9-7226-b907-24808a995b25.png",
           "url": "https://urlscan.io/result/019ea1dc-8dd9-7226-b907-24808a995b25/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,13 +87,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2d02",
+            "2606:4700:310c::ac42:2efe"
+          ],
           "A": [
             "172.66.45.2",
             "172.66.46.254"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2efe",
-            "2606:4700:310c::ac42:2d02"
           ],
           "NS": [
             "agustin.ns.cloudflare.com.",
@@ -224,12 +233,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fenor-lexav-biz-qerin-melot-nd11kt12.pages.dev/form_submit_appeal/)\"; flow:established,to_server; http.uri; content:\"/form_submit_appeal/\"; startswith; fast_pattern; http.host; content:\"fenor-lexav-biz-qerin-melot-nd11kt12.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004219; classtype:social-engineering; sid:6004219; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-08T08:44:32.693092+00:00",
+  "updated_at": "2026-06-09T06:27:18.530741+00:00",
   "probe": {
     "dns": true,
     "whois": false,

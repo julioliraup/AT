@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "domian-turnstile-52498.pages.dev",
       "domain_defanged": "domian-turnstile-52498[.]pages[.]dev",
-      "case_id": "PD-20260607-759EE5",
-      "analyzed_at": "2026-06-07T09:34:33.297Z",
+      "case_id": "PD-20260609-759EE5",
+      "analyzed_at": "2026-06-09T04:16:15.038Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ea16f-1855-75ca-9be8-4c8d2df016e2/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea86c-9f4b-70de-b677-668b96af3545.png",
+          "url": "https://urlscan.io/result/019ea86c-9f4b-70de-b677-668b96af3545/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.75",
+        "ip": "172.66.44.181",
         "ipinfo": {
-          "ip": "172.66.47.75",
+          "ip": "172.66.44.181",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -89,8 +98,8 @@
             "2606:4700:310c::ac42:2f4b"
           ],
           "A": [
-            "172.66.47.75",
-            "172.66.44.181"
+            "172.66.44.181",
+            "172.66.47.75"
           ],
           "NS": [
             "norah.ns.cloudflare.com.",
@@ -235,7 +244,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (domian-turnstile-52498.pages.dev/help/contact/250753179199320/)\"; flow:established,to_server; http.uri; content:\"/help/contact/250753179199320/\"; startswith; fast_pattern; http.host; content:\"domian-turnstile-52498.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002770; classtype:social-engineering; sid:6002770; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-08T06:23:55.648679+00:00",
+  "updated_at": "2026-06-09T04:25:51.886493+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -50,21 +50,68 @@
     "phishdestroy": {
       "domain": "surl.li",
       "domain_defanged": "surl[.]li",
-      "case_id": "PD-20260607-6E7417",
-      "analyzed_at": "2026-06-07T17:09:41.880Z",
+      "case_id": "PD-20260609-6E7417",
+      "analyzed_at": "2026-06-09T01:55:23.055Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ea30f-c9b1-759b-8d94-138925549de1/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ea9b6-392b-7035-b327-28f6b47194c2.png",
+          "url": "https://urlscan.io/result/019ea9b6-392b-7035-b327-28f6b47194c2/",
+          "title": "Surli"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -90,8 +137,8 @@
           ],
           "AAAA": [
             "2606:4700:20::681a:513",
-            "2606:4700:20::ac43:454c",
-            "2606:4700:20::681a:413"
+            "2606:4700:20::681a:413",
+            "2606:4700:20::ac43:454c"
           ],
           "MX": [
             "0 mail.surl.li."
@@ -230,12 +277,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (surl .li/nkayto)\"; flow:established,to_server; http.uri; content:\"/nkayto\"; startswith; fast_pattern; http.host;  content:\"surl.li\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001382; classtype:social-engineering; sid:6001382; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-08T04:06:29.686017+00:00",
+  "updated_at": "2026-06-09T01:55:10.148951+00:00",
   "probe": {
     "dns": true,
     "whois": true,

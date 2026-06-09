@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "farix-selun-biz-mevol-tarax-nd11kt12.pages.dev",
       "domain_defanged": "farix-selun-biz-mevol-tarax-nd11kt12[.]pages[.]dev",
-      "case_id": "PD-20260607-418CEE",
-      "analyzed_at": "2026-06-07T11:30:24.272Z",
+      "case_id": "PD-20260609-418CEE",
+      "analyzed_at": "2026-06-09T06:22:38.037Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea1d9-282c-774e-bd79-5b395cff44e1.png",
           "url": "https://urlscan.io/result/019ea1d9-282c-774e-bd79-5b395cff44e1/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -83,8 +92,8 @@
             "172.66.47.98"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2c9e",
-            "2606:4700:310c::ac42:2f62"
+            "2606:4700:310c::ac42:2f62",
+            "2606:4700:310c::ac42:2c9e"
           ],
           "NS": [
             "agustin.ns.cloudflare.com.",
@@ -224,12 +233,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (farix-selun-biz-mevol-tarax-nd11kt12.pages.dev/form_submit_appeal/)\"; flow:established,to_server; http.uri; content:\"/form_submit_appeal/\"; startswith; fast_pattern; http.host; content:\"farix-selun-biz-mevol-tarax-nd11kt12.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004186; classtype:social-engineering; sid:6004186; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-08T08:41:37.461628+00:00",
+  "updated_at": "2026-06-09T06:22:26.408642+00:00",
   "probe": {
     "dns": true,
     "whois": false,

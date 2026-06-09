@@ -50,21 +50,68 @@
     "phishdestroy": {
       "domain": "survey.refassured.com",
       "domain_defanged": "survey[.]refassured[.]com",
-      "case_id": "PD-20260607-76CFD3",
-      "analyzed_at": "2026-06-07T07:53:14.713Z",
+      "case_id": "PD-20260609-76CFD3",
+      "analyzed_at": "2026-06-09T01:34:21.495Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea0b3-522c-720f-ab02-e32b0fb39b80.png",
-          "url": "https://urlscan.io/result/019ea0b3-522c-720f-ab02-e32b0fb39b80/"
+          "screenshot": "https://urlscan.io/screenshots/019ea86b-88a0-76ff-8b9c-162b4f08c467.png",
+          "url": "https://urlscan.io/result/019ea86b-88a0-76ff-8b9c-162b4f08c467/",
+          "title": "RefAssured Reference"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -72,26 +119,26 @@
         "ip": "dhlbqommptxzl.cloudfront.net.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "dhlbqommptxzl.cloudfront.net."
-          ],
           "AAAA": [
             "dhlbqommptxzl.cloudfront.net.",
+            "2600:9000:213b:7000:12:b5e0:9440:93a1",
+            "2600:9000:213b:c200:12:b5e0:9440:93a1",
+            "2600:9000:213b:ae00:12:b5e0:9440:93a1",
+            "2600:9000:213b:1800:12:b5e0:9440:93a1",
             "2600:9000:213b:b600:12:b5e0:9440:93a1",
-            "2600:9000:213b:9800:12:b5e0:9440:93a1",
-            "2600:9000:213b:5c00:12:b5e0:9440:93a1",
-            "2600:9000:213b:2600:12:b5e0:9440:93a1",
-            "2600:9000:213b:8800:12:b5e0:9440:93a1",
-            "2600:9000:213b:ca00:12:b5e0:9440:93a1",
-            "2600:9000:213b:7800:12:b5e0:9440:93a1",
-            "2600:9000:213b:ce00:12:b5e0:9440:93a1"
+            "2600:9000:213b:c000:12:b5e0:9440:93a1",
+            "2600:9000:213b:5a00:12:b5e0:9440:93a1",
+            "2600:9000:213b:7800:12:b5e0:9440:93a1"
           ],
           "A": [
             "dhlbqommptxzl.cloudfront.net.",
-            "13.33.129.47",
-            "13.33.129.105",
             "13.33.129.61",
-            "13.33.129.66"
+            "13.33.129.66",
+            "13.33.129.105",
+            "13.33.129.47"
+          ],
+          "MX": [
+            "dhlbqommptxzl.cloudfront.net."
           ],
           "CNAME": [
             "dhlbqommptxzl.cloudfront.net."
@@ -107,7 +154,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -230,12 +284,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (survey .refassured .com/KyA1QdbK)\"; flow:established,to_server; http.uri; content:\"/KyA1QdbK\"; startswith; fast_pattern; http.host;  content:\"survey.refassured.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001188; classtype:social-engineering; sid:6001188; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-08T03:45:56.113654+00:00",
+  "updated_at": "2026-06-09T01:34:18.418163+00:00",
   "probe": {
     "dns": true,
     "whois": false,

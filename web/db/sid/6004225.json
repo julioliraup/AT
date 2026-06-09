@@ -72,22 +72,43 @@
     "phishdestroy": {
       "domain": "skinboard.info",
       "domain_defanged": "skinboard[.]info",
-      "case_id": "PD-20260607-507904",
-      "analyzed_at": "2026-06-07T11:34:26.204Z",
+      "case_id": "PD-20260609-507904",
+      "analyzed_at": "2026-06-09T06:28:03.910Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e48e7-446f-77c7-93cf-bd578042f77c.png",
+          "url": "https://urlscan.io/result/019e48e7-446f-77c7-93cf-bd578042f77c/",
+          "title": "Inventory Check | Fortnite"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "85.239.149.81",
+        "ipinfo": {
+          "ip": "85.239.149.81",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS207043 DEDIK SERVICES LIMITED",
+          "asn": "AS207043"
+        },
         "dns": null
       },
       "report_to": {
@@ -215,12 +236,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (skinboard.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"skinboard.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004225; classtype:social-engineering; sid:6004225; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-08T08:44:47.025812+00:00",
+  "updated_at": "2026-06-09T06:27:57.091912+00:00",
   "probe": {
     "dns": true,
     "whois": true,
