@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "vusawera.z1.web.core.windows.net",
       "domain_defanged": "vusawera[.]z1[.]web[.]core[.]windows[.]net",
-      "case_id": "PD-20260608-5474BF",
-      "analyzed_at": "2026-06-08T03:54:25.126Z",
+      "case_id": "PD-20260610-5474BF",
+      "analyzed_at": "2026-06-10T00:37:50.817Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Tech Support Scam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1ade-4386-750e-9386-3ed4dbc7ccdc.png",
+          "url": "https://urlscan.io/result/019e1ade-4386-750e-9386-3ed4dbc7ccdc/",
+          "title": "処理‌ 6351-6632-1925"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Tech Support Scam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "57.150.253.164",
+        "ipinfo": {
+          "ip": "57.150.253.164",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -193,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (vusawera .z1 .web .core .windows .net/uifzz3olfk9p .html)\"; flow:established,to_server; http.uri; content:\"/uifzz3olfk9p.html\"; startswith; fast_pattern; http.host;  content:\"vusawera.z1.web.core.windows.net\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001272; classtype:social-engineering; sid:6001272; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-09T01:42:59.895717+00:00",
+  "updated_at": "2026-06-10T00:37:45.123738+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "p.dongbeilaobo.com",
       "domain_defanged": "p[.]dongbeilaobo[.]com",
-      "case_id": "PD-20260608-1B7E80",
-      "analyzed_at": "2026-06-08T05:41:36.986Z",
+      "case_id": "PD-20260610-1B7E80",
+      "analyzed_at": "2026-06-10T02:44:02.439Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "TikTok Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e81be-ff88-74d9-9b8e-cd58b2adbd34.png",
+          "url": "https://urlscan.io/result/019e81be-ff88-74d9-9b8e-cd58b2adbd34/",
+          "title": "TikTok Wholesale"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: TikTok Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (p.dongbeilaobo.com/wap)\"; flow:established,to_server; http.uri; content:\"/wap\"; startswith; fast_pattern; http.host; content:\"p.dongbeilaobo.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002322; classtype:social-engineering; sid:6002322; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-09T03:47:42.200734+00:00",
+  "updated_at": "2026-06-10T02:43:25.765738+00:00",
   "probe": {
     "dns": false,
     "whois": false,

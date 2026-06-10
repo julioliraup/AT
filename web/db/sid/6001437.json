@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "emilemoraes.github.io",
       "domain_defanged": "emilemoraes[.]github[.]io",
-      "case_id": "PD-20260608-6DACCD",
-      "analyzed_at": "2026-06-08T04:11:06.158Z",
+      "case_id": "PD-20260610-6DACCD",
+      "analyzed_at": "2026-06-10T00:59:06.554Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ea56d-5321-764b-be03-a74239a3dcc0/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eaf04-8501-71fb-ac41-75360d6b17f1.png",
+          "url": "https://urlscan.io/result/019eaf04-8501-71fb-ac41-75360d6b17f1/",
+          "title": "Netflix clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -80,17 +89,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8003::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153"
-          ],
           "A": [
             "185.199.108.153",
             "185.199.109.153",
             "185.199.110.153",
             "185.199.111.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153",
+            "2606:50c0:8000::153"
           ]
         }
       },
@@ -226,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (emilemoraes .github .io/Netflix-Clone-/)\"; flow:established,to_server; http.uri; content:\"/Netflix-Clone-/\"; startswith; fast_pattern; http.host;  content:\"emilemoraes.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001437; classtype:social-engineering; sid:6001437; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-09T02:00:22.662079+00:00",
+  "updated_at": "2026-06-10T00:58:58.142373+00:00",
   "probe": {
     "dns": true,
     "whois": true,

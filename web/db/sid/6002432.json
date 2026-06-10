@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "dpdlocouv.top",
       "domain_defanged": "dpdlocouv[.]top",
-      "case_id": "PD-20260608-AF6E23",
-      "analyzed_at": "2026-06-08T05:52:23.644Z",
+      "case_id": "PD-20260610-AF6E23",
+      "analyzed_at": "2026-06-10T02:58:07.467Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e37f4-d9c3-76dc-a024-b7ff6520151a.png",
+          "url": "https://urlscan.io/result/019e37f4-d9c3-76dc-a024-b7ff6520151a/",
+          "title": "DPD (UK) - Your delivery experts"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.133.55.35",
+        "ipinfo": {
+          "ip": "43.133.55.35",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.dpdlocouv.top/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.dpdlocouv.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002432; classtype:social-engineering; sid:6002432; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-09T03:56:42.990507+00:00",
+  "updated_at": "2026-06-10T02:58:03.754707+00:00",
   "probe": {
     "dns": false,
     "whois": false,

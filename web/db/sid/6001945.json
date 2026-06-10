@@ -50,28 +50,45 @@
     "phishdestroy": {
       "domain": "shorturl.at",
       "domain_defanged": "shorturl[.]at",
-      "case_id": "PD-20260609-72F680",
-      "analyzed_at": "2026-06-09T03:05:02.424Z",
+      "case_id": "PD-20260610-72F680",
+      "analyzed_at": "2026-06-10T01:57:40.052Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea9db-0ca7-75ec-a736-829d052e68bd.png",
-          "url": "https://urlscan.io/result/019ea9db-0ca7-75ec-a736-829d052e68bd/"
+          "screenshot": "https://urlscan.io/screenshots/019eaf23-5e33-742d-a641-5191c86bcb4b.png",
+          "url": "https://urlscan.io/result/019eaf23-5e33-742d-a641-5191c86bcb4b/",
+          "title": "صفحه پیدا نشد | ثبت آگهی رایگان بر روی نقشه"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.8.129",
+        "ip": "172.67.69.88",
         "ipinfo": {
-          "ip": "104.26.8.129",
+          "ip": "172.67.69.88",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,22 +96,22 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.26.8.129",
-            "172.67.69.88",
-            "104.26.9.129"
-          ],
           "AAAA": [
             "2606:4700:20::681a:881",
-            "2606:4700:20::681a:981",
-            "2606:4700:20::ac43:4558"
+            "2606:4700:20::ac43:4558",
+            "2606:4700:20::681a:981"
+          ],
+          "A": [
+            "172.67.69.88",
+            "104.26.9.129",
+            "104.26.8.129"
+          ],
+          "MX": [
+            "0 mail.shorturl.at."
           ],
           "NS": [
             "jason.ns.cloudflare.com.",
             "mia.ns.cloudflare.com."
-          ],
-          "MX": [
-            "0 mail.shorturl.at."
           ]
         }
       },
@@ -235,7 +252,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shorturl .at/sQxf0)\"; flow:established,to_server; http.uri; content:\"/sQxf0\"; startswith; fast_pattern; http.host;  content:\"shorturl.at\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001945; classtype:social-engineering; sid:6001945; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-09T03:05:27.664624+00:00",
+  "updated_at": "2026-06-10T01:57:55.572695+00:00",
   "probe": {
     "dns": true,
     "whois": true,

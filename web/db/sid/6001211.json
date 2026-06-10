@@ -50,11 +50,26 @@
     "phishdestroy": {
       "domain": "authorized-meta.accounts-admin-agency.com",
       "domain_defanged": "authorized-meta[.]accounts-admin-agency[.]com",
-      "case_id": "PD-20260608-37A77B",
-      "analyzed_at": "2026-06-08T03:48:00.964Z",
+      "case_id": "PD-20260610-37A77B",
+      "analyzed_at": "2026-06-10T00:30:46.805Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": true,
@@ -68,6 +83,16 @@
         }
       },
       "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
         {
           "source": "URLScan.io",
           "type": "Targeting: Facebook",
@@ -221,12 +246,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (authorized-meta .accounts-admin-agency .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"authorized-meta.accounts-admin-agency.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001211; classtype:social-engineering; sid:6001211; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-09T01:36:27.401991+00:00",
+  "updated_at": "2026-06-10T00:30:42.085745+00:00",
   "probe": {
     "dns": false,
     "whois": false,

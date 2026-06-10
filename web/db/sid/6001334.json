@@ -50,22 +50,35 @@
     "phishdestroy": {
       "domain": "seblanqet.com",
       "domain_defanged": "seblanqet[.]com",
-      "case_id": "PD-20260608-199C58",
-      "analyzed_at": "2026-06-08T04:01:11.082Z",
+      "case_id": "PD-20260610-199C58",
+      "analyzed_at": "2026-06-10T00:45:50.751Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "SEB Group"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1901-be1a-71d9-80da-6945159cc50a.png",
+          "url": "https://urlscan.io/result/019e1901-be1a-71d9-80da-6945159cc50a/",
+          "title": "SEB Prisijungimas"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: SEB Group",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MAT BAO CORPORATION",
         "created": "2026-05-08T09:48:55Z",
         "expires": "2027-05-08T09:48:55Z",
-        "age_days": 30,
+        "age_days": 32,
         "nameservers": [
           "NS1.QHOSTER.NET",
           "NS2.QHOSTER.NET",
@@ -74,12 +87,28 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "185.38.151.11",
+        "ipinfo": {
+          "ip": "185.38.151.11",
+          "hostname": "cphost17.qhoster.net",
+          "city": "London",
+          "region": "England",
+          "country": "GB",
+          "org": "AS25369 Hydra Communications Ltd",
+          "asn": "AS25369"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "BANDWIDTH-AS, GB",
+          "abuse": "abuse@zare.com",
+          "url": "mailto:abuse@zare.com",
+          "logo": "https://i.ibb.co/WNk2qJbK/pr-BANDWIDTH-AS-GB.png",
+          "method": "email",
+          "asn": "AS25369"
+        }
       },
       "report_services": [
         {
@@ -202,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (seblanqet .com/HomeSelta/)\"; flow:established,to_server; http.uri; content:\"/HomeSelta/\"; startswith; fast_pattern; http.host;  content:\"seblanqet.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001334; classtype:social-engineering; sid:6001334; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-09T01:49:59.838821+00:00",
+  "updated_at": "2026-06-10T00:45:37.064340+00:00",
   "probe": {
     "dns": false,
     "whois": false,

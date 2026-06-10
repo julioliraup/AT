@@ -72,27 +72,55 @@
     "phishdestroy": {
       "domain": "135-125-245-221.cprapid.com",
       "domain_defanged": "135-125-245-221[.]cprapid[.]com",
-      "case_id": "PD-20260608-576F62",
-      "analyzed_at": "2026-06-08T05:23:07.917Z",
+      "case_id": "PD-20260610-576F62",
+      "analyzed_at": "2026-06-10T02:23:35.553Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e96e9-0f15-73ae-b463-ec8e208b4299.png",
+          "url": "https://urlscan.io/result/019e96e9-0f15-73ae-b463-ec8e208b4299/",
+          "title": "DPD en ( en ) -"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "135.125.245.221",
+        "ipinfo": {
+          "ip": "135.125.245.221",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS16276 OVH SAS",
+          "asn": "AS16276"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "OVH",
+          "abuse": "abuse@ovh.net",
+          "url": "https://www.ovh.com/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16276"
+        }
       },
       "report_services": [
         {
@@ -220,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (135-125-245-221.cprapid.com/eu/)\"; flow:established,to_server; http.uri; content:\"/eu/\"; startswith; fast_pattern; http.host; content:\"135-125-245-221.cprapid.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002221; classtype:social-engineering; sid:6002221; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-06-09T03:37:00.056662+00:00",
+  "updated_at": "2026-06-10T02:31:35.394057+00:00",
   "probe": {
     "dns": true,
     "whois": false,

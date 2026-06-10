@@ -50,21 +50,34 @@
     "phishdestroy": {
       "domain": "maxis.com.my",
       "domain_defanged": "maxis[.]com[.]my",
-      "case_id": "PD-20260608-217242",
-      "analyzed_at": "2026-06-08T04:58:16.221Z",
+      "case_id": "PD-20260610-217242",
+      "analyzed_at": "2026-06-10T01:56:10.456Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ea598-7ff8-7067-ad44-782e9ad1e590/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Maxis"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eab18-4fae-7786-8859-9f0bbdf1b953.png",
+          "url": "https://urlscan.io/result/019eab18-4fae-7786-8859-9f0bbdf1b953/",
+          "title": "Online Store | Maxis"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Maxis",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,18 +97,18 @@
             "45.223.41.14"
           ],
           "MX": [
-            "20 cluster9a.us.messagelabs.com.",
-            "10 cluster9.us.messagelabs.com."
+            "10 cluster9.us.messagelabs.com.",
+            "20 cluster9a.us.messagelabs.com."
           ],
           "AAAA": [
             "2a02:e980:170::e"
           ],
           "NS": [
             "isgbns3.",
-            "ns3.maxis.com.my.",
+            "ns9.maxis.com.my.",
             "ns8.maxis.com.my.",
             "ns4.maxis.com.my.",
-            "ns9.maxis.com.my."
+            "ns3.maxis.com.my."
           ]
         }
       },
@@ -231,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .maxis .com .my/en/home/)\"; flow:established,to_server; http.uri; content:\"/en/home/\"; startswith; fast_pattern; http.host;  content:\"www.maxis.com.my\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001930; classtype:social-engineering; sid:6001930; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-09T03:03:42.665156+00:00",
+  "updated_at": "2026-06-10T01:56:02.515622+00:00",
   "probe": {
     "dns": true,
     "whois": true,

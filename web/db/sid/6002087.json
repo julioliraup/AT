@@ -74,29 +74,50 @@
     "phishdestroy": {
       "domain": "b891886.com",
       "domain_defanged": "b891886[.]com",
-      "case_id": "PD-20260608-49EF33",
-      "analyzed_at": "2026-06-08T05:17:30.704Z",
+      "case_id": "PD-20260610-49EF33",
+      "analyzed_at": "2026-06-10T02:16:02.229Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e56e7-2c7b-7531-ac40-c6923ac63f0c.png",
+          "url": "https://urlscan.io/result/019e56e7-2c7b-7531-ac40-c6923ac63f0c/",
+          "title": "Bet365 - 官方直营"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2026-03-16T10:37:14Z",
         "expires": "2027-03-16T10:37:14Z",
-        "age_days": 83,
+        "age_days": 85,
         "nameservers": [
           "NS43.DOMAINCONTROL.COM",
           "NS44.DOMAINCONTROL.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "118.107.248.73",
+        "ipinfo": {
+          "ip": "118.107.248.73",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS132825 MYTEK TRADING PTY LTD",
+          "asn": "AS132825"
+        },
         "dns": null
       },
       "report_to": {
@@ -108,7 +129,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "MYTEK-AS-AP",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS132825"
+        }
       },
       "report_services": [
         {
@@ -231,12 +259,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (b891886.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"b891886.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002087; classtype:social-engineering; sid:6002087; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-06-09T03:23:36.823352+00:00",
+  "updated_at": "2026-06-10T02:15:50.565213+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -77,29 +77,38 @@
     "phishdestroy": {
       "domain": "realonepranshu.github.io",
       "domain_defanged": "realonepranshu[.]github[.]io",
-      "case_id": "PD-20260608-24286B",
-      "analyzed_at": "2026-06-08T05:44:25.675Z",
+      "case_id": "PD-20260610-24286B",
+      "analyzed_at": "2026-06-10T02:47:36.939Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea5c2-c44f-70df-b9d0-86c3bdb04bc6.png",
           "url": "https://urlscan.io/result/019ea5c2-c44f-70df-b9d0-86c3bdb04bc6/",
-          "pending": true
+          "title": "Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.110.153",
+        "ip": "185.199.111.153",
         "ipinfo": {
-          "ip": "185.199.110.153",
-          "hostname": "cdn-185-199-110-153.github.com",
+          "ip": "185.199.111.153",
+          "hostname": "cdn-185-199-111-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,17 +116,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8003::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8000::153"
-          ],
           "A": [
+            "185.199.111.153",
             "185.199.110.153",
             "185.199.109.153",
-            "185.199.111.153",
             "185.199.108.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
@@ -253,12 +262,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (realonepranshu.github.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"realonepranshu.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002347; classtype:social-engineering; sid:6002347; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-09T03:50:10.665810+00:00",
+  "updated_at": "2026-06-10T02:47:32.447085+00:00",
   "probe": {
     "dns": true,
     "whois": true,

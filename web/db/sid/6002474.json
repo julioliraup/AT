@@ -49,22 +49,30 @@
     "phishdestroy": {
       "domain": "antai-amende-clients.justns.ru",
       "domain_defanged": "antai-amende-clients[.]justns[.]ru",
-      "case_id": "PD-20260609-156C60",
-      "analyzed_at": "2026-06-09T04:00:07.668Z",
+      "case_id": "PD-20260610-156C60",
+      "analyzed_at": "2026-06-10T03:03:30.316Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea165-1666-727b-a37e-7a547d31fee2.png",
-          "url": "https://urlscan.io/result/019ea165-1666-727b-a37e-7a547d31fee2/",
-          "title": "antai-amende-clients.justns.ru"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Government of France"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ead94-f475-774b-9534-b78688f4c0f3.png",
+          "url": "https://urlscan.io/result/019ead94-f475-774b-9534-b78688f4c0f3/",
+          "title": "Site officiel unique de télépaiement | Amendes.gouv.fr"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Government of France",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -80,15 +88,15 @@
           "asn": "AS26383"
         },
         "dns": {
+          "MX": [
+            "10 mail.antai-amende-clients.justns.ru."
+          ],
           "A": [
             "103.110.66.40"
           ],
           "NS": [
             "ns2.justhost.ru.",
             "ns1.justhost.ru."
-          ],
-          "MX": [
-            "10 mail.antai-amende-clients.justns.ru."
           ]
         }
       },
@@ -228,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (antai-amende-clients.justns.ru/amende-278764/Demos/)\"; flow:established,to_server; http.uri; content:\"/amende-278764/Demos/\"; startswith; fast_pattern; http.host; content:\"antai-amende-clients.justns.ru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002474; classtype:social-engineering; sid:6002474; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-09T04:00:02.448931+00:00",
+  "updated_at": "2026-06-10T03:03:21.653928+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -22,7 +22,7 @@
       "url": "http://mummyweberp.com/kloi/",
       "domain": "mummyweberp.com",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "mummyweberp.com",
       "domain_defanged": "mummyweberp[.]com",
-      "case_id": "PD-20260608-2A4427",
-      "analyzed_at": "2026-06-08T07:42:25.247Z",
+      "case_id": "PD-20260610-2A4427",
+      "analyzed_at": "2026-06-10T04:57:42.619Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019eafe4-b6d7-7010-b63d-92d7bc20e859/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,15 +92,35 @@
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2016-11-18T19:13:32Z",
         "expires": "2026-11-18T19:13:32Z",
-        "age_days": 3488,
+        "age_days": 3490,
         "nameservers": [
           "NS1.MUMMYWEBERP.COM",
           "NS2.MUMMYWEBERP.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "108.161.129.171",
+        "ipinfo": {
+          "ip": "108.161.129.171",
+          "hostname": "server.mummyweberp.com",
+          "city": "Dallas",
+          "region": "Texas",
+          "country": "US",
+          "org": "AS55045 TekTonic",
+          "asn": "AS55045"
+        },
+        "dns": {
+          "A": [
+            "108.161.129.171"
+          ],
+          "MX": [
+            "0 mummyweberp.com."
+          ],
+          "NS": [
+            "ns2.mummyweberp.com.",
+            "ns1.mummyweberp.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": {
@@ -107,7 +131,14 @@
           "method": "form",
           "iana_ids": "1917"
         },
-        "hosting": null
+        "hosting": {
+          "name": "TEKTONIC",
+          "abuse": "abuse@tektonic.net",
+          "url": "mailto:abuse@tektonic.net",
+          "logo": "https://i.ibb.co/xK8fHtjB/pr-TEKTONIC.jpg",
+          "method": "email",
+          "asn": "AS55045"
+        }
       },
       "report_services": [
         {
@@ -230,15 +261,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mummyweberp.com/kloi/)\"; flow:established,to_server; http.uri; content:\"/kloi/\"; startswith; fast_pattern; http.host; content:\"mummyweberp.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003532; classtype:social-engineering; sid:6003532; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-09T05:25:10.445401+00:00",
+  "updated_at": "2026-06-10T04:57:28.994921+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

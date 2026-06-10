@@ -50,28 +50,54 @@
     "phishdestroy": {
       "domain": "tr.ee",
       "domain_defanged": "tr[.]ee",
-      "case_id": "PD-20260608-697321",
-      "analyzed_at": "2026-06-08T05:03:23.891Z",
+      "case_id": "PD-20260610-697321",
+      "analyzed_at": "2026-06-10T02:02:52.916Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "DNS8",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ea59d-33ed-7671-b627-0ee99448314d/",
+          "url": "https://urlscan.io/result/019eaf44-a76f-76b4-926d-7c3a0d8631bb/",
           "pending": true
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: DNS8",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "151.101.130.133",
+        "ip": "151.101.66.133",
         "ipinfo": {
-          "ip": "151.101.130.133",
+          "ip": "151.101.66.133",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,10 +106,10 @@
         },
         "dns": {
           "A": [
-            "151.101.130.133",
+            "151.101.66.133",
             "151.101.2.133",
-            "151.101.194.133",
-            "151.101.66.133"
+            "151.101.130.133",
+            "151.101.194.133"
           ],
           "NS": [
             "ns-1110.awsdns-10.org.",
@@ -225,12 +251,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tr .ee/MiOiT2)\"; flow:established,to_server; http.uri; content:\"/MiOiT2\"; startswith; fast_pattern; http.host;  content:\"tr.ee\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001983; classtype:social-engineering; sid:6001983; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-09T03:10:51.501831+00:00",
+  "updated_at": "2026-06-10T02:02:45.566474+00:00",
   "probe": {
     "dns": true,
     "whois": true,
