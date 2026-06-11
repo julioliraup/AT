@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "ehay.uk.login-secures-rs8rzsws.jamssbkn.in",
       "domain_defanged": "ehay[.]uk[.]login-secures-rs8rzsws[.]jamssbkn[.]in",
-      "case_id": "PD-20260610-38AFA3",
-      "analyzed_at": "2026-06-10T05:09:36.939Z",
+      "case_id": "PD-20260611-38AFA3",
+      "analyzed_at": "2026-06-11T04:03:48.585Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "eBay"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e55a5-555b-731f-9991-2ac89fe50ef9.png",
+          "url": "https://urlscan.io/result/019e55a5-555b-731f-9991-2ac89fe50ef9/",
+          "title": "Loading ...."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: eBay",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "116.206.104.119",
+        "ipinfo": {
+          "ip": "116.206.104.119",
+          "city": "Mumbai",
+          "region": "Maharashtra",
+          "country": "IN",
+          "org": "AS394695 PDR",
+          "asn": "AS394695"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Public Domain Registry",
+          "abuse": "abuse@publicdomainregistry.com",
+          "url": "mailto:abuse@publicdomainregistry.com",
+          "logo": "https://i.ibb.co/LX6RBjjk/pr-24-SHELLS.png",
+          "method": "email",
+          "asn": "AS394695"
+        }
       },
       "report_services": [
         {
@@ -221,7 +249,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ehay.uk.login-secures-rs8rzsws.jamssbkn.in/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ehay.uk.login-secures-rs8rzsws.jamssbkn.in\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003881; classtype:social-engineering; sid:6003881; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-10T05:33:51.946145+00:00",
+  "updated_at": "2026-06-11T04:29:43.488804+00:00",
   "probe": {
     "dns": true,
     "whois": false,

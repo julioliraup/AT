@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "allegro.smart0298391243.bond",
       "domain_defanged": "allegro[.]smart0298391243[.]bond",
-      "case_id": "PD-20260610-309371",
-      "analyzed_at": "2026-06-10T04:14:54.780Z",
+      "case_id": "PD-20260611-309371",
+      "analyzed_at": "2026-06-11T03:09:41.586Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e457a-b1a5-7369-aae2-9c671fda010e.png",
+          "url": "https://urlscan.io/result/019e457a-b1a5-7369-aae2-9c671fda010e/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.135.220",
+        "ipinfo": {
+          "ip": "172.67.135.220",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (allegro.smart0298391243.bond/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"allegro.smart0298391243.bond\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003124; classtype:social-engineering; sid:6003124; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-10T04:14:51.627424+00:00",
+  "updated_at": "2026-06-11T03:09:36.616561+00:00",
   "probe": {
     "dns": false,
     "whois": false,

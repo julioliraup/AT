@@ -49,29 +49,51 @@
     "phishdestroy": {
       "domain": "govauinboxupdate-review.com",
       "domain_defanged": "govauinboxupdate-review[.]com",
-      "case_id": "PD-20260610-281310",
-      "analyzed_at": "2026-06-10T05:30:36.140Z",
+      "case_id": "PD-20260611-281310",
+      "analyzed_at": "2026-06-11T04:26:20.777Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Australian Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4446-7613-761f-b31d-c1d00c6accf8.png",
+          "url": "https://urlscan.io/result/019e4446-7613-761f-b31d-c1d00c6accf8/",
+          "title": "Sign in with myGov - myGov"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Australian Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2026-05-20T07:02:20Z",
         "expires": "2027-05-20T07:02:20Z",
-        "age_days": 20,
+        "age_days": 21,
         "nameservers": [
           "NS1.SUSPENDED-DOMAIN.COM",
           "NS2.SUSPENDED-DOMAIN.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "45.61.163.53",
+        "ipinfo": {
+          "ip": "45.61.163.53",
+          "hostname": "53.163.61.45.static.cloudzy.com",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS14956 RouterHosting LLC",
+          "asn": "AS14956"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +105,14 @@
           "method": "form",
           "iana_ids": "1917"
         },
-        "hosting": null
+        "hosting": {
+          "name": "ROUTERHOSTING",
+          "abuse": "abuse-reports@cloudzy.com",
+          "url": "mailto:abuse-reports@cloudzy.com",
+          "logo": "https://i.ibb.co/dsFkFMby/pr-ROUTERHOSTING.png",
+          "method": "email",
+          "asn": "AS14956"
+        }
       },
       "report_services": [
         {
@@ -210,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (govauinboxupdate-review.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"govauinboxupdate-review.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003852; classtype:social-engineering; sid:6003852; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-10T05:30:26.526847+00:00",
+  "updated_at": "2026-06-11T04:26:11.256713+00:00",
   "probe": {
     "dns": false,
     "whois": false,

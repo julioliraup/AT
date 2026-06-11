@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "radostkartin.com.tr",
       "domain_defanged": "radostkartin[.]com[.]tr",
-      "case_id": "PD-20260610-557228",
-      "analyzed_at": "2026-06-10T05:44:52.049Z",
+      "case_id": "PD-20260611-557228",
+      "analyzed_at": "2026-06-11T04:39:41.146Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eb00f-e2d7-706e-955f-e8a43dd7977d/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb342-f65a-779b-8605-79ea9fb291b1.png",
+          "url": "https://urlscan.io/result/019eb342-f65a-779b-8605-79ea9fb291b1/",
+          "title": "Steam Gift Activation"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -229,10 +238,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (radostkartin.com.tr/id=5185124)\"; flow:established,to_server; http.uri; content:\"/id=5185124\"; startswith; fast_pattern; http.host; content:\"radostkartin.com.tr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003984; classtype:social-engineering; sid:6003984; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-10T05:44:42.963710+00:00",
+  "updated_at": "2026-06-11T04:39:32.120178+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

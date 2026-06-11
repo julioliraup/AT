@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "bradesco.corporativoapp.digital",
       "domain_defanged": "bradesco[.]corporativoapp[.]digital",
-      "case_id": "PD-20260610-4496E7",
-      "analyzed_at": "2026-06-10T04:17:34.895Z",
+      "case_id": "PD-20260611-4496E7",
+      "analyzed_at": "2026-06-11T03:11:56.358Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Banco Bradesco"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3f33-021f-7211-ae50-c445e556fe91.png",
+          "url": "https://urlscan.io/result/019e3f33-021f-7211-ae50-c445e556fe91/",
+          "title": "Banco Bradesco S/A"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Banco Bradesco",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.192.117",
+        "ipinfo": {
+          "ip": "172.67.192.117",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bradesco.corporativoapp.digital/404.php)\"; flow:established,to_server; http.uri; content:\"/404.php\"; startswith; fast_pattern; http.host; content:\"bradesco.corporativoapp.digital\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003146; classtype:social-engineering; sid:6003146; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-10T04:17:28.123001+00:00",
+  "updated_at": "2026-06-11T03:11:46.868352+00:00",
   "probe": {
     "dns": false,
     "whois": false,

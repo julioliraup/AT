@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "allegrolokalne.925389h451.shop",
       "domain_defanged": "allegrolokalne[.]925389h451[.]shop",
-      "case_id": "PD-20260610-5D7E44",
-      "analyzed_at": "2026-06-10T05:27:38.528Z",
+      "case_id": "PD-20260611-5D7E44",
+      "analyzed_at": "2026-06-11T04:23:55.394Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb000-1dd2-77fd-89cf-77b71a18924d.png",
           "url": "https://urlscan.io/result/019eb000-1dd2-77fd-89cf-77b71a18924d/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,13 +93,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3034::6815:2c62",
-            "2606:4700:3033::ac43:c686"
-          ],
           "A": [
             "104.21.44.98",
             "172.67.198.134"
+          ],
+          "AAAA": [
+            "2606:4700:3034::6815:2c62",
+            "2606:4700:3033::ac43:c686"
           ]
         }
       },
@@ -230,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (allegrolokalne.925389h451.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"allegrolokalne.925389h451.shop\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003825; classtype:social-engineering; sid:6003825; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-10T05:27:34.590531+00:00",
+  "updated_at": "2026-06-11T04:23:45.146707+00:00",
   "probe": {
     "dns": true,
     "whois": true,

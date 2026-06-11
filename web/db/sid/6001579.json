@@ -74,12 +74,12 @@
     "phishdestroy": {
       "domain": "nethubcorp.com",
       "domain_defanged": "nethubcorp[.]com",
-      "case_id": "PD-20260609-6CDA27",
-      "analyzed_at": "2026-06-09T02:17:58.525Z",
+      "case_id": "PD-20260611-6CDA27",
+      "analyzed_at": "2026-06-11T00:17:52.342Z",
       "intel": {
         "virustotal": {
-          "malicious": 7,
-          "suspicious": 1,
+          "malicious": 9,
+          "suspicious": 2,
           "total": 91,
           "detections": [
             {
@@ -98,7 +98,22 @@
               "result": "malicious"
             },
             {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
               "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
               "category": "malicious",
               "result": "phishing"
             },
@@ -123,7 +138,9 @@
               "result": "malicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Information/Computer Security, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
@@ -151,7 +168,22 @@
           "severity": "high"
         },
         {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
           "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
           "type": "phishing",
           "severity": "high"
         },
@@ -180,16 +212,16 @@
         "registrar": "Cloudflare, Inc.",
         "created": "2018-02-12T06:32:45Z",
         "expires": "2027-02-12T06:32:45Z",
-        "age_days": 3038,
+        "age_days": 3040,
         "nameservers": [
           "MONA.NS.CLOUDFLARE.COM",
           "SEAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.73.172",
+        "ip": "104.26.8.140",
         "ipinfo": {
-          "ip": "172.67.73.172",
+          "ip": "104.26.8.140",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -198,14 +230,14 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:20::ac43:49ac",
+            "2606:4700:20::681a:98c",
             "2606:4700:20::681a:88c",
-            "2606:4700:20::681a:98c"
+            "2606:4700:20::ac43:49ac"
           ],
           "A": [
-            "172.67.73.172",
             "104.26.8.140",
-            "104.26.9.140"
+            "104.26.9.140",
+            "172.67.73.172"
           ],
           "NS": [
             "mona.ns.cloudflare.com.",
@@ -352,12 +384,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .nethubcorp .com/a57dc89e5gafef46a46bc0d58a4d0b6cf305 .html)\"; flow:established,to_server; http.uri; content:\"/a57dc89e5gafef46a46bc0d58a4d0b6cf305.html\"; startswith; fast_pattern; http.host;  content:\"www.nethubcorp.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001579; classtype:social-engineering; sid:6001579; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-10T01:14:03.675974+00:00",
+  "updated_at": "2026-06-11T00:17:45.185028+00:00",
   "probe": {
     "dns": true,
     "whois": false,

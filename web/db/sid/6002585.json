@@ -49,11 +49,36 @@
     "phishdestroy": {
       "domain": "ogk-kunden-id-874532.dudaone.com",
       "domain_defanged": "ogk-kunden-id-874532[.]dudaone[.]com",
-      "case_id": "PD-20260609-77E8EF",
-      "analyzed_at": "2026-06-09T04:10:38.392Z",
+      "case_id": "PD-20260611-77E8EF",
+      "analyzed_at": "2026-06-11T02:13:22.782Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
@@ -64,7 +89,28 @@
           "title": "SITE NOT FOUND"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -72,7 +118,7 @@
         "ip": "s.multiscreensite.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
+          "MX": [
             "s.multiscreensite.com.",
             "global.multiscreensite.com.",
             "a3c02b2530d6f27ca.awsglobalaccelerator.com."
@@ -81,10 +127,10 @@
             "s.multiscreensite.com.",
             "global.multiscreensite.com.",
             "a3c02b2530d6f27ca.awsglobalaccelerator.com.",
-            "75.2.0.180",
-            "99.83.169.22"
+            "99.83.169.22",
+            "75.2.0.180"
           ],
-          "MX": [
+          "AAAA": [
             "s.multiscreensite.com.",
             "global.multiscreensite.com.",
             "a3c02b2530d6f27ca.awsglobalaccelerator.com."
@@ -231,12 +277,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ogk-kunden-id-874532.dudaone.com/ogk)\"; flow:established,to_server; http.uri; content:\"/ogk\"; startswith; fast_pattern; http.host; content:\"ogk-kunden-id-874532.dudaone.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6002585; classtype:social-engineering; sid:6002585; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-10T03:16:59.978305+00:00",
+  "updated_at": "2026-06-11T02:13:19.178810+00:00",
   "probe": {
     "dns": true,
     "whois": false,

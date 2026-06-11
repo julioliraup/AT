@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://g365kvip.com/",
       "domain": "g365kvip.com",
-      "url_count": 2,
+      "url_count": 3,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "20.187.146.25",
+      "http_code": 200,
+      "http_response": {
+        "server": null,
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,39 +43,65 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text",
+      "sha256": "838e52258f110f632e9a7d3a34be3497fe5de8eacbc2b4a1d1bcb6f265e000b3",
+      "md5": "61e6a0bde90b90e7f54e8dcc9062ba74",
+      "cert": {
+        "subject_cn": "g365kvip.com",
+        "subject_alt_names": [
+          "g365kvip.com",
+          "www.g365kvip.com"
+        ],
+        "issuer_cn": "R13",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-19T05:17:44+00:00",
+        "not_valid_after": "2026-08-17T05:17:43+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "05 3F 83 FA 9E 53 8D BA 4E E9 F6 2A 63 F1 EB FD 2A 31",
+        "fingerprint_sha1": "33 67 E8 7C D4 91 6D 7B 7C 84 E6 3F 4C B7 05 E7 07 70 8B A9",
+        "fingerprint_sha256": "56 AD C6 74 4A 31 E4 71 9D FC 72 E5 0C 03 2F 38 7C BB F9 9A B2 F9 6D DC 79 AC 37 F9 54 C9 1A 9D"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-05-21T06:43:49",
-      "first_seen_secs": null
+      "first_seen": "2026-06-11T02:32:33",
+      "first_seen_secs": 1781145153.0
     },
     "phishdestroy": {
       "domain": "g365kvip.com",
       "domain_defanged": "g365kvip[.]com",
-      "case_id": "PD-20260609-7DA365",
-      "analyzed_at": "2026-06-09T06:16:00.400Z",
+      "case_id": "PD-20260611-7DA365",
+      "analyzed_at": "2026-06-11T04:55:20.366Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea85e-37ab-71fa-a642-b3758fd49485.png",
-          "url": "https://urlscan.io/result/019ea85e-37ab-71fa-a642-b3758fd49485/",
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eab33-ffd6-7638-b802-e689ed4893b9.png",
+          "url": "https://urlscan.io/result/019eab33-ffd6-7638-b802-e689ed4893b9/",
           "title": "bet365 -No.1 体育投注，世界锦标赛斯诺克赔率，百家乐娱乐场，扑克牌，电子游戏"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-05-12T13:14:25Z",
         "expires": "2027-05-12T13:14:25Z",
-        "age_days": 27,
+        "age_days": 29,
         "nameservers": [
           "ANAHI.NS.CLOUDFLARE.COM",
           "HARLAN.NS.CLOUDFLARE.COM"
@@ -234,12 +266,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (g365kvip.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"g365kvip.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004141; classtype:social-engineering; sid:6004141; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-10T06:03:05.164253+00:00",
+  "updated_at": "2026-06-11T04:55:05.773829+00:00",
   "probe": {
     "dns": true,
     "whois": true,

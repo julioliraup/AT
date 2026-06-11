@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "backup-exoduscentre.vercel.app",
       "domain_defanged": "backup-exoduscentre[.]vercel[.]app",
-      "case_id": "PD-20260610-331A92",
-      "analyzed_at": "2026-06-10T05:34:50.034Z",
+      "case_id": "PD-20260611-331A92",
+      "analyzed_at": "2026-06-11T04:30:29.165Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Exodus Wallet"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb006-b3aa-767b-baef-c8cc3a420d49.png",
           "url": "https://urlscan.io/result/019eb006-b3aa-767b-baef-c8cc3a420d49/",
-          "pending": true
+          "title": "Exodus – Import Wallet"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Exodus Wallet",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.130",
+        "ip": "216.198.79.194",
         "ipinfo": {
-          "ip": "64.29.17.130",
+          "ip": "216.198.79.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.130",
-            "216.198.79.130"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (backup-exoduscentre.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"backup-exoduscentre.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003890; classtype:social-engineering; sid:6003890; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-10T05:34:42.836783+00:00",
+  "updated_at": "2026-06-11T04:30:25.806890+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -74,29 +74,37 @@
     "phishdestroy": {
       "domain": "channelhub.info",
       "domain_defanged": "channelhub[.]info",
-      "case_id": "PD-20260609-22B3A4",
-      "analyzed_at": "2026-06-09T02:57:15.295Z",
+      "case_id": "PD-20260611-22B3A4",
+      "analyzed_at": "2026-06-11T00:57:16.508Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019eaa14-8875-704d-a84f-be21cd7a0c5c.png",
-          "url": "https://urlscan.io/result/019eaa14-8875-704d-a84f-be21cd7a0c5c/",
-          "title": "404 page"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eae68-3d3d-74b8-b966-50f0cfe2f56f.png",
+          "url": "https://urlscan.io/result/019eae68-3d3d-74b8-b966-50f0cfe2f56f/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.75.14",
+        "ip": "104.26.12.61",
         "ipinfo": {
-          "ip": "172.67.75.14",
+          "ip": "104.26.12.61",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -105,13 +113,13 @@
         },
         "dns": {
           "A": [
+            "104.26.12.61",
             "172.67.75.14",
-            "104.26.13.61",
-            "104.26.12.61"
+            "104.26.13.61"
           ],
           "AAAA": [
-            "2606:4700:20::681a:c3d",
             "2606:4700:20::ac43:4b0e",
+            "2606:4700:20::681a:c3d",
             "2606:4700:20::681a:d3d"
           ],
           "NS": [
@@ -252,12 +260,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (channelhub .info/56a4fb6efe317947c5691bfc862q9d69151f .html)\"; flow:established,to_server; http.uri; content:\"/56a4fb6efe317947c5691bfc862q9d69151f.html\"; startswith; fast_pattern; http.host;  content:\"channelhub.info\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001878; classtype:social-engineering; sid:6001878; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-10T01:51:23.801371+00:00",
+  "updated_at": "2026-06-11T00:57:00.799784+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,30 +49,38 @@
     "phishdestroy": {
       "domain": "govuk-cons-uk.github.io",
       "domain_defanged": "govuk-cons-uk[.]github[.]io",
-      "case_id": "PD-20260609-A93B31",
-      "analyzed_at": "2026-06-09T06:21:11.622Z",
+      "case_id": "PD-20260611-A93B31",
+      "analyzed_at": "2026-06-11T05:00:05.998Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea1d8-9a26-76dd-a759-d24bb43a7e52.png",
-          "url": "https://urlscan.io/result/019ea1d8-9a26-76dd-a759-d24bb43a7e52/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ead2e-cc5d-704c-9654-1da51277ddbf.png",
+          "url": "https://urlscan.io/result/019ead2e-cc5d-704c-9654-1da51277ddbf/",
+          "title": "Your immigration status (eVisa)"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.110.153",
+        "ip": "185.199.111.153",
         "ipinfo": {
-          "ip": "185.199.110.153",
-          "hostname": "cdn-185-199-110-153.github.com",
+          "ip": "185.199.111.153",
+          "hostname": "cdn-185-199-111-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,17 +88,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
-            "185.199.110.153",
+            "185.199.111.153",
             "185.199.108.153",
             "185.199.109.153",
-            "185.199.111.153"
+            "185.199.110.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8003::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8000::153"
           ]
         }
       },
@@ -231,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (govuk-cons-uk.github.io/serignediaw/)\"; flow:established,to_server; http.uri; content:\"/serignediaw/\"; startswith; fast_pattern; http.host; content:\"govuk-cons-uk.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004190; classtype:social-engineering; sid:6004190; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-10T06:08:19.610953+00:00",
+  "updated_at": "2026-06-11T05:01:24.324257+00:00",
   "probe": {
     "dns": true,
     "whois": true,

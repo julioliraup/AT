@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "rss.readles.at",
       "domain_defanged": "rss[.]readles[.]at",
-      "case_id": "PD-20260609-475E94",
-      "analyzed_at": "2026-06-09T06:30:18.244Z",
+      "case_id": "PD-20260611-475E94",
+      "analyzed_at": "2026-06-11T05:08:40.868Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea1de-5577-759e-96b5-a78b7a0d5846.png",
-          "url": "https://urlscan.io/result/019ea1de-5577-759e-96b5-a78b7a0d5846/"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eab42-87ee-771a-9930-a70daaaa47e4.png",
+          "url": "https://urlscan.io/result/019eab42-87ee-771a-9930-a70daaaa47e4/",
+          "title": "Staking"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -239,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rss.readles.at/go/y2b403/y274x274)\"; flow:established,to_server; http.uri; content:\"/go/y2b403/y274x274\"; startswith; fast_pattern; http.host; content:\"rss.readles.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004245; classtype:social-engineering; sid:6004245; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-10T06:13:42.176570+00:00",
+  "updated_at": "2026-06-11T05:08:35.590410+00:00",
   "probe": {
     "dns": true,
     "whois": true,

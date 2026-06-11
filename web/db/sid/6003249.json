@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "dpd.vlinbgp.cfd",
       "domain_defanged": "dpd[.]vlinbgp[.]cfd",
-      "case_id": "PD-20260610-6EC891",
-      "analyzed_at": "2026-06-10T04:28:29.754Z",
+      "case_id": "PD-20260611-6EC891",
+      "analyzed_at": "2026-06-11T03:22:50.493Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3efb-87c1-7304-bfb9-af1b291fd83f.png",
+          "url": "https://urlscan.io/result/019e3efb-87c1-7304-bfb9-af1b291fd83f/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.128.101",
+        "ipinfo": {
+          "ip": "172.67.128.101",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +223,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.vlinbgp.cfd/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"dpd.vlinbgp.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003249; classtype:social-engineering; sid:6003249; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-10T04:28:21.720726+00:00",
+  "updated_at": "2026-06-11T03:22:40.287604+00:00",
   "probe": {
     "dns": false,
     "whois": false,

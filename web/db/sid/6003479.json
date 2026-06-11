@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "www-currently-sign-in-6fdb9c.webflow.io",
       "domain_defanged": "www-currently-sign-in-6fdb9c[.]webflow[.]io",
-      "case_id": "PD-20260610-61E6B8",
-      "analyzed_at": "2026-06-10T04:49:53.535Z",
+      "case_id": "PD-20260611-61E6B8",
+      "analyzed_at": "2026-06-11T03:45:58.848Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eafdd-8d29-7378-8670-07dbe6da1d24.png",
           "url": "https://urlscan.io/result/019eafdd-8d29-7378-8670-07dbe6da1d24/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www-currently-sign-in-6fdb9c.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www-currently-sign-in-6fdb9c.webflow.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6003479; classtype:social-engineering; sid:6003479; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-10T04:49:50.638263+00:00",
+  "updated_at": "2026-06-11T03:45:55.383663+00:00",
   "probe": {
     "dns": true,
     "whois": true,
