@@ -56,11 +56,11 @@
     "phishdestroy": {
       "domain": "update.youcreadio.cfd",
       "domain_defanged": "update[.]youcreadio[.]cfd",
-      "case_id": "PD-20260610-17E854",
-      "analyzed_at": "2026-06-10T01:51:17.715Z",
+      "case_id": "PD-20260614-17E854",
+      "analyzed_at": "2026-06-14T01:16:28.955Z",
       "intel": {
         "virustotal": {
-          "malicious": 18,
+          "malicious": 19,
           "suspicious": 3,
           "total": 91,
           "detections": [
@@ -68,6 +68,11 @@
               "engine": "ADMINUSLabs",
               "category": "malicious",
               "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
             },
             {
               "engine": "BitDefender",
@@ -171,18 +176,15 @@
             }
           ],
           "categories": {
-            "Forcepoint ThreatSeeker": "suspicious content",
-            "Sophos": "phishing and fraud",
-            "Webroot": "Phishing and Other Frauds",
-            "alphaMountain.ai": "Suspicious (alphaMountain.ai)"
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
           }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea594-111c-72c5-95ca-3219ce2ef686.png",
-          "url": "https://urlscan.io/result/019ea594-111c-72c5-95ca-3219ce2ef686/",
+          "screenshot": "https://urlscan.io/screenshots/019eba2f-2b3b-73e0-978f-cba4b8506e3a.png",
+          "url": "https://urlscan.io/result/019eba2f-2b3b-73e0-978f-cba4b8506e3a/",
           "title": "update.youcreadio.cfd (1×1)"
         }
       },
@@ -190,6 +192,11 @@
         {
           "source": "VT: ADMINUSLabs",
           "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
           "severity": "high"
         },
         {
@@ -307,13 +314,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.21.37.12",
-            "172.67.202.102"
-          ],
           "AAAA": [
             "2606:4700:3031::ac43:ca66",
             "2606:4700:3035::6815:250c"
+          ],
+          "A": [
+            "104.21.37.12",
+            "172.67.202.102"
           ]
         }
       },
@@ -449,12 +456,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .update .youcreadio .cfd/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.update.youcreadio.cfd\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001875; classtype:social-engineering; sid:6001875; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-11T00:56:45.871623+00:00",
+  "updated_at": "2026-06-14T01:16:23.299961+00:00",
   "probe": {
     "dns": true,
     "whois": true,

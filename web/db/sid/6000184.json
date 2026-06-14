@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "customer-sp-brantison1.pages.dev",
       "domain_defanged": "customer-sp-brantison1[.]pages[.]dev",
-      "case_id": "PD-20260610-633F56",
-      "analyzed_at": "2026-06-10T21:20:49.515Z",
+      "case_id": "PD-20260613-633F56",
+      "analyzed_at": "2026-06-13T20:40:44.160Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eb368-c790-70ce-a3e6-4c5453c23a67/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec070-0170-77cf-a862-950071943a7b.png",
+          "url": "https://urlscan.io/result/019ec070-0170-77cf-a862-950071943a7b/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.125",
+        "ip": "172.66.44.131",
         "ipinfo": {
-          "ip": "172.66.47.125",
+          "ip": "172.66.44.131",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -84,8 +93,8 @@
             "2606:4700:310c::ac42:2c83"
           ],
           "A": [
-            "172.66.47.125",
-            "172.66.44.131"
+            "172.66.44.131",
+            "172.66.47.125"
           ],
           "NS": [
             "candy.ns.cloudflare.com.",
@@ -230,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (customer-sp-brantison1 .pages .dev/help/contact/111098134764485)\"; flow:established,to_server; http.uri; content:\"/help/contact/111098134764485\"; startswith; fast_pattern; http.host;  content:\"customer-sp-brantison1.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000184; classtype:social-engineering; sid:6000184; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-10T21:31:08.738238+00:00",
+  "updated_at": "2026-06-13T20:58:57.010725+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -23,7 +23,7 @@
       "url": "http://sykessler.blob.core.windows.net/sykessler/sykessler",
       "domain": "sykessler.blob.core.windows.net",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -50,49 +50,144 @@
     "phishdestroy": {
       "domain": "sykessler.blob.core.windows.net",
       "domain_defanged": "sykessler[.]blob[.]core[.]windows[.]net",
-      "case_id": "PD-20260610-234D6B",
-      "analyzed_at": "2026-06-10T23:46:56.185Z",
+      "case_id": "PD-20260614-234D6B",
+      "analyzed_at": "2026-06-14T00:01:36.304Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 9,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019eb3ee-7d43-76b8-a483-7441ada56515/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019eb3ee-7d43-76b8-a483-7441ada56515.png",
+          "url": "https://urlscan.io/result/019eb3ee-7d43-76b8-a483-7441ada56515/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "blob.by5prdstr09a.store.core.windows.net.",
-        "ipinfo": null,
-        "dns": {
-          "AAAA": [
-            "blob.by5prdstr09a.store.core.windows.net."
-          ],
-          "MX": [
-            "blob.by5prdstr09a.store.core.windows.net."
-          ],
-          "CNAME": [
-            "blob.by5prdstr09a.store.core.windows.net."
-          ],
-          "NS": [
-            "blob.by5prdstr09a.store.core.windows.net."
-          ],
-          "A": [
-            "blob.by5prdstr09a.store.core.windows.net.",
-            "20.150.35.4"
-          ]
-        }
+        "ip": "20.150.35.4",
+        "ipinfo": {
+          "ip": "20.150.35.4",
+          "city": "San Jose",
+          "region": "California",
+          "country": "US",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -219,10 +314,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sykessler .blob .core .windows .net/sykessler/sykessler)\"; flow:established,to_server; http.uri; content:\"/sykessler/sykessler\"; startswith; fast_pattern; http.host;  content:\"sykessler.blob.core.windows.net\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001356; classtype:social-engineering; sid:6001356; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-10T23:46:49.331556+00:00",
+  "updated_at": "2026-06-14T00:01:19.967463+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "u.to",
       "domain_defanged": "u[.]to",
-      "case_id": "PD-20260610-35EA94",
-      "analyzed_at": "2026-06-10T02:54:43.547Z",
+      "case_id": "PD-20260614-35EA94",
+      "analyzed_at": "2026-06-14T02:25:02.327Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019eae63-98cd-7193-bf45-a34e63359225.png",
-          "url": "https://urlscan.io/result/019eae63-98cd-7193-bf45-a34e63359225/"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec1f3-fb92-71c9-b8db-01a4b7e32b3e.png",
+          "url": "https://urlscan.io/result/019ec1f3-fb92-71c9-b8db-01a4b7e32b3e/",
+          "title": "Steam Gift Activation"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,11 +88,11 @@
           "asn": "AS59692"
         },
         "dns": {
-          "MX": [
-            "1 mx100.ucozmail.com."
-          ],
           "A": [
             "186.2.165.57"
+          ],
+          "MX": [
+            "1 mx100.ucozmail.com."
           ],
           "NS": [
             "ns3.ucoz.net.",
@@ -223,12 +232,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (u.to/gift-steam/mPaTIg)\"; flow:established,to_server; http.uri; content:\"/gift-steam/mPaTIg\"; startswith; fast_pattern; http.host; content:\"u.to\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002396; classtype:social-engineering; sid:6002396; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-11T01:54:53.569850+00:00",
+  "updated_at": "2026-06-14T02:24:49.716277+00:00",
   "probe": {
     "dns": true,
     "whois": false,

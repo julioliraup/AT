@@ -50,11 +50,11 @@
     "phishdestroy": {
       "domain": "radhachavan.github.io",
       "domain_defanged": "radhachavan[.]github[.]io",
-      "case_id": "PD-20260611-21ACCE",
-      "analyzed_at": "2026-06-11T00:16:33.455Z",
+      "case_id": "PD-20260614-21ACCE",
+      "analyzed_at": "2026-06-14T00:38:33.177Z",
       "intel": {
         "virustotal": {
-          "malicious": 12,
+          "malicious": 13,
           "suspicious": 1,
           "total": 91,
           "detections": [
@@ -109,6 +109,11 @@
               "result": "phishing"
             },
             {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
               "engine": "Sophos",
               "category": "malicious",
               "result": "phishing"
@@ -127,12 +132,14 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea12a-de68-71ce-bf56-a089178ab0f8.png",
-          "url": "https://urlscan.io/result/019ea12a-de68-71ce-bf56-a089178ab0f8/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec15d-c202-76af-9238-0000626ab273.png",
+          "url": "https://urlscan.io/result/019ec15d-c202-76af-9238-0000626ab273/",
+          "title": "Netflix"
         }
       },
       "detections": [
@@ -187,6 +194,11 @@
           "severity": "high"
         },
         {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
           "source": "VT: Sophos",
           "type": "phishing",
           "severity": "high"
@@ -200,16 +212,21 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
         }
       ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.109.153",
+        "ip": "185.199.110.153",
         "ipinfo": {
-          "ip": "185.199.109.153",
-          "hostname": "cdn-185-199-109-153.github.com",
+          "ip": "185.199.110.153",
+          "hostname": "cdn-185-199-110-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -218,15 +235,15 @@
         },
         "dns": {
           "A": [
-            "185.199.109.153",
             "185.199.110.153",
+            "185.199.111.153",
             "185.199.108.153",
-            "185.199.111.153"
+            "185.199.109.153"
           ],
           "AAAA": [
-            "2606:50c0:8003::153",
-            "2606:50c0:8002::153",
             "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153",
             "2606:50c0:8000::153"
           ]
         }
@@ -367,7 +384,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (radhachavan .github .io/My_website/)\"; flow:established,to_server; http.uri; content:\"/My_website/\"; startswith; fast_pattern; http.host;  content:\"radhachavan.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001568; classtype:social-engineering; sid:6001568; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-11T00:16:22.321762+00:00",
+  "updated_at": "2026-06-14T00:38:30.118742+00:00",
   "probe": {
     "dns": true,
     "whois": true,

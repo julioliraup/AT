@@ -74,11 +74,11 @@
     "phishdestroy": {
       "domain": "hub-note-k4in.p-t2ctp0rk.workers.dev",
       "domain_defanged": "hub-note-k4in[.]p-t2ctp0rk[.]workers[.]dev",
-      "case_id": "PD-20260611-614204",
-      "analyzed_at": "2026-06-11T00:39:14.349Z",
+      "case_id": "PD-20260614-614204",
+      "analyzed_at": "2026-06-14T01:00:15.618Z",
       "intel": {
         "virustotal": {
-          "malicious": 11,
+          "malicious": 13,
           "suspicious": 0,
           "total": 91,
           "detections": [
@@ -89,6 +89,11 @@
             },
             {
               "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
               "category": "malicious",
               "result": "phishing"
             },
@@ -104,6 +109,11 @@
             },
             {
               "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
               "category": "malicious",
               "result": "phishing"
             },
@@ -138,17 +148,20 @@
               "result": "malicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "alphaMountain.ai": "Hosting, Phishing (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "web hosting"
+          }
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Generic Cloudflare"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019ea9f9-8ded-72cf-a39b-fe822fee64e4.png",
-          "url": "https://urlscan.io/result/019ea9f9-8ded-72cf-a39b-fe822fee64e4/",
-          "title": "Suspected Phishing | Cloudflare"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019eba1b-fd3a-707b-bf78-aa3b3849d879.png",
+          "url": "https://urlscan.io/result/019eba1b-fd3a-707b-bf78-aa3b3849d879/",
+          "title": "Loading..."
         }
       },
       "detections": [
@@ -159,6 +172,11 @@
         },
         {
           "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
           "type": "phishing",
           "severity": "high"
         },
@@ -174,6 +192,11 @@
         },
         {
           "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
           "type": "phishing",
           "severity": "high"
         },
@@ -206,20 +229,15 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
-        },
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Generic Cloudflare",
-          "severity": "high"
         }
       ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.138.235",
+        "ip": "104.21.70.195",
         "ipinfo": {
-          "ip": "172.67.138.235",
+          "ip": "104.21.70.195",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -227,13 +245,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3030::6815:46c3",
-            "2606:4700:3033::ac43:8aeb"
-          ],
           "A": [
-            "172.67.138.235",
-            "104.21.70.195"
+            "104.21.70.195",
+            "172.67.138.235"
+          ],
+          "AAAA": [
+            "2606:4700:3033::ac43:8aeb",
+            "2606:4700:3030::6815:46c3"
           ]
         }
       },
@@ -373,7 +391,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hub-note-k4in .p-t2ctp0rk .workers .dev/lp/clGiyWtff48/)\"; flow:established,to_server; http.uri; content:\"/lp/clGiyWtff48/\"; startswith; fast_pattern; http.host;  content:\"hub-note-k4in.p-t2ctp0rk.workers.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001729; classtype:social-engineering; sid:6001729; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-11T00:39:10.311728+00:00",
+  "updated_at": "2026-06-14T01:00:05.694066+00:00",
   "probe": {
     "dns": true,
     "whois": false,

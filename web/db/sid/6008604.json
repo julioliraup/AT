@@ -18,18 +18,49 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://aflinks.co.uk/nuplanet/TenderProposal.php",
+      "domain": "aflinks.co.uk",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "aflinks.co.uk",
       "domain_defanged": "aflinks[.]co[.]uk",
-      "case_id": "PD-20260611-54E090",
-      "analyzed_at": "2026-06-11T13:26:44.305Z",
+      "case_id": "PD-20260614-54E090",
+      "analyzed_at": "2026-06-14T12:42:00.477Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ec627-396a-75e9-b374-848e52f80baf/",
+          "pending": true
         }
       },
       "detections": [],
@@ -37,11 +68,19 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "76.223.54.146",
         "ipinfo": null,
         "dns": {
+          "MX": [
+            "0 ."
+          ],
+          "A": [
+            "76.223.54.146",
+            "13.248.169.48"
+          ],
           "NS": [
-            "ns01.one.com.",
-            "ns02.one.com."
+            "ns1.afternic.com.",
+            "ns2.afternic.com."
           ]
         }
       },
@@ -175,12 +214,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aflinks.co.uk/nuplanet/TenderProposal.php)\"; flow:established,to_server; http.uri; content:\"/nuplanet/TenderProposal.php\"; startswith; fast_pattern; http.host; content:\"aflinks.co.uk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6008604; classtype:social-engineering; sid:6008604; rev:1; metadata: signature_severity Major, created_et 2026_05_28;)",
-  "updated_at": "2026-06-11T13:50:15.945689+00:00",
+  "updated_at": "2026-06-14T12:57:22.502533+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

@@ -50,23 +50,18 @@
     "phishdestroy": {
       "domain": "t-mobile.qfozbv.top",
       "domain_defanged": "t-mobile[.]qfozbv[.]top",
-      "case_id": "PD-20260611-2EB187",
-      "analyzed_at": "2026-06-11T01:00:21.095Z",
+      "case_id": "PD-20260614-2EB187",
+      "analyzed_at": "2026-06-14T01:20:54.389Z",
       "intel": {
         "virustotal": {
-          "malicious": 18,
-          "suspicious": 0,
+          "malicious": 16,
+          "suspicious": 1,
           "total": 91,
           "detections": [
             {
               "engine": "ADMINUSLabs",
               "category": "malicious",
               "result": "malicious"
-            },
-            {
-              "engine": "alphaMountain.ai",
-              "category": "malicious",
-              "result": "phishing"
             },
             {
               "engine": "BitDefender",
@@ -115,8 +110,8 @@
             },
             {
               "engine": "LevelBlue",
-              "category": "malicious",
-              "result": "phishing"
+              "category": "suspicious",
+              "result": "suspicious"
             },
             {
               "engine": "Lionic",
@@ -149,7 +144,12 @@
               "result": "malicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "alphaMountain.ai": "Suspicious, Newly Registered (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "newly registered websites"
+          }
         },
         "urlscan": {
           "malicious": true,
@@ -166,11 +166,6 @@
         {
           "source": "VT: ADMINUSLabs",
           "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: alphaMountain.ai",
-          "type": "phishing",
           "severity": "high"
         },
         {
@@ -220,8 +215,8 @@
         },
         {
           "source": "VT: LevelBlue",
-          "type": "phishing",
-          "severity": "high"
+          "type": "suspicious",
+          "severity": "medium"
         },
         {
           "source": "VT: Lionic",
@@ -410,7 +405,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile .qfozbv .top/pay/b_info .html)\"; flow:established,to_server; http.uri; content:\"/pay/b_info.html\"; startswith; fast_pattern; http.host;  content:\"t-mobile.qfozbv.top\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001906; classtype:social-engineering; sid:6001906; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-11T01:00:15.584013+00:00",
+  "updated_at": "2026-06-14T01:20:48.203949+00:00",
   "probe": {
     "dns": false,
     "whois": false,

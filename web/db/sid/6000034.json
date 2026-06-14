@@ -81,21 +81,30 @@
     "phishdestroy": {
       "domain": "xht.dbh.mybluehost.me",
       "domain_defanged": "xht[.]dbh[.]mybluehost[.]me",
-      "case_id": "PD-20260609-481152",
-      "analyzed_at": "2026-06-09T22:20:46.190Z",
+      "case_id": "PD-20260613-481152",
+      "analyzed_at": "2026-06-13T20:38:27.469Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eae79-4c8f-727d-9154-dc8c482e10ce/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Metamask"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec041-29a6-74dc-bb39-600781107eaf.png",
+          "url": "https://urlscan.io/result/019ec041-29a6-74dc-bb39-600781107eaf/",
+          "title": "MetaMask"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Metamask",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -118,8 +127,8 @@
             "0 mail.xht.dbh.mybluehost.me."
           ],
           "NS": [
-            "ns2.mybluehost.me.",
-            "ns1.bluehost.com."
+            "ns1.bluehost.com.",
+            "ns2.mybluehost.me."
           ]
         }
       },
@@ -255,12 +264,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xht .dbh .mybluehost .me/wp-content/time/metas/main .html)\"; flow:established,to_server; http.uri; content:\"/wp-content/time/metas/main.html\"; startswith; fast_pattern; http.host;  content:\"xht.dbh.mybluehost.me\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000034; classtype:social-engineering; sid:6000034; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-10T21:19:16.600682+00:00",
+  "updated_at": "2026-06-13T20:38:17.152739+00:00",
   "probe": {
     "dns": true,
     "whois": true,

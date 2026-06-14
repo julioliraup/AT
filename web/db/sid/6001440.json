@@ -74,11 +74,85 @@
     "phishdestroy": {
       "domain": "free-antivir.us",
       "domain_defanged": "free-antivir[.]us",
-      "case_id": "PD-20260610-75CA69",
-      "analyzed_at": "2026-06-10T00:59:21.470Z",
+      "case_id": "PD-20260614-75CA69",
+      "analyzed_at": "2026-06-14T00:21:37.390Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 11,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {
+            "Forcepoint ThreatSeeker": "educational materials",
+            "Sophos": "phishing and fraud",
+            "alphaMountain.ai": "Phishing, Reference (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": true,
@@ -86,12 +160,77 @@
           "brands": [
             "Phishing Simulation"
           ],
-          "screenshot": "https://urlscan.io/screenshots/019ea56d-7c45-725d-80c6-19d75d78b47e.png",
-          "url": "https://urlscan.io/result/019ea56d-7c45-725d-80c6-19d75d78b47e/",
+          "screenshot": "https://urlscan.io/screenshots/019eb9f6-d267-71b7-9fb5-75fc2d126505.png",
+          "url": "https://urlscan.io/result/019eb9f6-d267-71b7-9fb5-75fc2d126505/",
           "title": "404 - Quick Tip | Cofense"
         }
       },
       "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "malware",
+          "severity": "high"
+        },
         {
           "source": "URLScan.io",
           "type": "Targeting: Phishing Simulation",
@@ -113,12 +252,12 @@
           "asn": "AS14618"
         },
         "dns": {
+          "MX": [
+            "10 mx0.us.cf-ops.net."
+          ],
           "A": [
             "34.194.247.17",
             "52.204.246.179"
-          ],
-          "MX": [
-            "10 mx0.us.cf-ops.net."
           ],
           "NS": [
             "ns-1305.awsdns-35.org.",
@@ -260,12 +399,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (free-antivir .us/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"free-antivir.us\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001440; classtype:social-engineering; sid:6001440; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-10T23:56:35.849005+00:00",
+  "updated_at": "2026-06-14T00:21:28.085280+00:00",
   "probe": {
     "dns": true,
     "whois": true,

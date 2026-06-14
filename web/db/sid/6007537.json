@@ -22,7 +22,7 @@
       "url": "http://t-mobile.lkxvai.top/pay/",
       "domain": "t-mobile.lkxvai.top",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "t-mobile.lkxvai.top",
       "domain_defanged": "t-mobile[.]lkxvai[.]top",
-      "case_id": "PD-20260611-1F7E19",
-      "analyzed_at": "2026-06-11T11:25:12.433Z",
+      "case_id": "PD-20260614-1F7E19",
+      "analyzed_at": "2026-06-14T11:14:29.152Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ec5d7-1934-7678-aef9-fa49d415ab42/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "104.21.40.50",
+        "ipinfo": {
+          "ip": "104.21.40.50",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "104.21.40.50",
+            "172.67.176.115"
+          ],
+          "AAAA": [
+            "2606:4700:3036::ac43:b073",
+            "2606:4700:3033::6815:2832"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,12 +224,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.lkxvai.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.lkxvai.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6007537; classtype:social-engineering; sid:6007537; rev:1; metadata: signature_severity Major, created_et 2026_05_26;)",
-  "updated_at": "2026-06-11T11:25:09.351303+00:00",
+  "updated_at": "2026-06-14T11:14:25.481337+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

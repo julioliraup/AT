@@ -50,11 +50,11 @@
     "phishdestroy": {
       "domain": "pub-7b9dc54f172c4efbb2c731d4aa2f884a.r2.dev",
       "domain_defanged": "pub-7b9dc54f172c4efbb2c731d4aa2f884a[.]r2[.]dev",
-      "case_id": "PD-20260610-706B5F",
-      "analyzed_at": "2026-06-10T01:53:02.357Z",
+      "case_id": "PD-20260614-706B5F",
+      "analyzed_at": "2026-06-14T01:19:36.327Z",
       "intel": {
         "virustotal": {
-          "malicious": 18,
+          "malicious": 17,
           "suspicious": 0,
           "total": 91,
           "detections": [
@@ -80,11 +80,6 @@
             },
             {
               "engine": "CyRadar",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "DNS8",
               "category": "malicious",
               "result": "phishing"
             },
@@ -150,19 +145,23 @@
             }
           ],
           "categories": {
-            "Forcepoint ThreatSeeker": "web hosting",
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)",
             "Sophos": "phishing and fraud",
             "Webroot": "Phishing and Other Frauds",
-            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+            "Forcepoint ThreatSeeker": "web hosting",
+            "Google": "technology"
           }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea142-2ae7-735d-a2fa-443adc4457a2.png",
-          "url": "https://urlscan.io/result/019ea142-2ae7-735d-a2fa-443adc4457a2/",
-          "title": "Not Found"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email",
+            "Metamask"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec017-fb17-752c-acdf-3d87f1a842b4.png",
+          "url": "https://urlscan.io/result/019ec017-fb17-752c-acdf-3d87f1a842b4/",
+          "title": "MetaMask"
         }
       },
       "detections": [
@@ -188,11 +187,6 @@
         },
         {
           "source": "VT: CyRadar",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: DNS8",
           "type": "phishing",
           "severity": "high"
         },
@@ -255,6 +249,11 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email, Metamask",
+          "severity": "high"
         }
       ],
       "domain_info": {
@@ -276,8 +275,8 @@
             "104.18.50.34"
           ],
           "AAAA": [
-            "2606:4700:3113::6812:362d",
-            "2606:4700:3117::6812:3222"
+            "2606:4700:3117::6812:3222",
+            "2606:4700:3113::6812:362d"
           ]
         }
       },
@@ -413,12 +412,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pub-7b9dc54f172c4efbb2c731d4aa2f884a .r2 .dev/index .html)\"; flow:established,to_server; http.uri; content:\"/index.html\"; startswith; fast_pattern; http.host;  content:\"pub-7b9dc54f172c4efbb2c731d4aa2f884a.r2.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001895; classtype:social-engineering; sid:6001895; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-11T00:58:55.810722+00:00",
+  "updated_at": "2026-06-14T01:19:32.470914+00:00",
   "probe": {
     "dns": true,
     "whois": false,

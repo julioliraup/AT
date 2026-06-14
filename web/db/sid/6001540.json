@@ -50,11 +50,11 @@
     "phishdestroy": {
       "domain": "zeynepsudeilaslan.github.io",
       "domain_defanged": "zeynepsudeilaslan[.]github[.]io",
-      "case_id": "PD-20260610-77114B",
-      "analyzed_at": "2026-06-10T01:10:18.982Z",
+      "case_id": "PD-20260614-77114B",
+      "analyzed_at": "2026-06-14T00:35:35.628Z",
       "intel": {
         "virustotal": {
-          "malicious": 10,
+          "malicious": 14,
           "suspicious": 0,
           "total": 91,
           "detections": [
@@ -69,6 +69,11 @@
               "result": "phishing"
             },
             {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
               "engine": "CyRadar",
               "category": "malicious",
               "result": "phishing"
@@ -79,7 +84,17 @@
               "result": "phishing"
             },
             {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
               "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Google Safebrowsing",
               "category": "malicious",
               "result": "phishing"
             },
@@ -104,6 +119,11 @@
               "result": "malicious"
             },
             {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
               "engine": "Webroot",
               "category": "malicious",
               "result": "malicious"
@@ -112,12 +132,14 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea575-8044-727e-a601-e299888fc692.png",
-          "url": "https://urlscan.io/result/019ea575-8044-727e-a601-e299888fc692/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ebe1e-7af3-76e1-9da5-f786b79481e2.png",
+          "url": "https://urlscan.io/result/019ebe1e-7af3-76e1-9da5-f786b79481e2/",
+          "title": "Netflix Türkiye - TV Programları"
         }
       },
       "detections": [
@@ -132,6 +154,11 @@
           "severity": "high"
         },
         {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
           "source": "VT: CyRadar",
           "type": "phishing",
           "severity": "high"
@@ -142,7 +169,17 @@
           "severity": "high"
         },
         {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
           "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Google Safebrowsing",
           "type": "phishing",
           "severity": "high"
         },
@@ -167,8 +204,18 @@
           "severity": "high"
         },
         {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
           "source": "VT: Webroot",
           "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
           "severity": "high"
         }
       ],
@@ -176,10 +223,10 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.109.153",
+        "ip": "185.199.108.153",
         "ipinfo": {
-          "ip": "185.199.109.153",
-          "hostname": "cdn-185-199-109-153.github.com",
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -188,16 +235,16 @@
         },
         "dns": {
           "AAAA": [
-            "2606:50c0:8003::153",
             "2606:50c0:8000::153",
             "2606:50c0:8001::153",
-            "2606:50c0:8002::153"
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ],
           "A": [
-            "185.199.109.153",
             "185.199.108.153",
-            "185.199.111.153",
-            "185.199.110.153"
+            "185.199.109.153",
+            "185.199.110.153",
+            "185.199.111.153"
           ]
         }
       },
@@ -333,12 +380,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zeynepsudeilaslan .github .io/netflix-website-bootstrap/)\"; flow:established,to_server; http.uri; content:\"/netflix-website-bootstrap/\"; startswith; fast_pattern; http.host;  content:\"zeynepsudeilaslan.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001540; classtype:social-engineering; sid:6001540; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-11T00:12:20.472904+00:00",
+  "updated_at": "2026-06-14T00:35:28.889554+00:00",
   "probe": {
     "dns": true,
     "whois": true,

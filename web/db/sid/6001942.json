@@ -74,12 +74,12 @@
     "phishdestroy": {
       "domain": "allegro.pl-oferta09599223423.sbs",
       "domain_defanged": "allegro[.]pl-oferta09599223423[.]sbs",
-      "case_id": "PD-20260610-76FB76",
-      "analyzed_at": "2026-06-10T01:57:49.984Z",
+      "case_id": "PD-20260614-76FB76",
+      "analyzed_at": "2026-06-14T01:27:12.681Z",
       "intel": {
         "virustotal": {
-          "malicious": 18,
-          "suspicious": 2,
+          "malicious": 20,
+          "suspicious": 1,
           "total": 91,
           "detections": [
             {
@@ -154,13 +154,18 @@
             },
             {
               "engine": "LevelBlue",
-              "category": "suspicious",
-              "result": "suspicious"
+              "category": "malicious",
+              "result": "phishing"
             },
             {
               "engine": "Lionic",
               "category": "malicious",
               "result": "phishing"
+            },
+            {
+              "engine": "Seclookup",
+              "category": "malicious",
+              "result": "malicious"
             },
             {
               "engine": "SOCRadar",
@@ -186,11 +191,9 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Generic Cloudflare"
-          ],
+          "malicious": false,
+          "score": 0,
+          "brands": [],
           "screenshot": "https://urlscan.io/screenshots/019e2066-a015-765e-8dfe-f94192060b60.png",
           "url": "https://urlscan.io/result/019e2066-a015-765e-8dfe-f94192060b60/",
           "title": "Suspected phishing site | Cloudflare"
@@ -269,12 +272,17 @@
         },
         {
           "source": "VT: LevelBlue",
-          "type": "suspicious",
-          "severity": "medium"
+          "type": "phishing",
+          "severity": "high"
         },
         {
           "source": "VT: Lionic",
           "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Seclookup",
+          "type": "malicious",
           "severity": "high"
         },
         {
@@ -295,11 +303,6 @@
         {
           "source": "VT: Webroot",
           "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Generic Cloudflare",
           "severity": "high"
         }
       ],
@@ -450,12 +453,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (allegro .pl-oferta09599223423 .sbs/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"allegro.pl-oferta09599223423.sbs\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001942; classtype:social-engineering; sid:6001942; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-11T01:05:29.441105+00:00",
+  "updated_at": "2026-06-14T01:27:06.738474+00:00",
   "probe": {
     "dns": true,
     "whois": true,

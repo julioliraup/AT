@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "allegrolokalnie.pl-7464234.click",
       "domain_defanged": "allegrolokalnie[.]pl-7464234[.]click",
-      "case_id": "PD-20260609-58AA25",
-      "analyzed_at": "2026-06-09T22:18:04.070Z",
+      "case_id": "PD-20260613-58AA25",
+      "analyzed_at": "2026-06-13T20:32:34.471Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1e5c-168c-7748-91ec-ae230ad15571.png",
+          "url": "https://urlscan.io/result/019e1e5c-168c-7748-91ec-ae230ad15571/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.180.252",
+        "ipinfo": {
+          "ip": "172.67.180.252",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -193,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (allegrolokalnie .pl-7464234 .click/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"allegrolokalnie.pl-7464234.click\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000005; classtype:social-engineering; sid:6000005; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-10T21:16:18.484720+00:00",
+  "updated_at": "2026-06-13T20:32:21.301262+00:00",
   "probe": {
     "dns": false,
     "whois": false,

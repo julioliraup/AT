@@ -79,8 +79,8 @@
     "phishdestroy": {
       "domain": "udev.informedgreetings.com",
       "domain_defanged": "udev[.]informedgreetings[.]com",
-      "case_id": "PD-20260610-766DDF",
-      "analyzed_at": "2026-06-10T01:36:51.149Z",
+      "case_id": "PD-20260614-766DDF",
+      "analyzed_at": "2026-06-14T01:04:33.394Z",
       "intel": {
         "virustotal": {
           "malicious": 23,
@@ -100,7 +100,7 @@
             {
               "engine": "BitDefender",
               "category": "malicious",
-              "result": "phishing"
+              "result": "malware"
             },
             {
               "engine": "Chong Lua Dao",
@@ -145,7 +145,7 @@
             {
               "engine": "G-Data",
               "category": "malicious",
-              "result": "phishing"
+              "result": "malware"
             },
             {
               "engine": "Google Safebrowsing",
@@ -206,12 +206,14 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea9e6-e18d-77a3-8ec2-67e042a9a400.png",
-          "url": "https://urlscan.io/result/019ea9e6-e18d-77a3-8ec2-67e042a9a400/",
-          "title": "USPS.com – Sign In"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "USPS"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eba21-1548-7036-8acf-a475612bbf2a.png",
+          "url": "https://urlscan.io/result/019eba21-1548-7036-8acf-a475612bbf2a/",
+          "title": "USPS Informed Greetings"
         }
       },
       "detections": [
@@ -227,7 +229,7 @@
         },
         {
           "source": "VT: BitDefender",
-          "type": "phishing",
+          "type": "malware",
           "severity": "high"
         },
         {
@@ -272,7 +274,7 @@
         },
         {
           "source": "VT: G-Data",
-          "type": "phishing",
+          "type": "malware",
           "severity": "high"
         },
         {
@@ -329,6 +331,11 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: USPS",
+          "severity": "high"
         }
       ],
       "domain_info": {
@@ -338,20 +345,20 @@
         "ip": "dev-ingress.informedgreetings.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "dev-ingress.informedgreetings.com."
+          "A": [
+            "dev-ingress.informedgreetings.com.",
+            "20.241.248.214"
           ],
-          "NS": [
+          "MX": [
             "dev-ingress.informedgreetings.com."
           ],
           "AAAA": [
             "dev-ingress.informedgreetings.com."
           ],
-          "A": [
-            "dev-ingress.informedgreetings.com.",
-            "20.241.248.214"
-          ],
           "CNAME": [
+            "dev-ingress.informedgreetings.com."
+          ],
+          "NS": [
             "dev-ingress.informedgreetings.com."
           ]
         }
@@ -359,12 +366,12 @@
       "report_to": {
         "registrar": null,
         "hosting": {
-          "name": "AKAMAI-AS, US",
-          "abuse": "abuse@akamai.com",
-          "url": "mailto:abuse@akamai.com",
-          "logo": "https://i.ibb.co/Xf6yzPpM/pr-AKAMAI-AS-US.png",
-          "method": "email",
-          "asn": "AS16625"
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
         }
       },
       "report_services": [
@@ -488,12 +495,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (udev .informedgreetings .com/create-greeting)\"; flow:established,to_server; http.uri; content:\"/create-greeting\"; startswith; fast_pattern; http.host;  content:\"udev.informedgreetings.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001759; classtype:social-engineering; sid:6001759; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-11T00:43:07.343346+00:00",
+  "updated_at": "2026-06-14T01:04:29.190374+00:00",
   "probe": {
     "dns": true,
     "whois": false,

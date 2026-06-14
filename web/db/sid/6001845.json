@@ -74,23 +74,18 @@
     "phishdestroy": {
       "domain": "m.galabetl075.com",
       "domain_defanged": "m[.]galabetl075[.]com",
-      "case_id": "PD-20260611-2B00D6",
-      "analyzed_at": "2026-06-11T00:53:01.808Z",
+      "case_id": "PD-20260614-2B00D6",
+      "analyzed_at": "2026-06-14T01:13:41.473Z",
       "intel": {
         "virustotal": {
-          "malicious": 17,
-          "suspicious": 0,
+          "malicious": 16,
+          "suspicious": 1,
           "total": 91,
           "detections": [
             {
               "engine": "ADMINUSLabs",
               "category": "malicious",
               "result": "malicious"
-            },
-            {
-              "engine": "alphaMountain.ai",
-              "category": "malicious",
-              "result": "phishing"
             },
             {
               "engine": "BitDefender",
@@ -116,6 +111,11 @@
               "engine": "CyRadar",
               "category": "malicious",
               "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
             },
             {
               "engine": "Forcepoint ThreatSeeker",
@@ -168,14 +168,19 @@
               "result": "malware"
             }
           ],
-          "categories": {}
+          "categories": {
+            "alphaMountain.ai": "Suspicious, Newly Registered (alphaMountain.ai)",
+            "Sophos": "spyware and malware",
+            "Forcepoint ThreatSeeker": "phishing and other frauds",
+            "Google": "technology"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ea13e-bd7f-74c5-b9a9-d33e906ca7be.png",
-          "url": "https://urlscan.io/result/019ea13e-bd7f-74c5-b9a9-d33e906ca7be/",
+          "screenshot": "https://urlscan.io/screenshots/019eba2b-3c7f-7628-8564-0a4dbe1c5a7f.png",
+          "url": "https://urlscan.io/result/019eba2b-3c7f-7628-8564-0a4dbe1c5a7f/",
           "title": "galabetl075.com | 522: Connection timed out"
         }
       },
@@ -183,11 +188,6 @@
         {
           "source": "VT: ADMINUSLabs",
           "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: alphaMountain.ai",
-          "type": "phishing",
           "severity": "high"
         },
         {
@@ -214,6 +214,11 @@
           "source": "VT: CyRadar",
           "type": "phishing",
           "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
         },
         {
           "source": "VT: Forcepoint ThreatSeeker",
@@ -426,7 +431,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m .galabetl075 .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"m.galabetl075.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001845; classtype:social-engineering; sid:6001845; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-11T00:52:58.793289+00:00",
+  "updated_at": "2026-06-14T01:13:31.997292+00:00",
   "probe": {
     "dns": true,
     "whois": false,

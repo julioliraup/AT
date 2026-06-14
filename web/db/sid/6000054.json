@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "sso--en-uphold-help.typedream.app",
       "domain_defanged": "sso--en-uphold-help[.]typedream[.]app",
-      "case_id": "PD-20260610-1B82B2",
-      "analyzed_at": "2026-06-10T21:20:58.238Z",
+      "case_id": "PD-20260613-1B82B2",
+      "analyzed_at": "2026-06-13T20:41:02.474Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eb368-e7bd-77d9-83e4-0790eb599f7e/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Uphold"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb416-9aa7-76b4-a13b-6e3367c33779.png",
+          "url": "https://urlscan.io/result/019eb416-9aa7-76b4-a13b-6e3367c33779/",
+          "title": "Uphold Login | Sign In@"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Uphold",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.37.85",
+        "ip": "172.67.206.36",
         "ipinfo": {
-          "ip": "104.21.37.85",
+          "ip": "172.67.206.36",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "104.21.37.85",
-            "172.67.206.36"
+            "172.67.206.36",
+            "104.21.37.85"
           ]
         }
       },
@@ -245,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso--en-uphold-help .typedream .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sso--en-uphold-help.typedream.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000054; classtype:social-engineering; sid:6000054; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-10T21:20:52.080534+00:00",
+  "updated_at": "2026-06-13T20:40:56.913559+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -50,18 +50,28 @@
     "phishdestroy": {
       "domain": "pl.eu-mainside.com",
       "domain_defanged": "pl[.]eu-mainside[.]com",
-      "case_id": "PD-20260611-2FA554",
-      "analyzed_at": "2026-06-11T01:08:53.719Z",
+      "case_id": "PD-20260614-2FA554",
+      "analyzed_at": "2026-06-14T01:30:33.227Z",
       "intel": {
         "virustotal": {
-          "malicious": 9,
+          "malicious": 12,
           "suspicious": 1,
           "total": 91,
           "detections": [
             {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
               "engine": "Certego",
               "category": "suspicious",
               "result": "suspicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
             },
             {
               "engine": "Cluster25",
@@ -80,6 +90,11 @@
             },
             {
               "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
               "category": "malicious",
               "result": "phishing"
             },
@@ -109,7 +124,12 @@
               "result": "malicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "alphaMountain.ai": "Phishing, Newly Registered (alphaMountain.ai)",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "newly registered websites",
+            "Google": "technology"
+          }
         },
         "urlscan": {
           "malicious": false,
@@ -122,9 +142,19 @@
       },
       "detections": [
         {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
           "source": "VT: Certego",
           "type": "suspicious",
           "severity": "medium"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
         },
         {
           "source": "VT: Cluster25",
@@ -143,6 +173,11 @@
         },
         {
           "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
           "type": "phishing",
           "severity": "high"
         },
@@ -323,7 +358,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pl .eu-mainside .com/pl)\"; flow:established,to_server; http.uri; content:\"/pl\"; startswith; fast_pattern; http.host;  content:\"pl.eu-mainside.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001962; classtype:social-engineering; sid:6001962; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-11T01:08:35.478151+00:00",
+  "updated_at": "2026-06-14T01:30:13.294179+00:00",
   "probe": {
     "dns": false,
     "whois": false,
