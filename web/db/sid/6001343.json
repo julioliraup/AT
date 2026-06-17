@@ -50,18 +50,14 @@
     "phishdestroy": {
       "domain": "cannalab.eu",
       "domain_defanged": "cannalab[.]eu",
-      "case_id": "PD-20260616-4579FB",
-      "analyzed_at": "2026-06-16T19:07:20.426Z",
+      "case_id": "PD-20260617-4579FB",
+      "analyzed_at": "2026-06-17T21:35:27.439Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed1d4-b9b0-7439-9110-660ada479404/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -70,8 +66,19 @@
       },
       "infrastructure": {
         "ip": "5.9.29.107",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "5.9.29.107",
+          "hostname": "static.107.29.9.5.clients.your-server.de",
+          "city": "Falkenstein",
+          "region": "Saxony",
+          "country": "DE",
+          "org": "AS24940 Hetzner Online GmbH",
+          "asn": "AS24940"
+        },
         "dns": {
+          "A": [
+            "5.9.29.107"
+          ],
           "NS": [
             "ns-1390.awsdns-45.org.",
             "ns-1626.awsdns-11.co.uk.",
@@ -84,15 +91,19 @@
             "10 alt4.aspmx.l.google.com.",
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com."
-          ],
-          "A": [
-            "5.9.29.107"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Hetzner",
+          "abuse": "abuse@hetzner.com",
+          "url": "https://www.hetzner.com/legal/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS24940"
+        }
       },
       "report_services": [
         {
@@ -219,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cannalab .eu/images/c/?email=undefined)\"; flow:established,to_server; http.uri; content:\"/images/c/?email=undefined\"; startswith; fast_pattern; http.host;  content:\"cannalab.eu\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001343; classtype:social-engineering; sid:6001343; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-16T19:07:16.972522+00:00",
+  "updated_at": "2026-06-17T21:35:22.779093+00:00",
   "probe": {
     "dns": true,
     "whois": true,

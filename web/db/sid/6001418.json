@@ -50,18 +50,14 @@
     "phishdestroy": {
       "domain": "ericasantiago.com.br",
       "domain_defanged": "ericasantiago[.]com[.]br",
-      "case_id": "PD-20260616-4DAC31",
-      "analyzed_at": "2026-06-16T19:15:05.818Z",
+      "case_id": "PD-20260617-4DAC31",
+      "analyzed_at": "2026-06-17T21:48:02.202Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed1db-d465-710a-b262-66d5d8de0b3e/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -70,17 +66,24 @@
       },
       "infrastructure": {
         "ip": "191.252.160.221",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "191.252.160.221",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS27715 Locaweb Serviços de Internet S/A",
+          "asn": "AS27715"
+        },
         "dns": {
-          "MX": [
-            "10 alt3.aspmx.l.google.com.",
-            "5 alt2.aspmx.l.google.com.",
-            "10 alt4.aspmx.l.google.com.",
-            "5 alt1.aspmx.l.google.com.",
-            "1 aspmx.l.google.com."
-          ],
           "A": [
             "191.252.160.221"
+          ],
+          "MX": [
+            "1 aspmx.l.google.com.",
+            "10 alt3.aspmx.l.google.com.",
+            "5 alt2.aspmx.l.google.com.",
+            "5 alt1.aspmx.l.google.com.",
+            "10 alt4.aspmx.l.google.com."
           ],
           "NS": [
             "ns1.ericasantiago.com.br.",
@@ -90,7 +93,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Locaweb Servicos de Internet SA, BR",
+          "abuse": "mail-abuse@cert.br",
+          "url": "mailto:mail-abuse@cert.br",
+          "logo": "",
+          "method": "email",
+          "asn": "AS27715"
+        }
       },
       "report_services": [
         {
@@ -217,7 +227,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ericasantiago .com .br/0utFix/Mr_Khan/)\"; flow:established,to_server; http.uri; content:\"/0utFix/Mr_Khan/\"; startswith; fast_pattern; http.host;  content:\"ericasantiago.com.br\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001418; classtype:social-engineering; sid:6001418; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-16T19:15:02.250677+00:00",
+  "updated_at": "2026-06-17T21:47:52.190903+00:00",
   "probe": {
     "dns": true,
     "whois": true,
