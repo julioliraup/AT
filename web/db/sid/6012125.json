@@ -22,7 +22,7 @@
       "url": "http://demo.billmanthra.com/lawlibrary/secure_access-lawlibrary.html",
       "domain": "demo.billmanthra.com",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "demo.billmanthra.com",
       "domain_defanged": "demo[.]billmanthra[.]com",
-      "case_id": "PD-20260614-42448C",
-      "analyzed_at": "2026-06-14T19:10:13.506Z",
+      "case_id": "PD-20260617-42448C",
+      "analyzed_at": "2026-06-17T14:31:57.381Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec78a-a347-756c-9b97-4320fd33f4a8/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,20 +64,8 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "162.55.110.17",
         "ipinfo": null,
-        "dns": {
-          "NS": [
-            "ns1.microsharp.net.",
-            "ns2.microsharp.net."
-          ],
-          "A": [
-            "162.55.110.17"
-          ],
-          "MX": [
-            "0 demo.billmanthra.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -212,10 +196,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (demo.billmanthra.com/lawlibrary/secure_access-lawlibrary.html)\"; flow:established,to_server; http.uri; content:\"/lawlibrary/secure_access-lawlibrary.html\"; startswith; fast_pattern; http.host; content:\"demo.billmanthra.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012125; classtype:social-engineering; sid:6012125; rev:1; metadata: signature_severity Major, created_et 2026_06_08;)",
-  "updated_at": "2026-06-14T19:10:01.002344+00:00",
+  "updated_at": "2026-06-17T14:31:42.299714+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

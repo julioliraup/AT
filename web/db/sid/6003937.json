@@ -49,21 +49,48 @@
     "phishdestroy": {
       "domain": "qevnux.casa",
       "domain_defanged": "qevnux[.]casa",
-      "case_id": "PD-20260614-10EE4E",
-      "analyzed_at": "2026-06-14T05:24:49.433Z",
+      "case_id": "PD-20260617-10EE4E",
+      "analyzed_at": "2026-06-17T00:07:09.812Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ec496-f80f-71fa-b0dc-63d7cd8023e9/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ecf84-84cc-72cb-baa1-c6151eb6a6ce.png",
+          "url": "https://urlscan.io/result/019ecf84-84cc-72cb-baa1-c6151eb6a6ce/",
+          "title": "qevnux.casa"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -82,15 +109,15 @@
           "AAAA": [
             "2600:1901:0:51b9::"
           ],
-          "NS": [
-            "ns1.all-harmless.domains.",
-            "ns2.all-harmless.domains."
+          "A": [
+            "34.76.205.124"
           ],
           "MX": [
             "10 mx.all-harmless.domains."
           ],
-          "A": [
-            "34.76.205.124"
+          "NS": [
+            "ns1.all-harmless.domains.",
+            "ns2.all-harmless.domains."
           ]
         }
       },
@@ -231,10 +258,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (qevnux.casa/wp-content/plugins/iuo/RackSpace/rackspace.html?cmd=login&id=88378de869daddf8fda616596699b3c888378de869daddf8fda616596699b3c8&session=88378de869daddf8fda616596699b3c888378de869daddf8fda616596699b3c8)\"; flow:established,to_server; http.uri; content:\"/wp-content/plugins/iuo/RackSpace/rackspace.html?cmd=login&id=88378de869daddf8fda616596699b3c888378de869daddf8fda616596699b3c8&session=88378de869daddf8fda616596699b3c888378de869daddf8fda616596699b3c8\"; startswith; fast_pattern; http.host; content:\"qevnux.casa\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003937; classtype:social-engineering; sid:6003937; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-14T05:29:53.399383+00:00",
+  "updated_at": "2026-06-17T00:13:58.937453+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "ads2026.online",
       "domain_defanged": "ads2026[.]online",
-      "case_id": "PD-20260614-3B5BDA",
-      "analyzed_at": "2026-06-14T05:55:27.157Z",
+      "case_id": "PD-20260617-3B5BDA",
+      "analyzed_at": "2026-06-17T00:53:49.978Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e457a-ab0f-7257-97dc-6e705450f27e.png",
+          "url": "https://urlscan.io/result/019e457a-ab0f-7257-97dc-6e705450f27e/",
+          "title": "Facebook"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "113.20.119.34",
+        "ipinfo": {
+          "ip": "113.20.119.34",
+          "hostname": "static.cmcti.vn",
+          "city": "Hoàn Kiếm",
+          "region": "Hanoi",
+          "country": "VN",
+          "org": "AS45903 CMC Telecom Infrastructure Company",
+          "asn": "AS45903"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CMCTELECOM-AS-VN CMC Telecom Infrastructure Company, VN",
+          "abuse": "hieu.nv@cmctelecom.vn",
+          "url": "mailto:hieu.nv@cmctelecom.vn",
+          "logo": "https://i.ibb.co/PzwJ947R/pr-AZDIGI-AS-VN-AZDIGI-Corporation-VN.png",
+          "method": "email",
+          "asn": "AS45903"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ads2026.online/facebook-ads-meta2026/)\"; flow:established,to_server; http.uri; content:\"/facebook-ads-meta2026/\"; startswith; fast_pattern; http.host; content:\"www.ads2026.online\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004228; classtype:social-engineering; sid:6004228; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-14T05:55:23.061684+00:00",
+  "updated_at": "2026-06-17T00:53:44.221017+00:00",
   "probe": {
     "dns": false,
     "whois": false,

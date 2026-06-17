@@ -49,21 +49,35 @@
     "phishdestroy": {
       "domain": "groupmailserver.co.uk",
       "domain_defanged": "groupmailserver[.]co[.]uk",
-      "case_id": "PD-20260614-11C0E8",
-      "analyzed_at": "2026-06-14T05:30:06.134Z",
+      "case_id": "PD-20260617-11C0E8",
+      "analyzed_at": "2026-06-17T00:14:14.411Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec49b-cda6-7399-9582-0b5483444efb/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation",
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed086-f521-77f0-a3f7-923133bec46f.png",
+          "url": "https://urlscan.io/result/019ed086-f521-77f0-a3f7-923133bec46f/",
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation, Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -224,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (groupmailserver.co.uk/?r=69d68603-7d12-4252-b55a-372ce2321bb7)\"; flow:established,to_server; http.uri; content:\"/?r=69d68603-7d12-4252-b55a-372ce2321bb7\"; startswith; fast_pattern; http.host; content:\"groupmailserver.co.uk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003939; classtype:social-engineering; sid:6003939; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-14T05:30:02.083897+00:00",
+  "updated_at": "2026-06-17T00:14:09.673989+00:00",
   "probe": {
     "dns": true,
     "whois": true,

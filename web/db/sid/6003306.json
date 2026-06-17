@@ -22,7 +22,7 @@
       "url": "http://www.ly-yes.games/",
       "domain": "www.ly-yes.games",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "ly-yes.games",
       "domain_defanged": "ly-yes[.]games",
-      "case_id": "PD-20260614-4818F3",
-      "analyzed_at": "2026-06-14T04:15:30.728Z",
+      "case_id": "PD-20260616-4818F3",
+      "analyzed_at": "2026-06-16T22:51:12.677Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ed2a1-af62-71d8-98ad-1d82ec595603/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,11 +68,22 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "156.250.96.40",
+        "ipinfo": {
+          "ip": "156.250.96.40",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS142286 LUOGELANG (FRANCE) LIMITED",
+          "asn": "AS142286"
+        },
         "dns": {
+          "A": [
+            "156.250.96.40"
+          ],
           "NS": [
-            "ns25.domaincontrol.com.",
-            "ns26.domaincontrol.com."
+            "ns26.domaincontrol.com.",
+            "ns25.domaincontrol.com."
           ]
         }
       },
@@ -201,12 +216,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ly-yes.games/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ly-yes.games\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003306; classtype:social-engineering; sid:6003306; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-14T04:15:24.165050+00:00",
+  "updated_at": "2026-06-16T22:51:01.354140+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

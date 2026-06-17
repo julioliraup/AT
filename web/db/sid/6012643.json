@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "psee.io",
       "domain_defanged": "psee[.]io",
-      "case_id": "PD-20260614-114ADA",
-      "analyzed_at": "2026-06-14T20:12:52.021Z",
+      "case_id": "PD-20260617-114ADA",
+      "analyzed_at": "2026-06-17T15:35:45.482Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ed639-60da-779a-81a2-36d8fa7d4f2f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,24 +68,16 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "13.223.116.137",
-        "ipinfo": {
-          "ip": "13.223.116.137",
-          "hostname": "ec2-13-223-116-137.compute-1.amazonaws.com",
-          "city": "Ashburn",
-          "region": "Virginia",
-          "country": "US",
-          "org": "AS14618 Amazon.com, Inc.",
-          "asn": "AS14618"
-        },
+        "ip": "52.204.9.229",
+        "ipinfo": null,
         "dns": {
-          "A": [
-            "13.223.116.137",
-            "52.204.9.229",
-            "3.209.156.69"
-          ],
           "MX": [
             "10 mail.psee.io."
+          ],
+          "A": [
+            "52.204.9.229",
+            "3.209.156.69",
+            "13.223.116.137"
           ],
           "NS": [
             "deb.ns.cloudflare.com.",
@@ -91,14 +87,7 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Amazon AWS",
-          "abuse": "abuse@amazonaws.com",
-          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
-          "logo": "",
-          "method": "form",
-          "asn": "AS14618"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -225,10 +214,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (psee.io/96lbzj)\"; flow:established,to_server; http.uri; content:\"/96lbzj\"; startswith; fast_pattern; http.host; content:\"psee.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012643; classtype:social-engineering; sid:6012643; rev:1; metadata: signature_severity Major, created_et 2026_06_11;)",
-  "updated_at": "2026-06-14T20:12:33.757443+00:00",
+  "updated_at": "2026-06-17T15:35:41.899698+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

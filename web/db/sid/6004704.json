@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "pcn-noticir.shop",
       "domain_defanged": "pcn-noticir[.]shop",
-      "case_id": "PD-20260614-6CA07C",
-      "analyzed_at": "2026-06-14T06:36:39.394Z",
+      "case_id": "PD-20260617-6CA07C",
+      "analyzed_at": "2026-06-17T02:07:18.065Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4fab-c0d3-72fd-8f43-75bac02b3f1d.png",
+          "url": "https://urlscan.io/result/019e4fab-c0d3-72fd-8f43-75bac02b3f1d/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.156.5.185",
+        "ipinfo": {
+          "ip": "43.156.5.185",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.pcn-noticir.shop/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.pcn-noticir.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004704; classtype:social-engineering; sid:6004704; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:36:35.108218+00:00",
+  "updated_at": "2026-06-17T02:07:12.433184+00:00",
   "probe": {
     "dns": false,
     "whois": false,

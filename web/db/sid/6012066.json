@@ -22,7 +22,7 @@
       "url": "http://fv-gigorder.forum/project/confirmation-order",
       "domain": "fv-gigorder.forum",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "fv-gigorder.forum",
       "domain_defanged": "fv-gigorder[.]forum",
-      "case_id": "PD-20260614-29C977",
-      "analyzed_at": "2026-06-14T19:02:21.064Z",
+      "case_id": "PD-20260617-29C977",
+      "analyzed_at": "2026-06-17T14:23:29.377Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec783-7020-722c-acc0-20ef46990337/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,40 +64,12 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.12.178",
-        "ipinfo": {
-          "ip": "104.21.12.178",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
-        "dns": {
-          "AAAA": [
-            "2606:4700:3034::6815:cb2",
-            "2606:4700:3031::ac43:c32b"
-          ],
-          "NS": [
-            "celeste.ns.cloudflare.com.",
-            "moura.ns.cloudflare.com."
-          ],
-          "A": [
-            "104.21.12.178",
-            "172.67.195.43"
-          ]
-        }
+        "ipinfo": null,
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -228,10 +196,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fv-gigorder.forum/project/confirmation-order)\"; flow:established,to_server; http.uri; content:\"/project/confirmation-order\"; startswith; fast_pattern; http.host; content:\"fv-gigorder.forum\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012066; classtype:social-engineering; sid:6012066; rev:1; metadata: signature_severity Major, created_et 2026_06_08;)",
-  "updated_at": "2026-06-14T19:02:15.712344+00:00",
+  "updated_at": "2026-06-17T14:23:21.267558+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

@@ -22,7 +22,7 @@
       "url": "http://amzwon.at/?r=94c6b7a7-0cc0-43e7-83b4-cc37b6f485ad&rg=eu",
       "domain": "amzwon.at",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "amzwon.at",
       "domain_defanged": "amzwon[.]at",
-      "case_id": "PD-20260614-6FE603",
-      "analyzed_at": "2026-06-14T04:41:13.351Z",
+      "case_id": "PD-20260616-6FE603",
+      "analyzed_at": "2026-06-16T23:22:34.952Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec46f-0e1f-7590-8c49-9b663e0bcf31/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,20 +64,8 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "98.91.9.77",
-        "ipinfo": {
-          "ip": "98.91.9.77",
-          "hostname": "ec2-98-91-9-77.compute-1.amazonaws.com",
-          "city": "Ashburn",
-          "region": "Virginia",
-          "country": "US",
-          "org": "AS14618 Amazon.com, Inc.",
-          "asn": "AS14618"
-        },
+        "ipinfo": null,
         "dns": {
-          "A": [
-            "98.91.9.77"
-          ],
           "NS": [
             "lovisa.ns.cloudflare.com.",
             "viddy.ns.cloudflare.com."
@@ -90,14 +74,7 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Amazon AWS",
-          "abuse": "abuse@amazonaws.com",
-          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
-          "logo": "",
-          "method": "form",
-          "asn": "AS14618"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -224,10 +201,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amzwon.at/?r=94c6b7a7-0cc0-43e7-83b4-cc37b6f485ad&rg=eu)\"; flow:established,to_server; http.uri; content:\"/?r=94c6b7a7-0cc0-43e7-83b4-cc37b6f485ad&rg=eu\"; startswith; fast_pattern; http.host; content:\"amzwon.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003538; classtype:social-engineering; sid:6003538; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-14T04:41:08.958914+00:00",
+  "updated_at": "2026-06-16T23:22:30.740420+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

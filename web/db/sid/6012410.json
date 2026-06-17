@@ -72,8 +72,8 @@
     "phishdestroy": {
       "domain": "chatgpt.com",
       "domain_defanged": "chatgpt[.]com",
-      "case_id": "PD-20260614-207727",
-      "analyzed_at": "2026-06-14T19:47:00.075Z",
+      "case_id": "PD-20260617-207727",
+      "analyzed_at": "2026-06-17T15:06:48.744Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -82,7 +82,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ec7ac-5074-71dc-9d0c-13af55ae517d/",
+          "url": "https://urlscan.io/result/019ed61e-deb3-71e9-86cd-6d77fcb9c50f/",
           "pending": true
         }
       },
@@ -91,7 +91,7 @@
         "registrar": "MarkMonitor Inc.",
         "created": "2022-11-30T23:59:19Z",
         "expires": "2026-11-30T23:59:19Z",
-        "age_days": 1291,
+        "age_days": 1294,
         "nameservers": [
           "HASSAN.NS.CLOUDFLARE.COM",
           "SAVANNA.NS.CLOUDFLARE.COM"
@@ -99,15 +99,22 @@
       },
       "infrastructure": {
         "ip": "104.18.32.47",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.32.47",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2a06:98c1:3100::6812:202f",
+            "2a06:98c1:310b::ac40:9bd1"
+          ],
           "A": [
             "104.18.32.47",
             "172.64.155.209"
-          ],
-          "AAAA": [
-            "2a06:98c1:310b::ac40:9bd1",
-            "2a06:98c1:3100::6812:202f"
           ],
           "NS": [
             "hassan.ns.cloudflare.com.",
@@ -124,7 +131,14 @@
           "method": "form",
           "iana_ids": "292"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -251,10 +265,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (chatgpt.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"chatgpt.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6012410; classtype:social-engineering; sid:6012410; rev:1; metadata: signature_severity Major, created_et 2026_06_10;)",
-  "updated_at": "2026-06-14T19:46:43.434865+00:00",
+  "updated_at": "2026-06-17T15:06:43.653507+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

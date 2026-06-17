@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "bellloginebill.netlify.app",
       "domain_defanged": "bellloginebill[.]netlify[.]app",
-      "case_id": "PD-20260614-34A5C9",
-      "analyzed_at": "2026-06-14T06:58:51.776Z",
+      "case_id": "PD-20260617-34A5C9",
+      "analyzed_at": "2026-06-17T02:31:48.919Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4ed-10fd-74cb-a7f6-273c0a61f0ab/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "BCE-Bell"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecfdc-bb5b-7724-9dbf-ce35d1c3c459.png",
+          "url": "https://urlscan.io/result/019ecfdc-bb5b-7724-9dbf-ce35d1c3c459/",
+          "title": "Bell"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: BCE-Bell",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,11 +112,11 @@
           "asn": "AS16509"
         },
         "dns": {
-          "A": [
-            "54.232.119.62"
-          ],
           "AAAA": [
             "2600:1f1e:7c1:c300::258"
+          ],
+          "A": [
+            "54.232.119.62"
           ]
         }
       },
@@ -247,7 +256,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bellloginebill.netlify.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bellloginebill.netlify.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004880; classtype:social-engineering; sid:6004880; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:58:48.769814+00:00",
+  "updated_at": "2026-06-17T02:31:44.914473+00:00",
   "probe": {
     "dns": true,
     "whois": false,

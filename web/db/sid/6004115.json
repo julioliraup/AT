@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "3duzy5sgifg2i.kimi.page",
       "domain_defanged": "3duzy5sgifg2i[.]kimi[.]page",
-      "case_id": "PD-20260614-768EC4",
-      "analyzed_at": "2026-06-14T05:45:22.078Z",
+      "case_id": "PD-20260617-768EC4",
+      "analyzed_at": "2026-06-17T00:36:26.152Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4a9-c6c4-748a-832b-a67866c3d024/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecf98-c124-75c2-ae43-a93aad3a7aaa.png",
+          "url": "https://urlscan.io/result/019ecf98-c124-75c2-ae43-a93aad3a7aaa/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -95,21 +104,21 @@
         "ip": "asd.kimi.page.cdn.cloudflare.net.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "asd.kimi.page.cdn.cloudflare.net.",
-            "2606:4700::6812:2eb",
-            "2606:4700::6812:3eb"
+          "MX": [
+            "asd.kimi.page.cdn.cloudflare.net."
+          ],
+          "NS": [
+            "asd.kimi.page.cdn.cloudflare.net."
           ],
           "A": [
             "asd.kimi.page.cdn.cloudflare.net.",
             "104.18.2.235",
             "104.18.3.235"
           ],
-          "MX": [
-            "asd.kimi.page.cdn.cloudflare.net."
-          ],
-          "NS": [
-            "asd.kimi.page.cdn.cloudflare.net."
+          "AAAA": [
+            "asd.kimi.page.cdn.cloudflare.net.",
+            "2606:4700::6812:2eb",
+            "2606:4700::6812:3eb"
           ],
           "CNAME": [
             "asd.kimi.page.cdn.cloudflare.net."
@@ -118,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -245,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (3duzy5sgifg2i.kimi.page/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"3duzy5sgifg2i.kimi.page\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004115; classtype:social-engineering; sid:6004115; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-14T05:45:12.753405+00:00",
+  "updated_at": "2026-06-17T00:36:22.322201+00:00",
   "probe": {
     "dns": true,
     "whois": false,

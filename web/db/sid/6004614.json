@@ -49,35 +49,74 @@
     "phishdestroy": {
       "domain": "viewdocc.com",
       "domain_defanged": "viewdocc[.]com",
-      "case_id": "PD-20260614-1CBB44",
-      "analyzed_at": "2026-06-14T06:19:55.278Z",
+      "case_id": "PD-20260617-1CBB44",
+      "analyzed_at": "2026-06-17T01:38:40.809Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing, Newly Registered (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ec4c9-6a0c-7009-b85a-3417247aa6c4/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ecfb9-0fda-719b-bdac-bccd32bdc692.png",
+          "url": "https://urlscan.io/result/019ecfb9-0fda-719b-bdac-bccd32bdc692/",
+          "title": "viewdocc.com | 525: SSL handshake failed"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Cloudflare, Inc.",
         "created": "2026-05-19T21:10:54Z",
         "expires": "2027-05-19T21:10:54Z",
-        "age_days": 25,
+        "age_days": 28,
         "nameservers": [
           "LISA.NS.CLOUDFLARE.COM",
           "LUKE.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.147.43",
+        "ip": "104.21.95.191",
         "ipinfo": {
-          "ip": "172.67.147.43",
+          "ip": "104.21.95.191",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -86,8 +125,8 @@
         },
         "dns": {
           "A": [
-            "172.67.147.43",
-            "104.21.95.191"
+            "104.21.95.191",
+            "172.67.147.43"
           ],
           "AAAA": [
             "2606:4700:3033::6815:5fbf",
@@ -243,7 +282,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (viewdocc.com/44/Android/)\"; flow:established,to_server; http.uri; content:\"/44/Android/\"; startswith; fast_pattern; http.host; content:\"viewdocc.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004614; classtype:social-engineering; sid:6004614; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:30:13.871492+00:00",
+  "updated_at": "2026-06-17T01:54:19.156321+00:00",
   "probe": {
     "dns": true,
     "whois": true,

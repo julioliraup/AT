@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://metamaskwallet.to/",
       "domain": "metamaskwallet.to",
-      "url_count": 6,
+      "url_count": 7,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -66,27 +66,36 @@
         "fingerprint_sha256": "17 0E 93 E1 80 64 9B 24 5A D5 9F A9 2D EE 41 BD EC EF B9 3B DE FC F9 66 18 71 9C 92 E0 49 19 E7"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-08T02:41:14",
-      "first_seen_secs": 1780886474.0
+      "first_seen": "2026-06-15T02:46:58",
+      "first_seen_secs": 1781491618.0
     },
     "phishdestroy": {
       "domain": "metamaskwallet.to",
       "domain_defanged": "metamaskwallet[.]to",
-      "case_id": "PD-20260614-703055",
-      "analyzed_at": "2026-06-14T05:53:59.583Z",
+      "case_id": "PD-20260617-703055",
+      "analyzed_at": "2026-06-17T00:50:15.789Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4b1-ac73-74d8-b445-c228bb9b3f68/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Metamask"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed1b1-3d5d-767a-95a7-977ff6540115.png",
+          "url": "https://urlscan.io/result/019ed1b1-3d5d-767a-95a7-977ff6540115/",
+          "title": "MetaMask Wallet Guide: Setup, Security, DeFi &amp; NFTs"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Metamask",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -239,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (metamaskwallet.to/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"metamaskwallet.to\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004209; classtype:social-engineering; sid:6004209; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-14T05:53:56.840853+00:00",
+  "updated_at": "2026-06-17T00:50:09.221584+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,28 +49,56 @@
     "phishdestroy": {
       "domain": "s3.us-east-2.amazonaws.com",
       "domain_defanged": "s3[.]us-east-2[.]amazonaws[.]com",
-      "case_id": "PD-20260614-398134",
-      "analyzed_at": "2026-06-14T05:33:21.475Z",
+      "case_id": "PD-20260617-398134",
+      "analyzed_at": "2026-06-17T00:19:21.673Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "desenmascara.me",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ec49e-c77f-7738-8ccf-08f4914deb3b/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ed2f0-c017-7116-8572-15582090121e.png",
+          "url": "https://urlscan.io/result/019ed2f0-c017-7116-8572-15582090121e/",
+          "title": "University of St. Augustine: Health Sciences Graduate School Programs"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: desenmascara.me",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.5.88.56",
+        "ip": "3.5.128.17",
         "ipinfo": {
-          "ip": "3.5.88.56",
+          "ip": "3.5.128.17",
+          "hostname": "s3-r-w.us-east-2.amazonaws.com",
           "city": "Columbus",
           "region": "Ohio",
           "country": "US",
@@ -79,14 +107,14 @@
         },
         "dns": {
           "A": [
-            "3.5.88.56",
-            "3.5.91.2",
-            "3.5.133.77",
-            "3.5.131.26",
-            "3.5.89.8",
-            "52.219.98.249",
-            "52.219.97.81",
-            "3.5.128.241"
+            "3.5.128.17",
+            "3.5.92.82",
+            "52.219.229.105",
+            "3.5.129.39",
+            "3.5.132.255",
+            "52.219.111.65",
+            "3.5.89.82",
+            "3.5.93.47"
           ],
           "NS": [
             "ns-1093.awsdns-08.org.",
@@ -232,7 +260,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s3.us-east-2.amazonaws.com/bu.adpobe.reading.us/30bg/30bg/index.html)\"; flow:established,to_server; http.uri; content:\"/bu.adpobe.reading.us/30bg/30bg/index.html\"; startswith; fast_pattern; http.host; content:\"s3.us-east-2.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003975; classtype:social-engineering; sid:6003975; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-14T05:33:12.873528+00:00",
+  "updated_at": "2026-06-17T00:19:08.599798+00:00",
   "probe": {
     "dns": true,
     "whois": false,

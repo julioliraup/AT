@@ -23,7 +23,7 @@
       "url": "http://www-57365.cc/index_m.html",
       "domain": "www-57365.cc",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "www-57365.cc",
       "domain_defanged": "www-57365[.]cc",
-      "case_id": "PD-20260613-5EC3FD",
-      "analyzed_at": "2026-06-13T22:05:24.150Z",
+      "case_id": "PD-20260616-5EC3FD",
+      "analyzed_at": "2026-06-16T17:47:39.618Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ed18b-c6ce-773f-b8d8-7f50cf2f4a25/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,12 +69,35 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "103.255.47.24",
+        "ipinfo": {
+          "ip": "103.255.47.24",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS133201 ABCDE GROUP",
+          "asn": "AS133201"
+        },
+        "dns": {
+          "A": [
+            "103.255.47.24"
+          ],
+          "NS": [
+            "elliot.ns.cloudflare.com.",
+            "kim.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "COMING-AS",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "https://i.ibb.co/HpMkPhYZ/pr-COMING-AS.png",
+          "method": "email",
+          "asn": "AS133201"
+        }
       },
       "report_services": [
         {
@@ -197,12 +224,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www-57365 .cc/index_m .html)\"; flow:established,to_server; http.uri; content:\"/index_m.html\"; startswith; fast_pattern; http.host;  content:\"www-57365.cc\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000724; classtype:social-engineering; sid:6000724; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-13T22:05:18.912089+00:00",
+  "updated_at": "2026-06-16T17:47:34.674917+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

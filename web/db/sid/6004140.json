@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "en-bri-dge-trazorr.pages.dev",
       "domain_defanged": "en-bri-dge-trazorr[.]pages[.]dev",
-      "case_id": "PD-20260614-625B10",
-      "analyzed_at": "2026-06-14T05:47:39.369Z",
+      "case_id": "PD-20260617-625B10",
+      "analyzed_at": "2026-06-17T00:39:16.157Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4ab-e07f-7155-a741-0a913eb4c484/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecf9a-a120-7624-8a27-c4dd8bb1d345.png",
+          "url": "https://urlscan.io/result/019ecf9a-a120-7624-8a27-c4dd8bb1d345/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -234,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (en-bri-dge-trazorr.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"en-bri-dge-trazorr.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004140; classtype:social-engineering; sid:6004140; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-14T05:47:30.379941+00:00",
+  "updated_at": "2026-06-17T00:39:13.852144+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "casaluna.spahotel.guru",
       "domain_defanged": "casaluna[.]spahotel[.]guru",
-      "case_id": "PD-20260614-416737",
-      "analyzed_at": "2026-06-14T06:46:22.305Z",
+      "case_id": "PD-20260617-416737",
+      "analyzed_at": "2026-06-17T02:20:29.163Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4e1-a1d7-73a6-bc61-f41ded1b8501/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecfd5-ba17-717f-b384-1d1b9965d824.png",
+          "url": "https://urlscan.io/result/019ecfd5-ba17-717f-b384-1d1b9965d824/",
+          "title": "Casa Luna Hotel & Spa La Fortuna - La Fortuna, Costa Rica"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (casaluna.spahotel.guru/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"casaluna.spahotel.guru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004794; classtype:social-engineering; sid:6004794; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:46:17.575374+00:00",
+  "updated_at": "2026-06-17T02:20:21.922071+00:00",
   "probe": {
     "dns": true,
     "whois": true,

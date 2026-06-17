@@ -22,7 +22,7 @@
       "url": "http://saba-okv-milan.games/",
       "domain": "saba-okv-milan.games",
       "url_count": 5,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "saba-okv-milan.games",
       "domain_defanged": "saba-okv-milan[.]games",
-      "case_id": "PD-20260614-5578A5",
-      "analyzed_at": "2026-06-14T10:09:59.518Z",
+      "case_id": "PD-20260617-5578A5",
+      "analyzed_at": "2026-06-17T05:42:47.375Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ed41a-8043-71ad-99af-31e5e36f09a3/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,19 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "156.250.96.44",
+        "ipinfo": {
+          "ip": "156.250.96.44",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS142286 LUOGELANG (FRANCE) LIMITED",
+          "asn": "AS142286"
+        },
         "dns": {
+          "A": [
+            "156.250.96.44"
+          ],
           "NS": [
             "ns25.domaincontrol.com.",
             "ns26.domaincontrol.com."
@@ -201,12 +216,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (saba-okv-milan.games/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"saba-okv-milan.games\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6006797; classtype:social-engineering; sid:6006797; rev:1; metadata: signature_severity Major, created_et 2026_05_25;)",
-  "updated_at": "2026-06-14T10:09:56.280759+00:00",
+  "updated_at": "2026-06-17T05:42:44.112545+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

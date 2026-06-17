@@ -70,14 +70,19 @@
     "phishdestroy": {
       "domain": "top-for-whatsapp.com.cn",
       "domain_defanged": "top-for-whatsapp[.]com[.]cn",
-      "case_id": "PD-20260614-431E3E",
-      "analyzed_at": "2026-06-14T06:52:30.823Z",
+      "case_id": "PD-20260617-431E3E",
+      "analyzed_at": "2026-06-17T02:24:37.623Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ecfd8-5eba-73dd-bf33-19bcbfdb7d25.png",
+          "url": "https://urlscan.io/result/019ecfd8-5eba-73dd-bf33-19bcbfdb7d25/",
+          "title": "404 Not Found"
         }
       },
       "detections": [],
@@ -95,12 +100,12 @@
           "asn": "AS64050"
         },
         "dns": {
+          "A": [
+            "43.226.17.69"
+          ],
           "NS": [
             "ns1.kenpains.com.",
             "ns2.kenpains.com."
-          ],
-          "A": [
-            "43.226.17.69"
           ]
         }
       },
@@ -240,10 +245,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (top-for-whatsapp.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"top-for-whatsapp.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004827; classtype:social-engineering; sid:6004827; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:52:17.913181+00:00",
+  "updated_at": "2026-06-17T02:24:33.329958+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

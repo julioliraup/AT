@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "binance-guanwang.com.cn",
       "domain_defanged": "binance-guanwang[.]com[.]cn",
-      "case_id": "PD-20260614-268AF8",
-      "analyzed_at": "2026-06-14T06:59:52.099Z",
+      "case_id": "PD-20260617-268AF8",
+      "analyzed_at": "2026-06-17T02:32:53.700Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4ed-fc9b-704f-8b20-d6f2915bb431/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Binance"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecfdd-c2bd-72e8-aaa6-16619902a139.png",
+          "url": "https://urlscan.io/result/019ecfdd-c2bd-72e8-aaa6-16619902a139/",
+          "title": "币安官网 | 全球领先的加密货币交易所 - 安全交易比特币、以太坊 - 币安 - 买币卖币更简单，开启你的加密之旅！"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Binance",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (binance-guanwang.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"binance-guanwang.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004890; classtype:social-engineering; sid:6004890; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:59:41.691743+00:00",
+  "updated_at": "2026-06-17T02:32:50.393521+00:00",
   "probe": {
     "dns": true,
     "whois": true,

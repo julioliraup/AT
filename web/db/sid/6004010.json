@@ -49,21 +49,68 @@
     "phishdestroy": {
       "domain": "vo.la",
       "domain_defanged": "vo[.]la",
-      "case_id": "PD-20260614-6B204C",
-      "analyzed_at": "2026-06-14T05:36:04.215Z",
+      "case_id": "PD-20260617-6B204C",
+      "analyzed_at": "2026-06-17T00:22:50.205Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Certego",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "desenmascara.me",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ec4a1-4461-709e-8396-b6d8094e9fc8/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ecf90-c5a5-7358-9fd0-94df36255144.png",
+          "url": "https://urlscan.io/result/019ecf90-c5a5-7358-9fd0-94df36255144/",
+          "title": "단축URL 서비스 - VOLA"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Certego",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: desenmascara.me",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -212,10 +259,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (vo.la/ZAYLMTt)\"; flow:established,to_server; http.uri; content:\"/ZAYLMTt\"; startswith; fast_pattern; http.host; content:\"vo.la\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004010; classtype:social-engineering; sid:6004010; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-14T05:35:59.161839+00:00",
+  "updated_at": "2026-06-17T00:22:41.675412+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

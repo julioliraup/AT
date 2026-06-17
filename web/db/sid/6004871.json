@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "indonesiaax-dananews.fascist.biz.id",
       "domain_defanged": "indonesiaax-dananews[.]fascist[.]biz[.]id",
-      "case_id": "PD-20260614-670434",
-      "analyzed_at": "2026-06-14T06:58:02.942Z",
+      "case_id": "PD-20260617-670434",
+      "analyzed_at": "2026-06-17T02:30:24.837Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4ec-52d4-738d-8c7c-4d15c9e31983/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecfdb-e9f1-75cc-ab1d-4c5435d8e908.png",
+          "url": "https://urlscan.io/result/019ecfdb-e9f1-75cc-ab1d-4c5435d8e908/",
+          "title": "𝗗𝗔𝗡𝗔 | 𝗖𝘂𝘀𝘁𝗼𝗺𝗲𝗿 𝗖𝗮𝗿𝗲 𝗗𝗔𝗡𝗔"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.217.45",
+        "ip": "104.21.86.85",
         "ipinfo": {
-          "ip": "172.67.217.45",
+          "ip": "104.21.86.85",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.67.217.45",
-            "104.21.86.85"
-          ],
           "AAAA": [
-            "2606:4700:3036::ac43:d92d",
-            "2606:4700:3035::6815:5655"
+            "2606:4700:3035::6815:5655",
+            "2606:4700:3036::ac43:d92d"
+          ],
+          "A": [
+            "104.21.86.85",
+            "172.67.217.45"
           ]
         }
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (indonesiaax-dananews.fascist.biz.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"indonesiaax-dananews.fascist.biz.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004871; classtype:social-engineering; sid:6004871; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:57:58.388943+00:00",
+  "updated_at": "2026-06-17T02:30:19.186362+00:00",
   "probe": {
     "dns": true,
     "whois": true,

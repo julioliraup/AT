@@ -22,7 +22,7 @@
       "url": "http://topball-yes-football.games/",
       "domain": "topball-yes-football.games",
       "url_count": 3,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "topball-yes-football.games",
       "domain_defanged": "topball-yes-football[.]games",
-      "case_id": "PD-20260614-34ED36",
-      "analyzed_at": "2026-06-14T15:32:13.244Z",
+      "case_id": "PD-20260617-34ED36",
+      "analyzed_at": "2026-06-17T11:02:52.334Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ed53f-8b34-7281-b6eb-6a69e0d1d039/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,11 +68,15 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "156.250.96.43",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "156.250.96.43"
+          ],
           "NS": [
-            "ns15.domaincontrol.com.",
-            "ns16.domaincontrol.com."
+            "ns16.domaincontrol.com.",
+            "ns15.domaincontrol.com."
           ]
         }
       },
@@ -201,12 +209,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (topball-yes-football.games/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"topball-yes-football.games\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010168; classtype:social-engineering; sid:6010168; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-14T15:32:05.068158+00:00",
+  "updated_at": "2026-06-17T11:02:48.590854+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

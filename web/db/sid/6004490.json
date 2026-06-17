@@ -49,21 +49,37 @@
     "phishdestroy": {
       "domain": "mfacebock.com.vn",
       "domain_defanged": "mfacebock[.]com[.]vn",
-      "case_id": "PD-20260614-6F16FD",
-      "analyzed_at": "2026-06-14T06:18:27.772Z",
+      "case_id": "PD-20260617-6F16FD",
+      "analyzed_at": "2026-06-17T01:36:27.782Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ec4c8-14d4-767a-ad37-44fb12cd546c/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ecfb7-e43c-75fc-af08-537c1ff978c1.png",
+          "url": "https://urlscan.io/result/019ecfb7-e43c-75fc-af08-537c1ff978c1/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -223,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mfacebock.com.vn/khoa-hoc-7-ngay-trai-nghiem-kien-thuc-toan?a)\"; flow:established,to_server; http.uri; content:\"/khoa-hoc-7-ngay-trai-nghiem-kien-thuc-toan?a\"; startswith; fast_pattern; http.host; content:\"mfacebock.com.vn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004490; classtype:social-engineering; sid:6004490; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:18:19.526711+00:00",
+  "updated_at": "2026-06-17T01:36:23.777301+00:00",
   "probe": {
     "dns": true,
     "whois": false,

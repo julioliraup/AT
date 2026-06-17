@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "amazon-clone-kappa-ashen.vercel.app",
       "domain_defanged": "amazon-clone-kappa-ashen[.]vercel[.]app",
-      "case_id": "PD-20260614-2F27BC",
-      "analyzed_at": "2026-06-14T06:29:12.800Z",
+      "case_id": "PD-20260617-2F27BC",
+      "analyzed_at": "2026-06-17T01:52:26.730Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4d1-ec75-72a4-921e-fdf867b48e7a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecfc0-d38c-74ee-83d0-162a8aece7c6.png",
+          "url": "https://urlscan.io/result/019ecfc0-d38c-74ee-83d0-162a8aece7c6/",
+          "title": "Amazon clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
+        "ip": "216.198.79.194",
         "ipinfo": {
-          "ip": "216.198.79.66",
+          "ip": "216.198.79.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazon-clone-kappa-ashen.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"amazon-clone-kappa-ashen.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004601; classtype:social-engineering; sid:6004601; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:29:09.870895+00:00",
+  "updated_at": "2026-06-17T01:52:23.235478+00:00",
   "probe": {
     "dns": true,
     "whois": false,

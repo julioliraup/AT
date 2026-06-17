@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "aquakey.click",
       "domain_defanged": "aquakey[.]click",
-      "case_id": "PD-20260614-552F2E",
-      "analyzed_at": "2026-06-14T20:40:28.510Z",
+      "case_id": "PD-20260617-552F2E",
+      "analyzed_at": "2026-06-17T15:58:52.916Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ed64e-8b09-71c3-9f5b-2a42e8f6a8f4/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,8 +69,19 @@
       },
       "infrastructure": {
         "ip": "104.21.14.110",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.14.110",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "104.21.14.110",
+            "172.67.158.169"
+          ],
           "AAAA": [
             "2606:4700:3034::ac43:9ea9",
             "2606:4700:3035::6815:e6e"
@@ -74,16 +89,19 @@
           "NS": [
             "ganz.ns.cloudflare.com.",
             "michelle.ns.cloudflare.com."
-          ],
-          "A": [
-            "104.21.14.110",
-            "172.67.158.169"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -211,10 +229,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aquakey.click/m/dFzfMxXeITXmuQUglmsvfann)\"; flow:established,to_server; http.uri; content:\"/m/dFzfMxXeITXmuQUglmsvfann\"; startswith; fast_pattern; http.host; content:\"aquakey.click\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012850; classtype:social-engineering; sid:6012850; rev:1; metadata: signature_severity Major, created_et 2026_06_11;)",
-  "updated_at": "2026-06-14T20:43:07.796247+00:00",
+  "updated_at": "2026-06-17T16:01:17.185229+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

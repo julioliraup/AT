@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "sarin-delor-biz-morix-havel-nd11kt12.pages.dev",
       "domain_defanged": "sarin-delor-biz-morix-havel-nd11kt12[.]pages[.]dev",
-      "case_id": "PD-20260614-2411D2",
-      "analyzed_at": "2026-06-14T05:49:05.976Z",
+      "case_id": "PD-20260617-2411D2",
+      "analyzed_at": "2026-06-17T00:42:04.926Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4ad-32ce-7175-a2a4-c1e346cf10fa/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecf9b-f6c7-77fb-9c85-d1fa6da60ec8.png",
+          "url": "https://urlscan.io/result/019ecf9b-f6c7-77fb-9c85-d1fa6da60ec8/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,13 +87,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2f63",
-            "2606:4700:310c::ac42:2c9d"
-          ],
           "A": [
             "172.66.44.157",
             "172.66.47.99"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2c9d",
+            "2606:4700:310c::ac42:2f63"
           ],
           "NS": [
             "agustin.ns.cloudflare.com.",
@@ -228,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sarin-delor-biz-morix-havel-nd11kt12.pages.dev/form_submit_appeal/)\"; flow:established,to_server; http.uri; content:\"/form_submit_appeal/\"; startswith; fast_pattern; http.host; content:\"sarin-delor-biz-morix-havel-nd11kt12.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004161; classtype:social-engineering; sid:6004161; rev:1; metadata: signature_severity Major, created_et 2026_05_20;)",
-  "updated_at": "2026-06-14T05:49:02.336633+00:00",
+  "updated_at": "2026-06-17T00:41:59.624607+00:00",
   "probe": {
     "dns": true,
     "whois": false,

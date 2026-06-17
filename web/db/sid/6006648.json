@@ -18,18 +18,49 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://drcbuilt.com/",
+      "domain": "drcbuilt.com",
+      "url_count": 4,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": null,
+      "http_code": 0,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-05-28T10:40:30",
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "drcbuilt.com",
       "domain_defanged": "drcbuilt[.]com",
-      "case_id": "PD-20260614-74F1B4",
-      "analyzed_at": "2026-06-14T09:54:36.212Z",
+      "case_id": "PD-20260617-74F1B4",
+      "analyzed_at": "2026-06-17T05:29:34.582Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ed40e-6708-779a-8350-bc8197c80f39/",
+          "pending": true
         }
       },
       "detections": [],
@@ -37,15 +68,26 @@
         "registrar": "GoDaddy.com, LLC",
         "created": "2026-05-02T09:35:22Z",
         "expires": "2027-05-02T09:35:22Z",
-        "age_days": 43,
+        "age_days": 45,
         "nameservers": [
           "NS13.DOMAINCONTROL.COM",
           "NS14.DOMAINCONTROL.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "191.214.77.154",
+        "ipinfo": {
+          "ip": "191.214.77.154",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS134175 SH2206",
+          "asn": "AS134175"
+        },
         "dns": {
+          "A": [
+            "191.214.77.154"
+          ],
           "NS": [
             "ns13.domaincontrol.com.",
             "ns14.domaincontrol.com."
@@ -61,7 +103,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "SH2206-AP UNIT A17,9F SILVERCORP INTL TOWER 707-713 NATHAN RD, HK",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS134175"
+        }
       },
       "report_services": [
         {
@@ -188,12 +237,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (drcbuilt.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"drcbuilt.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6006648; classtype:social-engineering; sid:6006648; rev:1; metadata: signature_severity Major, created_et 2026_05_25;)",
-  "updated_at": "2026-06-14T09:54:22.491623+00:00",
+  "updated_at": "2026-06-17T05:29:30.618008+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

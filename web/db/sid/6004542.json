@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "app.web-hkk-whatsapp.com.cn",
       "domain_defanged": "app[.]web-hkk-whatsapp[.]com[.]cn",
-      "case_id": "PD-20260614-28B98F",
-      "analyzed_at": "2026-06-14T06:23:23.191Z",
+      "case_id": "PD-20260617-28B98F",
+      "analyzed_at": "2026-06-17T01:43:46.028Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WhatsApp"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e48a3-8b7e-764d-a6af-7125852a6f52.png",
+          "url": "https://urlscan.io/result/019e48a3-8b7e-764d-a6af-7125852a6f52/",
+          "title": "WhatsApp 網頁版 | 訊息載入更加順暢"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WhatsApp",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.104.77.56",
+        "ipinfo": {
+          "ip": "172.104.77.56",
+          "hostname": "172-104-77-56.ip.linodeusercontent.com",
+          "city": "Tokyo",
+          "region": "Tokyo",
+          "country": "JP",
+          "org": "AS63949 Akamai Connected Cloud",
+          "asn": "AS63949"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Linode/Akamai",
+          "abuse": "abuse@linode.com",
+          "url": "mailto:abuse@linode.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS63949"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app.web-hkk-whatsapp.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"app.web-hkk-whatsapp.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004542; classtype:social-engineering; sid:6004542; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:23:19.354693+00:00",
+  "updated_at": "2026-06-17T01:43:41.604237+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "flickapply.live",
       "domain_defanged": "flickapply[.]live",
-      "case_id": "PD-20260614-22A315",
-      "analyzed_at": "2026-06-14T06:38:39.921Z",
+      "case_id": "PD-20260617-22A315",
+      "analyzed_at": "2026-06-17T02:10:10.202Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ec4da-93c9-743e-b6ca-a98866a9c759/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecfcf-caf0-71a7-858b-c6c814b203a4.png",
+          "url": "https://urlscan.io/result/019ecfcf-caf0-71a7-858b-c6c814b203a4/",
+          "title": "Netflix Content Reviewer Program"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -236,7 +245,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.flickapply.live/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.flickapply.live\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004723; classtype:social-engineering; sid:6004723; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-14T06:38:36.759769+00:00",
+  "updated_at": "2026-06-17T02:09:58.990595+00:00",
   "probe": {
     "dns": true,
     "whois": true,
