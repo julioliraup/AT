@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "861365.cc",
       "domain_defanged": "861365[.]cc",
-      "case_id": "PD-20260617-2D5DFB",
-      "analyzed_at": "2026-06-17T17:34:08.225Z",
+      "case_id": "PD-20260619-2D5DFB",
+      "analyzed_at": "2026-06-19T02:08:09.640Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed6a5-c13d-74cb-88c1-4203c2e616c7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edb38-3ba4-7279-a224-806fd7d74282.png",
+          "url": "https://urlscan.io/result/019edb38-3ba4-7279-a224-806fd7d74282/",
+          "title": "欢迎莅临"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -223,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.861365.cc/?a=352698)\"; flow:established,to_server; http.uri; content:\"/?a=352698\"; startswith; fast_pattern; http.host; content:\"www.861365.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013645; classtype:social-engineering; sid:6013645; rev:1; metadata: signature_severity Major, created_et 2026_06_16;)",
-  "updated_at": "2026-06-17T17:33:55.207897+00:00",
+  "updated_at": "2026-06-19T02:08:05.776017+00:00",
   "probe": {
     "dns": true,
     "whois": false,

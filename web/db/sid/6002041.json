@@ -49,21 +49,137 @@
     "phishdestroy": {
       "domain": "epass-ec7af8f39e70.s3.amazonaws.com",
       "domain_defanged": "epass-ec7af8f39e70[.]s3[.]amazonaws[.]com",
-      "case_id": "PD-20260616-1A6C6C",
-      "analyzed_at": "2026-06-16T20:29:06.980Z",
+      "case_id": "PD-20260618-1A6C6C",
+      "analyzed_at": "2026-06-18T03:29:53.475Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 11,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed21f-98b7-743c-a7dd-fbcbeda42391/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ed21f-98b7-743c-a7dd-fbcbeda42391.png",
+          "url": "https://urlscan.io/result/019ed21f-98b7-743c-a7dd-fbcbeda42391/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,6 +187,10 @@
         "ip": "s3-1-w.amazonaws.com.",
         "ipinfo": null,
         "dns": {
+          "MX": [
+            "s3-1-w.amazonaws.com.",
+            "s3-w.us-east-1.amazonaws.com."
+          ],
           "AAAA": [
             "s3-1-w.amazonaws.com.",
             "s3-w.us-east-1.amazonaws.com."
@@ -78,18 +198,14 @@
           "A": [
             "s3-1-w.amazonaws.com.",
             "s3-w.us-east-1.amazonaws.com.",
-            "16.15.246.165",
-            "16.182.70.241",
-            "16.15.245.192",
-            "52.217.173.33",
-            "16.15.207.151",
-            "16.15.244.40",
-            "16.15.223.144",
-            "54.231.192.81"
-          ],
-          "MX": [
-            "s3-1-w.amazonaws.com.",
-            "s3-w.us-east-1.amazonaws.com."
+            "16.15.183.163",
+            "16.182.108.121",
+            "16.182.70.217",
+            "16.182.74.169",
+            "16.15.252.206",
+            "52.216.41.97",
+            "52.217.137.97",
+            "54.231.196.1"
           ],
           "CNAME": [
             "s3-1-w.amazonaws.com."
@@ -106,7 +222,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -233,7 +356,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (epass-ec7af8f39e70.s3.amazonaws.com/index.html?email=example@invalid.local)\"; flow:established,to_server; http.uri; content:\"/index.html?email=example@invalid.local\"; startswith; fast_pattern; http.host; content:\"epass-ec7af8f39e70.s3.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002041; classtype:social-engineering; sid:6002041; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-06-16T20:29:03.792706+00:00",
+  "updated_at": "2026-06-18T03:29:49.500037+00:00",
   "probe": {
     "dns": true,
     "whois": false,

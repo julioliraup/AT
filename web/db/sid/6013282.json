@@ -18,77 +18,112 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://mapsupport-iphones.help/pPlr",
-      "domain": "mapsupport-iphones.help",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "mapsupport-iphones.help",
       "domain_defanged": "mapsupport-iphones[.]help",
-      "case_id": "PD-20260617-631E74",
-      "analyzed_at": "2026-06-17T16:51:29.188Z",
+      "case_id": "PD-20260619-631E74",
+      "analyzed_at": "2026-06-19T01:25:18.344Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed67e-b5aa-729d-bb7f-5ab545cb9570/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ed970-325e-77d4-95bd-319f70c3b969.png",
+          "url": "https://urlscan.io/result/019ed970-325e-77d4-95bd-319f70c3b969/",
+          "title": "mapsupport-iphones.help"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "34.76.205.124",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "34.76.205.124",
+          "hostname": "124.205.76.34.bc.googleusercontent.com",
+          "city": "Brussels",
+          "region": "Brussels Capital",
+          "country": "BE",
+          "org": "AS396982 Google LLC",
+          "asn": "AS396982"
+        },
         "dns": {
-          "MX": [
-            "10 mx.all-harmless.domains."
+          "AAAA": [
+            "2600:1901:0:51b9::"
           ],
           "A": [
             "34.76.205.124"
           ],
-          "AAAA": [
-            "2600:1901:0:51b9::"
-          ],
           "NS": [
             "ns1.all-harmless.domains.",
             "ns2.all-harmless.domains."
+          ],
+          "MX": [
+            "10 mx.all-harmless.domains."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -215,7 +250,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mapsupport-iphones.help/pPlr)\"; flow:established,to_server; http.uri; content:\"/pPlr\"; startswith; fast_pattern; http.host; content:\"mapsupport-iphones.help\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013282; classtype:social-engineering; sid:6013282; rev:1; metadata: signature_severity Major, created_et 2026_06_14;)",
-  "updated_at": "2026-06-17T16:51:15.988162+00:00",
+  "updated_at": "2026-06-19T01:25:03.930291+00:00",
   "probe": {
     "dns": true,
     "whois": true,

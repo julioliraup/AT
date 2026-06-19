@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "946302365756.com",
       "domain_defanged": "946302365756[.]com",
-      "case_id": "PD-20260617-568EEB",
-      "analyzed_at": "2026-06-17T16:09:08.488Z",
+      "case_id": "PD-20260619-568EEB",
+      "analyzed_at": "2026-06-19T00:38:07.470Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed657-f089-7536-ba6f-170279668ad3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edc24-9686-70e6-9353-591faefe617c.png",
+          "url": "https://urlscan.io/result/019edc24-9686-70e6-9353-591faefe617c/",
+          "title": "bet365最快线路检测中心"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Name.com, Inc.",
         "created": "2025-11-09T05:40:06Z",
         "expires": "2027-11-09T05:40:06Z",
-        "age_days": 220,
+        "age_days": 221,
         "nameservers": [
           "DANIELLA.NS.CLOUDFLARE.COM",
           "TATE.NS.CLOUDFLARE.COM"
@@ -76,7 +85,14 @@
       },
       "infrastructure": {
         "ip": "103.226.153.55",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "103.226.153.55",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS135357 HONG KONG KOWLOON TELECOMMUNICATIONS CO.,LIMITED",
+          "asn": "AS135357"
+        },
         "dns": {
           "A": [
             "103.226.153.55"
@@ -96,7 +112,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "SKHT-AS",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS135357"
+        }
       },
       "report_services": [
         {
@@ -223,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (946302365756.com/web/)\"; flow:established,to_server; http.uri; content:\"/web/\"; startswith; fast_pattern; http.host; content:\"946302365756.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012913; classtype:social-engineering; sid:6012913; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:09:01.524847+00:00",
+  "updated_at": "2026-06-19T00:38:01.578262+00:00",
   "probe": {
     "dns": true,
     "whois": true,

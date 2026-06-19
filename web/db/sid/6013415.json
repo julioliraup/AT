@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://freeflowrodovia.com/",
       "domain": "freeflowrodovia.com",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "140.99.164.86",
+      "http_code": 200,
+      "http_response": {
+        "server": "LiteSpeed",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,38 +43,64 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (376), with CRLF line terminators",
+      "sha256": "081e438c4c92416a9a053280c0b25a0926249fb65b2f8e5c9c218607c5c242b6",
+      "md5": "a3c4f171e0353dd5d06b3456bbf037d7",
+      "cert": {
+        "subject_cn": "freeflowrodovia.com",
+        "subject_alt_names": [
+          "freeflowrodovia.com"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-29T19:48:57+00:00",
+        "not_valid_after": "2026-08-27T19:48:56+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "491853145906566878482703571237352031053633",
+        "fingerprint_sha1": "71 06 C0 EC 05 59 5B 35 D3 0E D6 AA EC 70 7F 62 2C 86 E8 0A",
+        "fingerprint_sha256": "14 CC AE 72 CC F6 62 6F 21 F1 43 BA 14 D7 E8 8E 8A 49 A2 03 79 16 34 E1 87 5E C0 65 5C C8 07 9C"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-06-18T02:46:36",
+      "first_seen_secs": 1781750796.0
     },
     "phishdestroy": {
       "domain": "freeflowrodovia.com",
       "domain_defanged": "freeflowrodovia[.]com",
-      "case_id": "PD-20260617-546D32",
-      "analyzed_at": "2026-06-17T17:04:53.294Z",
+      "case_id": "PD-20260619-546D32",
+      "analyzed_at": "2026-06-19T01:41:46.702Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Pedágio Digital"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed68a-fa97-76af-9dc0-98d9bca798de.png",
           "url": "https://urlscan.io/result/019ed68a-fa97-76af-9dc0-98d9bca798de/",
-          "pending": true
+          "title": "Pedágio Digital - Consulte e Pague Débitos Online | Pedagio Digital"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Pedágio Digital",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Ascio Technologies, Inc. Danmark - Filial af Ascio technologies, Inc. USA",
         "created": "2026-05-29T20:45:13Z",
         "expires": "2027-05-29T20:45:13Z",
-        "age_days": 18,
+        "age_days": 20,
         "nameservers": [
           "NS1.WEBSUPPORT.CZ",
           "NS2.WEBSUPPORT.CZ",
@@ -77,7 +109,14 @@
       },
       "infrastructure": {
         "ip": "140.99.164.86",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "140.99.164.86",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS396356 Latitude.sh",
+          "asn": "AS396356"
+        },
         "dns": {
           "A": [
             "140.99.164.86"
@@ -225,7 +264,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (freeflowrodovia.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"freeflowrodovia.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013415; classtype:social-engineering; sid:6013415; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:04:48.119017+00:00",
+  "updated_at": "2026-06-19T01:41:32.656563+00:00",
   "probe": {
     "dns": true,
     "whois": true,

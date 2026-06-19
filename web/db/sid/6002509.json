@@ -49,27 +49,44 @@
     "phishdestroy": {
       "domain": "121jio.senes.at",
       "domain_defanged": "121jio[.]senes[.]at",
-      "case_id": "PD-20260616-135AA1",
-      "analyzed_at": "2026-06-16T21:24:19.961Z",
+      "case_id": "PD-20260618-135AA1",
+      "analyzed_at": "2026-06-18T04:22:19.427Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed252-2609-7504-80ce-0312680ca2ad/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed459-e0f5-74e3-9ef5-ff59fff96c6f.png",
+          "url": "https://urlscan.io/result/019ed459-e0f5-74e3-9ef5-ff59fff96c6f/",
+          "title": "Staking"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.86.95.123",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.86.95.123",
+          "hostname": "123.95.86.172.static.cloudzy.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS30823 aurologic GmbH",
+          "asn": "AS30823"
+        },
         "dns": {
           "A": [
             "172.86.95.123"
@@ -78,7 +95,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AEZA-AS",
+          "abuse": "abuse@aeza.net",
+          "url": "mailto:abuse@aeza.net",
+          "logo": "https://i.ibb.co/rTV4jHy/pr-AEZA-AS.png",
+          "method": "email",
+          "asn": "AS30823"
+        }
       },
       "report_services": [
         {
@@ -205,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (121jio.senes.at/stakings/?b=YTo0OntzOjU6ImxhYmVsIjtzOjE6IjkiO3M6MzoidXNyIjtpOjE1NjtzOjQ6Im5vcGQiO3M6MTU6InJzczMucmVhZGxlcy5hdCI7czoxOiJvIjtpOjExMzY7fQ==)\"; flow:established,to_server; http.uri; content:\"/stakings/?b=YTo0OntzOjU6ImxhYmVsIjtzOjE6IjkiO3M6MzoidXNyIjtpOjE1NjtzOjQ6Im5vcGQiO3M6MTU6InJzczMucmVhZGxlcy5hdCI7czoxOiJvIjtpOjExMzY7fQ==\"; startswith; fast_pattern; http.host; content:\"121jio.senes.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002509; classtype:social-engineering; sid:6002509; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-16T21:24:16.131690+00:00",
+  "updated_at": "2026-06-18T04:22:14.310474+00:00",
   "probe": {
     "dns": true,
     "whois": true,

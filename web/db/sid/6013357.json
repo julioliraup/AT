@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "bradesco.atualizacaopj.net",
       "domain_defanged": "bradesco[.]atualizacaopj[.]net",
-      "case_id": "PD-20260617-6CC20E",
-      "analyzed_at": "2026-06-17T16:58:11.593Z",
+      "case_id": "PD-20260619-6CC20E",
+      "analyzed_at": "2026-06-19T01:34:06.818Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed684-d8ac-713e-8c03-1a839cae67b1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Banco Bradesco"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edcf7-554b-7539-b5f4-978f7e90e626.png",
+          "url": "https://urlscan.io/result/019edcf7-554b-7539-b5f4-978f7e90e626/",
+          "title": "Atendimento Empresarial"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Banco Bradesco",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -212,7 +221,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bradesco.atualizacaopj.net/login.php?hash=12721881866a30d8239daf15.53280986)\"; flow:established,to_server; http.uri; content:\"/login.php?hash=12721881866a30d8239daf15.53280986\"; startswith; fast_pattern; http.host; content:\"bradesco.atualizacaopj.net\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6013357; classtype:social-engineering; sid:6013357; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T16:58:07.558043+00:00",
+  "updated_at": "2026-06-19T01:34:01.117284+00:00",
   "probe": {
     "dns": true,
     "whois": false,

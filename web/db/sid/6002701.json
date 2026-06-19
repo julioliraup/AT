@@ -73,27 +73,43 @@
     "phishdestroy": {
       "domain": "facebook-clone-login.vercel.app",
       "domain_defanged": "facebook-clone-login[.]vercel[.]app",
-      "case_id": "PD-20260616-46C6C2",
-      "analyzed_at": "2026-06-16T21:44:44.346Z",
+      "case_id": "PD-20260618-46C6C2",
+      "analyzed_at": "2026-06-18T04:44:37.866Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed264-d4ca-753a-91ce-39cf14a946db/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed47c-a85a-76fb-8a7a-fe9bdf1c2825.png",
+          "url": "https://urlscan.io/result/019ed47c-a85a-76fb-8a7a-fe9bdf1c2825/",
+          "title": "Facebook - log in or sign up"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "64.29.17.194",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "64.29.17.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "64.29.17.194",
@@ -103,7 +119,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -230,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (facebook-clone-login.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"facebook-clone-login.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002701; classtype:social-engineering; sid:6002701; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-16T21:44:36.336331+00:00",
+  "updated_at": "2026-06-18T04:44:34.937645+00:00",
   "probe": {
     "dns": true,
     "whois": false,

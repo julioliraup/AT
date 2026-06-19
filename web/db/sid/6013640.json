@@ -49,27 +49,43 @@
     "phishdestroy": {
       "domain": "sanderunion.club",
       "domain_defanged": "sanderunion[.]club",
-      "case_id": "PD-20260617-6B599C",
-      "analyzed_at": "2026-06-17T17:33:09.617Z",
+      "case_id": "PD-20260619-6B599C",
+      "analyzed_at": "2026-06-19T02:07:30.245Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed6a4-dcf9-7579-ab9f-34945025487f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Santander"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edc24-763e-7309-8b6f-d9d3461cbab8.png",
+          "url": "https://urlscan.io/result/019edc24-763e-7309-8b6f-d9d3461cbab8/",
+          "title": "Online Bank Account | Personal Banking | Santander Bank - Santander"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Santander",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "31.56.229.111",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "31.56.229.111",
+          "city": "Kansas City",
+          "region": "Missouri",
+          "country": "US",
+          "org": "AS56971 AS56971 Cloud",
+          "asn": "AS56971"
+        },
         "dns": {
           "A": [
             "31.56.229.111"
@@ -82,7 +98,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CloudBackbone",
+          "abuse": "abuse@cloudbackbone.net",
+          "url": "mailto:abuse@cloudbackbone.net",
+          "logo": "https://i.ibb.co/rKHxvDbX/pr-Cloud-Backbone.png",
+          "method": "email",
+          "asn": "AS56971"
+        }
       },
       "report_services": [
         {
@@ -209,10 +232,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sanderunion.club/personal/)\"; flow:established,to_server; http.uri; content:\"/personal/\"; startswith; fast_pattern; http.host; content:\"sanderunion.club\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013640; classtype:social-engineering; sid:6013640; rev:1; metadata: signature_severity Major, created_et 2026_06_16;)",
-  "updated_at": "2026-06-17T17:33:00.500286+00:00",
+  "updated_at": "2026-06-19T02:07:27.005665+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

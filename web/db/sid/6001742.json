@@ -81,21 +81,68 @@
     "phishdestroy": {
       "domain": "ozd.cfl.mybluehost.me",
       "domain_defanged": "ozd[.]cfl[.]mybluehost[.]me",
-      "case_id": "PD-20260616-525445",
-      "analyzed_at": "2026-06-16T19:54:48.516Z",
+      "case_id": "PD-20260618-525445",
+      "analyzed_at": "2026-06-18T02:49:02.096Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed200-2e6e-7562-94dd-a302bdba1349/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ed370-800e-768c-a084-23bdebe6f313.png",
+          "url": "https://urlscan.io/result/019ed370-800e-768c-a084-23bdebe6f313/",
+          "title": "Page not found - Welcome"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -111,11 +158,11 @@
           "asn": "AS31898"
         },
         "dns": {
-          "A": [
-            "129.121.81.19"
-          ],
           "MX": [
             "0 mail.ozd.cfl.mybluehost.me."
+          ],
+          "A": [
+            "129.121.81.19"
           ],
           "NS": [
             "ns2.mybluehost.me.",
@@ -259,7 +306,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ozd .cfl .mybluehost .me/Mycss/mycss/)\"; flow:established,to_server; http.uri; content:\"/Mycss/mycss/\"; startswith; fast_pattern; http.host;  content:\"ozd.cfl.mybluehost.me\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001742; classtype:social-engineering; sid:6001742; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-16T19:54:39.702918+00:00",
+  "updated_at": "2026-06-18T02:48:55.160042+00:00",
   "probe": {
     "dns": true,
     "whois": true,

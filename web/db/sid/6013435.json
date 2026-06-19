@@ -21,20 +21,14 @@
     "alienvault": {
       "url": "http://reactiveren-nu.com/",
       "domain": "reactiveren-nu.com",
-      "url_count": 1,
+      "url_count": 3,
       "city_data": false,
-      "deep_analysis": true,
+      "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "104.21.83.47",
-      "http_code": 200,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0b7fe3efb69b332-PDX",
-        "cf_cache_status": "DYNAMIC",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
+      "ip": null,
+      "http_code": 0,
+      "http_response": null,
       "city": null,
       "region": null,
       "country_name": null,
@@ -43,59 +37,62 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (503), with CRLF, LF line terminators",
-      "sha256": "1276c17089aa7bd2fe59c09856c67ec05709ae5112635bd8e22cbc18482b4718",
-      "md5": "3cac18bae220fe2cf87b118ae7ef5045",
-      "cert": {
-        "subject_cn": "reactiveren-nu.com",
-        "subject_alt_names": [
-          "reactiveren-nu.com",
-          "*.reactiveren-nu.com"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-12T08:36:40+00:00",
-        "not_valid_after": "2026-09-10T09:35:06+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "273882552613065488075957070053322499359",
-        "fingerprint_sha1": "E2 BB 67 51 44 0A 8D A0 86 27 FA D3 3C E9 4E 51 B2 13 5A 03",
-        "fingerprint_sha256": "95 45 B1 82 5E 1B 0D 0A F6 37 58 D6 E2 B6 F1 C7 56 84 35 69 A6 EA F2 1F A0 0E 0B 71 6E A9 44 0C"
-      },
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-14T08:32:27",
-      "first_seen_secs": 1781425947.0
+      "first_seen": "2026-06-18T02:59:13",
+      "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "reactiveren-nu.com",
       "domain_defanged": "reactiveren-nu[.]com",
-      "case_id": "PD-20260617-39E520",
-      "analyzed_at": "2026-06-17T17:07:32.558Z",
+      "case_id": "PD-20260619-39E520",
+      "analyzed_at": "2026-06-19T01:44:37.250Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Rabobank"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecdf4-f426-7701-ad76-3def5057e234.png",
+          "url": "https://urlscan.io/result/019ecdf4-f426-7701-ad76-3def5057e234/",
+          "title": "Rabobank - Internet Bankieren"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Rabobank",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "OwnRegistrar, Inc.",
         "created": "2026-06-12T09:34:07Z",
         "expires": "2027-06-12T09:34:07Z",
-        "age_days": 5,
+        "age_days": 6,
         "nameservers": [
           "ABBY.NS.CLOUDFLARE.COM",
           "JIM.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.214.58",
+        "ipinfo": {
+          "ip": "172.67.214.58",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -107,7 +104,14 @@
           "method": "form",
           "iana_ids": "1250"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,10 +238,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (reactiveren-nu.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"reactiveren-nu.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013435; classtype:social-engineering; sid:6013435; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:07:19.568149+00:00",
+  "updated_at": "2026-06-19T01:44:33.331305+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

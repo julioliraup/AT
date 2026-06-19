@@ -50,18 +50,23 @@
     "phishdestroy": {
       "domain": "sw.run",
       "domain_defanged": "sw[.]run",
-      "case_id": "PD-20260616-351F1F",
-      "analyzed_at": "2026-06-16T19:42:23.812Z",
+      "case_id": "PD-20260618-351F1F",
+      "analyzed_at": "2026-06-18T02:29:43.133Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed1f4-d2cf-747d-bb51-f7389b0139ad/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ed875-6bc3-776a-bbf5-69ea54c9796d.png",
+          "url": "https://urlscan.io/result/019ed875-6bc3-776a-bbf5-69ea54c9796d/",
+          "title": "Facebook"
         }
       },
       "detections": [],
@@ -69,20 +74,27 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.60.61",
-        "ipinfo": null,
+        "ip": "172.67.192.180",
+        "ipinfo": {
+          "ip": "172.67.192.180",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3030::ac43:c0b4",
+            "2606:4700:3034::6815:3c3d"
+          ],
           "A": [
-            "104.21.60.61",
-            "172.67.192.180"
+            "172.67.192.180",
+            "104.21.60.61"
           ],
           "MX": [
             "1 smtp.google.com.",
             "15 k2afqnr7o2nkemumds5ijtusdjpqxodcpi5lfaut5gd7zhzkri7a.mx-verification.google.com."
-          ],
-          "AAAA": [
-            "2606:4700:3034::6815:3c3d",
-            "2606:4700:3030::ac43:c0b4"
           ],
           "NS": [
             "grant.ns.cloudflare.com.",
@@ -92,7 +104,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -219,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sw .run/page-contacts)\"; flow:established,to_server; http.uri; content:\"/page-contacts\"; startswith; fast_pattern; http.host;  content:\"sw.run\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001653; classtype:social-engineering; sid:6001653; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-16T19:42:18.735431+00:00",
+  "updated_at": "2026-06-18T02:29:37.112852+00:00",
   "probe": {
     "dns": true,
     "whois": true,

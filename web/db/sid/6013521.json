@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://agricole-espace.bolt.host/",
       "domain": "agricole-espace.bolt.host",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -31,7 +31,7 @@
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0af6a020b2f054d-PDX",
+        "cf_ray": "a0d712663a85efde-PDX",
         "cf_cache_status": "DYNAMIC",
         "alt_svc": null
       },
@@ -68,34 +68,43 @@
         "fingerprint_sha256": "EC 42 24 36 33 B8 8E EC F1 FE FE A1 DD D4 BD AC F9 EC C0 3A CC 43 D0 BF 03 57 3D 43 E4 78 F9 53"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-13T07:23:29",
-      "first_seen_secs": 1781335409.0
+      "first_seen": "2026-06-18T02:59:12",
+      "first_seen_secs": 1781751552.0
     },
     "phishdestroy": {
       "domain": "agricole-espace.bolt.host",
       "domain_defanged": "agricole-espace[.]bolt[.]host",
-      "case_id": "PD-20260617-6FF827",
-      "analyzed_at": "2026-06-17T17:18:33.992Z",
+      "case_id": "PD-20260619-6FF827",
+      "analyzed_at": "2026-06-19T01:54:08.829Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Credit Agricole"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed697-7fec-711d-9740-e2150d8db914.png",
           "url": "https://urlscan.io/result/019ed697-7fec-711d-9740-e2150d8db914/",
-          "pending": true
+          "title": "Crédit Agricole - Mon espace"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Credit Agricole",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.75.9",
+        "ip": "104.26.12.118",
         "ipinfo": {
-          "ip": "172.67.75.9",
+          "ip": "104.26.12.118",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -104,14 +113,14 @@
         },
         "dns": {
           "A": [
-            "172.67.75.9",
             "104.26.12.118",
-            "104.26.13.118"
+            "104.26.13.118",
+            "172.67.75.9"
           ],
           "AAAA": [
             "2606:4700:20::681a:c76",
-            "2606:4700:20::ac43:4b09",
-            "2606:4700:20::681a:d76"
+            "2606:4700:20::681a:d76",
+            "2606:4700:20::ac43:4b09"
           ]
         }
       },
@@ -251,7 +260,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (agricole-espace.bolt.host/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"agricole-espace.bolt.host\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013521; classtype:social-engineering; sid:6013521; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:18:21.201313+00:00",
+  "updated_at": "2026-06-19T01:54:05.428514+00:00",
   "probe": {
     "dns": true,
     "whois": true,

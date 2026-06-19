@@ -49,34 +49,102 @@
     "phishdestroy": {
       "domain": "titanprint.co.in",
       "domain_defanged": "titanprint[.]co[.]in",
-      "case_id": "PD-20260617-3C6191",
-      "analyzed_at": "2026-06-17T16:32:01.260Z",
+      "case_id": "PD-20260619-3C6191",
+      "analyzed_at": "2026-06-19T01:06:04.755Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "spam"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "Webroot": "Phishing and Other Frauds",
+            "alphaMountain.ai": "Spam, Suspicious (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ed66c-e331-70a6-8bb1-e74602047496.png",
           "url": "https://urlscan.io/result/019ed66c-e331-70a6-8bb1-e74602047496/",
-          "pending": true
+          "title": "Titan Print - #1 Document Printing Platform | Aadhaar, PAN, Voter ID"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "spam",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "144.76.234.111",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "144.76.234.111",
+          "hostname": "static.111.234.76.144.clients.your-server.de",
+          "city": "Falkenstein",
+          "region": "Saxony",
+          "country": "DE",
+          "org": "AS24940 Hetzner Online GmbH",
+          "asn": "AS24940"
+        },
         "dns": {
+          "NS": [
+            "ns57.onott.com.",
+            "ns58.onott.com."
+          ],
           "MX": [
             "0 titanprint.co.in."
-          ],
-          "NS": [
-            "ns58.onott.com.",
-            "ns57.onott.com."
           ],
           "A": [
             "144.76.234.111"
@@ -85,7 +153,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Hetzner",
+          "abuse": "abuse@hetzner.com",
+          "url": "https://www.hetzner.com/legal/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS24940"
+        }
       },
       "report_services": [
         {
@@ -212,7 +287,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (titanprint.co.in/dashboard/login.php)\"; flow:established,to_server; http.uri; content:\"/dashboard/login.php\"; startswith; fast_pattern; http.host; content:\"titanprint.co.in\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6013116; classtype:social-engineering; sid:6013116; rev:1; metadata: signature_severity Major, created_et 2026_06_14;)",
-  "updated_at": "2026-06-17T16:31:55.358836+00:00",
+  "updated_at": "2026-06-19T01:05:58.782606+00:00",
   "probe": {
     "dns": true,
     "whois": false,

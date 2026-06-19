@@ -18,45 +18,119 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://bas.a9177395466.workers.dev/",
+      "domain": "bas.a9177395466.workers.dev",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.67.189.2",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a0d7125c8dc11ef3-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "1191dd42806bf684760ac5f92df7354b9089f124cf27419965d6db9deaa114b2",
+      "md5": "e6e79fef3b5ee4ceca2e17d0270d9224",
+      "cert": {
+        "subject_cn": "a9177395466.workers.dev",
+        "subject_alt_names": [
+          "a9177395466.workers.dev",
+          "*.a9177395466.workers.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-19T13:17:40+00:00",
+        "not_valid_after": "2026-08-17T14:16:14+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "224099219859355578695722841056572616379",
+        "fingerprint_sha1": "24 2B 80 0A 0B 90 FF 8A 0A C0 E3 90 35 E1 38 8B 14 0B FB 1B",
+        "fingerprint_sha256": "BD F4 9A 49 5A 87 1F 3B 49 27 84 4B C4 41 B3 06 3B 57 91 5E 31 07 AE FF 93 A0 B8 EF EC B7 86 38"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-06-18T02:59:11",
+      "first_seen_secs": 1781751551.0
+    },
     "phishdestroy": {
       "domain": "bas.a9177395466.workers.dev",
       "domain_defanged": "bas[.]a9177395466[.]workers[.]dev",
-      "case_id": "PD-20260617-60199B",
-      "analyzed_at": "2026-06-17T17:11:01.455Z",
+      "case_id": "PD-20260619-60199B",
+      "analyzed_at": "2026-06-19T01:48:28.780Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed690-98db-7116-949d-7b7a92703257.png",
           "url": "https://urlscan.io/result/019ed690-98db-7116-949d-7b7a92703257/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.189.2",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.189.2",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3030::6815:33e0",
+            "2606:4700:3037::ac43:bd02"
+          ],
           "A": [
             "172.67.189.2",
             "104.21.51.224"
-          ],
-          "AAAA": [
-            "2606:4700:3037::ac43:bd02",
-            "2606:4700:3030::6815:33e0"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -183,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bas.a9177395466.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bas.a9177395466.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013466; classtype:social-engineering; sid:6013466; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:10:47.451651+00:00",
+  "updated_at": "2026-06-19T01:48:25.375845+00:00",
   "probe": {
     "dns": true,
     "whois": false,

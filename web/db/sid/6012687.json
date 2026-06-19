@@ -49,32 +49,64 @@
     "phishdestroy": {
       "domain": "sikel-corn-sans.click",
       "domain_defanged": "sikel-corn-sans[.]click",
-      "case_id": "PD-20260617-1EB1B3",
-      "analyzed_at": "2026-06-17T15:41:28.391Z",
+      "case_id": "PD-20260619-1EB1B3",
+      "analyzed_at": "2026-06-19T00:10:33.813Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing, Newly Registered (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ed63e-9c49-77da-acdd-f56969523a7d.png",
           "url": "https://urlscan.io/result/019ed63e-9c49-77da-acdd-f56969523a7d/",
-          "pending": true
+          "title": "sikel-corn-sans.click | 522: Connection timed out"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.143.103",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.143.103",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3034::6815:5f40",
-            "2606:4700:3031::ac43:8f67"
-          ],
           "A": [
             "172.67.143.103",
             "104.21.95.64"
@@ -82,12 +114,23 @@
           "NS": [
             "ganz.ns.cloudflare.com.",
             "michelle.ns.cloudflare.com."
+          ],
+          "AAAA": [
+            "2606:4700:3034::6815:5f40",
+            "2606:4700:3031::ac43:8f67"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -214,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sikel-corn-sans.click/m/V5wc8ZpFM0osINI2-yMie5av)\"; flow:established,to_server; http.uri; content:\"/m/V5wc8ZpFM0osINI2-yMie5av\"; startswith; fast_pattern; http.host; content:\"sikel-corn-sans.click\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012687; classtype:social-engineering; sid:6012687; rev:1; metadata: signature_severity Major, created_et 2026_06_11;)",
-  "updated_at": "2026-06-17T15:41:23.939736+00:00",
+  "updated_at": "2026-06-19T00:10:28.820049+00:00",
   "probe": {
     "dns": true,
     "whois": true,

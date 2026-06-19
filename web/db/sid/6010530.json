@@ -21,8 +21,8 @@
     "alienvault": {
       "url": "http://qantasmoney.ns02.info/",
       "domain": "qantasmoney.ns02.info",
-      "url_count": 3,
-      "city_data": false,
+      "url_count": 4,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,20 +49,24 @@
       "md5": "bfd986155d142e8d9b7c9abe96fee0ad",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-11T02:39:50",
-      "first_seen_secs": 1781145590.0
+      "first_seen": "2026-06-18T02:58:40",
+      "first_seen_secs": 1781751520.0
     },
     "phishdestroy": {
       "domain": "qantasmoney.ns02.info",
       "domain_defanged": "qantasmoney[.]ns02[.]info",
-      "case_id": "PD-20260617-491540",
-      "analyzed_at": "2026-06-17T11:41:21.090Z",
+      "case_id": "PD-20260618-491540",
+      "analyzed_at": "2026-06-18T19:44:57.561Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019edc43-cc65-737f-a248-b238fa199aa2/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,8 +74,17 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "204.16.169.54",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "NS": [
+            "ns2.changeip.com.",
+            "ns1.changeip.com."
+          ],
+          "A": [
+            "204.16.169.54"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -202,10 +215,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (qantasmoney.ns02.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"qantasmoney.ns02.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010530; classtype:social-engineering; sid:6010530; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-17T11:41:00.717003+00:00",
+  "updated_at": "2026-06-18T19:44:15.837254+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

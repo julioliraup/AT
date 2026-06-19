@@ -18,25 +18,67 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://m.365365k.app/chs/",
+      "domain": "m.365365k.app",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.65.235.196",
+      "http_code": 200,
+      "http_response": {
+        "server": "gocache",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (871)",
+      "sha256": "bcec7b06d7ad8335d3a7d9806c4691fb4c9803057f08bab22a97b56aee20372f",
+      "md5": "eda239bebef9014dcc3501be2ac62e4a",
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-06-13T23:43:43",
+      "first_seen_secs": 1781394223.0
+    },
     "phishdestroy": {
       "domain": "m.365365k.app",
       "domain_defanged": "m[.]365365k[.]app",
-      "case_id": "PD-20260617-DC56F5",
-      "analyzed_at": "2026-06-17T16:11:01.143Z",
+      "case_id": "PD-20260619-DC56F5",
+      "analyzed_at": "2026-06-19T00:40:48.148Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed659-a060-7665-9337-12cda60f35f1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edbee-112a-75f8-9872-8c28454ad512.png",
+          "url": "https://urlscan.io/result/019edbee-112a-75f8-9872-8c28454ad512/",
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -47,6 +89,11 @@
           "CNAME": [
             "m.365365k.app.securesdns.com."
           ],
+          "MX": [
+            "m.365365k.app.securesdns.com.",
+            "m.365365k.app.fastliii.com.",
+            "cdn-210-cdn-210-b06-ws.fastliii.com."
+          ],
           "A": [
             "m.365365k.app.securesdns.com.",
             "m.365365k.app.fastliii.com.",
@@ -54,11 +101,6 @@
             "172.65.235.196"
           ],
           "NS": [
-            "m.365365k.app.securesdns.com.",
-            "m.365365k.app.fastliii.com.",
-            "cdn-210-cdn-210-b06-ws.fastliii.com."
-          ],
-          "MX": [
             "m.365365k.app.securesdns.com.",
             "m.365365k.app.fastliii.com.",
             "cdn-210-cdn-210-b06-ws.fastliii.com."
@@ -72,7 +114,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -199,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.365365k.app/chs/)\"; flow:established,to_server; http.uri; content:\"/chs/\"; startswith; fast_pattern; http.host; content:\"m.365365k.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012932; classtype:social-engineering; sid:6012932; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:10:46.245746+00:00",
+  "updated_at": "2026-06-19T00:40:44.809373+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -21,12 +21,12 @@
     "alienvault": {
       "url": "http://trezrrsuite.blogspot.com/",
       "domain": "trezrrsuite.blogspot.com",
-      "url_count": 1,
+      "url_count": 3,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "142.250.73.129",
+      "ip": "142.251.33.193",
       "http_code": 200,
       "http_response": {
         "server": "GSE",
@@ -204,27 +204,36 @@
         "fingerprint_sha256": "11 48 85 2F E7 29 7C 10 2C 4C 06 26 1B BF D7 31 CC CA 48 80 D3 FA 9F 3F AC FA 8F 87 CD 77 00 44"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-17T08:58:51",
-      "first_seen_secs": 1781686731.0
+      "first_seen": "2026-06-18T02:59:05",
+      "first_seen_secs": 1781751545.0
     },
     "phishdestroy": {
       "domain": "trezrrsuite.blogspot.com",
       "domain_defanged": "trezrrsuite[.]blogspot[.]com",
-      "case_id": "PD-20260617-527C01",
-      "analyzed_at": "2026-06-17T16:05:05.203Z",
+      "case_id": "PD-20260619-527C01",
+      "analyzed_at": "2026-06-19T00:32:29.407Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed654-396a-77cf-921f-3b7cee893a1e.png",
           "url": "https://urlscan.io/result/019ed654-396a-77cf-921f-3b7cee893a1e/",
-          "pending": true
+          "title": "Trezor Suite | Starting Up Your Device"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -232,16 +241,16 @@
         "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
+          "A": [
             "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4004:802::2001"
+            "142.250.219.129"
           ],
           "MX": [
             "blogspot.l.googleusercontent.com."
           ],
-          "A": [
+          "AAAA": [
             "blogspot.l.googleusercontent.com.",
-            "142.250.78.161"
+            "2800:3f0:4004:80f::2001"
           ],
           "CNAME": [
             "blogspot.l.googleusercontent.com."
@@ -253,7 +262,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -380,7 +396,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (trezrrsuite.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"trezrrsuite.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012885; classtype:social-engineering; sid:6012885; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:04:56.747189+00:00",
+  "updated_at": "2026-06-19T00:32:23.012213+00:00",
   "probe": {
     "dns": true,
     "whois": false,

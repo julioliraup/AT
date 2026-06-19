@@ -72,27 +72,55 @@
     "phishdestroy": {
       "domain": "gov-parkingrq.shop",
       "domain_defanged": "gov-parkingrq[.]shop",
-      "case_id": "PD-20260617-4C408E",
-      "analyzed_at": "2026-06-17T17:09:03.368Z",
+      "case_id": "PD-20260619-4C408E",
+      "analyzed_at": "2026-06-19T01:45:54.444Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed29d-b664-74aa-ac46-39b994c0be0d.png",
+          "url": "https://urlscan.io/result/019ed29d-b664-74aa-ac46-39b994c0be0d/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.166.204.50",
+        "ipinfo": {
+          "ip": "43.166.204.50",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -219,7 +247,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingrq.shop/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingrq.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013445; classtype:social-engineering; sid:6013445; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:08:51.829352+00:00",
+  "updated_at": "2026-06-19T01:45:49.325300+00:00",
   "probe": {
     "dns": true,
     "whois": true,

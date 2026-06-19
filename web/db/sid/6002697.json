@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "acccount-centers-password-and-security-vbnad.pages.dev",
       "domain_defanged": "acccount-centers-password-and-security-vbnad[.]pages[.]dev",
-      "case_id": "PD-20260616-7C0982",
-      "analyzed_at": "2026-06-16T21:44:12.100Z",
+      "case_id": "PD-20260618-7C0982",
+      "analyzed_at": "2026-06-18T04:44:16.181Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed264-5625-718c-af90-5bb37042ed95/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed6d2-5919-72de-9fcd-99f24ef07aad.png",
+          "url": "https://urlscan.io/result/019ed6d2-5919-72de-9fcd-99f24ef07aad/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (acccount-centers-password-and-security-vbnad.pages.dev/changepassmoblie)\"; flow:established,to_server; http.uri; content:\"/changepassmoblie\"; startswith; fast_pattern; http.host; content:\"acccount-centers-password-and-security-vbnad.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002697; classtype:social-engineering; sid:6002697; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-16T21:44:04.492467+00:00",
+  "updated_at": "2026-06-18T04:44:13.442531+00:00",
   "probe": {
     "dns": true,
     "whois": false,

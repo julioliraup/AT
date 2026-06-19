@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "dpdlocoym.top",
       "domain_defanged": "dpdlocoym[.]top",
-      "case_id": "PD-20260616-4A2533",
-      "analyzed_at": "2026-06-16T21:16:45.558Z",
+      "case_id": "PD-20260618-4A2533",
+      "analyzed_at": "2026-06-18T04:15:56.676Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e37f5-6e8b-715f-a304-cdcfd5639598.png",
+          "url": "https://urlscan.io/result/019e37f5-6e8b-715f-a304-cdcfd5639598/",
+          "title": "DPD (UK) - Your delivery experts"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.156.5.185",
+        "ipinfo": {
+          "ip": "43.156.5.185",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.dpdlocoym.top/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.dpdlocoym.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002452; classtype:social-engineering; sid:6002452; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-16T21:16:37.582732+00:00",
+  "updated_at": "2026-06-18T04:15:46.832548+00:00",
   "probe": {
     "dns": false,
     "whois": false,

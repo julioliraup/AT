@@ -21,18 +21,18 @@
     "alienvault": {
       "url": "http://dubai-bookingcomdubai.webflow.io/",
       "domain": "dubai-bookingcomdubai.webflow.io",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.64.151.8",
-      "http_code": 404,
+      "ip": "104.18.36.248",
+      "http_code": 403,
       "http_response": {
         "server": "cloudflare",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a0b0c7a1c8a8b298-PDX",
-        "cf_cache_status": "MISS",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a0d711a26fc95ed8-PDX",
+        "cf_cache_status": null,
         "alt_svc": "h3=\":443\"; ma=86400"
       },
       "city": null,
@@ -44,9 +44,9 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text",
-      "sha256": "90c032f35272ba1a7aa93027ab635e6610d4f24cf9e53c0624d00f065d7c7e7d",
-      "md5": "e200b4189637c2d90bbfcefdd0442c39",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "09f83527c14353d9f08a60bb1d85403ba2619f4362feb997ef22757dd4593254",
+      "md5": "447e135447cc0f542decf87a96c77711",
       "cert": {
         "subject_cn": "webflow.io",
         "subject_alt_names": [
@@ -67,37 +67,53 @@
         "fingerprint_sha256": "0D C0 BE 3D 83 7E 60 B4 43 3D 84 C6 73 85 BD C3 54 BB 83 30 7D 80 C7 1F B6 7D 87 F1 BE EC 53 C6"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-13T11:33:19",
-      "first_seen_secs": 1781350399.0
+      "first_seen": "2026-06-18T02:59:05",
+      "first_seen_secs": 1781751545.0
     },
     "phishdestroy": {
       "domain": "dubai-bookingcomdubai.webflow.io",
       "domain_defanged": "dubai-bookingcomdubai[.]webflow[.]io",
-      "case_id": "PD-20260617-47BFFA",
-      "analyzed_at": "2026-06-17T16:16:20.247Z",
+      "case_id": "PD-20260619-47BFFA",
+      "analyzed_at": "2026-06-19T00:49:24.446Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed65e-87a6-775a-988b-012d7e38adbf.png",
           "url": "https://urlscan.io/result/019ed65e-87a6-775a-988b-012d7e38adbf/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
-        "ipinfo": null,
+        "ip": "172.64.151.8",
+        "ipinfo": {
+          "ip": "172.64.151.8",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "104.18.36.248",
-            "172.64.151.8"
+            "172.64.151.8",
+            "104.18.36.248"
           ],
           "AAAA": [
             "2a06:98c1:3100::6812:24f8",
@@ -107,7 +123,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,10 +257,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dubai-bookingcomdubai.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"dubai-bookingcomdubai.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012987; classtype:social-engineering; sid:6012987; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:16:11.981969+00:00",
+  "updated_at": "2026-06-19T00:49:08.989803+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

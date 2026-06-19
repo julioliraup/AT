@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://claim-danaa-pending.naa.my.id/",
       "domain": "claim-danaa-pending.naa.my.id",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "104.21.51.40",
+      "ip": "172.67.220.180",
       "http_code": 200,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html",
-        "cf_ray": "a09d433de9ff2fbe-PDX",
+        "cf_ray": "a0d70f865ce75012-PDX",
         "cf_cache_status": "DYNAMIC",
         "alt_svc": "h3=\":443\"; ma=86400"
       },
@@ -45,51 +45,74 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (507)",
-      "sha256": "9d12cea2ebc26a26c11027ab8e99ab6ecf83208973735859ff4368ebdad82597",
-      "md5": "9df2cdf49d0cff218ba90d719ed77095",
+      "sha256": "8a7e7058d9e7dbad5f4d543475efbaddc662886db23b9006ec91bf805cf1be4f",
+      "md5": "7568e24ab7c4c1e9ebf4342ee70ff796",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-11T02:40:03",
-      "first_seen_secs": 1781145603.0
+      "first_seen": "2026-06-18T02:58:42",
+      "first_seen_secs": 1781751522.0
     },
     "phishdestroy": {
       "domain": "claim-danaa-pending.naa.my.id",
       "domain_defanged": "claim-danaa-pending[.]naa[.]my[.]id",
-      "case_id": "PD-20260616-41313D",
-      "analyzed_at": "2026-06-16T21:36:22.040Z",
+      "case_id": "PD-20260618-41313D",
+      "analyzed_at": "2026-06-18T04:35:43.946Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed25d-2aa1-757e-98a6-917c35c90167.png",
           "url": "https://urlscan.io/result/019ed25d-2aa1-757e-98a6-917c35c90167/",
-          "pending": true
+          "title": "DANA - Apa pun transaksinya selalu ada DANA"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.51.40",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.51.40",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3037::6815:3328",
-            "2606:4700:3033::ac43:dcb4"
-          ],
           "A": [
             "104.21.51.40",
             "172.67.220.180"
+          ],
+          "AAAA": [
+            "2606:4700:3037::6815:3328",
+            "2606:4700:3033::ac43:dcb4"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (claim-danaa-pending.naa.my.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"claim-danaa-pending.naa.my.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002631; classtype:social-engineering; sid:6002631; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-16T21:36:17.005349+00:00",
+  "updated_at": "2026-06-18T04:35:38.257583+00:00",
   "probe": {
     "dns": true,
     "whois": true,

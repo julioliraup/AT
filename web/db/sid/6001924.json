@@ -50,21 +50,38 @@
     "phishdestroy": {
       "domain": "lite.evernote.com",
       "domain_defanged": "lite[.]evernote[.]com",
-      "case_id": "PD-20260616-53E9F6",
-      "analyzed_at": "2026-06-16T20:15:46.775Z",
+      "case_id": "PD-20260618-53E9F6",
+      "analyzed_at": "2026-06-18T03:13:53.478Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed213-62e2-764a-beee-61b02ccda505/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ed72c-7186-7069-9713-c9109fb67e25.png",
+          "url": "https://urlscan.io/result/019ed72c-7186-7069-9713-c9109fb67e25/",
+          "title": "LGBTQ Resources for Educators"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -72,13 +89,13 @@
         "ip": "bendingspoons.map.fastly.net.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "bendingspoons.map.fastly.net."
-          ],
           "AAAA": [
             "bendingspoons.map.fastly.net.",
             "2a04:4e42:4e::820",
             "2a04:4e42:4f::820"
+          ],
+          "MX": [
+            "bendingspoons.map.fastly.net."
           ],
           "A": [
             "bendingspoons.map.fastly.net.",
@@ -95,7 +112,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -222,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lite .evernote .com/note/def7c487-d207-e873-7d46-5b1bf924f520)\"; flow:established,to_server; http.uri; content:\"/note/def7c487-d207-e873-7d46-5b1bf924f520\"; startswith; fast_pattern; http.host;  content:\"lite.evernote.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001924; classtype:social-engineering; sid:6001924; rev:2; metadata: signature_severity Major, created_et 2026_05_12;)",
-  "updated_at": "2026-06-16T20:15:42.915969+00:00",
+  "updated_at": "2026-06-18T03:13:44.365007+00:00",
   "probe": {
     "dns": true,
     "whois": false,

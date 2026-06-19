@@ -18,84 +18,54 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://fortinventary.com/",
-      "domain": "fortinventary.com",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "104.21.12.141",
-      "http_code": 200,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html",
-        "cf_ray": "a0af72739805b7b9-PDX",
-        "cf_cache_status": "DYNAMIC",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (2040)",
-      "sha256": "ab84b9269140990ce44a2ec594c83825626a2d815dcad1d80f0914efdc63826e",
-      "md5": "18d40ee0d27a5a8e83f0dd6e5dbf0e9c",
-      "cert": {
-        "subject_cn": "fortinventary.com",
-        "subject_alt_names": [
-          "*.fortinventary.com",
-          "fortinventary.com"
-        ],
-        "issuer_cn": "YE1",
-        "issuer_org": "Let's Encrypt",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-01T18:45:19+00:00",
-        "not_valid_after": "2026-08-30T18:45:18+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha384_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "533054525193819483480480071119881857362153",
-        "fingerprint_sha1": "D3 0A 79 AD F3 D6 5C FB FC C2 22 86 13 53 5E 09 EE A5 53 E9",
-        "fingerprint_sha256": "59 5F EF B7 C3 A9 F8 A3 D2 4F 01 E1 39 DD 01 49 E9 B2 97 48 98 84 29 3C 54 BC 2F 5F C7 59 A9 AE"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-06-13T07:33:45",
-      "first_seen_secs": 1781336025.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "fortinventary.com",
       "domain_defanged": "fortinventary[.]com",
-      "case_id": "PD-20260617-E8D8D7",
-      "analyzed_at": "2026-06-17T16:13:41.519Z",
+      "case_id": "PD-20260619-E8D8D7",
+      "analyzed_at": "2026-06-19T00:44:20.254Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec7ba-3cb9-76d4-b152-3064faa95537.png",
+          "url": "https://urlscan.io/result/019ec7ba-3cb9-76d4-b152-3064faa95537/",
+          "title": "Fortnite Inventory Checker | Epic Games"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Web Commerce Communications Limited dba WebNic.cc",
         "created": "2026-04-03T19:43:29Z",
         "expires": "2027-04-03T19:43:29Z",
-        "age_days": 74,
+        "age_days": 76,
         "nameservers": [
           "BETH.NS.CLOUDFLARE.COM",
           "PABLO.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.194.231",
+        "ipinfo": {
+          "ip": "172.67.194.231",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -107,7 +77,14 @@
           "method": "form",
           "iana_ids": "460"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,10 +211,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fortinventary.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fortinventary.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012961; classtype:social-engineering; sid:6012961; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:13:33.697164+00:00",
+  "updated_at": "2026-06-19T00:44:01.678997+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

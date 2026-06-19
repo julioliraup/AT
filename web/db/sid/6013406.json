@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://fnlocker.one/",
       "domain": "fnlocker.one",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.67.213.11",
+      "ip": "104.21.61.187",
       "http_code": 200,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html",
-        "cf_ray": "a0c8e975bb42de1d-PDX",
+        "cf_ray": "a0d6f8a79cb60dcf-PDX",
         "cf_cache_status": "DYNAMIC",
         "alt_svc": "h3=\":443\"; ma=86400"
       },
@@ -67,34 +67,43 @@
         "fingerprint_sha256": "46 FC 33 59 C9 4D DF CF 57 0A 8C 96 59 51 24 B6 9B EE 48 B8 FD F8 AA 8D 40 51 51 C8 0F F6 C4 44"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-16T09:49:09",
-      "first_seen_secs": 1781603349.0
+      "first_seen": "2026-06-18T02:46:36",
+      "first_seen_secs": 1781750796.0
     },
     "phishdestroy": {
       "domain": "fnlocker.one",
       "domain_defanged": "fnlocker[.]one",
-      "case_id": "PD-20260617-5EBA31",
-      "analyzed_at": "2026-06-17T17:03:54.303Z",
+      "case_id": "PD-20260619-5EBA31",
+      "analyzed_at": "2026-06-19T01:40:03.007Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed68a-11a6-77b0-aa93-cbb499599c9c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed973-b8b0-70fe-9d06-553ec739ea54.png",
+          "url": "https://urlscan.io/result/019ed973-b8b0-70fe-9d06-553ec739ea54/",
+          "title": "Fortnite Inventory Checker | Epic Games"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.61.187",
+        "ip": "172.67.213.11",
         "ipinfo": {
-          "ip": "104.21.61.187",
+          "ip": "172.67.213.11",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:3034::ac43:d50b",
-            "2606:4700:3032::6815:3dbb"
+            "2606:4700:3032::6815:3dbb",
+            "2606:4700:3034::ac43:d50b"
           ],
           "A": [
-            "104.21.61.187",
-            "172.67.213.11"
+            "172.67.213.11",
+            "104.21.61.187"
           ],
           "NS": [
             "gigi.ns.cloudflare.com.",
@@ -252,10 +261,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fnlocker.one/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fnlocker.one\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013406; classtype:social-engineering; sid:6013406; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:03:45.346294+00:00",
+  "updated_at": "2026-06-19T01:39:51.730308+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

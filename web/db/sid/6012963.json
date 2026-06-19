@@ -21,12 +21,12 @@
     "alienvault": {
       "url": "http://www.treziostart.blogspot.com/",
       "domain": "www.treziostart.blogspot.com",
-      "url_count": 3,
+      "url_count": 4,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "142.250.73.97",
+      "ip": "142.251.33.193",
       "http_code": 200,
       "http_response": {
         "server": "GSE",
@@ -93,6 +93,7 @@
           "*.ads-static.usercontent.goog",
           "*.executionbox.usercontent.goog",
           "*.aiplayables.usercontent.goog",
+          "*.playground.usercontent.goog",
           "manifest.c.mail.googleusercontent.com",
           "manifest.lh3-da.googleusercontent.com",
           "manifest.lh3-db.googleusercontent.com",
@@ -199,38 +200,47 @@
         "issuer_cn": "WR2",
         "issuer_org": "Google Trust Services",
         "issuer_country": "US",
-        "not_valid_before": "2026-01-26T08:40:50+00:00",
-        "not_valid_after": "2026-04-20T08:40:49+00:00",
+        "not_valid_before": "2026-05-25T08:38:04+00:00",
+        "not_valid_after": "2026-08-17T08:38:03+00:00",
         "is_expired": false,
         "is_self_signed": "no",
         "signature_algorithm": "sha256_rsa",
         "x509_version": "v3",
-        "serial_number": "B9 F5 06 AE EC FF 1E 10 09 69 27 DE 9E E1 EF C4",
-        "fingerprint_sha1": "06 04 99 2C DD D6 A4 0B E3 35 7E 99 72 0E A3 FA A9 45 20 CD",
-        "fingerprint_sha256": "31 C3 F4 A8 BE C0 69 89 47 17 03 2E 78 FA BA D1 56 E4 78 26 6A 65 A6 E9 BF D5 DF C7 CB C8 E3 9D"
+        "serial_number": "C1 08 3C E6 34 41 E6 53 12 7F 5A F1 B1 F0 7E E8",
+        "fingerprint_sha1": "8A 45 58 E1 28 5D EC 72 37 94 23 13 FD E5 61 B3 6F D3 94 2B",
+        "fingerprint_sha256": "7A F7 24 D6 35 DD D5 79 C0 89 46 5E 34 9F F3 7A A0 A7 AF C8 53 0E CD 36 B1 EA BA 82 ED 0D 85 E3"
       },
       "safebrowsing": [],
-      "first_seen": "2026-02-19T04:28:53",
-      "first_seen_secs": 1771475333.0
+      "first_seen": "2026-06-18T02:59:05",
+      "first_seen_secs": 1781751545.0
     },
     "phishdestroy": {
       "domain": "treziostart.blogspot.com",
       "domain_defanged": "treziostart[.]blogspot[.]com",
-      "case_id": "PD-20260617-10247D",
-      "analyzed_at": "2026-06-17T16:13:47.672Z",
+      "case_id": "PD-20260619-10247D",
+      "analyzed_at": "2026-06-19T00:44:37.187Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed65c-32a0-71c1-a76e-d1589734c3d2.png",
           "url": "https://urlscan.io/result/019ed65c-32a0-71c1-a76e-d1589734c3d2/",
-          "pending": true
+          "title": "Trezor.io start (Official) | The #1 Hardware Wallet"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -238,16 +248,16 @@
         "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
         "dns": {
+          "MX": [
+            "blogspot.l.googleusercontent.com."
+          ],
           "A": [
             "blogspot.l.googleusercontent.com.",
             "142.250.219.1"
           ],
-          "MX": [
-            "blogspot.l.googleusercontent.com."
-          ],
           "AAAA": [
             "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4004:815::2001"
+            "2800:3f0:4004:80d::2001"
           ],
           "CNAME": [
             "blogspot.l.googleusercontent.com."
@@ -259,7 +269,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -386,7 +403,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.treziostart.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.treziostart.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012963; classtype:social-engineering; sid:6012963; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:13:44.328617+00:00",
+  "updated_at": "2026-06-19T00:44:30.517182+00:00",
   "probe": {
     "dns": true,
     "whois": false,

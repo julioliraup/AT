@@ -73,41 +73,64 @@
     "phishdestroy": {
       "domain": "pemulihaanakunda.naa.my.id",
       "domain_defanged": "pemulihaanakunda[.]naa[.]my[.]id",
-      "case_id": "PD-20260616-3D3EDE",
-      "analyzed_at": "2026-06-16T21:41:16.163Z",
+      "case_id": "PD-20260618-3D3EDE",
+      "analyzed_at": "2026-06-18T04:40:24.404Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed261-a790-769b-9ade-07e52530e097.png",
           "url": "https://urlscan.io/result/019ed261-a790-769b-9ade-07e52530e097/",
-          "pending": true
+          "title": "DANA - Apa pun transaksinya selalu ada DANA"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.220.180",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.220.180",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.67.220.180",
             "104.21.51.40"
           ],
           "AAAA": [
-            "2606:4700:3037::6815:3328",
-            "2606:4700:3033::ac43:dcb4"
+            "2606:4700:3033::ac43:dcb4",
+            "2606:4700:3037::6815:3328"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pemulihaanakunda.naa.my.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"pemulihaanakunda.naa.my.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002671; classtype:social-engineering; sid:6002671; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-16T21:41:12.660297+00:00",
+  "updated_at": "2026-06-18T04:40:20.165380+00:00",
   "probe": {
     "dns": true,
     "whois": true,

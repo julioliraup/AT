@@ -21,20 +21,14 @@
     "alienvault": {
       "url": "http://www.fast-mobile-kaiyun.com/",
       "domain": "www.fast-mobile-kaiyun.com",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": false,
-      "deep_analysis": true,
+      "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "161.248.15.159",
-      "http_code": 200,
-      "http_response": {
-        "server": "nginx",
-        "content_type": "text/html",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": "quic=\":443\"; h3=\":443\"; h3-29=\":443\"; h3-27=\":443\";h3-25=\":443\"; h3-T050=\":443\"; h3-Q050=\":443\";h3-Q049=\":443\";h3-Q048=\":443\"; h3-Q046=\":443\"; h3-Q043=\":443\""
-      },
+      "ip": null,
+      "http_code": 0,
+      "http_response": null,
       "city": null,
       "region": null,
       "country_name": null,
@@ -43,41 +37,62 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (5237)",
-      "sha256": "72298a739884e7b5cdf5d8ca8dd78c4b84d8b3aa18cb8300ed6031d59f9f04da",
-      "md5": "ac9b424abb2219c78502c82b4beae22f",
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-14T08:00:34",
-      "first_seen_secs": 1781424034.0
+      "first_seen": "2026-06-18T03:00:03",
+      "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "fast-mobile-kaiyun.com",
       "domain_defanged": "fast-mobile-kaiyun[.]com",
-      "case_id": "PD-20260617-1C837F",
-      "analyzed_at": "2026-06-17T16:17:00.006Z",
+      "case_id": "PD-20260619-1C837F",
+      "analyzed_at": "2026-06-19T00:50:27.548Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "TikTok Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec174-1f6c-7060-9c7f-1c67f10ea54e.png",
+          "url": "https://urlscan.io/result/019ec174-1f6c-7060-9c7f-1c67f10ea54e/",
+          "title": "TikTok-Wholesale"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: TikTok Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Name SRS AB",
         "created": "2025-08-08T08:14:20Z",
         "expires": "2026-08-08T08:14:20Z",
-        "age_days": 313,
+        "age_days": 314,
         "nameservers": [
           "A7.SHARE-DNS.COM",
           "B7.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "161.248.15.159",
+        "ipinfo": {
+          "ip": "161.248.15.159",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS4907 IENS TECHNOLOGY PTE. LTD",
+          "asn": "AS4907"
+        },
         "dns": null
       },
       "report_to": {
@@ -216,10 +231,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.fast-mobile-kaiyun.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.fast-mobile-kaiyun.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012994; classtype:social-engineering; sid:6012994; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:16:51.687344+00:00",
+  "updated_at": "2026-06-19T00:50:22.838699+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

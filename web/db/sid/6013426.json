@@ -49,35 +49,51 @@
     "phishdestroy": {
       "domain": "tryugwyigiuqyugfq-tyieghoirurgqh.pages.dev",
       "domain_defanged": "tryugwyigiuqyugfq-tyieghoirurgqh[.]pages[.]dev",
-      "case_id": "PD-20260617-62AC13",
-      "analyzed_at": "2026-06-17T17:06:25.722Z",
+      "case_id": "PD-20260619-62AC13",
+      "analyzed_at": "2026-06-19T01:43:57.270Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed68c-63c7-739d-b6fc-d5eac8009324.png",
           "url": "https://urlscan.io/result/019ed68c-63c7-739d-b6fc-d5eac8009324/",
-          "pending": true
+          "title": "A.d.o.b.e | Edit - Sign - View"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.172",
-        "ipinfo": null,
+        "ip": "172.66.44.84",
+        "ipinfo": {
+          "ip": "172.66.44.84",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.66.47.172",
-            "172.66.44.84"
-          ],
           "AAAA": [
-            "2606:4700:310c::ac42:2c54",
-            "2606:4700:310c::ac42:2fac"
+            "2606:4700:310c::ac42:2fac",
+            "2606:4700:310c::ac42:2c54"
+          ],
+          "A": [
+            "172.66.44.84",
+            "172.66.47.172"
           ],
           "NS": [
             "annalise.ns.cloudflare.com.",
@@ -87,7 +103,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -214,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tryugwyigiuqyugfq-tyieghoirurgqh.pages.dev/?e=aran@7998e30432222a0842c9980c5cd10770824a.com)\"; flow:established,to_server; http.uri; content:\"/?e=aran@7998e30432222a0842c9980c5cd10770824a.com\"; startswith; fast_pattern; http.host; content:\"tryugwyigiuqyugfq-tyieghoirurgqh.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013426; classtype:social-engineering; sid:6013426; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:06:23.047617+00:00",
+  "updated_at": "2026-06-19T01:43:53.878424+00:00",
   "probe": {
     "dns": true,
     "whois": false,

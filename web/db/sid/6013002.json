@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "trezorio-start.blogspot.com",
       "domain_defanged": "trezorio-start[.]blogspot[.]com",
-      "case_id": "PD-20260617-52610B",
-      "analyzed_at": "2026-06-17T16:17:46.577Z",
+      "case_id": "PD-20260619-52610B",
+      "analyzed_at": "2026-06-19T00:52:15.889Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed65f-d818-76f1-a413-db83ef695992/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed973-f710-724a-8698-8153e83312b2.png",
+          "url": "https://urlscan.io/result/019ed973-f710-724a-8698-8153e83312b2/",
+          "title": "Trezor.io/start"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,11 +88,11 @@
         "dns": {
           "A": [
             "blogspot.l.googleusercontent.com.",
-            "142.251.132.33"
+            "142.250.219.129"
           ],
           "AAAA": [
             "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4004:812::2001"
+            "2800:3f0:4004:815::2001"
           ],
           "MX": [
             "blogspot.l.googleusercontent.com."
@@ -98,7 +107,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -225,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.trezorio-start.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.trezorio-start.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013002; classtype:social-engineering; sid:6013002; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:17:42.788068+00:00",
+  "updated_at": "2026-06-19T00:52:05.134569+00:00",
   "probe": {
     "dns": true,
     "whois": false,

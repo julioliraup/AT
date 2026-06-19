@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "zoom.allwellhealthcare.com",
       "domain_defanged": "zoom[.]allwellhealthcare[.]com",
-      "case_id": "PD-20260617-448B6B",
-      "analyzed_at": "2026-06-17T16:08:28.995Z",
+      "case_id": "PD-20260619-448B6B",
+      "analyzed_at": "2026-06-19T00:37:09.710Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed657-53f3-7586-9dc6-812b546837d1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DocuSign"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edbf3-e1ee-71f3-bcb6-24afec5bf9f8.png",
+          "url": "https://urlscan.io/result/019edbf3-e1ee-71f3-bcb6-24afec5bf9f8/",
+          "title": "e-sign"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DocuSign",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,8 +88,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:3035::6815:4384",
-            "2606:4700:3034::ac43:b0e7"
+            "2606:4700:3034::ac43:b0e7",
+            "2606:4700:3035::6815:4384"
           ],
           "A": [
             "172.67.176.231",
@@ -224,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zoom.allwellhealthcare.com/Mac/utility.php/)\"; flow:established,to_server; http.uri; content:\"/Mac/utility.php/\"; startswith; fast_pattern; http.host; content:\"zoom.allwellhealthcare.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012907; classtype:social-engineering; sid:6012907; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:08:19.483751+00:00",
+  "updated_at": "2026-06-19T00:37:04.740482+00:00",
   "probe": {
     "dns": true,
     "whois": false,

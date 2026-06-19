@@ -55,21 +55,31 @@
     "phishdestroy": {
       "domain": "booking-com-dubaii-flights-tickets.webflow.io",
       "domain_defanged": "booking-com-dubaii-flights-tickets[.]webflow[.]io",
-      "case_id": "PD-20260617-72CF84",
-      "analyzed_at": "2026-06-17T16:16:27.198Z",
+      "case_id": "PD-20260619-72CF84",
+      "analyzed_at": "2026-06-19T00:49:43.872Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Crypto",
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed65e-a224-70e2-9771-35ac084333e1.png",
           "url": "https://urlscan.io/result/019ed65e-a224-70e2-9771-35ac084333e1/",
-          "pending": true
+          "title": "Dubai Flights Booking Com | Flights Dubai."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Crypto, Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,13 +94,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:440c::ac40:9708",
+            "2a06:98c1:3100::6812:24f8"
+          ],
           "A": [
             "172.64.151.8",
             "104.18.36.248"
-          ],
-          "AAAA": [
-            "2a06:98c1:3100::6812:24f8",
-            "2606:4700:440c::ac40:9708"
           ]
         }
       },
@@ -230,7 +240,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (booking-com-dubaii-flights-tickets.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"booking-com-dubaii-flights-tickets.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012989; classtype:social-engineering; sid:6012989; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:16:24.568432+00:00",
+  "updated_at": "2026-06-19T00:49:37.760842+00:00",
   "probe": {
     "dns": true,
     "whois": true,

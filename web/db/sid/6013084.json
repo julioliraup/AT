@@ -49,21 +49,178 @@
     "phishdestroy": {
       "domain": "pub-3f081ad7284d4ae088815e99acb1811a.r2.dev",
       "domain_defanged": "pub-3f081ad7284d4ae088815e99acb1811a[.]r2[.]dev",
-      "case_id": "PD-20260617-B493F3",
-      "analyzed_at": "2026-06-17T16:28:01.336Z",
+      "case_id": "PD-20260619-B493F3",
+      "analyzed_at": "2026-06-19T01:01:58.786Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 14,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ed669-399a-74bf-a643-f33194cd7187.png",
           "url": "https://urlscan.io/result/019ed669-399a-74bf-a643-f33194cd7187/",
-          "pending": true
+          "title": "Not Found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,13 +235,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3113::6812:362d",
-            "2606:4700:3117::6812:3222"
-          ],
           "A": [
             "104.18.54.45",
             "104.18.50.34"
+          ],
+          "AAAA": [
+            "2606:4700:3113::6812:362d",
+            "2606:4700:3117::6812:3222"
           ]
         }
       },
@@ -224,7 +381,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pub-3f081ad7284d4ae088815e99acb1811a.r2.dev/zmb.html)\"; flow:established,to_server; http.uri; content:\"/zmb.html\"; startswith; fast_pattern; http.host; content:\"pub-3f081ad7284d4ae088815e99acb1811a.r2.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013084; classtype:social-engineering; sid:6013084; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:27:53.101892+00:00",
+  "updated_at": "2026-06-19T01:01:55.683660+00:00",
   "probe": {
     "dns": true,
     "whois": false,

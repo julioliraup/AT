@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "whatsaqq-qq.com",
       "domain_defanged": "whatsaqq-qq[.]com",
-      "case_id": "PD-20260616-36017D",
-      "analyzed_at": "2026-06-16T21:13:35.858Z",
+      "case_id": "PD-20260618-36017D",
+      "analyzed_at": "2026-06-18T04:13:29.408Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WhatsApp"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e389a-49d1-768b-8bc1-92fdf0d5d2cf.png",
+          "url": "https://urlscan.io/result/019e389a-49d1-768b-8bc1-92fdf0d5d2cf/",
+          "title": "WhatsApp"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WhatsApp",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2026-05-16T14:41:13Z",
         "expires": "2027-05-16T14:41:13Z",
-        "age_days": 31,
+        "age_days": 32,
         "nameservers": [
           "A.SHARE-DNS.COM",
           "B.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "192.252.179.189",
+        "ipinfo": {
+          "ip": "192.252.179.189",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS152194 CTG Server Limited",
+          "asn": "AS152194"
+        },
         "dns": null
       },
       "report_to": {
@@ -210,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (whatsaqq-qq.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"whatsaqq-qq.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002427; classtype:social-engineering; sid:6002427; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-16T21:13:31.630959+00:00",
+  "updated_at": "2026-06-18T04:13:24.084199+00:00",
   "probe": {
     "dns": false,
     "whois": false,

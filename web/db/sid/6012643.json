@@ -49,35 +49,104 @@
     "phishdestroy": {
       "domain": "psee.io",
       "domain_defanged": "psee[.]io",
-      "case_id": "PD-20260617-114ADA",
-      "analyzed_at": "2026-06-17T15:35:45.482Z",
+      "case_id": "PD-20260619-114ADA",
+      "analyzed_at": "2026-06-19T00:06:09.873Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "DNS8",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Malicious (alphaMountain.ai)",
+            "Sophos": "information technology",
+            "Forcepoint ThreatSeeker": "web infrastructure"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed639-60da-779a-81a2-36d8fa7d4f2f/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019edaf0-d442-774f-997f-019de05125f6.png",
+          "url": "https://urlscan.io/result/019edaf0-d442-774f-997f-019de05125f6/",
+          "title": "lsbarbie lolsonly bdcompany lsmagazine jailbail https://… | wklej tekst i udostępnij link | ntpd.eu"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: DNS8",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "52.204.9.229",
-        "ipinfo": null,
+        "ip": "100.59.137.118",
+        "ipinfo": {
+          "ip": "100.59.137.118",
+          "hostname": "ec2-100-59-137-118.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "MX": [
             "10 mail.psee.io."
           ],
           "A": [
-            "52.204.9.229",
+            "100.59.137.118",
             "3.209.156.69",
-            "13.223.116.137"
+            "52.204.9.229"
           ],
           "NS": [
             "deb.ns.cloudflare.com.",
@@ -87,7 +156,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -214,7 +290,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (psee.io/96lbzj)\"; flow:established,to_server; http.uri; content:\"/96lbzj\"; startswith; fast_pattern; http.host; content:\"psee.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012643; classtype:social-engineering; sid:6012643; rev:1; metadata: signature_severity Major, created_et 2026_06_11;)",
-  "updated_at": "2026-06-17T15:35:41.899698+00:00",
+  "updated_at": "2026-06-19T00:06:06.183397+00:00",
   "probe": {
     "dns": true,
     "whois": true,

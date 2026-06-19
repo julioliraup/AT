@@ -74,22 +74,43 @@
     "phishdestroy": {
       "domain": "santander.dispositivoseguranca.com",
       "domain_defanged": "santander[.]dispositivoseguranca[.]com",
-      "case_id": "PD-20260617-63B9A3",
-      "analyzed_at": "2026-06-17T16:17:29.034Z",
+      "case_id": "PD-20260619-63B9A3",
+      "analyzed_at": "2026-06-19T00:59:55.250Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Santander"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec406-b14a-719c-a238-1c05da8a05ec.png",
+          "url": "https://urlscan.io/result/019ec406-b14a-719c-a238-1c05da8a05ec/",
+          "title": "Santander"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Santander",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "178.16.54.253",
+        "ipinfo": {
+          "ip": "178.16.54.253",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS202412 Omegatech LTD",
+          "asn": "AS202412"
+        },
         "dns": null
       },
       "report_to": {
@@ -222,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (santander.dispositivoseguranca.com/baser)\"; flow:established,to_server; http.uri; content:\"/baser\"; startswith; fast_pattern; http.host; content:\"santander.dispositivoseguranca.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013097; classtype:social-engineering; sid:6013097; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:30:04.564462+00:00",
+  "updated_at": "2026-06-19T01:03:54.343174+00:00",
   "probe": {
     "dns": true,
     "whois": false,

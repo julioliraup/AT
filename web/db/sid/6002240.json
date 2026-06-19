@@ -18,58 +18,59 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://meta-id90001.agency-manager-support.com/",
-      "domain": "meta-id90001.agency-manager-support.com",
-      "url_count": 2,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-05-21T11:30:24",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "meta-id90001.agency-manager-support.com",
       "domain_defanged": "meta-id90001[.]agency-manager-support[.]com",
-      "case_id": "PD-20260616-35EB17",
-      "analyzed_at": "2026-06-16T20:52:27.482Z",
+      "case_id": "PD-20260618-35EB17",
+      "analyzed_at": "2026-06-18T03:58:19.457Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e2da9-751b-7242-9b0b-79a9f18e340a.png",
+          "url": "https://urlscan.io/result/019e2da9-751b-7242-9b0b-79a9f18e340a/",
+          "title": "Accounts Centre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "162.159.140.98",
+        "ipinfo": {
+          "ip": "162.159.140.98",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +197,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-id90001.agency-manager-support.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"meta-id90001.agency-manager-support.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002240; classtype:social-engineering; sid:6002240; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-06-16T20:52:24.831204+00:00",
+  "updated_at": "2026-06-18T03:58:00.909337+00:00",
   "probe": {
     "dns": false,
     "whois": false,

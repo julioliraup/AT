@@ -21,18 +21,18 @@
     "alienvault": {
       "url": "http://trzr-io-start.square.site/",
       "domain": "trzr-io-start.square.site",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "74.115.51.5",
+      "ip": "74.115.51.4",
       "http_code": 200,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0c8bf2918ffefce-PDX",
-        "cf_cache_status": "EXPIRED",
+        "cf_ray": "a0d7126eedfa816e-PDX",
+        "cf_cache_status": "HIT",
         "alt_svc": null
       },
       "city": null,
@@ -45,37 +45,72 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (35240)",
-      "sha256": "e0aa5509bc402fa652bd06418c014467b3a6118a7ff2cd05d02a6eb0563621b0",
-      "md5": "0c36f146c4535908ddf03d56331f6283",
-      "cert": null,
+      "sha256": "14ee8c48c74594896f7e7b1dc2bcf25f2869dc0aef4babd291a12c75ac875780",
+      "md5": "926df6e9704dd7f647721aa1bffb0128",
+      "cert": {
+        "subject_cn": "square.site",
+        "subject_alt_names": [
+          "*.square.site",
+          "square.site"
+        ],
+        "issuer_cn": "E8",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-07T17:17:21+00:00",
+        "not_valid_after": "2026-08-05T17:17:20+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "582288227309290925406233695295911652725391",
+        "fingerprint_sha1": "56 7C D0 D0 C6 22 BF 6F 98 F9 EB 1F 03 35 45 D6 3C 28 99 3B",
+        "fingerprint_sha256": "1B 4E 29 67 6A BA 09 45 2F BB B4 18 B4 FB 20 22 AF 0D CB FA 3F 47 0C 0E 66 14 31 77 1A B9 66 5F"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-16T09:18:23",
-      "first_seen_secs": 1781601503.0
+      "first_seen": "2026-06-18T02:59:12",
+      "first_seen_secs": 1781751552.0
     },
     "phishdestroy": {
       "domain": "trzr-io-start.square.site",
       "domain_defanged": "trzr-io-start[.]square[.]site",
-      "case_id": "PD-20260617-E7B3FC",
-      "analyzed_at": "2026-06-17T17:31:35.913Z",
+      "case_id": "PD-20260619-E7B3FC",
+      "analyzed_at": "2026-06-19T02:05:23.278Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed6a3-6ef7-760c-aa99-b3f061e1d98c.png",
           "url": "https://urlscan.io/result/019ed6a3-6ef7-760c-aa99-b3f061e1d98c/",
-          "pending": true
+          "title": "Trezor.io/Start® | Starting Up Your Device | Trezor® | a"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "74.115.51.4",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "74.115.51.4",
+          "hostname": "wildcard.square.site",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
         "dns": {
           "A": [
             "74.115.51.4",
@@ -85,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -212,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (trzr-io-start.square.site/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"trzr-io-start.square.site\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013622; classtype:social-engineering; sid:6013622; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:31:27.304241+00:00",
+  "updated_at": "2026-06-19T02:05:13.713489+00:00",
   "probe": {
     "dns": true,
     "whois": true,

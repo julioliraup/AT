@@ -49,26 +49,103 @@
     "phishdestroy": {
       "domain": "ewabsturz.com",
       "domain_defanged": "ewabsturz[.]com",
-      "case_id": "PD-20260617-3F5FD5",
-      "analyzed_at": "2026-06-17T16:54:49.314Z",
+      "case_id": "PD-20260619-3F5FD5",
+      "analyzed_at": "2026-06-19T01:30:03.167Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 7,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed681-c2a5-722b-90c8-9a0606c751ca/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019edc27-bed6-74fd-a9aa-94f9419df0fc.png",
+          "url": "https://urlscan.io/result/019edc27-bed6-74fd-a9aa-94f9419df0fc/",
+          "title": "my.cyon-Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "malware",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "InterNetX GmbH",
         "created": "2019-12-20T08:55:00Z",
         "expires": "2026-12-20T08:55:00Z",
-        "age_days": 2371,
+        "age_days": 2372,
         "nameservers": [
           "NS1.WEBGO.DE",
           "NS2.WEBGO.DE",
@@ -88,9 +165,9 @@
             "185.30.32.226"
           ],
           "NS": [
+            "ns4.webgo.de.",
             "ns2.webgo.de.",
             "ns1.webgo.de.",
-            "ns4.webgo.de.",
             "ns3.webgo.de."
           ]
         }
@@ -104,7 +181,14 @@
           "method": "form",
           "iana_ids": "49"
         },
-        "hosting": null
+        "hosting": {
+          "name": "DE-WEBGO",
+          "abuse": "abuse@webgo.de",
+          "url": "mailto:abuse@webgo.de",
+          "logo": "",
+          "method": "email",
+          "asn": "AS48324"
+        }
       },
       "report_services": [
         {
@@ -231,10 +315,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ewabsturz.com/Update-new/index.php)\"; flow:established,to_server; http.uri; content:\"/Update-new/index.php\"; startswith; fast_pattern; http.host; content:\"ewabsturz.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013318; classtype:social-engineering; sid:6013318; rev:1; metadata: signature_severity Major, created_et 2026_06_14;)",
-  "updated_at": "2026-06-17T16:54:43.752875+00:00",
+  "updated_at": "2026-06-19T01:29:52.900089+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

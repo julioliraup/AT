@@ -73,26 +73,140 @@
     "phishdestroy": {
       "domain": "plasmaringa.com",
       "domain_defanged": "plasmaringa[.]com",
-      "case_id": "PD-20260617-75290B",
-      "analyzed_at": "2026-06-17T16:55:30.473Z",
+      "case_id": "PD-20260619-75290B",
+      "analyzed_at": "2026-06-19T01:30:45.209Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 10,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed682-6377-71f8-b602-d528b618f338/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Eastlink Canada"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edc27-4199-75ca-8ba0-b96c2a74fb0f.png",
+          "url": "https://urlscan.io/result/019edc27-4199-75ca-8ba0-b96c2a74fb0f/",
+          "title": "Eastlink | Security Verification"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Eastlink Canada",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2013-07-28T03:36:47Z",
         "expires": "2027-07-28T03:36:47Z",
-        "age_days": 4707,
+        "age_days": 4708,
         "nameservers": [
           "NS1.SDSERVER117.COM.BR",
           "NS2.SDSERVER117.COM.BR"
@@ -100,17 +214,25 @@
       },
       "infrastructure": {
         "ip": "192.169.82.226",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "192.169.82.226",
+          "hostname": "host.sdserver117.com.br",
+          "city": "Dallas",
+          "region": "Texas",
+          "country": "US",
+          "org": "AS46475 Limestone Networks, Inc.",
+          "asn": "AS46475"
+        },
         "dns": {
+          "A": [
+            "192.169.82.226"
+          ],
           "MX": [
             "0 plasmaringa.com."
           ],
           "NS": [
-            "ns2.sdserver28.com.",
-            "ns1.sdserver28.com."
-          ],
-          "A": [
-            "192.169.82.226"
+            "ns1.sdserver28.com.",
+            "ns2.sdserver28.com."
           ]
         }
       },
@@ -123,7 +245,14 @@
           "method": "form",
           "iana_ids": "1917"
         },
-        "hosting": null
+        "hosting": {
+          "name": "LIMESTONENETWORKS",
+          "abuse": "abuse@limestonenetworks.com",
+          "url": "mailto:abuse@limestonenetworks.com",
+          "logo": "https://i.ibb.co/svmVdP2Y/pr-LIMESTONENETWORKS.png",
+          "method": "email",
+          "asn": "AS46475"
+        }
       },
       "report_services": [
         {
@@ -250,7 +379,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (plasmaringa.com/archive/outh.html)\"; flow:established,to_server; http.uri; content:\"/archive/outh.html\"; startswith; fast_pattern; http.host; content:\"plasmaringa.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013325; classtype:social-engineering; sid:6013325; rev:1; metadata: signature_severity Major, created_et 2026_06_14;)",
-  "updated_at": "2026-06-17T16:55:26.409757+00:00",
+  "updated_at": "2026-06-19T01:30:39.847442+00:00",
   "probe": {
     "dns": true,
     "whois": true,

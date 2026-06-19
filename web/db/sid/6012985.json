@@ -21,20 +21,14 @@
     "alienvault": {
       "url": "http://ledgerrecover.app/",
       "domain": "ledgerrecover.app",
-      "url_count": 8,
+      "url_count": 9,
       "city_data": false,
-      "deep_analysis": true,
+      "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "82.221.136.26",
-      "http_code": 200,
-      "http_response": {
-        "server": "LiteSpeed",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
+      "ip": null,
+      "http_code": 0,
+      "http_response": null,
       "city": null,
       "region": null,
       "country_name": null,
@@ -43,57 +37,68 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (20709), with CRLF, LF line terminators",
-      "sha256": "2e7bf05af7b837259557e26e32056142d78effa3948fe1e26789eeebd38834a3",
-      "md5": "6301c61699f0c966ea5318ca5dc92af5",
-      "cert": {
-        "subject_cn": "*.ledgerrecover.app",
-        "subject_alt_names": [
-          "*.ledgerrecover.app",
-          "ledgerrecover.app"
-        ],
-        "issuer_cn": "YR2",
-        "issuer_org": "Let's Encrypt",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-07T18:42:17+00:00",
-        "not_valid_after": "2026-09-05T18:42:16+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_rsa",
-        "x509_version": "v3",
-        "serial_number": "06 F7 93 5C 26 29 35 18 45 77 73 3E 83 4A 44 D0 7C 91",
-        "fingerprint_sha1": "32 BC 9D 0F 5C 58 0A 72 B9 30 85 EF 53 FC A5 84 21 6A 06 CB",
-        "fingerprint_sha256": "FE 20 01 A3 E3 14 B5 EE 0A 41 CE 16 70 9D 07 D5 6C 32 22 E3 BE 28 9F 9B 6E E1 A0 27 13 E1 EE 42"
-      },
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-12T02:48:20",
-      "first_seen_secs": 1781232500.0
+      "first_seen": "2026-06-18T02:47:14",
+      "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "ledgerrecover.app",
       "domain_defanged": "ledgerrecover[.]app",
-      "case_id": "PD-20260617-544ABA",
-      "analyzed_at": "2026-06-17T16:16:04.195Z",
+      "case_id": "PD-20260619-544ABA",
+      "analyzed_at": "2026-06-19T00:48:55.693Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec524-90c6-77dc-b4fb-7acedc841729.png",
+          "url": "https://urlscan.io/result/019ec524-90c6-77dc-b4fb-7acedc841729/",
+          "title": "Ledger Crypto Wallet – Security for DeFi & Web3"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "82.221.136.26",
+        "ipinfo": {
+          "ip": "82.221.136.26",
+          "hostname": "keilir.orangewebsite.com",
+          "city": "Reykjavík",
+          "region": "Capital Region",
+          "country": "IS",
+          "org": "AS50613 Advania Island ehf",
+          "asn": "AS50613"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "FlokiNET",
+          "abuse": "abuse@flokinet.is",
+          "url": "mailto:abuse@flokinet.is",
+          "logo": "https://i.ibb.co/DDJz3Bpy/pr-Floki-NET.png",
+          "method": "email",
+          "asn": "AS50613"
+        }
       },
       "report_services": [
         {
@@ -220,10 +225,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledgerrecover.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledgerrecover.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012985; classtype:social-engineering; sid:6012985; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:15:56.497638+00:00",
+  "updated_at": "2026-06-19T00:48:40.742127+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

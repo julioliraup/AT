@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://mcaavoli.com/",
       "domain": "mcaavoli.com",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.155.164",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a0d6f9800d351509-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (661)",
+      "sha256": "9143e71bb7327f38fcb15f366e23bae958481d1e0d493eec941ef65c54dcbfd0",
+      "md5": "97a4ae942ba2c1ea38304c2f84ebd5f9",
+      "cert": {
+        "subject_cn": "mcaavoli.com",
+        "subject_alt_names": [
+          "mcaavoli.com",
+          "*.mcaavoli.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-11T08:59:26+00:00",
+        "not_valid_after": "2026-09-09T09:57:11+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "110933768890051523383417703080043008607",
+        "fingerprint_sha1": "05 CE 26 BE D6 0B 85 5A FC 73 87 C1 62 FC 6F 4C EC 46 18 E2",
+        "fingerprint_sha256": "7E F2 05 E7 B3 2D 9E E3 06 B0 94 05 33 C8 37 A8 C9 0E 25 56 22 EA 05 D9 E6 91 CA B0 F4 97 D5 09"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-06-18T02:47:18",
+      "first_seen_secs": 1781750838.0
     },
     "phishdestroy": {
       "domain": "mcaavoli.com",
       "domain_defanged": "mcaavoli[.]com",
-      "case_id": "PD-20260617-289E47",
-      "analyzed_at": "2026-06-17T16:58:33.073Z",
+      "case_id": "PD-20260619-289E47",
+      "analyzed_at": "2026-06-19T01:34:36.579Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,8 +83,8 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed685-2d7d-72d9-8db4-537f86db8981/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ed685-2d7d-72d9-8db4-537f86db8981.png",
+          "url": "https://urlscan.io/result/019ed685-2d7d-72d9-8db4-537f86db8981/"
         }
       },
       "detections": [],
@@ -68,23 +92,30 @@
         "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
         "created": "2026-06-11T09:49:50Z",
         "expires": "2027-06-11T09:49:50Z",
-        "age_days": 6,
+        "age_days": 7,
         "nameservers": [
           "ALARIC.NS.CLOUDFLARE.COM",
           "ASA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.21.80.245",
-        "ipinfo": null,
+        "ip": "172.67.155.164",
+        "ipinfo": {
+          "ip": "172.67.155.164",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.21.80.245",
-            "172.67.155.164"
-          ],
           "AAAA": [
             "2606:4700:3036::ac43:9ba4",
             "2606:4700:3037::6815:50f5"
+          ],
+          "A": [
+            "172.67.155.164",
+            "104.21.80.245"
           ],
           "NS": [
             "alaric.ns.cloudflare.com.",
@@ -101,7 +132,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -228,7 +266,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mcaavoli.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mcaavoli.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6013361; classtype:social-engineering; sid:6013361; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T16:58:28.437926+00:00",
+  "updated_at": "2026-06-19T01:34:27.260139+00:00",
   "probe": {
     "dns": true,
     "whois": true,

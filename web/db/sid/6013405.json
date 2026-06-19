@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://pedagioff.shop/",
       "domain": "pedagioff.shop",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
+      "url_count": 1,
+      "city_data": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "88.80.17.203",
+      "http_code": 200,
+      "http_response": {
+        "server": "Apache",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,48 +43,73 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (376)",
+      "sha256": "18688de74662760b94c28f4a96909256cf847d044a8d0a08cee5b10b89182213",
+      "md5": "e9744a7d79b3440aa7d0770c83d747bd",
+      "cert": {
+        "subject_cn": "pedagioff.shop",
+        "subject_alt_names": [
+          "pedagioff.shop"
+        ],
+        "issuer_cn": "YR2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-12T13:24:32+00:00",
+        "not_valid_after": "2026-09-10T13:24:31+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "06 09 C1 72 37 3B FD 5B 53 DB 9D 60 EA 6B 90 75 58 0E",
+        "fingerprint_sha1": "90 30 03 AC E5 5F 89 4A 4A C7 01 11 84 77 DE BF 38 AB 86 2B",
+        "fingerprint_sha256": "F0 43 2D 25 8C 03 F5 62 0F 71 35 9F 0B 9E 99 C2 BB C2 E8 B3 45 DE 69 A4 D9 39 79 47 A0 1C 18 37"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-06-18T02:46:35",
+      "first_seen_secs": 1781750795.0
     },
     "phishdestroy": {
       "domain": "pedagioff.shop",
       "domain_defanged": "pedagioff[.]shop",
-      "case_id": "PD-20260617-3F8E99",
-      "analyzed_at": "2026-06-17T17:03:45.196Z",
+      "case_id": "PD-20260619-3F8E99",
+      "analyzed_at": "2026-06-19T01:39:51.661Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Pedágio Digital"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed689-f0b8-74ee-bd72-61e2b2d11fd4.png",
           "url": "https://urlscan.io/result/019ed689-f0b8-74ee-bd72-61e2b2d11fd4/",
-          "pending": true
+          "title": "Pedágio Digital - Consulte e Pague Débitos Online | Pedagio Digital"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Pedágio Digital",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "88.80.17.203",
-        "ipinfo": null,
-        "dns": {
-          "A": [
-            "88.80.17.203"
-          ],
-          "NS": [
-            "ns1.dyna-ns.net.",
-            "ns2.dyna-ns.net."
-          ]
-        }
+        "ipinfo": {
+          "ip": "88.80.17.203",
+          "city": "Stockholm",
+          "region": "Stockholm",
+          "country": "SE",
+          "org": "AS33837 Fredrik Holmqvist",
+          "asn": "AS33837"
+        },
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -209,7 +240,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pedagioff.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"pedagioff.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013405; classtype:social-engineering; sid:6013405; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:03:38.595391+00:00",
+  "updated_at": "2026-06-19T01:39:40.777062+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -21,20 +21,14 @@
     "alienvault": {
       "url": "http://www.99re99777mq.com/",
       "domain": "www.99re99777mq.com",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": false,
-      "deep_analysis": true,
+      "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "161.248.15.159",
-      "http_code": 200,
-      "http_response": {
-        "server": "nginx",
-        "content_type": "text/html",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": "quic=\":443\"; h3=\":443\"; h3-29=\":443\"; h3-27=\":443\";h3-25=\":443\"; h3-T050=\":443\"; h3-Q050=\":443\";h3-Q049=\":443\";h3-Q048=\":443\"; h3-Q046=\":443\"; h3-Q043=\":443\""
-      },
+      "ip": null,
+      "http_code": 0,
+      "http_response": null,
       "city": null,
       "region": null,
       "country_name": null,
@@ -43,62 +37,62 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (5237)",
-      "sha256": "72298a739884e7b5cdf5d8ca8dd78c4b84d8b3aa18cb8300ed6031d59f9f04da",
-      "md5": "ac9b424abb2219c78502c82b4beae22f",
-      "cert": {
-        "subject_cn": "www.chat-hupu.com",
-        "subject_alt_names": [
-          "www.99re99777mq.com",
-          "www.chat-hupu.com",
-          "www.fast-mobile-kaiyun.com",
-          "www.play-kygame.com",
-          "www.zhs-kaiyungroup.com"
-        ],
-        "issuer_cn": "YR2",
-        "issuer_org": "Let's Encrypt",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-13T17:04:52+00:00",
-        "not_valid_after": "2026-09-11T17:04:51+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_rsa",
-        "x509_version": "v3",
-        "serial_number": "05 06 9E CD 49 7D 2A 46 56 C3 ED EE 3F 9F 99 C7 71 6E",
-        "fingerprint_sha1": "E4 55 71 8D CE 96 95 7F 25 03 BF D8 7D 65 36 89 7E 97 5F EA",
-        "fingerprint_sha256": "1F 15 A4 52 4A 0F 84 FB CD A6 49 65 EF FD 45 3C 4C 64 0B 85 4A 46 54 D3 FD 8E C5 56 43 17 60 CF"
-      },
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-16T02:12:20",
-      "first_seen_secs": 1781575940.0
+      "first_seen": "2026-06-18T02:59:11",
+      "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "99re99777mq.com",
       "domain_defanged": "99re99777mq[.]com",
-      "case_id": "PD-20260617-60CBEB",
-      "analyzed_at": "2026-06-17T17:12:12.472Z",
+      "case_id": "PD-20260619-60CBEB",
+      "analyzed_at": "2026-06-19T01:49:50.519Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "TikTok Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecdf2-4fb7-730f-9058-188b03f04ac1.png",
+          "url": "https://urlscan.io/result/019ecdf2-4fb7-730f-9058-188b03f04ac1/",
+          "title": "TikTok-Wholesale"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: TikTok Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Name SRS AB",
         "created": "2025-07-02T00:07:19Z",
         "expires": "2026-07-02T00:07:19Z",
-        "age_days": 350,
+        "age_days": 352,
         "nameservers": [
           "A1.SHARE-DNS.COM",
           "B1.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "161.248.15.159",
+        "ipinfo": {
+          "ip": "161.248.15.159",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS4907 IENS TECHNOLOGY PTE. LTD",
+          "asn": "AS4907"
+        },
         "dns": null
       },
       "report_to": {
@@ -237,10 +231,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.99re99777mq.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.99re99777mq.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013480; classtype:social-engineering; sid:6013480; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:12:08.392061+00:00",
+  "updated_at": "2026-06-19T01:49:46.473202+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

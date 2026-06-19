@@ -49,29 +49,76 @@
     "phishdestroy": {
       "domain": "allianceswisspass.live.itonicsit.de",
       "domain_defanged": "allianceswisspass[.]live[.]itonicsit[.]de",
-      "case_id": "PD-20260616-4DBA44",
-      "analyzed_at": "2026-06-16T20:58:05.180Z",
+      "case_id": "PD-20260618-4DBA44",
+      "analyzed_at": "2026-06-18T04:03:16.168Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ed23a-1deb-75dd-8040-cafe260e7607.png",
           "url": "https://urlscan.io/result/019ed23a-1deb-75dd-8040-cafe260e7607/",
-          "pending": true
+          "title": "Alliance SwissPass | Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.70.41.190",
+        "ip": "63.184.77.217",
         "ipinfo": {
-          "ip": "3.70.41.190",
-          "hostname": "ec2-3-70-41-190.eu-central-1.compute.amazonaws.com",
+          "ip": "63.184.77.217",
+          "hostname": "ec2-63-184-77-217.eu-central-1.compute.amazonaws.com",
           "city": "Frankfurt am Main",
           "region": "Hesse",
           "country": "DE",
@@ -80,8 +127,8 @@
         },
         "dns": {
           "A": [
-            "3.70.41.190",
-            "63.184.77.217"
+            "63.184.77.217",
+            "3.70.41.190"
           ]
         }
       },
@@ -221,7 +268,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (allianceswisspass.live.itonicsit.de/de/type_umsetzungsprojekt/32/details)\"; flow:established,to_server; http.uri; content:\"/de/type_umsetzungsprojekt/32/details\"; startswith; fast_pattern; http.host; content:\"allianceswisspass.live.itonicsit.de\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6002287; classtype:social-engineering; sid:6002287; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-16T20:58:01.214152+00:00",
+  "updated_at": "2026-06-18T04:03:10.823901+00:00",
   "probe": {
     "dns": true,
     "whois": true,

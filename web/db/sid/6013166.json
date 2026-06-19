@@ -49,22 +49,162 @@
     "phishdestroy": {
       "domain": "steamcomimunity.com",
       "domain_defanged": "steamcomimunity[.]com",
-      "case_id": "PD-20260617-7CCF41",
-      "analyzed_at": "2026-06-17T16:38:11.423Z",
+      "case_id": "PD-20260619-7CCF41",
+      "analyzed_at": "2026-06-19T01:13:29.479Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 12,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019d9a7e-5b7e-77ab-a727-3cc2ce7201ff.png",
+          "url": "https://urlscan.io/result/019d9a7e-5b7e-77ab-a727-3cc2ce7201ff/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Web Commerce Communications Limited dba WebNic.cc",
         "created": "2026-04-06T01:54:44Z",
         "expires": "2027-04-06T01:54:44Z",
-        "age_days": 72,
+        "age_days": 73,
         "nameservers": [
           "NS1.ETERNITYNAMES.NET",
           "NS2.ETERNITYNAMES.NET",
@@ -73,7 +213,15 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "62.60.226.105",
+        "ipinfo": {
+          "ip": "62.60.226.105",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS214351 FEMO IT SOLUTIONS LIMITED",
+          "asn": "AS214351"
+        },
         "dns": null
       },
       "report_to": {
@@ -85,7 +233,14 @@
           "method": "form",
           "iana_ids": "460"
         },
-        "hosting": null
+        "hosting": {
+          "name": "NTSERVICE-AS",
+          "abuse": "abuse@ntup.net",
+          "url": "mailto:abuse@ntup.net",
+          "logo": "https://i.ibb.co/7dwYD8jV/pr-NTSERVICE-AS.png",
+          "method": "email",
+          "asn": "AS214351"
+        }
       },
       "report_services": [
         {
@@ -212,7 +367,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (steamcomimunity.com/tradeoffer/new/partner=783662133token=l4hhebGA21835)\"; flow:established,to_server; http.uri; content:\"/tradeoffer/new/partner=783662133token=l4hhebGA21835\"; startswith; fast_pattern; http.host; content:\"steamcomimunity.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013166; classtype:social-engineering; sid:6013166; rev:1; metadata: signature_severity Major, created_et 2026_06_14;)",
-  "updated_at": "2026-06-17T16:38:00.335726+00:00",
+  "updated_at": "2026-06-19T01:13:19.212896+00:00",
   "probe": {
     "dns": false,
     "whois": false,

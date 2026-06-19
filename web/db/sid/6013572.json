@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://creditagricole-reactivation.bolt.host/",
       "domain": "creditagricole-reactivation.bolt.host",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "104.26.7.237",
+      "ip": "104.26.13.118",
       "http_code": 200,
       "http_response": {
         "server": "cloudflare",
-        "content_type": "text/html",
-        "cf_ray": "a0c8be4dced8ff0d-PDX",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a0d71198b8729811-PDX",
         "cf_cache_status": "DYNAMIC",
         "alt_svc": null
       },
@@ -44,9 +44,9 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (1433)",
-      "sha256": "bee37884f8ea8894dfe15aecd1e5c3897bd2a3851b61f1a253947eb7311cbab3",
-      "md5": "d0c6e1e9de3bf1ee7f610490af39648b",
+      "filemagic": "HTML document, Unicode text, UTF-8 text",
+      "sha256": "bf8bfabae9ee6074cf314631de96d0b3e4531754411d725bbab4cad540d12bd6",
+      "md5": "7959a5f820aaae18d4099011316e83d3",
       "cert": {
         "subject_cn": "bolt.host",
         "subject_alt_names": [
@@ -68,34 +68,43 @@
         "fingerprint_sha256": "EC 42 24 36 33 B8 8E EC F1 FE FE A1 DD D4 BD AC F9 EC C0 3A CC 43 D0 BF 03 57 3D 43 E4 78 F9 53"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-16T09:18:23",
-      "first_seen_secs": 1781601503.0
+      "first_seen": "2026-06-18T02:59:12",
+      "first_seen_secs": 1781751552.0
     },
     "phishdestroy": {
       "domain": "creditagricole-reactivation.bolt.host",
       "domain_defanged": "creditagricole-reactivation[.]bolt[.]host",
-      "case_id": "PD-20260617-58386C",
-      "analyzed_at": "2026-06-17T16:58:50.856Z",
+      "case_id": "PD-20260619-58386C",
+      "analyzed_at": "2026-06-19T01:35:01.458Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Credit Agricole"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed685-717d-735b-b3ec-b7f2f98546de.png",
           "url": "https://urlscan.io/result/019ed685-717d-735b-b3ec-b7f2f98546de/",
-          "pending": true
+          "title": "Crédit Agricole - Mon espace"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Credit Agricole",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.12.118",
+        "ip": "104.26.13.118",
         "ipinfo": {
-          "ip": "104.26.12.118",
+          "ip": "104.26.13.118",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,15 +112,15 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:20::ac43:4b09",
-            "2606:4700:20::681a:d76",
-            "2606:4700:20::681a:c76"
-          ],
           "A": [
-            "104.26.12.118",
             "104.26.13.118",
-            "172.67.75.9"
+            "172.67.75.9",
+            "104.26.12.118"
+          ],
+          "AAAA": [
+            "2606:4700:20::681a:c76",
+            "2606:4700:20::681a:d76",
+            "2606:4700:20::ac43:4b09"
           ]
         }
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (creditagricole-reactivation.bolt.host/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"creditagricole-reactivation.bolt.host\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013572; classtype:social-engineering; sid:6013572; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:25:22.744187+00:00",
+  "updated_at": "2026-06-19T01:59:10.706484+00:00",
   "probe": {
     "dns": true,
     "whois": true,

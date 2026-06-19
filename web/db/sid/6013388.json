@@ -73,27 +73,48 @@
     "phishdestroy": {
       "domain": "fiverr-orders-payment.pro",
       "domain_defanged": "fiverr-orders-payment[.]pro",
-      "case_id": "PD-20260617-59F2DA",
-      "analyzed_at": "2026-06-17T17:02:06.109Z",
+      "case_id": "PD-20260619-59F2DA",
+      "analyzed_at": "2026-06-19T01:37:51.609Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fiverr"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed101-4293-768e-92d3-51604fc88036.png",
+          "url": "https://urlscan.io/result/019ed101-4293-768e-92d3-51604fc88036/",
+          "title": "It needs a human touch"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fiverr",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
+        "ip": "188.114.96.3",
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -220,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fiverr-orders-payment.pro/work/new-orders)\"; flow:established,to_server; http.uri; content:\"/work/new-orders\"; startswith; fast_pattern; http.host; content:\"fiverr-orders-payment.pro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013388; classtype:social-engineering; sid:6013388; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:02:02.640935+00:00",
+  "updated_at": "2026-06-19T01:37:48.493188+00:00",
   "probe": {
     "dns": true,
     "whois": true,

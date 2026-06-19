@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://tyido.azzuk.workers.dev/",
       "domain": "tyido.azzuk.workers.dev",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.143.197",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a0d711658c629811-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,43 +43,77 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "0811c0f9b31567534cddf856d3a42284e6ba475dbedccd1db11031e4dc9763d5",
+      "md5": "da52b3b08b5da1525054f6ab5263d6d9",
+      "cert": {
+        "subject_cn": "azzuk.workers.dev",
+        "subject_alt_names": [
+          "azzuk.workers.dev",
+          "*.azzuk.workers.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-20T04:26:01+00:00",
+        "not_valid_after": "2026-08-18T05:23:39+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "10582008885619185705588408920138767547",
+        "fingerprint_sha1": "F2 4F 0E 69 64 61 7D BF 49 36 B1 47 11 F1 B8 00 5E D0 1A 84",
+        "fingerprint_sha256": "71 70 37 E1 12 E0 57 7A 9F 37 26 28 0A 48 75 FE FC 3D 9F 08 EE 69 1D 78 80 7F 0D FD 6F 28 C9 4D"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-06-18T02:59:05",
+      "first_seen_secs": 1781751545.0
     },
     "phishdestroy": {
       "domain": "tyido.azzuk.workers.dev",
       "domain_defanged": "tyido[.]azzuk[.]workers[.]dev",
-      "case_id": "PD-20260617-3C40AC",
-      "analyzed_at": "2026-06-17T16:17:53.478Z",
+      "case_id": "PD-20260619-3C40AC",
+      "analyzed_at": "2026-06-19T00:52:22.223Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed65f-f3d5-7321-8cf4-1826f7313386.png",
           "url": "https://urlscan.io/result/019ed65f-f3d5-7321-8cf4-1826f7313386/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.47.17",
-        "ipinfo": null,
+        "ip": "172.67.143.197",
+        "ipinfo": {
+          "ip": "172.67.143.197",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "104.21.47.17",
-            "172.67.143.197"
+            "172.67.143.197",
+            "104.21.47.17"
           ],
           "AAAA": [
             "2606:4700:3030::ac43:8fc5",
@@ -83,7 +123,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tyido.azzuk.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tyido.azzuk.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013004; classtype:social-engineering; sid:6013004; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:17:50.994537+00:00",
+  "updated_at": "2026-06-19T00:52:19.730731+00:00",
   "probe": {
     "dns": true,
     "whois": false,

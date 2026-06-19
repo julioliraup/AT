@@ -72,21 +72,42 @@
     "phishdestroy": {
       "domain": "onlineausde.andhrauniversity.edu.in",
       "domain_defanged": "onlineausde[.]andhrauniversity[.]edu[.]in",
-      "case_id": "PD-20260617-78FFEF",
-      "analyzed_at": "2026-06-17T15:40:08.628Z",
+      "case_id": "PD-20260619-78FFEF",
+      "analyzed_at": "2026-06-19T00:09:22.903Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "BitDefender": "education",
+            "Forcepoint ThreatSeeker": "educational institutions",
+            "Sophos": "educational institutions"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed63d-586e-71fb-a86d-5b4ea588922f/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019edb38-9812-72ab-8ce1-e8cbf105a2a4.png",
+          "url": "https://urlscan.io/result/019edb38-9812-72ab-8ce1-e8cbf105a2a4/",
+          "title": "My Account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -94,16 +115,16 @@
         "ip": "te-sis-prod-webserver-alb-1127823586.ap-south-1.elb.amazonaws.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "te-sis-prod-webserver-alb-1127823586.ap-south-1.elb.amazonaws.com."
+          "A": [
+            "te-sis-prod-webserver-alb-1127823586.ap-south-1.elb.amazonaws.com.",
+            "3.108.123.105",
+            "13.234.144.67"
           ],
           "CNAME": [
             "te-sis-prod-webserver-alb-1127823586.ap-south-1.elb.amazonaws.com."
           ],
-          "A": [
-            "te-sis-prod-webserver-alb-1127823586.ap-south-1.elb.amazonaws.com.",
-            "35.154.45.225",
-            "3.6.224.174"
+          "AAAA": [
+            "te-sis-prod-webserver-alb-1127823586.ap-south-1.elb.amazonaws.com."
           ],
           "MX": [
             "te-sis-prod-webserver-alb-1127823586.ap-south-1.elb.amazonaws.com."
@@ -115,7 +136,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -242,7 +270,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (onlineausde.andhrauniversity.edu.in/studentLogin/Payments/)\"; flow:established,to_server; http.uri; content:\"/studentLogin/Payments/\"; startswith; fast_pattern; http.host; content:\"onlineausde.andhrauniversity.edu.in\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012676; classtype:social-engineering; sid:6012676; rev:1; metadata: signature_severity Major, created_et 2026_06_11;)",
-  "updated_at": "2026-06-17T15:40:02.609064+00:00",
+  "updated_at": "2026-06-19T00:09:12.545860+00:00",
   "probe": {
     "dns": true,
     "whois": false,

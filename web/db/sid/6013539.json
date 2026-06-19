@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://worker-ancient-cherry-d115.cumphlw-ilip-hr.workers.dev/",
       "domain": "worker-ancient-cherry-d115.cumphlw-ilip-hr.workers.dev",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -31,7 +31,7 @@
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0c54387888fef63-PDX",
+        "cf_ray": "a0d71254ad11ef63-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "983065b159e78b10e7a933a7d03941345daeb12c847bf8fb417b5ee66c5e7d9b",
-      "md5": "c6ecff0d03bf14a534a278b2ada356f1",
+      "sha256": "3fd56bc68221f814e9af0752f2b81a3c8cb17bb3ae0e004adcfc83e9da612ce2",
+      "md5": "7ce02992fe500eb4f3b2f4bbe40c65b8",
       "cert": {
         "subject_cn": "cumphlw-ilip-hr.workers.dev",
         "subject_alt_names": [
@@ -67,37 +67,53 @@
         "fingerprint_sha256": "FC 45 2A A9 77 B9 D1 50 EE 47 9D B7 6E 8E 3C E2 06 5F CF 1D 8F A5 5A C7 3A 18 84 B1 69 E0 9C B8"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-15T22:55:28",
-      "first_seen_secs": 1781564128.0
+      "first_seen": "2026-06-18T02:59:11",
+      "first_seen_secs": 1781751551.0
     },
     "phishdestroy": {
       "domain": "worker-ancient-cherry-d115.cumphlw-ilip-hr.workers.dev",
       "domain_defanged": "worker-ancient-cherry-d115[.]cumphlw-ilip-hr[.]workers[.]dev",
-      "case_id": "PD-20260617-2151EB",
-      "analyzed_at": "2026-06-17T17:21:01.758Z",
+      "case_id": "PD-20260619-2151EB",
+      "analyzed_at": "2026-06-19T01:55:55.164Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed699-c1c8-752d-96df-f0b5e6ed08c1.png",
           "url": "https://urlscan.io/result/019ed699-c1c8-752d-96df-f0b5e6ed08c1/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.138.43",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.138.43",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3033::6815:40f0",
-            "2606:4700:3037::ac43:8a2b"
+            "2606:4700:3037::ac43:8a2b",
+            "2606:4700:3033::6815:40f0"
           ],
           "A": [
             "172.67.138.43",
@@ -107,7 +123,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (worker-ancient-cherry-d115.cumphlw-ilip-hr.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"worker-ancient-cherry-d115.cumphlw-ilip-hr.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013539; classtype:social-engineering; sid:6013539; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:20:54.433412+00:00",
+  "updated_at": "2026-06-19T01:55:51.938260+00:00",
   "probe": {
     "dns": true,
     "whois": false,

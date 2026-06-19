@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://rpcdebugdapp.pages.dev/",
       "domain": "rpcdebugdapp.pages.dev",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.44.191",
+      "ip": "172.66.47.65",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0acb870bffb1c37-PDX",
+        "cf_ray": "a0d711054af170b9-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "cb45c08d8fa6e848edd813c501b9a4412596fe8aa785e60822cb61606ca2a3ae",
-      "md5": "3523db5c350216a5fb5ca88b4116b066",
+      "sha256": "fcb22e2f7b93fa2a99680b3ffbe089917733e0d0f90b90e9e63b76b0897dddbd",
+      "md5": "7172ecbb74f7503c84f6139d50464b34",
       "cert": {
         "subject_cn": "rpcdebugdapp.pages.dev",
         "subject_alt_names": [
@@ -67,34 +67,43 @@
         "fingerprint_sha256": "43 A9 B1 22 4F 8F 72 9E F4 FD 7C 72 C3 43 F8 CC F8 3F AB E8 ED B3 CA CC 75 11 8D 97 D0 E4 09 A7"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-12T23:24:26",
-      "first_seen_secs": 1781306666.0
+      "first_seen": "2026-06-18T02:59:05",
+      "first_seen_secs": 1781751545.0
     },
     "phishdestroy": {
       "domain": "rpcdebugdapp.pages.dev",
       "domain_defanged": "rpcdebugdapp[.]pages[.]dev",
-      "case_id": "PD-20260617-390DE8",
-      "analyzed_at": "2026-06-17T16:18:32.489Z",
+      "case_id": "PD-20260619-390DE8",
+      "analyzed_at": "2026-06-19T00:53:16.772Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed660-8ba5-7623-923e-de06782ca246.png",
           "url": "https://urlscan.io/result/019ed660-8ba5-7623-923e-de06782ca246/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.65",
+        "ip": "172.66.44.191",
         "ipinfo": {
-          "ip": "172.66.47.65",
+          "ip": "172.66.44.191",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f41",
-            "2606:4700:310c::ac42:2cbf"
+            "2606:4700:310c::ac42:2cbf",
+            "2606:4700:310c::ac42:2f41"
           ],
           "A": [
-            "172.66.47.65",
-            "172.66.44.191"
+            "172.66.44.191",
+            "172.66.47.65"
           ],
           "NS": [
             "elle.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rpcdebugdapp.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"rpcdebugdapp.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013010; classtype:social-engineering; sid:6013010; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:18:28.868181+00:00",
+  "updated_at": "2026-06-19T00:53:14.167577+00:00",
   "probe": {
     "dns": true,
     "whois": false,

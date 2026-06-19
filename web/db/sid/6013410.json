@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://trezrrsuite.pages.dev/",
       "domain": "trezrrsuite.pages.dev",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.47.104",
+      "ip": "172.66.44.152",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0c65a49ff97fff0-PDX",
+        "cf_ray": "a0d71200196cc3af-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,45 +45,79 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "6c20d51e23f32d24bb8f573e58ee5343a05a7ba3960cd1da54c4de7851f57d96",
-      "md5": "7b831b834d6d47c00b713bdbf6c7ec5d",
-      "cert": null,
+      "sha256": "6f26037bfa5ca7134b7cb6a456faf7e55f80b9ee43b4d6d22731219dffffa9a3",
+      "md5": "261ef7737795ee42b5deeeaf7b3bd3e1",
+      "cert": {
+        "subject_cn": "trezrrsuite.pages.dev",
+        "subject_alt_names": [
+          "trezrrsuite.pages.dev",
+          "*.trezrrsuite.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-11T15:43:48+00:00",
+        "not_valid_after": "2026-08-09T16:43:40+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "273584804280638772070108058378158429369",
+        "fingerprint_sha1": "E5 C7 0C FC E3 D2 3F E8 A1 15 8B F7 2E 31 75 CF CC 59 C2 53",
+        "fingerprint_sha256": "54 D1 A8 83 F1 23 E3 9D 6A A3 D8 01 DF 99 C2 82 91 17 D2 51 AA F6 37 A9 92 60 EF D8 38 2C 09 8A"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-16T02:12:19",
-      "first_seen_secs": 1781575939.0
+      "first_seen": "2026-06-18T02:59:12",
+      "first_seen_secs": 1781751552.0
     },
     "phishdestroy": {
       "domain": "trezrrsuite.pages.dev",
       "domain_defanged": "trezrrsuite[.]pages[.]dev",
-      "case_id": "PD-20260617-33071E",
-      "analyzed_at": "2026-06-17T17:04:17.488Z",
+      "case_id": "PD-20260619-33071E",
+      "analyzed_at": "2026-06-19T01:40:29.003Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed68a-6ed8-72b8-a99e-85d5e83ae5ac.png",
           "url": "https://urlscan.io/result/019ed68a-6ed8-72b8-a99e-85d5e83ae5ac/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.104",
-        "ipinfo": null,
+        "ip": "172.66.44.152",
+        "ipinfo": {
+          "ip": "172.66.44.152",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.66.47.104",
-            "172.66.44.152"
-          ],
           "AAAA": [
-            "2606:4700:310c::ac42:2c98",
-            "2606:4700:310c::ac42:2f68"
+            "2606:4700:310c::ac42:2f68",
+            "2606:4700:310c::ac42:2c98"
+          ],
+          "A": [
+            "172.66.44.152",
+            "172.66.47.104"
           ],
           "NS": [
             "arya.ns.cloudflare.com.",
@@ -93,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -220,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (trezrrsuite.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"trezrrsuite.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013410; classtype:social-engineering; sid:6013410; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-17T17:04:14.529912+00:00",
+  "updated_at": "2026-06-19T01:40:24.656880+00:00",
   "probe": {
     "dns": true,
     "whois": false,

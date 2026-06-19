@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "kilpad.com",
       "domain_defanged": "kilpad[.]com",
-      "case_id": "PD-20260617-7265A8",
-      "analyzed_at": "2026-06-17T16:11:58.477Z",
+      "case_id": "PD-20260619-7265A8",
+      "analyzed_at": "2026-06-19T00:41:51.991Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed65a-8872-7741-9813-522d2cb10151/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed98d-0845-7480-8b38-1a722f35ead2.png",
+          "url": "https://urlscan.io/result/019ed98d-0845-7480-8b38-1a722f35ead2/",
+          "title": "Authentication"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "IONOS SE",
         "created": "2026-05-30T10:09:48Z",
         "expires": "2027-05-30T10:09:48Z",
-        "age_days": 18,
+        "age_days": 19,
         "nameservers": [
           "NS1.FRJXP.COM",
           "NS2.FRJXP.COM"
@@ -76,13 +85,20 @@
       },
       "infrastructure": {
         "ip": "82.165.104.102",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "82.165.104.102",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS8560 IONOS SE",
+          "asn": "AS8560"
+        },
         "dns": {
-          "MX": [
-            "0 kilpad.com."
-          ],
           "A": [
             "82.165.104.102"
+          ],
+          "MX": [
+            "0 kilpad.com."
           ],
           "NS": [
             "ns2.frjxp.com.",
@@ -99,7 +115,14 @@
           "method": "form",
           "iana_ids": "83"
         },
-        "hosting": null
+        "hosting": {
+          "name": "CRONON-AS",
+          "abuse": "abuse@vautron.de",
+          "url": "mailto:abuse@vautron.de",
+          "logo": "https://i.ibb.co/F4bxDB72/pr-CRONON-AS.png",
+          "method": "email",
+          "asn": "AS8560"
+        }
       },
       "report_services": [
         {
@@ -226,7 +249,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kilpad.com/pr/)\"; flow:established,to_server; http.uri; content:\"/pr/\"; startswith; fast_pattern; http.host; content:\"kilpad.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012943; classtype:social-engineering; sid:6012943; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:11:47.561266+00:00",
+  "updated_at": "2026-06-19T00:41:45.522614+00:00",
   "probe": {
     "dns": true,
     "whois": true,

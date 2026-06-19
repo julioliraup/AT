@@ -22,7 +22,7 @@
       "url": "http://e350.pages.dev/",
       "domain": "e350.pages.dev",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "e350.pages.dev",
       "domain_defanged": "e350[.]pages[.]dev",
-      "case_id": "PD-20260617-3E1EC6",
-      "analyzed_at": "2026-06-17T14:39:54.502Z",
+      "case_id": "PD-20260618-3E1EC6",
+      "analyzed_at": "2026-06-18T23:14:36.798Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed606-3e55-751f-83b9-ad9c688f2725/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,40 +64,12 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.177",
-        "ipinfo": {
-          "ip": "172.66.47.177",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
-        "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2fb1",
-            "2606:4700:310c::ac42:2c4f"
-          ],
-          "A": [
-            "172.66.47.177",
-            "172.66.44.79"
-          ],
-          "NS": [
-            "fred.ns.cloudflare.com.",
-            "magali.ns.cloudflare.com."
-          ]
-        }
+        "ipinfo": null,
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -228,10 +196,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (e350.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"e350.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012193; classtype:social-engineering; sid:6012193; rev:1; metadata: signature_severity Major, created_et 2026_06_09;)",
-  "updated_at": "2026-06-17T14:39:51.418147+00:00",
+  "updated_at": "2026-06-18T23:14:34.755043+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

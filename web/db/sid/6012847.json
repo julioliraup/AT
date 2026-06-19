@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "53ge-tnwz-fa00.blake-wascom-callcmc-com-s-account.workers.dev",
       "domain_defanged": "53ge-tnwz-fa00[.]blake-wascom-callcmc-com-s-account[.]workers[.]dev",
-      "case_id": "PD-20260617-78C88F",
-      "analyzed_at": "2026-06-17T16:00:35.631Z",
+      "case_id": "PD-20260619-78C88F",
+      "analyzed_at": "2026-06-19T00:27:27.132Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed650-1c46-72aa-be7e-380d4c027ae1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edbef-def0-712c-af1e-3076298523f9.png",
+          "url": "https://urlscan.io/result/019edbef-def0-712c-af1e-3076298523f9/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -83,8 +92,8 @@
             "104.21.18.87"
           ],
           "AAAA": [
-            "2606:4700:3033::6815:1257",
-            "2606:4700:3030::ac43:b583"
+            "2606:4700:3030::ac43:b583",
+            "2606:4700:3033::6815:1257"
           ]
         }
       },
@@ -224,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (53ge-tnwz-fa00.blake-wascom-callcmc-com-s-account.workers.dev/f69bd9f5635f40b0?email=@)\"; flow:established,to_server; http.uri; content:\"/f69bd9f5635f40b0?email=@\"; startswith; fast_pattern; http.host; content:\"53ge-tnwz-fa00.blake-wascom-callcmc-com-s-account.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6012847; classtype:social-engineering; sid:6012847; rev:1; metadata: signature_severity Major, created_et 2026_06_11;)",
-  "updated_at": "2026-06-17T16:00:27.832192+00:00",
+  "updated_at": "2026-06-19T00:27:23.002653+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -55,21 +55,78 @@
     "phishdestroy": {
       "domain": "star1-fedtgke2bkdfhzdz.z02.azurefd.net",
       "domain_defanged": "star1-fedtgke2bkdfhzdz[.]z02[.]azurefd[.]net",
-      "case_id": "PD-20260617-548A46",
-      "analyzed_at": "2026-06-17T16:26:36.954Z",
+      "case_id": "PD-20260619-548A46",
+      "analyzed_at": "2026-06-19T01:00:56.289Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ed667-ef4c-7715-b699-85e7ae74fa8e.png",
           "url": "https://urlscan.io/result/019ed667-ef4c-7715-b699-85e7ae74fa8e/",
-          "pending": true
+          "title": "Page not found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -77,28 +134,35 @@
         "ip": "mr-z02.tm-azurefd.net.",
         "ipinfo": null,
         "dns": {
+          "MX": [
+            "mr-z02.tm-azurefd.net."
+          ],
           "AAAA": [
             "mr-z02.tm-azurefd.net.",
-            "2603:1061:14:128::1"
+            "2603:1061:14:122::1"
           ],
-          "NS": [
-            "mr-z02.tm-azurefd.net."
+          "A": [
+            "mr-z02.tm-azurefd.net.",
+            "150.171.110.41"
           ],
           "CNAME": [
             "mr-z02.tm-azurefd.net."
           ],
-          "A": [
-            "mr-z02.tm-azurefd.net.",
-            "150.171.110.38"
-          ],
-          "MX": [
+          "NS": [
             "mr-z02.tm-azurefd.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -225,7 +289,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (star1-fedtgke2bkdfhzdz.z02.azurefd.net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"star1-fedtgke2bkdfhzdz.z02.azurefd.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013075; classtype:social-engineering; sid:6013075; rev:1; metadata: signature_severity Major, created_et 2026_06_13;)",
-  "updated_at": "2026-06-17T16:26:29.959121+00:00",
+  "updated_at": "2026-06-19T01:00:53.003856+00:00",
   "probe": {
     "dns": true,
     "whois": false,
