@@ -22,7 +22,7 @@
       "url": "http://canva-pc.com.cn/",
       "domain": "canva-pc.com.cn",
       "url_count": 3,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "canva-pc.com.cn",
       "domain_defanged": "canva-pc[.]com[.]cn",
-      "case_id": "PD-20260618-CBB147",
-      "analyzed_at": "2026-06-18T09:37:19.076Z",
+      "case_id": "PD-20260621-CBB147",
+      "analyzed_at": "2026-06-21T13:53:25.131Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019eea75-1f1d-71c3-b150-d29f61d133a3/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,12 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "207.56.30.197",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "207.56.30.197"
+          ],
           "NS": [
             "ns1.kenpains.com.",
             "ns2.kenpains.com."
@@ -201,12 +209,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (canva-pc.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"canva-pc.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005621; classtype:social-engineering; sid:6005621; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-18T09:37:13.012267+00:00",
+  "updated_at": "2026-06-21T13:53:09.985811+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

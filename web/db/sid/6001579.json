@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "nethubcorp.com",
       "domain_defanged": "nethubcorp[.]com",
-      "case_id": "PD-20260617-6CDA27",
-      "analyzed_at": "2026-06-17T22:08:46.228Z",
+      "case_id": "PD-20260621-6CDA27",
+      "analyzed_at": "2026-06-21T02:55:02.571Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee81a-5920-7315-a197-c8de4df8d6f9/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,20 +93,27 @@
         "registrar": "Cloudflare, Inc.",
         "created": "2018-02-12T06:32:45Z",
         "expires": "2027-02-12T06:32:45Z",
-        "age_days": 3047,
+        "age_days": 3050,
         "nameservers": [
           "MONA.NS.CLOUDFLARE.COM",
           "SEAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.73.172",
-        "ipinfo": null,
+        "ip": "104.26.9.140",
+        "ipinfo": {
+          "ip": "104.26.9.140",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
+            "104.26.9.140",
             "172.67.73.172",
-            "104.26.8.140",
-            "104.26.9.140"
+            "104.26.8.140"
           ],
           "AAAA": [
             "2606:4700:20::681a:88c",
@@ -124,7 +135,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -252,7 +270,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .nethubcorp .com/a57dc89e5gafef46a46bc0d58a4d0b6cf305 .html)\"; flow:established,to_server; http.uri; content:\"/a57dc89e5gafef46a46bc0d58a4d0b6cf305.html\"; startswith; fast_pattern; http.host;  content:\"www.nethubcorp.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001579; classtype:social-engineering; sid:6001579; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T02:21:16.254971+00:00",
+  "updated_at": "2026-06-21T05:44:06.114613+00:00",
   "probe": {
     "dns": true,
     "whois": false,

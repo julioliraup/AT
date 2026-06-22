@@ -74,27 +74,43 @@
     "phishdestroy": {
       "domain": "netflixclone-next.vercel.app",
       "domain_defanged": "netflixclone-next[.]vercel[.]app",
-      "case_id": "PD-20260617-612F26",
-      "analyzed_at": "2026-06-17T20:06:43.808Z",
+      "case_id": "PD-20260621-612F26",
+      "analyzed_at": "2026-06-21T00:59:04.150Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed731-75ef-75bb-8209-e053a4f9c2d7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede35-4504-742b-a84d-528f5440be2c.png",
+          "url": "https://urlscan.io/result/019ede35-4504-742b-a84d-528f5440be2c/",
+          "title": "Netflix India - Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "216.198.79.130",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.198.79.130",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "216.198.79.130",
@@ -104,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -232,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netflixclone-next .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"netflixclone-next.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000602; classtype:social-engineering; sid:6000602; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:36:29.304649+00:00",
+  "updated_at": "2026-06-21T04:12:21.249176+00:00",
   "probe": {
     "dns": true,
     "whois": false,

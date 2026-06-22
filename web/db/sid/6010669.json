@@ -18,39 +18,12 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://cxztsnation.com/dsi/",
-      "domain": "cxztsnation.com",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "cxztsnation.com",
       "domain_defanged": "cxztsnation[.]com",
-      "case_id": "PD-20260618-56FEAD",
-      "analyzed_at": "2026-06-18T20:15:52.462Z",
+      "case_id": "PD-20260622-56FEAD",
+      "analyzed_at": "2026-06-22T00:50:22.446Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,8 +32,9 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019edc60-310d-72a9-afe4-2a2de01019f0/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ee612-e250-77e9-b13a-b211bfe01d39.png",
+          "url": "https://urlscan.io/result/019ee612-e250-77e9-b13a-b211bfe01d39/",
+          "title": "Account Suspended"
         }
       },
       "detections": [],
@@ -68,7 +42,7 @@
         "registrar": "Tucows Domains Inc.",
         "created": "2026-05-30T08:34:05Z",
         "expires": "2027-05-30T08:34:05Z",
-        "age_days": 19,
+        "age_days": 22,
         "nameservers": [
           "R1.CORE-DNS.NET",
           "R2.CORE-DNS.NET"
@@ -76,17 +50,25 @@
       },
       "infrastructure": {
         "ip": "64.34.217.23",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "64.34.217.23",
+          "hostname": "romeo.core-dns.net",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS13768 Aptum Technologies",
+          "asn": "AS13768"
+        },
         "dns": {
+          "NS": [
+            "r1.core-dns.net.",
+            "r2.core-dns.net."
+          ],
           "MX": [
             "0 cxztsnation.com."
           ],
           "A": [
             "64.34.217.23"
-          ],
-          "NS": [
-            "r1.core-dns.net.",
-            "r2.core-dns.net."
           ]
         }
       },
@@ -99,7 +81,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "COGECO-PEER1, CA",
+          "abuse": "abuse@aptum.com",
+          "url": "mailto:abuse@aptum.com",
+          "logo": "https://i.ibb.co/DP4JzQPs/pr-COGECO-PEER1-CA.png",
+          "method": "email",
+          "asn": "AS13768"
+        }
       },
       "report_services": [
         {
@@ -226,10 +215,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cxztsnation.com/dsi/)\"; flow:established,to_server; http.uri; content:\"/dsi/\"; startswith; fast_pattern; http.host; content:\"cxztsnation.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6010669; classtype:social-engineering; sid:6010669; rev:1; metadata: signature_severity Major, created_et 2026_06_04;)",
-  "updated_at": "2026-06-18T20:15:43.189782+00:00",
+  "updated_at": "2026-06-22T00:50:03.060520+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

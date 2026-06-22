@@ -74,41 +74,64 @@
     "phishdestroy": {
       "domain": "netcoins-logiii.webflow.io",
       "domain_defanged": "netcoins-logiii[.]webflow[.]io",
-      "case_id": "PD-20260617-32B007",
-      "analyzed_at": "2026-06-17T20:44:33.751Z",
+      "case_id": "PD-20260621-32B007",
+      "analyzed_at": "2026-06-21T01:31:55.609Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed754-18e5-717c-bcde-f130c9f71c25/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netcoins"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede4b-012b-75fe-80fd-abe61d747d65.png",
+          "url": "https://urlscan.io/result/019ede4b-012b-75fe-80fd-abe61d747d65/",
+          "title": "Netcoins Login - Crypto Investing Made Easy"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netcoins",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.151.8",
-        "ipinfo": null,
+        "ip": "104.18.36.248",
+        "ipinfo": {
+          "ip": "104.18.36.248",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.64.151.8",
-            "104.18.36.248"
-          ],
           "AAAA": [
             "2606:4700:440c::ac40:9708",
             "2a06:98c1:3100::6812:24f8"
+          ],
+          "A": [
+            "104.18.36.248",
+            "172.64.151.8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -236,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netcoins-logiii .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"netcoins-logiii.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000894; classtype:social-engineering; sid:6000894; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:06:54.792043+00:00",
+  "updated_at": "2026-06-21T04:38:53.713687+00:00",
   "probe": {
     "dns": true,
     "whois": true,

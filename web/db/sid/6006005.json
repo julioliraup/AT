@@ -73,18 +73,14 @@
     "phishdestroy": {
       "domain": "php1-whatsapp.com.cn",
       "domain_defanged": "php1-whatsapp[.]com[.]cn",
-      "case_id": "PD-20260618-51DDDB",
-      "analyzed_at": "2026-06-18T10:18:53.719Z",
+      "case_id": "PD-20260621-51DDDB",
+      "analyzed_at": "2026-06-21T14:47:20.422Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eda3d-a408-727c-96d7-9155e14b4541/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -93,7 +89,15 @@
       },
       "infrastructure": {
         "ip": "54.215.31.113",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "54.215.31.113",
+          "hostname": "ec2-54-215-31-113.us-west-1.compute.amazonaws.com",
+          "city": "San Jose",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "54.215.31.113"
@@ -106,7 +110,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -233,7 +244,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (php1-whatsapp.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"php1-whatsapp.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6006005; classtype:social-engineering; sid:6006005; rev:1; metadata: signature_severity Major, created_et 2026_05_23;)",
-  "updated_at": "2026-06-18T10:18:49.744471+00:00",
+  "updated_at": "2026-06-21T14:47:15.551592+00:00",
   "probe": {
     "dns": true,
     "whois": true,

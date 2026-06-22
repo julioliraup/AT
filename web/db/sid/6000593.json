@@ -74,44 +74,60 @@
     "phishdestroy": {
       "domain": "notifyhubss.net",
       "domain_defanged": "notifyhubss[.]net",
-      "case_id": "PD-20260617-510545",
-      "analyzed_at": "2026-06-17T20:05:36.872Z",
+      "case_id": "PD-20260621-510545",
+      "analyzed_at": "2026-06-21T00:58:00.563Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed730-7075-72d9-9ec7-5e556295eb7d/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee76b-eaae-76ed-ad0a-30e93dd98852.png",
+          "url": "https://urlscan.io/result/019ee76b-eaae-76ed-ad0a-30e93dd98852/",
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Cloudflare, Inc.",
         "created": "2020-04-30T08:44:28Z",
         "expires": "2027-04-30T08:44:28Z",
-        "age_days": 2239,
+        "age_days": 2242,
         "nameservers": [
           "MONA.NS.CLOUDFLARE.COM",
           "SEAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.26.8.237",
-        "ipinfo": null,
+        "ip": "172.67.72.147",
+        "ipinfo": {
+          "ip": "172.67.72.147",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "104.26.8.237",
+            "172.67.72.147",
             "104.26.9.237",
-            "172.67.72.147"
+            "104.26.8.237"
           ],
           "AAAA": [
-            "2606:4700:20::ac43:4893",
+            "2606:4700:20::681a:9ed",
             "2606:4700:20::681a:8ed",
-            "2606:4700:20::681a:9ed"
+            "2606:4700:20::ac43:4893"
           ],
           "NS": [
             "mona.ns.cloudflare.com.",
@@ -128,7 +144,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -256,7 +279,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (notifyhubss .net/d311306a9763ea4c4bp974ec8582cfc348a9 .html)\"; flow:established,to_server; http.uri; content:\"/d311306a9763ea4c4bp974ec8582cfc348a9.html\"; startswith; fast_pattern; http.host;  content:\"notifyhubss.net\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000593; classtype:social-engineering; sid:6000593; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:35:35.290279+00:00",
+  "updated_at": "2026-06-21T04:11:27.119625+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -74,35 +74,44 @@
     "phishdestroy": {
       "domain": "netempresasenegocios.net",
       "domain_defanged": "netempresasenegocios[.]net",
-      "case_id": "PD-20260617-5B4665",
-      "analyzed_at": "2026-06-17T20:52:59.411Z",
+      "case_id": "PD-20260621-5B4665",
+      "analyzed_at": "2026-06-21T01:42:06.345Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed75b-ce0a-779a-a54b-2300625b1d64/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede50-ea7e-720e-a704-933091d32d08.png",
+          "url": "https://urlscan.io/result/019ede50-ea7e-720e-a704-933091d32d08/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2026-05-08T15:27:08Z",
         "expires": "2027-05-08T15:27:08Z",
-        "age_days": 40,
+        "age_days": 43,
         "nameservers": [
           "NICOLAS.NS.CLOUDFLARE.COM",
           "OPHELIA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.21.62.129",
+        "ip": "172.67.223.203",
         "ipinfo": {
-          "ip": "104.21.62.129",
+          "ip": "172.67.223.203",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -111,12 +120,12 @@
         },
         "dns": {
           "A": [
-            "104.21.62.129",
-            "172.67.223.203"
+            "172.67.223.203",
+            "104.21.62.129"
           ],
           "AAAA": [
-            "2606:4700:3037::6815:3e81",
-            "2606:4700:3037::ac43:dfcb"
+            "2606:4700:3037::ac43:dfcb",
+            "2606:4700:3037::6815:3e81"
           ],
           "NS": [
             "nicolas.ns.cloudflare.com.",
@@ -268,7 +277,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netempresasenegocios .net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"netempresasenegocios.net\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000972; classtype:social-engineering; sid:6000972; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:17:40.659017+00:00",
+  "updated_at": "2026-06-21T04:45:59.924318+00:00",
   "probe": {
     "dns": true,
     "whois": false,

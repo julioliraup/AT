@@ -22,7 +22,7 @@
     "alienvault": {
       "url": "http://amazon-clone-umber-three.vercel.app/",
       "domain": "amazon-clone-umber-three.vercel.app",
-      "url_count": 2,
+      "url_count": 3,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -68,33 +68,49 @@
         "fingerprint_sha256": "F8 32 DF B2 65 37 61 E8 B0 00 1D BA F8 4E AB 20 66 7C 9B FB 05 20 70 05 47 D3 B3 BF 54 81 43 AA"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-11T02:40:56",
-      "first_seen_secs": 1781145656.0
+      "first_seen": "2026-06-18T02:58:53",
+      "first_seen_secs": 1781751533.0
     },
     "phishdestroy": {
       "domain": "amazon-clone-umber-three.vercel.app",
       "domain_defanged": "amazon-clone-umber-three[.]vercel[.]app",
-      "case_id": "PD-20260617-5B6DE2",
-      "analyzed_at": "2026-06-17T20:04:09.692Z",
+      "case_id": "PD-20260621-5B6DE2",
+      "analyzed_at": "2026-06-21T00:56:19.411Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed72f-1a37-705d-aee7-a4f7b9df49e5/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede33-b60f-702a-842f-c94a2f5e87d3.png",
+          "url": "https://urlscan.io/result/019ede33-b60f-702a-842f-c94a2f5e87d3/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "216.198.79.130",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.198.79.130",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "216.198.79.130",
@@ -104,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -232,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazon-clone-umber-three .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"amazon-clone-umber-three.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000580; classtype:social-engineering; sid:6000580; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:34:16.835950+00:00",
+  "updated_at": "2026-06-21T04:10:21.329215+00:00",
   "probe": {
     "dns": true,
     "whois": false,

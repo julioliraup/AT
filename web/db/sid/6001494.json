@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "956882coinbase.com",
       "domain_defanged": "956882coinbase[.]com",
-      "case_id": "PD-20260617-43C417",
-      "analyzed_at": "2026-06-17T21:58:52.049Z",
+      "case_id": "PD-20260621-43C417",
+      "analyzed_at": "2026-06-21T02:45:19.093Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee811-745f-764f-991b-3133591b4894/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,7 +93,7 @@
         "registrar": "NICENIC INTERNATIONAL GROUP CO., LIMITED",
         "created": "2026-03-27T01:38:56Z",
         "expires": "2027-03-27T01:38:56Z",
-        "age_days": 82,
+        "age_days": 86,
         "nameservers": [
           "ALBERTO.NS.CLOUDFLARE.COM",
           "SERENA.NS.CLOUDFLARE.COM"
@@ -97,15 +101,22 @@
       },
       "infrastructure": {
         "ip": "172.67.145.116",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.145.116",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3031::ac43:9174",
-            "2606:4700:3036::6815:3f75"
-          ],
           "A": [
             "172.67.145.116",
             "104.21.63.117"
+          ],
+          "AAAA": [
+            "2606:4700:3032::6815:3f75",
+            "2606:4700:3034::ac43:9174"
           ],
           "NS": [
             "alberto.ns.cloudflare.com.",
@@ -122,7 +133,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -250,10 +268,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (956882coinbase .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"956882coinbase.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001494; classtype:social-engineering; sid:6001494; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T02:12:58.613157+00:00",
+  "updated_at": "2026-06-21T05:37:00.254946+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

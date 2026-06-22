@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.pmkyic.top",
       "domain_defanged": "t-mobile[.]pmkyic[.]top",
-      "case_id": "PD-20260618-7EC25E",
-      "analyzed_at": "2026-06-18T21:27:47.753Z",
+      "case_id": "PD-20260622-7EC25E",
+      "analyzed_at": "2026-06-22T02:26:49.437Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d05-18f0-726d-a749-8d2a34dfaeed.png",
+          "url": "https://urlscan.io/result/019e9d05-18f0-726d-a749-8d2a34dfaeed/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +223,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.pmkyic.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.pmkyic.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011330; classtype:social-engineering; sid:6011330; rev:1; metadata: signature_severity Major, created_et 2026_06_06;)",
-  "updated_at": "2026-06-18T21:27:45.049636+00:00",
+  "updated_at": "2026-06-22T02:26:45.168809+00:00",
   "probe": {
     "dns": false,
     "whois": false,

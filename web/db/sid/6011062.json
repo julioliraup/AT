@@ -55,31 +55,47 @@
     "phishdestroy": {
       "domain": "meta-support-network.pages.dev",
       "domain_defanged": "meta-support-network[.]pages[.]dev",
-      "case_id": "PD-20260618-7B0CC9",
-      "analyzed_at": "2026-06-18T21:01:48.844Z",
+      "case_id": "PD-20260622-7B0CC9",
+      "analyzed_at": "2026-06-22T01:46:19.661Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc8a-4027-7775-9350-ab4a861693ce/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee638-7c50-77de-b38d-eb25e4c4b51d.png",
+          "url": "https://urlscan.io/result/019ee638-7c50-77de-b38d-eb25e4c4b51d/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.47.65",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.65",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2cbf",
-            "2606:4700:310c::ac42:2f41"
+            "2606:4700:310c::ac42:2f41",
+            "2606:4700:310c::ac42:2cbf"
           ],
           "A": [
             "172.66.47.65",
@@ -93,7 +109,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -220,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-support-network.pages.dev/appeals/submit-appeal-form/return)\"; flow:established,to_server; http.uri; content:\"/appeals/submit-appeal-form/return\"; startswith; fast_pattern; http.host; content:\"meta-support-network.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011062; classtype:social-engineering; sid:6011062; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T21:01:46.467852+00:00",
+  "updated_at": "2026-06-22T01:46:12.446769+00:00",
   "probe": {
     "dns": true,
     "whois": false,

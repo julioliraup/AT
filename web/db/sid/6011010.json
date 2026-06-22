@@ -49,27 +49,179 @@
     "phishdestroy": {
       "domain": "makeredto.org",
       "domain_defanged": "makeredto[.]org",
-      "case_id": "PD-20260618-72F201",
-      "analyzed_at": "2026-06-18T20:47:56.425Z",
+      "case_id": "PD-20260622-72F201",
+      "analyzed_at": "2026-06-22T01:28:13.407Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 13,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Google Safebrowsing",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc7d-8c8e-7666-a26c-10bae297450b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UPS"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eec5d-75f7-7473-b391-60d3a6137b4f.png",
+          "url": "https://urlscan.io/result/019eec5d-75f7-7473-b391-60d3a6137b4f/",
+          "title": "UPS Tracking"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Google Safebrowsing",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UPS",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "160.153.0.128",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "160.153.0.128",
+          "hostname": "128.0.153.160.host.secureserver.net",
+          "city": "Tempe",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS209242 Cloudflare London, LLC",
+          "asn": "AS209242"
+        },
         "dns": {
           "MX": [
             "5 alt1.aspmx.l.google.com.",
@@ -89,7 +241,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS209242"
+        }
       },
       "report_services": [
         {
@@ -217,7 +376,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (makeredto.org/wp-content/themes/help/hard_88390993993/ups/indexbill.php/)\"; flow:established,to_server; http.uri; content:\"/wp-content/themes/help/hard_88390993993/ups/indexbill.php/\"; startswith; fast_pattern; http.host; content:\"makeredto.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011010; classtype:social-engineering; sid:6011010; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T20:55:13.817028+00:00",
+  "updated_at": "2026-06-22T01:39:43.529593+00:00",
   "probe": {
     "dns": true,
     "whois": true,

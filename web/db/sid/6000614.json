@@ -50,31 +50,95 @@
     "phishdestroy": {
       "domain": "kutt.it",
       "domain_defanged": "kutt[.]it",
-      "case_id": "PD-20260617-15861F",
-      "analyzed_at": "2026-06-17T20:07:56.842Z",
+      "case_id": "PD-20260621-15861F",
+      "analyzed_at": "2026-06-21T01:00:27.421Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Xcitium Verdict Cloud",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed732-9334-747a-9b9b-db2c0cb763b4/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ede36-1486-764b-851d-5d5026abdc38.png",
+          "url": "https://urlscan.io/result/019ede36-1486-764b-851d-5d5026abdc38/",
+          "title": "Attention Required! | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Xcitium Verdict Cloud",
+          "type": "malware",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.58.119",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.58.119",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3030::6815:3a77",
-            "2606:4700:3032::ac43:9f6b"
+            "2606:4700:3033::6815:3a77",
+            "2606:4700:3037::ac43:9f6b"
           ],
           "A": [
             "104.21.58.119",
@@ -88,7 +152,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +287,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kutt .it/RbuQmN)\"; flow:established,to_server; http.uri; content:\"/RbuQmN\"; startswith; fast_pattern; http.host;  content:\"kutt.it\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000614; classtype:social-engineering; sid:6000614; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:37:35.930266+00:00",
+  "updated_at": "2026-06-21T04:13:05.703794+00:00",
   "probe": {
     "dns": true,
     "whois": true,

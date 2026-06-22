@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "surl.li",
       "domain_defanged": "surl[.]li",
-      "case_id": "PD-20260617-6E7417",
-      "analyzed_at": "2026-06-17T21:43:43.199Z",
+      "case_id": "PD-20260621-6E7417",
+      "analyzed_at": "2026-06-21T18:06:10.179Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019eeb5c-8590-7017-b612-2f92dd678cdb/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,18 +93,25 @@
       },
       "infrastructure": {
         "ip": "172.66.40.129",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.40.129",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "MX": [
-            "0 mail.surl.li."
-          ],
           "AAAA": [
-            "2606:4700:3108::ac42:2b7f",
-            "2606:4700:3108::ac42:2881"
+            "2606:4700:3108::ac42:2881",
+            "2606:4700:3108::ac42:2b7f"
           ],
           "A": [
             "172.66.40.129",
             "172.66.43.127"
+          ],
+          "MX": [
+            "0 mail.surl.li."
           ],
           "NS": [
             "dina.ns.cloudflare.com.",
@@ -110,7 +121,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -233,12 +251,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.surl.li/zvysxc/)\"; flow:established,to_server; http.uri; content:\"/zvysxc/\"; startswith; fast_pattern; http.host; content:\"www.surl.li\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6007435; classtype:social-engineering; sid:6007435; rev:1; metadata: signature_severity Major, created_et 2026_05_26;)",
-  "updated_at": "2026-06-18T12:51:13.575815+00:00",
+  "updated_at": "2026-06-21T18:06:06.322619+00:00",
   "probe": {
     "dns": true,
     "whois": true,

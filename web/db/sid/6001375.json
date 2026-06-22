@@ -19,18 +19,49 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://medwu.info/416806",
+      "domain": "medwu.info",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "medwu.info",
       "domain_defanged": "medwu[.]info",
-      "case_id": "PD-20260617-77A0A6",
-      "analyzed_at": "2026-06-17T21:42:45.452Z",
+      "case_id": "PD-20260621-77A0A6",
+      "analyzed_at": "2026-06-21T02:30:36.430Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee803-fc84-744e-90f3-d284d3fc7478/",
+          "pending": true
         }
       },
       "detections": [],
@@ -39,15 +70,22 @@
       },
       "infrastructure": {
         "ip": "172.67.168.163",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.168.163",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.67.168.163",
             "104.21.94.196"
           ],
           "AAAA": [
-            "2606:4700:3036::6815:5ec4",
-            "2606:4700:3033::ac43:a8a3"
+            "2606:4700:3033::ac43:a8a3",
+            "2606:4700:3037::6815:5ec4"
           ],
           "NS": [
             "mckenzie.ns.cloudflare.com.",
@@ -57,7 +95,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -185,10 +230,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (medwu .info/416806)\"; flow:established,to_server; http.uri; content:\"/416806\"; startswith; fast_pattern; http.host;  content:\"medwu.info\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001375; classtype:social-engineering; sid:6001375; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:58:53.175683+00:00",
+  "updated_at": "2026-06-21T05:25:25.809796+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

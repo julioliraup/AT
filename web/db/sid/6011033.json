@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp5ct6-vralnik-biz-qoltex-plurnor.pages.dev",
       "domain_defanged": "sp5ct6-vralnik-biz-qoltex-plurnor[.]pages[.]dev",
-      "case_id": "PD-20260618-488F64",
-      "analyzed_at": "2026-06-18T20:58:12.722Z",
+      "case_id": "PD-20260622-488F64",
+      "analyzed_at": "2026-06-22T01:42:21.278Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc86-f29c-7219-93a7-53d0ca629b0e/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee636-6480-7559-90e0-d5dce50f2bac.png",
+          "url": "https://urlscan.io/result/019ee636-6480-7559-90e0-d5dce50f2bac/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.54",
+        "ip": "172.66.47.202",
         "ipinfo": {
-          "ip": "172.66.44.54",
+          "ip": "172.66.47.202",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +116,8 @@
             "2606:4700:310c::ac42:2fca"
           ],
           "A": [
-            "172.66.44.54",
-            "172.66.47.202"
+            "172.66.47.202",
+            "172.66.44.54"
           ],
           "NS": [
             "rob.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-vralnik-biz-qoltex-plurnor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-vralnik-biz-qoltex-plurnor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011033; classtype:social-engineering; sid:6011033; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T20:58:04.720063+00:00",
+  "updated_at": "2026-06-22T01:42:10.986482+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -74,17 +74,30 @@
     "phishdestroy": {
       "domain": "cybernations.tech-institute.org",
       "domain_defanged": "cybernations[.]tech-institute[.]org",
-      "case_id": "PD-20260617-17CC21",
-      "analyzed_at": "2026-06-17T21:22:09.219Z",
+      "case_id": "PD-20260621-17CC21",
+      "analyzed_at": "2026-06-21T02:11:11.121Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede63-8ed4-71b9-a995-f50f74ff0fa0.png",
+          "url": "https://urlscan.io/result/019ede63-8ed4-71b9-a995-f50f74ff0fa0/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -243,10 +256,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cybernations .tech-institute .org/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"cybernations.tech-institute.org\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001233; classtype:social-engineering; sid:6001233; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:41:04.138184+00:00",
+  "updated_at": "2026-06-21T05:09:28.818630+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

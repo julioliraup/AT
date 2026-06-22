@@ -74,26 +74,35 @@
     "phishdestroy": {
       "domain": "webaccess-alerts.net",
       "domain_defanged": "webaccess-alerts[.]net",
-      "case_id": "PD-20260617-E49F70",
-      "analyzed_at": "2026-06-17T19:54:44.613Z",
+      "case_id": "PD-20260621-E49F70",
+      "analyzed_at": "2026-06-21T00:43:37.940Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed726-7798-73ca-9919-d30bc3fd4a5b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede2d-5752-76ca-9ca6-06d5ef12f8a0.png",
+          "url": "https://urlscan.io/result/019ede2d-5752-76ca-9ca6-06d5ef12f8a0/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2011-08-16T14:47:49Z",
         "expires": "2026-08-16T14:47:49Z",
-        "age_days": 5419,
+        "age_days": 5422,
         "nameservers": [
           "NS-1195.AWSDNS-21.ORG",
           "NS-1831.AWSDNS-36.CO.UK",
@@ -113,12 +122,12 @@
           "asn": "AS14618"
         },
         "dns": {
-          "MX": [
-            "10 mx0.us.cf-ops.net."
-          ],
           "A": [
             "52.204.246.179",
             "34.194.247.17"
+          ],
+          "MX": [
+            "10 mx0.us.cf-ops.net."
           ],
           "NS": [
             "ns-1195.awsdns-21.org.",
@@ -272,7 +281,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webaccess-alerts .net/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"webaccess-alerts.net\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000484; classtype:social-engineering; sid:6000484; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:25:31.710523+00:00",
+  "updated_at": "2026-06-21T04:02:51.429407+00:00",
   "probe": {
     "dns": true,
     "whois": true,

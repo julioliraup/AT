@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp5ct6-tramtex-biz-slortik-fralnex.pages.dev",
       "domain_defanged": "sp5ct6-tramtex-biz-slortik-fralnex[.]pages[.]dev",
-      "case_id": "PD-20260618-54FA59",
-      "analyzed_at": "2026-06-18T21:13:48.844Z",
+      "case_id": "PD-20260622-54FA59",
+      "analyzed_at": "2026-06-22T02:09:45.742Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc95-3c10-7592-8795-8f9403d72414/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee642-e8a8-7115-85f1-7c9957a452ac.png",
+          "url": "https://urlscan.io/result/019ee642-e8a8-7115-85f1-7c9957a452ac/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,8 +112,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2cfa",
-            "2606:4700:310c::ac42:2f06"
+            "2606:4700:310c::ac42:2f06",
+            "2606:4700:310c::ac42:2cfa"
           ],
           "A": [
             "172.66.47.6",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-tramtex-biz-slortik-fralnex.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-tramtex-biz-slortik-fralnex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011186; classtype:social-engineering; sid:6011186; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T21:13:45.572190+00:00",
+  "updated_at": "2026-06-22T02:09:40.142905+00:00",
   "probe": {
     "dns": true,
     "whois": false,

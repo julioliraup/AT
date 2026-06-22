@@ -50,35 +50,51 @@
     "phishdestroy": {
       "domain": "lucas-75673324-moura.pages.dev",
       "domain_defanged": "lucas-75673324-moura[.]pages[.]dev",
-      "case_id": "PD-20260617-5B9D12",
-      "analyzed_at": "2026-06-17T19:57:37.503Z",
+      "case_id": "PD-20260621-5B9D12",
+      "analyzed_at": "2026-06-21T00:47:30.611Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed729-1fe9-757e-bc24-9ff2cf4355a4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede2f-747b-75cf-a08b-b4fab3a67154.png",
+          "url": "https://urlscan.io/result/019ede2f-747b-75cf-a08b-b4fab3a67154/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.82",
-        "ipinfo": null,
+        "ip": "172.66.44.174",
+        "ipinfo": {
+          "ip": "172.66.44.174",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.66.47.82",
-            "172.66.44.174"
-          ],
           "AAAA": [
-            "2606:4700:310c::ac42:2cae",
-            "2606:4700:310c::ac42:2f52"
+            "2606:4700:310c::ac42:2f52",
+            "2606:4700:310c::ac42:2cae"
+          ],
+          "A": [
+            "172.66.44.174",
+            "172.66.47.82"
           ],
           "NS": [
             "jean.ns.cloudflare.com.",
@@ -88,7 +104,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lucas-75673324-moura .pages .dev/help/contact/247251379967002/)\"; flow:established,to_server; http.uri; content:\"/help/contact/247251379967002/\"; startswith; fast_pattern; http.host;  content:\"lucas-75673324-moura.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000528; classtype:social-engineering; sid:6000528; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:28:39.137479+00:00",
+  "updated_at": "2026-06-21T04:06:19.714279+00:00",
   "probe": {
     "dns": true,
     "whois": false,

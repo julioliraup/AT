@@ -49,37 +49,61 @@
     "phishdestroy": {
       "domain": "ssl.073202.com",
       "domain_defanged": "ssl[.]073202[.]com",
-      "case_id": "PD-20260618-606C6D",
-      "analyzed_at": "2026-06-18T21:14:43.346Z",
+      "case_id": "PD-20260622-606C6D",
+      "analyzed_at": "2026-06-22T02:11:43.829Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc96-1197-7210-95e7-1426179d3596/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee643-fac7-752e-87d0-5140de4081ac.png",
+          "url": "https://urlscan.io/result/019ee643-fac7-752e-87d0-5140de4081ac/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.104.102.7",
-        "ipinfo": null,
+        "ip": "13.210.89.195",
+        "ipinfo": {
+          "ip": "13.210.89.195",
+          "hostname": "ec2-13-210-89-195.ap-southeast-2.compute.amazonaws.com",
+          "city": "Sydney",
+          "region": "New South Wales",
+          "country": "AU",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "3.104.102.7",
-            "13.210.89.195"
+            "13.210.89.195",
+            "3.104.102.7"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -207,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ssl.073202.com/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"ssl.073202.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011285; classtype:social-engineering; sid:6011285; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T21:23:16.168459+00:00",
+  "updated_at": "2026-06-22T02:21:57.330236+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,26 +49,73 @@
     "phishdestroy": {
       "domain": "formanmills.com",
       "domain_defanged": "formanmills[.]com",
-      "case_id": "PD-20260618-681F6E",
-      "analyzed_at": "2026-06-18T19:32:42.166Z",
+      "case_id": "PD-20260622-681F6E",
+      "analyzed_at": "2026-06-22T00:24:51.078Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019edc38-aa0c-75cf-87b9-4b63f587aa46/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ee603-3c2c-7276-99fe-70b33d783683.png",
+          "url": "https://urlscan.io/result/019ee603-3c2c-7276-99fe-70b33d783683/",
+          "title": "Home - Forman Mills"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Network Solutions, LLC",
         "created": "1997-12-31T05:00:00Z",
         "expires": "2026-12-30T05:00:00Z",
-        "age_days": 10396,
+        "age_days": 10399,
         "nameservers": [
           "NS8541.HOSTGATOR.COM",
           "NS8542.HOSTGATOR.COM"
@@ -93,8 +140,8 @@
             "162.241.169.13"
           ],
           "NS": [
-            "ns8542.hostgator.com.",
-            "ns8541.hostgator.com."
+            "ns8541.hostgator.com.",
+            "ns8542.hostgator.com."
           ]
         }
       },
@@ -241,7 +288,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (formanmills.com/Facebook/login.html)\"; flow:established,to_server; http.uri; content:\"/Facebook/login.html\"; startswith; fast_pattern; http.host; content:\"formanmills.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010498; classtype:social-engineering; sid:6010498; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-18T19:32:30.182300+00:00",
+  "updated_at": "2026-06-22T00:24:46.015799+00:00",
   "probe": {
     "dns": true,
     "whois": true,

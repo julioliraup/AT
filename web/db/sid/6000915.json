@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "verification.healthyemployee.me",
       "domain_defanged": "verification[.]healthyemployee[.]me",
-      "case_id": "PD-20260617-2A8845",
-      "analyzed_at": "2026-06-17T20:46:51.437Z",
+      "case_id": "PD-20260621-2A8845",
+      "analyzed_at": "2026-06-21T01:34:44.995Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed756-3223-74d8-8663-25f624e99d4e/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede4c-6f27-7109-95d2-909b63b5cba4.png",
+          "url": "https://urlscan.io/result/019ede4c-6f27-7109-95d2-909b63b5cba4/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -223,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (verification .healthyemployee .me/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"verification.healthyemployee.me\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000915; classtype:social-engineering; sid:6000915; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:08:28.646150+00:00",
+  "updated_at": "2026-06-21T04:40:33.585348+00:00",
   "probe": {
     "dns": true,
     "whois": true,

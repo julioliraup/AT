@@ -18,90 +18,55 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://sp10ct6-glarnik-biz-frunor-plavtex.pages.dev/",
-      "domain": "sp10ct6-glarnik-biz-frunor-plavtex.pages.dev",
-      "url_count": 3,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.66.47.193",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0d7105c4dd79935-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "336846a6c63e86d614b2d269e6eb49e62ae3b0dad1b7f770b846da91132149aa",
-      "md5": "b51c8fea7710462b1a16355780eb3caa",
-      "cert": {
-        "subject_cn": "sp10ct6-glarnik-biz-frunor-plavtex.pages.dev",
-        "subject_alt_names": [
-          "sp10ct6-glarnik-biz-frunor-plavtex.pages.dev",
-          "*.sp10ct6-glarnik-biz-frunor-plavtex.pages.dev"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-05T03:17:11+00:00",
-        "not_valid_after": "2026-09-03T04:14:33+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "74362196031200186016423891226584142335",
-        "fingerprint_sha1": "AF 6E 25 27 DF A5 B7 56 B2 CF 08 A8 D9 D9 DB 31 7F AD 30 E3",
-        "fingerprint_sha256": "11 3B 02 C0 55 B0 6B 92 94 01 44 64 F4 4C E2 4F B5 2B F9 33 EC 3C E6 21 E0 C9 38 6D EF 27 EC D0"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-06-18T02:58:50",
-      "first_seen_secs": 1781751530.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "sp10ct6-glarnik-biz-frunor-plavtex.pages.dev",
       "domain_defanged": "sp10ct6-glarnik-biz-frunor-plavtex[.]pages[.]dev",
-      "case_id": "PD-20260618-411D61",
-      "analyzed_at": "2026-06-18T21:14:10.475Z",
+      "case_id": "PD-20260622-411D61",
+      "analyzed_at": "2026-06-22T02:10:25.465Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc95-912f-7569-bd40-5fd64b6d741b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee643-1c3d-75ed-ad18-117c35c7f6e4.png",
+          "url": "https://urlscan.io/result/019ee643-1c3d-75ed-ad18-117c35c7f6e4/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.193",
-        "ipinfo": null,
+        "ip": "172.66.44.63",
+        "ipinfo": {
+          "ip": "172.66.44.63",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2c3f",
-            "2606:4700:310c::ac42:2fc1"
-          ],
           "A": [
-            "172.66.47.193",
-            "172.66.44.63"
+            "172.66.44.63",
+            "172.66.47.193"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2fc1",
+            "2606:4700:310c::ac42:2c3f"
           ],
           "NS": [
             "algin.ns.cloudflare.com.",
@@ -111,7 +76,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -238,7 +210,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-glarnik-biz-frunor-plavtex.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-glarnik-biz-frunor-plavtex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011189; classtype:social-engineering; sid:6011189; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T21:13:59.759535+00:00",
+  "updated_at": "2026-06-22T02:10:07.190952+00:00",
   "probe": {
     "dns": true,
     "whois": false,

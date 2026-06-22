@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp1ct6-qolvrax-biz-glarnor-slurnax.pages.dev",
       "domain_defanged": "sp1ct6-qolvrax-biz-glarnor-slurnax[.]pages[.]dev",
-      "case_id": "PD-20260618-139D2E",
-      "analyzed_at": "2026-06-18T20:13:50.309Z",
+      "case_id": "PD-20260622-139D2E",
+      "analyzed_at": "2026-06-22T00:47:38.295Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc5e-5226-775a-a8ae-4750b6c53acd/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee611-5676-704c-be42-16f61aacd895.png",
+          "url": "https://urlscan.io/result/019ee611-5676-704c-be42-16f61aacd895/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -107,8 +116,8 @@
             "172.66.46.249"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2d07",
-            "2606:4700:310c::ac42:2ef9"
+            "2606:4700:310c::ac42:2ef9",
+            "2606:4700:310c::ac42:2d07"
           ],
           "NS": [
             "alexa.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp1ct6-qolvrax-biz-glarnor-slurnax.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp1ct6-qolvrax-biz-glarnor-slurnax.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010650; classtype:social-engineering; sid:6010650; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-18T20:13:41.527927+00:00",
+  "updated_at": "2026-06-22T00:47:35.504281+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "naifei.win",
       "domain_defanged": "naifei[.]win",
-      "case_id": "PD-20260618-793482",
-      "analyzed_at": "2026-06-18T21:39:00.428Z",
+      "case_id": "PD-20260622-793482",
+      "analyzed_at": "2026-06-22T02:39:08.116Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea920-e928-76ac-996e-362fc8cb7b94.png",
+          "url": "https://urlscan.io/result/019ea920-e928-76ac-996e-362fc8cb7b94/",
+          "title": "Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.12.175",
+        "ipinfo": {
+          "ip": "104.21.12.175",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (naifei.win/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"naifei.win\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011433; classtype:social-engineering; sid:6011433; rev:1; metadata: signature_severity Major, created_et 2026_06_06;)",
-  "updated_at": "2026-06-18T21:38:39.696783+00:00",
+  "updated_at": "2026-06-22T02:38:44.017012+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -74,24 +74,37 @@
     "phishdestroy": {
       "domain": "whatsapp-clone-delta-two.vercel.app",
       "domain_defanged": "whatsapp-clone-delta-two[.]vercel[.]app",
-      "case_id": "PD-20260617-49D42C",
-      "analyzed_at": "2026-06-17T21:07:29.660Z",
+      "case_id": "PD-20260621-49D42C",
+      "analyzed_at": "2026-06-21T01:56:14.593Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WhatsApp"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee714-2f26-7650-85a5-b772db12cacb.png",
+          "url": "https://urlscan.io/result/019ee714-2f26-7650-85a5-b772db12cacb/",
+          "title": "WhatsApp Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WhatsApp",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.66",
+        "ip": "216.198.79.66",
         "ipinfo": {
-          "ip": "64.29.17.66",
+          "ip": "216.198.79.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -100,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.66",
-            "216.198.79.66"
+            "216.198.79.66",
+            "64.29.17.66"
           ]
         }
       },
@@ -242,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .whatsapp-clone-delta-two .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.whatsapp-clone-delta-two.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001092; classtype:social-engineering; sid:6001092; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:28:53.166915+00:00",
+  "updated_at": "2026-06-21T04:56:17.844851+00:00",
   "probe": {
     "dns": true,
     "whois": false,

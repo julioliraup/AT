@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "netflix-clone-sepia-six.vercel.app",
       "domain_defanged": "netflix-clone-sepia-six[.]vercel[.]app",
-      "case_id": "PD-20260617-3C3003",
-      "analyzed_at": "2026-06-17T20:59:28.271Z",
+      "case_id": "PD-20260621-3C3003",
+      "analyzed_at": "2026-06-21T01:48:21.010Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed761-be86-73e4-8cd2-509aa6f36ce1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede55-6667-7009-978c-8fb0e9a02dd9.png",
+          "url": "https://urlscan.io/result/019ede55-6667-7009-978c-8fb0e9a02dd9/",
+          "title": "Vite App"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.130",
+        "ip": "216.198.79.130",
         "ipinfo": {
-          "ip": "64.29.17.130",
+          "ip": "216.198.79.130",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.130",
-            "216.198.79.130"
+            "216.198.79.130",
+            "64.29.17.130"
           ]
         }
       },
@@ -246,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netflix-clone-sepia-six .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"netflix-clone-sepia-six.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001234; classtype:social-engineering; sid:6001234; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:41:11.553963+00:00",
+  "updated_at": "2026-06-21T05:09:32.486318+00:00",
   "probe": {
     "dns": true,
     "whois": false,

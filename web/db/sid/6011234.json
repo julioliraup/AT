@@ -73,37 +73,61 @@
     "phishdestroy": {
       "domain": "support.new.hr-rewards.com",
       "domain_defanged": "support[.]new[.]hr-rewards[.]com",
-      "case_id": "PD-20260618-5DBA4D",
-      "analyzed_at": "2026-06-18T21:15:03.623Z",
+      "case_id": "PD-20260622-5DBA4D",
+      "analyzed_at": "2026-06-22T02:12:19.785Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc96-60ac-769e-91c3-171bd79660cd/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee644-31fc-7622-9656-7f5a9b9e4c76.png",
+          "url": "https://urlscan.io/result/019ee644-31fc-7622-9656-7f5a9b9e4c76/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "18.198.182.56",
-        "ipinfo": null,
+        "ip": "63.176.245.164",
+        "ipinfo": {
+          "ip": "63.176.245.164",
+          "hostname": "ec2-63-176-245-164.eu-central-1.compute.amazonaws.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "18.198.182.56",
-            "63.176.245.164"
+            "63.176.245.164",
+            "18.198.182.56"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -231,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (support.new.hr-rewards.com/107519/8af662/475d964a-0243-46bf-aefd-66da26254efa)\"; flow:established,to_server; http.uri; content:\"/107519/8af662/475d964a-0243-46bf-aefd-66da26254efa\"; startswith; fast_pattern; http.host; content:\"support.new.hr-rewards.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011234; classtype:social-engineering; sid:6011234; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T21:18:15.914624+00:00",
+  "updated_at": "2026-06-22T02:16:40.087506+00:00",
   "probe": {
     "dns": true,
     "whois": false,

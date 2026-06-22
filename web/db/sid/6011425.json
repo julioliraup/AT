@@ -73,26 +73,35 @@
     "phishdestroy": {
       "domain": "hth-mobile.com",
       "domain_defanged": "hth-mobile[.]com",
-      "case_id": "PD-20260618-5CA4B0",
-      "analyzed_at": "2026-06-18T21:38:01.738Z",
+      "case_id": "PD-20260622-5CA4B0",
+      "analyzed_at": "2026-06-22T02:38:07.751Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edcab-66ee-72da-9b00-8e1e719bb9fe/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee657-c889-7573-8323-e5632525d515.png",
+          "url": "https://urlscan.io/result/019ee657-c889-7573-8323-e5632525d515/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2025-08-15T05:45:00Z",
         "expires": "2026-08-15T05:45:00Z",
-        "age_days": 307,
+        "age_days": 310,
         "nameservers": [
           "BRETT.NS.CLOUDFLARE.COM",
           "MCKENZIE.NS.CLOUDFLARE.COM"
@@ -114,8 +123,8 @@
             "172.67.145.26"
           ],
           "AAAA": [
-            "2606:4700:3032::6815:4f6e",
-            "2606:4700:3036::ac43:911a"
+            "2606:4700:3032::ac43:911a",
+            "2606:4700:3034::6815:4f6e"
           ],
           "NS": [
             "brett.ns.cloudflare.com.",
@@ -266,7 +275,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.hth-mobile.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.hth-mobile.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011425; classtype:social-engineering; sid:6011425; rev:1; metadata: signature_severity Major, created_et 2026_06_06;)",
-  "updated_at": "2026-06-18T21:37:58.323454+00:00",
+  "updated_at": "2026-06-22T02:37:59.575153+00:00",
   "probe": {
     "dns": true,
     "whois": false,

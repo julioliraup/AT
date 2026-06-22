@@ -18,57 +18,137 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://ahurahotel.com/Adobereader/",
-      "domain": "ahurahotel.com",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "ahurahotel.com",
       "domain_defanged": "ahurahotel[.]com",
-      "case_id": "PD-20260618-32BBB8",
-      "analyzed_at": "2026-06-18T19:55:04.327Z",
+      "case_id": "PD-20260622-32BBB8",
+      "analyzed_at": "2026-06-22T00:32:45.596Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 9,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019edc4d-22f6-74dd-8e45-26fc825c8c67/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ee608-b47c-70a3-8fca-aeddf7ef5d0d.png",
+          "url": "https://urlscan.io/result/019ee608-b47c-70a3-8fca-aeddf7ef5d0d/",
+          "title": "503 - SERVICE UNAVAILABLE"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2009-10-09T09:25:14Z",
         "expires": "2026-10-09T09:25:14Z",
-        "age_days": 6096,
+        "age_days": 6099,
         "nameservers": [
           "NS1.ON-LYNE.ORG",
           "NS2.ON-LYNE.ORG"
@@ -86,15 +166,15 @@
           "asn": "AS31898"
         },
         "dns": {
-          "A": [
-            "192.185.99.13"
-          ],
           "MX": [
             "10 mail.rediffmailpro.com."
           ],
+          "A": [
+            "192.185.99.13"
+          ],
           "NS": [
-            "ns1311.websitewelcome.com.",
-            "ns1312.websitewelcome.com."
+            "ns1312.websitewelcome.com.",
+            "ns1311.websitewelcome.com."
           ]
         }
       },
@@ -241,10 +321,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ahurahotel.com/Adobereader/)\"; flow:established,to_server; http.uri; content:\"/Adobereader/\"; startswith; fast_pattern; http.host; content:\"ahurahotel.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010547; classtype:social-engineering; sid:6010547; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-18T19:54:29.680259+00:00",
+  "updated_at": "2026-06-22T00:32:24.346295+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

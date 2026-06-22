@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "humanresources-team.com",
       "domain_defanged": "humanresources-team[.]com",
-      "case_id": "PD-20260617-58B565",
-      "analyzed_at": "2026-06-17T22:02:27.838Z",
+      "case_id": "PD-20260621-58B565",
+      "analyzed_at": "2026-06-21T02:48:34.181Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee814-6f05-77a6-a68a-ab666cb46fb0/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,7 +93,7 @@
         "registrar": "Amazon Registrar, Inc.",
         "created": "2021-10-21T14:54:25Z",
         "expires": "2026-10-21T14:54:25Z",
-        "age_days": 1700,
+        "age_days": 1703,
         "nameservers": [
           "NS-1200.AWSDNS-22.ORG",
           "NS-2005.AWSDNS-58.CO.UK",
@@ -99,7 +103,15 @@
       },
       "infrastructure": {
         "ip": "34.194.247.17",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "34.194.247.17",
+          "hostname": "ec2-34-194-247-17.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "MX": [
             "10 mx0.us.cf-ops.net."
@@ -125,7 +137,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -253,10 +272,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (humanresources-team .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"humanresources-team.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001525; classtype:social-engineering; sid:6001525; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T02:15:40.079059+00:00",
+  "updated_at": "2026-06-21T05:39:40.826343+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

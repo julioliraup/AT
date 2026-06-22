@@ -49,27 +49,81 @@
     "phishdestroy": {
       "domain": "bg2-n11.global.ssl.fastly.net",
       "domain_defanged": "bg2-n11[.]global[.]ssl[.]fastly[.]net",
-      "case_id": "PD-20260618-38672F",
-      "analyzed_at": "2026-06-18T20:55:51.271Z",
+      "case_id": "PD-20260622-38672F",
+      "analyzed_at": "2026-06-22T01:40:03.381Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019edc84-ca7c-7652-accb-806988f106ed/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ee634-abc3-762e-b202-6cadc3097853.png",
+          "url": "https://urlscan.io/result/019ee634-abc3-762e-b202-6cadc3097853/",
+          "title": "Fastly error: unknown domain bg2-n11.global.ssl.fastly.net"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "151.101.1.194",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "151.101.1.194",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
             "151.101.1.194",
@@ -81,7 +135,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -208,7 +269,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bg2-n11.global.ssl.fastly.net/index.html)\"; flow:established,to_server; http.uri; content:\"/index.html\"; startswith; fast_pattern; http.host; content:\"bg2-n11.global.ssl.fastly.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011014; classtype:social-engineering; sid:6011014; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T20:55:47.820696+00:00",
+  "updated_at": "2026-06-22T01:39:59.394731+00:00",
   "probe": {
     "dns": true,
     "whois": false,

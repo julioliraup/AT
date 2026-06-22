@@ -50,41 +50,29 @@
     "phishdestroy": {
       "domain": "ln.run",
       "domain_defanged": "ln[.]run",
-      "case_id": "PD-20260618-418FDF",
-      "analyzed_at": "2026-06-18T01:51:44.256Z",
+      "case_id": "PD-20260621-418FDF",
+      "analyzed_at": "2026-06-21T02:25:28.642Z",
       "intel": {
         "virustotal": {
-          "malicious": 0,
-          "suspicious": 0,
-          "total": 91,
-          "detections": [],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Fedex"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019ed830-c75f-749f-97ed-bec43772a4c2.png",
-          "url": "https://urlscan.io/result/019ed830-c75f-749f-97ed-bec43772a4c2/",
-          "title": "로그인"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ee76a-8508-7564-bcf9-dd12c9abba4d.png",
+          "url": "https://urlscan.io/result/019ee76a-8508-7564-bcf9-dd12c9abba4d/",
+          "title": "Buy Cheap Products -Shopee"
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Fedex",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.68.62",
+        "ip": "104.26.2.145",
         "ipinfo": {
-          "ip": "172.67.68.62",
+          "ip": "104.26.2.145",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -92,6 +80,11 @@
           "asn": "AS13335"
         },
         "dns": {
+          "A": [
+            "104.26.2.145",
+            "104.26.3.145",
+            "172.67.68.62"
+          ],
           "MX": [
             "1 aspmx.l.google.com.",
             "10 alt3.aspmx.l.google.com.",
@@ -99,19 +92,14 @@
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com."
           ],
-          "A": [
-            "172.67.68.62",
-            "104.26.2.145",
-            "104.26.3.145"
+          "AAAA": [
+            "2606:4700:20::ac43:443e",
+            "2606:4700:20::681a:291",
+            "2606:4700:20::681a:391"
           ],
           "NS": [
             "grant.ns.cloudflare.com.",
             "yolanda.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:20::681a:291",
-            "2606:4700:20::ac43:443e",
-            "2606:4700:20::681a:391"
           ]
         }
       },
@@ -247,11 +235,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ln .run/-l6T3)\"; flow:established,to_server; http.uri; content:\"/-l6T3\"; startswith; fast_pattern; http.host;  content:\"ln.run\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001337; classtype:social-engineering; sid:6001337; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:51:31.094089+00:00",
+  "updated_at": "2026-06-21T05:19:28.869501+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,37 +49,60 @@
     "phishdestroy": {
       "domain": "coinsqure-eng.zapier.app",
       "domain_defanged": "coinsqure-eng[.]zapier[.]app",
-      "case_id": "PD-20260618-7BFBD1",
-      "analyzed_at": "2026-06-18T21:32:32.722Z",
+      "case_id": "PD-20260622-7BFBD1",
+      "analyzed_at": "2026-06-22T02:31:21.046Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edca6-62d2-768b-9260-601d024ffcf1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinsquare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee652-395a-760c-b229-4627404925b1.png",
+          "url": "https://urlscan.io/result/019ee652-395a-760c-b229-4627404925b1/",
+          "title": "Coinsquare® Login™ ✦ Secure"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinsquare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.239.109.129",
-        "ipinfo": null,
+        "ip": "64.239.109.1",
+        "ipinfo": {
+          "ip": "64.239.109.1",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.239.109.129",
-            "64.239.123.129"
+            "64.239.109.1",
+            "64.239.109.129"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -206,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (coinsqure-eng.zapier.app/login)\"; flow:established,to_server; http.uri; content:\"/login\"; startswith; fast_pattern; http.host; content:\"coinsqure-eng.zapier.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011373; classtype:social-engineering; sid:6011373; rev:1; metadata: signature_severity Major, created_et 2026_06_06;)",
-  "updated_at": "2026-06-18T21:32:27.980798+00:00",
+  "updated_at": "2026-06-22T02:31:13.968402+00:00",
   "probe": {
     "dns": true,
     "whois": false,

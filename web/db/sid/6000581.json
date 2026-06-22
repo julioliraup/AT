@@ -50,35 +50,51 @@
     "phishdestroy": {
       "domain": "parasuramanphillips-projec26985.pages.dev",
       "domain_defanged": "parasuramanphillips-projec26985[.]pages[.]dev",
-      "case_id": "PD-20260617-759F7B",
-      "analyzed_at": "2026-06-17T20:04:12.833Z",
+      "case_id": "PD-20260621-759F7B",
+      "analyzed_at": "2026-06-21T00:56:31.636Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed72f-282f-76ba-a081-6cb3020095c4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee3d6-4a60-7006-b6a2-1a463a22f0ef.png",
+          "url": "https://urlscan.io/result/019ee3d6-4a60-7006-b6a2-1a463a22f0ef/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.131",
-        "ipinfo": null,
+        "ip": "172.66.44.125",
+        "ipinfo": {
+          "ip": "172.66.44.125",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.66.47.131",
-            "172.66.44.125"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2f83",
             "2606:4700:310c::ac42:2c7d"
+          ],
+          "A": [
+            "172.66.44.125",
+            "172.66.47.131"
           ],
           "NS": [
             "jill.ns.cloudflare.com.",
@@ -88,7 +104,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (parasuramanphillips-projec26985 .pages .dev/help/contact/259735718919223/)\"; flow:established,to_server; http.uri; content:\"/help/contact/259735718919223/\"; startswith; fast_pattern; http.host;  content:\"parasuramanphillips-projec26985.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000581; classtype:social-engineering; sid:6000581; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:34:18.190431+00:00",
+  "updated_at": "2026-06-21T04:10:23.269193+00:00",
   "probe": {
     "dns": true,
     "whois": false,

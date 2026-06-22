@@ -49,26 +49,133 @@
     "phishdestroy": {
       "domain": "assuredannuity.com",
       "domain_defanged": "assuredannuity[.]com",
-      "case_id": "PD-20260618-221AE3",
-      "analyzed_at": "2026-06-18T19:35:05.631Z",
+      "case_id": "PD-20260622-221AE3",
+      "analyzed_at": "2026-06-22T00:26:04.742Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 9,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019edc3a-daf0-739c-b080-b4f334879efb/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ee604-5c90-71a8-8eeb-e7a8a5b20bd3.png",
+          "url": "https://urlscan.io/result/019ee604-5c90-71a8-8eeb-e7a8a5b20bd3/",
+          "title": "Fixed Rate Runner | Fixed Term Investments for Institutions"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2013-08-19T01:17:58Z",
         "expires": "2026-08-19T01:17:58Z",
-        "age_days": 4686,
+        "age_days": 4689,
         "nameservers": [
           "NS1.GENEXCAPITAL.COM",
           "NS2.GENEXCAPITAL.COM",
@@ -77,7 +184,15 @@
       },
       "infrastructure": {
         "ip": "162.220.58.205",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "162.220.58.205",
+          "hostname": "host.genexcapital.com",
+          "city": "Tampa",
+          "region": "Florida",
+          "country": "US",
+          "org": "AS29802 HIVELOCITY, Inc.",
+          "asn": "AS29802"
+        },
         "dns": {
           "MX": [
             "0 assuredannuity.com."
@@ -86,8 +201,8 @@
             "162.220.58.205"
           ],
           "NS": [
-            "ns1.genexcapital.com.",
-            "ns2.genexcapital.com."
+            "ns2.genexcapital.com.",
+            "ns1.genexcapital.com."
           ]
         }
       },
@@ -100,7 +215,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "HVC-AS, US",
+          "abuse": "abuse@hivelocity.net",
+          "url": "mailto:abuse@hivelocity.net",
+          "logo": "https://i.ibb.co/4D8H9dC/pr-HVC-AS-US.png",
+          "method": "email",
+          "asn": "AS29802"
+        }
       },
       "report_services": [
         {
@@ -228,7 +350,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (assuredannuity.com/members/classes/captcha/CerticodePlus/DSP2/login/login.php)\"; flow:established,to_server; http.uri; content:\"/members/classes/captcha/CerticodePlus/DSP2/login/login.php\"; startswith; fast_pattern; http.host; content:\"assuredannuity.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010588; classtype:social-engineering; sid:6010588; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-18T20:05:54.664882+00:00",
+  "updated_at": "2026-06-22T00:37:51.407381+00:00",
   "probe": {
     "dns": true,
     "whois": true,

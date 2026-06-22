@@ -74,37 +74,64 @@
     "phishdestroy": {
       "domain": "logi-ndax-usa.webflow.io",
       "domain_defanged": "logi-ndax-usa[.]webflow[.]io",
-      "case_id": "PD-20260617-6CF9BA",
-      "analyzed_at": "2026-06-17T21:14:34.983Z",
+      "case_id": "PD-20260621-6CF9BA",
+      "analyzed_at": "2026-06-21T02:04:31.368Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ndax"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede5f-7c21-7436-83a6-8a47a28e8ee8.png",
+          "url": "https://urlscan.io/result/019ede5f-7c21-7436-83a6-8a47a28e8ee8/",
+          "title": "NDAX® | Login: Canada’s Most Secure Crypto Exchange"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ndax",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.18.36.248",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.36.248",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.18.36.248",
             "172.64.151.8"
           ],
           "AAAA": [
-            "2a06:98c1:3100::6812:24f8",
-            "2606:4700:440c::ac40:9708"
+            "2606:4700:440c::ac40:9708",
+            "2a06:98c1:3100::6812:24f8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -232,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (logi-ndax-usa .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"logi-ndax-usa.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001173; classtype:social-engineering; sid:6001173; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:36:13.861173+00:00",
+  "updated_at": "2026-06-21T05:04:16.744419+00:00",
   "probe": {
     "dns": true,
     "whois": true,

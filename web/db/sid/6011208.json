@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "coachingdevie.info",
       "domain_defanged": "coachingdevie[.]info",
-      "case_id": "PD-20260618-315D77",
-      "analyzed_at": "2026-06-18T21:15:37.015Z",
+      "case_id": "PD-20260622-315D77",
+      "analyzed_at": "2026-06-22T02:13:36.709Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Allegro"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e989e-b9a9-70fd-a090-de2e26284648.png",
+          "url": "https://urlscan.io/result/019e989e-b9a9-70fd-a090-de2e26284648/",
+          "title": "Oferta specjalna: 90–95% taniej"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Allegro",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (coachingdevie.info/PL-1466-160526/?e=xxx&s3=Tadeusz&s4)\"; flow:established,to_server; http.uri; content:\"/PL-1466-160526/?e=xxx&s3=Tadeusz&s4\"; startswith; fast_pattern; http.host; content:\"coachingdevie.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011208; classtype:social-engineering; sid:6011208; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T21:15:27.664154+00:00",
+  "updated_at": "2026-06-22T02:13:30.570805+00:00",
   "probe": {
     "dns": false,
     "whois": false,

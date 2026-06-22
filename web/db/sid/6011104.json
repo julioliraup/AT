@@ -18,90 +18,55 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://sp5ct6-fraltek-biz-glarnor-vraqnik.pages.dev/",
-      "domain": "sp5ct6-fraltek-biz-glarnor-vraqnik.pages.dev",
-      "url_count": 3,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.66.47.81",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0d70fcbda8b7b78-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "1bd7f1b62787d1eb391e1015d3e6aed9fd92c1f3afe2587c7505778fae8dc674",
-      "md5": "525ad38ed1a52baa9ea349b4f73de4a4",
-      "cert": {
-        "subject_cn": "sp5ct6-fraltek-biz-glarnor-vraqnik.pages.dev",
-        "subject_alt_names": [
-          "sp5ct6-fraltek-biz-glarnor-vraqnik.pages.dev",
-          "*.sp5ct6-fraltek-biz-glarnor-vraqnik.pages.dev"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-04T02:42:15+00:00",
-        "not_valid_after": "2026-09-02T03:40:46+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "10314913997201872585331483434136825477",
-        "fingerprint_sha1": "D3 22 51 31 DE BC 60 F4 11 7B E7 8A 1D CB E0 2E EC 09 C5 D6",
-        "fingerprint_sha256": "11 03 ED 56 8F 15 31 1D B6 1A 94 CF C7 39 92 CD E0 0D 09 33 DF 28 2C B6 37 61 FA EE 4E 99 64 0D"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-06-18T02:58:47",
-      "first_seen_secs": 1781751527.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "sp5ct6-fraltek-biz-glarnor-vraqnik.pages.dev",
       "domain_defanged": "sp5ct6-fraltek-biz-glarnor-vraqnik[.]pages[.]dev",
-      "case_id": "PD-20260618-311994",
-      "analyzed_at": "2026-06-18T21:05:51.922Z",
+      "case_id": "PD-20260622-311994",
+      "analyzed_at": "2026-06-22T01:53:06.202Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc8d-f5a3-7741-9d1c-a508c8e26175/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee63c-3a22-721f-857e-1a143b7c9582.png",
+          "url": "https://urlscan.io/result/019ee63c-3a22-721f-857e-1a143b7c9582/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.81",
-        "ipinfo": null,
+        "ip": "172.66.44.175",
+        "ipinfo": {
+          "ip": "172.66.44.175",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2caf",
-            "2606:4700:310c::ac42:2f51"
+            "2606:4700:310c::ac42:2f51",
+            "2606:4700:310c::ac42:2caf"
           ],
           "A": [
-            "172.66.47.81",
-            "172.66.44.175"
+            "172.66.44.175",
+            "172.66.47.81"
           ],
           "NS": [
             "lina.ns.cloudflare.com.",
@@ -111,7 +76,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -238,7 +210,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-fraltek-biz-glarnor-vraqnik.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-fraltek-biz-glarnor-vraqnik.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011104; classtype:social-engineering; sid:6011104; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T21:05:48.797349+00:00",
+  "updated_at": "2026-06-22T01:52:53.563570+00:00",
   "probe": {
     "dns": true,
     "whois": false,

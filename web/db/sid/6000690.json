@@ -50,26 +50,80 @@
     "phishdestroy": {
       "domain": "discontcomputers.com",
       "domain_defanged": "discontcomputers[.]com",
-      "case_id": "PD-20260617-6DA52E",
-      "analyzed_at": "2026-06-17T20:17:26.585Z",
+      "case_id": "PD-20260621-6DA52E",
+      "analyzed_at": "2026-06-21T01:09:11.876Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed73b-44c7-70cf-a1b1-eb3fe4b6884c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede3b-bfb2-7049-ba4f-6da873efbed3.png",
+          "url": "https://urlscan.io/result/019ede3b-bfb2-7049-ba4f-6da873efbed3/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2008-01-10T21:41:31Z",
         "expires": "2027-01-10T21:41:31Z",
-        "age_days": 6732,
+        "age_days": 6736,
         "nameservers": [
           "NS-1150.AWSDNS-15.ORG",
           "NS-1982.AWSDNS-55.CO.UK",
@@ -78,12 +132,20 @@
         ]
       },
       "infrastructure": {
-        "ip": "34.194.247.17",
-        "ipinfo": null,
+        "ip": "52.204.246.179",
+        "ipinfo": {
+          "ip": "52.204.246.179",
+          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "A": [
-            "34.194.247.17",
-            "52.204.246.179"
+            "52.204.246.179",
+            "34.194.247.17"
           ],
           "MX": [
             "10 mx0.us.cf-ops.net."
@@ -105,7 +167,14 @@
           "method": "form",
           "iana_ids": "292"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -233,7 +302,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (discontcomputers .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"discontcomputers.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000690; classtype:social-engineering; sid:6000690; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:46:59.114527+00:00",
+  "updated_at": "2026-06-21T04:20:26.961380+00:00",
   "probe": {
     "dns": true,
     "whois": true,

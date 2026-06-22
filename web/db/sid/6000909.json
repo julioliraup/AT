@@ -50,37 +50,61 @@
     "phishdestroy": {
       "domain": "clickheretofail.028426.com",
       "domain_defanged": "clickheretofail[.]028426[.]com",
-      "case_id": "PD-20260617-7372F0",
-      "analyzed_at": "2026-06-17T20:46:24.179Z",
+      "case_id": "PD-20260621-7372F0",
+      "analyzed_at": "2026-06-21T01:33:56.707Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed755-c843-7197-8b78-6873e93102a8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede4c-1e38-7038-bee5-c543e7a78b21.png",
+          "url": "https://urlscan.io/result/019ede4c-1e38-7038-bee5-c543e7a78b21/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "34.194.247.17",
-        "ipinfo": null,
+        "ip": "52.204.246.179",
+        "ipinfo": {
+          "ip": "52.204.246.179",
+          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "A": [
-            "34.194.247.17",
-            "52.204.246.179"
+            "52.204.246.179",
+            "34.194.247.17"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -208,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (clickheretofail .028426 .com/2513501 .doc/18a80a/fad0f483-81b2-45c6-ad47-7272058d9cb6)\"; flow:established,to_server; http.uri; content:\"/2513501.doc/18a80a/fad0f483-81b2-45c6-ad47-7272058d9cb6\"; startswith; fast_pattern; http.host;  content:\"clickheretofail.028426.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000909; classtype:social-engineering; sid:6000909; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:08:15.008637+00:00",
+  "updated_at": "2026-06-21T04:40:10.151374+00:00",
   "probe": {
     "dns": true,
     "whois": false,

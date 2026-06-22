@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "firewalll.b-cdn.net",
       "domain_defanged": "firewalll[.]b-cdn[.]net",
-      "case_id": "PD-20260617-6B8E4A",
-      "analyzed_at": "2026-06-17T21:47:21.006Z",
+      "case_id": "PD-20260621-6B8E4A",
+      "analyzed_at": "2026-06-21T02:35:40.312Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee808-9f79-722b-8aea-272dfe9b1179/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,17 +93,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "169.150.220.228",
-        "ipinfo": null,
+        "ip": "138.199.4.178",
+        "ipinfo": {
+          "ip": "138.199.4.178",
+          "hostname": "138.199.4.178.bunnyinfra.net",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS60068 Datacamp Limited",
+          "asn": "AS60068"
+        },
         "dns": {
           "A": [
-            "169.150.220.228"
+            "138.199.4.178"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "BunnyCDN",
+          "abuse": "abuse@bunnycdn.com",
+          "url": "mailto:abuse@bunnycdn.com",
+          "logo": "https://i.ibb.co/SXfVJxZP/pr-Bunny-CDN.png",
+          "method": "email",
+          "asn": "AS60068"
+        }
       },
       "report_services": [
         {
@@ -227,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (firewalll .b-cdn .net/11a .html)\"; flow:established,to_server; http.uri; content:\"/11a.html\"; startswith; fast_pattern; http.host;  content:\"firewalll.b-cdn.net\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001413; classtype:social-engineering; sid:6001413; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T02:03:15.583867+00:00",
+  "updated_at": "2026-06-21T05:29:05.945483+00:00",
   "probe": {
     "dns": true,
     "whois": false,

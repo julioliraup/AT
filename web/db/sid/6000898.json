@@ -74,41 +74,64 @@
     "phishdestroy": {
       "domain": "aktifkans-danax-paylter.tiaoxsid.my.id",
       "domain_defanged": "aktifkans-danax-paylter[.]tiaoxsid[.]my[.]id",
-      "case_id": "PD-20260617-618953",
-      "analyzed_at": "2026-06-17T20:45:08.443Z",
+      "case_id": "PD-20260621-618953",
+      "analyzed_at": "2026-06-21T01:32:19.674Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed754-a06a-76c9-91e1-8860273c08cf/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede4b-4584-7106-82c6-9935b7bbb817.png",
+          "url": "https://urlscan.io/result/019ede4b-4584-7106-82c6-9935b7bbb817/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.203.18",
-        "ipinfo": null,
+        "ip": "104.21.77.8",
+        "ipinfo": {
+          "ip": "104.21.77.8",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.67.203.18",
-            "104.21.77.8"
-          ],
           "AAAA": [
-            "2606:4700:3032::ac43:cb12",
-            "2606:4700:3032::6815:4d08"
+            "2606:4700:3035::6815:4d08",
+            "2606:4700:3036::ac43:cb12"
+          ],
+          "A": [
+            "104.21.77.8",
+            "172.67.203.18"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -236,10 +259,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aktifkans-danax-paylter .tiaoxsid .my .id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"aktifkans-danax-paylter.tiaoxsid.my.id\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000898; classtype:social-engineering; sid:6000898; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:07:24.956632+00:00",
+  "updated_at": "2026-06-21T04:39:03.860086+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

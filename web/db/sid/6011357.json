@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "n1.5jb7.com",
       "domain_defanged": "n1[.]5jb7[.]com",
-      "case_id": "PD-20260618-73EA9F",
-      "analyzed_at": "2026-06-18T21:30:31.895Z",
+      "case_id": "PD-20260622-73EA9F",
+      "analyzed_at": "2026-06-22T02:29:29.918Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edca4-8a3c-70f9-889e-53dbfba108a1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eeb82-5d88-718e-895f-c8bd9c8475b8.png",
+          "url": "https://urlscan.io/result/019eeb82-5d88-718e-895f-c8bd9c8475b8/",
+          "title": "register"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -224,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (n1.5jb7.com/go/77736723)\"; flow:established,to_server; http.uri; content:\"/go/77736723\"; startswith; fast_pattern; http.host; content:\"n1.5jb7.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011357; classtype:social-engineering; sid:6011357; rev:1; metadata: signature_severity Major, created_et 2026_06_06;)",
-  "updated_at": "2026-06-18T21:30:28.685299+00:00",
+  "updated_at": "2026-06-22T02:29:25.225943+00:00",
   "probe": {
     "dns": true,
     "whois": false,

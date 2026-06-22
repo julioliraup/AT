@@ -74,33 +74,60 @@
     "phishdestroy": {
       "domain": "netflix-clone-taupe-ten.vercel.app",
       "domain_defanged": "netflix-clone-taupe-ten[.]vercel[.]app",
-      "case_id": "PD-20260617-1E9086",
-      "analyzed_at": "2026-06-17T21:09:50.353Z",
+      "case_id": "PD-20260621-1E9086",
+      "analyzed_at": "2026-06-21T01:58:42.126Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede5b-e7cb-734d-b012-6da43d9fce86.png",
+          "url": "https://urlscan.io/result/019ede5b-e7cb-734d-b012-6da43d9fce86/",
+          "title": "Netflix Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.2",
-        "ipinfo": null,
+        "ip": "216.198.79.194",
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.198.79.2",
-            "64.29.17.2"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -228,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .netflix-clone-taupe-ten .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.netflix-clone-taupe-ten.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001115; classtype:social-engineering; sid:6001115; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:31:03.811301+00:00",
+  "updated_at": "2026-06-21T04:58:51.646413+00:00",
   "probe": {
     "dns": true,
     "whois": false,

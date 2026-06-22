@@ -49,27 +49,44 @@
     "phishdestroy": {
       "domain": "eu.itpatches.com",
       "domain_defanged": "eu[.]itpatches[.]com",
-      "case_id": "PD-20260618-353027",
-      "analyzed_at": "2026-06-18T20:18:57.707Z",
+      "case_id": "PD-20260622-353027",
+      "analyzed_at": "2026-06-22T00:54:39.896Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc63-04ad-70c2-ba4d-d9d949d5097c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eecd0-5d7b-729a-91b7-d85ce0caa1e7.png",
+          "url": "https://urlscan.io/result/019eecd0-5d7b-729a-91b7-d85ce0caa1e7/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "18.198.182.56",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "18.198.182.56",
+          "hostname": "ec2-18-198-182-56.eu-central-1.compute.amazonaws.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "18.198.182.56",
@@ -88,7 +105,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -216,7 +240,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (eu.itpatches.com/education_redirect_second?475d964a-0243-46bf-aefd-66da26254efa)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?475d964a-0243-46bf-aefd-66da26254efa\"; startswith; fast_pattern; http.host; content:\"eu.itpatches.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010786; classtype:social-engineering; sid:6010786; rev:1; metadata: signature_severity Major, created_et 2026_06_04;)",
-  "updated_at": "2026-06-18T20:29:34.447069+00:00",
+  "updated_at": "2026-06-22T01:06:31.447404+00:00",
   "probe": {
     "dns": true,
     "whois": false,

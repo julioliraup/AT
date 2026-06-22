@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "aumento75.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "aumento75[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260617-11C103",
-      "analyzed_at": "2026-06-17T22:01:34.270Z",
+      "case_id": "PD-20260621-11C103",
+      "analyzed_at": "2026-06-21T02:48:00.810Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee813-ec12-746b-a871-188b4a2a9fa6/",
+          "pending": true
         }
       },
       "detections": [],
@@ -66,7 +70,15 @@
       },
       "infrastructure": {
         "ip": "149.137.136.9",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "149.137.136.9",
+          "hostname": "s3.us-east-005.backblazeb2.com",
+          "city": "Leesburg",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS40401 Backblaze Inc",
+          "asn": "AS40401"
+        },
         "dns": {
           "A": [
             "149.137.136.9",
@@ -84,7 +96,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Backblaze",
+          "abuse": "abuse@backblaze.com",
+          "url": "mailto:abuse@backblaze.com",
+          "logo": "https://i.ibb.co/PvjyjPDm/pr-Backblaze.png",
+          "method": "email",
+          "asn": "AS40401"
+        }
       },
       "report_services": [
         {
@@ -212,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aumento75 .s3 .us-east-005 .backblazeb2 .com/aumento .html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host;  content:\"aumento75.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001517; classtype:social-engineering; sid:6001517; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T02:14:49.414330+00:00",
+  "updated_at": "2026-06-21T05:39:13.748875+00:00",
   "probe": {
     "dns": true,
     "whois": false,

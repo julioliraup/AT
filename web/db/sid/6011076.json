@@ -49,35 +49,51 @@
     "phishdestroy": {
       "domain": "business-for-brynvero-8jq.pages.dev",
       "domain_defanged": "business-for-brynvero-8jq[.]pages[.]dev",
-      "case_id": "PD-20260618-3B4C5F",
-      "analyzed_at": "2026-06-18T21:03:17.608Z",
+      "case_id": "PD-20260622-3B4C5F",
+      "analyzed_at": "2026-06-22T01:48:44.109Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc8b-9ae1-76fa-8511-74ac805cb141/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee639-6b8c-7079-ab32-024e0f8e4162.png",
+          "url": "https://urlscan.io/result/019ee639-6b8c-7079-ab32-024e0f8e4162/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.44",
-        "ipinfo": null,
+        "ip": "172.66.44.212",
+        "ipinfo": {
+          "ip": "172.66.44.212",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "172.66.44.212",
+            "172.66.47.44"
+          ],
           "AAAA": [
             "2606:4700:310c::ac42:2cd4",
             "2606:4700:310c::ac42:2f2c"
-          ],
-          "A": [
-            "172.66.47.44",
-            "172.66.44.212"
           ],
           "NS": [
             "crystal.ns.cloudflare.com.",
@@ -87,7 +103,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -214,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (business-for-brynvero-8jq.pages.dev/login/)\"; flow:established,to_server; http.uri; content:\"/login/\"; startswith; fast_pattern; http.host; content:\"business-for-brynvero-8jq.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011076; classtype:social-engineering; sid:6011076; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T21:03:09.563078+00:00",
+  "updated_at": "2026-06-22T01:48:40.537277+00:00",
   "probe": {
     "dns": true,
     "whois": false,

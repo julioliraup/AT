@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "dk-healthydiet.shop",
       "domain_defanged": "dk-healthydiet[.]shop",
-      "case_id": "PD-20260618-69BEAF",
-      "analyzed_at": "2026-06-18T20:16:18.195Z",
+      "case_id": "PD-20260622-69BEAF",
+      "analyzed_at": "2026-06-22T00:50:54.704Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e93d6-c6a3-7664-9fac-d3a0c9b550c1.png",
+          "url": "https://urlscan.io/result/019e93d6-c6a3-7664-9fac-d3a0c9b550c1/",
+          "title": "Amazon.com: Herbtonics Apple Cider Vinegar + Keto BHB Capsules | GLP-1 Support for Appetite, Cravings & Weight Management | Metabolism Support with Satiety Support | 120 Capsules - 2 Month Supply : He"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "167.71.44.44",
+        "ipinfo": {
+          "ip": "167.71.44.44",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS14061 DigitalOcean, LLC",
+          "asn": "AS14061"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DigitalOcean",
+          "abuse": "abuse@digitalocean.com",
+          "url": "https://www.digitalocean.com/company/contact#abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14061"
+        }
       },
       "report_services": [
         {
@@ -220,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dk-healthydiet.shop/ZYQ-DK01/)\"; flow:established,to_server; http.uri; content:\"/ZYQ-DK01/\"; startswith; fast_pattern; http.host; content:\"dk-healthydiet.shop\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6010673; classtype:social-engineering; sid:6010673; rev:1; metadata: signature_severity Major, created_et 2026_06_04;)",
-  "updated_at": "2026-06-18T20:16:13.604012+00:00",
+  "updated_at": "2026-06-22T00:50:43.513312+00:00",
   "probe": {
     "dns": true,
     "whois": true,

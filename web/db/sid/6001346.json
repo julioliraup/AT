@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "desktop-ledgar.zapier.app",
       "domain_defanged": "desktop-ledgar[.]zapier[.]app",
-      "case_id": "PD-20260617-48EA44",
-      "analyzed_at": "2026-06-17T21:35:47.502Z",
+      "case_id": "PD-20260621-48EA44",
+      "analyzed_at": "2026-06-21T02:26:33.692Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee800-48ea-75bf-9826-0ed069df5b07/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,18 +69,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.239.109.129",
-        "ipinfo": null,
+        "ip": "64.239.123.129",
+        "ipinfo": {
+          "ip": "64.239.123.129",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.239.109.129",
-            "64.239.123.65"
+            "64.239.123.129",
+            "64.239.109.1"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -204,7 +222,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (desktop-ledgar .zapier .app/live)\"; flow:established,to_server; http.uri; content:\"/live\"; startswith; fast_pattern; http.host;  content:\"desktop-ledgar.zapier.app\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001346; classtype:social-engineering; sid:6001346; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:53:23.738279+00:00",
+  "updated_at": "2026-06-21T05:21:07.498997+00:00",
   "probe": {
     "dns": true,
     "whois": false,

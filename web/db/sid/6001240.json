@@ -74,27 +74,47 @@
     "phishdestroy": {
       "domain": "member031.agency-partner-request.com",
       "domain_defanged": "member031[.]agency-partner-request[.]com",
-      "case_id": "PD-20260617-17ABB6",
-      "analyzed_at": "2026-06-17T21:22:49.231Z",
+      "case_id": "PD-20260621-17ABB6",
+      "analyzed_at": "2026-06-21T02:11:37.667Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ede63-d2b6-7161-be7f-62f0f2e8b68f.png",
+          "url": "https://urlscan.io/result/019ede63-d2b6-7161-be7f-62f0f2e8b68f/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.33.175",
-        "ipinfo": null,
+        "ip": "172.67.147.170",
+        "ipinfo": {
+          "ip": "172.67.147.170",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "104.21.33.175",
-            "172.67.147.170"
+            "172.67.147.170",
+            "104.21.33.175"
           ],
           "AAAA": [
             "2606:4700:3036::6815:21af",
@@ -104,7 +124,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -232,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (member031 .agency-partner-request .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"member031.agency-partner-request.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001240; classtype:social-engineering; sid:6001240; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:41:31.226018+00:00",
+  "updated_at": "2026-06-21T05:10:02.494312+00:00",
   "probe": {
     "dns": true,
     "whois": false,

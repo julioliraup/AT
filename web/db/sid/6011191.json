@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "psa.corporatereward.net",
       "domain_defanged": "psa[.]corporatereward[.]net",
-      "case_id": "PD-20260618-326CAD",
-      "analyzed_at": "2026-06-18T21:14:23.509Z",
+      "case_id": "PD-20260622-326CAD",
+      "analyzed_at": "2026-06-22T02:10:45.426Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edc95-c2c3-7188-9f5d-5e5d9f19b4f8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee643-7517-701b-ba5f-aa1968ef61f0.png",
+          "url": "https://urlscan.io/result/019ee643-7517-701b-ba5f-aa1968ef61f0/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -245,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (psa.corporatereward.net/education_redirect_second/8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second/8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"psa.corporatereward.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011191; classtype:social-engineering; sid:6011191; rev:1; metadata: signature_severity Major, created_et 2026_06_05;)",
-  "updated_at": "2026-06-18T21:14:13.526529+00:00",
+  "updated_at": "2026-06-22T02:10:38.199703+00:00",
   "probe": {
     "dns": true,
     "whois": false,

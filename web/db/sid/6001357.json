@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "hotel-stay32181.com",
       "domain_defanged": "hotel-stay32181[.]com",
-      "case_id": "PD-20260617-36B545",
-      "analyzed_at": "2026-06-17T21:37:13.082Z",
+      "case_id": "PD-20260621-36B545",
+      "analyzed_at": "2026-06-21T02:28:05.896Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee801-b0a3-7738-a5b9-e4595932ed5b/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,23 +69,30 @@
         "registrar": "Dynadot Inc",
         "created": "2026-05-10T13:44:57Z",
         "expires": "2027-05-10T13:44:57Z",
-        "age_days": 38,
+        "age_days": 41,
         "nameservers": [
           "BRIANNA.NS.CLOUDFLARE.COM",
           "FELICITY.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.162.195",
-        "ipinfo": null,
+        "ip": "104.21.10.93",
+        "ipinfo": {
+          "ip": "104.21.10.93",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3037::6815:a5d",
-            "2606:4700:3033::ac43:a2c3"
+            "2606:4700:3035::6815:a5d",
+            "2606:4700:3030::ac43:a2c3"
           ],
           "A": [
-            "172.67.162.195",
-            "104.21.10.93"
+            "104.21.10.93",
+            "172.67.162.195"
           ],
           "NS": [
             "brianna.ns.cloudflare.com.",
@@ -98,7 +109,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -226,10 +244,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hotel-stay32181 .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"hotel-stay32181.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001357; classtype:social-engineering; sid:6001357; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:54:56.219506+00:00",
+  "updated_at": "2026-06-21T05:22:19.537791+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

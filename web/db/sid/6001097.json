@@ -50,14 +50,19 @@
     "phishdestroy": {
       "domain": "banking.dkb.romandrewes.de",
       "domain_defanged": "banking[.]dkb[.]romandrewes[.]de",
-      "case_id": "PD-20260617-588C7A",
-      "analyzed_at": "2026-06-17T21:07:58.192Z",
+      "case_id": "PD-20260621-588C7A",
+      "analyzed_at": "2026-06-21T01:56:53.025Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ee033-1eaa-7179-9335-4113467094c4.png",
+          "url": "https://urlscan.io/result/019ee033-1eaa-7179-9335-4113467094c4/",
+          "title": "410 Gone"
         }
       },
       "detections": [],
@@ -66,13 +71,21 @@
       },
       "infrastructure": {
         "ip": "81.169.145.160",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "81.169.145.160",
+          "hostname": "wa0.rzone.de",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS6724 Strato GmbH",
+          "asn": "AS6724"
+        },
         "dns": {
-          "MX": [
-            "5 smtpin.rzone.de."
-          ],
           "A": [
             "81.169.145.160"
+          ],
+          "MX": [
+            "5 smtpin.rzone.de."
           ],
           "AAAA": [
             "2a01:238:20a:202:1160::"
@@ -81,7 +94,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "STRATO STRATO AG, DE",
+          "abuse": "abuse@strato.de",
+          "url": "mailto:abuse@strato.de",
+          "logo": "https://i.ibb.co/YB4pF1MX/pr-STRATO-STRATO-AG-DE.png",
+          "method": "email",
+          "asn": "AS6724"
+        }
       },
       "report_services": [
         {
@@ -209,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (banking .dkb .romandrewes .de/online/login .php)\"; flow:established,to_server; http.uri; content:\"/online/login.php\"; startswith; fast_pattern; http.host;  content:\"banking.dkb.romandrewes.de\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001097; classtype:social-engineering; sid:6001097; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:29:24.077717+00:00",
+  "updated_at": "2026-06-21T04:56:47.623145+00:00",
   "probe": {
     "dns": true,
     "whois": true,

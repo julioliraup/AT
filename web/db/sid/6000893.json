@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "addg.bjrr2.my.id",
       "domain_defanged": "addg[.]bjrr2[.]my[.]id",
-      "case_id": "PD-20260617-3DA394",
-      "analyzed_at": "2026-06-17T20:44:20.608Z",
+      "case_id": "PD-20260621-3DA394",
+      "analyzed_at": "2026-06-21T01:31:45.062Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e148c-f789-769a-bf8a-82681207d1ab.png",
+          "url": "https://urlscan.io/result/019e148c-f789-769a-bf8a-82681207d1ab/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -198,7 +226,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (addg .bjrr2 .my .id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"addg.bjrr2.my.id\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000893; classtype:social-engineering; sid:6000893; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:06:46.366210+00:00",
+  "updated_at": "2026-06-21T04:38:46.079609+00:00",
   "probe": {
     "dns": false,
     "whois": false,

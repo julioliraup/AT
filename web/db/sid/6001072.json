@@ -50,14 +50,19 @@
     "phishdestroy": {
       "domain": "gaurkhede-ronak.github.io",
       "domain_defanged": "gaurkhede-ronak[.]github[.]io",
-      "case_id": "PD-20260617-51A462",
-      "analyzed_at": "2026-06-17T21:05:30.570Z",
+      "case_id": "PD-20260621-51A462",
+      "analyzed_at": "2026-06-21T01:54:02.419Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ede59-13dc-756d-bd49-304b5ff339ff.png",
+          "url": "https://urlscan.io/result/019ede59-13dc-756d-bd49-304b5ff339ff/",
+          "title": "Site not found · GitHub Pages"
         }
       },
       "detections": [],
@@ -66,25 +71,40 @@
       },
       "infrastructure": {
         "ip": "185.199.110.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.110.153",
+          "hostname": "cdn-185-199-110-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
             "185.199.110.153",
+            "185.199.111.153",
             "185.199.108.153",
-            "185.199.109.153",
-            "185.199.111.153"
+            "185.199.109.153"
           ],
           "AAAA": [
-            "2606:50c0:8002::153",
             "2606:50c0:8000::153",
             "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
             "2606:50c0:8003::153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -212,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gaurkhede-ronak .github .io/Amazon-Clone/)\"; flow:established,to_server; http.uri; content:\"/Amazon-Clone/\"; startswith; fast_pattern; http.host;  content:\"gaurkhede-ronak.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001072; classtype:social-engineering; sid:6001072; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:27:17.973429+00:00",
+  "updated_at": "2026-06-21T04:54:58.293816+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -18,96 +18,68 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://tr.galabetmobil.co/",
-      "domain": "tr.galabetmobil.co",
-      "url_count": 3,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.67.187.127",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0d713a45e575332-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "f58d338cfd786214b9afc7cd8d5dc80033de412428b9b40271509636305ab6a1",
-      "md5": "546f34478d747d4dcd8b4412dec7edb5",
-      "cert": {
-        "subject_cn": "galabetmobil.co",
-        "subject_alt_names": [
-          "galabetmobil.co",
-          "*.galabetmobil.co"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-04T14:28:33+00:00",
-        "not_valid_after": "2026-09-02T15:27:10+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "163557145568610579922321233013484259349",
-        "fingerprint_sha1": "B6 D1 4F 18 52 7F D6 B5 86 75 0B 81 8F 5A 48 82 64 A7 66 3B",
-        "fingerprint_sha256": "D0 4F 91 BF C9 2D 50 31 5C 85 42 01 60 C1 4F 42 62 40 05 E6 B4 1C 5D 5A 31 7E 38 9A 23 6B DA 81"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-06-18T02:59:38",
-      "first_seen_secs": 1781751578.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "tr.galabetmobil.co",
       "domain_defanged": "tr[.]galabetmobil[.]co",
-      "case_id": "PD-20260618-334D47",
-      "analyzed_at": "2026-06-18T21:33:18.348Z",
+      "case_id": "PD-20260622-334D47",
+      "analyzed_at": "2026-06-22T02:32:23.679Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edca7-1506-70a6-9878-b2826286d644/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee652-e516-731a-b5c7-beaf79029d43.png",
+          "url": "https://urlscan.io/result/019ee652-e516-731a-b5c7-beaf79029d43/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.187.127",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.187.127",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.67.187.127",
-            "104.21.7.56"
-          ],
           "AAAA": [
             "2606:4700:3032::6815:738",
             "2606:4700:3035::ac43:bb7f"
+          ],
+          "A": [
+            "172.67.187.127",
+            "104.21.7.56"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +206,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tr.galabetmobil.co/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tr.galabetmobil.co\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011380; classtype:social-engineering; sid:6011380; rev:1; metadata: signature_severity Major, created_et 2026_06_06;)",
-  "updated_at": "2026-06-18T21:33:15.714646+00:00",
+  "updated_at": "2026-06-22T02:32:10.493147+00:00",
   "probe": {
     "dns": true,
     "whois": false,

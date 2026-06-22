@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "gov-parkingeu.shop",
       "domain_defanged": "gov-parkingeu[.]shop",
-      "case_id": "PD-20260618-AE1D1D",
-      "analyzed_at": "2026-06-18T20:16:56.277Z",
+      "case_id": "PD-20260622-AE1D1D",
+      "analyzed_at": "2026-06-22T00:51:52.337Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e95d2-e05b-741f-98ab-43cacbfc772a.png",
+          "url": "https://urlscan.io/result/019e95d2-e05b-741f-98ab-43cacbfc772a/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "129.226.204.78",
+        "ipinfo": {
+          "ip": "129.226.204.78",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingeu.shop/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingeu.shop\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6010680; classtype:social-engineering; sid:6010680; rev:1; metadata: signature_severity Major, created_et 2026_06_04;)",
-  "updated_at": "2026-06-18T20:16:52.919598+00:00",
+  "updated_at": "2026-06-22T00:51:47.402968+00:00",
   "probe": {
     "dns": false,
     "whois": false,

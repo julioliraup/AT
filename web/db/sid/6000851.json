@@ -74,26 +74,94 @@
     "phishdestroy": {
       "domain": "edoctransfer.com",
       "domain_defanged": "edoctransfer[.]com",
-      "case_id": "PD-20260617-3BBCD0",
-      "analyzed_at": "2026-06-17T20:38:51.251Z",
+      "case_id": "PD-20260621-3BBCD0",
+      "analyzed_at": "2026-06-21T01:26:47.977Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {
+            "BitDefender": "parked",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "educational materials"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed74e-dd58-7437-b26d-e806c22fc980/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee584-1b43-7075-b808-86bb7beb1e82.png",
+          "url": "https://urlscan.io/result/019ee584-1b43-7075-b808-86bb7beb1e82/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2009-03-25T15:15:52Z",
         "expires": "2027-03-25T15:15:52Z",
-        "age_days": 6293,
+        "age_days": 6296,
         "nameservers": [
           "NS-1111.AWSDNS-10.ORG",
           "NS-2001.AWSDNS-58.CO.UK",
@@ -113,12 +181,12 @@
           "asn": "AS14618"
         },
         "dns": {
+          "MX": [
+            "10 mx0.us.cf-ops.net."
+          ],
           "A": [
             "52.204.246.179",
             "34.194.247.17"
-          ],
-          "MX": [
-            "10 mx0.us.cf-ops.net."
           ],
           "NS": [
             "ns-1111.awsdns-10.org.",
@@ -272,10 +340,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (edoctransfer .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"edoctransfer.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000851; classtype:social-engineering; sid:6000851; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:03:11.394142+00:00",
+  "updated_at": "2026-06-21T04:35:06.776917+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

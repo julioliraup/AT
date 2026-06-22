@@ -56,37 +56,82 @@
     "phishdestroy": {
       "domain": "is.gd",
       "domain_defanged": "is[.]gd",
-      "case_id": "PD-20260617-5FCA42",
-      "analyzed_at": "2026-06-17T19:18:42.903Z",
+      "case_id": "PD-20260621-5FCA42",
+      "analyzed_at": "2026-06-21T00:04:02.134Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ed705-805e-70a9-8afa-3f566a8f0981/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee72f-e5ca-765f-99af-ae1f2004ca72.png",
+          "url": "https://urlscan.io/result/019ee72f-e5ca-765f-99af-ae1f2004ca72/",
+          "title": "G00b3rz - Roblox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.25.234.53",
-        "ipinfo": null,
+        "ip": "104.25.233.53",
+        "ipinfo": {
+          "ip": "104.25.233.53",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.25.234.53",
-            "172.67.83.132",
-            "104.25.233.53"
-          ],
           "AAAA": [
             "2606:4700:20::ac43:5384",
-            "2606:4700:20::6819:e935",
-            "2606:4700:20::6819:ea35"
+            "2606:4700:20::6819:ea35",
+            "2606:4700:20::6819:e935"
+          ],
+          "A": [
+            "104.25.233.53",
+            "104.25.234.53",
+            "172.67.83.132"
+          ],
+          "NS": [
+            "gwen.ns.cloudflare.com.",
+            "jerry.ns.cloudflare.com."
           ],
           "MX": [
             "1 aspmx.l.google.com.",
@@ -94,16 +139,19 @@
             "10 alt4.aspmx.l.google.com.",
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com."
-          ],
-          "NS": [
-            "gwen.ns.cloudflare.com.",
-            "jerry.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -231,7 +279,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .is .gd/Pex2mf/)\"; flow:established,to_server; http.uri; content:\"/Pex2mf/\"; startswith; fast_pattern; http.host;  content:\"www.is.gd\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000175; classtype:social-engineering; sid:6000175; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-17T23:53:57.628299+00:00",
+  "updated_at": "2026-06-21T03:25:26.646469+00:00",
   "probe": {
     "dns": true,
     "whois": true,

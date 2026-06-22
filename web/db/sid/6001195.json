@@ -73,14 +73,19 @@
     "phishdestroy": {
       "domain": "gemini.141010.xyz",
       "domain_defanged": "gemini[.]141010[.]xyz",
-      "case_id": "PD-20260617-3DE2F7",
-      "analyzed_at": "2026-06-17T21:18:06.609Z",
+      "case_id": "PD-20260621-3DE2F7",
+      "analyzed_at": "2026-06-21T02:07:18.672Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ede61-34ed-76cc-bcc9-a87d655b080d.png",
+          "url": "https://urlscan.io/result/019ede61-34ed-76cc-bcc9-a87d655b080d/",
+          "title": "验证页面 - Gemini Balance"
         }
       },
       "detections": [],
@@ -91,13 +96,13 @@
         "ip": "gemini.141010.xyz.eo.dnse5.com.",
         "ipinfo": null,
         "dns": {
+          "MX": [
+            "gemini.141010.xyz.eo.dnse5.com."
+          ],
           "A": [
             "gemini.141010.xyz.eo.dnse5.com.",
             "43.174.246.32",
             "43.174.247.32"
-          ],
-          "MX": [
-            "gemini.141010.xyz.eo.dnse5.com."
           ],
           "AAAA": [
             "gemini.141010.xyz.eo.dnse5.com."
@@ -112,7 +117,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -240,10 +252,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gemini .141010 .xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"gemini.141010.xyz\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001195; classtype:social-engineering; sid:6001195; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:38:27.925776+00:00",
+  "updated_at": "2026-06-21T05:06:20.065364+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

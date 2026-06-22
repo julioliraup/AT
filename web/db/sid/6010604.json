@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "auspost-verify-delivery.com",
       "domain_defanged": "auspost-verify-delivery[.]com",
-      "case_id": "PD-20260618-57D105",
-      "analyzed_at": "2026-06-18T19:59:47.137Z",
+      "case_id": "PD-20260622-57D105",
+      "analyzed_at": "2026-06-22T00:35:06.140Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e92bc-5240-7138-b6b7-b8b39fdaa74e.png",
+          "url": "https://urlscan.io/result/019e92bc-5240-7138-b6b7-b8b39fdaa74e/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "OwnRegistrar, Inc.",
         "created": "2026-06-01T08:05:57Z",
         "expires": "2027-06-01T08:05:57Z",
-        "age_days": 17,
+        "age_days": 20,
         "nameservers": [
           "DESI.NS.CLOUDFLARE.COM",
           "SEVKI.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": "1250"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -211,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.auspost-verify-delivery.com/mypostFind?sslchannel=true&sessionid=DGnghJH3MFCtc7zqTWmXCNlifY4aPsBiaBHb5ie0sHALVCiuKIInuC7a4mHzXSFAcuXZgBVdPUwZ3Q7QHjqTjo5AWrHqvQ4H4e4cR4dgu5qINdLZu42aDup2MWVIWeX20k)\"; flow:established,to_server; http.uri; content:\"/mypostFind?sslchannel=true&sessionid=DGnghJH3MFCtc7zqTWmXCNlifY4aPsBiaBHb5ie0sHALVCiuKIInuC7a4mHzXSFAcuXZgBVdPUwZ3Q7QHjqTjo5AWrHqvQ4H4e4cR4dgu5qINdLZu42aDup2MWVIWeX20k\"; startswith; fast_pattern; http.host; content:\"www.auspost-verify-delivery.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010604; classtype:social-engineering; sid:6010604; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-18T20:08:24.896295+00:00",
+  "updated_at": "2026-06-22T00:39:55.962273+00:00",
   "probe": {
     "dns": false,
     "whois": false,

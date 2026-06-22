@@ -23,14 +23,19 @@
     "phishdestroy": {
       "domain": "cannalab.eu",
       "domain_defanged": "cannalab[.]eu",
-      "case_id": "PD-20260617-4579FB",
-      "analyzed_at": "2026-06-17T21:35:27.439Z",
+      "case_id": "PD-20260621-4579FB",
+      "analyzed_at": "2026-06-21T02:26:13.739Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ede6a-f496-73ba-b639-566b21c03f3b.png",
+          "url": "https://urlscan.io/result/019ede6a-f496-73ba-b639-566b21c03f3b/",
+          "title": "Account - Cannalab.eu"
         }
       },
       "detections": [],
@@ -49,6 +54,13 @@
           "asn": "AS24940"
         },
         "dns": {
+          "MX": [
+            "1 aspmx.l.google.com.",
+            "10 alt3.aspmx.l.google.com.",
+            "10 alt4.aspmx.l.google.com.",
+            "5 alt1.aspmx.l.google.com.",
+            "5 alt2.aspmx.l.google.com."
+          ],
           "A": [
             "5.9.29.107"
           ],
@@ -57,13 +69,6 @@
             "ns-1626.awsdns-11.co.uk.",
             "ns-508.awsdns-63.com.",
             "ns-791.awsdns-34.net."
-          ],
-          "MX": [
-            "1 aspmx.l.google.com.",
-            "10 alt3.aspmx.l.google.com.",
-            "10 alt4.aspmx.l.google.com.",
-            "5 alt1.aspmx.l.google.com.",
-            "5 alt2.aspmx.l.google.com."
           ]
         }
       },
@@ -204,10 +209,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cannalab .eu/images/c/?email=undefined)\"; flow:established,to_server; http.uri; content:\"/images/c/?email=undefined\"; startswith; fast_pattern; http.host;  content:\"cannalab.eu\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001343; classtype:social-engineering; sid:6001343; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T01:52:34.326601+00:00",
+  "updated_at": "2026-06-21T05:20:31.279821+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "surl.li",
       "domain_defanged": "surl[.]li",
-      "case_id": "PD-20260617-6E7417",
-      "analyzed_at": "2026-06-17T21:43:43.199Z",
+      "case_id": "PD-20260620-6E7417",
+      "analyzed_at": "2026-06-20T11:51:30.403Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee4df-24ac-7597-aab0-277669c9b870/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,19 +69,26 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.40.129",
-        "ipinfo": null,
+        "ip": "172.66.43.127",
+        "ipinfo": {
+          "ip": "172.66.43.127",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "MX": [
-            "0 mail.surl.li."
-          ],
           "AAAA": [
-            "2606:4700:3108::ac42:2b7f",
-            "2606:4700:3108::ac42:2881"
+            "2606:4700:3108::ac42:2881",
+            "2606:4700:3108::ac42:2b7f"
           ],
           "A": [
-            "172.66.40.129",
-            "172.66.43.127"
+            "172.66.43.127",
+            "172.66.40.129"
+          ],
+          "MX": [
+            "0 mail.surl.li."
           ],
           "NS": [
             "dina.ns.cloudflare.com.",
@@ -87,7 +98,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -215,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (surl .li/nkayto)\"; flow:established,to_server; http.uri; content:\"/nkayto\"; startswith; fast_pattern; http.host;  content:\"surl.li\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001382; classtype:social-engineering; sid:6001382; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T02:00:13.413683+00:00",
+  "updated_at": "2026-06-21T05:26:01.619910+00:00",
   "probe": {
     "dns": true,
     "whois": true,

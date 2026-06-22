@@ -73,35 +73,51 @@
     "phishdestroy": {
       "domain": "sp10ct6-slantek-biz-vortix-qralnor.pages.dev",
       "domain_defanged": "sp10ct6-slantek-biz-vortix-qralnor[.]pages[.]dev",
-      "case_id": "PD-20260618-15A1F8",
-      "analyzed_at": "2026-06-18T21:38:24.696Z",
+      "case_id": "PD-20260622-15A1F8",
+      "analyzed_at": "2026-06-22T02:38:37.221Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019edcab-c12d-71ea-8a87-ef35efbbe62a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee658-4ddb-77ea-ab06-656b64dccff8.png",
+          "url": "https://urlscan.io/result/019ee658-4ddb-77ea-ab06-656b64dccff8/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.47.102",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.102",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2c9a",
-            "2606:4700:310c::ac42:2f66"
-          ],
           "A": [
             "172.66.47.102",
             "172.66.44.154"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2c9a",
+            "2606:4700:310c::ac42:2f66"
           ],
           "NS": [
             "daphne.ns.cloudflare.com.",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -238,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-slantek-biz-vortix-qralnor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-slantek-biz-vortix-qralnor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011430; classtype:social-engineering; sid:6011430; rev:1; metadata: signature_severity Major, created_et 2026_06_06;)",
-  "updated_at": "2026-06-18T21:38:22.373264+00:00",
+  "updated_at": "2026-06-22T02:38:34.878526+00:00",
   "probe": {
     "dns": true,
     "whois": false,

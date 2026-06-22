@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "imarsalan-tech.github.io",
       "domain_defanged": "imarsalan-tech[.]github[.]io",
-      "case_id": "PD-20260617-7B4083",
-      "analyzed_at": "2026-06-17T22:09:34.173Z",
+      "case_id": "PD-20260621-7B4083",
+      "analyzed_at": "2026-06-21T02:55:48.883Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ee81b-1122-73db-87e7-08e137ca1e60/",
+          "pending": true
         }
       },
       "detections": [],
@@ -66,13 +70,21 @@
       },
       "infrastructure": {
         "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
             "185.199.108.153",
-            "185.199.110.153",
             "185.199.111.153",
-            "185.199.109.153"
+            "185.199.109.153",
+            "185.199.110.153"
           ],
           "AAAA": [
             "2606:50c0:8000::153",
@@ -84,7 +96,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -212,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (imarsalan-tech .github .io/amazon-website/)\"; flow:established,to_server; http.uri; content:\"/amazon-website/\"; startswith; fast_pattern; http.host;  content:\"imarsalan-tech.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6001585; classtype:social-engineering; sid:6001585; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T02:21:58.396801+00:00",
+  "updated_at": "2026-06-21T05:44:41.698575+00:00",
   "probe": {
     "dns": true,
     "whois": true,

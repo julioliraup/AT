@@ -50,21 +50,58 @@
     "phishdestroy": {
       "domain": "t37y2vok1cuywyu.s3-website-us-east-1.amazonaws.com",
       "domain_defanged": "t37y2vok1cuywyu[.]s3-website-us-east-1[.]amazonaws[.]com",
-      "case_id": "PD-20260617-616752",
-      "analyzed_at": "2026-06-17T20:19:54.195Z",
+      "case_id": "PD-20260621-616752",
+      "analyzed_at": "2026-06-21T01:12:12.199Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed73d-837b-73da-88e4-39684b93d9c5/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ede3d-e081-75bd-8292-0b36c8cedcc6.png",
+          "url": "https://urlscan.io/result/019ede3d-e081-75bd-8292-0b36c8cedcc6/",
+          "title": "t37y2vok1cuywyu.s3-website-us-east-1.amazonaws.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -72,22 +109,22 @@
         "ip": "s3-website.us-east-1.amazonaws.com.",
         "ipinfo": null,
         "dns": {
-          "A": [
-            "s3-website.us-east-1.amazonaws.com.",
-            "52.216.49.45",
-            "16.15.199.154",
-            "52.217.227.117",
-            "52.217.172.197",
-            "52.216.57.77",
-            "16.15.254.23",
-            "16.15.252.125",
-            "16.15.228.189"
+          "AAAA": [
+            "s3-website.us-east-1.amazonaws.com."
           ],
           "MX": [
             "s3-website.us-east-1.amazonaws.com."
           ],
-          "AAAA": [
-            "s3-website.us-east-1.amazonaws.com."
+          "A": [
+            "s3-website.us-east-1.amazonaws.com.",
+            "52.217.115.77",
+            "54.231.203.165",
+            "54.231.235.221",
+            "16.15.183.174",
+            "52.217.230.101",
+            "16.15.223.228",
+            "52.216.37.85",
+            "16.15.236.7"
           ],
           "CNAME": [
             "s3-website.us-east-1.amazonaws.com."
@@ -231,7 +268,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t37y2vok1cuywyu .s3-website-us-east-1 .amazonaws .com/m30pnuxqli .html?email=redacted@anonymized .invalid)\"; flow:established,to_server; http.uri; content:\"/m30pnuxqli.html?email=redacted@anonymized.invalid\"; startswith; fast_pattern; http.host;  content:\"t37y2vok1cuywyu.s3-website-us-east-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000717; classtype:social-engineering; sid:6000717; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:49:52.175507+00:00",
+  "updated_at": "2026-06-21T04:22:52.483198+00:00",
   "probe": {
     "dns": true,
     "whois": false,

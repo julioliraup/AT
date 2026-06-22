@@ -50,45 +50,77 @@
     "phishdestroy": {
       "domain": "flashusdt2026.github.io",
       "domain_defanged": "flashusdt2026[.]github[.]io",
-      "case_id": "PD-20260617-2FC194",
-      "analyzed_at": "2026-06-17T20:13:00.344Z",
+      "case_id": "PD-20260621-2FC194",
+      "analyzed_at": "2026-06-21T01:04:42.023Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ed737-34c5-7458-9575-df375ebce2fa/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ede38-ddea-7559-abcd-d9121ad48101.png",
+          "url": "https://urlscan.io/result/019ede38-ddea-7559-abcd-d9121ad48101/",
+          "title": "flashusdt2026.github.io"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.110.153",
-        "ipinfo": null,
+        "ip": "185.199.109.153",
+        "ipinfo": {
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
-            "185.199.110.153",
-            "185.199.108.153",
+            "185.199.109.153",
             "185.199.111.153",
-            "185.199.109.153"
+            "185.199.110.153",
+            "185.199.108.153"
           ],
           "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
             "2606:50c0:8003::153",
-            "2606:50c0:8002::153"
+            "2606:50c0:8000::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8001::153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -216,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (flashusdt2026 .github .io/Flash-Usdt/)\"; flow:established,to_server; http.uri; content:\"/Flash-Usdt/\"; startswith; fast_pattern; http.host;  content:\"flashusdt2026.github.io\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000652; classtype:social-engineering; sid:6000652; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-18T00:43:06.885461+00:00",
+  "updated_at": "2026-06-21T04:16:49.313761+00:00",
   "probe": {
     "dns": true,
     "whois": true,
