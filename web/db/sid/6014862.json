@@ -49,27 +49,44 @@
     "phishdestroy": {
       "domain": "webfun.website",
       "domain_defanged": "webfun[.]website",
-      "case_id": "PD-20260622-54ACD8",
-      "analyzed_at": "2026-06-22T08:51:26.471Z",
+      "case_id": "PD-20260625-54ACD8",
+      "analyzed_at": "2026-06-25T00:46:54.579Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eee87-0317-77ce-b140-17800f8823a5/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DHL"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef970-c4f2-701b-8e41-f40b95b67153.png",
+          "url": "https://urlscan.io/result/019ef970-c4f2-701b-8e41-f40b95b67153/",
+          "title": "Global Logistics | DHL"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DHL",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "108.158.186.69",
-        "ipinfo": null,
+        "ip": "108.158.186.90",
+        "ipinfo": {
+          "ip": "108.158.186.90",
+          "hostname": "server-108-158-186-90.gig52.r.cloudfront.net",
+          "city": "Rio de Janeiro",
+          "region": "Rio de Janeiro",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "NS": [
             "ns-1430.awsdns-50.org.",
@@ -78,16 +95,23 @@
             "ns-801.awsdns-36.net."
           ],
           "A": [
-            "108.158.186.69",
+            "108.158.186.90",
             "108.158.186.110",
             "108.158.186.100",
-            "108.158.186.90"
+            "108.158.186.69"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -214,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.webfun.website/landingpages/fe996bbf-3dce-487c-acd3-4a69200fa8a0/dmushm7cirtej6cjlv3ip3hmyar0lmwdfjsmgio69ik)\"; flow:established,to_server; http.uri; content:\"/landingpages/fe996bbf-3dce-487c-acd3-4a69200fa8a0/dmushm7cirtej6cjlv3ip3hmyar0lmwdfjsmgio69ik\"; startswith; fast_pattern; http.host; content:\"www.webfun.website\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014862; classtype:social-engineering; sid:6014862; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:51:22.327046+00:00",
+  "updated_at": "2026-06-25T00:46:48.244981+00:00",
   "probe": {
     "dns": true,
     "whois": true,

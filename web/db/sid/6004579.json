@@ -18,58 +18,59 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.ws-hk-whatsapp.com.cn/",
-      "domain": "www.ws-hk-whatsapp.com.cn",
-      "url_count": 3,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-05-28T10:42:25",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "ws-hk-whatsapp.com.cn",
       "domain_defanged": "ws-hk-whatsapp[.]com[.]cn",
-      "case_id": "PD-20260621-6079CE",
-      "analyzed_at": "2026-06-21T11:28:27.589Z",
+      "case_id": "PD-20260624-6079CE",
+      "analyzed_at": "2026-06-24T00:43:56.616Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WhatsApp"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e480d-90c6-741d-879e-12b19645d756.png",
+          "url": "https://urlscan.io/result/019e480d-90c6-741d-879e-12b19645d756/",
+          "title": "WhatsApp網頁版｜電腦端溝通效率大幅提升"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WhatsApp",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.69.45",
+        "ipinfo": {
+          "ip": "104.21.69.45",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +197,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ws-hk-whatsapp.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ws-hk-whatsapp.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004579; classtype:social-engineering; sid:6004579; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:28:20.050351+00:00",
+  "updated_at": "2026-06-24T00:43:43.411350+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -73,27 +73,43 @@
     "phishdestroy": {
       "domain": "formulario-digital-citas-ajyh-2026.cr-web.workers.dev",
       "domain_defanged": "formulario-digital-citas-ajyh-2026[.]cr-web[.]workers[.]dev",
-      "case_id": "PD-20260621-BD0D4B",
-      "analyzed_at": "2026-06-21T13:17:14.266Z",
+      "case_id": "PD-20260624-BD0D4B",
+      "analyzed_at": "2026-06-24T02:48:23.907Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eea53-ff29-718c-becf-f2c99cbb3381.png",
           "url": "https://urlscan.io/result/019eea53-ff29-718c-becf-f2c99cbb3381/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.191.247",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.191.247",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.67.191.247",
@@ -107,7 +123,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (formulario-digital-citas-ajyh-2026.cr-web.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"formulario-digital-citas-ajyh-2026.cr-web.workers.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6005355; classtype:social-engineering; sid:6005355; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T13:17:09.945638+00:00",
+  "updated_at": "2026-06-24T02:48:12.897180+00:00",
   "probe": {
     "dns": true,
     "whois": false,

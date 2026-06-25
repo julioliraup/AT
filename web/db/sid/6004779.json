@@ -49,27 +49,102 @@
     "phishdestroy": {
       "domain": "dhikolimetr.eu.heke8460.odns.fr",
       "domain_defanged": "dhikolimetr[.]eu[.]heke8460[.]odns[.]fr",
-      "case_id": "PD-20260621-4458B1",
-      "analyzed_at": "2026-06-21T11:52:10.655Z",
+      "case_id": "PD-20260624-4458B1",
+      "analyzed_at": "2026-06-24T01:10:33.036Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019eea06-1eaf-72bc-a385-b63577e48ca1/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ef101-6204-7318-970e-4eb39eee484e.png",
+          "url": "https://urlscan.io/result/019ef101-6204-7318-970e-4eb39eee484e/",
+          "title": "403 Forbidden"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "109.234.165.143",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "109.234.165.143",
+          "hostname": "109-234-165-143.reverse.odns.fr",
+          "city": "Paris",
+          "region": "Île-de-France",
+          "country": "FR",
+          "org": "AS50474 O2SWITCH SAS",
+          "asn": "AS50474"
+        },
         "dns": {
           "A": [
             "109.234.165.143"
@@ -78,7 +153,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "O2SWITCH, FR",
+          "abuse": "abuse@o2switch.fr",
+          "url": "mailto:abuse@o2switch.fr",
+          "logo": "https://i.ibb.co/99nDvKLW/pr-O2-SWITCH-FR.png",
+          "method": "email",
+          "asn": "AS50474"
+        }
       },
       "report_services": [
         {
@@ -206,7 +288,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dhikolimetr.eu.heke8460.odns.fr/DhhL/auth/index.php)\"; flow:established,to_server; http.uri; content:\"/DhhL/auth/index.php\"; startswith; fast_pattern; http.host; content:\"dhikolimetr.eu.heke8460.odns.fr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004779; classtype:social-engineering; sid:6004779; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:56:03.909134+00:00",
+  "updated_at": "2026-06-24T01:17:22.622784+00:00",
   "probe": {
     "dns": true,
     "whois": true,

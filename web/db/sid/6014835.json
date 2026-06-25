@@ -23,12 +23,18 @@
       "domain": "public-io-trzer-wallet.typedream.app",
       "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.206.36",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a0fe0455784ffef4-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,49 +43,90 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "5d8f883389a2c3b13c37b71c353d6b2dece5d9ab8c74c8facd062440ed698aad",
+      "md5": "78d63900c24a4ef662b2def208830ab2",
+      "cert": {
+        "subject_cn": "typedream.app",
+        "subject_alt_names": [
+          "typedream.app",
+          "*.typedream.app"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-28T07:58:59+00:00",
+        "not_valid_after": "2026-08-26T08:58:49+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "152547785420128694191552324140763227231",
+        "fingerprint_sha1": "48 7A C1 DD 01 61 A9 AE CB 25 AD 2C 0F 1B 21 93 1B 66 26 CF",
+        "fingerprint_sha256": "7C BC 9D 5A CA FF 55 0E F5 D2 9C 76 A7 1B DF 4A AC 8F D4 2E FA 82 07 71 9F 76 B6 0F F6 ED 4B 81"
+      },
       "safebrowsing": [],
       "first_seen": "2026-06-21T11:31:31",
-      "first_seen_secs": null
+      "first_seen_secs": 1782041491.0
     },
     "phishdestroy": {
       "domain": "public-io-trzer-wallet.typedream.app",
       "domain_defanged": "public-io-trzer-wallet[.]typedream[.]app",
-      "case_id": "PD-20260622-27EC14",
-      "analyzed_at": "2026-06-22T08:49:07.318Z",
+      "case_id": "PD-20260625-27EC14",
+      "analyzed_at": "2026-06-25T00:43:22.927Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eee84-e385-7656-8599-e2f311bb1ee6/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef0bc-4cdb-73ea-9566-e02a8df8d9b8.png",
+          "url": "https://urlscan.io/result/019ef0bc-4cdb-73ea-9566-e02a8df8d9b8/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.206.36",
-        "ipinfo": null,
+        "ip": "104.21.37.85",
+        "ipinfo": {
+          "ip": "104.21.37.85",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.67.206.36",
-            "104.21.37.85"
+            "104.21.37.85",
+            "172.67.206.36"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (public-io-trzer-wallet.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"public-io-trzer-wallet.typedream.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6014835; classtype:social-engineering; sid:6014835; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:49:03.679140+00:00",
+  "updated_at": "2026-06-25T00:43:18.742377+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -18,31 +18,75 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://site-9g1gujotw.godaddysites.com/",
+      "domain": "site-9g1gujotw.godaddysites.com",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "site-9g1gujotw.godaddysites.com",
       "domain_defanged": "site-9g1gujotw[.]godaddysites[.]com",
-      "case_id": "PD-20260622-2E4A71",
-      "analyzed_at": "2026-06-22T08:48:22.469Z",
+      "case_id": "PD-20260625-2E4A71",
+      "analyzed_at": "2026-06-25T00:42:21.121Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eee84-31e6-75c0-9e00-4a3ac307a89c.png",
           "url": "https://urlscan.io/result/019eee84-31e6-75c0-9e00-4a3ac307a89c/",
-          "pending": true
+          "title": "Office365.update.verify"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "13.248.243.5",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "13.248.243.5",
+          "hostname": "a16e665f42988324c.awsglobalaccelerator.com",
+          "city": "Seattle",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "13.248.243.5",
@@ -52,7 +96,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -179,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (site-9g1gujotw.godaddysites.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"site-9g1gujotw.godaddysites.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6014826; classtype:social-engineering; sid:6014826; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:48:09.302336+00:00",
+  "updated_at": "2026-06-25T00:41:52.205252+00:00",
   "probe": {
     "dns": true,
     "whois": false,

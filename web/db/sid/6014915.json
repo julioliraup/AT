@@ -18,72 +18,59 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://t-mobile.gvesjo.top/pay/_frame/a_index.html",
-      "domain": "t-mobile.gvesjo.top",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-06-21T06:27:37",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "t-mobile.gvesjo.top",
       "domain_defanged": "t-mobile[.]gvesjo[.]top",
-      "case_id": "PD-20260622-7446CC",
-      "analyzed_at": "2026-06-22T08:58:03.365Z",
+      "case_id": "PD-20260625-7446CC",
+      "analyzed_at": "2026-06-25T00:55:10.190Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eee8d-1177-7158-86cd-7af79c6eaa80/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef230-e42a-76ea-8096-3b0af03bb03e.png",
+          "url": "https://urlscan.io/result/019ef230-e42a-76ea-8096-3b0af03bb03e/",
+          "title": "T-Mobile Tuesdays - Get Free Stuff & Great Deals | T-Mobile"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.89.232",
-        "ipinfo": null,
-        "dns": {
-          "AAAA": [
-            "2606:4700:3035::6815:59e8",
-            "2606:4700:3035::ac43:a5c1"
-          ],
-          "A": [
-            "104.21.89.232",
-            "172.67.165.193"
-          ]
-        }
+        "ip": "172.67.165.193",
+        "ipinfo": {
+          "ip": "172.67.165.193",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,10 +197,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.gvesjo.top/pay/_frame/a_index.html)\"; flow:established,to_server; http.uri; content:\"/pay/_frame/a_index.html\"; startswith; fast_pattern; http.host; content:\"t-mobile.gvesjo.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014915; classtype:social-engineering; sid:6014915; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:58:00.049697+00:00",
+  "updated_at": "2026-06-25T00:54:55.571682+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

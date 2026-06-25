@@ -49,21 +49,38 @@
     "phishdestroy": {
       "domain": "skatterefusion-nemlog-in.wp1.sh",
       "domain_defanged": "skatterefusion-nemlog-in[.]wp1[.]sh",
-      "case_id": "PD-20260621-162295",
-      "analyzed_at": "2026-06-21T11:11:28.978Z",
+      "case_id": "PD-20260624-162295",
+      "analyzed_at": "2026-06-24T00:23:03.684Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ee9e0-dbf7-72fc-9828-42aa89dc29cb/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ef0dd-df32-752a-b056-ba2732a44e8a.png",
+          "url": "https://urlscan.io/result/019ef0dd-df32-752a-b056-ba2732a44e8a/",
+          "title": "wp1.sh | 522: Connection timed out"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -80,13 +97,13 @@
         "dns": {
           "A": [
             "104.26.0.231",
-            "104.26.1.231",
-            "172.67.68.212"
+            "172.67.68.212",
+            "104.26.1.231"
           ],
           "AAAA": [
             "2606:4700:20::681a:e7",
-            "2606:4700:20::ac43:44d4",
-            "2606:4700:20::681a:1e7"
+            "2606:4700:20::681a:1e7",
+            "2606:4700:20::ac43:44d4"
           ]
         }
       },
@@ -226,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (skatterefusion-nemlog-in.wp1.sh/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"skatterefusion-nemlog-in.wp1.sh\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004435; classtype:social-engineering; sid:6004435; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:11:18.115332+00:00",
+  "updated_at": "2026-06-24T00:22:49.815457+00:00",
   "probe": {
     "dns": true,
     "whois": true,

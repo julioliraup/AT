@@ -73,47 +73,70 @@
     "phishdestroy": {
       "domain": "vodic.uy",
       "domain_defanged": "vodic[.]uy",
-      "case_id": "PD-20260621-7DC7A1",
-      "analyzed_at": "2026-06-21T13:01:00.438Z",
+      "case_id": "PD-20260624-7DC7A1",
+      "analyzed_at": "2026-06-24T02:29:30.237Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eea45-2323-70fc-86a7-d53987427460/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Nickel"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef3f5-1b8c-7501-a2e9-772df0e9bc15.png",
+          "url": "https://urlscan.io/result/019ef3f5-1b8c-7501-a2e9-772df0e9bc15/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Nickel",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "200.58.112.218",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "200.58.112.218",
+          "hostname": "c198.dattaweb.com",
+          "city": "Rosario",
+          "region": "Santa Fe",
+          "country": "AR",
+          "org": "AS27823 Dattatec.com",
+          "asn": "AS27823"
+        },
         "dns": {
-          "MX": [
-            "20 mx1.vodic.uy.",
-            "0 mail.vodic.uy."
-          ],
           "AAAA": [
             "2800:6c0:2::141"
           ],
           "A": [
             "200.58.112.218"
           ],
+          "MX": [
+            "0 mail.vodic.uy.",
+            "20 mx1.vodic.uy."
+          ],
           "NS": [
-            "ns3.hostmar.com.",
-            "ns4.hostmar.com."
+            "ns4.hostmar.com.",
+            "ns3.hostmar.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Dattatec.com, AR",
+          "abuse": "ipmaster@hostmar.com",
+          "url": "mailto:ipmaster@hostmar.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS27823"
+        }
       },
       "report_services": [
         {
@@ -240,7 +263,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (vodic.uy/fr/NickelTru/home/virtual/rosyorange/www/tls/xd/zd/clients/login.php)\"; flow:established,to_server; http.uri; content:\"/fr/NickelTru/home/virtual/rosyorange/www/tls/xd/zd/clients/login.php\"; startswith; fast_pattern; http.host; content:\"vodic.uy\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005233; classtype:social-engineering; sid:6005233; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T13:00:50.988307+00:00",
+  "updated_at": "2026-06-24T02:29:17.603792+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,37 +49,60 @@
     "phishdestroy": {
       "domain": "toki2006-vercel.vercel.app",
       "domain_defanged": "toki2006-vercel[.]vercel[.]app",
-      "case_id": "PD-20260622-10BCDF",
-      "analyzed_at": "2026-06-22T08:59:55.110Z",
+      "case_id": "PD-20260625-10BCDF",
+      "analyzed_at": "2026-06-25T00:58:02.274Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eee8e-c451-7419-92f9-4ee4f47c3d65/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Turkish Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef0ce-068f-72ed-821c-995a33269dd5.png",
+          "url": "https://urlscan.io/result/019ef0ce-068f-72ed-821c-995a33269dd5/",
+          "title": "e-Devlet Kapısı"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Turkish Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.194",
-        "ipinfo": null,
+        "ip": "216.198.79.194",
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.194",
-            "216.198.79.194"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -206,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (toki2006-vercel.vercel.app/giris.php)\"; flow:established,to_server; http.uri; content:\"/giris.php\"; startswith; fast_pattern; http.host; content:\"toki2006-vercel.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014934; classtype:social-engineering; sid:6014934; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:59:52.279093+00:00",
+  "updated_at": "2026-06-25T00:57:58.050774+00:00",
   "probe": {
     "dns": true,
     "whois": false,

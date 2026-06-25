@@ -49,40 +49,59 @@
     "phishdestroy": {
       "domain": "spify-mex.com",
       "domain_defanged": "spify-mex[.]com",
-      "case_id": "PD-20260622-79A424",
-      "analyzed_at": "2026-06-22T08:57:42.147Z",
+      "case_id": "PD-20260625-79A424",
+      "analyzed_at": "2026-06-25T00:54:31.716Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eee8c-bde8-77de-8d7a-212873d34b18/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Shopify"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef38e-1a17-707d-ab28-176911e46981.png",
+          "url": "https://urlscan.io/result/019ef38e-1a17-707d-ab28-176911e46981/",
+          "title": "Iniciar sesión"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Shopify",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-02-06T08:44:33Z",
         "expires": "2027-02-06T08:44:33Z",
-        "age_days": 136,
+        "age_days": 138,
         "nameservers": [
           "NANCY.NS.CLOUDFLARE.COM",
           "SEAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.93.221.110",
-        "ipinfo": null,
+        "ip": "156.238.122.164",
+        "ipinfo": {
+          "ip": "156.238.122.164",
+          "city": "Manila",
+          "region": "National Capital Region",
+          "country": "PH",
+          "org": "AS54801 Zillion Network Inc.",
+          "asn": "AS54801"
+        },
         "dns": {
           "A": [
+            "156.238.122.164",
             "172.93.221.110",
             "45.200.17.1",
             "45.200.49.222",
-            "207.56.18.3"
+            "207.56.18.4",
+            "207.56.18.3",
+            "156.238.121.222"
           ],
           "NS": [
             "nancy.ns.cloudflare.com.",
@@ -226,7 +245,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (spify-mex.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"spify-mex.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014912; classtype:social-engineering; sid:6014912; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:57:37.771468+00:00",
+  "updated_at": "2026-06-25T00:54:18.498353+00:00",
   "probe": {
     "dns": true,
     "whois": true,

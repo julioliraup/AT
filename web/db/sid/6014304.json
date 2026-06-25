@@ -22,7 +22,7 @@
       "url": "http://maxisap.com/mymaxis",
       "domain": "maxisap.com",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "maxisap.com",
       "domain_defanged": "maxisap[.]com",
-      "case_id": "PD-20260622-7FD6CE",
-      "analyzed_at": "2026-06-22T07:41:06.688Z",
+      "case_id": "PD-20260624-7FD6CE",
+      "analyzed_at": "2026-06-24T23:23:11.745Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eee46-9ced-7118-b2de-622c68f039de/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,7 +64,7 @@
         "registrar": "Aceville Pte. Ltd.",
         "created": "2026-06-18T08:10:45Z",
         "expires": "2027-06-18T08:10:45Z",
-        "age_days": 3,
+        "age_days": 6,
         "nameservers": [
           "A.DNSPOD.COM",
           "B.DNSPOD.COM",
@@ -76,31 +72,12 @@
         ]
       },
       "infrastructure": {
-        "ip": "43.131.32.10",
-        "ipinfo": {
-          "ip": "43.131.32.10",
-          "city": "Frankfurt am Main",
-          "region": "Hesse",
-          "country": "DE",
-          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
-          "asn": "AS132203"
-        },
-        "dns": {
-          "A": [
-            "43.131.32.10"
-          ]
-        }
+        "ipinfo": null,
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
-          "abuse": "abuse@tencent.com",
-          "url": "mailto:abuse@tencent.com",
-          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
-          "method": "email",
-          "asn": "AS132203"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -227,10 +204,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (maxisap.com/mymaxis)\"; flow:established,to_server; http.uri; content:\"/mymaxis\"; startswith; fast_pattern; http.host; content:\"maxisap.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014304; classtype:social-engineering; sid:6014304; rev:1; metadata: signature_severity Major, created_et 2026_06_19;)",
-  "updated_at": "2026-06-22T07:41:00.870239+00:00",
+  "updated_at": "2026-06-24T23:23:07.350467+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

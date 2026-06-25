@@ -49,22 +49,123 @@
     "phishdestroy": {
       "domain": "4s4dc3.cn",
       "domain_defanged": "4s4dc3[.]cn",
-      "case_id": "PD-20260622-37015A",
-      "analyzed_at": "2026-06-22T08:31:03.782Z",
+      "case_id": "PD-20260625-37015A",
+      "analyzed_at": "2026-06-25T00:24:22.569Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "suspicious",
+              "result": "spam"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "phishing and other frauds"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef242-7c33-776f-b1a8-865f9b986f0d.png",
+          "url": "https://urlscan.io/result/019ef242-7c33-776f-b1a8-865f9b986f0d/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "spam",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.189.131",
+        "ipinfo": {
+          "ip": "172.67.189.131",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "NS": [
             "alexa.ns.cloudflare.com.",
@@ -74,7 +175,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -201,7 +309,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.4s4dc3.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.4s4dc3.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014686; classtype:social-engineering; sid:6014686; rev:1; metadata: signature_severity Major, created_et 2026_06_20;)",
-  "updated_at": "2026-06-22T08:31:00.495076+00:00",
+  "updated_at": "2026-06-25T00:24:09.798078+00:00",
   "probe": {
     "dns": true,
     "whois": true,

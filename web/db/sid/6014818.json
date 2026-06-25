@@ -22,21 +22,31 @@
     "phishdestroy": {
       "domain": "zhangcn968.bitbucket.io",
       "domain_defanged": "zhangcn968[.]bitbucket[.]io",
-      "case_id": "PD-20260622-50D34E",
-      "analyzed_at": "2026-06-22T08:47:21.169Z",
+      "case_id": "PD-20260625-50D34E",
+      "analyzed_at": "2026-06-25T00:40:54.119Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email",
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eee83-4419-75b5-a8ca-ddeee3d5f9d2.png",
           "url": "https://urlscan.io/result/019eee83-4419-75b5-a8ca-ddeee3d5f9d2/",
-          "pending": true
+          "title": "Share Point Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email, Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -51,16 +61,16 @@
             "bitbucket.io.",
             "2401:1d80:32fe:0:600:d9:4:9d02"
           ],
+          "A": [
+            "bitbucket.io.",
+            "104.192.139.8"
+          ],
           "NS": [
             "bitbucket.io.",
             "ns-1070.awsdns-05.org.",
             "ns-195.awsdns-24.com.",
             "ns-1976.awsdns-55.co.uk.",
             "ns-850.awsdns-42.net."
-          ],
-          "A": [
-            "bitbucket.io.",
-            "104.192.139.8"
           ],
           "CNAME": [
             "bitbucket.io."
@@ -69,7 +79,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -196,7 +213,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zhangcn968.bitbucket.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"zhangcn968.bitbucket.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014818; classtype:social-engineering; sid:6014818; rev:1; metadata: signature_severity Major, created_et 2026_06_20;)",
-  "updated_at": "2026-06-22T08:47:08.782629+00:00",
+  "updated_at": "2026-06-25T00:40:37.421211+00:00",
   "probe": {
     "dns": true,
     "whois": true,

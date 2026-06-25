@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "wap.whatsapp.hj.hl.cn",
       "domain_defanged": "wap[.]whatsapp[.]hj[.]hl[.]cn",
-      "case_id": "PD-20260621-661706",
-      "analyzed_at": "2026-06-21T12:32:11.776Z",
+      "case_id": "PD-20260624-661706",
+      "analyzed_at": "2026-06-24T02:07:26.445Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WhatsApp"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e50f6-8df8-730d-bbf0-fdb02e9f74fd.png",
+          "url": "https://urlscan.io/result/019e50f6-8df8-730d-bbf0-fdb02e9f74fd/",
+          "title": "WhatsApp Web - 即时通讯消息应用"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WhatsApp",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "156.250.50.44",
+        "ipinfo": {
+          "ip": "156.250.50.44",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS9294 GNET INC.",
+          "asn": "AS9294"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "GNETINC-AS-AP GNET INC., US",
+          "abuse": "abuse@gnet.cc",
+          "url": "mailto:abuse@gnet.cc",
+          "logo": "",
+          "method": "email",
+          "asn": "AS9294"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wap.whatsapp.hj.hl.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"wap.whatsapp.hj.hl.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005056; classtype:social-engineering; sid:6005056; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T12:32:07.251007+00:00",
+  "updated_at": "2026-06-24T02:07:18.529330+00:00",
   "probe": {
     "dns": false,
     "whois": false,

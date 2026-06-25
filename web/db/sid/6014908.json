@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "c365kvip.com",
       "domain_defanged": "c365kvip[.]com",
-      "case_id": "PD-20260622-639605",
-      "analyzed_at": "2026-06-22T08:57:15.137Z",
+      "case_id": "PD-20260625-639605",
+      "analyzed_at": "2026-06-25T00:53:52.087Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eee8c-52f2-7689-8114-f01dc1cdab36/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef230-4366-723f-b670-8cad8d37f082.png",
+          "url": "https://urlscan.io/result/019ef230-4366-723f-b670-8cad8d37f082/",
+          "title": "bet365 -No.1 体育投注，世界锦标赛斯诺克赔率，百家乐娱乐场，扑克牌，电子游戏"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-05-12T12:58:57Z",
         "expires": "2027-05-12T12:58:57Z",
-        "age_days": 40,
+        "age_days": 43,
         "nameservers": [
           "ANAHI.NS.CLOUDFLARE.COM",
           "HARLAN.NS.CLOUDFLARE.COM"
@@ -237,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (c365kvip.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"c365kvip.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014908; classtype:social-engineering; sid:6014908; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:57:09.153198+00:00",
+  "updated_at": "2026-06-25T00:53:46.520513+00:00",
   "probe": {
     "dns": true,
     "whois": true,

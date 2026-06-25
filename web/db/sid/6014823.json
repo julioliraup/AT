@@ -49,35 +49,51 @@
     "phishdestroy": {
       "domain": "webxtestsolve.pages.dev",
       "domain_defanged": "webxtestsolve[.]pages[.]dev",
-      "case_id": "PD-20260622-785EEF",
-      "analyzed_at": "2026-06-22T08:48:02.465Z",
+      "case_id": "PD-20260625-785EEF",
+      "analyzed_at": "2026-06-25T00:41:33.083Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eee83-e631-7274-867c-5b29a1c22144.png",
           "url": "https://urlscan.io/result/019eee83-e631-7274-867c-5b29a1c22144/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.190",
-        "ipinfo": null,
+        "ip": "172.66.47.66",
+        "ipinfo": {
+          "ip": "172.66.47.66",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.66.44.190",
-            "172.66.47.66"
+            "172.66.47.66",
+            "172.66.44.190"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f42",
-            "2606:4700:310c::ac42:2cbe"
+            "2606:4700:310c::ac42:2cbe",
+            "2606:4700:310c::ac42:2f42"
           ],
           "NS": [
             "angela.ns.cloudflare.com.",
@@ -87,7 +103,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -214,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webxtestsolve.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"webxtestsolve.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6014823; classtype:social-engineering; sid:6014823; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:47:54.658367+00:00",
+  "updated_at": "2026-06-25T00:41:24.943139+00:00",
   "probe": {
     "dns": true,
     "whois": false,

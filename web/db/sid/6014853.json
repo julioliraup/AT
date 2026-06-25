@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "cpcalendars.165-227-27-180.cprapid.com",
       "domain_defanged": "cpcalendars[.]165-227-27-180[.]cprapid[.]com",
-      "case_id": "PD-20260622-4EA036",
-      "analyzed_at": "2026-06-22T08:50:44.580Z",
+      "case_id": "PD-20260625-4EA036",
+      "analyzed_at": "2026-06-25T00:45:29.280Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eed11-930e-7281-b3fa-43b6bb6e7b32.png",
+          "url": "https://urlscan.io/result/019eed11-930e-7281-b3fa-43b6bb6e7b32/",
+          "title": "Coinbase - Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "206.189.228.193",
+        "ipinfo": {
+          "ip": "206.189.228.193",
+          "city": "North Bergen",
+          "region": "New Jersey",
+          "country": "US",
+          "org": "AS14061 DigitalOcean, LLC",
+          "asn": "AS14061"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DigitalOcean",
+          "abuse": "abuse@digitalocean.com",
+          "url": "https://www.digitalocean.com/company/contact#abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14061"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cpcalendars.165-227-27-180.cprapid.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cpcalendars.165-227-27-180.cprapid.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014853; classtype:social-engineering; sid:6014853; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:50:36.655191+00:00",
+  "updated_at": "2026-06-25T00:45:24.586435+00:00",
   "probe": {
     "dns": false,
     "whois": false,

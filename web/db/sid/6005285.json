@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "pnc-nine.vercel.app",
       "domain_defanged": "pnc-nine[.]vercel[.]app",
-      "case_id": "PD-20260621-52D3E4",
-      "analyzed_at": "2026-06-21T13:07:50.076Z",
+      "case_id": "PD-20260624-52D3E4",
+      "analyzed_at": "2026-06-24T02:36:40.292Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "PNC Financial"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eea4b-6237-7129-b55c-2f027a6b0dc9.png",
           "url": "https://urlscan.io/result/019eea4b-6237-7129-b55c-2f027a6b0dc9/",
-          "pending": true
+          "title": "Small Business Banking | PNC Bank"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: PNC Financial",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.130",
+        "ip": "216.198.79.130",
         "ipinfo": {
-          "ip": "64.29.17.130",
+          "ip": "216.198.79.130",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.130",
-            "216.198.79.130"
+            "216.198.79.130",
+            "64.29.17.130"
           ]
         }
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.pnc-nine.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.pnc-nine.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005285; classtype:social-engineering; sid:6005285; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T13:07:46.833587+00:00",
+  "updated_at": "2026-06-24T02:36:30.027722+00:00",
   "probe": {
     "dns": true,
     "whois": false,

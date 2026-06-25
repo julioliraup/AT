@@ -22,7 +22,7 @@
       "url": "http://www.gov-parkingyg.shop/com/",
       "domain": "www.gov-parkingyg.shop",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,14 +49,19 @@
     "phishdestroy": {
       "domain": "gov-parkingyg.shop",
       "domain_defanged": "gov-parkingyg[.]shop",
-      "case_id": "PD-20260622-14FA9A",
-      "analyzed_at": "2026-06-22T08:52:21.642Z",
+      "case_id": "PD-20260625-14FA9A",
+      "analyzed_at": "2026-06-25T00:47:17.214Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ef211-f95d-72fb-abab-f2a32c71031c.png",
+          "url": "https://urlscan.io/result/019ef211-f95d-72fb-abab-f2a32c71031c/",
+          "title": "www.gov-parkingyg.shop"
         }
       },
       "detections": [],
@@ -65,12 +70,7 @@
       },
       "infrastructure": {
         "ipinfo": null,
-        "dns": {
-          "NS": [
-            "dns13.hichina.com.",
-            "dns14.hichina.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -201,10 +201,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingyg.shop/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingyg.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014867; classtype:social-engineering; sid:6014867; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:52:12.296015+00:00",
+  "updated_at": "2026-06-25T00:47:13.347765+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

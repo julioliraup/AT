@@ -49,14 +49,19 @@
     "phishdestroy": {
       "domain": "outlook.office365.com",
       "domain_defanged": "outlook[.]office365[.]com",
-      "case_id": "PD-20260621-65580B",
-      "analyzed_at": "2026-06-21T13:15:56.099Z",
+      "case_id": "PD-20260624-65580B",
+      "analyzed_at": "2026-06-24T02:46:43.164Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ef724-323a-71ac-a7d1-51a1f497ffaa.png",
+          "url": "https://urlscan.io/result/019ef724-323a-71ac-a7d1-51a1f497ffaa/",
+          "title": "Bei Ihrem Konto anmelden"
         }
       },
       "detections": [],
@@ -67,37 +72,37 @@
         "ip": "outlook.cloud.microsoft.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
+          "A": [
             "outlook.cloud.microsoft.",
             "acdcatm.outlook.mira.tm.svc.cloud.microsoft.",
             "outlook.ms-acdc.office.com.",
             "CPQ-efz.ms-acdc.office.com.",
-            "2603:1056:c03:2092::2",
-            "2603:1056:c03:20e4::2",
-            "2603:1056:c03:1069::2",
-            "2603:1056:c03:1c39::2"
+            "52.97.34.98",
+            "52.97.34.114",
+            "52.97.33.130",
+            "52.97.12.114"
           ],
-          "A": [
+          "AAAA": [
             "outlook.cloud.microsoft.",
             "acdcatm.outlook.mira.tm.svc.cloud.microsoft.",
             "atm.outlook.mira.tm.svc.cloud.microsoft.",
-            "52.97.11.130",
-            "52.97.11.210",
-            "52.97.11.162",
-            "52.97.33.226",
-            "52.97.78.50",
-            "52.97.33.194",
-            "52.97.34.226",
-            "52.97.116.34"
+            "2603:1036:301:302f::2",
+            "2603:1036:301:30a3::2",
+            "2603:1036:301:4010::2",
+            "2603:1036:301:4012::2",
+            "2603:1036:301:4017::2",
+            "2603:1036:5:446::2",
+            "2603:1036:301:2194::2",
+            "2603:1036:301:2278::2"
+          ],
+          "CNAME": [
+            "outlook.cloud.microsoft."
           ],
           "NS": [
             "outlook.cloud.microsoft.",
             "acdcatm.outlook.mira.tm.svc.cloud.microsoft.",
             "outlook.ms-acdc.office.com.",
             "CPQ-efz.ms-acdc.office.com."
-          ],
-          "CNAME": [
-            "outlook.cloud.microsoft."
           ],
           "MX": [
             "outlook.cloud.microsoft.",
@@ -108,7 +113,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -235,7 +247,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (outlook.office365.com/mail/)\"; flow:established,to_server; http.uri; content:\"/mail/\"; startswith; fast_pattern; http.host; content:\"outlook.office365.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6005346; classtype:social-engineering; sid:6005346; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T13:15:49.761494+00:00",
+  "updated_at": "2026-06-24T02:46:38.169465+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -22,7 +22,7 @@
       "url": "http://connect.policiespage-accountcenter.us/help-center-3112006468",
       "domain": "connect.policiespage-accountcenter.us",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "connect.policiespage-accountcenter.us",
       "domain_defanged": "connect[.]policiespage-accountcenter[.]us",
-      "case_id": "PD-20260621-3D26C6",
-      "analyzed_at": "2026-06-21T20:22:47.378Z",
+      "case_id": "PD-20260624-3D26C6",
+      "analyzed_at": "2026-06-24T10:02:58.217Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eebd9-99da-76e4-9c40-7a5cad14bc8f/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,18 +64,8 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.89.88",
         "ipinfo": null,
-        "dns": {
-          "AAAA": [
-            "2606:4700:3030::6815:5958",
-            "2606:4700:3034::ac43:9d63"
-          ],
-          "A": [
-            "104.21.89.88",
-            "172.67.157.99"
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -210,10 +196,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (connect.policiespage-accountcenter.us/help-center-3112006468)\"; flow:established,to_server; http.uri; content:\"/help-center-3112006468\"; startswith; fast_pattern; http.host; content:\"connect.policiespage-accountcenter.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6008746; classtype:social-engineering; sid:6008746; rev:1; metadata: signature_severity Major, created_et 2026_05_29;)",
-  "updated_at": "2026-06-21T20:22:37.749103+00:00",
+  "updated_at": "2026-06-24T10:02:50.682845+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

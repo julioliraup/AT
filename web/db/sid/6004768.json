@@ -49,21 +49,57 @@
     "phishdestroy": {
       "domain": "desbloqueiototal.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "desbloqueiototal[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260621-603467",
-      "analyzed_at": "2026-06-21T11:54:56.886Z",
+      "case_id": "PD-20260624-603467",
+      "analyzed_at": "2026-06-24T01:16:03.210Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019eea08-a886-7436-965a-667aae57fdd0/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ef104-e386-75df-bbdc-e4c591495243.png",
+          "url": "https://urlscan.io/result/019ef104-e386-75df-bbdc-e4c591495243/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +115,17 @@
           "asn": "AS40401"
         },
         "dns": {
-          "A": [
-            "149.137.136.9",
-            "149.137.137.254",
-            "149.137.140.9",
-            "149.137.141.9"
-          ],
           "AAAA": [
             "2605:72c0:6fc:b3::b005:1",
             "2605:72c0:6fd:b3::b005:1",
             "2605:72c0:6fe:b3::b005:1",
             "2605:72c0:6ff:b3::b005:1"
+          ],
+          "A": [
+            "149.137.136.9",
+            "149.137.137.254",
+            "149.137.140.9",
+            "149.137.141.9"
           ]
         }
       },
@@ -229,7 +265,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (desbloqueiototal.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"desbloqueiototal.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004768; classtype:social-engineering; sid:6004768; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:54:47.903352+00:00",
+  "updated_at": "2026-06-24T01:15:54.558002+00:00",
   "probe": {
     "dns": true,
     "whois": false,

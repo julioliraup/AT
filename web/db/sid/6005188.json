@@ -73,35 +73,51 @@
     "phishdestroy": {
       "domain": "feiji-tgwe.com.cn",
       "domain_defanged": "feiji-tgwe[.]com[.]cn",
-      "case_id": "PD-20260621-758883",
-      "analyzed_at": "2026-06-21T12:55:10.434Z",
+      "case_id": "PD-20260624-758883",
+      "analyzed_at": "2026-06-24T02:22:59.400Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eea3f-cbd0-7600-bab7-7df249c19bb9/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telegram"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef3f4-455d-72ca-a6e5-3b61e6738f4b.png",
+          "url": "https://urlscan.io/result/019ef3f4-455d-72ca-a6e5-3b61e6738f4b/",
+          "title": "纸飞机独立即时通讯平台 - 官方首页"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telegram",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.21.67",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.21.67",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3037::6815:1543",
+            "2606:4700:3030::ac43:c4cf"
+          ],
           "A": [
             "104.21.21.67",
             "172.67.196.207"
-          ],
-          "AAAA": [
-            "2606:4700:3030::ac43:c4cf",
-            "2606:4700:3037::6815:1543"
           ],
           "NS": [
             "diva.ns.cloudflare.com.",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -238,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.feiji-tgwe.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.feiji-tgwe.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005188; classtype:social-engineering; sid:6005188; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T12:55:06.408337+00:00",
+  "updated_at": "2026-06-24T02:22:53.509883+00:00",
   "probe": {
     "dns": true,
     "whois": true,

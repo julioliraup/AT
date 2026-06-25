@@ -22,7 +22,7 @@
       "url": "http://review-and-sign-esign-document-pdf.pages.dev/?error=login_required&error_description=AADSTS50058:+A+silent+sign-in+request+was+sent+but+no+user+is+signed+in.+The+cookies+used+to+represent+the+user's+session+were+not+sent+in+the+request+to+Azure+AD.+This+can+happen+if+the+user+is+using+Internet+Explorer+or+Edge",
       "domain": "review-and-sign-esign-document-pdf.pages.dev",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "review-and-sign-esign-document-pdf.pages.dev",
       "domain_defanged": "review-and-sign-esign-document-pdf[.]pages[.]dev",
-      "case_id": "PD-20260622-2D9883",
-      "analyzed_at": "2026-06-22T06:10:02.715Z",
+      "case_id": "PD-20260624-2D9883",
+      "analyzed_at": "2026-06-24T21:19:20.351Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eedf3-3fdd-7365-b933-de97b150c541/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,22 +64,8 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.239",
         "ipinfo": null,
-        "dns": {
-          "A": [
-            "172.66.46.239",
-            "172.66.45.17"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2eef",
-            "2606:4700:310c::ac42:2d11"
-          ],
-          "NS": [
-            "harlee.ns.cloudflare.com.",
-            "zeus.ns.cloudflare.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -214,10 +196,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (review-and-sign-esign-document-pdf.pages.dev/?error=login_required&error_description=AADSTS50058:+A+silent+sign-in+request+was+sent+but+no+user+is+signed+in.+The+cookies+used+to+represent+the+user's+session+were+not+sent+in+the+request+to+Azure+AD.+This+can+happen+if+the+user+is+using+Internet+Explorer+or+Edge)\"; flow:established,to_server; http.uri; content:\"/?error=login_required&error_description=AADSTS50058:+A+silent+sign-in+request+was+sent+but+no+user+is+signed+in.+The+cookies+used+to+represent+the+user's+session+were+not+sent+in+the+request+to+Azure+AD.+This+can+happen+if+the+user+is+using+Internet+Explorer+or+Edge\"; startswith; fast_pattern; http.host; content:\"review-and-sign-esign-document-pdf.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6013446; classtype:social-engineering; sid:6013446; rev:1; metadata: signature_severity Major, created_et 2026_06_15;)",
-  "updated_at": "2026-06-22T06:09:59.347248+00:00",
+  "updated_at": "2026-06-24T21:19:17.898102+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

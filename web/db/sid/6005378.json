@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "bnp-paribas-line-com-69ym.bolt.host",
       "domain_defanged": "bnp-paribas-line-com-69ym[.]bolt[.]host",
-      "case_id": "PD-20260621-5C9659",
-      "analyzed_at": "2026-06-21T13:19:41.138Z",
+      "case_id": "PD-20260624-5C9659",
+      "analyzed_at": "2026-06-24T02:50:55.118Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "BNP Paribas"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eea56-3b77-724f-914e-de05be5374b3.png",
           "url": "https://urlscan.io/result/019eea56-3b77-724f-914e-de05be5374b3/",
-          "pending": true
+          "title": "BNP PARIBAS - Anna Lorry"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: BNP Paribas",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.12.118",
+        "ip": "104.26.13.118",
         "ipinfo": {
-          "ip": "104.26.12.118",
+          "ip": "104.26.13.118",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -109,9 +118,9 @@
             "2606:4700:20::ac43:4b09"
           ],
           "A": [
+            "104.26.13.118",
             "104.26.12.118",
-            "172.67.75.9",
-            "104.26.13.118"
+            "172.67.75.9"
           ]
         }
       },
@@ -251,7 +260,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bnp-paribas-line-com-69ym.bolt.host/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bnp-paribas-line-com-69ym.bolt.host\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6005378; classtype:social-engineering; sid:6005378; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T13:19:35.463977+00:00",
+  "updated_at": "2026-06-24T02:50:44.758358+00:00",
   "probe": {
     "dns": true,
     "whois": true,

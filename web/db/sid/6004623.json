@@ -22,21 +22,30 @@
     "phishdestroy": {
       "domain": "shopee838.blogspot.com",
       "domain_defanged": "shopee838[.]blogspot[.]com",
-      "case_id": "PD-20260621-3E3070",
-      "analyzed_at": "2026-06-21T11:34:14.103Z",
+      "case_id": "PD-20260624-3E3070",
+      "analyzed_at": "2026-06-24T00:52:48.738Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ee9f5-b0c3-71ae-bd4a-9c99dbfdf8d5/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Shopee"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef0f3-8667-77d9-bf3c-240d4f624194.png",
+          "url": "https://urlscan.io/result/019ef0f3-8667-77d9-bf3c-240d4f624194/",
+          "title": "SHOPEE"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Shopee",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -46,14 +55,14 @@
         "dns": {
           "AAAA": [
             "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4004:815::2001"
+            "2800:3f0:4004:813::2001"
           ],
           "MX": [
             "blogspot.l.googleusercontent.com."
           ],
           "A": [
             "blogspot.l.googleusercontent.com.",
-            "142.250.219.129"
+            "142.250.78.161"
           ],
           "CNAME": [
             "blogspot.l.googleusercontent.com."
@@ -65,7 +74,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -192,7 +208,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.shopee838.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.shopee838.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004623; classtype:social-engineering; sid:6004623; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:34:01.681774+00:00",
+  "updated_at": "2026-06-24T00:52:29.723082+00:00",
   "probe": {
     "dns": true,
     "whois": false,

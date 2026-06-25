@@ -22,7 +22,7 @@
       "url": "http://www.gov-parkingtm.shop/com",
       "domain": "www.gov-parkingtm.shop",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,14 +49,19 @@
     "phishdestroy": {
       "domain": "gov-parkingtm.shop",
       "domain_defanged": "gov-parkingtm[.]shop",
-      "case_id": "PD-20260622-16B885",
-      "analyzed_at": "2026-06-22T08:50:11.580Z",
+      "case_id": "PD-20260625-16B885",
+      "analyzed_at": "2026-06-25T00:44:41.932Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ef229-7b78-721c-8794-99563701cfbf.png",
+          "url": "https://urlscan.io/result/019ef229-7b78-721c-8794-99563701cfbf/",
+          "title": "www.gov-parkingtm.shop"
         }
       },
       "detections": [],
@@ -65,12 +70,7 @@
       },
       "infrastructure": {
         "ipinfo": null,
-        "dns": {
-          "NS": [
-            "dns18.hichina.com.",
-            "dns17.hichina.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -201,10 +201,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingtm.shop/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingtm.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014847; classtype:social-engineering; sid:6014847; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:50:01.535408+00:00",
+  "updated_at": "2026-06-25T00:44:37.947546+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

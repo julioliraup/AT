@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "365756amylzz.com",
       "domain_defanged": "365756amylzz[.]com",
-      "case_id": "PD-20260622-280F1F",
-      "analyzed_at": "2026-06-22T08:53:27.362Z",
+      "case_id": "PD-20260625-280F1F",
+      "analyzed_at": "2026-06-25T00:47:57.552Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eee88-da53-731f-8fc7-5ce344616008/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef0c3-d173-708e-8020-a0da54b3fd4d.png",
+          "url": "https://urlscan.io/result/019ef0c3-d173-708e-8020-a0da54b3fd4d/",
+          "title": "bet365最快线路检测中心"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2025-06-06T03:11:03Z",
         "expires": "2029-06-06T03:11:03Z",
-        "age_days": 381,
+        "age_days": 383,
         "nameservers": [
           "DANIELLA.NS.CLOUDFLARE.COM",
           "TATE.NS.CLOUDFLARE.COM"
@@ -76,7 +85,14 @@
       },
       "infrastructure": {
         "ip": "27.124.41.82",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "27.124.41.82",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS152194 CTG Server Limited",
+          "asn": "AS152194"
+        },
         "dns": {
           "A": [
             "27.124.41.82"
@@ -224,7 +240,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (365756amylzz.com/index_m.html)\"; flow:established,to_server; http.uri; content:\"/index_m.html\"; startswith; fast_pattern; http.host; content:\"365756amylzz.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014887; classtype:social-engineering; sid:6014887; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:55:08.425357+00:00",
+  "updated_at": "2026-06-25T00:50:17.593423+00:00",
   "probe": {
     "dns": true,
     "whois": true,

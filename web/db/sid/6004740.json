@@ -55,47 +55,74 @@
     "phishdestroy": {
       "domain": "q-r.to",
       "domain_defanged": "q-r[.]to",
-      "case_id": "PD-20260621-3C7DB2",
-      "analyzed_at": "2026-06-21T11:51:32.476Z",
+      "case_id": "PD-20260624-3C7DB2",
+      "analyzed_at": "2026-06-24T01:09:42.442Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019eea05-890b-701d-ab9e-5a3f39ab4f4c/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ef54d-5bbb-77da-8309-198d9bc259f6.png",
+          "url": "https://urlscan.io/result/019ef54d-5bbb-77da-8309-198d9bc259f6/",
+          "title": "QR Code Generator - Shortener"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "108.158.137.120",
+        "ip": "3.175.14.51",
         "ipinfo": {
-          "ip": "108.158.137.120",
-          "hostname": "server-108-158-137-120.gig51.r.cloudfront.net",
-          "city": "Rio de Janeiro",
-          "region": "Rio de Janeiro",
+          "ip": "3.175.14.51",
+          "hostname": "server-3-175-14-51.for50.r.cloudfront.net",
+          "city": "Fortaleza",
+          "region": "Ceará",
           "country": "BR",
           "org": "AS16509 Amazon.com, Inc.",
           "asn": "AS16509"
         },
         "dns": {
+          "A": [
+            "3.175.14.51",
+            "3.175.14.129",
+            "3.175.14.94",
+            "3.175.14.43"
+          ],
           "NS": [
             "ns-125.awsdns-15.com.",
             "ns-1390.awsdns-45.org.",
             "ns-1775.awsdns-29.co.uk.",
             "ns-968.awsdns-57.net."
-          ],
-          "A": [
-            "108.158.137.120",
-            "108.158.137.83",
-            "108.158.137.40",
-            "108.158.137.114"
           ]
         }
       },
@@ -235,7 +262,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (q-r.to/bgoHDU)\"; flow:established,to_server; http.uri; content:\"/bgoHDU\"; startswith; fast_pattern; http.host; content:\"q-r.to\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004740; classtype:social-engineering; sid:6004740; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:51:29.240602+00:00",
+  "updated_at": "2026-06-24T01:09:25.429004+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "phi-go.com",
       "domain_defanged": "phi-go[.]com",
-      "case_id": "PD-20260621-4647D4",
-      "analyzed_at": "2026-06-21T12:32:29.092Z",
+      "case_id": "PD-20260624-4647D4",
+      "analyzed_at": "2026-06-24T02:07:49.947Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ef75b-c679-7495-9137-1ee25c78b476.png",
+          "url": "https://urlscan.io/result/019ef75b-c679-7495-9137-1ee25c78b476/"
         }
       },
       "detections": [],
@@ -64,26 +68,32 @@
         "registrar": "GMO Internet Group, Inc. d/b/a Onamae.com",
         "created": "2025-06-23T10:22:23Z",
         "expires": "2026-06-23T10:22:23Z",
-        "age_days": 363,
+        "age_days": 365,
         "nameservers": [
-          "NS1.VERIFICATION-HOLD.SUSPENDED-DOMAIN.COM",
-          "NS2.VERIFICATION-HOLD.SUSPENDED-DOMAIN.COM"
+          "DNS1.ONAMAE-EXPIRED.COM",
+          "DNS2.ONAMAE-EXPIRED.COM"
         ]
       },
       "infrastructure": {
-        "ip": "15.197.240.20",
+        "ip": "160.251.64.80",
         "ipinfo": {
-          "ip": "15.197.240.20",
-          "hostname": "acf3b736b777428f5.awsglobalaccelerator.com",
-          "city": "Seattle",
-          "region": "Washington",
-          "country": "US",
-          "org": "AS16509 Amazon.com, Inc.",
-          "asn": "AS16509"
+          "ip": "160.251.64.80",
+          "city": "Tokyo",
+          "region": "Tokyo",
+          "country": "JP",
+          "org": "AS7506 GMO Internet, Inc.",
+          "asn": "AS7506"
         },
         "dns": {
+          "MX": [
+            "0 ."
+          ],
           "A": [
-            "15.197.240.20"
+            "160.251.64.80"
+          ],
+          "NS": [
+            "dns2.onamae-expired.com.",
+            "dns1.onamae-expired.com."
           ]
         }
       },
@@ -97,12 +107,12 @@
           "iana_ids": "49"
         },
         "hosting": {
-          "name": "Amazon AWS",
-          "abuse": "abuse@amazonaws.com",
-          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "name": "INTERQ GMO Internet,Inc, JP",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
           "logo": "",
-          "method": "form",
-          "asn": "AS16509"
+          "method": "email",
+          "asn": "AS7506"
         }
       },
       "report_services": [
@@ -230,10 +240,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (phi-go.com/v3/signin/identifier)\"; flow:established,to_server; http.uri; content:\"/v3/signin/identifier\"; startswith; fast_pattern; http.host; content:\"phi-go.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005058; classtype:social-engineering; sid:6005058; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T12:32:20.222140+00:00",
+  "updated_at": "2026-06-24T02:07:36.170644+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

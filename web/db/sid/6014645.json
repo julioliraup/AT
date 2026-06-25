@@ -49,50 +49,132 @@
     "phishdestroy": {
       "domain": "colmed3.org.ar",
       "domain_defanged": "colmed3[.]org[.]ar",
-      "case_id": "PD-20260622-5549D2",
-      "analyzed_at": "2026-06-22T08:25:57.356Z",
+      "case_id": "PD-20260625-5549D2",
+      "analyzed_at": "2026-06-25T00:20:14.907Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019eee6f-adfb-76e7-b900-e4f43c9ad8d6/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019eee7b-8811-7797-b567-3719988e7426.png",
+          "url": "https://urlscan.io/result/019eee7b-8811-7797-b567-3719988e7426/",
+          "title": "404 Not Found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "181.88.192.96",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "181.88.192.96",
+          "hostname": "host96.181-88-192.telecom.net.ar",
+          "city": "Buenos Aires",
+          "region": "Buenos Aires F.D.",
+          "country": "AR",
+          "org": "AS7303 Telecom Argentina S.A.",
+          "asn": "AS7303"
+        },
         "dns": {
-          "MX": [
-            "10 mx4.colmed3.org.ar.",
-            "10 mx2.colmed3.org.ar.",
-            "10 mx1.colmed3.org.ar.",
-            "10 mx3.colmed3.org.ar."
+          "NS": [
+            "ns6.godns.net.",
+            "ns2.godns.net.",
+            "ns5.godns.net.",
+            "ns4.godns.net.",
+            "ns1.godns.net.",
+            "ns3.godns.net."
           ],
           "A": [
             "181.88.192.96"
           ],
-          "NS": [
-            "ns5.godns.net.",
-            "ns2.godns.net.",
-            "ns4.godns.net.",
-            "ns6.godns.net.",
-            "ns1.godns.net.",
-            "ns3.godns.net."
+          "MX": [
+            "10 mx4.colmed3.org.ar.",
+            "10 mx1.colmed3.org.ar.",
+            "10 mx3.colmed3.org.ar.",
+            "10 mx2.colmed3.org.ar."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AS7303",
+          "abuse": "abuse@teco.com.ar",
+          "url": "mailto:abuse@teco.com.ar",
+          "logo": "",
+          "method": "email",
+          "asn": "AS7303"
+        }
       },
       "report_services": [
         {
@@ -219,7 +301,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.colmed3.org.ar/santanew/page/login.php)\"; flow:established,to_server; http.uri; content:\"/santanew/page/login.php\"; startswith; fast_pattern; http.host; content:\"www.colmed3.org.ar\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014645; classtype:social-engineering; sid:6014645; rev:1; metadata: signature_severity Major, created_et 2026_06_19;)",
-  "updated_at": "2026-06-22T08:25:51.859008+00:00",
+  "updated_at": "2026-06-25T00:20:05.778341+00:00",
   "probe": {
     "dns": true,
     "whois": true,

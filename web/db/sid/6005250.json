@@ -55,27 +55,55 @@
     "phishdestroy": {
       "domain": "pcn-noticiy.cyou",
       "domain_defanged": "pcn-noticiy[.]cyou",
-      "case_id": "PD-20260621-788B62",
-      "analyzed_at": "2026-06-21T13:03:04.246Z",
+      "case_id": "PD-20260624-788B62",
+      "analyzed_at": "2026-06-24T02:31:14.442Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e50f9-40f5-720d-a7af-4a85d090e16c.png",
+          "url": "https://urlscan.io/result/019e50f9-40f5-720d-a7af-4a85d090e16c/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.134.34.203",
+        "ipinfo": {
+          "ip": "43.134.34.203",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -202,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.pcn-noticiy.cyou/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.pcn-noticiy.cyou\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005250; classtype:social-engineering; sid:6005250; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T13:02:56.861255+00:00",
+  "updated_at": "2026-06-24T02:31:08.415769+00:00",
   "probe": {
     "dns": true,
     "whois": true,

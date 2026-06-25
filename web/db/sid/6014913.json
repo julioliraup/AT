@@ -22,7 +22,7 @@
       "url": "http://www.gov-parkingyg.cyou/com/",
       "domain": "www.gov-parkingyg.cyou",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,32 +49,55 @@
     "phishdestroy": {
       "domain": "gov-parkingyg.cyou",
       "domain_defanged": "gov-parkingyg[.]cyou",
-      "case_id": "PD-20260622-14F394",
-      "analyzed_at": "2026-06-22T08:57:56.807Z",
+      "case_id": "PD-20260625-14F394",
+      "analyzed_at": "2026-06-25T00:54:35.944Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee7b1-e89d-74b3-b97b-4cad81e1c392.png",
+          "url": "https://urlscan.io/result/019ee7b1-e89d-74b3-b97b-4cad81e1c392/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": {
-          "NS": [
-            "dns25.hichina.com.",
-            "dns26.hichina.com."
-          ]
-        }
+        "ip": "170.106.199.15",
+        "ipinfo": {
+          "ip": "170.106.199.15",
+          "city": "Santa Clara",
+          "region": "California",
+          "country": "US",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -201,10 +224,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingyg.cyou/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingyg.cyou\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014913; classtype:social-engineering; sid:6014913; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:57:42.235001+00:00",
+  "updated_at": "2026-06-25T00:54:31.775151+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

@@ -18,64 +18,58 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.pcn-noticye.cyou/com/",
-      "domain": "www.pcn-noticye.cyou",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "43.160.222.97",
-      "http_code": 200,
-      "http_response": {
-        "server": "openresty/1.29.2.2",
-        "content_type": "text/html",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text",
-      "sha256": "88331f50c9e791d2c1ed857ddfabd9bcf5bd5d5e769f38933eeef4fea4f1e804",
-      "md5": "a2aaeb3627b103c41ade47423bd32627",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-05-22T02:17:28",
-      "first_seen_secs": 1779416248.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "pcn-noticye.cyou",
       "domain_defanged": "pcn-noticye[.]cyou",
-      "case_id": "PD-20260621-5B31D5",
-      "analyzed_at": "2026-06-21T12:24:11.454Z",
+      "case_id": "PD-20260624-5B31D5",
+      "analyzed_at": "2026-06-24T01:57:58.631Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4f8a-ee59-70a7-9714-b94fc351738b.png",
+          "url": "https://urlscan.io/result/019e4f8a-ee59-70a7-9714-b94fc351738b/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.60.167",
+        "ipinfo": {
+          "ip": "104.21.60.167",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -202,10 +196,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.pcn-noticye.cyou/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.pcn-noticye.cyou\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004998; classtype:social-engineering; sid:6004998; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T12:24:07.749679+00:00",
+  "updated_at": "2026-06-24T01:57:45.107996+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

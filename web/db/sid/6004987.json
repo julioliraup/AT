@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "pcn-noticum.cyou",
       "domain_defanged": "pcn-noticum[.]cyou",
-      "case_id": "PD-20260621-2123FD",
-      "analyzed_at": "2026-06-21T12:22:46.199Z",
+      "case_id": "PD-20260624-2123FD",
+      "analyzed_at": "2026-06-24T01:55:21.907Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4f82-28ec-7419-a150-c5c9c28bbed6.png",
+          "url": "https://urlscan.io/result/019e4f82-28ec-7419-a150-c5c9c28bbed6/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.133.55.35",
+        "ipinfo": {
+          "ip": "43.133.55.35",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.pcn-noticum.cyou/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.pcn-noticum.cyou\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004987; classtype:social-engineering; sid:6004987; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T12:22:39.073076+00:00",
+  "updated_at": "2026-06-24T01:55:17.660543+00:00",
   "probe": {
     "dns": false,
     "whois": false,

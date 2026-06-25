@@ -83,21 +83,38 @@
     "phishdestroy": {
       "domain": "skt-1601.twil.io",
       "domain_defanged": "skt-1601[.]twil[.]io",
-      "case_id": "PD-20260621-534C88",
-      "analyzed_at": "2026-06-21T11:44:29.951Z",
+      "case_id": "PD-20260624-534C88",
+      "analyzed_at": "2026-06-24T01:02:47.077Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ee9ff-170d-74fd-87a6-d5799d6b9352/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ef0fa-9b54-705f-99d0-303337100da8.png",
+          "url": "https://urlscan.io/result/019ef0fa-9b54-705f-99d0-303337100da8/",
+          "title": "skt-1601.twil.io"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -109,6 +126,14 @@
             "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com.",
             "d2uv2dvtmwgf4w.cloudfront.net."
           ],
+          "NS": [
+            "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com.",
+            "d2uv2dvtmwgf4w.cloudfront.net.",
+            "ns-1062.awsdns-04.org.",
+            "ns-1622.awsdns-10.co.uk.",
+            "ns-48.awsdns-06.com.",
+            "ns-559.awsdns-05.net."
+          ],
           "AAAA": [
             "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com.",
             "d2uv2dvtmwgf4w.cloudfront.net."
@@ -119,18 +144,10 @@
           "A": [
             "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com.",
             "d2uv2dvtmwgf4w.cloudfront.net.",
-            "13.33.129.2",
             "13.33.129.57",
-            "13.33.129.48",
-            "13.33.129.88"
-          ],
-          "NS": [
-            "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com.",
-            "d2uv2dvtmwgf4w.cloudfront.net.",
-            "ns-1062.awsdns-04.org.",
-            "ns-1622.awsdns-10.co.uk.",
-            "ns-48.awsdns-06.com.",
-            "ns-559.awsdns-05.net."
+            "13.33.129.2",
+            "13.33.129.88",
+            "13.33.129.48"
           ]
         }
       },
@@ -263,7 +280,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (skt-1601.twil.io/skatdk)\"; flow:established,to_server; http.uri; content:\"/skatdk\"; startswith; fast_pattern; http.host; content:\"skt-1601.twil.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004692; classtype:social-engineering; sid:6004692; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:44:25.101768+00:00",
+  "updated_at": "2026-06-24T01:02:40.344331+00:00",
   "probe": {
     "dns": true,
     "whois": true,

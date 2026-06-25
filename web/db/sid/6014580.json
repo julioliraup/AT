@@ -18,30 +18,114 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://sample-painting.com/two.html",
+      "domain": "sample-painting.com",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "sample-painting.com",
       "domain_defanged": "sample-painting[.]com",
-      "case_id": "PD-20260622-EE3769",
-      "analyzed_at": "2026-06-22T08:15:07.688Z",
+      "case_id": "PD-20260625-EE3769",
+      "analyzed_at": "2026-06-25T00:10:26.427Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019eee65-c3a9-7299-82c7-4dccb73765c7.png",
           "url": "https://urlscan.io/result/019eee65-c3a9-7299-82c7-4dccb73765c7/",
-          "pending": true
+          "title": "403 - FORBIDDEN"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "eNom, LLC",
         "created": "2019-09-11T20:31:25Z",
         "expires": "2026-09-11T20:31:25Z",
-        "age_days": 2475,
+        "age_days": 2478,
         "nameservers": [
           "NS307.WEBSITEWELCOME.COM",
           "NS308.WEBSITEWELCOME.COM"
@@ -49,13 +133,21 @@
       },
       "infrastructure": {
         "ip": "192.185.103.89",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "192.185.103.89",
+          "hostname": "192-185-103-89.unifiedlayer.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": {
-          "A": [
-            "192.185.103.89"
-          ],
           "MX": [
             "0 mail.sample-painting.com."
+          ],
+          "A": [
+            "192.185.103.89"
           ],
           "NS": [
             "ns307.websitewelcome.com.",
@@ -72,7 +164,14 @@
           "method": "form",
           "iana_ids": "48"
         },
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -199,7 +298,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sample-painting.com/two.html)\"; flow:established,to_server; http.uri; content:\"/two.html\"; startswith; fast_pattern; http.host; content:\"sample-painting.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014580; classtype:social-engineering; sid:6014580; rev:1; metadata: signature_severity Major, created_et 2026_06_19;)",
-  "updated_at": "2026-06-22T08:14:49.070980+00:00",
+  "updated_at": "2026-06-25T00:10:16.649903+00:00",
   "probe": {
     "dns": true,
     "whois": true,

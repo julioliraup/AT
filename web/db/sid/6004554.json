@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "exclusivedsessiondrop4.vercel.app",
       "domain_defanged": "exclusivedsessiondrop4[.]vercel[.]app",
-      "case_id": "PD-20260621-78933A",
-      "analyzed_at": "2026-06-21T11:25:45.239Z",
+      "case_id": "PD-20260624-78933A",
+      "analyzed_at": "2026-06-24T00:38:59.839Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ee9ed-ee24-76a8-8f3a-f5e25ff9055f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Opensea"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef0ec-47cc-7602-850b-b6b5a3113a9f.png",
+          "url": "https://urlscan.io/result/019ef0ec-47cc-7602-850b-b6b5a3113a9f/",
+          "title": "OpenSea.io"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Opensea",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (exclusivedsessiondrop4.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"exclusivedsessiondrop4.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004554; classtype:social-engineering; sid:6004554; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:25:38.655709+00:00",
+  "updated_at": "2026-06-24T00:38:50.528537+00:00",
   "probe": {
     "dns": true,
     "whois": false,

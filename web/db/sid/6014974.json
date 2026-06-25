@@ -18,52 +18,42 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://pay.emag.hu/pay/v2/",
-      "domain": "pay.emag.hu",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-06-21T06:27:37",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "pay.emag.hu",
       "domain_defanged": "pay[.]emag[.]hu",
-      "case_id": "PD-20260622-110CA8",
-      "analyzed_at": "2026-06-22T09:03:10.955Z",
+      "case_id": "PD-20260625-110CA8",
+      "analyzed_at": "2026-06-25T01:05:12.818Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019eee91-c2f6-7008-9e8e-1051ac847562.png",
           "url": "https://urlscan.io/result/019eee91-c2f6-7008-9e8e-1051ac847562/",
-          "pending": true
+          "title": "ERROR: The request could not be satisfied"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,18 +61,6 @@
         "ip": "emag-hu.epayment.ro.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "emag-hu.epayment.ro.",
-            "d25k7gp9y7m68y.cloudfront.net."
-          ],
-          "A": [
-            "emag-hu.epayment.ro.",
-            "d25k7gp9y7m68y.cloudfront.net.",
-            "99.84.252.33",
-            "99.84.252.92",
-            "99.84.252.31",
-            "99.84.252.27"
-          ],
           "MX": [
             "emag-hu.epayment.ro.",
             "d25k7gp9y7m68y.cloudfront.net."
@@ -97,12 +75,31 @@
           ],
           "CNAME": [
             "emag-hu.epayment.ro."
+          ],
+          "AAAA": [
+            "emag-hu.epayment.ro.",
+            "d25k7gp9y7m68y.cloudfront.net."
+          ],
+          "A": [
+            "emag-hu.epayment.ro.",
+            "d25k7gp9y7m68y.cloudfront.net.",
+            "99.84.252.92",
+            "99.84.252.27",
+            "99.84.252.33",
+            "99.84.252.31"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -229,7 +226,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pay.emag.hu/pay/v2/)\"; flow:established,to_server; http.uri; content:\"/pay/v2/\"; startswith; fast_pattern; http.host; content:\"pay.emag.hu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014974; classtype:social-engineering; sid:6014974; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T09:03:06.639515+00:00",
+  "updated_at": "2026-06-25T01:04:58.510726+00:00",
   "probe": {
     "dns": true,
     "whois": true,

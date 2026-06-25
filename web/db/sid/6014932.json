@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "trezr-home-login.square.site",
       "domain_defanged": "trezr-home-login[.]square[.]site",
-      "case_id": "PD-20260622-5BD890",
-      "analyzed_at": "2026-06-22T08:59:46.464Z",
+      "case_id": "PD-20260625-5BD890",
+      "analyzed_at": "2026-06-25T00:57:43.763Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eee8e-a38e-77c4-bf5b-bb0d456bde68.png",
           "url": "https://urlscan.io/result/019eee8e-a38e-77c4-bf5b-bb0d456bde68/",
-          "pending": true
+          "title": "Trezor Login | How to Sign In Safely to Your Trezor Wallet"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -221,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (trezr-home-login.square.site/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"trezr-home-login.square.site\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014932; classtype:social-engineering; sid:6014932; rev:1; metadata: signature_severity Major, created_et 2026_06_21;)",
-  "updated_at": "2026-06-22T08:59:42.243903+00:00",
+  "updated_at": "2026-06-25T00:57:35.419006+00:00",
   "probe": {
     "dns": true,
     "whois": true,

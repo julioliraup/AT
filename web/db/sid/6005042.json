@@ -18,18 +18,74 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://www.account-aplem.com/web/",
+      "domain": "www.account-aplem.com",
+      "url_count": 1,
+      "city_data": false,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.67.131.37",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html",
+        "cf_ray": "9ff9ae1f2dc6fef5-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (509), with CRLF, LF line terminators",
+      "sha256": "280671e3d4752b9425214ca93a6379c4253e2e055cf04ffab978b0e46dce5786",
+      "md5": "51c7fe00b7f8db9cfe0f644325fac827",
+      "cert": {
+        "subject_cn": "account-aplem.com",
+        "subject_alt_names": [
+          "*.account-aplem.com",
+          "account-aplem.com"
+        ],
+        "issuer_cn": "E8",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-21T13:25:29+00:00",
+        "not_valid_after": "2026-08-19T13:25:28+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "467509824608510520017168477048568280603595",
+        "fingerprint_sha1": "53 4F 42 8C 5B 20 3B 72 71 14 BE 43 F9 9B B2 50 9C 7F FC CC",
+        "fingerprint_sha256": "A0 BC 31 A4 B6 03 14 4F 99 1A 48 45 C7 BE BD 0D 01 84 39 36 77 BC 0B C1 3E D0 33 FB 0A 58 19 C4"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-05-22T06:14:19",
+      "first_seen_secs": 1779430459.0
+    },
     "phishdestroy": {
       "domain": "account-aplem.com",
       "domain_defanged": "account-aplem[.]com",
-      "case_id": "PD-20260621-287214",
-      "analyzed_at": "2026-06-21T12:30:01.082Z",
+      "case_id": "PD-20260624-287214",
+      "analyzed_at": "2026-06-24T02:05:32.644Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e5cbe-12a3-7702-8e80-dd5e4d16f5f0.png",
+          "url": "https://urlscan.io/result/019e5cbe-12a3-7702-8e80-dd5e4d16f5f0/",
+          "title": "404 Not Found"
         }
       },
       "detections": [],
@@ -37,7 +93,7 @@
         "registrar": "Aceville Pte. Ltd.",
         "created": "2026-05-21T14:16:49Z",
         "expires": "2027-05-21T14:16:49Z",
-        "age_days": 30,
+        "age_days": 33,
         "nameservers": [
           "A.DNSPOD.COM",
           "B.DNSPOD.COM",
@@ -45,18 +101,33 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.131.37",
+        "ipinfo": {
+          "ip": "172.67.131.37",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "NS": [
+            "b.dnspod.com.",
             "c.dnspod.com.",
-            "a.dnspod.com.",
-            "b.dnspod.com."
+            "a.dnspod.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -183,12 +254,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.account-aplem.com/web/)\"; flow:established,to_server; http.uri; content:\"/web/\"; startswith; fast_pattern; http.host; content:\"www.account-aplem.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6005042; classtype:social-engineering; sid:6005042; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T12:29:42.507814+00:00",
+  "updated_at": "2026-06-24T02:05:25.666281+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

@@ -22,7 +22,7 @@
       "url": "http://fiverr-clientpay.pro/work/ask",
       "domain": "fiverr-clientpay.pro",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,48 +49,129 @@
     "phishdestroy": {
       "domain": "fiverr-clientpay.pro",
       "domain_defanged": "fiverr-clientpay[.]pro",
-      "case_id": "PD-20260622-3AE523",
-      "analyzed_at": "2026-06-22T08:37:33.672Z",
+      "case_id": "PD-20260625-3AE523",
+      "analyzed_at": "2026-06-25T00:29:18.521Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 8,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Bfore.Ai PreCrime",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eee7a-4d63-7384-b38f-8cf3d7fb5a28/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fiverr"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef0ba-e25a-7051-9e98-6aaed0ca6a28.png",
+          "url": "https://urlscan.io/result/019ef0ba-e25a-7051-9e98-6aaed0ca6a28/",
+          "title": "It needs a human touch"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Bfore.Ai PreCrime",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fiverr",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.42.117",
+        "ip": "188.114.96.3",
         "ipinfo": {
-          "ip": "104.21.42.117",
+          "ip": "188.114.96.3",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
           "org": "AS13335 Cloudflare, Inc.",
           "asn": "AS13335"
         },
-        "dns": {
-          "A": [
-            "104.21.42.117",
-            "172.67.161.215"
-          ],
-          "AAAA": [
-            "2606:4700:3035::6815:2a75",
-            "2606:4700:3033::ac43:a1d7"
-          ],
-          "NS": [
-            "celeste.ns.cloudflare.com.",
-            "moura.ns.cloudflare.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -228,10 +309,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fiverr-clientpay.pro/work/ask)\"; flow:established,to_server; http.uri; content:\"/work/ask\"; startswith; fast_pattern; http.host; content:\"fiverr-clientpay.pro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014727; classtype:social-engineering; sid:6014727; rev:1; metadata: signature_severity Major, created_et 2026_06_20;)",
-  "updated_at": "2026-06-22T08:37:30.371521+00:00",
+  "updated_at": "2026-06-25T00:29:14.634472+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

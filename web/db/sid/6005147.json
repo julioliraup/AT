@@ -18,32 +18,92 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://survey-admin.adjust.workers.dev/",
+      "domain": "survey-admin.adjust.workers.dev",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.67.172.18",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a05d56765d21fef0-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "31d4294427a8846281d5feb6af0ac15fcafe37ba5d5f4e8e15800fd176d39499",
+      "md5": "43018611e4f5ee936ac933690abbab46",
+      "cert": {
+        "subject_cn": "adjust.workers.dev",
+        "subject_alt_names": [
+          "*.adjust.workers.dev",
+          "adjust.workers.dev"
+        ],
+        "issuer_cn": "E7",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-04T16:14:56+00:00",
+        "not_valid_after": "2026-08-02T16:14:55+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "500114447407193042585377861418544348134273",
+        "fingerprint_sha1": "24 22 84 C6 AA 8A 3F F6 D3 85 29 59 3A 06 91 F3 74 0F 84 AF",
+        "fingerprint_sha256": "74 FE 19 AE 1E E9 20 C6 8A 1C B3 7D 3F 96 E8 D6 27 1A EC 12 9E 36 39 99 80 AF AF 8E C7 59 87 CF"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-06-03T08:22:00",
+      "first_seen_secs": 1780474920.0
+    },
     "phishdestroy": {
       "domain": "survey-admin.adjust.workers.dev",
       "domain_defanged": "survey-admin[.]adjust[.]workers[.]dev",
-      "case_id": "PD-20260621-2AD6F8",
-      "analyzed_at": "2026-06-21T12:49:07.837Z",
+      "case_id": "PD-20260624-2AD6F8",
+      "analyzed_at": "2026-06-24T02:18:13.254Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eea3a-433c-7340-b088-4cb0174a5583.png",
           "url": "https://urlscan.io/result/019eea3a-433c-7340-b088-4cb0174a5583/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.71.231",
+        "ip": "172.67.172.18",
         "ipinfo": {
-          "ip": "104.21.71.231",
+          "ip": "172.67.172.18",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -51,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.21.71.231",
-            "172.67.172.18"
-          ],
           "AAAA": [
-            "2606:4700:3030::ac43:ac12",
-            "2606:4700:3034::6815:47e7"
+            "2606:4700:3034::6815:47e7",
+            "2606:4700:3030::ac43:ac12"
+          ],
+          "A": [
+            "172.67.172.18",
+            "104.21.71.231"
           ]
         }
       },
@@ -197,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (survey-admin.adjust.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"survey-admin.adjust.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005147; classtype:social-engineering; sid:6005147; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T12:48:55.516661+00:00",
+  "updated_at": "2026-06-24T02:18:10.651892+00:00",
   "probe": {
     "dns": true,
     "whois": false,

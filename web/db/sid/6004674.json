@@ -49,41 +49,64 @@
     "phishdestroy": {
       "domain": "kleinanzeigen.436kb.com",
       "domain_defanged": "kleinanzeigen[.]436kb[.]com",
-      "case_id": "PD-20260621-6B0FEE",
-      "analyzed_at": "2026-06-21T11:41:52.785Z",
+      "case_id": "PD-20260624-6B0FEE",
+      "analyzed_at": "2026-06-24T00:59:31.847Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ee9fc-b19e-77d8-9323-d0a0786d166a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef0f8-f667-731f-9364-a67db1015737.png",
+          "url": "https://urlscan.io/result/019ef0f8-f667-731f-9364-a67db1015737/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.77.248",
-        "ipinfo": null,
+        "ip": "172.67.213.87",
+        "ipinfo": {
+          "ip": "172.67.213.87",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
             "2606:4700:3035::ac43:d557",
             "2606:4700:3031::6815:4df8"
           ],
           "A": [
-            "104.21.77.248",
-            "172.67.213.87"
+            "172.67.213.87",
+            "104.21.77.248"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kleinanzeigen.436kb.com/839022332894?mail=W1lPVVJd&meta=rlWjMKWwLJ50LJqyVwb1YPWhLJ1yVwbvKUHlAmL0KUIzMGOzVSyiqKVtGJScoTIlVvjvL2uuqS9cMPV6YGRjZQV5Zmt2AGt0ZGDfVaAypaMcL2HvBvWeoTIcozShrzIcM2IhVvjvqUyjMFV6Vz1unJkypy9jpz8vsD==)\"; flow:established,to_server; http.uri; content:\"/839022332894?mail=W1lPVVJd&meta=rlWjMKWwLJ50LJqyVwb1YPWhLJ1yVwbvKUHlAmL0KUIzMGOzVSyiqKVtGJScoTIlVvjvL2uuqS9cMPV6YGRjZQV5Zmt2AGt0ZGDfVaAypaMcL2HvBvWeoTIcozShrzIcM2IhVvjvqUyjMFV6Vz1unJkypy9jpz8vsD==\"; startswith; fast_pattern; http.host; content:\"kleinanzeigen.436kb.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6004674; classtype:social-engineering; sid:6004674; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:41:36.038078+00:00",
+  "updated_at": "2026-06-24T00:59:19.425672+00:00",
   "probe": {
     "dns": true,
     "whois": false,

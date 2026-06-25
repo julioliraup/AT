@@ -73,27 +73,43 @@
     "phishdestroy": {
       "domain": "amazon-clone-kappa-ashen.vercel.app",
       "domain_defanged": "amazon-clone-kappa-ashen[.]vercel[.]app",
-      "case_id": "PD-20260621-2F27BC",
-      "analyzed_at": "2026-06-21T11:31:22.472Z",
+      "case_id": "PD-20260624-2F27BC",
+      "analyzed_at": "2026-06-24T00:48:00.251Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ee9f3-1253-71c8-b647-dfb652e99c79/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef0f1-2d1e-7148-8947-d99782b40a96.png",
+          "url": "https://urlscan.io/result/019ef0f1-2d1e-7148-8947-d99782b40a96/",
+          "title": "Amazon clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "216.198.79.194",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "216.198.79.194",
@@ -103,7 +119,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -231,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.amazon-clone-kappa-ashen.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.amazon-clone-kappa-ashen.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005055; classtype:social-engineering; sid:6005055; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T12:32:05.139170+00:00",
+  "updated_at": "2026-06-24T02:07:16.933591+00:00",
   "probe": {
     "dns": true,
     "whois": false,

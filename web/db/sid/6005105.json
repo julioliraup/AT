@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "bundaumamtomsiungon.pages.dev",
       "domain_defanged": "bundaumamtomsiungon[.]pages[.]dev",
-      "case_id": "PD-20260621-7FAD84",
-      "analyzed_at": "2026-06-21T12:42:08.190Z",
+      "case_id": "PD-20260624-7FAD84",
+      "analyzed_at": "2026-06-24T02:13:44.948Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019eea33-dc38-700f-aed7-e0921764ea09/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eee47-3599-721e-8663-37515d484ed5.png",
+          "url": "https://urlscan.io/result/019eee47-3599-721e-8663-37515d484ed5/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.56",
+        "ip": "172.66.44.200",
         "ipinfo": {
-          "ip": "172.66.47.56",
+          "ip": "172.66.44.200",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -83,8 +92,8 @@
             "2606:4700:310c::ac42:2cc8"
           ],
           "A": [
-            "172.66.47.56",
-            "172.66.44.200"
+            "172.66.44.200",
+            "172.66.47.56"
           ],
           "NS": [
             "dora.ns.cloudflare.com.",
@@ -228,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bundaumamtomsiungon.pages.dev/help/contact/26752055131504)\"; flow:established,to_server; http.uri; content:\"/help/contact/26752055131504\"; startswith; fast_pattern; http.host; content:\"bundaumamtomsiungon.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005105; classtype:social-engineering; sid:6005105; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-21T12:42:05.605058+00:00",
+  "updated_at": "2026-06-24T02:13:40.330647+00:00",
   "probe": {
     "dns": true,
     "whois": false,

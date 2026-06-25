@@ -49,27 +49,122 @@
     "phishdestroy": {
       "domain": "nya.meatings.se",
       "domain_defanged": "nya[.]meatings[.]se",
-      "case_id": "PD-20260622-65FEE3",
-      "analyzed_at": "2026-06-22T08:41:21.815Z",
+      "case_id": "PD-20260625-65FEE3",
+      "analyzed_at": "2026-06-25T00:33:21.229Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 7,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019eee7d-c924-760a-9967-0b85114510c7.png",
           "url": "https://urlscan.io/result/019eee7d-c924-760a-9967-0b85114510c7/",
-          "pending": true
+          "title": "WordPress – Fel"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "185.15.121.100",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.15.121.100",
+          "hostname": "website-proxy.ilait.se",
+          "city": "Gothenburg",
+          "region": "Västra Götaland",
+          "country": "SE",
+          "org": "AS61207 Hostek AB",
+          "asn": "AS61207"
+        },
         "dns": {
           "A": [
             "185.15.121.100"
@@ -78,7 +173,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ILAIT",
+          "abuse": "abuse@ilait.se",
+          "url": "mailto:abuse@ilait.se",
+          "logo": "https://i.ibb.co/tpQv3LxQ/pr-ILAIT.png",
+          "method": "email",
+          "asn": "AS61207"
+        }
       },
       "report_services": [
         {
@@ -205,7 +307,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nya.meatings.se/ppw/korea.html)\"; flow:established,to_server; http.uri; content:\"/ppw/korea.html\"; startswith; fast_pattern; http.host; content:\"nya.meatings.se\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6014763; classtype:social-engineering; sid:6014763; rev:1; metadata: signature_severity Major, created_et 2026_06_20;)",
-  "updated_at": "2026-06-22T08:41:17.762257+00:00",
+  "updated_at": "2026-06-25T00:33:15.591072+00:00",
   "probe": {
     "dns": true,
     "whois": true,

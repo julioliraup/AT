@@ -18,60 +18,55 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://iportalcontactus.com/home/index.php",
-      "domain": "iportalcontactus.com",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "iportalcontactus.com",
       "domain_defanged": "iportalcontactus[.]com",
-      "case_id": "PD-20260621-D43FA5",
-      "analyzed_at": "2026-06-21T11:37:18.224Z",
+      "case_id": "PD-20260624-D43FA5",
+      "analyzed_at": "2026-06-24T00:55:33.272Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Barclays"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4a81-21b0-760c-b1e1-2503b86bb898.png",
+          "url": "https://urlscan.io/result/019e4a81-21b0-760c-b1e1-2503b86bb898/",
+          "title": "Loading..."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Barclays",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "OwnRegistrar, Inc.",
         "created": "2026-05-19T11:12:51Z",
         "expires": "2027-05-19T11:12:51Z",
-        "age_days": 33,
+        "age_days": 35,
         "nameservers": [
           "NS1.NSNAMEDNS.NET",
           "NS2.NSNAMEDNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "31.7.61.48",
+        "ipinfo": {
+          "ip": "31.7.61.48",
+          "hostname": "hostedby.privatelayer.com",
+          "city": "Bellinzona",
+          "region": "Ticino",
+          "country": "CH",
+          "org": "AS51852 Private Layer INC",
+          "asn": "AS51852"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +78,14 @@
           "method": "form",
           "iana_ids": "1250"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Private Layer",
+          "abuse": "abuse@privatelayer.com",
+          "url": "mailto:abuse@privatelayer.com",
+          "logo": "https://i.ibb.co/N2vQqJpr/pr-Private-Layer.png",
+          "method": "email",
+          "asn": "AS51852"
+        }
       },
       "report_services": [
         {
@@ -210,7 +212,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (iportalcontactus.com/home/index.php)\"; flow:established,to_server; http.uri; content:\"/home/index.php\"; startswith; fast_pattern; http.host; content:\"iportalcontactus.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6004644; classtype:social-engineering; sid:6004644; rev:1; metadata: signature_severity Major, created_et 2026_05_21;)",
-  "updated_at": "2026-06-21T11:37:13.087516+00:00",
+  "updated_at": "2026-06-24T00:55:18.168753+00:00",
   "probe": {
     "dns": false,
     "whois": false,
