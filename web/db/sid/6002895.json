@@ -11,40 +11,144 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6002895"
+    "julioliraup.github.io/AT/signature.html?sid=6002895"
   ],
   "intel": {
     "virustotal": null,
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://enzzodasul.github.io/pagina_netflix_recriada/",
+      "domain": "enzzodasul.github.io",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "enzzodasul.github.io",
       "domain_defanged": "enzzodasul[.]github[.]io",
-      "case_id": "PD-20260623-507195",
-      "analyzed_at": "2026-06-23T20:13:36.838Z",
+      "case_id": "PD-20260626-507195",
+      "analyzed_at": "2026-06-26T03:00:30.141Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 7,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Certego",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ef61d-ea8a-738b-8b8f-f08d74d32613/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019efdd1-512e-76fc-aab0-841bed46ae1e.png",
+          "url": "https://urlscan.io/result/019efdd1-512e-76fc-aab0-841bed46ae1e/",
+          "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Certego",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.109.153",
+        "ip": "185.199.111.153",
         "ipinfo": {
-          "ip": "185.199.109.153",
-          "hostname": "cdn-185-199-109-153.github.com",
+          "ip": "185.199.111.153",
+          "hostname": "cdn-185-199-111-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -52,17 +156,17 @@
           "asn": "AS54113"
         },
         "dns": {
+          "A": [
+            "185.199.111.153",
+            "185.199.110.153",
+            "185.199.109.153",
+            "185.199.108.153"
+          ],
           "AAAA": [
-            "2606:50c0:8001::153",
             "2606:50c0:8002::153",
+            "2606:50c0:8001::153",
             "2606:50c0:8000::153",
             "2606:50c0:8003::153"
-          ],
-          "A": [
-            "185.199.109.153",
-            "185.199.108.153",
-            "185.199.110.153",
-            "185.199.111.153"
           ]
         }
       },
@@ -198,11 +302,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (enzzodasul.github.io/pagina_netflix_recriada/)\"; flow:established,to_server; http.uri; content:\"/pagina_netflix_recriada/\"; startswith; fast_pattern; http.host; content:\"enzzodasul.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002895; classtype:social-engineering; sid:6002895; rev:1; metadata: signature_severity Major, created_et 2026_05_18;)",
-  "updated_at": "2026-06-23T20:13:22.518422+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (enzzodasul.github.io/pagina_netflix_recriada/)\"; flow:established,to_server; http.uri; content:\"/pagina_netflix_recriada/\"; startswith; fast_pattern; http.host; content:\"enzzodasul.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002895; classtype:social-engineering; sid:6002895; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-26T21:46:44.669112+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -12,7 +12,7 @@
   "references": [
     "openphish.com",
     "github.com/julioliraup/Antiphishing",
-    "julioliraup.github.io/ET/signature.html?sid=6000054"
+    "julioliraup.github.io/AT/signature.html?sid=6000054"
   ],
   "intel": {
     "virustotal": null,
@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "sso--en-uphold-help.typedream.app",
       "domain_defanged": "sso--en-uphold-help[.]typedream[.]app",
-      "case_id": "PD-20260623-1B82B2",
-      "analyzed_at": "2026-06-23T12:57:19.361Z",
+      "case_id": "PD-20260626-1B82B2",
+      "analyzed_at": "2026-06-26T15:35:04.733Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ef48e-7ace-74ed-ad29-2ce65a975b8c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Uphold"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0165-e123-7569-8024-bbef46eef161.png",
+          "url": "https://urlscan.io/result/019f0165-e123-7569-8024-bbef46eef161/",
+          "title": "Uphold Login | Sign In@"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Uphold",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -241,11 +250,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso--en-uphold-help .typedream .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sso--en-uphold-help.typedream.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000054; classtype:social-engineering; sid:6000054; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-23T12:57:15.413271+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso--en-uphold-help .typedream .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sso--en-uphold-help.typedream.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000054; classtype:social-engineering; sid:6000054; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-26T15:59:06.348238+00:00",
   "probe": {
     "dns": true,
     "whois": false,

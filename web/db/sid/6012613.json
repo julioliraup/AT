@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "phishstats.info",
-    "julioliraup.github.io/ET/signature.html?sid=6012613"
+    "julioliraup.github.io/AT/signature.html?sid=6012613"
   ],
   "intel": {
     "virustotal": null,
@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://cripthub.org/",
       "domain": "cripthub.org",
-      "url_count": 3,
+      "url_count": 5,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.63.28",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a113269a8e42fef8-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "application/javascript",
+      "filemagic": "JavaScript source, Unicode text, UTF-8 text, with very long lines (8856), with CRLF, LF line terminators",
+      "sha256": "f71c3db86893a9ffe1b43f5018c87c5321a224f0dd425833e2938081e83f9da4",
+      "md5": "ed3759ec47ae42ea60481b60d15733b7",
+      "cert": {
+        "subject_cn": "cripthub.org",
+        "subject_alt_names": [
+          "cripthub.org",
+          "*.cripthub.org"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-17T19:45:16+00:00",
+        "not_valid_after": "2026-09-15T20:43:52+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "22465997876466395086801616647842275771",
+        "fingerprint_sha1": "97 17 01 50 73 E2 D1 CD 2A C0 C7 47 02 B6 F6 C8 8E 92 19 81",
+        "fingerprint_sha256": "48 50 08 1F 5A AD 84 43 B1 B4 3B 6A A9 55 61 D0 FF 26 CB 0B 11 23 78 D1 F6 F5 B2 3B B4 A7 0B DC"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-22T03:01:08",
-      "first_seen_secs": null
+      "first_seen": "2026-06-25T08:23:30",
+      "first_seen_secs": 1782375810.0
     },
     "phishdestroy": {
       "domain": "cripthub.org",
       "domain_defanged": "cripthub[.]org",
-      "case_id": "PD-20260624-4BB27C",
-      "analyzed_at": "2026-06-24T19:20:46.287Z",
+      "case_id": "PD-20260627-4BB27C",
+      "analyzed_at": "2026-06-27T16:03:26.345Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +83,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019efb13-e594-73d2-85b4-853eb4825366/",
+          "url": "https://urlscan.io/result/019f09d2-4fe0-720c-a36f-1bbddb005e89/",
           "pending": true
         }
       },
@@ -68,16 +92,13 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.63.28",
-        "ipinfo": {
-          "ip": "104.21.63.28",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ip": "172.67.142.169",
+        "ipinfo": null,
         "dns": {
+          "A": [
+            "172.67.142.169",
+            "104.21.63.28"
+          ],
           "AAAA": [
             "2606:4700:3033::ac43:8ea9",
             "2606:4700:3030::6815:3f1c"
@@ -85,23 +106,12 @@
           "NS": [
             "ada.ns.cloudflare.com.",
             "brett.ns.cloudflare.com."
-          ],
-          "A": [
-            "104.21.63.28",
-            "172.67.142.169"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -227,8 +237,8 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cripthub.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cripthub.org\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/ET/signature.html?sid=6012613; classtype:social-engineering; sid:6012613; rev:1; metadata: signature_severity Major, created_et 2026_06_11;)",
-  "updated_at": "2026-06-24T19:20:39.864944+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cripthub.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cripthub.org\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6012613; classtype:social-engineering; sid:6012613; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-27T16:03:21.646995+00:00",
   "probe": {
     "dns": true,
     "whois": true,

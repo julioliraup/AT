@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6002209"
+    "julioliraup.github.io/AT/signature.html?sid=6002209"
   ],
   "intel": {
     "virustotal": null,
@@ -73,28 +73,89 @@
     "phishdestroy": {
       "domain": "zyexx.com",
       "domain_defanged": "zyexx[.]com",
-      "case_id": "PD-20260623-745776",
-      "analyzed_at": "2026-06-23T18:15:24.135Z",
+      "case_id": "PD-20260626-745776",
+      "analyzed_at": "2026-06-26T01:21:56.955Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "SafeToOpen",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ef5b1-94a3-72de-8da9-985ad5aaa48e/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019effa3-9619-71ea-a664-5fbeed25a0c0.png",
+          "url": "https://urlscan.io/result/019effa3-9619-71ea-a664-5fbeed25a0c0/",
+          "title": "היכנס לחשבון שלך"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SafeToOpen",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
-        "age_days": null
+        "registrar": "Cloudflare, Inc.",
+        "created": "2018-02-12T06:32:33Z",
+        "expires": "2027-02-12T06:32:33Z",
+        "age_days": 3055,
+        "nameservers": [
+          "MONA.NS.CLOUDFLARE.COM",
+          "SEAN.NS.CLOUDFLARE.COM"
+        ]
       },
       "infrastructure": {
-        "ip": "104.26.1.115",
+        "ip": "104.26.0.115",
         "ipinfo": {
-          "ip": "104.26.1.115",
+          "ip": "104.26.0.115",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,14 +164,14 @@
         },
         "dns": {
           "AAAA": [
+            "2606:4700:20::ac43:49dd",
             "2606:4700:20::681a:173",
-            "2606:4700:20::681a:73",
-            "2606:4700:20::ac43:49dd"
+            "2606:4700:20::681a:73"
           ],
           "A": [
+            "104.26.0.115",
             "104.26.1.115",
-            "172.67.73.221",
-            "104.26.0.115"
+            "172.67.73.221"
           ],
           "NS": [
             "mona.ns.cloudflare.com.",
@@ -119,7 +180,14 @@
         }
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "ANT-CLOUD",
+          "abuse": "kefu@qfisp.com",
+          "url": "https://phish.report/contacts/ANT-CLOUD",
+          "logo": "",
+          "method": "form",
+          "iana_ids": ""
+        },
         "hosting": {
           "name": "Cloudflare",
           "abuse": "abuse@cloudflare.com",
@@ -250,11 +318,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zyexx.com/cef8c85d76d83d432dp9b1ef647dffe97e13.html)\"; flow:established,to_server; http.uri; content:\"/cef8c85d76d83d432dp9b1ef647dffe97e13.html\"; startswith; fast_pattern; http.host; content:\"zyexx.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6002209; classtype:social-engineering; sid:6002209; rev:1; metadata: signature_severity Major, created_et 2026_05_15;)",
-  "updated_at": "2026-06-23T18:15:13.443565+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zyexx.com/cef8c85d76d83d432dp9b1ef647dffe97e13.html)\"; flow:established,to_server; http.uri; content:\"/cef8c85d76d83d432dp9b1ef647dffe97e13.html\"; startswith; fast_pattern; http.host; content:\"zyexx.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002209; classtype:social-engineering; sid:6002209; rev:1; metadata: signature_severity Major, created_et 2026_05_15, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-26T20:24:54.035652+00:00",
   "probe": {
     "dns": true,
     "whois": true,

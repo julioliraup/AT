@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6003549"
+    "julioliraup.github.io/AT/signature.html?sid=6003549"
   ],
   "intel": {
     "virustotal": null,
@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://www.netflix555-login.com/",
       "domain": "www.netflix555-login.com",
-      "url_count": 6,
+      "url_count": 8,
       "city_data": true,
       "deep_analysis": false,
-      "has_file_analysis": false,
+      "has_file_analysis": true,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "104.21.38.64",
+      "http_code": 429,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": null,
+        "cf_ray": "a1132c7c4cdf1509-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -39,18 +45,36 @@
       "flag": null,
       "filetype": null,
       "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "cert": {
+        "subject_cn": "netflix555-login.com",
+        "subject_alt_names": [
+          "*.netflix555-login.com",
+          "netflix555-login.com"
+        ],
+        "issuer_cn": "E7",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-18T06:49:10+00:00",
+        "not_valid_after": "2026-08-16T06:49:09+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "435839070878209179263155971947131818119747",
+        "fingerprint_sha1": "78 58 1F 87 17 AD 2F F7 97 D7 EA AB 2B 81 C2 F7 E2 94 3E DA",
+        "fingerprint_sha256": "6E 82 8C 66 8E A3 64 B3 47 FF C8 79 F0 D0 6B 38 5E 91 8F CD F3 FE B4 74 FB DC DD B9 34 15 00 B4"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-18T02:46:27",
+      "first_seen": "2026-06-25T08:23:02",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "netflix555-login.com",
       "domain_defanged": "netflix555-login[.]com",
-      "case_id": "PD-20260623-1CA840",
-      "analyzed_at": "2026-06-23T22:06:22.381Z",
+      "case_id": "PD-20260626-1CA840",
+      "analyzed_at": "2026-06-26T23:02:57.760Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +83,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ef685-24fa-741c-b3d2-bef6fdb1c8cb/",
+          "url": "https://urlscan.io/result/019f062c-0758-751e-af96-6a91c2343927/",
           "pending": true
         }
       },
@@ -68,23 +92,30 @@
         "registrar": "Realtime Register B.V.",
         "created": "2026-05-18T07:40:58Z",
         "expires": "2027-05-18T07:40:58Z",
-        "age_days": 36,
+        "age_days": 39,
         "nameservers": [
           "MELODY.NS.CLOUDFLARE.COM",
           "ZAHIR.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.219.182",
-        "ipinfo": null,
+        "ip": "104.21.38.64",
+        "ipinfo": {
+          "ip": "104.21.38.64",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.67.219.182",
-            "104.21.38.64"
-          ],
           "AAAA": [
             "2606:4700:3031::ac43:dbb6",
             "2606:4700:3036::6815:2640"
+          ],
+          "A": [
+            "104.21.38.64",
+            "172.67.219.182"
           ],
           "NS": [
             "melody.ns.cloudflare.com.",
@@ -101,7 +132,14 @@
           "method": "form",
           "iana_ids": "839"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -227,8 +265,8 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.netflix555-login.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.netflix555-login.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003549; classtype:social-engineering; sid:6003549; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-23T22:06:12.686804+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.netflix555-login.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.netflix555-login.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003549; classtype:social-engineering; sid:6003549; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-26T23:02:54.394960+00:00",
   "probe": {
     "dns": true,
     "whois": false,

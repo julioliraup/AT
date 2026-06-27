@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6005592"
+    "julioliraup.github.io/AT/signature.html?sid=6005592"
   ],
   "intel": {
     "virustotal": null,
@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "zrr.kr",
       "domain_defanged": "zrr[.]kr",
-      "case_id": "PD-20260624-2955C0",
-      "analyzed_at": "2026-06-24T03:26:27.561Z",
+      "case_id": "PD-20260626-2955C0",
+      "analyzed_at": "2026-06-26T07:31:26.859Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ef7aa-32b3-756a-8e6a-322fee79eda9/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eff75-f044-727b-a300-abefa1aa0792.png",
+          "url": "https://urlscan.io/result/019eff75-f044-727b-a300-abefa1aa0792/",
+          "title": "Coinbase - Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,13 +87,13 @@
           "asn": "AS17858"
         },
         "dns": {
+          "A": [
+            "119.67.78.192"
+          ],
           "NS": [
             "ns.gabia.co.kr.",
             "ns1.gabia.co.kr.",
             "ns.gabia.net."
-          ],
-          "A": [
-            "119.67.78.192"
           ]
         }
       },
@@ -220,14 +229,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zrr.kr/o1sfDh)\"; flow:established,to_server; http.uri; content:\"/o1sfDh\"; startswith; fast_pattern; http.host; content:\"zrr.kr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005592; classtype:social-engineering; sid:6005592; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-24T03:26:18.346937+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zrr.kr/o1sfDh)\"; flow:established,to_server; http.uri; content:\"/o1sfDh\"; startswith; fast_pattern; http.host; content:\"zrr.kr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005592; classtype:social-engineering; sid:6005592; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-27T03:36:42.891080+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

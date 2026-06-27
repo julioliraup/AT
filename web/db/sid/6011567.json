@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6011567"
+    "julioliraup.github.io/AT/signature.html?sid=6011567"
   ],
   "intel": {
     "virustotal": null,
@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://sp5ct6-glortik-biz-slarnex-dravvor.pages.dev/",
       "domain": "sp5ct6-glortik-biz-slarnex-dravvor.pages.dev",
-      "url_count": 2,
+      "url_count": 4,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.44.136",
+      "ip": "172.66.47.120",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a0d710402e9fabbf-PDX",
+        "cf_ray": "a113b67d49c2fdb1-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "e2440917f52a08a5156bb0889f059790945a46639d70f11a7c96c67af1e00426",
-      "md5": "b3dceb0a41cfe29c6e7e62f3247a6753",
+      "sha256": "579981c3e6d1d83b28f4188c39b228ab907252ef263c7bd13147b062a63435f5",
+      "md5": "25690fb494c7e2e7bb7c1474e69d35e5",
       "cert": {
         "subject_cn": "sp5ct6-glortik-biz-slarnex-dravvor.pages.dev",
         "subject_alt_names": [
@@ -67,27 +67,36 @@
         "fingerprint_sha256": "10 74 20 3F D7 ED C2 F1 1D 9E 06 53 E9 AB 20 18 3F 77 4F 16 EF 50 F8 14 78 2C 22 2C 27 2F 34 57"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-18T02:58:51",
-      "first_seen_secs": 1781751531.0
+      "first_seen": "2026-06-25T08:32:04",
+      "first_seen_secs": 1782376324.0
     },
     "phishdestroy": {
       "domain": "sp5ct6-glortik-biz-slarnex-dravvor.pages.dev",
       "domain_defanged": "sp5ct6-glortik-biz-slarnex-dravvor[.]pages[.]dev",
-      "case_id": "PD-20260624-3DBD2B",
-      "analyzed_at": "2026-06-24T16:33:08.802Z",
+      "case_id": "PD-20260627-3DBD2B",
+      "analyzed_at": "2026-06-27T14:07:54.877Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019efa7a-6dc2-73f3-8084-32e6ab299b75.png",
           "url": "https://urlscan.io/result/019efa7a-6dc2-73f3-8084-32e6ab299b75/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -95,13 +104,13 @@
         "ip": "172.66.44.136",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2f78",
-            "2606:4700:310c::ac42:2c88"
-          ],
           "A": [
             "172.66.44.136",
             "172.66.47.120"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2c88",
+            "2606:4700:310c::ac42:2f78"
           ],
           "NS": [
             "linda.ns.cloudflare.com.",
@@ -111,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -237,8 +253,8 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-glortik-biz-slarnex-dravvor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-glortik-biz-slarnex-dravvor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6011567; classtype:social-engineering; sid:6011567; rev:1; metadata: signature_severity Major, created_et 2026_06_07;)",
-  "updated_at": "2026-06-24T16:33:05.047304+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-glortik-biz-slarnex-dravvor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-glortik-biz-slarnex-dravvor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011567; classtype:social-engineering; sid:6011567; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-27T14:07:41.784018+00:00",
   "probe": {
     "dns": true,
     "whois": false,

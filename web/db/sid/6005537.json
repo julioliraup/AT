@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6005537"
+    "julioliraup.github.io/AT/signature.html?sid=6005537"
   ],
   "intel": {
     "virustotal": null,
@@ -21,15 +21,15 @@
     "alienvault": {
       "url": "http://access-pichncha009.free.nf/",
       "domain": "access-pichncha009.free.nf",
-      "url_count": 5,
+      "url_count": 7,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "185.27.134.34",
+      "ip": "185.27.134.24",
       "http_code": 200,
       "http_response": {
-        "server": "openresty",
+        "server": "nginx/1.28.0",
         "content_type": "text/html",
         "cf_ray": null,
         "cf_cache_status": null,
@@ -44,37 +44,37 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (852), with no line terminators",
-      "sha256": "bae25185f40c046beee102f422e314f3c1c4ec1bbc6b4716edd55a7b84d96fbe",
-      "md5": "16d7b7efff2305d3175d29ec9c22704d",
+      "filemagic": "HTML document, Unicode text, UTF-8 text",
+      "sha256": "e6295722f8a790a9df309940973a99c60f8e2242bc0fd53a96c1c5a07a247a0e",
+      "md5": "a58a667554e4ef3355553f042aa032d3",
       "cert": {
         "subject_cn": "free.nf",
         "subject_alt_names": [
           "free.nf",
           "*.free.nf"
         ],
-        "issuer_cn": "ZeroSSL ECC DV SSL CA 2",
-        "issuer_org": "ZeroSSL GmbH",
+        "issuer_cn": "ZeroSSL ECC Domain Secure Site CA",
+        "issuer_org": "ZeroSSL",
         "issuer_country": "AT",
-        "not_valid_before": "2026-06-15T00:00:00+00:00",
-        "not_valid_after": "2026-09-13T23:59:59+00:00",
-        "is_expired": false,
+        "not_valid_before": "2025-07-30T00:00:00+00:00",
+        "not_valid_after": "2025-10-28T23:59:59+00:00",
+        "is_expired": true,
         "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
+        "signature_algorithm": "sha384_ecdsa",
         "x509_version": "v3",
-        "serial_number": "152833701448119974536323872317612851948",
-        "fingerprint_sha1": "2D 58 B7 67 DA 50 26 E4 A3 26 0C 2A 8C 90 B9 5B 15 4F D4 4E",
-        "fingerprint_sha256": "44 E2 E2 01 9D C5 7D 27 0A 46 F7 25 71 D1 B2 E2 F8 B3 DA 25 CA FF 5C B6 65 CA EB 46 55 F9 BA 21"
+        "serial_number": "68023562261988059991981577901675993496",
+        "fingerprint_sha1": "04 55 B4 19 8B 73 48 FA A1 E3 22 0E FC DC 2F 42 17 82 F5 A0",
+        "fingerprint_sha256": "B8 3C EE AB A7 D0 D9 E9 CF E4 3E 71 B5 94 D5 95 74 7F 26 AC 7C 44 E3 5D D1 F0 BF 1C 04 AB 8F DC"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-18T03:00:17",
-      "first_seen_secs": 1781751617.0
+      "first_seen": "2026-06-25T08:40:06",
+      "first_seen_secs": 1782376806.0
     },
     "phishdestroy": {
       "domain": "access-pichncha009.free.nf",
       "domain_defanged": "access-pichncha009[.]free[.]nf",
-      "case_id": "PD-20260624-2F4C4A",
-      "analyzed_at": "2026-06-24T03:20:06.429Z",
+      "case_id": "PD-20260626-2F4C4A",
+      "analyzed_at": "2026-06-26T07:26:11.167Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -83,8 +83,9 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ef7a4-61e9-74af-b913-12df3486a07a/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019efea8-42a2-77d0-8c6e-1f7239394e95.png",
+          "url": "https://urlscan.io/result/019efea8-42a2-77d0-8c6e-1f7239394e95/",
+          "title": "DNS Resolution Error - Domain Not Found, Or Domain not added to hosting account"
         }
       },
       "detections": [],
@@ -235,11 +236,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (access-pichncha009.free.nf/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"access-pichncha009.free.nf\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6005537; classtype:social-engineering; sid:6005537; rev:1; metadata: signature_severity Major, created_et 2026_05_22;)",
-  "updated_at": "2026-06-24T03:19:57.103579+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (access-pichncha009.free.nf/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"access-pichncha009.free.nf\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005537; classtype:social-engineering; sid:6005537; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-27T03:28:42.403201+00:00",
   "probe": {
     "dns": true,
     "whois": true,

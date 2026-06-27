@@ -12,39 +12,75 @@
   "references": [
     "openphish.com",
     "github.com/julioliraup/Antiphishing",
-    "julioliraup.github.io/ET/signature.html?sid=6000066"
+    "julioliraup.github.io/AT/signature.html?sid=6000066"
   ],
   "intel": {
     "virustotal": null,
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://pkcu.pages.dev/appeal_case_ID/",
+      "domain": "pkcu.pages.dev",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "pkcu.pages.dev",
       "domain_defanged": "pkcu[.]pages[.]dev",
-      "case_id": "PD-20260623-5D203E",
-      "analyzed_at": "2026-06-23T12:58:46.375Z",
+      "case_id": "PD-20260626-5D203E",
+      "analyzed_at": "2026-06-26T15:36:39.260Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ef48f-ceb4-7468-8129-ce24215c2620/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef96f-bf35-7365-995b-68be17cd86f9.png",
+          "url": "https://urlscan.io/result/019ef96f-bf35-7365-995b-68be17cd86f9/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.145",
+        "ip": "172.66.44.111",
         "ipinfo": {
-          "ip": "172.66.47.145",
+          "ip": "172.66.44.111",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -52,13 +88,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.47.145",
-            "172.66.44.111"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2c6f",
             "2606:4700:310c::ac42:2f91"
+          ],
+          "A": [
+            "172.66.44.111",
+            "172.66.47.145"
           ],
           "NS": [
             "gigi.ns.cloudflare.com.",
@@ -198,11 +234,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pkcu .pages .dev/appeal_case_ID/)\"; flow:established,to_server; http.uri; content:\"/appeal_case_ID/\"; startswith; fast_pattern; http.host;  content:\"pkcu.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/ET/signature.html?sid=6000066; classtype:social-engineering; sid:6000066; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2025_05_11;)",
-  "updated_at": "2026-06-23T12:58:32.994877+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pkcu .pages .dev/appeal_case_ID/)\"; flow:established,to_server; http.uri; content:\"/appeal_case_ID/\"; startswith; fast_pattern; http.host;  content:\"pkcu.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000066; classtype:social-engineering; sid:6000066; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-26T15:59:33.654846+00:00",
   "probe": {
     "dns": true,
     "whois": false,

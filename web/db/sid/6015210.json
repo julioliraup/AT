@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6015210"
+    "julioliraup.github.io/AT/signature.html?sid=6015210"
   ],
   "intel": {
     "virustotal": null,
@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://melodious-manatee-c2a637.netlify.app/",
       "domain": "melodious-manatee-c2a637.netlify.app",
-      "url_count": 1,
+      "url_count": 3,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "13.52.188.95",
+      "http_code": 404,
+      "http_response": {
+        "server": "Netlify",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (1984)",
+      "sha256": "600fd390c7d1d5b20f46ba4cbfd4717e195f950e2af69cad16aeb6511a630d0b",
+      "md5": "27434a7c26055cec4598f9bcd7228aa1",
+      "cert": {
+        "subject_cn": "*.netlify.app",
+        "subject_alt_names": [
+          "*.netlify.app",
+          "netlify.app"
+        ],
+        "issuer_cn": "DigiCert Global G2 TLS RSA SHA256 2020 CA1",
+        "issuer_org": "DigiCert Inc",
+        "issuer_country": "US",
+        "not_valid_before": "2026-02-16T00:00:00+00:00",
+        "not_valid_after": "2027-03-19T23:59:59+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "17060927840999665034734934091415463876",
+        "fingerprint_sha1": "34 CF A1 69 24 C8 27 24 03 C7 7C E7 F2 A1 8C 86 4A EB 8B FA",
+        "fingerprint_sha256": "BC 3A 81 34 C2 1A 84 2E 64 EA 34 D4 88 82 6D D2 BA 50 F5 9A 3B CB AE D1 E6 B7 1A 42 42 DE 14 78"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-22T08:16:59",
-      "first_seen_secs": null
+      "first_seen": "2026-06-25T08:32:52",
+      "first_seen_secs": 1782376372.0
     },
     "phishdestroy": {
       "domain": "melodious-manatee-c2a637.netlify.app",
       "domain_defanged": "melodious-manatee-c2a637[.]netlify[.]app",
-      "case_id": "PD-20260625-DD8598",
-      "analyzed_at": "2026-06-25T01:51:55.105Z",
+      "case_id": "PD-20260627-DD8598",
+      "analyzed_at": "2026-06-27T21:11:30.538Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,9 +83,8 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ef431-24b7-71de-9523-bedfcd449e63.png",
-          "url": "https://urlscan.io/result/019ef431-24b7-71de-9523-bedfcd449e63/",
-          "title": "melodious-manatee-c2a637.netlify.app"
+          "url": "https://urlscan.io/result/019f0aec-5bbf-72b0-8833-4e7a4018d9fa/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,34 +93,19 @@
       },
       "infrastructure": {
         "ip": "54.232.119.62",
-        "ipinfo": {
-          "ip": "54.232.119.62",
-          "hostname": "ec2-54-232-119-62.sa-east-1.compute.amazonaws.com",
-          "city": "São Paulo",
-          "region": "São Paulo",
-          "country": "BR",
-          "org": "AS16509 Amazon.com, Inc.",
-          "asn": "AS16509"
-        },
+        "ipinfo": null,
         "dns": {
-          "A": [
-            "54.232.119.62"
-          ],
           "AAAA": [
             "2600:1f1e:7c1:c300::258"
+          ],
+          "A": [
+            "54.232.119.62"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Amazon AWS",
-          "abuse": "abuse@amazonaws.com",
-          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
-          "logo": "",
-          "method": "form",
-          "asn": "AS16509"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -223,8 +231,8 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (melodious-manatee-c2a637.netlify.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"melodious-manatee-c2a637.netlify.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6015210; classtype:social-engineering; sid:6015210; rev:1; metadata: signature_severity Major, created_et 2026_06_22;)",
-  "updated_at": "2026-06-25T01:51:49.898758+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (melodious-manatee-c2a637.netlify.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"melodious-manatee-c2a637.netlify.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015210; classtype:social-engineering; sid:6015210; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-27T21:11:27.805976+00:00",
   "probe": {
     "dns": true,
     "whois": false,

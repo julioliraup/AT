@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6003557"
+    "julioliraup.github.io/AT/signature.html?sid=6003557"
   ],
   "intel": {
     "virustotal": null,
@@ -73,21 +73,58 @@
     "phishdestroy": {
       "domain": "app.qpointsurvey.com",
       "domain_defanged": "app[.]qpointsurvey[.]com",
-      "case_id": "PD-20260623-7F3836",
-      "analyzed_at": "2026-06-23T22:07:49.774Z",
+      "case_id": "PD-20260626-7F3836",
+      "analyzed_at": "2026-06-26T04:08:40.469Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ef686-797d-7614-81ec-676260aed6c9/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019efe07-ea1b-716c-8a9c-2f941c89841e.png",
+          "url": "https://urlscan.io/result/019efe07-ea1b-716c-8a9c-2f941c89841e/",
+          "title": "Log In - QPoint"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: CyRadar",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -240,11 +277,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app.qpointsurvey.com/s/vjmotsuhuve7al3c/)\"; flow:established,to_server; http.uri; content:\"/s/vjmotsuhuve7al3c/\"; startswith; fast_pattern; http.host; content:\"app.qpointsurvey.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6003557; classtype:social-engineering; sid:6003557; rev:1; metadata: signature_severity Major, created_et 2026_05_19;)",
-  "updated_at": "2026-06-23T22:07:45.737378+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app.qpointsurvey.com/s/vjmotsuhuve7al3c/)\"; flow:established,to_server; http.uri; content:\"/s/vjmotsuhuve7al3c/\"; startswith; fast_pattern; http.host; content:\"app.qpointsurvey.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003557; classtype:social-engineering; sid:6003557; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-26T23:03:40.184471+00:00",
   "probe": {
     "dns": true,
     "whois": false,

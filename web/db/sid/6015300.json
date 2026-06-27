@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6015300"
+    "julioliraup.github.io/AT/signature.html?sid=6015300"
   ],
   "intel": {
     "virustotal": null,
@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://cashappp.cn/",
       "domain": "cashappp.cn",
-      "url_count": 1,
+      "url_count": 3,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "43.130.79.81",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx/1.18.0 (Ubuntu)",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (1445), with CRLF line terminators",
+      "sha256": "7bf08c482476a5f71e3689fd0efd7b1131499f0851c75b89e58be38c7a4d6202",
+      "md5": "e742bc12ac42c796bed080eb39fae183",
+      "cert": {
+        "subject_cn": "cashappp.top",
+        "subject_alt_names": [
+          "cashappp.top",
+          "www.cashappp.top"
+        ],
+        "issuer_cn": "YR2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-25T04:55:18+00:00",
+        "not_valid_after": "2026-09-23T04:55:17+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "05 85 8A 7D 42 BC 48 01 3D F4 C4 F5 67 C1 40 9B 9C 75",
+        "fingerprint_sha1": "12 26 C5 B3 F0 CF C5 0F 6D C8 11 8C 93 F9 86 33 61 41 DF B1",
+        "fingerprint_sha256": "06 62 6C 1A 27 7D 5E F4 40 99 15 A5 93 70 6F 8A 64 85 00 4F 45 C0 C5 1B A1 1E B6 7D 80 99 E7 80"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-23T21:48:28",
-      "first_seen_secs": null
+      "first_seen": "2026-06-25T08:23:13",
+      "first_seen_secs": 1782375793.0
     },
     "phishdestroy": {
       "domain": "cashappp.cn",
       "domain_defanged": "cashappp[.]cn",
-      "case_id": "PD-20260625-3CC9C6",
-      "analyzed_at": "2026-06-25T02:11:49.287Z",
+      "case_id": "PD-20260627-3CC9C6",
+      "analyzed_at": "2026-06-27T21:23:40.724Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,9 +83,8 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ef6f4-e645-7171-80a7-93e969314ac1.png",
-          "url": "https://urlscan.io/result/019ef6f4-e645-7171-80a7-93e969314ac1/",
-          "title": "Cash App"
+          "url": "https://urlscan.io/result/019f0af7-7f3d-7151-b9c8-9cf46694dcbb/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,34 +93,20 @@
       },
       "infrastructure": {
         "ip": "43.130.79.81",
-        "ipinfo": {
-          "ip": "43.130.79.81",
-          "city": "Ashburn",
-          "region": "Virginia",
-          "country": "US",
-          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
-          "asn": "AS132203"
-        },
+        "ipinfo": null,
         "dns": {
-          "A": [
-            "43.130.79.81"
-          ],
           "NS": [
             "misty.dnspod.net.",
             "hilary.dnspod.net."
+          ],
+          "A": [
+            "43.130.79.81"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
-          "abuse": "abuse@tencent.com",
-          "url": "mailto:abuse@tencent.com",
-          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
-          "method": "email",
-          "asn": "AS132203"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -223,8 +232,8 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cashappp.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cashappp.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6015300; classtype:social-engineering; sid:6015300; rev:1; metadata: signature_severity Major, created_et 2026_06_23;)",
-  "updated_at": "2026-06-25T02:11:43.990767+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cashappp.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cashappp.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015300; classtype:social-engineering; sid:6015300; rev:1; metadata: signature_severity Major, created_et 2026_06_23, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-27T21:23:28.858460+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -11,7 +11,7 @@
   "risk_score": 85,
   "references": [
     "openphish.com",
-    "julioliraup.github.io/ET/signature.html?sid=6010146"
+    "julioliraup.github.io/AT/signature.html?sid=6010146"
   ],
   "intel": {
     "virustotal": null,
@@ -23,12 +23,18 @@
       "domain": "syncethernet.pages.dev",
       "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.66.45.24",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a1224825fbdf0384-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "95e1428b7301ad8453dd2695fc2654f733b80c290dc6976ba18cfb4c0813e7df",
+      "md5": "0fdd7fddfe903d8865239a10b5a4d62e",
+      "cert": {
+        "subject_cn": "syncethernet.pages.dev",
+        "subject_alt_names": [
+          "syncethernet.pages.dev",
+          "*.syncethernet.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-26T09:15:09+00:00",
+        "not_valid_after": "2026-08-24T10:12:31+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "265911827073182980288719390071542741913",
+        "fingerprint_sha1": "04 44 83 9F 69 31 29 CF CA 85 65 C0 1D 1B 6A 8F A2 11 35 5D",
+        "fingerprint_sha256": "DC 4D C4 DF 39 C7 C0 10 CF AA 08 03 31 AB 2A 32 22 CE B1 13 F8 6B 3D 6A 9C 18 36 14 A8 6A 87 F0"
+      },
       "safebrowsing": [],
       "first_seen": "2026-06-22T23:11:36",
-      "first_seen_secs": null
+      "first_seen_secs": 1782169896.0
     },
     "phishdestroy": {
       "domain": "syncethernet.pages.dev",
       "domain_defanged": "syncethernet[.]pages[.]dev",
-      "case_id": "PD-20260624-50C9A7",
-      "analyzed_at": "2026-06-24T12:57:50.186Z",
+      "case_id": "PD-20260627-50C9A7",
+      "analyzed_at": "2026-06-27T11:33:49.567Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +83,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ef9b5-4e6a-77ec-8956-bdfcbe56bbe3/",
+          "url": "https://urlscan.io/result/019f08db-7954-70ee-95a5-b72f1a240a81/",
           "pending": true
         }
       },
@@ -68,23 +92,16 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.232",
-        "ipinfo": {
-          "ip": "172.66.46.232",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ip": "172.66.45.24",
+        "ipinfo": null,
         "dns": {
           "A": [
-            "172.66.46.232",
-            "172.66.45.24"
+            "172.66.45.24",
+            "172.66.46.232"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2d18",
-            "2606:4700:310c::ac42:2ee8"
+            "2606:4700:310c::ac42:2ee8",
+            "2606:4700:310c::ac42:2d18"
           ],
           "NS": [
             "love.ns.cloudflare.com.",
@@ -94,14 +111,7 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -227,8 +237,8 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (syncethernet.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"syncethernet.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/ET/signature.html?sid=6010146; classtype:social-engineering; sid:6010146; rev:1; metadata: signature_severity Major, created_et 2026_06_01;)",
-  "updated_at": "2026-06-24T12:57:40.989879+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (syncethernet.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"syncethernet.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010146; classtype:social-engineering; sid:6010146; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
+  "updated_at": "2026-06-27T11:33:45.286303+00:00",
   "probe": {
     "dns": true,
     "whois": false,
