@@ -50,21 +50,78 @@
     "phishdestroy": {
       "domain": "armt.cloud",
       "domain_defanged": "armt[.]cloud",
-      "case_id": "PD-20260626-1DA50A",
-      "analyzed_at": "2026-06-26T17:22:38.220Z",
+      "case_id": "PD-20260629-1DA50A",
+      "analyzed_at": "2026-06-29T00:18:24.626Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f04f4-755d-740a-ba57-c086d4a444f6/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f0b86-7c1d-73f4-9fb1-7f71c7e477ba.png",
+          "url": "https://urlscan.io/result/019f0b86-7c1d-73f4-9fb1-7f71c7e477ba/",
+          "title": "ARMT Cloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,10 +141,10 @@
             "35.190.118.211"
           ],
           "NS": [
-            "ns-cloud-e4.googledomains.com.",
+            "ns-cloud-e3.googledomains.com.",
             "ns-cloud-e2.googledomains.com.",
-            "ns-cloud-e1.googledomains.com.",
-            "ns-cloud-e3.googledomains.com."
+            "ns-cloud-e4.googledomains.com.",
+            "ns-cloud-e1.googledomains.com."
           ]
         }
       },
@@ -228,7 +285,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (armt .cloud/users/sign_in)\"; flow:established,to_server; http.uri; content:\"/users/sign_in\"; startswith; fast_pattern; http.host;  content:\"armt.cloud\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000844; classtype:social-engineering; sid:6000844; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T17:31:26.123167+00:00",
+  "updated_at": "2026-06-29T03:31:43.265290+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "ymca.hostel.town",
       "domain_defanged": "ymca[.]hostel[.]town",
-      "case_id": "PD-20260627-55E578",
-      "analyzed_at": "2026-06-27T12:52:02.058Z",
+      "case_id": "PD-20260630-55E578",
+      "analyzed_at": "2026-06-30T00:47:26.792Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0923-1359-7222-92f8-2c9e095df944.png",
           "url": "https://urlscan.io/result/019f0923-1359-7222-92f8-2c9e095df944/",
-          "pending": true
+          "title": "Ymca Hostel Auckland - Auckland, New Zealand"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -245,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ymca.hostel.town/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ymca.hostel.town\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010911; classtype:social-engineering; sid:6010911; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:52:37.277969+00:00",
+  "updated_at": "2026-06-30T00:48:28.313320+00:00",
   "probe": {
     "dns": true,
     "whois": true,

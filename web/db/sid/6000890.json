@@ -73,21 +73,158 @@
     "phishdestroy": {
       "domain": "link.hiper-ofertas.com",
       "domain_defanged": "link[.]hiper-ofertas[.]com",
-      "case_id": "PD-20260625-4BFD79",
-      "analyzed_at": "2026-06-25T23:00:20.395Z",
+      "case_id": "PD-20260629-4BFD79",
+      "analyzed_at": "2026-06-29T00:33:47.080Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 13,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lumu",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f0103-4627-727c-b3d4-4ed57c9f415f.png",
           "url": "https://urlscan.io/result/019f0103-4627-727c-b3d4-4ed57c9f415f/",
-          "pending": true
+          "title": "For subscriber"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lumu",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,20 +239,27 @@
             "click-s6-brazil.esv2.com.",
             "80.209.249.242"
           ],
-          "NS": [
-            "click-s6-brazil.esv2.com."
-          ],
           "CNAME": [
             "click-s6-brazil.esv2.com."
           ],
           "MX": [
+            "click-s6-brazil.esv2.com."
+          ],
+          "NS": [
             "click-s6-brazil.esv2.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AS-HITME",
+          "abuse": "abuse@hitme.pl",
+          "url": "mailto:abuse@hitme.pl",
+          "logo": "https://i.ibb.co/WWxK9xhy/pr-AS-HITME.png",
+          "method": "email",
+          "asn": "AS47544"
+        }
       },
       "report_services": [
         {
@@ -243,7 +387,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (link .hiper-ofertas .com/v/n6A/ZKcmFKZfaD89abtNgUhpSQ/c982fb15)\"; flow:established,to_server; http.uri; content:\"/v/n6A/ZKcmFKZfaD89abtNgUhpSQ/c982fb15\"; startswith; fast_pattern; http.host;  content:\"link.hiper-ofertas.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000890; classtype:social-engineering; sid:6000890; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T17:37:41.208866+00:00",
+  "updated_at": "2026-06-29T03:34:30.559878+00:00",
   "probe": {
     "dns": true,
     "whois": false,

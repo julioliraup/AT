@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "mail.eu.itpatches.com",
       "domain_defanged": "mail[.]eu[.]itpatches[.]com",
-      "case_id": "PD-20260627-1D964B",
-      "analyzed_at": "2026-06-27T12:34:37.881Z",
+      "case_id": "PD-20260630-1D964B",
+      "analyzed_at": "2026-06-30T00:42:35.109Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0913-21fb-7496-a0e7-21a4b88062ba.png",
           "url": "https://urlscan.io/result/019f0913-21fb-7496-a0e7-21a4b88062ba/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -223,12 +232,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail.eu.itpatches.com/107519/8af662/475d964a-0243-46bf-aefd-66da26254efa)\"; flow:established,to_server; http.uri; content:\"/107519/8af662/475d964a-0243-46bf-aefd-66da26254efa\"; startswith; fast_pattern; http.host; content:\"mail.eu.itpatches.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010850; classtype:social-engineering; sid:6010850; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:47:44.967346+00:00",
+  "updated_at": "2026-06-30T00:42:31.138335+00:00",
   "probe": {
     "dns": true,
     "whois": false,

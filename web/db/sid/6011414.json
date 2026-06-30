@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "sp5ct6-glortor-biz-slurnik-fralnex.pages.dev",
       "domain_defanged": "sp5ct6-glortor-biz-slurnik-fralnex[.]pages[.]dev",
-      "case_id": "PD-20260627-97F8BB",
-      "analyzed_at": "2026-06-27T13:43:19.934Z",
+      "case_id": "PD-20260630-97F8BB",
+      "analyzed_at": "2026-06-30T01:58:38.788Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0952-0986-75ba-b493-de06e1f1b77d.png",
           "url": "https://urlscan.io/result/019f0952-0986-75ba-b493-de06e1f1b77d/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.58",
+        "ip": "172.66.47.198",
         "ipinfo": {
-          "ip": "172.66.44.58",
+          "ip": "172.66.47.198",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,12 +94,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2c3a",
-            "2606:4700:310c::ac42:2fc6"
+            "2606:4700:310c::ac42:2fc6",
+            "2606:4700:310c::ac42:2c3a"
           ],
           "A": [
-            "172.66.44.58",
-            "172.66.47.198"
+            "172.66.47.198",
+            "172.66.44.58"
           ],
           "NS": [
             "guy.ns.cloudflare.com.",
@@ -234,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-glortor-biz-slurnik-fralnex.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-glortor-biz-slurnik-fralnex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011414; classtype:social-engineering; sid:6011414; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:43:17.574120+00:00",
+  "updated_at": "2026-06-30T01:58:29.467002+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "clone-netflix-alpha-two.vercel.app",
       "domain_defanged": "clone-netflix-alpha-two[.]vercel[.]app",
-      "case_id": "PD-20260627-4970CC",
-      "analyzed_at": "2026-06-27T12:58:01.743Z",
+      "case_id": "PD-20260630-4970CC",
+      "analyzed_at": "2026-06-30T00:55:10.655Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0928-9064-7508-b4ca-0f31dc5bbd95.png",
           "url": "https://urlscan.io/result/019f0928-9064-7508-b4ca-0f31dc5bbd95/",
-          "pending": true
+          "title": "Netflix Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -226,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.clone-netflix-alpha-two.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.clone-netflix-alpha-two.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010962; classtype:social-engineering; sid:6010962; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:57:53.940589+00:00",
+  "updated_at": "2026-06-30T00:55:06.718216+00:00",
   "probe": {
     "dns": true,
     "whois": false,

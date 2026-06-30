@@ -50,27 +50,59 @@
     "phishdestroy": {
       "domain": "s.tikglobalshop.com",
       "domain_defanged": "s[.]tikglobalshop[.]com",
-      "case_id": "PD-20260626-336518",
-      "analyzed_at": "2026-06-26T17:12:27.595Z",
+      "case_id": "PD-20260629-336518",
+      "analyzed_at": "2026-06-29T00:08:02.017Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "TikTok"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eaeb8-4900-7515-9bc4-c955c2e3d5b0.png",
+          "url": "https://urlscan.io/result/019eaeb8-4900-7515-9bc4-c955c2e3d5b0/",
+          "title": "TK Global Sell Seller Center"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: TikTok",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -193,11 +225,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s .tikglobalshop .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"s.tikglobalshop.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000685; classtype:social-engineering; sid:6000685; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T17:12:22.925265+00:00",
+  "updated_at": "2026-06-29T03:20:03.906542+00:00",
   "probe": {
     "dns": false,
     "whois": false,

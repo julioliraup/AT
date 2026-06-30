@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "amazonclone-nine-psi.vercel.app",
       "domain_defanged": "amazonclone-nine-psi[.]vercel[.]app",
-      "case_id": "PD-20260626-31C84A",
-      "analyzed_at": "2026-06-26T17:53:07.043Z",
+      "case_id": "PD-20260629-31C84A",
+      "analyzed_at": "2026-06-29T00:49:18.038Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0510-5ce3-7140-8b50-924a49a4c73e.png",
           "url": "https://urlscan.io/result/019f0510-5ce3-7140-8b50-924a49a4c73e/",
-          "pending": true
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.194",
+        "ip": "216.198.79.66",
         "ipinfo": {
-          "ip": "64.29.17.194",
+          "ip": "216.198.79.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.194",
-            "216.198.79.194"
+            "216.198.79.66",
+            "64.29.17.66"
           ]
         }
       },
@@ -241,11 +250,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .amazonclone-nine-psi .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.amazonclone-nine-psi.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000998; classtype:social-engineering; sid:6000998; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T17:53:04.439204+00:00",
+  "updated_at": "2026-06-29T03:42:04.268334+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "m.365365e.app",
       "domain_defanged": "m[.]365365e[.]app",
-      "case_id": "PD-20260627-D70E25",
-      "analyzed_at": "2026-06-27T13:01:16.618Z",
+      "case_id": "PD-20260630-D70E25",
+      "analyzed_at": "2026-06-30T00:59:49.675Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea4b8-b45b-75f9-a075-e4ec5f4a797b.png",
+          "url": "https://urlscan.io/result/019ea4b8-b45b-75f9-a075-e4ec5f4a797b/",
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "45.200.73.198",
+        "ipinfo": {
+          "ip": "45.200.73.198",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS133847 Anpple Tech Enterprise",
+          "asn": "AS133847"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.365365e.app/eng/home/index)\"; flow:established,to_server; http.uri; content:\"/eng/home/index\"; startswith; fast_pattern; http.host; content:\"m.365365e.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010998; classtype:social-engineering; sid:6010998; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:01:13.829642+00:00",
+  "updated_at": "2026-06-30T00:59:40.404762+00:00",
   "probe": {
     "dns": false,
     "whois": false,

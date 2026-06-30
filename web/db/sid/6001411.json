@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "01bced66.sweet-credit-9cdf.pages.dev",
       "domain_defanged": "01bced66[.]sweet-credit-9cdf[.]pages[.]dev",
-      "case_id": "PD-20260626-602573",
-      "analyzed_at": "2026-06-26T18:37:47.541Z",
+      "case_id": "PD-20260629-602573",
+      "analyzed_at": "2026-06-29T04:16:43.378Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0539-445d-7319-8e16-a1572d77471a.png",
           "url": "https://urlscan.io/result/019f0539-445d-7319-8e16-a1572d77471a/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -104,8 +113,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f50",
-            "2606:4700:310c::ac42:2cb0"
+            "2606:4700:310c::ac42:2cb0",
+            "2606:4700:310c::ac42:2f50"
           ],
           "A": [
             "172.66.44.176",
@@ -249,7 +258,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (01bced66 .sweet-credit-9cdf .pages .dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"01bced66.sweet-credit-9cdf.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001411; classtype:social-engineering; sid:6001411; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T18:37:45.012178+00:00",
+  "updated_at": "2026-06-29T04:16:39.207718+00:00",
   "probe": {
     "dns": true,
     "whois": false,

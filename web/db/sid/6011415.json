@@ -55,45 +55,68 @@
     "phishdestroy": {
       "domain": "sp10ct6-vrantex-biz-slornik-glunor.pages.dev",
       "domain_defanged": "sp10ct6-vrantex-biz-slornik-glunor[.]pages[.]dev",
-      "case_id": "PD-20260627-2834A3",
-      "analyzed_at": "2026-06-27T13:43:22.737Z",
+      "case_id": "PD-20260630-2834A3",
+      "analyzed_at": "2026-06-30T01:58:41.954Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f0952-153d-7072-98f8-0878ca5e76b5/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0a49-de80-76aa-bbdf-36551fc65357.png",
+          "url": "https://urlscan.io/result/019f0a49-de80-76aa-bbdf-36551fc65357/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.91",
-        "ipinfo": null,
+        "ip": "172.66.47.165",
+        "ipinfo": {
+          "ip": "172.66.47.165",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.66.44.91",
-            "172.66.47.165"
+            "172.66.47.165",
+            "172.66.44.91"
           ],
           "NS": [
             "cris.ns.cloudflare.com.",
             "luciane.ns.cloudflare.com."
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2fa5",
-            "2606:4700:310c::ac42:2c5b"
+            "2606:4700:310c::ac42:2c5b",
+            "2606:4700:310c::ac42:2fa5"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -220,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-vrantex-biz-slornik-glunor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-vrantex-biz-slornik-glunor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011415; classtype:social-engineering; sid:6011415; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:43:20.030991+00:00",
+  "updated_at": "2026-06-30T01:58:38.880982+00:00",
   "probe": {
     "dns": true,
     "whois": false,

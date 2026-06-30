@@ -49,27 +49,44 @@
     "phishdestroy": {
       "domain": "login.itupdatealert.com",
       "domain_defanged": "login[.]itupdatealert[.]com",
-      "case_id": "PD-20260627-2A31FF",
-      "analyzed_at": "2026-06-27T13:29:35.988Z",
+      "case_id": "PD-20260630-2A31FF",
+      "analyzed_at": "2026-06-30T01:35:57.098Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0945-75e0-763d-b9a3-ea1a5d88eb02.png",
           "url": "https://urlscan.io/result/019f0945-75e0-763d-b9a3-ea1a5d88eb02/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "3.104.102.7",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "3.104.102.7",
+          "hostname": "ec2-3-104-102-7.ap-southeast-2.compute.amazonaws.com",
+          "city": "Sydney",
+          "region": "New South Wales",
+          "country": "AU",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "3.104.102.7",
@@ -79,7 +96,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -206,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (login.itupdatealert.com/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"login.itupdatealert.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011257; classtype:social-engineering; sid:6011257; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:29:31.822593+00:00",
+  "updated_at": "2026-06-30T01:35:51.027315+00:00",
   "probe": {
     "dns": true,
     "whois": false,

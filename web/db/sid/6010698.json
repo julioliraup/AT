@@ -55,29 +55,153 @@
     "phishdestroy": {
       "domain": "eu.itpatches.com",
       "domain_defanged": "eu[.]itpatches[.]com",
-      "case_id": "PD-20260627-353027",
-      "analyzed_at": "2026-06-27T12:32:33.888Z",
+      "case_id": "PD-20260630-353027",
+      "analyzed_at": "2026-06-30T00:23:11.886Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 10,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f0911-3f94-74cc-a8b3-373fafd70509/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0913-21fb-7496-a0e7-21a4b88062ba.png",
+          "url": "https://urlscan.io/result/019f0913-21fb-7496-a0e7-21a4b88062ba/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "18.198.182.56",
+        "ip": "63.176.245.164",
         "ipinfo": {
-          "ip": "18.198.182.56",
-          "hostname": "ec2-18-198-182-56.eu-central-1.compute.amazonaws.com",
+          "ip": "63.176.245.164",
+          "hostname": "ec2-63-176-245-164.eu-central-1.compute.amazonaws.com",
           "city": "Frankfurt am Main",
           "region": "Hesse",
           "country": "DE",
@@ -88,15 +212,15 @@
           "MX": [
             "10 mx0.us.cf-ops.net."
           ],
-          "A": [
-            "18.198.182.56",
-            "63.176.245.164"
-          ],
           "NS": [
             "ns-1346.awsdns-40.org.",
             "ns-168.awsdns-21.com.",
             "ns-1995.awsdns-57.co.uk.",
             "ns-526.awsdns-01.net."
+          ],
+          "A": [
+            "63.176.245.164",
+            "18.198.182.56"
           ]
         }
       },
@@ -236,7 +360,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (eu.itpatches.com/107519/8af662/475d964a-0243-46bf-aefd-66da26254efa)\"; flow:established,to_server; http.uri; content:\"/107519/8af662/475d964a-0243-46bf-aefd-66da26254efa\"; startswith; fast_pattern; http.host; content:\"eu.itpatches.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010698; classtype:social-engineering; sid:6010698; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:32:31.006686+00:00",
+  "updated_at": "2026-06-30T00:23:00.563231+00:00",
   "probe": {
     "dns": true,
     "whois": false,

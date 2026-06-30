@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "easybank-landing-page-gamma.vercel.app",
       "domain_defanged": "easybank-landing-page-gamma[.]vercel[.]app",
-      "case_id": "PD-20260626-5FE875",
-      "analyzed_at": "2026-06-26T17:52:38.088Z",
+      "case_id": "PD-20260629-5FE875",
+      "analyzed_at": "2026-06-29T00:48:36.195Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Banking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f050f-eb43-7077-bd81-df101d17ea77.png",
           "url": "https://urlscan.io/result/019f050f-eb43-7077-bd81-df101d17ea77/",
-          "pending": true
+          "title": "Frontend Mentor | Easybank landing page"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Banking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -241,11 +250,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .easybank-landing-page-gamma .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.easybank-landing-page-gamma.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000993; classtype:social-engineering; sid:6000993; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T17:52:33.991611+00:00",
+  "updated_at": "2026-06-29T03:41:47.774264+00:00",
   "probe": {
     "dns": true,
     "whois": false,

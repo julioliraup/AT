@@ -78,29 +78,38 @@
     "phishdestroy": {
       "domain": "shubhamyadav8081.github.io",
       "domain_defanged": "shubhamyadav8081[.]github[.]io",
-      "case_id": "PD-20260626-66EC52",
-      "analyzed_at": "2026-06-26T17:55:23.262Z",
+      "case_id": "PD-20260629-66EC52",
+      "analyzed_at": "2026-06-29T00:52:37.595Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0512-71cf-7588-b887-4af47152ed41.png",
           "url": "https://urlscan.io/result/019f0512-71cf-7588-b887-4af47152ed41/",
-          "pending": true
+          "title": "Amazon Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.111.153",
+        "ip": "185.199.109.153",
         "ipinfo": {
-          "ip": "185.199.111.153",
-          "hostname": "cdn-185-199-111-153.github.com",
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -108,17 +117,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "A": [
-            "185.199.111.153",
-            "185.199.109.153",
-            "185.199.108.153",
-            "185.199.110.153"
-          ],
           "AAAA": [
+            "2606:50c0:8001::153",
             "2606:50c0:8002::153",
             "2606:50c0:8003::153",
-            "2606:50c0:8001::153",
             "2606:50c0:8000::153"
+          ],
+          "A": [
+            "185.199.109.153",
+            "185.199.108.153",
+            "185.199.111.153",
+            "185.199.110.153"
           ]
         }
       },
@@ -254,11 +263,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shubhamyadav8081 .github .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"shubhamyadav8081.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001019; classtype:social-engineering; sid:6001019; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T17:55:20.226192+00:00",
+  "updated_at": "2026-06-29T03:43:12.914424+00:00",
   "probe": {
     "dns": true,
     "whois": true,

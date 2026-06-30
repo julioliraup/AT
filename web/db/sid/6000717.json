@@ -50,21 +50,57 @@
     "phishdestroy": {
       "domain": "t37y2vok1cuywyu.s3-website-us-east-1.amazonaws.com",
       "domain_defanged": "t37y2vok1cuywyu[.]s3-website-us-east-1[.]amazonaws[.]com",
-      "case_id": "PD-20260626-616752",
-      "analyzed_at": "2026-06-26T17:15:23.337Z",
+      "case_id": "PD-20260629-616752",
+      "analyzed_at": "2026-06-29T00:12:26.089Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f04ed-d001-736d-b7cd-e96a1805e16e/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f0b80-a096-704a-bc3d-686dce903682.png",
+          "url": "https://urlscan.io/result/019f0b80-a096-704a-bc3d-686dce903682/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -72,25 +108,16 @@
         "ip": "s3-website.us-east-1.amazonaws.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "s3-website.us-east-1.amazonaws.com."
-          ],
           "A": [
             "s3-website.us-east-1.amazonaws.com.",
-            "54.231.201.53",
-            "52.217.174.85",
-            "16.15.212.36",
-            "54.231.229.237",
-            "52.217.113.221",
-            "52.216.38.189",
-            "16.15.244.39",
-            "52.216.51.125"
-          ],
-          "MX": [
-            "s3-website.us-east-1.amazonaws.com."
-          ],
-          "CNAME": [
-            "s3-website.us-east-1.amazonaws.com."
+            "52.216.242.163",
+            "52.216.207.106",
+            "52.217.196.141",
+            "16.15.207.80",
+            "16.15.244.92",
+            "52.216.42.165",
+            "16.15.212.165",
+            "54.231.130.213"
           ],
           "NS": [
             "s3-website.us-east-1.amazonaws.com.",
@@ -98,6 +125,15 @@
             "ns-1779.awsdns-30.co.uk.",
             "ns-437.awsdns-54.com.",
             "ns-611.awsdns-12.net."
+          ],
+          "AAAA": [
+            "s3-website.us-east-1.amazonaws.com."
+          ],
+          "MX": [
+            "s3-website.us-east-1.amazonaws.com."
+          ],
+          "CNAME": [
+            "s3-website.us-east-1.amazonaws.com."
           ]
         }
       },
@@ -226,11 +262,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t37y2vok1cuywyu .s3-website-us-east-1 .amazonaws .com/m30pnuxqli .html?email=redacted@anonymized .invalid)\"; flow:established,to_server; http.uri; content:\"/m30pnuxqli.html?email=redacted@anonymized.invalid\"; startswith; fast_pattern; http.host;  content:\"t37y2vok1cuywyu.s3-website-us-east-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000717; classtype:social-engineering; sid:6000717; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T17:15:14.418867+00:00",
+  "updated_at": "2026-06-29T03:22:48.954254+00:00",
   "probe": {
     "dns": true,
     "whois": false,

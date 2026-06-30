@@ -18,57 +18,137 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://itsuppports.com/?r=29f30695-002d-440b-984a-a10eebd02ce2&rg=eu",
-      "domain": "itsuppports.com",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "itsuppports.com",
       "domain_defanged": "itsuppports[.]com",
-      "case_id": "PD-20260627-2430AC",
-      "analyzed_at": "2026-06-27T13:16:18.328Z",
+      "case_id": "PD-20260630-2430AC",
+      "analyzed_at": "2026-06-30T01:16:39.894Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 8,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f0939-495a-767d-95ae-8a1a74c42554.png",
           "url": "https://urlscan.io/result/019f0939-495a-767d-95ae-8a1a74c42554/",
-          "pending": true
+          "title": "404 Not Found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Amazon Registrar, Inc.",
         "created": "2017-08-30T13:54:05Z",
         "expires": "2026-08-30T13:54:05Z",
-        "age_days": 3222,
+        "age_days": 3225,
         "nameservers": [
           "LOVISA.NS.CLOUDFLARE.COM",
           "VIDDY.NS.CLOUDFLARE.COM"
@@ -86,12 +166,12 @@
           "asn": "AS14618"
         },
         "dns": {
-          "A": [
-            "98.91.9.77"
-          ],
           "NS": [
             "lovisa.ns.cloudflare.com.",
             "viddy.ns.cloudflare.com."
+          ],
+          "A": [
+            "98.91.9.77"
           ]
         }
       },
@@ -238,7 +318,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (itsuppports.com/?r=29f30695-002d-440b-984a-a10eebd02ce2&rg=eu)\"; flow:established,to_server; http.uri; content:\"/?r=29f30695-002d-440b-984a-a10eebd02ce2&rg=eu\"; startswith; fast_pattern; http.host; content:\"itsuppports.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011119; classtype:social-engineering; sid:6011119; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:16:12.900607+00:00",
+  "updated_at": "2026-06-30T01:16:18.950427+00:00",
   "probe": {
     "dns": true,
     "whois": true,

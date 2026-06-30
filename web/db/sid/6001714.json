@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "strategycompliance.io",
       "domain_defanged": "strategycompliance[.]io",
-      "case_id": "PD-20260626-F2BE0B",
-      "analyzed_at": "2026-06-26T19:14:19.011Z",
+      "case_id": "PD-20260629-F2BE0B",
+      "analyzed_at": "2026-06-29T04:52:32.931Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DocuSign"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1c47-42c7-74d9-a923-2b2734e06722.png",
+          "url": "https://urlscan.io/result/019e1c47-42c7-74d9-a923-2b2734e06722/",
+          "title": "DocuSign - Download to View Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DocuSign",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "216.150.1.193",
+        "ipinfo": {
+          "ip": "216.150.1.193",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -197,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .strategycompliance .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.strategycompliance.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001714; classtype:social-engineering; sid:6001714; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T19:14:00.104733+00:00",
+  "updated_at": "2026-06-29T04:52:26.728266+00:00",
   "probe": {
     "dns": false,
     "whois": false,

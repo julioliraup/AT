@@ -22,7 +22,7 @@
       "url": "http://salecreekmarina.com/kofthqin/",
       "domain": "salecreekmarina.com",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,14 +49,19 @@
     "phishdestroy": {
       "domain": "salecreekmarina.com",
       "domain_defanged": "salecreekmarina[.]com",
-      "case_id": "PD-20260627-7F0D18",
-      "analyzed_at": "2026-06-27T13:40:19.523Z",
+      "case_id": "PD-20260630-7F0D18",
+      "analyzed_at": "2026-06-30T01:51:55.116Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f1376-6e10-7072-b871-b46d765e6d92.png",
+          "url": "https://urlscan.io/result/019f1376-6e10-7072-b871-b46d765e6d92/",
+          "title": "Wyszukiwanie — Microsoft Bing"
         }
       },
       "detections": [],
@@ -64,18 +69,34 @@
         "registrar": "Gname 011 Inc",
         "created": "2025-08-20T18:31:49Z",
         "expires": "2026-08-20T18:31:49Z",
-        "age_days": 310,
+        "age_days": 313,
         "nameservers": [
-          "A7.SHARE-DNS.COM",
-          "B7.SHARE-DNS.NET"
+          "DARWIN.NS.CLOUDFLARE.COM",
+          "SAVANNA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.207.107",
+        "ipinfo": {
+          "ip": "172.67.207.107",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3030::ac43:cf6b",
+            "2606:4700:3032::6815:4568"
+          ],
+          "A": [
+            "172.67.207.107",
+            "104.21.69.104"
+          ],
           "NS": [
-            "a.share-dns.com.",
-            "b.share-dns.net."
+            "darwin.ns.cloudflare.com.",
+            "savanna.ns.cloudflare.com."
           ]
         }
       },
@@ -88,7 +109,14 @@
           "method": "form",
           "iana_ids": "1923"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -215,12 +243,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (salecreekmarina.com/kofthqin/)\"; flow:established,to_server; http.uri; content:\"/kofthqin/\"; startswith; fast_pattern; http.host; content:\"salecreekmarina.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011377; classtype:social-engineering; sid:6011377; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:40:16.187086+00:00",
+  "updated_at": "2026-06-30T01:51:38.939775+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

@@ -49,21 +49,37 @@
     "phishdestroy": {
       "domain": "z55gxbf0bb.execute-api.us-west-2.amazonaws.com",
       "domain_defanged": "z55gxbf0bb[.]execute-api[.]us-west-2[.]amazonaws[.]com",
-      "case_id": "PD-20260627-4C6680",
-      "analyzed_at": "2026-06-27T12:30:53.372Z",
+      "case_id": "PD-20260630-4C6680",
+      "analyzed_at": "2026-06-30T00:20:52.285Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f090f-b416-777a-9213-948dcd49aaaa/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f090f-b416-777a-9213-948dcd49aaaa.png",
+          "url": "https://urlscan.io/result/019f090f-b416-777a-9213-948dcd49aaaa/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -81,8 +97,8 @@
         "dns": {
           "A": [
             "184.34.132.160",
-            "100.21.150.130",
-            "184.33.122.86"
+            "184.33.122.86",
+            "100.21.150.130"
           ]
         }
       },
@@ -222,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (z55gxbf0bb.execute-api.us-west-2.amazonaws.com/track?curr_track_type=link_click&link_id=gchZNr2&temp_id=IjI2OTM3NyI_3D&email_id=mailget_email_id_replace&s_id=mailget_s_id_replace&server=replace_smtp_server&type=replace_drip_type)\"; flow:established,to_server; http.uri; content:\"/track?curr_track_type=link_click&link_id=gchZNr2&temp_id=IjI2OTM3NyI_3D&email_id=mailget_email_id_replace&s_id=mailget_s_id_replace&server=replace_smtp_server&type=replace_drip_type\"; startswith; fast_pattern; http.host; content:\"z55gxbf0bb.execute-api.us-west-2.amazonaws.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6010678; classtype:social-engineering; sid:6010678; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:30:49.869763+00:00",
+  "updated_at": "2026-06-30T00:20:46.864224+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,29 +49,91 @@
     "phishdestroy": {
       "domain": "primespotonline.com",
       "domain_defanged": "primespotonline[.]com",
-      "case_id": "PD-20260627-628239",
-      "analyzed_at": "2026-06-27T12:31:24.749Z",
+      "case_id": "PD-20260630-628239",
+      "analyzed_at": "2026-06-30T00:21:25.376Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Suspicious (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019e9050-0007-7288-bb04-44e42fa4fc21.png",
+          "url": "https://urlscan.io/result/019e9050-0007-7288-bb04-44e42fa4fc21/",
+          "title": "PRIMESPOT"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "HOSTINGER operations, UAB",
         "created": "2026-04-26T01:58:43Z",
         "expires": "2027-04-26T01:58:43Z",
-        "age_days": 62,
+        "age_days": 64,
         "nameservers": [
           "ASTER.DNS-PARKING.COM",
           "HELIOS.DNS-PARKING.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "88.223.87.80",
+        "ipinfo": {
+          "ip": "88.223.87.80",
+          "hostname": "88-223-87-80.init.lt",
+          "city": "Boston",
+          "region": "Massachusetts",
+          "country": "US",
+          "org": "AS47583 Hostinger International Limited",
+          "asn": "AS47583"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +145,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Hostinger",
+          "abuse": "abuse@hostinger.com",
+          "url": "https://www.hostinger.com/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS47583"
+        }
       },
       "report_services": [
         {
@@ -210,7 +279,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.primespotonline.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.primespotonline.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010684; classtype:social-engineering; sid:6010684; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:31:21.614511+00:00",
+  "updated_at": "2026-06-30T00:21:21.143272+00:00",
   "probe": {
     "dns": false,
     "whois": false,

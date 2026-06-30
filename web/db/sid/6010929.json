@@ -18,83 +18,41 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://sp5ct6-glavtex-biz-fruntor-vranik.pages.dev/",
-      "domain": "sp5ct6-glavtex-biz-fruntor-vranik.pages.dev",
-      "url_count": 5,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.66.45.11",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a0199d2f0c31-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "125b7e48f8fd1104c0051bb8eba760e7301cb1019c10ac525e1ee0833e5e1db3",
-      "md5": "93f4b70dbf7d41138095e33e9a37d4f2",
-      "cert": {
-        "subject_cn": "sp5ct6-glavtex-biz-fruntor-vranik.pages.dev",
-        "subject_alt_names": [
-          "sp5ct6-glavtex-biz-fruntor-vranik.pages.dev",
-          "*.sp5ct6-glavtex-biz-fruntor-vranik.pages.dev"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-03T02:35:46+00:00",
-        "not_valid_after": "2026-09-01T03:33:01+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "246638203239612267916662024882111440696",
-        "fingerprint_sha1": "32 8B 45 35 9C BC 9B 09 65 C7 1A F3 FC BF 8D 63 29 07 FB D4",
-        "fingerprint_sha256": "7C E4 D2 7D 57 36 8A 67 83 F3 3D 42 13 7A D8 33 0E 33 C0 14 C8 31 EF 6A BD 4C 56 28 4A D5 16 27"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-06-25T08:31:51",
-      "first_seen_secs": 1782376311.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "sp5ct6-glavtex-biz-fruntor-vranik.pages.dev",
       "domain_defanged": "sp5ct6-glavtex-biz-fruntor-vranik[.]pages[.]dev",
-      "case_id": "PD-20260627-7EB00F",
-      "analyzed_at": "2026-06-27T12:54:24.780Z",
+      "case_id": "PD-20260630-7EB00F",
+      "analyzed_at": "2026-06-30T00:50:52.766Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0925-40e2-75b8-bac0-f6b508dd5dd8.png",
           "url": "https://urlscan.io/result/019f0925-40e2-75b8-bac0-f6b508dd5dd8/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.45.11",
+        "ip": "172.66.46.245",
         "ipinfo": {
-          "ip": "172.66.45.11",
+          "ip": "172.66.46.245",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +65,8 @@
             "2606:4700:310c::ac42:2ef5"
           ],
           "A": [
-            "172.66.45.11",
-            "172.66.46.245"
+            "172.66.46.245",
+            "172.66.45.11"
           ],
           "NS": [
             "damien.ns.cloudflare.com.",
@@ -252,7 +210,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-glavtex-biz-fruntor-vranik.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-glavtex-biz-fruntor-vranik.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010929; classtype:social-engineering; sid:6010929; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:54:16.620432+00:00",
+  "updated_at": "2026-06-30T00:50:39.344302+00:00",
   "probe": {
     "dns": true,
     "whois": false,

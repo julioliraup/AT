@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "netflix-clone-sepia-six.vercel.app",
       "domain_defanged": "netflix-clone-sepia-six[.]vercel[.]app",
-      "case_id": "PD-20260626-3C3003",
-      "analyzed_at": "2026-06-26T17:55:37.787Z",
+      "case_id": "PD-20260629-3C3003",
+      "analyzed_at": "2026-06-29T00:52:54.511Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0512-aa8c-7416-a24d-bda743593a57.png",
           "url": "https://urlscan.io/result/019f0512-aa8c-7416-a24d-bda743593a57/",
-          "pending": true
+          "title": "Vite App"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -241,11 +250,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .netflix-clone-sepia-six .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.netflix-clone-sepia-six.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001021; classtype:social-engineering; sid:6001021; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T17:55:30.590813+00:00",
+  "updated_at": "2026-06-29T03:43:17.170662+00:00",
   "probe": {
     "dns": true,
     "whois": false,

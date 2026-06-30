@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "aav-zra-biz-kpo-miv-sp7ct2.pages.dev",
       "domain_defanged": "aav-zra-biz-kpo-miv-sp7ct2[.]pages[.]dev",
-      "case_id": "PD-20260627-812966",
-      "analyzed_at": "2026-06-27T12:48:40.696Z",
+      "case_id": "PD-20260630-812966",
+      "analyzed_at": "2026-06-30T00:43:24.027Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f091f-fffa-71bd-a447-919a75d6aea9.png",
           "url": "https://urlscan.io/result/019f091f-fffa-71bd-a447-919a75d6aea9/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -234,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aav-zra-biz-kpo-miv-sp7ct2.pages.dev/form_submit_appeal/)\"; flow:established,to_server; http.uri; content:\"/form_submit_appeal/\"; startswith; fast_pattern; http.host; content:\"aav-zra-biz-kpo-miv-sp7ct2.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010859; classtype:social-engineering; sid:6010859; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:48:36.684207+00:00",
+  "updated_at": "2026-06-30T00:43:21.491396+00:00",
   "probe": {
     "dns": true,
     "whois": false,

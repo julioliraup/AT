@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "tiktoke.fit",
       "domain_defanged": "tiktoke[.]fit",
-      "case_id": "PD-20260627-607316",
-      "analyzed_at": "2026-06-27T12:47:39.932Z",
+      "case_id": "PD-20260630-607316",
+      "analyzed_at": "2026-06-30T00:42:21.265Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fake Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9050-002c-76dc-8c69-c85f62197bdd.png",
+          "url": "https://urlscan.io/result/019e9050-002c-76dc-8c69-c85f62197bdd/",
+          "title": "Shopify"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fake Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "202.182.121.81",
+        "ipinfo": {
+          "ip": "202.182.121.81",
+          "hostname": "202.182.121.81.vultrusercontent.com",
+          "city": "Ōi",
+          "region": "Saitama",
+          "country": "JP",
+          "org": "AS20473 The Constant Company, LLC",
+          "asn": "AS20473"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Vultr/Choopa",
+          "abuse": "abuse@vultr.com",
+          "url": "mailto:abuse@vultr.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS20473"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tiktoke.fit/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tiktoke.fit\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010848; classtype:social-engineering; sid:6010848; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:47:37.126559+00:00",
+  "updated_at": "2026-06-30T00:42:11.422852+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -74,17 +74,30 @@
     "phishdestroy": {
       "domain": "finance-ndax.pages.dev",
       "domain_defanged": "finance-ndax[.]pages[.]dev",
-      "case_id": "PD-20260625-4B89C3",
-      "analyzed_at": "2026-06-25T23:53:53.526Z",
+      "case_id": "PD-20260629-4B89C3",
+      "analyzed_at": "2026-06-29T04:14:12.944Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019efd60-1e62-7279-a3e8-19db15d62e14.png",
+          "url": "https://urlscan.io/result/019efd60-1e62-7279-a3e8-19db15d62e14/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -100,8 +113,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2c3f",
-            "2606:4700:310c::ac42:2fc1"
+            "2606:4700:310c::ac42:2fc1",
+            "2606:4700:310c::ac42:2c3f"
           ],
           "A": [
             "172.66.44.63",
@@ -245,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (finance-ndax .pages .dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"finance-ndax.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001391; classtype:social-engineering; sid:6001391; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T18:35:28.307175+00:00",
+  "updated_at": "2026-06-29T04:14:09.608045+00:00",
   "probe": {
     "dns": true,
     "whois": false,

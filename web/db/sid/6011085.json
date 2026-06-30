@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "netflix-lake.vercel.app",
       "domain_defanged": "netflix-lake[.]vercel[.]app",
-      "case_id": "PD-20260627-48EF16",
-      "analyzed_at": "2026-06-27T13:01:27.743Z",
+      "case_id": "PD-20260630-48EF16",
+      "analyzed_at": "2026-06-30T00:59:58.761Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f092b-b515-73ee-b605-fa8ac176072b.png",
           "url": "https://urlscan.io/result/019f092b-b515-73ee-b605-fa8ac176072b/",
-          "pending": true
+          "title": "Netflix - Watch TV Shows Online, Watch Movies Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -227,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netflix-lake.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"netflix-lake.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011085; classtype:social-engineering; sid:6011085; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:11:19.215469+00:00",
+  "updated_at": "2026-06-30T01:12:12.879177+00:00",
   "probe": {
     "dns": true,
     "whois": false,

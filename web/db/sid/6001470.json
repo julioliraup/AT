@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "site-6aa3879fh.godaddysites.com",
       "domain_defanged": "site-6aa3879fh[.]godaddysites[.]com",
-      "case_id": "PD-20260626-D7D21A",
-      "analyzed_at": "2026-06-26T18:44:10.569Z",
+      "case_id": "PD-20260629-D7D21A",
+      "analyzed_at": "2026-06-29T04:22:01.078Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "BT"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f053f-1c95-7357-8e24-d6dfcb13a443.png",
           "url": "https://urlscan.io/result/019f053f-1c95-7357-8e24-d6dfcb13a443/",
-          "pending": true
+          "title": "BT"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: BT",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -222,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (site-6aa3879fh .godaddysites .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"site-6aa3879fh.godaddysites.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001470; classtype:social-engineering; sid:6001470; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T18:43:47.000145+00:00",
+  "updated_at": "2026-06-29T04:21:56.005524+00:00",
   "probe": {
     "dns": true,
     "whois": false,

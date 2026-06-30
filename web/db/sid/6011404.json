@@ -73,29 +73,51 @@
     "phishdestroy": {
       "domain": "maps-cloud.com",
       "domain_defanged": "maps-cloud[.]com",
-      "case_id": "PD-20260627-5D0601",
-      "analyzed_at": "2026-06-27T13:42:33.900Z",
+      "case_id": "PD-20260630-5D0601",
+      "analyzed_at": "2026-06-30T01:56:16.320Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9fde-e17b-771d-82c1-24fce33a9503.png",
+          "url": "https://urlscan.io/result/019e9fde-e17b-771d-82c1-24fce33a9503/",
+          "title": "Find Devices — Apple iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2025-09-04T05:27:56Z",
         "expires": "2026-09-04T05:27:56Z",
-        "age_days": 296,
+        "age_days": 298,
         "nameservers": [
           "A.SHARE-DNS.COM",
           "B.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "103.195.103.203",
+        "ipinfo": {
+          "ip": "103.195.103.203",
+          "hostname": "dcp75.webpark.xyz",
+          "city": "Miami",
+          "region": "Florida",
+          "country": "US",
+          "org": "AS23470 ReliableSite.Net LLC",
+          "asn": "AS23470"
+        },
         "dns": null
       },
       "report_to": {
@@ -107,7 +129,14 @@
           "method": "form",
           "iana_ids": "1923"
         },
-        "hosting": null
+        "hosting": {
+          "name": "RELIABLESITE, US",
+          "abuse": "abuse@reliablesite.net",
+          "url": "mailto:abuse@reliablesite.net",
+          "logo": "https://i.ibb.co/D6ZjpPy/pr-RELIABLESITE-US.png",
+          "method": "email",
+          "asn": "AS23470"
+        }
       },
       "report_services": [
         {
@@ -234,7 +263,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (maps-cloud.com/aU3VJ0FM/)\"; flow:established,to_server; http.uri; content:\"/aU3VJ0FM/\"; startswith; fast_pattern; http.host; content:\"maps-cloud.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011404; classtype:social-engineering; sid:6011404; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:42:28.926536+00:00",
+  "updated_at": "2026-06-30T01:56:07.537951+00:00",
   "probe": {
     "dns": true,
     "whois": true,

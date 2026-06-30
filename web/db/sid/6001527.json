@@ -50,26 +50,47 @@
     "phishdestroy": {
       "domain": "hotel-stay77213.com",
       "domain_defanged": "hotel-stay77213[.]com",
-      "case_id": "PD-20260626-4AD2D4",
-      "analyzed_at": "2026-06-26T18:50:24.373Z",
+      "case_id": "PD-20260629-4AD2D4",
+      "analyzed_at": "2026-06-29T04:28:30.962Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e24c7-b9c8-702a-8a2d-60ad744e2f96.png",
+          "url": "https://urlscan.io/result/019e24c7-b9c8-702a-8a2d-60ad744e2f96/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-05-11T09:42:08Z",
         "expires": "2027-05-11T09:42:08Z",
-        "age_days": 46,
+        "age_days": 48,
         "nameservers": []
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.133.138",
+        "ipinfo": {
+          "ip": "172.67.133.138",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -81,7 +102,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -208,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hotel-stay77213 .com/1006451789)\"; flow:established,to_server; http.uri; content:\"/1006451789\"; startswith; fast_pattern; http.host;  content:\"hotel-stay77213.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001527; classtype:social-engineering; sid:6001527; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T18:50:20.420446+00:00",
+  "updated_at": "2026-06-29T04:28:20.322998+00:00",
   "probe": {
     "dns": false,
     "whois": false,

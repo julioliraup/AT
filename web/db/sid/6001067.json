@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "booking-clone-sigma.vercel.app",
       "domain_defanged": "booking-clone-sigma[.]vercel[.]app",
-      "case_id": "PD-20260626-350707",
-      "analyzed_at": "2026-06-26T18:00:30.471Z",
+      "case_id": "PD-20260629-350707",
+      "analyzed_at": "2026-06-29T00:59:03.148Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0517-21d2-7709-8dec-3b090b990b77.png",
           "url": "https://urlscan.io/result/019f0517-21d2-7709-8dec-3b090b990b77/",
-          "pending": true
+          "title": "Booking.com clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -241,11 +250,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (booking-clone-sigma .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"booking-clone-sigma.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001067; classtype:social-engineering; sid:6001067; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T18:00:27.538490+00:00",
+  "updated_at": "2026-06-29T03:46:02.173394+00:00",
   "probe": {
     "dns": true,
     "whois": false,

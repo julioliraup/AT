@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "au.enterpriserewards.com.sg",
       "domain_defanged": "au[.]enterpriserewards[.]com[.]sg",
-      "case_id": "PD-20260627-4DD21E",
-      "analyzed_at": "2026-06-27T13:41:14.910Z",
+      "case_id": "PD-20260630-4DD21E",
+      "analyzed_at": "2026-06-30T01:53:56.054Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0950-2176-70fc-b2d4-acc934def1ca.png",
           "url": "https://urlscan.io/result/019f0950-2176-70fc-b2d4-acc934def1ca/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -83,14 +92,14 @@
             "3.104.102.7",
             "13.210.89.195"
           ],
+          "MX": [
+            "10 mx0.us.cf-ops.net."
+          ],
           "NS": [
             "ns-1003.awsdns-61.net.",
             "ns-1042.awsdns-02.org.",
             "ns-1577.awsdns-05.co.uk.",
             "ns-87.awsdns-10.com."
-          ],
-          "MX": [
-            "10 mx0.us.cf-ops.net."
           ]
         }
       },
@@ -230,10 +239,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (au.enterpriserewards.com.sg/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"au.enterpriserewards.com.sg\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011389; classtype:social-engineering; sid:6011389; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:41:09.978956+00:00",
+  "updated_at": "2026-06-30T01:53:30.782217+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

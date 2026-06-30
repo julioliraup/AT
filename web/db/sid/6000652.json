@@ -50,29 +50,46 @@
     "phishdestroy": {
       "domain": "flashusdt2026.github.io",
       "domain_defanged": "flashusdt2026[.]github[.]io",
-      "case_id": "PD-20260626-2FC194",
-      "analyzed_at": "2026-06-26T17:08:46.553Z",
+      "case_id": "PD-20260629-2FC194",
+      "analyzed_at": "2026-06-29T00:02:30.346Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f04e7-c520-71a8-807d-b5b7b7ff878e/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f0b79-94f0-739c-97c5-0de741b4ce78.png",
+          "url": "https://urlscan.io/result/019f0b79-94f0-739c-97c5-0de741b4ce78/",
+          "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.111.153",
+        "ip": "185.199.110.153",
         "ipinfo": {
-          "ip": "185.199.111.153",
-          "hostname": "cdn-185-199-111-153.github.com",
+          "ip": "185.199.110.153",
+          "hostname": "cdn-185-199-110-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -81,16 +98,16 @@
         },
         "dns": {
           "AAAA": [
-            "2606:50c0:8003::153",
             "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
             "2606:50c0:8002::153",
-            "2606:50c0:8001::153"
+            "2606:50c0:8003::153"
           ],
           "A": [
-            "185.199.111.153",
-            "185.199.109.153",
+            "185.199.110.153",
             "185.199.108.153",
-            "185.199.110.153"
+            "185.199.109.153",
+            "185.199.111.153"
           ]
         }
       },
@@ -226,11 +243,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (flashusdt2026 .github .io/Flash-Usdt/)\"; flow:established,to_server; http.uri; content:\"/Flash-Usdt/\"; startswith; fast_pattern; http.host;  content:\"flashusdt2026.github.io\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000652; classtype:social-engineering; sid:6000652; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T17:08:43.375658+00:00",
+  "updated_at": "2026-06-29T03:15:42.819547+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,22 +49,35 @@
     "phishdestroy": {
       "domain": "bitcompliancereview.com",
       "domain_defanged": "bitcompliancereview[.]com",
-      "case_id": "PD-20260627-62BFF4",
-      "analyzed_at": "2026-06-27T13:34:57.314Z",
+      "case_id": "PD-20260630-62BFF4",
+      "analyzed_at": "2026-06-30T01:42:34.227Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DocuSign"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed974-57e7-70a0-82d1-4efa19facdbc.png",
+          "url": "https://urlscan.io/result/019ed974-57e7-70a0-82d1-4efa19facdbc/",
+          "title": "DocuSign - Download to View Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DocuSign",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Squarespace Domains LLC",
         "created": "2026-06-05T14:21:07Z",
         "expires": "2027-06-05T14:21:07Z",
-        "age_days": 21,
+        "age_days": 24,
         "nameservers": [
           "NSE1.SQUARESPACEDNS.COM",
           "NSE2.SQUARESPACEDNS.COM",
@@ -73,7 +86,15 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "91.92.241.250",
+        "ipinfo": {
+          "ip": "91.92.241.250",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS202412 Omegatech LTD",
+          "asn": "AS202412"
+        },
         "dns": null
       },
       "report_to": {
@@ -212,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bitcompliancereview.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bitcompliancereview.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011314; classtype:social-engineering; sid:6011314; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T13:34:52.539642+00:00",
+  "updated_at": "2026-06-30T01:42:29.977061+00:00",
   "probe": {
     "dns": false,
     "whois": false,

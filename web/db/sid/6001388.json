@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "ribanholdlogip.gitbook.io",
       "domain_defanged": "ribanholdlogip[.]gitbook[.]io",
-      "case_id": "PD-20260626-23FB2E",
-      "analyzed_at": "2026-06-26T18:35:07.212Z",
+      "case_id": "PD-20260629-23FB2E",
+      "analyzed_at": "2026-06-29T04:13:53.072Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Robinhood"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0536-d205-75fb-912a-960d2a5aba66.png",
           "url": "https://urlscan.io/result/019f0536-d205-75fb-912a-960d2a5aba66/",
-          "pending": true
+          "title": "Róbinhood Login | Log in to My Account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Robinhood",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.40.47",
+        "ip": "172.64.147.209",
         "ipinfo": {
-          "ip": "104.18.40.47",
+          "ip": "172.64.147.209",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,13 +112,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:4407::6812:282f",
-            "2606:4700:4402::ac40:93d1"
-          ],
           "A": [
-            "104.18.40.47",
-            "172.64.147.209"
+            "172.64.147.209",
+            "104.18.40.47"
+          ],
+          "AAAA": [
+            "2606:4700:4402::ac40:93d1",
+            "2606:4700:4407::6812:282f"
           ]
         }
       },
@@ -249,7 +258,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ribanholdlogip .gitbook .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"ribanholdlogip.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001388; classtype:social-engineering; sid:6001388; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T18:35:04.264125+00:00",
+  "updated_at": "2026-06-29T04:13:48.729879+00:00",
   "probe": {
     "dns": true,
     "whois": true,

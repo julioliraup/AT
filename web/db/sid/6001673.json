@@ -74,22 +74,43 @@
     "phishdestroy": {
       "domain": "store.communityappwork.shop",
       "domain_defanged": "store[.]communityappwork[.]shop",
-      "case_id": "PD-20260626-9A437C",
-      "analyzed_at": "2026-06-26T19:08:31.286Z",
+      "case_id": "PD-20260629-9A437C",
+      "analyzed_at": "2026-06-29T04:46:51.248Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e19f9-365c-724e-8a76-bf3f3e2aaeae.png",
+          "url": "https://urlscan.io/result/019e19f9-365c-724e-8a76-bf3f3e2aaeae/",
+          "title": "Steam Workshop::AK-47 | Eternal Decay"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "138.226.236.62",
+        "ipinfo": {
+          "ip": "138.226.236.62",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS205775 NEON CORE NETWORK LLC",
+          "asn": "AS205775"
+        },
         "dns": null
       },
       "report_to": {
@@ -221,7 +242,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (store .communityappwork .shop/workshop/AK47-EternalDecay/)\"; flow:established,to_server; http.uri; content:\"/workshop/AK47-EternalDecay/\"; startswith; fast_pattern; http.host;  content:\"store.communityappwork.shop\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001673; classtype:social-engineering; sid:6001673; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T19:08:26.619830+00:00",
+  "updated_at": "2026-06-29T04:46:41.685581+00:00",
   "probe": {
     "dns": true,
     "whois": true,

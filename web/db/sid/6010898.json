@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "15823.xyz",
       "domain_defanged": "15823[.]xyz",
-      "case_id": "PD-20260627-32B3C8",
-      "analyzed_at": "2026-06-27T12:51:58.313Z",
+      "case_id": "PD-20260630-32B3C8",
+      "analyzed_at": "2026-06-30T00:47:14.082Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e92ba-99fb-744a-bc55-2e59dcf44a02.png",
+          "url": "https://urlscan.io/result/019e92ba-99fb-744a-bc55-2e59dcf44a02/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "206.119.118.65",
+        "ipinfo": {
+          "ip": "206.119.118.65",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS18186 Nebula Global LLC",
+          "asn": "AS18186"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.15823.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.15823.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010898; classtype:social-engineering; sid:6010898; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:51:50.321129+00:00",
+  "updated_at": "2026-06-30T00:47:07.692750+00:00",
   "probe": {
     "dns": false,
     "whois": false,

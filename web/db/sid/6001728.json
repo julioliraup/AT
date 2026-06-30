@@ -19,58 +19,59 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://t-mobile.lmdzwk.top/pay?pIP=lxmjI?CBX=KCMtr",
-      "domain": "t-mobile.lmdzwk.top",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "t-mobile.lmdzwk.top",
       "domain_defanged": "t-mobile[.]lmdzwk[.]top",
-      "case_id": "PD-20260626-23AF2F",
-      "analyzed_at": "2026-06-26T19:15:31.088Z",
+      "case_id": "PD-20260629-23AF2F",
+      "analyzed_at": "2026-06-29T04:54:36.960Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1c45-f3c5-719f-825b-98c79825d910.png",
+          "url": "https://urlscan.io/result/019e1c45-f3c5-719f-825b-98c79825d910/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.209.38",
+        "ipinfo": {
+          "ip": "172.67.209.38",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -197,7 +198,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile .lmdzwk .top/pay?pIP=lxmjI?CBX=KCMtr)\"; flow:established,to_server; http.uri; content:\"/pay?pIP=lxmjI?CBX=KCMtr\"; startswith; fast_pattern; http.host;  content:\"t-mobile.lmdzwk.top\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001728; classtype:social-engineering; sid:6001728; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T19:15:27.190918+00:00",
+  "updated_at": "2026-06-29T04:54:12.806404+00:00",
   "probe": {
     "dns": false,
     "whois": false,

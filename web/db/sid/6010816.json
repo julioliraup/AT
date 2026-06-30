@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "meta-stack.pages.dev",
       "domain_defanged": "meta-stack[.]pages[.]dev",
-      "case_id": "PD-20260627-7316D3",
-      "analyzed_at": "2026-06-27T12:44:55.498Z",
+      "case_id": "PD-20260630-7316D3",
+      "analyzed_at": "2026-06-30T00:38:28.197Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f091c-911f-775a-a25e-1fce9d4a7fb8.png",
           "url": "https://urlscan.io/result/019f091c-911f-775a-a25e-1fce9d4a7fb8/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.201",
+        "ip": "172.66.47.55",
         "ipinfo": {
-          "ip": "172.66.44.201",
+          "ip": "172.66.47.55",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -89,8 +98,8 @@
             "2606:4700:310c::ac42:2cc9"
           ],
           "A": [
-            "172.66.44.201",
-            "172.66.47.55"
+            "172.66.47.55",
+            "172.66.44.201"
           ],
           "NS": [
             "josephine.ns.cloudflare.com.",
@@ -234,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-stack.pages.dev/appeals/submit-appeal-form/return)\"; flow:established,to_server; http.uri; content:\"/appeals/submit-appeal-form/return\"; startswith; fast_pattern; http.host; content:\"meta-stack.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010816; classtype:social-engineering; sid:6010816; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:44:52.628120+00:00",
+  "updated_at": "2026-06-30T00:38:23.197971+00:00",
   "probe": {
     "dns": true,
     "whois": false,

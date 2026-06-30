@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "view-help---auth---bitmert--sso.webflow.io",
       "domain_defanged": "view-help---auth---bitmert--sso[.]webflow[.]io",
-      "case_id": "PD-20260626-92EF95",
-      "analyzed_at": "2026-06-26T18:40:28.148Z",
+      "case_id": "PD-20260629-92EF95",
+      "analyzed_at": "2026-06-29T04:18:55.429Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bitmart"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f053b-b74d-775d-a420-421b623a2db9.png",
           "url": "https://urlscan.io/result/019f053b-b74d-775d-a420-421b623a2db9/",
-          "pending": true
+          "title": "BitMart USA - Cryptocurrency Exchange | login bitmart and Buy"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bitmart",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
+        "ip": "172.64.151.8",
         "ipinfo": {
-          "ip": "104.18.36.248",
+          "ip": "172.64.151.8",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "104.18.36.248",
-            "172.64.151.8"
+            "172.64.151.8",
+            "104.18.36.248"
           ],
           "AAAA": [
             "2a06:98c1:3105::6812:24f8",
@@ -249,7 +258,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (view-help---auth---bitmert--sso .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"view-help---auth---bitmert--sso.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001435; classtype:social-engineering; sid:6001435; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T18:40:23.944490+00:00",
+  "updated_at": "2026-06-29T04:18:46.179570+00:00",
   "probe": {
     "dns": true,
     "whois": true,

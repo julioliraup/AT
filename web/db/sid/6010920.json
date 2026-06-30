@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "myviewikjmts.mntbell.com",
       "domain_defanged": "myviewikjmts[.]mntbell[.]com",
-      "case_id": "PD-20260627-53C4EE",
-      "analyzed_at": "2026-06-27T12:53:29.572Z",
+      "case_id": "PD-20260630-53C4EE",
+      "analyzed_at": "2026-06-30T00:49:50.546Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "BCE-BellMTS"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec706-600c-73df-9d63-fff221221a3d.png",
+          "url": "https://urlscan.io/result/019ec706-600c-73df-9d63-fff221221a3d/",
+          "title": "MTS Mail | Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: BCE-BellMTS",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.168.150",
+        "ipinfo": {
+          "ip": "172.67.168.150",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (myviewikjmts.mntbell.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"myviewikjmts.mntbell.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010920; classtype:social-engineering; sid:6010920; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T12:53:26.676499+00:00",
+  "updated_at": "2026-06-30T00:49:40.894177+00:00",
   "probe": {
     "dns": false,
     "whois": false,

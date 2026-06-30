@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "dustswap.pages.dev",
       "domain_defanged": "dustswap[.]pages[.]dev",
-      "case_id": "PD-20260626-31543F",
-      "analyzed_at": "2026-06-26T19:01:38.858Z",
+      "case_id": "PD-20260629-31543F",
+      "analyzed_at": "2026-06-29T04:39:19.957Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f054f-1b78-7308-82b0-19dbbf250290.png",
           "url": "https://urlscan.io/result/019f054f-1b78-7308-82b0-19dbbf250290/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.80",
+        "ip": "172.66.44.176",
         "ipinfo": {
-          "ip": "172.66.47.80",
+          "ip": "172.66.44.176",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,12 +89,12 @@
         },
         "dns": {
           "A": [
-            "172.66.47.80",
-            "172.66.44.176"
+            "172.66.44.176",
+            "172.66.47.80"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f50",
-            "2606:4700:310c::ac42:2cb0"
+            "2606:4700:310c::ac42:2cb0",
+            "2606:4700:310c::ac42:2f50"
           ],
           "NS": [
             "etienne.ns.cloudflare.com.",
@@ -229,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dustswap .pages .dev/app/)\"; flow:established,to_server; http.uri; content:\"/app/\"; startswith; fast_pattern; http.host;  content:\"dustswap.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001619; classtype:social-engineering; sid:6001619; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T19:01:35.756978+00:00",
+  "updated_at": "2026-06-29T04:39:15.064793+00:00",
   "probe": {
     "dns": true,
     "whois": false,

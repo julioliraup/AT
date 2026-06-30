@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "bridge-home--trezor.gitbook.io",
       "domain_defanged": "bridge-home--trezor[.]gitbook[.]io",
-      "case_id": "PD-20260626-30BE4C",
-      "analyzed_at": "2026-06-26T18:49:15.730Z",
+      "case_id": "PD-20260629-30BE4C",
+      "analyzed_at": "2026-06-29T04:26:41.567Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0543-c49f-76a9-b840-4574868bf7bb.png",
           "url": "https://urlscan.io/result/019f0543-c49f-76a9-b840-4574868bf7bb/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.147.209",
+        "ip": "104.18.40.47",
         "ipinfo": {
-          "ip": "172.64.147.209",
+          "ip": "104.18.40.47",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -104,12 +113,12 @@
         },
         "dns": {
           "A": [
-            "172.64.147.209",
-            "104.18.40.47"
+            "104.18.40.47",
+            "172.64.147.209"
           ],
           "AAAA": [
-            "2606:4700:4402::ac40:93d1",
-            "2606:4700:4407::6812:282f"
+            "2606:4700:4407::6812:282f",
+            "2606:4700:4402::ac40:93d1"
           ]
         }
       },
@@ -250,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bridge-home--trezor .gitbook .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"bridge-home--trezor.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001588; classtype:social-engineering; sid:6001588; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-26T18:58:04.300880+00:00",
+  "updated_at": "2026-06-29T04:35:51.288408+00:00",
   "probe": {
     "dns": true,
     "whois": true,
