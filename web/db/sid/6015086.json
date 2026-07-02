@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "akash-b2005.github.io",
       "domain_defanged": "akash-b2005[.]github[.]io",
-      "case_id": "PD-20260627-69A005",
-      "analyzed_at": "2026-06-27T20:56:31.338Z",
+      "case_id": "PD-20260702-69A005",
+      "analyzed_at": "2026-07-02T02:36:39.063Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f0ade-a31e-73f1-b940-5d982e4798f8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1c8d-33a2-714b-b07e-186aec009dd2.png",
+          "url": "https://urlscan.io/result/019f1c8d-33a2-714b-b07e-186aec009dd2/",
+          "title": "Netflix India-Watch TV Shows Online, Watch Movies Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -81,15 +90,15 @@
         "dns": {
           "AAAA": [
             "2606:50c0:8002::153",
-            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
             "2606:50c0:8003::153",
-            "2606:50c0:8001::153"
+            "2606:50c0:8000::153"
           ],
           "A": [
             "185.199.108.153",
-            "185.199.109.153",
+            "185.199.111.153",
             "185.199.110.153",
-            "185.199.111.153"
+            "185.199.109.153"
           ]
         }
       },
@@ -229,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (akash-b2005.github.io/static-clone-netflix/)\"; flow:established,to_server; http.uri; content:\"/static-clone-netflix/\"; startswith; fast_pattern; http.host; content:\"akash-b2005.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015086; classtype:social-engineering; sid:6015086; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T20:56:23.158402+00:00",
+  "updated_at": "2026-07-02T02:36:30.009488+00:00",
   "probe": {
     "dns": true,
     "whois": true,

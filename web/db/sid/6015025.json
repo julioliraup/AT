@@ -49,34 +49,63 @@
     "phishdestroy": {
       "domain": "22-icloud.com",
       "domain_defanged": "22-icloud[.]com",
-      "case_id": "PD-20260627-5B2489",
-      "analyzed_at": "2026-06-27T20:47:21.990Z",
+      "case_id": "PD-20260702-5B2489",
+      "analyzed_at": "2026-07-02T02:25:18.883Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eea48-80b8-7321-8749-a65dd5c0f2fd.png",
+          "url": "https://urlscan.io/result/019eea48-80b8-7321-8749-a65dd5c0f2fd/",
+          "title": "iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Sav.com, LLC",
         "created": "2026-06-12T19:26:08Z",
         "expires": "2027-06-12T19:26:08Z",
-        "age_days": 15,
+        "age_days": 19,
         "nameservers": [
           "NS1.MD-35.WEBHOSTBOX.NET",
           "NS2.MD-35.WEBHOSTBOX.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "207.174.215.249",
+        "ipinfo": {
+          "ip": "207.174.215.249",
+          "hostname": "207-174-215-249.unifiedlayer.com",
+          "city": "Provo",
+          "region": "Utah",
+          "country": "US",
+          "org": "AS46606 Unified Layer",
+          "asn": "AS46606"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
+          "abuse": "abuse@hostopia.com.au",
+          "url": "mailto:abuse@hostopia.com.au",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS46606"
+        }
       },
       "report_services": [
         {
@@ -203,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (22-icloud.com/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"22-icloud.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015025; classtype:social-engineering; sid:6015025; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T20:47:05.170433+00:00",
+  "updated_at": "2026-07-02T02:25:01.667250+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -49,27 +49,59 @@
     "phishdestroy": {
       "domain": "secure-m1cr0soft-login.com",
       "domain_defanged": "secure-m1cr0soft-login[.]com",
-      "case_id": "PD-20260629-6C3A34",
-      "analyzed_at": "2026-06-29T16:04:02.575Z",
+      "case_id": "PD-20260701-6C3A34",
+      "analyzed_at": "2026-07-01T09:35:27.051Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6b0b-b0c7-70c2-a190-92270fb92b8f.png",
+          "url": "https://urlscan.io/result/019e6b0b-b0c7-70c2-a190-92270fb92b8f/",
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "132.220.38.112",
+        "ipinfo": {
+          "ip": "132.220.38.112",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -196,7 +228,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (secure-m1cr0soft-login.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"secure-m1cr0soft-login.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006981; classtype:social-engineering; sid:6006981; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T16:03:52.347066+00:00",
+  "updated_at": "2026-07-01T09:35:22.869214+00:00",
   "probe": {
     "dns": false,
     "whois": false,

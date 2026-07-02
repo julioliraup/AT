@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "supportaccount-info.us",
       "domain_defanged": "supportaccount-info[.]us",
-      "case_id": "PD-20260627-407417",
-      "analyzed_at": "2026-06-27T21:13:51.646Z",
+      "case_id": "PD-20260702-407417",
+      "analyzed_at": "2026-07-02T02:55:47.608Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eeecb-cba5-73df-99a2-2d5caccb8eb5.png",
+          "url": "https://urlscan.io/result/019eeecb-cba5-73df-99a2-2d5caccb8eb5/",
+          "title": "iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "207.174.215.249",
+        "ipinfo": {
+          "ip": "207.174.215.249",
+          "hostname": "207-174-215-249.unifiedlayer.com",
+          "city": "Provo",
+          "region": "Utah",
+          "country": "US",
+          "org": "AS46606 Unified Layer",
+          "asn": "AS46606"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
+          "abuse": "abuse@hostopia.com.au",
+          "url": "mailto:abuse@hostopia.com.au",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS46606"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (supportaccount-info.us/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"supportaccount-info.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015230; classtype:social-engineering; sid:6015230; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T21:13:39.506883+00:00",
+  "updated_at": "2026-07-02T02:55:41.005127+00:00",
   "probe": {
     "dns": false,
     "whois": false,

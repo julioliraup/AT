@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "myfindphone.help",
       "domain_defanged": "myfindphone[.]help",
-      "case_id": "PD-20260627-5E2892",
-      "analyzed_at": "2026-06-27T20:51:11.065Z",
+      "case_id": "PD-20260702-5E2892",
+      "analyzed_at": "2026-07-02T02:30:27.319Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eea48-366f-712f-ad7c-e22d106a0e4f.png",
+          "url": "https://urlscan.io/result/019eea48-366f-712f-ad7c-e22d106a0e4f/",
+          "title": "iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "207.174.215.249",
+        "ipinfo": {
+          "ip": "207.174.215.249",
+          "hostname": "207-174-215-249.unifiedlayer.com",
+          "city": "Provo",
+          "region": "Utah",
+          "country": "US",
+          "org": "AS46606 Unified Layer",
+          "asn": "AS46606"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
+          "abuse": "abuse@hostopia.com.au",
+          "url": "mailto:abuse@hostopia.com.au",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS46606"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (myfindphone.help/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"myfindphone.help\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015050; classtype:social-engineering; sid:6015050; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T20:51:06.724544+00:00",
+  "updated_at": "2026-07-02T02:30:19.217719+00:00",
   "probe": {
     "dns": false,
     "whois": false,

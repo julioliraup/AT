@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "aicc108-demo.pages.dev",
       "domain_defanged": "aicc108-demo[.]pages[.]dev",
-      "case_id": "PD-20260628-681EA7",
-      "analyzed_at": "2026-06-28T22:58:20.682Z",
+      "case_id": "PD-20260630-681EA7",
+      "analyzed_at": "2026-06-30T03:19:35.753Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1074-86d8-75cf-966a-da238952c5d9/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1257-de8a-758c-9fa4-96220e96492f.png",
+          "url": "https://urlscan.io/result/019f1257-de8a-758c-9fa4-96220e96492f/",
+          "title": "Series | Sitio oficial de Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.107",
+        "ip": "172.66.47.149",
         "ipinfo": {
-          "ip": "172.66.44.107",
+          "ip": "172.66.47.149",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,12 +89,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2c6b",
-            "2606:4700:310c::ac42:2f95"
+            "2606:4700:310c::ac42:2f95",
+            "2606:4700:310c::ac42:2c6b"
           ],
           "A": [
-            "172.66.44.107",
-            "172.66.47.149"
+            "172.66.47.149",
+            "172.66.44.107"
           ],
           "NS": [
             "lady.ns.cloudflare.com.",
@@ -230,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aicc108-demo .pages .dev/title/70136123 .html)\"; flow:established,to_server; http.uri; content:\"/title/70136123.html\"; startswith; fast_pattern; http.host;  content:\"aicc108-demo.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000307; classtype:social-engineering; sid:6000307; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T02:28:59.215477+00:00",
+  "updated_at": "2026-07-01T00:28:32.354458+00:00",
   "probe": {
     "dns": true,
     "whois": false,

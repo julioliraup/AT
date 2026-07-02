@@ -21,13 +21,13 @@
     "alienvault": {
       "url": "http://alexrslobal.com/",
       "domain": "alexrslobal.com",
-      "url_count": 2,
+      "url_count": 3,
       "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
-      "tlp": "WHITE",
+      "tlp": null,
       "ip": null,
-      "http_code": 0,
+      "http_code": null,
       "http_response": null,
       "city": null,
       "region": null,
@@ -43,35 +43,55 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:23:12",
+      "first_seen": "2026-07-02T02:41:48",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "alexrslobal.com",
       "domain_defanged": "alexrslobal[.]com",
-      "case_id": "PD-20260627-674CCC",
-      "analyzed_at": "2026-06-27T21:08:03.508Z",
+      "case_id": "PD-20260702-674CCC",
+      "analyzed_at": "2026-07-02T02:50:09.324Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef13e-825b-73c3-bd07-9001938a9dfa.png",
+          "url": "https://urlscan.io/result/019ef13e-825b-73c3-bd07-9001938a9dfa/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gransy, s.r.o.",
         "created": "2026-06-20T13:10:11Z",
         "expires": "2027-06-20T13:10:11Z",
-        "age_days": 7,
+        "age_days": 11,
         "nameservers": [
           "A.SHARE-DNS.COM",
           "B.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "198.176.60.220",
+        "ipinfo": {
+          "ip": "198.176.60.220",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS140227 Hong Kong Communications International Co., Limited",
+          "asn": "AS140227"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +103,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "HKCICL-AS-AP",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "https://i.ibb.co/M5GJC5Y5/pr-HKCICL-AS-AP.png",
+          "method": "email",
+          "asn": "AS140227"
+        }
       },
       "report_services": [
         {
@@ -210,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (alexrslobal.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"alexrslobal.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015180; classtype:social-engineering; sid:6015180; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T21:07:55.268873+00:00",
+  "updated_at": "2026-07-02T02:49:55.003118+00:00",
   "probe": {
     "dns": false,
     "whois": false,

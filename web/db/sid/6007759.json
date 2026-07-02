@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "tajatlaswellnessboutique.spahotel.guru",
       "domain_defanged": "tajatlaswellnessboutique[.]spahotel[.]guru",
-      "case_id": "PD-20260629-329DDF",
-      "analyzed_at": "2026-06-29T17:52:43.156Z",
+      "case_id": "PD-20260701-329DDF",
+      "analyzed_at": "2026-07-01T11:01:25.919Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1483-146c-7522-99ba-51c2e706fa10.png",
           "url": "https://urlscan.io/result/019f1483-146c-7522-99ba-51c2e706fa10/",
-          "pending": true
+          "title": "Taj Atlas Wellness Boutique Hotel & Spa Amizmiz - Amizmiz, Morocco"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tajatlaswellnessboutique.spahotel.guru/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tajatlaswellnessboutique.spahotel.guru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007759; classtype:social-engineering; sid:6007759; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T17:52:36.290204+00:00",
+  "updated_at": "2026-07-01T11:01:18.936388+00:00",
   "probe": {
     "dns": true,
     "whois": true,

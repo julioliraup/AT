@@ -18,64 +18,59 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://rongros.uk.com/",
-      "domain": "rongros.uk.com",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "104.21.57.211",
-      "http_code": 200,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html",
-        "cf_ray": "a0273a8a181b1319-PDX",
-        "cf_cache_status": "DYNAMIC",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (4021)",
-      "sha256": "108f2c3bc11310b269829be7cfb1a5596b657e8f2ca9f5a0316b7b23494da2f9",
-      "md5": "fdebe574830d0a8a08fa6905306deec6",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-05-27T18:29:36",
-      "first_seen_secs": 1779906576.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "rongros.uk.com",
       "domain_defanged": "rongros[.]uk[.]com",
-      "case_id": "PD-20260629-417422",
-      "analyzed_at": "2026-06-29T18:05:34.872Z",
+      "case_id": "PD-20260701-417422",
+      "analyzed_at": "2026-07-01T11:23:27.675Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6d6c-d92f-7708-9ef6-d70a595a3fe2.png",
+          "url": "https://urlscan.io/result/019e6d6c-d92f-7708-9ef6-d70a595a3fe2/",
+          "title": "ปั่น สล็อต สล็อต666 ดีไซน์โดดเด่น ธีมเข้มข้น ลูกเล่นแปลกใหม่ เล่นไม่ซ้ำใคร"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.149.244",
+        "ipinfo": {
+          "ip": "172.67.149.244",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -202,10 +197,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rongros.uk.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"rongros.uk.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007875; classtype:social-engineering; sid:6007875; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T18:05:30.895541+00:00",
+  "updated_at": "2026-07-01T11:23:11.707024+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

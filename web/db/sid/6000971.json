@@ -74,35 +74,26 @@
     "phishdestroy": {
       "domain": "atendimentosuportenetempresa.com",
       "domain_defanged": "atendimentosuportenetempresa[.]com",
-      "case_id": "PD-20260629-564FE0",
-      "analyzed_at": "2026-06-29T00:44:17.915Z",
+      "case_id": "PD-20260630-564FE0",
+      "analyzed_at": "2026-06-30T04:55:51.345Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Generic Cloudflare"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019f050c-5298-76fb-b506-7e6a8c76c908.png",
-          "url": "https://urlscan.io/result/019f050c-5298-76fb-b506-7e6a8c76c908/",
-          "title": "Suspected Phishing | Cloudflare"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f16e2-3300-738c-8ff9-4571b083576f/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Generic Cloudflare",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-04-23T15:16:38Z",
         "expires": "2027-04-23T15:16:38Z",
-        "age_days": 66,
+        "age_days": 67,
         "nameservers": [
           "BOB.NS.CLOUDFLARE.COM",
           "MINA.NS.CLOUDFLARE.COM"
@@ -119,13 +110,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:3034::ac43:c686",
+            "2606:4700:3036::6815:2c62"
+          ],
           "A": [
             "172.67.198.134",
             "104.21.44.98"
-          ],
-          "AAAA": [
-            "2606:4700:3036::6815:2c62",
-            "2606:4700:3034::ac43:c686"
           ],
           "NS": [
             "bob.ns.cloudflare.com.",
@@ -277,10 +268,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (atendimentosuportenetempresa .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"atendimentosuportenetempresa.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000971; classtype:social-engineering; sid:6000971; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T03:39:46.177616+00:00",
+  "updated_at": "2026-07-01T01:22:19.262366+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

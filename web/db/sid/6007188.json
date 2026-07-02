@@ -73,47 +73,179 @@
     "phishdestroy": {
       "domain": "camaradecomercioush.com.ar",
       "domain_defanged": "camaradecomercioush[.]com[.]ar",
-      "case_id": "PD-20260629-2D590E",
-      "analyzed_at": "2026-06-29T16:31:49.812Z",
+      "case_id": "PD-20260701-2D590E",
+      "analyzed_at": "2026-07-01T09:56:47.359Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 10,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f1439-0539-7456-a2e7-0f126837131f.png",
           "url": "https://urlscan.io/result/019f1439-0539-7456-a2e7-0f126837131f/",
-          "pending": true
+          "title": "Camara de comercio"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "174.142.119.36",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "174.142.119.36",
+          "hostname": "host.pvserver.com",
+          "city": "Montréal",
+          "region": "Quebec",
+          "country": "CA",
+          "org": "AS32613 Leaseweb Canada Inc.",
+          "asn": "AS32613"
+        },
         "dns": {
-          "MX": [
-            "10 ASPMX2.GOOGLEMAIL.COM.",
-            "5 ALT2.ASPMX.L.GOOGLE.COM.",
-            "10 ASPMX3.GOOGLEMAIL.COM.",
-            "1 ASPMX.L.GOOGLE.COM.",
-            "5 ALT1.ASPMX.L.GOOGLE.COM."
+          "A": [
+            "174.142.119.36"
           ],
           "NS": [
             "ns1.pvserver.com.",
             "ns2.pvserver.com."
           ],
-          "A": [
-            "174.142.119.36"
+          "MX": [
+            "10 ASPMX3.GOOGLEMAIL.COM.",
+            "5 ALT1.ASPMX.L.GOOGLE.COM.",
+            "1 ASPMX.L.GOOGLE.COM.",
+            "5 ALT2.ASPMX.L.GOOGLE.COM.",
+            "10 ASPMX2.GOOGLEMAIL.COM."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "IWEB-AS, CA",
+          "abuse": "abuse@iweb.com",
+          "url": "mailto:abuse@iweb.com",
+          "logo": "https://i.ibb.co/fdWKdDgL/pr-IWEB-AS-CA.png",
+          "method": "email",
+          "asn": "AS32613"
+        }
       },
       "report_services": [
         {
@@ -240,7 +372,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.camaradecomercioush.com.ar/gghnvd/)\"; flow:established,to_server; http.uri; content:\"/gghnvd/\"; startswith; fast_pattern; http.host; content:\"www.camaradecomercioush.com.ar\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007188; classtype:social-engineering; sid:6007188; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T16:31:38.901363+00:00",
+  "updated_at": "2026-07-01T09:56:41.949964+00:00",
   "probe": {
     "dns": true,
     "whois": true,

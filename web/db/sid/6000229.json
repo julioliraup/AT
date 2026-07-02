@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "inner.website",
       "domain_defanged": "inner[.]website",
-      "case_id": "PD-20260628-773A89",
-      "analyzed_at": "2026-06-28T23:01:53.963Z",
+      "case_id": "PD-20260630-773A89",
+      "analyzed_at": "2026-06-30T03:23:32.387Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1077-c7b0-759c-a201-78318e425ed4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f166a-c4fa-7768-aecb-8f415917a735.png",
+          "url": "https://urlscan.io/result/019f166a-c4fa-7768-aecb-8f415917a735/",
+          "title": "Cybeready Platform"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.73.56",
+        "ip": "104.26.2.170",
         "ipinfo": {
-          "ip": "172.67.73.56",
+          "ip": "104.26.2.170",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,15 +116,15 @@
             "0 smtp.secureserver.net.",
             "10 mailstore1.secureserver.net."
           ],
-          "AAAA": [
-            "2606:4700:20::681a:2aa",
-            "2606:4700:20::681a:3aa",
-            "2606:4700:20::ac43:4938"
-          ],
           "A": [
-            "172.67.73.56",
             "104.26.2.170",
-            "104.26.3.170"
+            "104.26.3.170",
+            "172.67.73.56"
+          ],
+          "AAAA": [
+            "2606:4700:20::681a:3aa",
+            "2606:4700:20::ac43:4938",
+            "2606:4700:20::681a:2aa"
           ],
           "NS": [
             "mona.ns.cloudflare.com.",
@@ -260,10 +269,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (inner .website/j08ab4aa07e6964ca16b41083f675b13955b .html)\"; flow:established,to_server; http.uri; content:\"/j08ab4aa07e6964ca16b41083f675b13955b.html\"; startswith; fast_pattern; http.host;  content:\"inner.website\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000229; classtype:social-engineering; sid:6000229; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T02:22:27.421159+00:00",
+  "updated_at": "2026-07-01T00:18:41.344578+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

@@ -73,26 +73,35 @@
     "phishdestroy": {
       "domain": "efficientattics.com",
       "domain_defanged": "efficientattics[.]com",
-      "case_id": "PD-20260627-6B03EE",
-      "analyzed_at": "2026-06-27T20:48:24.794Z",
+      "case_id": "PD-20260702-6B03EE",
+      "analyzed_at": "2026-07-02T02:26:46.951Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f0ad7-36af-7116-9222-7bc5fd3dc3de/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trustwallet"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1c8b-0e89-7471-8cea-db1a3676eed5.png",
+          "url": "https://urlscan.io/result/019f1c8b-0e89-7471-8cea-db1a3676eed5/",
+          "title": "Trust Wallet"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trustwallet",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Domain.com - Network Solutions, LLC",
         "created": "2023-06-13T21:10:12Z",
         "expires": "2027-06-13T21:10:12Z",
-        "age_days": 1109,
+        "age_days": 1114,
         "nameservers": [
           "NS1.IPAGE.COM",
           "NS2.IPAGE.COM"
@@ -100,7 +109,15 @@
       },
       "infrastructure": {
         "ip": "66.96.147.206",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "66.96.147.206",
+          "hostname": "206.147.96.66.static.eigbox.net",
+          "city": "Boston",
+          "region": "Massachusetts",
+          "country": "US",
+          "org": "AS29873 Newfold Digital, Inc.",
+          "asn": "AS29873"
+        },
         "dns": {
           "MX": [
             "30 mx.efficientattics.com."
@@ -109,8 +126,8 @@
             "66.96.147.206"
           ],
           "NS": [
-            "ns1.ipage.com.",
-            "ns2.ipage.com."
+            "ns2.ipage.com.",
+            "ns1.ipage.com."
           ]
         }
       },
@@ -123,7 +140,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "BIZLAND-SD, US",
+          "abuse": "eig-abuse@endurance.com",
+          "url": "mailto:eig-abuse@endurance.com",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS29873"
+        }
       },
       "report_services": [
         {
@@ -250,7 +274,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (efficientattics.com/wp-admin/page.html)\"; flow:established,to_server; http.uri; content:\"/wp-admin/page.html\"; startswith; fast_pattern; http.host; content:\"efficientattics.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015033; classtype:social-engineering; sid:6015033; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T20:48:13.364491+00:00",
+  "updated_at": "2026-07-02T02:26:40.505610+00:00",
   "probe": {
     "dns": true,
     "whois": true,

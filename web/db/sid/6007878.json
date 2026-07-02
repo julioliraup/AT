@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "info-alert.net",
       "domain_defanged": "info-alert[.]net",
-      "case_id": "PD-20260629-59E2D3",
-      "analyzed_at": "2026-06-29T18:05:45.970Z",
+      "case_id": "PD-20260701-59E2D3",
+      "analyzed_at": "2026-07-01T11:23:49.399Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f148f-064a-77c2-987d-a6896841ecc0/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f19c4-6e98-729d-ab87-822c64566004.png",
+          "url": "https://urlscan.io/result/019f19c4-6e98-729d-ab87-822c64566004/",
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Amazon Registrar, Inc.",
         "created": "2025-02-28T11:42:47Z",
         "expires": "2027-02-28T11:42:47Z",
-        "age_days": 486,
+        "age_days": 487,
         "nameservers": [
           "NS-1006.AWSDNS-61.NET",
           "NS-1331.AWSDNS-38.ORG",
@@ -77,10 +86,10 @@
         ]
       },
       "infrastructure": {
-        "ip": "34.248.25.108",
+        "ip": "108.128.154.102",
         "ipinfo": {
-          "ip": "34.248.25.108",
-          "hostname": "ec2-34-248-25-108.eu-west-1.compute.amazonaws.com",
+          "ip": "108.128.154.102",
+          "hostname": "ec2-108-128-154-102.eu-west-1.compute.amazonaws.com",
           "city": "Dublin",
           "region": "Leinster",
           "country": "IE",
@@ -89,9 +98,9 @@
         },
         "dns": {
           "A": [
+            "108.128.154.102",
             "34.248.25.108",
-            "54.72.95.66",
-            "108.128.154.102"
+            "54.72.95.66"
           ],
           "NS": [
             "ns-1006.awsdns-61.net.",
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (info-alert.net/2fb8071a-0463-4603-8a2a-b8859236a0b1/a/3b51b002-3d6a-4d60-8b3b-8ec246359ffc/ccp?lid=0273fb96-c6ad-449e-a000-740db2e72941)\"; flow:established,to_server; http.uri; content:\"/2fb8071a-0463-4603-8a2a-b8859236a0b1/a/3b51b002-3d6a-4d60-8b3b-8ec246359ffc/ccp?lid=0273fb96-c6ad-449e-a000-740db2e72941\"; startswith; fast_pattern; http.host; content:\"info-alert.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007878; classtype:social-engineering; sid:6007878; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T18:05:42.158846+00:00",
+  "updated_at": "2026-07-01T11:23:37.814561+00:00",
   "probe": {
     "dns": true,
     "whois": true,

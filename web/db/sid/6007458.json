@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "netflixclone-ui.vercel.app",
       "domain_defanged": "netflixclone-ui[.]vercel[.]app",
-      "case_id": "PD-20260629-239E7B",
-      "analyzed_at": "2026-06-29T17:12:04.360Z",
+      "case_id": "PD-20260701-239E7B",
+      "analyzed_at": "2026-07-01T10:27:07.885Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f145d-ddd2-72a0-b6f0-9bd47677f7ba.png",
           "url": "https://urlscan.io/result/019f145d-ddd2-72a0-b6f0-9bd47677f7ba/",
-          "pending": true
+          "title": "Netflix Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
+        "ip": "64.29.17.130",
         "ipinfo": {
-          "ip": "216.198.79.66",
+          "ip": "64.29.17.130",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "64.29.17.130",
+            "216.198.79.130"
           ]
         }
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netflixclone-ui.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"netflixclone-ui.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007458; classtype:social-engineering; sid:6007458; rev:1; metadata: signature_severity Major, created_et 2026_05_26, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T17:12:00.790434+00:00",
+  "updated_at": "2026-07-01T10:26:55.664445+00:00",
   "probe": {
     "dns": true,
     "whois": false,

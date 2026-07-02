@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "c.4qw.nl",
       "domain_defanged": "c[.]4qw[.]nl",
-      "case_id": "PD-20260628-C9E32B",
-      "analyzed_at": "2026-06-28T23:18:22.889Z",
+      "case_id": "PD-20260630-C9E32B",
+      "analyzed_at": "2026-06-30T03:41:08.398Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1086-def5-7377-8ddf-7eff12538c35/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1216-4178-74c9-bfdf-30f5153b47db.png",
+          "url": "https://urlscan.io/result/019f1216-4178-74c9-bfdf-30f5153b47db/",
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -76,26 +85,33 @@
             "4qw.nl.",
             "1 smtp.sendfiend.com."
           ],
-          "CNAME": [
-            "4qw.nl."
+          "NS": [
+            "4qw.nl.",
+            "ns01.proisp.no.",
+            "ns02.proisp.no."
           ],
-          "AAAA": [
+          "CNAME": [
             "4qw.nl."
           ],
           "A": [
             "4qw.nl.",
             "45.154.232.28"
           ],
-          "NS": [
-            "4qw.nl.",
-            "ns02.proisp.no.",
-            "ns01.proisp.no."
+          "AAAA": [
+            "4qw.nl."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "NTE-BREDBAND",
+          "abuse": "abuse@nteb.no",
+          "url": "mailto:abuse@nteb.no",
+          "logo": "https://i.ibb.co/N2yhwpNV/pr-NTE-BREDBAND.png",
+          "method": "email",
+          "asn": "AS44381"
+        }
       },
       "report_services": [
         {
@@ -223,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (c .4qw .nl/hy9zL99KGLitGx1U2x85mtKDNsPgf7HV/)\"; flow:established,to_server; http.uri; content:\"/hy9zL99KGLitGx1U2x85mtKDNsPgf7HV/\"; startswith; fast_pattern; http.host;  content:\"c.4qw.nl\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000243; classtype:social-engineering; sid:6000243; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T02:23:18.925773+00:00",
+  "updated_at": "2026-07-01T00:20:06.391461+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "lambruchona.com",
       "domain_defanged": "lambruchona[.]com",
-      "case_id": "PD-20260627-2BB4D9",
-      "analyzed_at": "2026-06-27T21:05:04.641Z",
+      "case_id": "PD-20260702-2BB4D9",
+      "analyzed_at": "2026-07-02T02:46:04.972Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eecd8-f391-71ec-80ae-2d5fa0d16695.png",
+          "url": "https://urlscan.io/result/019eecd8-f391-71ec-80ae-2d5fa0d16695/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Name SRS AB",
         "created": "2025-07-31T05:02:14Z",
         "expires": "2026-07-31T05:02:14Z",
-        "age_days": 331,
+        "age_days": 335,
         "nameservers": [
           "GANZ.NS.CLOUDFLARE.COM",
           "MICHELLE.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lambruchona.com/-8d4NWe)\"; flow:established,to_server; http.uri; content:\"/-8d4NWe\"; startswith; fast_pattern; http.host; content:\"lambruchona.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015157; classtype:social-engineering; sid:6015157; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T21:04:55.484976+00:00",
+  "updated_at": "2026-07-02T02:45:58.464055+00:00",
   "probe": {
     "dns": false,
     "whois": false,

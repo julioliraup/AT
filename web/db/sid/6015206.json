@@ -73,27 +73,43 @@
     "phishdestroy": {
       "domain": "facebook-login-page-kappa.vercel.app",
       "domain_defanged": "facebook-login-page-kappa[.]vercel[.]app",
-      "case_id": "PD-20260627-270F9B",
-      "analyzed_at": "2026-06-27T21:05:44.871Z",
+      "case_id": "PD-20260702-270F9B",
+      "analyzed_at": "2026-07-02T02:46:42.035Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f0ae7-1577-71bf-b13a-f75b5ea43e67/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1c88-05fc-760a-ab75-e2f9970f786a.png",
+          "url": "https://urlscan.io/result/019f1c88-05fc-760a-ab75-e2f9970f786a/",
+          "title": "Create Next App"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "216.198.79.2",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.198.79.2",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "216.198.79.2",
@@ -103,7 +119,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -231,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (facebook-login-page-kappa.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"facebook-login-page-kappa.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015206; classtype:social-engineering; sid:6015206; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T21:10:53.032062+00:00",
+  "updated_at": "2026-07-02T02:53:18.541077+00:00",
   "probe": {
     "dns": true,
     "whois": false,

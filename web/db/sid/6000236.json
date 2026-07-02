@@ -50,27 +50,55 @@
     "phishdestroy": {
       "domain": "central-hub.credit-agency-meta.com",
       "domain_defanged": "central-hub[.]credit-agency-meta[.]com",
-      "case_id": "PD-20260628-626D20",
-      "analyzed_at": "2026-06-28T23:17:47.614Z",
+      "case_id": "PD-20260630-626D20",
+      "analyzed_at": "2026-06-30T03:40:22.304Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1625-5adc-761d-8ff5-908f8d1b8ec5.png",
+          "url": "https://urlscan.io/result/019e1625-5adc-761d-8ff5-908f8d1b8ec5/",
+          "title": "Accounts Centre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:7::60",
+        "ipinfo": {
+          "ip": "2606:4700:7::60",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -198,7 +226,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (central-hub .credit-agency-meta .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"central-hub.credit-agency-meta.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000236; classtype:social-engineering; sid:6000236; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T02:22:54.151031+00:00",
+  "updated_at": "2026-07-01T00:19:17.434867+00:00",
   "probe": {
     "dns": false,
     "whois": false,

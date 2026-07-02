@@ -73,35 +73,51 @@
     "phishdestroy": {
       "domain": "tpg-pilot-platform.pages.dev",
       "domain_defanged": "tpg-pilot-platform[.]pages[.]dev",
-      "case_id": "PD-20260629-432499",
-      "analyzed_at": "2026-06-29T17:38:47.035Z",
+      "case_id": "PD-20260701-432499",
+      "analyzed_at": "2026-07-01T10:49:30.475Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1476-524f-714b-95ce-ab9ec135383c.png",
           "url": "https://urlscan.io/result/019f1476-524f-714b-95ce-ab9ec135383c/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.45",
-        "ipinfo": null,
+        "ip": "172.66.44.211",
+        "ipinfo": {
+          "ip": "172.66.44.211",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "172.66.44.211",
+            "172.66.47.45"
+          ],
           "AAAA": [
             "2606:4700:310c::ac42:2cd3",
             "2606:4700:310c::ac42:2f2d"
-          ],
-          "A": [
-            "172.66.47.45",
-            "172.66.44.211"
           ],
           "NS": [
             "izabella.ns.cloudflare.com.",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -238,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tpg-pilot-platform.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tpg-pilot-platform.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007656; classtype:social-engineering; sid:6007656; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T17:38:38.504593+00:00",
+  "updated_at": "2026-07-01T10:49:21.622530+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -55,27 +55,55 @@
     "phishdestroy": {
       "domain": "gov-parklngv.cyou",
       "domain_defanged": "gov-parklngv[.]cyou",
-      "case_id": "PD-20260629-52382F",
-      "analyzed_at": "2026-06-29T17:07:07.881Z",
+      "case_id": "PD-20260701-52382F",
+      "analyzed_at": "2026-07-01T10:22:58.917Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e721a-ee83-768a-917e-b218d4f16409.png",
+          "url": "https://urlscan.io/result/019e721a-ee83-768a-917e-b218d4f16409/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "129.226.204.78",
+        "ipinfo": {
+          "ip": "129.226.204.78",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -202,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parklngv.cyou/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parklngv.cyou\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007423; classtype:social-engineering; sid:6007423; rev:1; metadata: signature_severity Major, created_et 2026_05_26, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T17:07:04.953622+00:00",
+  "updated_at": "2026-07-01T10:22:54.931378+00:00",
   "probe": {
     "dns": true,
     "whois": true,

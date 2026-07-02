@@ -50,21 +50,68 @@
     "phishdestroy": {
       "domain": "ul60ezvizj2.wixsite.com",
       "domain_defanged": "ul60ezvizj2[.]wixsite[.]com",
-      "case_id": "PD-20260628-5AD6A7",
-      "analyzed_at": "2026-06-28T22:53:33.852Z",
+      "case_id": "PD-20260630-5AD6A7",
+      "analyzed_at": "2026-06-30T03:12:06.133Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f1070-20fa-725c-b94b-c365c38dcf56.png",
           "url": "https://urlscan.io/result/019f1070-20fa-725c-b94b-c365c38dcf56/",
-          "pending": true
+          "title": "404 Error: Page Not Found | Wix.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -72,21 +119,21 @@
         "ip": "username-ccm.wixsite.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "username-ccm.wixsite.com.",
-            "username-ccm-206-118.wixsite.com."
-          ],
-          "MX": [
-            "username-ccm.wixsite.com.",
-            "username-ccm-206-118.wixsite.com."
-          ],
           "A": [
             "username-ccm.wixsite.com.",
             "username-ccm-206-118.wixsite.com.",
             "34.144.206.118"
           ],
+          "AAAA": [
+            "username-ccm.wixsite.com.",
+            "username-ccm-206-118.wixsite.com."
+          ],
           "CNAME": [
             "username-ccm.wixsite.com."
+          ],
+          "MX": [
+            "username-ccm.wixsite.com.",
+            "username-ccm-206-118.wixsite.com."
           ],
           "NS": [
             "username-ccm.wixsite.com.",
@@ -96,7 +143,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -224,7 +278,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ul60ezvizj2 .wixsite .com/my-site-1)\"; flow:established,to_server; http.uri; content:\"/my-site-1\"; startswith; fast_pattern; http.host;  content:\"ul60ezvizj2.wixsite.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000012; classtype:social-engineering; sid:6000012; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T02:04:14.440369+00:00",
+  "updated_at": "2026-06-30T23:49:33.282396+00:00",
   "probe": {
     "dns": true,
     "whois": false,

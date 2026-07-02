@@ -56,37 +56,70 @@
     "phishdestroy": {
       "domain": "is.gd",
       "domain_defanged": "is[.]gd",
-      "case_id": "PD-20260628-5FCA42",
-      "analyzed_at": "2026-06-28T23:12:05.586Z",
+      "case_id": "PD-20260701-5FCA42",
+      "analyzed_at": "2026-07-01T00:13:40.221Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f1081-18ab-76ae-b8b2-1bbe32cded4a/",
+          "url": "https://urlscan.io/result/019f1b06-36fa-76d0-b8d7-42f5885a40b9/",
           "pending": true
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.25.234.53",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.25.234.53",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:20::6819:e935",
-            "2606:4700:20::6819:ea35",
-            "2606:4700:20::ac43:5384"
-          ],
           "A": [
             "104.25.234.53",
             "104.25.233.53",
             "172.67.83.132"
+          ],
+          "AAAA": [
+            "2606:4700:20::6819:ea35",
+            "2606:4700:20::6819:e935",
+            "2606:4700:20::ac43:5384"
           ],
           "MX": [
             "1 aspmx.l.google.com.",
@@ -103,7 +136,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -226,12 +266,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .is .gd/Pex2mf/)\"; flow:established,to_server; http.uri; content:\"/Pex2mf/\"; startswith; fast_pattern; http.host;  content:\"www.is.gd\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000175; classtype:social-engineering; sid:6000175; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T02:17:48.290588+00:00",
+  "updated_at": "2026-07-01T00:13:30.592953+00:00",
   "probe": {
     "dns": true,
     "whois": true,

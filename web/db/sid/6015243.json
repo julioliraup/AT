@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "gingersnapsok.com",
       "domain_defanged": "gingersnapsok[.]com",
-      "case_id": "PD-20260627-1F54F7",
-      "analyzed_at": "2026-06-27T21:16:15.902Z",
+      "case_id": "PD-20260702-1F54F7",
+      "analyzed_at": "2026-07-02T02:57:44.180Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef117-3ee4-736b-97fa-02a393341541.png",
+          "url": "https://urlscan.io/result/019ef117-3ee4-736b-97fa-02a393341541/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname 420 Inc",
         "created": "2025-07-21T18:20:33Z",
         "expires": "2026-07-21T18:20:33Z",
-        "age_days": 341,
+        "age_days": 345,
         "nameservers": [
           "ALEXA.NS.CLOUDFLARE.COM",
           "LEE.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "MX": [
             "1 smtp.google.com."
@@ -91,7 +112,14 @@
           "method": "form",
           "iana_ids": "1923"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -218,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gingersnapsok.com/hx_R5FM)\"; flow:established,to_server; http.uri; content:\"/hx_R5FM\"; startswith; fast_pattern; http.host; content:\"gingersnapsok.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015243; classtype:social-engineering; sid:6015243; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T21:16:12.625315+00:00",
+  "updated_at": "2026-07-02T02:57:38.840860+00:00",
   "probe": {
     "dns": false,
     "whois": false,

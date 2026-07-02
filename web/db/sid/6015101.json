@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "t-mobile.xzpbmk.top",
       "domain_defanged": "t-mobile[.]xzpbmk[.]top",
-      "case_id": "PD-20260627-97DC9D",
-      "analyzed_at": "2026-06-27T20:58:18.645Z",
+      "case_id": "PD-20260702-97DC9D",
+      "analyzed_at": "2026-07-02T02:38:44.661Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eed0b-0802-715b-8de5-66206f2fe513.png",
+          "url": "https://urlscan.io/result/019eed0b-0802-715b-8de5-66206f2fe513/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3030::6815:54c1",
+        "ipinfo": {
+          "ip": "2606:4700:3030::6815:54c1",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.xzpbmk.top/pay/_frame/a_index.html)\"; flow:established,to_server; http.uri; content:\"/pay/_frame/a_index.html\"; startswith; fast_pattern; http.host; content:\"t-mobile.xzpbmk.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015101; classtype:social-engineering; sid:6015101; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T20:58:15.683708+00:00",
+  "updated_at": "2026-07-02T02:38:33.596669+00:00",
   "probe": {
     "dns": false,
     "whois": false,

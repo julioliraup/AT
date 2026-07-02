@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "aktiffkan-paylater.zkk.my.id",
       "domain_defanged": "aktiffkan-paylater[.]zkk[.]my[.]id",
-      "case_id": "PD-20260627-68FFB0",
-      "analyzed_at": "2026-06-27T21:09:38.785Z",
+      "case_id": "PD-20260702-68FFB0",
+      "analyzed_at": "2026-07-02T02:51:59.887Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0aea-a72d-7379-b147-aa51c816de90.png",
           "url": "https://urlscan.io/result/019f0aea-a72d-7379-b147-aa51c816de90/",
-          "pending": true
+          "title": "Costumer Care"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3030::ac43:b18a",
-            "2606:4700:3034::6815:4851"
-          ],
           "A": [
             "172.67.177.138",
             "104.21.72.81"
+          ],
+          "AAAA": [
+            "2606:4700:3033::6815:4851",
+            "2606:4700:3033::ac43:b18a"
           ]
         }
       },
@@ -248,10 +257,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aktiffkan-paylater.zkk.my.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aktiffkan-paylater.zkk.my.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015192; classtype:social-engineering; sid:6015192; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T21:09:29.372274+00:00",
+  "updated_at": "2026-07-02T02:51:49.486957+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

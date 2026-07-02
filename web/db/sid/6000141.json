@@ -76,27 +76,76 @@
     "phishdestroy": {
       "domain": "dhlexpress.ee",
       "domain_defanged": "dhlexpress[.]ee",
-      "case_id": "PD-20260628-4F3029",
-      "analyzed_at": "2026-06-28T23:08:15.163Z",
+      "case_id": "PD-20260701-4F3029",
+      "analyzed_at": "2026-07-01T00:09:10.156Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Phishing Database",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "BitDefender": "onlineshop",
+            "Forcepoint ThreatSeeker": "business and economy",
+            "alphaMountain.ai": "Information Technology, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f107d-9989-7025-b89e-12b346b63bf1.png",
           "url": "https://urlscan.io/result/019f107d-9989-7025-b89e-12b346b63bf1/",
-          "pending": true
+          "title": "DHL EXPRESS | Ekspress saadetis välismaale, online saatmise arvutamine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Phishing Database",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "81.95.110.236",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "81.95.110.236",
+          "hostname": "gds200.active24.cz",
+          "city": "Prague",
+          "region": "Prague",
+          "country": "CZ",
+          "org": "AS25234 ACTIVE 24, s.r.o.",
+          "asn": "AS25234"
+        },
         "dns": {
           "A": [
             "81.95.110.236"
@@ -235,12 +284,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dhlexpress .ee/en/fraudulent-sms-alert)\"; flow:established,to_server; http.uri; content:\"/en/fraudulent-sms-alert\"; startswith; fast_pattern; http.host;  content:\"dhlexpress.ee\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000141; classtype:social-engineering; sid:6000141; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T02:15:05.505361+00:00",
+  "updated_at": "2026-07-01T00:09:04.955641+00:00",
   "probe": {
     "dns": true,
     "whois": true,

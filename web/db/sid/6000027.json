@@ -74,27 +74,55 @@
     "phishdestroy": {
       "domain": "nnewsdana-lyanindonx.safaather.biz.id",
       "domain_defanged": "nnewsdana-lyanindonx[.]safaather[.]biz[.]id",
-      "case_id": "PD-20260628-5C35F4",
-      "analyzed_at": "2026-06-28T22:55:01.104Z",
+      "case_id": "PD-20260630-5C35F4",
+      "analyzed_at": "2026-06-30T03:14:37.302Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7b2a-83c7-72ec-a703-ca93c47a5761.png",
+          "url": "https://urlscan.io/result/019e7b2a-83c7-72ec-a703-ca93c47a5761/",
+          "title": "𝗗𝗔𝗡𝗔 | 𝗖𝘂𝘀𝘁𝗼𝗺𝗲𝗿 𝗖𝗮𝗿𝗲 𝗗𝗔𝗡𝗔"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.215.130",
+        "ipinfo": {
+          "ip": "172.67.215.130",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -222,10 +250,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nnewsdana-lyanindonx .safaather .biz .id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"nnewsdana-lyanindonx.safaather.biz.id\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000027; classtype:social-engineering; sid:6000027; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-29T02:05:37.257882+00:00",
+  "updated_at": "2026-06-30T23:50:54.385045+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

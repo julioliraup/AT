@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "dokument-cembra.com",
       "domain_defanged": "dokument-cembra[.]com",
-      "case_id": "PD-20260627-1EC479",
-      "analyzed_at": "2026-06-27T21:05:57.104Z",
+      "case_id": "PD-20260702-1EC479",
+      "analyzed_at": "2026-07-02T02:47:14.525Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Cembra"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef726-aefc-7392-9445-51d187bdd63f.png",
+          "url": "https://urlscan.io/result/019ef726-aefc-7392-9445-51d187bdd63f/",
+          "title": "Cembra Money Bank"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Cembra",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "209.97.149.25",
+        "ipinfo": {
+          "ip": "209.97.149.25",
+          "hostname": "1632096.cloudwaysapps.com",
+          "city": "Clifton",
+          "region": "New Jersey",
+          "country": "US",
+          "org": "AS14061 DigitalOcean, LLC",
+          "asn": "AS14061"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DigitalOcean",
+          "abuse": "abuse@digitalocean.com",
+          "url": "https://www.digitalocean.com/company/contact#abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14061"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dokument-cembra.com/e-dokument/web-tag/index.php)\"; flow:established,to_server; http.uri; content:\"/e-dokument/web-tag/index.php\"; startswith; fast_pattern; http.host; content:\"dokument-cembra.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015164; classtype:social-engineering; sid:6015164; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-06-27T21:05:48.205246+00:00",
+  "updated_at": "2026-07-02T02:47:09.661415+00:00",
   "probe": {
     "dns": false,
     "whois": false,
