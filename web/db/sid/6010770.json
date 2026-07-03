@@ -18,58 +18,34 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://https-544nddedc44342442442423232342-e3a8.tony-f61.workers.dev/",
-      "domain": "https-544nddedc44342442442423232342-e3a8.tony-f61.workers.dev",
-      "url_count": 5,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "104.21.11.207",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a28b3df95ef1-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "03f7dd9ee4ea3146f3b9baf38de0b5ef18410c60cb79f123eb14b54b6b8b00d9",
-      "md5": "5fd845d9a420d5dcf1059b07bb82ee79",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-06-25T08:31:47",
-      "first_seen_secs": 1782376307.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "https-544nddedc44342442442423232342-e3a8.tony-f61.workers.dev",
       "domain_defanged": "https-544nddedc44342442442423232342-e3a8[.]tony-f61[.]workers[.]dev",
-      "case_id": "PD-20260701-44B3BD",
-      "analyzed_at": "2026-07-01T16:46:30.838Z",
+      "case_id": "PD-20260703-44B3BD",
+      "analyzed_at": "2026-07-03T00:51:39.790Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1e93-2f81-712a-9763-eeb946a329fe.png",
           "url": "https://urlscan.io/result/019f1e93-2f81-712a-9763-eeb946a329fe/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -230,7 +206,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (https-544nddedc44342442442423232342-e3a8.tony-f61.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"https-544nddedc44342442442423232342-e3a8.tony-f61.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010770; classtype:social-engineering; sid:6010770; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T16:46:27.466254+00:00",
+  "updated_at": "2026-07-03T00:51:21.381412+00:00",
   "probe": {
     "dns": true,
     "whois": false,

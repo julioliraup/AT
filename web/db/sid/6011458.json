@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp10ct6-trurnex-biz-vralnik-glotor.pages.dev",
       "domain_defanged": "sp10ct6-trurnex-biz-vralnik-glotor[.]pages[.]dev",
-      "case_id": "PD-20260701-2296B1",
-      "analyzed_at": "2026-07-01T18:10:26.265Z",
+      "case_id": "PD-20260703-2296B1",
+      "analyzed_at": "2026-07-03T02:35:28.263Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ee0-0612-706e-bcdd-cfc1959e891c.png",
           "url": "https://urlscan.io/result/019f1ee0-0612-706e-bcdd-cfc1959e891c/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-trurnex-biz-vralnik-glotor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-trurnex-biz-vralnik-glotor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011458; classtype:social-engineering; sid:6011458; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:10:11.294286+00:00",
+  "updated_at": "2026-07-03T02:35:24.508402+00:00",
   "probe": {
     "dns": true,
     "whois": false,

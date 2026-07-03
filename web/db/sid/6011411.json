@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "appchsbb.partnersbbswisspassch.com",
       "domain_defanged": "appchsbb[.]partnersbbswisspassch[.]com",
-      "case_id": "PD-20260701-1A44FC",
-      "analyzed_at": "2026-07-01T18:03:27.557Z",
+      "case_id": "PD-20260703-1A44FC",
+      "analyzed_at": "2026-07-03T02:29:27.001Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "S-Pankki"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec737-86a9-729c-9fd8-28a441a0cd9e.png",
+          "url": "https://urlscan.io/result/019ec737-86a9-729c-9fd8-28a441a0cd9e/",
+          "title": "Tunnistautuminen - S-Pankki"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: S-Pankki",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "203.161.63.14",
+        "ipinfo": {
+          "ip": "203.161.63.14",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS22612 Namecheap, Inc.",
+          "asn": "AS22612"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Namecheap Hosting",
+          "abuse": "abuse@namecheap.com",
+          "url": "https://support.namecheap.com/index.php?/Tickets/Submit",
+          "logo": "",
+          "method": "form",
+          "asn": "AS22612"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (appchsbb.partnersbbswisspassch.com/protechsupconectappch/login.php)\"; flow:established,to_server; http.uri; content:\"/protechsupconectappch/login.php\"; startswith; fast_pattern; http.host; content:\"appchsbb.partnersbbswisspassch.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011411; classtype:social-engineering; sid:6011411; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:03:24.081613+00:00",
+  "updated_at": "2026-07-03T02:29:23.014830+00:00",
   "probe": {
     "dns": false,
     "whois": false,

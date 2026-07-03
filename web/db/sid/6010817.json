@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "sp5ct6-tramvor-biz-dranqor-vralnix.pages.dev",
       "domain_defanged": "sp5ct6-tramvor-biz-dranqor-vralnix[.]pages[.]dev",
-      "case_id": "PD-20260701-736842",
-      "analyzed_at": "2026-07-01T16:51:07.408Z",
+      "case_id": "PD-20260703-736842",
+      "analyzed_at": "2026-07-03T00:58:40.772Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1e97-67ad-7702-9902-9c0c6764e855.png",
           "url": "https://urlscan.io/result/019f1e97-67ad-7702-9902-9c0c6764e855/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.243",
+        "ip": "172.66.47.13",
         "ipinfo": {
-          "ip": "172.66.44.243",
+          "ip": "172.66.47.13",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -88,13 +97,13 @@
             "2606:4700:310c::ac42:2cf3",
             "2606:4700:310c::ac42:2f0d"
           ],
-          "A": [
-            "172.66.44.243",
-            "172.66.47.13"
-          ],
           "NS": [
             "eugene.ns.cloudflare.com.",
             "paislee.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.47.13",
+            "172.66.44.243"
           ]
         }
       },
@@ -234,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-tramvor-biz-dranqor-vralnix.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-tramvor-biz-dranqor-vralnix.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010817; classtype:social-engineering; sid:6010817; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T16:51:04.364120+00:00",
+  "updated_at": "2026-07-03T00:58:27.542351+00:00",
   "probe": {
     "dns": true,
     "whois": false,

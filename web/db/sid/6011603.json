@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://sp10ct6-tralvik-biz-frunex-qormax.pages.dev/",
       "domain": "sp10ct6-tralvik-biz-frunex-qormax.pages.dev",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.45.2",
+      "ip": "172.66.46.254",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a3700bdd3741-PDX",
+        "cf_ray": "a14a75edada0c12a-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "a769304c09b598b2446b250c959d6f9a62938ca26b8bfa8b294b15bf56c370bc",
-      "md5": "8794124e8b2efdd6e18ec9f95a3e927c",
+      "sha256": "7ca8ac875d02e975ae7265e06e8b9732063759736b2d45ebb15bdc198138e1eb",
+      "md5": "ce6a6a4f099b718d20c3f7a0e8d96366",
       "cert": {
         "subject_cn": "sp10ct6-tralvik-biz-frunex-qormax.pages.dev",
         "subject_alt_names": [
@@ -67,27 +67,36 @@
         "fingerprint_sha256": "91 6E 6C 86 61 5E F5 FD 8B 2C F8 99 AE E7 0B CC E0 74 44 1F 89 9F FF 67 11 F9 EC 58 82 CC 4A D9"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:04",
-      "first_seen_secs": 1782376324.0
+      "first_seen": "2026-07-02T03:00:40",
+      "first_seen_secs": 1782961240.0
     },
     "phishdestroy": {
       "domain": "sp10ct6-tralvik-biz-frunex-qormax.pages.dev",
       "domain_defanged": "sp10ct6-tralvik-biz-frunex-qormax[.]pages[.]dev",
-      "case_id": "PD-20260701-B1BFAC",
-      "analyzed_at": "2026-07-01T18:29:45.940Z",
+      "case_id": "PD-20260703-B1BFAC",
+      "analyzed_at": "2026-07-03T02:54:03.411Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ef1-b49e-70fb-acfd-e6f564d6c387/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2070-6c63-76aa-9d04-cbb4337891fd.png",
+          "url": "https://urlscan.io/result/019f2070-6c63-76aa-9d04-cbb4337891fd/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -107,8 +116,8 @@
             "172.66.46.254"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2d02",
-            "2606:4700:310c::ac42:2efe"
+            "2606:4700:310c::ac42:2efe",
+            "2606:4700:310c::ac42:2d02"
           ],
           "NS": [
             "bella.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-tralvik-biz-frunex-qormax.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-tralvik-biz-frunex-qormax.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011603; classtype:social-engineering; sid:6011603; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:29:36.532966+00:00",
+  "updated_at": "2026-07-03T02:53:59.340443+00:00",
   "probe": {
     "dns": true,
     "whois": false,

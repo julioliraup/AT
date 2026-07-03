@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp0ct0-tenqor-biz-vralik-mosdu.pages.dev",
       "domain_defanged": "sp0ct0-tenqor-biz-vralik-mosdu[.]pages[.]dev",
-      "case_id": "PD-20260701-69BE28",
-      "analyzed_at": "2026-07-01T18:07:18.838Z",
+      "case_id": "PD-20260703-69BE28",
+      "analyzed_at": "2026-07-03T02:33:29.348Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1edd-2a37-7399-953c-f1e215428ea4.png",
           "url": "https://urlscan.io/result/019f1edd-2a37-7399-953c-f1e215428ea4/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -107,8 +116,8 @@
             "172.66.44.111"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f91",
-            "2606:4700:310c::ac42:2c6f"
+            "2606:4700:310c::ac42:2c6f",
+            "2606:4700:310c::ac42:2f91"
           ],
           "NS": [
             "etta.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp0ct0-tenqor-biz-vralik-mosdu.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp0ct0-tenqor-biz-vralik-mosdu.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011441; classtype:social-engineering; sid:6011441; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:07:03.585155+00:00",
+  "updated_at": "2026-07-03T02:33:24.611871+00:00",
   "probe": {
     "dns": true,
     "whois": false,

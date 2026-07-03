@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "localsites.hrbonuses.com",
       "domain_defanged": "localsites[.]hrbonuses[.]com",
-      "case_id": "PD-20260701-65A920",
-      "analyzed_at": "2026-07-01T18:03:32.809Z",
+      "case_id": "PD-20260703-65A920",
+      "analyzed_at": "2026-07-03T02:29:30.666Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ed9-b6d2-735d-8465-3344213cb895/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ede-a7ef-716c-8fe6-26b78fde5c9e.png",
+          "url": "https://urlscan.io/result/019f1ede-a7ef-716c-8fe6-26b78fde5c9e/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -221,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (localsites.hrbonuses.com/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"localsites.hrbonuses.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011412; classtype:social-engineering; sid:6011412; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:03:27.668224+00:00",
+  "updated_at": "2026-07-03T02:29:27.128722+00:00",
   "probe": {
     "dns": true,
     "whois": false,

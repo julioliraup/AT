@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://www.d666f999.shop/",
       "domain": "www.d666f999.shop",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
@@ -43,28 +43,49 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:33:22",
+      "first_seen": "2026-07-02T03:04:04",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "d666f999.shop",
       "domain_defanged": "d666f999[.]shop",
-      "case_id": "PD-20260701-1A0FB6",
-      "analyzed_at": "2026-07-01T16:47:34.036Z",
+      "case_id": "PD-20260703-1A0FB6",
+      "analyzed_at": "2026-07-03T00:52:50.080Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fake Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e92bb-7e5a-74ef-bbbf-b00ac866e2d5.png",
+          "url": "https://urlscan.io/result/019e92bb-7e5a-74ef-bbbf-b00ac866e2d5/",
+          "title": "Shopee"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fake Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "27.124.40.187",
+        "ipinfo": {
+          "ip": "27.124.40.187",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS152194 CTG Server Limited",
+          "asn": "AS152194"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.d666f999.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.d666f999.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010780; classtype:social-engineering; sid:6010780; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T16:47:30.238110+00:00",
+  "updated_at": "2026-07-03T00:52:35.491130+00:00",
   "probe": {
     "dns": false,
     "whois": false,

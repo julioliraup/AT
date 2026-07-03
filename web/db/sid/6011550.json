@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://www.14152.xyz/",
       "domain": "www.14152.xyz",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
@@ -43,28 +43,49 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:05",
+      "first_seen": "2026-07-02T03:00:41",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "14152.xyz",
       "domain_defanged": "14152[.]xyz",
-      "case_id": "PD-20260701-7D0214",
-      "analyzed_at": "2026-07-01T18:23:39.170Z",
+      "case_id": "PD-20260703-7D0214",
+      "analyzed_at": "2026-07-03T02:46:13.438Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea031-0341-7415-b124-a52cb7956701.png",
+          "url": "https://urlscan.io/result/019ea031-0341-7415-b124-a52cb7956701/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "206.119.118.65",
+        "ipinfo": {
+          "ip": "206.119.118.65",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS18186 Nebula Global LLC",
+          "asn": "AS18186"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.14152.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.14152.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011550; classtype:social-engineering; sid:6011550; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:23:32.102993+00:00",
+  "updated_at": "2026-07-03T02:45:59.014192+00:00",
   "probe": {
     "dns": false,
     "whois": false,

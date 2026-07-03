@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "mail.au.expressparcel.com.sg",
       "domain_defanged": "mail[.]au[.]expressparcel[.]com[.]sg",
-      "case_id": "PD-20260701-52B439",
-      "analyzed_at": "2026-07-01T17:55:23.990Z",
+      "case_id": "PD-20260703-52B439",
+      "analyzed_at": "2026-07-03T02:22:12.427Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ed2-4092-74a0-8858-51e9a96707cd/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ee2-f687-7169-a8d1-56ffa8ad7db9.png",
+          "url": "https://urlscan.io/result/019f1ee2-f687-7169-a8d1-56ffa8ad7db9/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -221,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail.au.expressparcel.com.sg/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"mail.au.expressparcel.com.sg\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011342; classtype:social-engineering; sid:6011342; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:55:10.504823+00:00",
+  "updated_at": "2026-07-03T02:22:06.704921+00:00",
   "probe": {
     "dns": true,
     "whois": true,

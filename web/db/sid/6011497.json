@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://sp0ct0-brenuk-biz-faltem-qurvo.pages.dev/",
       "domain": "sp0ct0-brenuk-biz-faltem-qurvo.pages.dev",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.47.182",
+      "ip": "172.66.44.74",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113b6709b36c54c-PDX",
+        "cf_ray": "a14a75d38c1558c2-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "c96d5b82779e72ae0e2f363ad5f08694306b3327d6381bc7e78781cb23a69e69",
-      "md5": "4f3ce75e514bda0a54055e057c2fc317",
+      "sha256": "4b323a5b5b82724e510819e34209e5712f9bf95edca6bf1cf54b838f13eedf9a",
+      "md5": "3f0f567b6dcba9b2d1922dac935fa516",
       "cert": {
         "subject_cn": "sp0ct0-brenuk-biz-faltem-qurvo.pages.dev",
         "subject_alt_names": [
@@ -67,34 +67,43 @@
         "fingerprint_sha256": "D8 45 12 EA 90 47 58 B6 44 15 83 0F F5 8E 8B F3 6D 21 B7 26 4E B0 DD B1 0C CB 4C 94 93 7F 6A 6F"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:05",
-      "first_seen_secs": 1782376325.0
+      "first_seen": "2026-07-02T03:00:42",
+      "first_seen_secs": 1782961242.0
     },
     "phishdestroy": {
       "domain": "sp0ct0-brenuk-biz-faltem-qurvo.pages.dev",
       "domain_defanged": "sp0ct0-brenuk-biz-faltem-qurvo[.]pages[.]dev",
-      "case_id": "PD-20260701-3174BB",
-      "analyzed_at": "2026-07-01T18:16:52.176Z",
+      "case_id": "PD-20260703-3174BB",
+      "analyzed_at": "2026-07-03T02:38:54.827Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ee5-e9d8-70bb-8bc4-177ba7356210/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1eef-219e-7629-bce5-c2bbcb631532.png",
+          "url": "https://urlscan.io/result/019f1eef-219e-7629-bce5-c2bbcb631532/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.182",
+        "ip": "172.66.44.74",
         "ipinfo": {
-          "ip": "172.66.47.182",
+          "ip": "172.66.44.74",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.47.182",
-            "172.66.44.74"
-          ],
           "AAAA": [
-            "2606:4700:310c::ac42:2fb6",
-            "2606:4700:310c::ac42:2c4a"
+            "2606:4700:310c::ac42:2c4a",
+            "2606:4700:310c::ac42:2fb6"
+          ],
+          "A": [
+            "172.66.44.74",
+            "172.66.47.182"
           ],
           "NS": [
             "cris.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp0ct0-brenuk-biz-faltem-qurvo.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp0ct0-brenuk-biz-faltem-qurvo.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011497; classtype:social-engineering; sid:6011497; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:16:49.271777+00:00",
+  "updated_at": "2026-07-03T02:38:51.219308+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -18,25 +18,61 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://wedfew1.pages.dev/amz-books/discover?node=1",
+      "domain": "wedfew1.pages.dev",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "wedfew1.pages.dev",
       "domain_defanged": "wedfew1[.]pages[.]dev",
-      "case_id": "PD-20260701-228298",
-      "analyzed_at": "2026-07-01T18:15:33.780Z",
+      "case_id": "PD-20260703-228298",
+      "analyzed_at": "2026-07-03T02:38:22.888Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ee4-b74f-75a2-8cc6-cb0dc0be70a4.png",
           "url": "https://urlscan.io/result/019f1ee4-b74f-75a2-8cc6-cb0dc0be70a4/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -56,8 +92,8 @@
             "172.66.44.215"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f29",
-            "2606:4700:310c::ac42:2cd7"
+            "2606:4700:310c::ac42:2cd7",
+            "2606:4700:310c::ac42:2f29"
           ],
           "NS": [
             "donna.ns.cloudflare.com.",
@@ -201,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wedfew1.pages.dev/amz-books/discover?node=1)\"; flow:established,to_server; http.uri; content:\"/amz-books/discover?node=1\"; startswith; fast_pattern; http.host; content:\"wedfew1.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011490; classtype:social-engineering; sid:6011490; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:15:20.852105+00:00",
+  "updated_at": "2026-07-03T02:38:19.273783+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -18,58 +18,34 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://sp5ct6-qravvik-biz-vroltor-plaqnik.pages.dev/",
-      "domain": "sp5ct6-qravvik-biz-vroltor-plaqnik.pages.dev",
-      "url_count": 5,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.66.45.30",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a698df05ff0a-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "c306c02f5575e42d67878c10371d4d380a78e77ff7e4a62fbfc09000b95c6dc2",
-      "md5": "975a11eaca7c77954aef9975093d3737",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:05",
-      "first_seen_secs": 1782376325.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "sp5ct6-qravvik-biz-vroltor-plaqnik.pages.dev",
       "domain_defanged": "sp5ct6-qravvik-biz-vroltor-plaqnik[.]pages[.]dev",
-      "case_id": "PD-20260701-2C9424",
-      "analyzed_at": "2026-07-01T18:32:33.566Z",
+      "case_id": "PD-20260703-2C9424",
+      "analyzed_at": "2026-07-03T02:56:40.930Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ef4-45ef-706b-bc30-c2a1e51dc5f7.png",
           "url": "https://urlscan.io/result/019f1ef4-45ef-706b-bc30-c2a1e51dc5f7/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,13 +60,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2d1e",
-            "2606:4700:310c::ac42:2ee2"
-          ],
           "A": [
             "172.66.45.30",
             "172.66.46.226"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2ee2",
+            "2606:4700:310c::ac42:2d1e"
           ],
           "NS": [
             "guy.ns.cloudflare.com.",
@@ -234,7 +210,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-qravvik-biz-vroltor-plaqnik.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-qravvik-biz-vroltor-plaqnik.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011626; classtype:social-engineering; sid:6011626; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:32:29.542952+00:00",
+  "updated_at": "2026-07-03T02:56:28.022779+00:00",
   "probe": {
     "dns": true,
     "whois": false,

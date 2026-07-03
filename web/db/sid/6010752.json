@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "portal.e-docssign.net",
       "domain_defanged": "portal[.]e-docssign[.]net",
-      "case_id": "PD-20260701-391DDB",
-      "analyzed_at": "2026-07-01T16:44:29.125Z",
+      "case_id": "PD-20260703-391DDB",
+      "analyzed_at": "2026-07-03T00:48:56.380Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1e91-4e5b-739b-979b-a262646031cc.png",
           "url": "https://urlscan.io/result/019f1e91-4e5b-739b-979b-a262646031cc/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -221,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (portal.e-docssign.net/education_redirect_second?475d964a-0243-46bf-aefd-66da26254efa)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?475d964a-0243-46bf-aefd-66da26254efa\"; startswith; fast_pattern; http.host; content:\"portal.e-docssign.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010752; classtype:social-engineering; sid:6010752; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T16:44:22.124719+00:00",
+  "updated_at": "2026-07-03T00:48:43.623932+00:00",
   "probe": {
     "dns": true,
     "whois": false,

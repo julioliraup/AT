@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://bitcompliancereview.com/",
       "domain": "bitcompliancereview.com",
-      "url_count": 7,
+      "url_count": 8,
       "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
@@ -43,28 +43,41 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:22:59",
+      "first_seen": "2026-07-02T02:41:34",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "bitcompliancereview.com",
       "domain_defanged": "bitcompliancereview[.]com",
-      "case_id": "PD-20260701-62BFF4",
-      "analyzed_at": "2026-07-01T17:50:50.705Z",
+      "case_id": "PD-20260703-62BFF4",
+      "analyzed_at": "2026-07-03T02:18:52.997Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DocuSign"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed974-57e7-70a0-82d1-4efa19facdbc.png",
+          "url": "https://urlscan.io/result/019ed974-57e7-70a0-82d1-4efa19facdbc/",
+          "title": "DocuSign - Download to View Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DocuSign",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Squarespace Domains LLC",
         "created": "2026-06-05T14:21:07Z",
         "expires": "2027-06-05T14:21:07Z",
-        "age_days": 26,
+        "age_days": 27,
         "nameservers": [
           "NSE1.SQUARESPACEDNS.COM",
           "NSE2.SQUARESPACEDNS.COM",
@@ -73,7 +86,15 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "91.92.241.250",
+        "ipinfo": {
+          "ip": "91.92.241.250",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS202412 Omegatech LTD",
+          "asn": "AS202412"
+        },
         "dns": null
       },
       "report_to": {
@@ -212,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bitcompliancereview.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bitcompliancereview.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011314; classtype:social-engineering; sid:6011314; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:50:40.091981+00:00",
+  "updated_at": "2026-07-03T02:18:46.107203+00:00",
   "probe": {
     "dns": false,
     "whois": false,

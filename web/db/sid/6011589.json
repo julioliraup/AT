@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://cool-bet365.com.cn/",
       "domain": "cool-bet365.com.cn",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (362), with CRLF line terminators",
-      "sha256": "1d05cbc268bc23347f605526d6cccfd32b4d309ad511b327355b06bcdb369bc5",
-      "md5": "2b21cbde944fef1ea9300f88c7016f10",
+      "sha256": "6108124c96657bc2e4a4ebcfaf1f031ffb562cdcc00326fe658864dce40efd3b",
+      "md5": "e00e069c531ae448757a5bda8a5fbfa2",
       "cert": {
         "subject_cn": "cool-kaiyunapp.com.cn",
         "subject_alt_names": [
@@ -165,27 +165,36 @@
         "fingerprint_sha256": "14 59 7A 82 93 43 36 1C C6 C4 ED 5F 3B 51 C8 CA 7E 01 72 8A ED 8D A4 41 DA 1B B8 7A CE FD 59 0E"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:05",
-      "first_seen_secs": 1782376325.0
+      "first_seen": "2026-07-02T03:00:40",
+      "first_seen_secs": 1782961240.0
     },
     "phishdestroy": {
       "domain": "cool-bet365.com.cn",
       "domain_defanged": "cool-bet365[.]com[.]cn",
-      "case_id": "PD-20260701-24F5F8",
-      "analyzed_at": "2026-07-01T18:27:47.128Z",
+      "case_id": "PD-20260703-24F5F8",
+      "analyzed_at": "2026-07-03T02:52:22.635Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1eef-e6f5-746c-a755-08f990b1eb55.png",
           "url": "https://urlscan.io/result/019f1eef-e6f5-746c-a755-08f990b1eb55/",
-          "pending": true
+          "title": "Bet365官网:尽享无与伦比的在线博彩体验-Bet365中国"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -200,12 +209,12 @@
           "asn": "AS134548"
         },
         "dns": {
-          "A": [
-            "45.199.18.112"
-          ],
           "NS": [
             "ns1.nowcndns.com.",
             "ns2.nowcndns.com."
+          ],
+          "A": [
+            "45.199.18.112"
           ]
         }
       },
@@ -345,7 +354,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cool-bet365.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cool-bet365.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011589; classtype:social-engineering; sid:6011589; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:27:41.087655+00:00",
+  "updated_at": "2026-07-03T02:52:17.247553+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://sp0ct0-quenza-biz-fralko-timve.pages.dev/",
       "domain": "sp0ct0-quenza-biz-fralko-timve.pages.dev",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.47.80",
+      "ip": "172.66.44.176",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a87fdf25d106-PDX",
+        "cf_ray": "a14a75c2ead5debd-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,31 +45,58 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "844781b4e05c841f6de7e48cbc58a0ce0a4671b4264bfceafddc80de0e201951",
-      "md5": "22655fb084834b0154c8855e5f448d10",
-      "cert": null,
+      "sha256": "a7de59c6673c5305b6a957a12b40fdb103c7d0308ed970227f3c29872c72fa59",
+      "md5": "9a25b7ffa1c97cf29a3f3534dc935919",
+      "cert": {
+        "subject_cn": "sp0ct0-quenza-biz-fralko-timve.pages.dev",
+        "subject_alt_names": [
+          "sp0ct0-quenza-biz-fralko-timve.pages.dev",
+          "*.sp0ct0-quenza-biz-fralko-timve.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-03T11:59:27+00:00",
+        "not_valid_after": "2026-09-01T12:57:58+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "58069882874312912300058059689481835925",
+        "fingerprint_sha1": "73 66 0D A5 44 06 29 20 7E F4 DD FC E1 64 B2 21 D4 39 DF 96",
+        "fingerprint_sha256": "A5 27 16 B2 F4 3F 11 0F FC BA 30 30 F0 8E F9 73 63 39 4D 7F FE 6F EC 43 F8 90 5D 0A 8B 89 44 37"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:02",
-      "first_seen_secs": 1782376322.0
+      "first_seen": "2026-07-02T03:00:37",
+      "first_seen_secs": 1782961237.0
     },
     "phishdestroy": {
       "domain": "sp0ct0-quenza-biz-fralko-timve.pages.dev",
       "domain_defanged": "sp0ct0-quenza-biz-fralko-timve[.]pages[.]dev",
-      "case_id": "PD-20260701-238C09",
-      "analyzed_at": "2026-07-01T17:51:58.975Z",
+      "case_id": "PD-20260703-238C09",
+      "analyzed_at": "2026-07-03T02:19:46.253Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ecf-1fc7-766e-8a35-a1310b52c396.png",
           "url": "https://urlscan.io/result/019f1ecf-1fc7-766e-8a35-a1310b52c396/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2f50",
+            "2606:4700:310c::ac42:2cb0"
+          ],
           "A": [
             "172.66.47.80",
             "172.66.44.176"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2cb0",
-            "2606:4700:310c::ac42:2f50"
           ],
           "NS": [
             "cris.ns.cloudflare.com.",
@@ -234,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp0ct0-quenza-biz-fralko-timve.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp0ct0-quenza-biz-fralko-timve.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011322; classtype:social-engineering; sid:6011322; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:51:50.315029+00:00",
+  "updated_at": "2026-07-03T02:19:43.454814+00:00",
   "probe": {
     "dns": true,
     "whois": false,

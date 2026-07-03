@@ -21,8 +21,8 @@
     "alienvault": {
       "url": "http://www.b3520.com/",
       "domain": "www.b3520.com",
-      "url_count": 3,
-      "city_data": false,
+      "url_count": 4,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -43,20 +43,24 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:38:15",
+      "first_seen": "2026-07-02T03:05:49",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "b3520.com",
       "domain_defanged": "b3520[.]com",
-      "case_id": "PD-20260702-403A2A",
-      "analyzed_at": "2026-07-02T03:03:27.597Z",
+      "case_id": "PD-20260703-403A2A",
+      "analyzed_at": "2026-07-03T09:25:19.119Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f274b-f8c7-7699-a2be-8a567da93943/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,15 +68,25 @@
         "registrar": "GoDaddy.com, LLC",
         "created": "2026-04-29T06:26:26Z",
         "expires": "2027-04-29T06:26:26Z",
-        "age_days": 63,
+        "age_days": 65,
         "nameservers": [
-          "NS1.DNS.COM",
-          "NS2.DNS.COM"
+          "NS57.DOMAINCONTROL.COM",
+          "NS58.DOMAINCONTROL.COM"
         ]
       },
       "infrastructure": {
+        "ip": "3.33.130.190",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "3.33.130.190",
+            "15.197.148.33"
+          ],
+          "NS": [
+            "ns58.domaincontrol.com.",
+            "ns57.domaincontrol.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": {
@@ -210,12 +224,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.b3520.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.b3520.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015302; classtype:social-engineering; sid:6015302; rev:1; metadata: signature_severity Major, created_et 2026_06_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T03:03:23.490631+00:00",
+  "updated_at": "2026-07-03T09:25:15.207883+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

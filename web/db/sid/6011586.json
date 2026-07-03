@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://sp5ct6-slarnor-biz-qolnix-tramtek.pages.dev/",
       "domain": "sp5ct6-slarnor-biz-qolnix-tramtek.pages.dev",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.45.2",
+      "ip": "172.66.46.254",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a64ebd0c1319-PDX",
+        "cf_ray": "a14a76c5bff84518-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "27a720c95137023d367af58987f4f851d520cb81d063103750339fa369dfdb3a",
-      "md5": "10fe43781ec9ecaeb24b6c718307b7d9",
+      "sha256": "774fcaae86b6479340bda442229fa7d2363252c26140827a5dc95885f73d1430",
+      "md5": "34d702a7a8715142c887de17fce9fce5",
       "cert": {
         "subject_cn": "sp5ct6-slarnor-biz-qolnix-tramtek.pages.dev",
         "subject_alt_names": [
@@ -67,34 +67,43 @@
         "fingerprint_sha256": "D2 EE 8F 46 DC FB 18 0C 88 F1 9B 84 E0 B4 1E 3C D5 20 2E 6F CE E4 E6 4E B1 ED D7 FB 98 7B 74 EA"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:03",
-      "first_seen_secs": 1782376323.0
+      "first_seen": "2026-07-02T03:00:38",
+      "first_seen_secs": 1782961238.0
     },
     "phishdestroy": {
       "domain": "sp5ct6-slarnor-biz-qolnix-tramtek.pages.dev",
       "domain_defanged": "sp5ct6-slarnor-biz-qolnix-tramtek[.]pages[.]dev",
-      "case_id": "PD-20260701-F4613C",
-      "analyzed_at": "2026-07-01T18:27:27.774Z",
+      "case_id": "PD-20260703-F4613C",
+      "analyzed_at": "2026-07-03T02:52:06.765Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1eef-9b47-733d-9548-3a236d06ae6f.png",
           "url": "https://urlscan.io/result/019f1eef-9b47-733d-9548-3a236d06ae6f/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.45.2",
+        "ip": "172.66.46.254",
         "ipinfo": {
-          "ip": "172.66.45.2",
+          "ip": "172.66.46.254",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "172.66.45.2",
-            "172.66.46.254"
+            "172.66.46.254",
+            "172.66.45.2"
           ],
           "AAAA": [
             "2606:4700:310c::ac42:2efe",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-slarnor-biz-qolnix-tramtek.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-slarnor-biz-qolnix-tramtek.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011586; classtype:social-engineering; sid:6011586; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:27:25.060459+00:00",
+  "updated_at": "2026-07-03T02:52:04.140622+00:00",
   "probe": {
     "dns": true,
     "whois": false,

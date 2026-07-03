@@ -21,20 +21,14 @@
     "alienvault": {
       "url": "http://sp5ct6-vrolvor-biz-fralnik-glarnex.pages.dev/",
       "domain": "sp5ct6-vrolvor-biz-fralnik-glarnex.pages.dev",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": true,
-      "deep_analysis": true,
+      "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.46.215",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a16148278736-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
+      "ip": null,
+      "http_code": 0,
+      "http_response": null,
       "city": null,
       "region": null,
       "country_name": null,
@@ -43,58 +37,49 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "aa0bbb41c07cdb5f0cf27af360a58e4837fdb63ad7f443e3ac3ee9b8e6921852",
-      "md5": "5d7c6f05c541da1b3f1c257c66881e82",
-      "cert": {
-        "subject_cn": "sp5ct6-vrolvor-biz-fralnik-glarnex.pages.dev",
-        "subject_alt_names": [
-          "sp5ct6-vrolvor-biz-fralnik-glarnex.pages.dev",
-          "*.sp5ct6-vrolvor-biz-fralnik-glarnex.pages.dev"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-03T04:05:11+00:00",
-        "not_valid_after": "2026-09-01T05:02:42+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "148819360720881115487173632032546364637",
-        "fingerprint_sha1": "03 9B AF AA 1D CA 90 4C 54 DD 51 FF 63 78 08 FF 75 95 D1 93",
-        "fingerprint_sha256": "A9 A6 88 3C 81 D9 7F 34 2D E0 EA E2 B7 09 69 4E 4D 00 14 4C 5A 12 3C 22 6A B3 AF 26 99 EF A7 72"
-      },
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:02",
-      "first_seen_secs": 1782376322.0
+      "first_seen": "2026-07-02T03:00:36",
+      "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "sp5ct6-vrolvor-biz-fralnik-glarnex.pages.dev",
       "domain_defanged": "sp5ct6-vrolvor-biz-fralnik-glarnex[.]pages[.]dev",
-      "case_id": "PD-20260701-7C59DA",
-      "analyzed_at": "2026-07-01T18:25:51.305Z",
+      "case_id": "PD-20260703-7C59DA",
+      "analyzed_at": "2026-07-03T02:49:38.027Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1eee-2277-774d-922b-2687a2242d1b.png",
           "url": "https://urlscan.io/result/019f1eee-2277-774d-922b-2687a2242d1b/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.45.41",
+        "ip": "172.66.46.215",
         "ipinfo": {
-          "ip": "172.66.45.41",
+          "ip": "172.66.46.215",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +92,8 @@
             "2606:4700:310c::ac42:2d29"
           ],
           "A": [
-            "172.66.45.41",
-            "172.66.46.215"
+            "172.66.46.215",
+            "172.66.45.41"
           ],
           "NS": [
             "ace.ns.cloudflare.com.",
@@ -252,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-vrolvor-biz-fralnik-glarnex.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-vrolvor-biz-fralnik-glarnex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011571; classtype:social-engineering; sid:6011571; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:25:38.655281+00:00",
+  "updated_at": "2026-07-03T02:49:33.198940+00:00",
   "probe": {
     "dns": true,
     "whois": false,

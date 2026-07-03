@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://tksell.xyz/",
       "domain": "tksell.xyz",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
@@ -43,33 +43,61 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:23:23",
+      "first_seen": "2026-07-02T02:42:32",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "tksell.xyz",
       "domain_defanged": "tksell[.]xyz",
-      "case_id": "PD-20260701-ECDC78",
-      "analyzed_at": "2026-07-01T18:04:32.961Z",
+      "case_id": "PD-20260703-ECDC78",
+      "analyzed_at": "2026-07-03T02:30:11.929Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "TikTok Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9fde-e2b1-7654-85fe-fed7be4dcca6.png",
+          "url": "https://urlscan.io/result/019e9fde-e2b1-7654-85fe-fed7be4dcca6/",
+          "title": "TikTok"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: TikTok Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "103.143.81.155",
+        "ipinfo": {
+          "ip": "103.143.81.155",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS139659 LUCIDACLOUD LIMITED",
+          "asn": "AS139659"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "LUCID-AS-AP",
+          "abuse": "abuse@yecaoyun.com",
+          "url": "mailto:abuse@yecaoyun.com",
+          "logo": "https://i.ibb.co/hRwsdDFF/pr-LUCID-AS-AP.png",
+          "method": "email",
+          "asn": "AS139659"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tksell.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tksell.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011418; classtype:social-engineering; sid:6011418; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:04:23.779241+00:00",
+  "updated_at": "2026-07-03T02:30:01.335513+00:00",
   "probe": {
     "dns": false,
     "whois": false,

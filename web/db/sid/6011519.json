@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.zweyld.top",
       "domain_defanged": "t-mobile[.]zweyld[.]top",
-      "case_id": "PD-20260701-6A32B3",
-      "analyzed_at": "2026-07-01T18:19:40.755Z",
+      "case_id": "PD-20260703-6A32B3",
+      "analyzed_at": "2026-07-03T02:36:21.927Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9d04-f8e3-753c-90c4-f3a5773abf99.png",
+          "url": "https://urlscan.io/result/019e9d04-f8e3-753c-90c4-f3a5773abf99/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.180.220",
+        "ipinfo": {
+          "ip": "172.67.180.220",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,11 +219,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.zweyld.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.zweyld.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011519; classtype:social-engineering; sid:6011519; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:19:32.486405+00:00",
+  "updated_at": "2026-07-03T02:41:19.940299+00:00",
   "probe": {
     "dns": false,
     "whois": false,

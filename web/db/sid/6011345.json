@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "greetings.pictures",
       "domain_defanged": "greetings[.]pictures",
-      "case_id": "PD-20260701-CCF534",
-      "analyzed_at": "2026-07-01T17:55:41.933Z",
+      "case_id": "PD-20260703-CCF534",
+      "analyzed_at": "2026-07-03T02:22:35.434Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ed2-86ad-7629-a4d5-13796dc20fe6/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ee5-7823-710b-adf4-ad0342cec06d.png",
+          "url": "https://urlscan.io/result/019f1ee5-7823-710b-adf4-ad0342cec06d/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -83,14 +92,14 @@
             "3.104.102.7",
             "13.210.89.195"
           ],
+          "MX": [
+            "10 mx0.us.cf-ops.net."
+          ],
           "NS": [
             "ns-1412.awsdns-48.org.",
             "ns-1991.awsdns-56.co.uk.",
             "ns-259.awsdns-32.com.",
             "ns-873.awsdns-45.net."
-          ],
-          "MX": [
-            "10 mx0.us.cf-ops.net."
           ]
         }
       },
@@ -230,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (greetings.pictures/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"greetings.pictures\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011345; classtype:social-engineering; sid:6011345; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:55:32.521335+00:00",
+  "updated_at": "2026-07-03T02:22:32.407624+00:00",
   "probe": {
     "dns": true,
     "whois": true,

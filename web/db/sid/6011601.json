@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://tr.hizli-erisim-meritbet.com/",
       "domain": "tr.hizli-erisim-meritbet.com",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
@@ -43,33 +43,61 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:05",
+      "first_seen": "2026-07-02T03:00:41",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "tr.hizli-erisim-meritbet.com",
       "domain_defanged": "tr[.]hizli-erisim-meritbet[.]com",
-      "case_id": "PD-20260701-4A294B",
-      "analyzed_at": "2026-07-01T18:29:32.934Z",
+      "case_id": "PD-20260703-4A294B",
+      "analyzed_at": "2026-07-03T02:53:55.028Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Instagram"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea031-11b4-7248-893a-d03567b1b542.png",
+          "url": "https://urlscan.io/result/019ea031-11b4-7248-893a-d03567b1b542/",
+          "title": "Login . Instagram"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Instagram",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.147.91",
+        "ipinfo": {
+          "ip": "172.67.147.91",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tr.hizli-erisim-meritbet.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tr.hizli-erisim-meritbet.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011601; classtype:social-engineering; sid:6011601; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:29:27.108941+00:00",
+  "updated_at": "2026-07-03T02:53:51.660515+00:00",
   "probe": {
     "dns": false,
     "whois": false,

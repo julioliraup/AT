@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "binance-1-2-11-uniswap.vercel.app",
       "domain_defanged": "binance-1-2-11-uniswap[.]vercel[.]app",
-      "case_id": "PD-20260701-1B3F05",
-      "analyzed_at": "2026-07-01T17:37:56.123Z",
+      "case_id": "PD-20260703-1B3F05",
+      "analyzed_at": "2026-07-03T02:07:25.989Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ec2-436b-758a-b4ec-e66b723217eb/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Uniswap"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f22ea-3515-7494-834f-6a140f5aa312.png",
+          "url": "https://urlscan.io/result/019f22ea-3515-7494-834f-6a140f5aa312/",
+          "title": "Uniswap | Trade Crypto on DeFi’s Leading Exchange"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Uniswap",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.194",
+        "ip": "64.29.17.2",
         "ipinfo": {
-          "ip": "216.198.79.194",
+          "ip": "64.29.17.2",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.194",
-            "64.29.17.194"
+            "64.29.17.2",
+            "216.198.79.2"
           ]
         }
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (binance-1-2-11-uniswap.vercel.app/positions)\"; flow:established,to_server; http.uri; content:\"/positions\"; startswith; fast_pattern; http.host; content:\"binance-1-2-11-uniswap.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011227; classtype:social-engineering; sid:6011227; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:37:52.270426+00:00",
+  "updated_at": "2026-07-03T02:07:17.177726+00:00",
   "probe": {
     "dns": true,
     "whois": false,

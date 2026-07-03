@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://sp10ct6-drantem-biz-glurnik-fralnex.pages.dev/",
       "domain": "sp10ct6-drantem-biz-glurnik-fralnex.pages.dev",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -31,7 +31,7 @@
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a65f7a80c36d-PDX",
+        "cf_ray": "a14a75bd1e03f896-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,56 +45,47 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "ba203b1e45db970d0baf717bc412b100fdb778c0417af6aff3d5be62d4282a0d",
-      "md5": "9465502e0d1e81fc8d2622e6fb204747",
-      "cert": {
-        "subject_cn": "sp10ct6-drantem-biz-glurnik-fralnex.pages.dev",
-        "subject_alt_names": [
-          "sp10ct6-drantem-biz-glurnik-fralnex.pages.dev",
-          "*.sp10ct6-drantem-biz-glurnik-fralnex.pages.dev"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-06T03:38:48+00:00",
-        "not_valid_after": "2026-09-04T04:37:26+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "327728318795858474609236477384887532440",
-        "fingerprint_sha1": "98 D2 B9 1F 48 C8 45 9C 0D 0D 46 58 4B 04 0D 2A B8 2C 36 65",
-        "fingerprint_sha256": "AD 31 89 BE 55 AD 11 E5 B6 9F 6F C1 16 42 12 53 FE 6E 2D 1F 5C A7 36 70 FF C0 35 BE C6 18 6E 24"
-      },
+      "sha256": "da517a08410005b6e3d2b81357fcebfe4db01a958143ccf581360a0126e65b33",
+      "md5": "4a513bdc1702512071dd7ee550ca4ad4",
+      "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:03",
-      "first_seen_secs": 1782376323.0
+      "first_seen": "2026-07-02T03:00:38",
+      "first_seen_secs": 1782961238.0
     },
     "phishdestroy": {
       "domain": "sp10ct6-drantem-biz-glurnik-fralnex.pages.dev",
       "domain_defanged": "sp10ct6-drantem-biz-glurnik-fralnex[.]pages[.]dev",
-      "case_id": "PD-20260701-5BAA54",
-      "analyzed_at": "2026-07-01T18:29:27.011Z",
+      "case_id": "PD-20260703-5BAA54",
+      "analyzed_at": "2026-07-03T02:53:51.502Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ef1-6d33-71ae-8947-468c9d2860d7.png",
           "url": "https://urlscan.io/result/019f1ef1-6d33-71ae-8947-468c9d2860d7/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.61",
+        "ip": "172.66.47.195",
         "ipinfo": {
-          "ip": "172.66.44.61",
+          "ip": "172.66.47.195",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +93,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.44.61",
-            "172.66.47.195"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2fc3",
             "2606:4700:310c::ac42:2c3d"
+          ],
+          "A": [
+            "172.66.47.195",
+            "172.66.44.61"
           ],
           "NS": [
             "chuck.ns.cloudflare.com.",
@@ -252,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-drantem-biz-glurnik-fralnex.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-drantem-biz-glurnik-fralnex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011600; classtype:social-engineering; sid:6011600; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:29:18.213851+00:00",
+  "updated_at": "2026-07-03T02:53:47.139656+00:00",
   "probe": {
     "dns": true,
     "whois": false,

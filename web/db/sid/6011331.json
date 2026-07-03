@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "webmail.photosnsfw.com",
       "domain_defanged": "webmail[.]photosnsfw[.]com",
-      "case_id": "PD-20260701-3CB442",
-      "analyzed_at": "2026-07-01T17:53:52.594Z",
+      "case_id": "PD-20260703-3CB442",
+      "analyzed_at": "2026-07-03T02:20:58.735Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ed0-db9e-738f-92a5-5ecee5ebcd48.png",
           "url": "https://urlscan.io/result/019f1ed0-db9e-738f-92a5-5ecee5ebcd48/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -221,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webmail.photosnsfw.com/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"webmail.photosnsfw.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011331; classtype:social-engineering; sid:6011331; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:53:49.717444+00:00",
+  "updated_at": "2026-07-03T02:20:55.002165+00:00",
   "probe": {
     "dns": true,
     "whois": false,

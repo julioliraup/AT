@@ -49,22 +49,48 @@
     "phishdestroy": {
       "domain": "outiook-offlceauthyfyveriflive.icu",
       "domain_defanged": "outiook-offlceauthyfyveriflive[.]icu",
-      "case_id": "PD-20260701-119143",
-      "analyzed_at": "2026-07-01T16:22:02.525Z",
+      "case_id": "PD-20260703-119143",
+      "analyzed_at": "2026-07-03T00:03:33.456Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe",
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8877-b306-76b6-9fdd-3149299f9c1e.png",
+          "url": "https://urlscan.io/result/019e8877-b306-76b6-9fdd-3149299f9c1e/",
+          "title": "Adobe Sign - Verify Your Identity"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe, Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "217.145.227.159",
+        "ipinfo": {
+          "ip": "217.145.227.159",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS209946 ALINDA LLC",
+          "asn": "AS209946"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +222,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (outiook-offlceauthyfyveriflive.icu/api/verification/page)\"; flow:established,to_server; http.uri; content:\"/api/verification/page\"; startswith; fast_pattern; http.host; content:\"outiook-offlceauthyfyveriflive.icu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010512; classtype:social-engineering; sid:6010512; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T16:21:59.652048+00:00",
+  "updated_at": "2026-07-03T00:03:15.794698+00:00",
   "probe": {
     "dns": false,
     "whois": false,

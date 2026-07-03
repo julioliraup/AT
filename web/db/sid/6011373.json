@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "coinsqure-eng.zapier.app",
       "domain_defanged": "coinsqure-eng[.]zapier[.]app",
-      "case_id": "PD-20260701-7BFBD1",
-      "analyzed_at": "2026-07-01T17:58:46.261Z",
+      "case_id": "PD-20260703-7BFBD1",
+      "analyzed_at": "2026-07-03T02:25:57.918Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ed5-56af-705f-8774-786ddfcc59a8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinsquare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ee5-dd39-72bf-b366-b37d4c59fcb8.png",
+          "url": "https://urlscan.io/result/019f1ee5-dd39-72bf-b366-b37d4c59fcb8/",
+          "title": "Coinsquare® Login™ ✦ Secure"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinsquare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.239.123.193",
+        "ip": "64.239.123.65",
         "ipinfo": {
-          "ip": "64.239.123.193",
+          "ip": "64.239.123.65",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -79,8 +88,8 @@
         },
         "dns": {
           "A": [
-            "64.239.123.193",
-            "64.239.123.129"
+            "64.239.123.65",
+            "64.239.109.129"
           ]
         }
       },
@@ -220,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (coinsqure-eng.zapier.app/login)\"; flow:established,to_server; http.uri; content:\"/login\"; startswith; fast_pattern; http.host; content:\"coinsqure-eng.zapier.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011373; classtype:social-engineering; sid:6011373; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:58:43.293935+00:00",
+  "updated_at": "2026-07-03T02:25:51.960109+00:00",
   "probe": {
     "dns": true,
     "whois": false,

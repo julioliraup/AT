@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://www.fortview.cc/",
       "domain": "www.fortview.cc",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
@@ -43,33 +43,61 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:33:23",
+      "first_seen": "2026-07-02T03:04:06",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "fortview.cc",
       "domain_defanged": "fortview[.]cc",
-      "case_id": "PD-20260701-728B49",
-      "analyzed_at": "2026-07-01T16:45:00.111Z",
+      "case_id": "PD-20260703-728B49",
+      "analyzed_at": "2026-07-03T00:50:04.459Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e92c1-c7c2-771a-963f-1f45f0e8435b.png",
+          "url": "https://urlscan.io/result/019e92c1-c7c2-771a-963f-1f45f0e8435b/",
+          "title": "Fortnite Inventory Checker | Epic Games"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.fortview.cc/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.fortview.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010758; classtype:social-engineering; sid:6010758; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T16:44:57.242579+00:00",
+  "updated_at": "2026-07-03T00:49:55.334601+00:00",
   "probe": {
     "dns": false,
     "whois": false,

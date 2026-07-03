@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://sp5ct6-fruntor-biz-slarnik-dravnex.pages.dev/",
       "domain": "sp5ct6-fruntor-biz-slarnik-dravnex.pages.dev",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.44.106",
+      "ip": "172.66.47.150",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113b663be63fb74-PDX",
+        "cf_ray": "a14a75749bc30055-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "d99a69544eef725223df888e8d42ea724581b100a3b14b5c49b5e082735655ef",
-      "md5": "75fb51369942c9de4363d4333e20aa26",
+      "sha256": "1ed9791c30bafd6c5acf1304668c1a390343f73ef6bbab053e352c43124788a6",
+      "md5": "df05159675ae474db933577f7f8fd30a",
       "cert": {
         "subject_cn": "sp5ct6-fruntor-biz-slarnik-dravnex.pages.dev",
         "subject_alt_names": [
@@ -67,34 +67,43 @@
         "fingerprint_sha256": "F5 20 BA 75 70 86 A6 8F 9B 3F 1D F0 8B 7F 9D 9E 05 82 6C 29 C0 F4 21 B4 FA 08 1A DF 03 DA 59 42"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:03",
-      "first_seen_secs": 1782376323.0
+      "first_seen": "2026-07-02T03:00:37",
+      "first_seen_secs": 1782961237.0
     },
     "phishdestroy": {
       "domain": "sp5ct6-fruntor-biz-slarnik-dravnex.pages.dev",
       "domain_defanged": "sp5ct6-fruntor-biz-slarnik-dravnex[.]pages[.]dev",
-      "case_id": "PD-20260701-76A15C",
-      "analyzed_at": "2026-07-01T18:32:19.415Z",
+      "case_id": "PD-20260703-76A15C",
+      "analyzed_at": "2026-07-03T02:56:17.874Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ef4-0ddf-753d-8911-d9a9e833cb7a.png",
           "url": "https://urlscan.io/result/019f1ef4-0ddf-753d-8911-d9a9e833cb7a/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.150",
+        "ip": "172.66.44.106",
         "ipinfo": {
-          "ip": "172.66.47.150",
+          "ip": "172.66.44.106",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "A": [
+            "172.66.44.106",
+            "172.66.47.150"
+          ],
           "AAAA": [
             "2606:4700:310c::ac42:2c6a",
             "2606:4700:310c::ac42:2f96"
-          ],
-          "A": [
-            "172.66.47.150",
-            "172.66.44.106"
           ],
           "NS": [
             "lina.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-fruntor-biz-slarnik-dravnex.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-fruntor-biz-slarnik-dravnex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011623; classtype:social-engineering; sid:6011623; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:32:15.805864+00:00",
+  "updated_at": "2026-07-03T02:56:14.203024+00:00",
   "probe": {
     "dns": true,
     "whois": false,

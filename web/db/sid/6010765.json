@@ -18,31 +18,92 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://www.gov-parkingeg.top/com/",
+      "domain": "www.gov-parkingeg.top",
+      "url_count": 1,
+      "city_data": false,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "129.226.204.78",
+      "http_code": 200,
+      "http_response": {
+        "server": null,
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=2592000"
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "b06ccbb7eeae7558ae2340f0c62635de138f82329ea858a64d8b84b01ecfc1a3",
+      "md5": "997526c0aa347697f2aac2a9caad4d23",
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-06-04T16:49:00",
+      "first_seen_secs": 1780591740.0
+    },
     "phishdestroy": {
       "domain": "gov-parkingeg.top",
       "domain_defanged": "gov-parkingeg[.]top",
-      "case_id": "PD-20260701-7B7390",
-      "analyzed_at": "2026-07-01T16:46:02.483Z",
+      "case_id": "PD-20260703-7B7390",
+      "analyzed_at": "2026-07-03T00:50:49.569Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9a49-112b-74e8-bc43-b5ab80b440e0.png",
+          "url": "https://urlscan.io/result/019e9a49-112b-74e8-bc43-b5ab80b440e0/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "129.226.204.78",
+        "ipinfo": {
+          "ip": "129.226.204.78",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -169,12 +230,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingeg.top/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingeg.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010765; classtype:social-engineering; sid:6010765; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T16:45:44.769580+00:00",
+  "updated_at": "2026-07-03T00:50:43.765403+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

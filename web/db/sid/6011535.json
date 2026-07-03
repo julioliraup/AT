@@ -72,21 +72,30 @@
     "phishdestroy": {
       "domain": "services-publics.grupozasacr.com",
       "domain_defanged": "services-publics[.]grupozasacr[.]com",
-      "case_id": "PD-20260701-65EBF1",
-      "analyzed_at": "2026-07-01T18:21:30.781Z",
+      "case_id": "PD-20260703-65EBF1",
+      "analyzed_at": "2026-07-03T02:43:02.828Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Government of France"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1eea-28db-74ff-a40e-a1737a61a3e6.png",
           "url": "https://urlscan.io/result/019f1eea-28db-74ff-a40e-a1737a61a3e6/",
-          "pending": true
+          "title": "Site officiel unique de télépaiement | Amendes.gouv.fr"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Government of France",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -236,7 +245,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (services-publics.grupozasacr.com/infospage.php)\"; flow:established,to_server; http.uri; content:\"/infospage.php\"; startswith; fast_pattern; http.host; content:\"services-publics.grupozasacr.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011535; classtype:social-engineering; sid:6011535; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:21:20.910872+00:00",
+  "updated_at": "2026-07-03T02:42:54.659731+00:00",
   "probe": {
     "dns": true,
     "whois": false,

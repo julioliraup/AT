@@ -18,48 +18,90 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://spify-mex.com/",
+      "domain": "spify-mex.com",
+      "url_count": 5,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.93.221.110",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (757), with no line terminators",
+      "sha256": "0420342c0f1981d0ce52a867f4d859bb7dfd175a1003976beb3df01077be80ea",
+      "md5": "57b0d3638f7739fb37c89fdfcac6574c",
+      "cert": {
+        "subject_cn": "spify-mex.com",
+        "subject_alt_names": [
+          "*.spify-mex.com",
+          "spify-mex.com"
+        ],
+        "issuer_cn": "YR1",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-04T18:31:25+00:00",
+        "not_valid_after": "2026-09-02T18:31:24+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "06 1C A3 ED 35 CA 26 73 CB 18 D6 5D 3F 6C 8F 75 97 03",
+        "fingerprint_sha1": "21 F0 B8 C8 C0 BB 55 31 21 95 16 FA 5D AD 50 7D E2 FB BE 98",
+        "fingerprint_sha256": "4B E1 25 30 4E 09 6B B2 6D E3 49 A9 B0 3F BA 68 0B EF 59 7A 03 DA 37 72 2F 92 29 D5 BB 7A 82 5A"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-07-02T02:41:46",
+      "first_seen_secs": 1782960106.0
+    },
     "phishdestroy": {
       "domain": "spify-mex.com",
       "domain_defanged": "spify-mex[.]com",
-      "case_id": "PD-20260702-79A424",
-      "analyzed_at": "2026-07-02T02:06:24.215Z",
+      "case_id": "PD-20260703-79A424",
+      "analyzed_at": "2026-07-03T08:51:37.815Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Shopify"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019f1c31-1f32-768e-ace7-2058c2f50a43.png",
-          "url": "https://urlscan.io/result/019f1c31-1f32-768e-ace7-2058c2f50a43/",
-          "title": "Iniciar sesión"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f272d-219b-72cc-844a-7c118e02f72a/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Shopify",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-02-06T08:44:33Z",
         "expires": "2027-02-06T08:44:33Z",
-        "age_days": 145,
+        "age_days": 147,
         "nameservers": [
           "NANCY.NS.CLOUDFLARE.COM",
           "SEAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "207.56.18.3",
+        "ip": "45.200.17.1",
         "ipinfo": {
-          "ip": "207.56.18.3",
+          "ip": "45.200.17.1",
           "city": "Hong Kong",
           "region": "Hong Kong",
           "country": "HK",
@@ -68,13 +110,13 @@
         },
         "dns": {
           "A": [
-            "207.56.18.3",
-            "45.200.49.222",
-            "156.238.121.222",
             "45.200.17.1",
-            "156.238.122.164",
             "172.93.221.110",
-            "207.56.18.4"
+            "45.200.49.222",
+            "156.238.122.164",
+            "207.56.18.4",
+            "207.56.18.3",
+            "156.238.121.222"
           ],
           "NS": [
             "nancy.ns.cloudflare.com.",
@@ -218,10 +260,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (spify-mex.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"spify-mex.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6014912; classtype:social-engineering; sid:6014912; rev:1; metadata: signature_severity Major, created_et 2026_06_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T02:06:03.572725+00:00",
+  "updated_at": "2026-07-03T08:51:34.104482+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

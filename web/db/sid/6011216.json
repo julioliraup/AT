@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp5ct6-plurnor-biz-fruntax-slortik.pages.dev",
       "domain_defanged": "sp5ct6-plurnor-biz-fruntax-slortik[.]pages[.]dev",
-      "case_id": "PD-20260701-D441ED",
-      "analyzed_at": "2026-07-01T17:36:19.030Z",
+      "case_id": "PD-20260703-D441ED",
+      "analyzed_at": "2026-07-03T02:05:44.803Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ec0-c727-7739-9e6d-b5f244ee8f26.png",
           "url": "https://urlscan.io/result/019f1ec0-c727-7739-9e6d-b5f244ee8f26/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,8 +112,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f3c",
-            "2606:4700:310c::ac42:2cc4"
+            "2606:4700:310c::ac42:2cc4",
+            "2606:4700:310c::ac42:2f3c"
           ],
           "A": [
             "172.66.44.196",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-plurnor-biz-fruntax-slortik.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-plurnor-biz-fruntax-slortik.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011216; classtype:social-engineering; sid:6011216; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:36:11.515252+00:00",
+  "updated_at": "2026-07-03T02:05:36.494228+00:00",
   "probe": {
     "dns": true,
     "whois": false,

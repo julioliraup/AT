@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://lejj-whatsapp.com.cn/",
       "domain": "lejj-whatsapp.com.cn",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "104.21.95.41",
+      "ip": "172.67.142.250",
       "http_code": 200,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a113aa2cee4bef63-PDX",
+        "cf_ray": "a14a75583e11ff0d-PDX",
         "cf_cache_status": "DYNAMIC",
         "alt_svc": "h3=\":443\"; ma=86400"
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (507)",
-      "sha256": "8b21760cf601351740cdf8f6e2e77c529be79218358ea789d53312dbbf508f1a",
-      "md5": "e72a27fbfb6627ee491c04e05b9e449f",
+      "sha256": "4592bae9761dfa0d9f4480b771176bbc855c78624cba814b3a4f5eb17e51f451",
+      "md5": "d9f7fd8668d581c2bfc38041e2a45764",
       "cert": {
         "subject_cn": "lejj-whatsapp.com.cn",
         "subject_alt_names": [
@@ -67,34 +67,43 @@
         "fingerprint_sha256": "67 37 0C 9F 38 8F 4F 9D EB 2A B1 B0 7E 4A 76 94 BE 2E 57 D3 D8 E6 2D B4 BA 5D C0 55 38 C6 E9 06"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:03",
-      "first_seen_secs": 1782376323.0
+      "first_seen": "2026-07-02T03:00:38",
+      "first_seen_secs": 1782961238.0
     },
     "phishdestroy": {
       "domain": "lejj-whatsapp.com.cn",
       "domain_defanged": "lejj-whatsapp[.]com[.]cn",
-      "case_id": "PD-20260701-5B4181",
-      "analyzed_at": "2026-07-01T18:29:58.052Z",
+      "case_id": "PD-20260703-5B4181",
+      "analyzed_at": "2026-07-03T02:54:16.038Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WhatsApp"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ef1-e540-7569-a28c-beb466250142.png",
           "url": "https://urlscan.io/result/019f1ef1-e540-7569-a28c-beb466250142/",
-          "pending": true
+          "title": "WhatsApp"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WhatsApp",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.95.41",
+        "ip": "172.67.142.250",
         "ipinfo": {
-          "ip": "104.21.95.41",
+          "ip": "172.67.142.250",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "A": [
-            "104.21.95.41",
-            "172.67.142.250"
+            "172.67.142.250",
+            "104.21.95.41"
           ],
           "AAAA": [
-            "2606:4700:3037::6815:5f29",
-            "2606:4700:3033::ac43:8efa"
+            "2606:4700:3033::ac43:8efa",
+            "2606:4700:3037::6815:5f29"
           ],
           "NS": [
             "johnny.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lejj-whatsapp.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"lejj-whatsapp.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011605; classtype:social-engineering; sid:6011605; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:29:53.912634+00:00",
+  "updated_at": "2026-07-03T02:54:10.297462+00:00",
   "probe": {
     "dns": true,
     "whois": true,

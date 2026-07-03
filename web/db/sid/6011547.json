@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://services-publics.grupozasacr.com/",
       "domain": "services-publics.grupozasacr.com",
-      "url_count": 9,
+      "url_count": 10,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -29,11 +29,11 @@
       "ip": "190.0.230.216",
       "http_code": 200,
       "http_response": {
-        "server": "nginx",
+        "server": "BitNinja-WafPro",
         "content_type": "text/html; charset=UTF-8",
         "cf_ray": null,
         "cf_cache_status": null,
-        "alt_svc": null
+        "alt_svc": "h3=\":60413\"; ma=2592000,h3=\":60414\"; ma=2592000,h3=\":60418\"; ma=2592000"
       },
       "city": null,
       "region": null,
@@ -66,27 +66,36 @@
         "fingerprint_sha256": "24 98 5C AA B8 C3 49 5B 14 25 FF AE 9B ED 24 16 7E E7 1B 76 B9 B2 88 B5 CA 56 FB 0B 62 A2 FE BC"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:03",
-      "first_seen_secs": 1782376323.0
+      "first_seen": "2026-07-02T03:00:38",
+      "first_seen_secs": 1782961238.0
     },
     "phishdestroy": {
       "domain": "services-publics.grupozasacr.com",
       "domain_defanged": "services-publics[.]grupozasacr[.]com",
-      "case_id": "PD-20260701-65EBF1",
-      "analyzed_at": "2026-07-01T18:21:30.781Z",
+      "case_id": "PD-20260703-65EBF1",
+      "analyzed_at": "2026-07-03T02:43:02.828Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Government of France"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1eea-28db-74ff-a40e-a1737a61a3e6.png",
           "url": "https://urlscan.io/result/019f1eea-28db-74ff-a40e-a1737a61a3e6/",
-          "pending": true
+          "title": "Site officiel unique de télépaiement | Amendes.gouv.fr"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Government of France",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -237,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (services-publics.grupozasacr.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"services-publics.grupozasacr.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011547; classtype:social-engineering; sid:6011547; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:23:13.396007+00:00",
+  "updated_at": "2026-07-03T02:45:32.876193+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -18,25 +18,67 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://webmail.au.newsalerts.com.sg/secure/training/6422c2/8c5781c2-7b1e-4035-b1d7-990e269e5380",
+      "domain": "webmail.au.newsalerts.com.sg",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "13.210.89.195",
+      "http_code": 200,
+      "http_response": {
+        "server": null,
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (374), with CRLF, LF line terminators",
+      "sha256": "24739eae8439737d83ad0e3d285f421b9f21691835e3ee36e208802910e3dadd",
+      "md5": "70b9f1f04ebe34c693394e93dc40c6fb",
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-06-06T18:55:51",
+      "first_seen_secs": 1780772151.0
+    },
     "phishdestroy": {
       "domain": "webmail.au.newsalerts.com.sg",
       "domain_defanged": "webmail[.]au[.]newsalerts[.]com[.]sg",
-      "case_id": "PD-20260701-5D639F",
-      "analyzed_at": "2026-07-01T17:54:05.372Z",
+      "case_id": "PD-20260703-5D639F",
+      "analyzed_at": "2026-07-03T02:21:02.729Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ed1-0d8c-74f7-a3a2-273aee0a9903.png",
           "url": "https://urlscan.io/result/019f1ed1-0d8c-74f7-a3a2-273aee0a9903/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -194,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webmail.au.newsalerts.com.sg/secure/training/6422c2/8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/secure/training/6422c2/8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"webmail.au.newsalerts.com.sg\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011332; classtype:social-engineering; sid:6011332; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:53:52.688725+00:00",
+  "updated_at": "2026-07-03T02:20:58.792185+00:00",
   "probe": {
     "dns": true,
     "whois": true,

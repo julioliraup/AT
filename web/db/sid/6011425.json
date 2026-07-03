@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://www.hth-mobile.com/",
       "domain": "www.hth-mobile.com",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.67.145.26",
+      "ip": "104.21.79.110",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113bb4aff118b10-PDX",
+        "cf_ray": "a14a7b0aba251f9b-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,54 +45,63 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "11934e6e4ba6b80afb5cb6359c05e4c2bfbaebcab3cc888284ecba7d53cc4adb",
-      "md5": "b5ba76bae92638488552dd1beff53a5e",
+      "sha256": "77d2e7f63da434d5d4e47c6f043b812c0a71e013436109f5735e1a644964db42",
+      "md5": "bda2bb8def1840e32518217e7b4265e3",
       "cert": {
         "subject_cn": "hth-mobile.com",
         "subject_alt_names": [
           "*.hth-mobile.com",
           "hth-mobile.com"
         ],
-        "issuer_cn": "E8",
+        "issuer_cn": "YE2",
         "issuer_org": "Let's Encrypt",
         "issuer_country": "US",
-        "not_valid_before": "2026-04-29T01:24:19+00:00",
-        "not_valid_after": "2026-07-28T01:24:18+00:00",
+        "not_valid_before": "2026-06-27T00:50:50+00:00",
+        "not_valid_after": "2026-09-25T00:50:49+00:00",
         "is_expired": false,
         "is_self_signed": "no",
         "signature_algorithm": "sha384_ecdsa",
         "x509_version": "v3",
-        "serial_number": "450786111802917575538043761809569219246169",
-        "fingerprint_sha1": "25 F2 53 80 BA CB 68 BF 52 E0 45 2A E7 E2 05 91 C4 D9 7E 4F",
-        "fingerprint_sha256": "2F 15 B3 5D 10 F6 1C FE 95 D4 62 E2 87 16 D2 88 A4 B6 57 86 DB 65 C2 AA 40 D4 C3 D9 12 90 7F 0F"
+        "serial_number": "496562422695487227370332910515388608162494",
+        "fingerprint_sha1": "39 41 89 61 2C C7 A1 8A CA 22 DC 58 3F A3 7F 92 F5 ED BE 7B",
+        "fingerprint_sha256": "1A D0 F8 ED D8 FB 71 A9 F0 6A 12 1C 66 A0 A8 E4 61 3A 79 AF FE 57 19 39 F0 D8 DD 30 0D 0A 3A 7C"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:33:28",
-      "first_seen_secs": 1782376408.0
+      "first_seen": "2026-07-02T03:04:13",
+      "first_seen_secs": 1782961453.0
     },
     "phishdestroy": {
       "domain": "hth-mobile.com",
       "domain_defanged": "hth-mobile[.]com",
-      "case_id": "PD-20260701-5CA4B0",
-      "analyzed_at": "2026-07-01T18:05:20.457Z",
+      "case_id": "PD-20260703-5CA4B0",
+      "analyzed_at": "2026-07-03T02:30:54.504Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1edb-5bc9-7472-87c2-87d9a5f20bf4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f219e-3e75-71ee-9fbb-77249aef6b5c.png",
+          "url": "https://urlscan.io/result/019f219e-3e75-71ee-9fbb-77249aef6b5c/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2025-08-15T05:45:00Z",
         "expires": "2026-08-15T05:45:00Z",
-        "age_days": 320,
+        "age_days": 321,
         "nameservers": [
           "BRETT.NS.CLOUDFLARE.COM",
           "MCKENZIE.NS.CLOUDFLARE.COM"
@@ -266,7 +275,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.hth-mobile.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.hth-mobile.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011425; classtype:social-engineering; sid:6011425; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:05:17.033321+00:00",
+  "updated_at": "2026-07-03T02:30:50.739927+00:00",
   "probe": {
     "dns": true,
     "whois": false,

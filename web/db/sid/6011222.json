@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp5ct6-vrolqor-biz-plaqnik-glurnor.pages.dev",
       "domain_defanged": "sp5ct6-vrolqor-biz-plaqnik-glurnor[.]pages[.]dev",
-      "case_id": "PD-20260701-49BDD1",
-      "analyzed_at": "2026-07-01T17:37:24.574Z",
+      "case_id": "PD-20260703-49BDD1",
+      "analyzed_at": "2026-07-03T02:06:55.455Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ec1-c823-75c2-a420-d0d392f1cada.png",
           "url": "https://urlscan.io/result/019f1ec1-c823-75c2-a420-d0d392f1cada/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,10 +111,6 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.47.141",
-            "172.66.44.115"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2c73",
             "2606:4700:310c::ac42:2f8d"
@@ -113,6 +118,10 @@
           "NS": [
             "harmony.ns.cloudflare.com.",
             "lamar.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.47.141",
+            "172.66.44.115"
           ]
         }
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-vrolqor-biz-plaqnik-glurnor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-vrolqor-biz-plaqnik-glurnor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011222; classtype:social-engineering; sid:6011222; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:37:21.397279+00:00",
+  "updated_at": "2026-07-03T02:06:46.531317+00:00",
   "probe": {
     "dns": true,
     "whois": false,

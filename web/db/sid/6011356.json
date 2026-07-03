@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://server-index-page--eefostar.replit.app/",
       "domain": "server-index-page--eefostar.replit.app",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -33,7 +33,7 @@
         "content_type": "text/html; charset=utf-8",
         "cf_ray": null,
         "cf_cache_status": null,
-        "alt_svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+        "alt_svc": "h3=\":443\"; ma=2592000"
       },
       "city": null,
       "region": null,
@@ -67,27 +67,37 @@
         "fingerprint_sha256": "1B 68 16 8B BC 19 AC 82 E0 40 BD 07 9E CD 45 57 97 EC 46 56 89 F1 68 67 DE C2 9C 70 40 21 20 FD"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:31:56",
-      "first_seen_secs": 1782376316.0
+      "first_seen": "2026-07-02T03:00:31",
+      "first_seen_secs": 1782961231.0
     },
     "phishdestroy": {
       "domain": "server-index-page--eefostar.replit.app",
       "domain_defanged": "server-index-page--eefostar[.]replit[.]app",
-      "case_id": "PD-20260701-34997C",
-      "analyzed_at": "2026-07-01T17:56:35.138Z",
+      "case_id": "PD-20260703-34997C",
+      "analyzed_at": "2026-07-03T02:24:05.206Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email",
+            "DocuSign"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ed3-5690-73c9-b7d8-a8e75e304e16.png",
           "url": "https://urlscan.io/result/019f1ed3-5690-73c9-b7d8-a8e75e304e16/",
-          "pending": true
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email, DocuSign",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (server-index-page--eefostar.replit.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"server-index-page--eefostar.replit.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011356; classtype:social-engineering; sid:6011356; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:56:27.612474+00:00",
+  "updated_at": "2026-07-03T02:23:55.050747+00:00",
   "probe": {
     "dns": true,
     "whois": false,

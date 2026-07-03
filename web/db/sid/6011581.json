@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://sp0ct0-naxver-biz-turqen-dosmi.pages.dev/",
       "domain": "sp0ct0-naxver-biz-turqen-dosmi.pages.dev",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.44.184",
+      "ip": "172.66.47.72",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a1ad8b1b0ccf-PDX",
+        "cf_ray": "a14a74df7a2be6e0-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "577b825009ba3a2993b458161d5c3c1fe40802d224596c4b2e80b500edfa9797",
-      "md5": "075e72d0458efebde76c4528f532555a",
+      "sha256": "8f6f5dd7bf2e954c1b1d29fe188d4e058f0a40bc0f93cb6faafeb404260fd82d",
+      "md5": "faffc72e92ce2c505ae0c247bd77e8bb",
       "cert": {
         "subject_cn": "sp0ct0-naxver-biz-turqen-dosmi.pages.dev",
         "subject_alt_names": [
@@ -67,27 +67,36 @@
         "fingerprint_sha256": "A1 10 49 D0 83 15 16 D3 A2 E9 05 7B CE 7B B3 71 34 72 9B 8D 6A 16 95 63 29 DD C9 3E 81 CC D3 E7"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:04",
-      "first_seen_secs": 1782376324.0
+      "first_seen": "2026-07-02T03:00:40",
+      "first_seen_secs": 1782961240.0
     },
     "phishdestroy": {
       "domain": "sp0ct0-naxver-biz-turqen-dosmi.pages.dev",
       "domain_defanged": "sp0ct0-naxver-biz-turqen-dosmi[.]pages[.]dev",
-      "case_id": "PD-20260701-3A2304",
-      "analyzed_at": "2026-07-01T18:27:01.578Z",
+      "case_id": "PD-20260703-3A2304",
+      "analyzed_at": "2026-07-03T02:51:25.788Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1eef-3514-71b0-8840-b76983915d9e.png",
           "url": "https://urlscan.io/result/019f1eef-3514-71b0-8840-b76983915d9e/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,16 +112,16 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f48",
-            "2606:4700:310c::ac42:2cb8"
-          ],
-          "A": [
-            "172.66.44.184",
-            "172.66.47.72"
+            "2606:4700:310c::ac42:2cb8",
+            "2606:4700:310c::ac42:2f48"
           ],
           "NS": [
             "cris.ns.cloudflare.com.",
             "rita.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.44.184",
+            "172.66.47.72"
           ]
         }
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp0ct0-naxver-biz-turqen-dosmi.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp0ct0-naxver-biz-turqen-dosmi.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011581; classtype:social-engineering; sid:6011581; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:26:58.414162+00:00",
+  "updated_at": "2026-07-03T02:51:17.139937+00:00",
   "probe": {
     "dns": true,
     "whois": false,

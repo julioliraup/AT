@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "support.malwarequarantine.com",
       "domain_defanged": "support[.]malwarequarantine[.]com",
-      "case_id": "PD-20260701-491ED7",
-      "analyzed_at": "2026-07-01T18:00:30.223Z",
+      "case_id": "PD-20260703-491ED7",
+      "analyzed_at": "2026-07-03T02:27:28.478Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ed6-eb9a-70fb-88b4-df0f51efb3f6/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1f39-9c10-752a-93f4-d66cd1a4b2ac.png",
+          "url": "https://urlscan.io/result/019f1f39-9c10-752a-93f4-d66cd1a4b2ac/",
+          "title": "Sign in - Google Accounts"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -245,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (support.malwarequarantine.com/education_redirect_second/8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second/8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"support.malwarequarantine.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011388; classtype:social-engineering; sid:6011388; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:00:26.923323+00:00",
+  "updated_at": "2026-07-03T02:27:24.553113+00:00",
   "probe": {
     "dns": true,
     "whois": false,

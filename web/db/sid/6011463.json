@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://www.affthaimgf.net/",
       "domain": "www.affthaimgf.net",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
@@ -43,35 +43,56 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:03",
+      "first_seen": "2026-07-02T03:00:37",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "affthaimgf.net",
       "domain_defanged": "affthaimgf[.]net",
-      "case_id": "PD-20260701-68449E",
-      "analyzed_at": "2026-07-01T18:11:23.431Z",
+      "case_id": "PD-20260703-68449E",
+      "analyzed_at": "2026-07-03T02:35:59.045Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea926-625d-7782-b057-ef78060492ac.png",
+          "url": "https://urlscan.io/result/019ea926-625d-7782-b057-ef78060492ac/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2026-06-01T02:38:58Z",
         "expires": "2027-06-01T02:38:58Z",
-        "age_days": 30,
+        "age_days": 31,
         "nameservers": [
           "A.SHARE-DNS.COM",
           "B.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.4.133",
+        "ipinfo": {
+          "ip": "104.21.4.133",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": "1923"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.affthaimgf.net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.affthaimgf.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011463; classtype:social-engineering; sid:6011463; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:11:08.942839+00:00",
+  "updated_at": "2026-07-03T02:35:49.090712+00:00",
   "probe": {
     "dns": false,
     "whois": false,

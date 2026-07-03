@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp5ct6-slortex-biz-fralnik-vramtor.pages.dev",
       "domain_defanged": "sp5ct6-slortex-biz-fralnik-vramtor[.]pages[.]dev",
-      "case_id": "PD-20260701-4D5B2A",
-      "analyzed_at": "2026-07-01T17:30:17.482Z",
+      "case_id": "PD-20260703-4D5B2A",
+      "analyzed_at": "2026-07-03T01:57:47.810Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ebb-43d2-76fc-8cec-2545715bb256.png",
           "url": "https://urlscan.io/result/019f1ebb-43d2-76fc-8cec-2545715bb256/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.89",
+        "ip": "172.66.44.167",
         "ipinfo": {
-          "ip": "172.66.47.89",
+          "ip": "172.66.44.167",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,16 +112,16 @@
         },
         "dns": {
           "A": [
-            "172.66.47.89",
-            "172.66.44.167"
-          ],
-          "NS": [
-            "linda.ns.cloudflare.com.",
-            "yadiel.ns.cloudflare.com."
+            "172.66.44.167",
+            "172.66.47.89"
           ],
           "AAAA": [
             "2606:4700:310c::ac42:2f59",
             "2606:4700:310c::ac42:2ca7"
+          ],
+          "NS": [
+            "linda.ns.cloudflare.com.",
+            "yadiel.ns.cloudflare.com."
           ]
         }
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-slortex-biz-fralnik-vramtor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-slortex-biz-fralnik-vramtor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011169; classtype:social-engineering; sid:6011169; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:30:14.944970+00:00",
+  "updated_at": "2026-07-03T01:57:44.222111+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://x21v.vip/",
       "domain": "x21v.vip",
-      "url_count": 5,
+      "url_count": 6,
       "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
@@ -43,28 +43,49 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:23:00",
+      "first_seen": "2026-07-02T02:41:34",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "x21v.vip",
       "domain_defanged": "x21v[.]vip",
-      "case_id": "PD-20260701-60B798",
-      "analyzed_at": "2026-07-01T18:32:44.024Z",
+      "case_id": "PD-20260703-60B798",
+      "analyzed_at": "2026-07-03T02:56:51.529Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eab06-0ca4-7779-8421-0e6511118ba7.png",
+          "url": "https://urlscan.io/result/019eab06-0ca4-7779-8421-0e6511118ba7/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "154.39.104.138",
+        "ipinfo": {
+          "ip": "154.39.104.138",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS18186 Nebula Global LLC",
+          "asn": "AS18186"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (x21v.vip/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"x21v.vip\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011627; classtype:social-engineering; sid:6011627; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:32:33.617970+00:00",
+  "updated_at": "2026-07-03T02:56:41.031356+00:00",
   "probe": {
     "dns": false,
     "whois": false,

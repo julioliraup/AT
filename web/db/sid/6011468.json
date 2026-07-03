@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "ssl.creditunion-banking.org",
       "domain_defanged": "ssl[.]creditunion-banking[.]org",
-      "case_id": "PD-20260701-57399C",
-      "analyzed_at": "2026-07-01T18:11:59.391Z",
+      "case_id": "PD-20260703-57399C",
+      "analyzed_at": "2026-07-03T02:36:33.275Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ee1-721a-723a-8ddb-00998c4d1c64.png",
           "url": "https://urlscan.io/result/019f1ee1-721a-723a-8ddb-00998c4d1c64/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -221,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ssl.creditunion-banking.org/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"ssl.creditunion-banking.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011468; classtype:social-engineering; sid:6011468; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:11:55.028101+00:00",
+  "updated_at": "2026-07-03T02:36:21.979116+00:00",
   "probe": {
     "dns": true,
     "whois": true,

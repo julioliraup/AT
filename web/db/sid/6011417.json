@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.asdsfr.top",
       "domain_defanged": "t-mobile[.]asdsfr[.]top",
-      "case_id": "PD-20260701-70C96F",
-      "analyzed_at": "2026-07-01T18:04:23.652Z",
+      "case_id": "PD-20260703-70C96F",
+      "analyzed_at": "2026-07-03T02:30:01.252Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e9fec-6a22-717e-8a99-a5a3413ed899.png",
+          "url": "https://urlscan.io/result/019e9fec-6a22-717e-8a99-a5a3413ed899/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "8.211.195.254",
+        "ipinfo": {
+          "ip": "8.211.195.254",
+          "city": "London",
+          "region": "England",
+          "country": "GB",
+          "org": "AS45102 Alibaba (US) Technology Co., Ltd.",
+          "asn": "AS45102"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ALIBABA-CN-NET Alibaba US Technology Co., Ltd., CN",
+          "abuse": "abuse@alibaba-inc.com",
+          "url": "mailto:abuse@alibaba-inc.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS45102"
+        }
       },
       "report_services": [
         {
@@ -196,7 +223,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.asdsfr.top/pay)\"; flow:established,to_server; http.uri; content:\"/pay\"; startswith; fast_pattern; http.host; content:\"t-mobile.asdsfr.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011417; classtype:social-engineering; sid:6011417; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:04:16.096793+00:00",
+  "updated_at": "2026-07-03T02:29:47.901424+00:00",
   "probe": {
     "dns": false,
     "whois": false,

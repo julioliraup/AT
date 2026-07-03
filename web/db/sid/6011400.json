@@ -22,29 +22,38 @@
     "phishdestroy": {
       "domain": "default._bimi.073202.com",
       "domain_defanged": "default[.]_bimi[.]073202[.]com",
-      "case_id": "PD-20260701-7F3A29",
-      "analyzed_at": "2026-07-01T18:02:07.888Z",
+      "case_id": "PD-20260703-7F3A29",
+      "analyzed_at": "2026-07-03T02:28:27.872Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ed8-6ab7-76ef-ab08-0e5361c3b62b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ee7-dba0-750f-8adf-fc8f39626e71.png",
+          "url": "https://urlscan.io/result/019f1ee7-dba0-750f-8adf-fc8f39626e71/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.104.102.7",
+        "ip": "13.210.89.195",
         "ipinfo": {
-          "ip": "3.104.102.7",
-          "hostname": "ec2-3-104-102-7.ap-southeast-2.compute.amazonaws.com",
+          "ip": "13.210.89.195",
+          "hostname": "ec2-13-210-89-195.ap-southeast-2.compute.amazonaws.com",
           "city": "Sydney",
           "region": "New South Wales",
           "country": "AU",
@@ -53,8 +62,8 @@
         },
         "dns": {
           "A": [
-            "3.104.102.7",
-            "13.210.89.195"
+            "13.210.89.195",
+            "3.104.102.7"
           ]
         }
       },
@@ -194,7 +203,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (default._bimi.073202.com/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second?8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"default._bimi.073202.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011400; classtype:social-engineering; sid:6011400; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:02:03.905290+00:00",
+  "updated_at": "2026-07-03T02:28:23.486271+00:00",
   "probe": {
     "dns": true,
     "whois": false,

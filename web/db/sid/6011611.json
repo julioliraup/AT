@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://sp10ct6-glurnik-biz-qortem-vrolax.pages.dev/",
       "domain": "sp10ct6-glurnik-biz-qortem-vrolax.pages.dev",
-      "url_count": 4,
+      "url_count": 5,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.66.44.184",
+      "ip": "172.66.47.72",
       "http_code": 403,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "a113a2c599c71687-PDX",
+        "cf_ray": "a14a76d2a9c3ff07-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "b935fb53f14ba8d38b12a9cac052031efb7773df5561be47aee81d69205fa923",
-      "md5": "6cd78d33aac72185001f05822cf3334b",
+      "sha256": "cae17a795e25a74d9f3d1f7bbb9e5d2e4615a82c8561c1db92b50cf2e30fc833",
+      "md5": "f845e4f5269cfd4c7bf5378af8ed5c5f",
       "cert": {
         "subject_cn": "sp10ct6-glurnik-biz-qortem-vrolax.pages.dev",
         "subject_alt_names": [
@@ -67,27 +67,36 @@
         "fingerprint_sha256": "97 CB FE 38 86 67 D7 B4 0B DA 63 DA D8 56 B0 05 2A 6B CC 86 6E 51 54 5A 65 C9 E8 DB B2 C1 EA 46"
       },
       "safebrowsing": [],
-      "first_seen": "2026-06-25T08:32:04",
-      "first_seen_secs": 1782376324.0
+      "first_seen": "2026-07-02T03:00:40",
+      "first_seen_secs": 1782961240.0
     },
     "phishdestroy": {
       "domain": "sp10ct6-glurnik-biz-qortem-vrolax.pages.dev",
       "domain_defanged": "sp10ct6-glurnik-biz-qortem-vrolax[.]pages[.]dev",
-      "case_id": "PD-20260701-15AC97",
-      "analyzed_at": "2026-07-01T18:30:37.867Z",
+      "case_id": "PD-20260703-15AC97",
+      "analyzed_at": "2026-07-03T02:54:45.724Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f1ef2-804c-74e0-b7f8-9e66450687c1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f249a-8ee1-712a-a2c2-569a81372ab9.png",
+          "url": "https://urlscan.io/result/019f249a-8ee1-712a-a2c2-569a81372ab9/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -106,13 +115,13 @@
             "172.66.47.72",
             "172.66.44.184"
           ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2f48",
+            "2606:4700:310c::ac42:2cb8"
+          ],
           "NS": [
             "megan.ns.cloudflare.com.",
             "rayden.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2cb8",
-            "2606:4700:310c::ac42:2f48"
           ]
         }
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-glurnik-biz-qortem-vrolax.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-glurnik-biz-qortem-vrolax.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011611; classtype:social-engineering; sid:6011611; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T18:30:34.781815+00:00",
+  "updated_at": "2026-07-03T02:54:37.741145+00:00",
   "probe": {
     "dns": true,
     "whois": false,

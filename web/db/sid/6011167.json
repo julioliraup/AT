@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp10ct6-slorvik-biz-fratem-vrolnax.pages.dev",
       "domain_defanged": "sp10ct6-slorvik-biz-fratem-vrolnax[.]pages[.]dev",
-      "case_id": "PD-20260701-12787A",
-      "analyzed_at": "2026-07-01T17:30:11.194Z",
+      "case_id": "PD-20260703-12787A",
+      "analyzed_at": "2026-07-03T01:57:41.588Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1ebb-2b3b-7698-8f1f-187589cd2455.png",
           "url": "https://urlscan.io/result/019f1ebb-2b3b-7698-8f1f-187589cd2455/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.83",
+        "ip": "172.66.47.173",
         "ipinfo": {
-          "ip": "172.66.44.83",
+          "ip": "172.66.47.173",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +116,8 @@
             "2606:4700:310c::ac42:2fad"
           ],
           "A": [
-            "172.66.44.83",
-            "172.66.47.173"
+            "172.66.47.173",
+            "172.66.44.83"
           ],
           "NS": [
             "bella.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-slorvik-biz-fratem-vrolnax.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-slorvik-biz-fratem-vrolnax.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011167; classtype:social-engineering; sid:6011167; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-01T17:30:08.389846+00:00",
+  "updated_at": "2026-07-03T01:57:37.772489+00:00",
   "probe": {
     "dns": true,
     "whois": false,
