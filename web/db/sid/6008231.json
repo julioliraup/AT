@@ -73,37 +73,60 @@
     "phishdestroy": {
       "domain": "qnb-finansbank-dynamic.vercel.app",
       "domain_defanged": "qnb-finansbank-dynamic[.]vercel[.]app",
-      "case_id": "PD-20260702-5ECE04",
-      "analyzed_at": "2026-07-02T18:47:55.707Z",
+      "case_id": "PD-20260704-5ECE04",
+      "analyzed_at": "2026-07-04T02:19:27.728Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Qatar National Bank"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2428-b3f6-729b-bdd5-75ad72322974.png",
           "url": "https://urlscan.io/result/019f2428-b3f6-729b-bdd5-75ad72322974/",
-          "pending": true
+          "title": "QNB Finansbank Kariyer Web Sitesi"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Qatar National Bank",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.194",
-        "ipinfo": null,
+        "ip": "216.198.79.194",
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.194",
-            "216.198.79.194"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -230,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.qnb-finansbank-dynamic.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.qnb-finansbank-dynamic.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008231; classtype:social-engineering; sid:6008231; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:47:52.436412+00:00",
+  "updated_at": "2026-07-04T02:19:19.659783+00:00",
   "probe": {
     "dns": true,
     "whois": false,

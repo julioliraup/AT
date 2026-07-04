@@ -75,27 +75,56 @@
     "phishdestroy": {
       "domain": "secure.americafirst.invidiahair.com.au",
       "domain_defanged": "secure[.]americafirst[.]invidiahair[.]com[.]au",
-      "case_id": "PD-20260702-74B560",
-      "analyzed_at": "2026-07-02T19:00:51.798Z",
+      "case_id": "PD-20260704-74B560",
+      "analyzed_at": "2026-07-04T02:28:20.299Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "America First Credit Union"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019effc6-faae-70cb-a74c-c3b612145c16.png",
+          "url": "https://urlscan.io/result/019effc6-faae-70cb-a74c-c3b612145c16/",
+          "title": "America First Credit Union"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: America First Credit Union",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "27.124.124.97",
+        "ipinfo": {
+          "ip": "27.124.124.97",
+          "hostname": "ip1b7c7c61.ipv4.syd02.ds.network",
+          "city": "Sydney",
+          "region": "New South Wales",
+          "country": "AU",
+          "org": "AS38719 Dreamscape Networks Limited",
+          "asn": "AS38719"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DREAMSCAPE-AS-AP Dreamscape Networks Limited, AU",
+          "abuse": "abuse@dreamscapenetworks.com",
+          "url": "mailto:abuse@dreamscapenetworks.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS38719"
+        }
       },
       "report_services": [
         {
@@ -222,7 +251,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.secure.americafirst.invidiahair.com.au/portal/cloudflare.php)\"; flow:established,to_server; http.uri; content:\"/portal/cloudflare.php\"; startswith; fast_pattern; http.host; content:\"www.secure.americafirst.invidiahair.com.au\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008307; classtype:social-engineering; sid:6008307; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T19:00:41.898797+00:00",
+  "updated_at": "2026-07-04T02:28:15.887425+00:00",
   "probe": {
     "dns": true,
     "whois": true,

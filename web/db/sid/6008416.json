@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "uioiure.top",
       "domain_defanged": "uioiure[.]top",
-      "case_id": "PD-20260702-19141C",
-      "analyzed_at": "2026-07-02T18:53:34.612Z",
+      "case_id": "PD-20260704-19141C",
+      "analyzed_at": "2026-07-04T02:23:07.333Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e722a-6690-702e-b9db-888ea74ed27a.png",
+          "url": "https://urlscan.io/result/019e722a-6690-702e-b9db-888ea74ed27a/",
+          "title": "Select a method to confirm your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.28.35",
+        "ipinfo": {
+          "ip": "104.21.28.35",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -197,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (uioiure.top/cast/CmaxAuthnAge.php)\"; flow:established,to_server; http.uri; content:\"/cast/CmaxAuthnAge.php\"; startswith; fast_pattern; http.host; content:\"uioiure.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008416; classtype:social-engineering; sid:6008416; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T19:18:58.529179+00:00",
+  "updated_at": "2026-07-04T02:40:17.191306+00:00",
   "probe": {
     "dns": false,
     "whois": false,

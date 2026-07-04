@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "121hiu.senes.at",
       "domain_defanged": "121hiu[.]senes[.]at",
-      "case_id": "PD-20260702-425002",
-      "analyzed_at": "2026-07-02T18:39:31.862Z",
+      "case_id": "PD-20260704-425002",
+      "analyzed_at": "2026-07-04T02:10:41.618Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2421-049c-7374-965c-6cd835ea27c4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2859-8081-7518-a4b5-665881dddf5d.png",
+          "url": "https://urlscan.io/result/019f2859-8081-7518-a4b5-665881dddf5d/",
+          "title": "Staking"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -220,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (121hiu.senes.at/stakings/?b=YTo0OntzOjU6ImxhYmVsIjtzOjA6IiI7czozOiJ1c3IiO2k6MTA0O3M6NDoibm9wZCI7czoxNToicnNzMy5yZWFkbGVzLmF0IjtzOjE6Im8iO2k6MTEzNjt9)\"; flow:established,to_server; http.uri; content:\"/stakings/?b=YTo0OntzOjU6ImxhYmVsIjtzOjA6IiI7czozOiJ1c3IiO2k6MTA0O3M6NDoibm9wZCI7czoxNToicnNzMy5yZWFkbGVzLmF0IjtzOjE6Im8iO2k6MTEzNjt9\"; startswith; fast_pattern; http.host; content:\"121hiu.senes.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008168; classtype:social-engineering; sid:6008168; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:39:26.996952+00:00",
+  "updated_at": "2026-07-04T02:10:29.436574+00:00",
   "probe": {
     "dns": true,
     "whois": true,

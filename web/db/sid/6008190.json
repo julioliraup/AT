@@ -73,35 +73,51 @@
     "phishdestroy": {
       "domain": "segurancappbradesco.digital",
       "domain_defanged": "segurancappbradesco[.]digital",
-      "case_id": "PD-20260702-18D55B",
-      "analyzed_at": "2026-07-02T18:43:00.052Z",
+      "case_id": "PD-20260704-18D55B",
+      "analyzed_at": "2026-07-04T02:12:53.613Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2424-3125-766e-82be-0919201e02d4.png",
           "url": "https://urlscan.io/result/019f2424-3125-766e-82be-0919201e02d4/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.217.95",
-        "ipinfo": null,
+        "ip": "104.21.93.251",
+        "ipinfo": {
+          "ip": "104.21.93.251",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3030::6815:5dfb",
-            "2606:4700:3030::ac43:d95f"
+            "2606:4700:3030::ac43:d95f",
+            "2606:4700:3030::6815:5dfb"
           ],
           "A": [
-            "172.67.217.95",
-            "104.21.93.251"
+            "104.21.93.251",
+            "172.67.217.95"
           ],
           "NS": [
             "jule.ns.cloudflare.com.",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -238,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (segurancappbradesco.digital/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"segurancappbradesco.digital\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6008190; classtype:social-engineering; sid:6008190; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:42:54.863235+00:00",
+  "updated_at": "2026-07-04T02:12:47.744870+00:00",
   "probe": {
     "dns": true,
     "whois": true,

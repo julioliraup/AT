@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "wil.keki.workers.dev",
       "domain_defanged": "wil[.]keki[.]workers[.]dev",
-      "case_id": "PD-20260702-79A7E3",
-      "analyzed_at": "2026-07-02T15:27:35.380Z",
+      "case_id": "PD-20260703-79A7E3",
+      "analyzed_at": "2026-07-03T22:45:07.660Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2371-499e-76be-a67d-02f9d16b1e2d/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -69,11 +65,18 @@
       },
       "infrastructure": {
         "ip": "104.21.39.120",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.39.120",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3035::6815:2778",
-            "2606:4700:3036::ac43:9143"
+            "2606:4700:3036::ac43:9143",
+            "2606:4700:3035::6815:2778"
           ],
           "A": [
             "104.21.39.120",
@@ -83,7 +86,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,7 +220,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wil.keki.workers.dev/Instag?chatId=8791290357)\"; flow:established,to_server; http.uri; content:\"/Instag?chatId=8791290357\"; startswith; fast_pattern; http.host; content:\"wil.keki.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006598; classtype:social-engineering; sid:6006598; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T15:27:30.119353+00:00",
+  "updated_at": "2026-07-03T22:45:00.000631+00:00",
   "probe": {
     "dns": true,
     "whois": false,

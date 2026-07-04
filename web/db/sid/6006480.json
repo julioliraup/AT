@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "dy-tt.com.cn",
       "domain_defanged": "dy-tt[.]com[.]cn",
-      "case_id": "PD-20260702-3BF284",
-      "analyzed_at": "2026-07-02T15:13:16.580Z",
+      "case_id": "PD-20260703-3BF284",
+      "analyzed_at": "2026-07-03T22:34:14.961Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2364-2eed-7785-be05-a9095a12aab2/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,16 +64,23 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.65.119",
-        "ipinfo": null,
+        "ip": "172.67.145.86",
+        "ipinfo": {
+          "ip": "172.67.145.86",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "172.67.145.86",
+            "104.21.65.119"
+          ],
           "AAAA": [
             "2606:4700:3033::6815:4177",
             "2606:4700:3031::ac43:9156"
-          ],
-          "A": [
-            "104.21.65.119",
-            "172.67.145.86"
           ],
           "NS": [
             "linda.ns.cloudflare.com.",
@@ -87,7 +90,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -214,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dy-tt.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"dy-tt.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006480; classtype:social-engineering; sid:6006480; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T15:13:11.717771+00:00",
+  "updated_at": "2026-07-03T22:34:08.563447+00:00",
   "probe": {
     "dns": true,
     "whois": true,

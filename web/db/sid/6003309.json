@@ -18,18 +18,49 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://tax-en-lrs.elreydistribuidor.com/irs/",
+      "domain": "tax-en-lrs.elreydistribuidor.com",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "tax-en-lrs.elreydistribuidor.com",
       "domain_defanged": "tax-en-lrs[.]elreydistribuidor[.]com",
-      "case_id": "PD-20260702-106244",
-      "analyzed_at": "2026-07-02T09:24:57.558Z",
+      "case_id": "PD-20260703-106244",
+      "analyzed_at": "2026-07-03T16:26:00.910Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f28cd-231a-756e-be37-700b7dc55b7a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -37,8 +68,31 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "elreydistribuidor.com.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "MX": [
+            "elreydistribuidor.com.",
+            "1 mail.eye-mail.net."
+          ],
+          "AAAA": [
+            "elreydistribuidor.com."
+          ],
+          "A": [
+            "elreydistribuidor.com.",
+            "172.237.129.236",
+            "172.237.129.108",
+            "172.237.129.242"
+          ],
+          "CNAME": [
+            "elreydistribuidor.com."
+          ],
+          "NS": [
+            "elreydistribuidor.com.",
+            "ns2.ns306.parklogic.com.",
+            "ns1.ns306.parklogic.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -169,12 +223,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tax-en-lrs.elreydistribuidor.com/irs/)\"; flow:established,to_server; http.uri; content:\"/irs/\"; startswith; fast_pattern; http.host; content:\"tax-en-lrs.elreydistribuidor.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003309; classtype:social-engineering; sid:6003309; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T09:24:44.933155+00:00",
+  "updated_at": "2026-07-03T16:25:55.378862+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

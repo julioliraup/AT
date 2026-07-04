@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "bestfree.shop",
       "domain_defanged": "bestfree[.]shop",
-      "case_id": "PD-20260702-314694",
-      "analyzed_at": "2026-07-02T19:06:10.546Z",
+      "case_id": "PD-20260704-314694",
+      "analyzed_at": "2026-07-04T02:33:13.847Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6eae-3685-747f-99f2-6bebaa701f02.png",
+          "url": "https://urlscan.io/result/019e6eae-3685-747f-99f2-6bebaa701f02/",
+          "title": "Amazon.com : Duke’s Real Mayonnaise Packet – Original Smooth & Creamy Taste, 12 Gram (Pack of 200) : Grocery & Gourmet Food"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "144.172.103.183",
+        "ipinfo": {
+          "ip": "144.172.103.183",
+          "hostname": "183.103.172.144.static.cloudzy.com",
+          "city": "Ogden",
+          "region": "Utah",
+          "country": "US",
+          "org": "AS14956 RouterHosting LLC",
+          "asn": "AS14956"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ROUTERHOSTING",
+          "abuse": "abuse-reports@cloudzy.com",
+          "url": "mailto:abuse-reports@cloudzy.com",
+          "logo": "https://i.ibb.co/dsFkFMby/pr-ROUTERHOSTING.png",
+          "method": "email",
+          "asn": "AS14956"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.bestfree.shop/m.html)\"; flow:established,to_server; http.uri; content:\"/m.html\"; startswith; fast_pattern; http.host; content:\"www.bestfree.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008349; classtype:social-engineering; sid:6008349; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T19:05:59.005135+00:00",
+  "updated_at": "2026-07-04T02:33:08.296448+00:00",
   "probe": {
     "dns": false,
     "whois": false,

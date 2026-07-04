@@ -18,41 +18,97 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://learn-trezor-io-log-start.typedream.app/",
+      "domain": "learn-trezor-io-log-start.typedream.app",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.67.206.36",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a02cabfa8f1369da-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "7137b704a85ac4fdb4345be7ae8e85325d581b3a856f1515207d9fa873cfdacb",
+      "md5": "26766649ea602f75fba631ba78db8338",
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-05-28T10:41:34",
+      "first_seen_secs": 1779964894.0
+    },
     "phishdestroy": {
       "domain": "learn-trezor-io-log-start.typedream.app",
       "domain_defanged": "learn-trezor-io-log-start[.]typedream[.]app",
-      "case_id": "PD-20260702-521C61",
-      "analyzed_at": "2026-07-02T18:24:21.069Z",
+      "case_id": "PD-20260704-521C61",
+      "analyzed_at": "2026-07-04T01:59:23.749Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2413-1e13-761f-a709-745b452f93f6.png",
           "url": "https://urlscan.io/result/019f2413-1e13-761f-a709-745b452f93f6/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.37.85",
-        "ipinfo": null,
+        "ip": "172.67.206.36",
+        "ipinfo": {
+          "ip": "172.67.206.36",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "104.21.37.85",
-            "172.67.206.36"
+            "172.67.206.36",
+            "104.21.37.85"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -179,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (learn-trezor-io-log-start.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"learn-trezor-io-log-start.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008101; classtype:social-engineering; sid:6008101; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:24:08.650800+00:00",
+  "updated_at": "2026-07-04T01:59:10.397219+00:00",
   "probe": {
     "dns": true,
     "whois": false,

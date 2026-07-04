@@ -18,52 +18,61 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://dg9ap7khcvgko20xxhta.s3.eu-central-1.amazonaws.com/0xN0C7hPf.html",
-      "domain": "dg9ap7khcvgko20xxhta.s3.eu-central-1.amazonaws.com",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "dg9ap7khcvgko20xxhta.s3.eu-central-1.amazonaws.com",
       "domain_defanged": "dg9ap7khcvgko20xxhta[.]s3[.]eu-central-1[.]amazonaws[.]com",
-      "case_id": "PD-20260702-17F0AA",
-      "analyzed_at": "2026-07-02T18:00:34.669Z",
+      "case_id": "PD-20260704-17F0AA",
+      "analyzed_at": "2026-07-04T01:31:16.086Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f23fd-551b-74d6-8715-564187734b7b/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f23fd-551b-74d6-8715-564187734b7b.png",
+          "url": "https://urlscan.io/result/019f23fd-551b-74d6-8715-564187734b7b/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,21 +80,23 @@
         "ip": "s3-r-w.eu-central-1.amazonaws.com.",
         "ipinfo": null,
         "dns": {
+          "MX": [
+            "s3-r-w.eu-central-1.amazonaws.com."
+          ],
           "AAAA": [
             "s3-r-w.eu-central-1.amazonaws.com."
           ],
           "A": [
             "s3-r-w.eu-central-1.amazonaws.com.",
-            "3.5.121.194",
-            "3.5.138.232",
-            "3.5.121.5",
-            "3.5.121.114",
-            "52.219.171.86",
-            "3.5.122.127",
-            "3.5.134.144",
-            "3.5.138.64"
+            "16.12.24.26",
+            "3.5.120.122",
+            "3.5.136.170",
+            "52.219.170.250",
+            "3.5.138.19",
+            "3.5.138.241",
+            "3.5.122.179"
           ],
-          "MX": [
+          "CNAME": [
             "s3-r-w.eu-central-1.amazonaws.com."
           ],
           "NS": [
@@ -94,15 +105,19 @@
             "ns-1782.awsdns-30.co.uk.",
             "ns-458.awsdns-57.com.",
             "ns-805.awsdns-36.net."
-          ],
-          "CNAME": [
-            "s3-r-w.eu-central-1.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -229,7 +244,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dg9ap7khcvgko20xxhta.s3.eu-central-1.amazonaws.com/0xN0C7hPf.html)\"; flow:established,to_server; http.uri; content:\"/0xN0C7hPf.html\"; startswith; fast_pattern; http.host; content:\"dg9ap7khcvgko20xxhta.s3.eu-central-1.amazonaws.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007942; classtype:social-engineering; sid:6007942; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:00:26.226074+00:00",
+  "updated_at": "2026-07-04T01:30:55.350547+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -72,28 +72,37 @@
     "phishdestroy": {
       "domain": "amazon-clone-ahmetbasli.vercel.app",
       "domain_defanged": "amazon-clone-ahmetbasli[.]vercel[.]app",
-      "case_id": "PD-20260702-6711EB",
-      "analyzed_at": "2026-07-02T18:51:23.012Z",
+      "case_id": "PD-20260704-6711EB",
+      "analyzed_at": "2026-07-04T02:21:03.602Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f242b-defb-742e-9d78-d372583cd6de.png",
           "url": "https://urlscan.io/result/019f242b-defb-742e-9d78-d372583cd6de/",
-          "pending": true
+          "title": "Amazon 2.0"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.130",
+        "ip": "216.198.79.66",
         "ipinfo": {
-          "ip": "64.29.17.130",
+          "ip": "216.198.79.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -102,8 +111,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.130",
-            "216.198.79.130"
+            "216.198.79.66",
+            "64.29.17.66"
           ]
         }
       },
@@ -243,7 +252,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.amazon-clone-ahmetbasli.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.amazon-clone-ahmetbasli.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008248; classtype:social-engineering; sid:6008248; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:51:15.312393+00:00",
+  "updated_at": "2026-07-04T02:20:59.117394+00:00",
   "probe": {
     "dns": true,
     "whois": false,

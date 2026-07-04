@@ -49,21 +49,57 @@
     "phishdestroy": {
       "domain": "pass-11ff5348dd69.s3.amazonaws.com",
       "domain_defanged": "pass-11ff5348dd69[.]s3[.]amazonaws[.]com",
-      "case_id": "PD-20260702-1BD83B",
-      "analyzed_at": "2026-07-02T17:41:11.371Z",
+      "case_id": "PD-20260704-1BD83B",
+      "analyzed_at": "2026-07-04T01:07:29.209Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f23eb-9a1c-7688-99c0-1eac73329b24/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f23eb-9a1c-7688-99c0-1eac73329b24.png",
+          "url": "https://urlscan.io/result/019f23eb-9a1c-7688-99c0-1eac73329b24/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -82,14 +118,14 @@
           "A": [
             "s3-1-w.amazonaws.com.",
             "s3-w.us-east-1.amazonaws.com.",
-            "16.182.72.201",
-            "54.231.133.193",
-            "52.217.197.113",
-            "16.15.252.42",
-            "52.216.213.217",
-            "52.217.204.65",
-            "52.217.36.180",
-            "16.182.105.249"
+            "16.15.244.224",
+            "52.217.140.225",
+            "16.15.252.38",
+            "52.216.54.1",
+            "16.15.183.209",
+            "16.182.36.185",
+            "16.15.236.37",
+            "52.217.125.169"
           ],
           "CNAME": [
             "s3-1-w.amazonaws.com."
@@ -106,7 +142,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -233,7 +276,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pass-11ff5348dd69.s3.amazonaws.com/9cd217dee28e8c9d.html)\"; flow:established,to_server; http.uri; content:\"/9cd217dee28e8c9d.html\"; startswith; fast_pattern; http.host; content:\"pass-11ff5348dd69.s3.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007787; classtype:social-engineering; sid:6007787; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T17:41:07.021564+00:00",
+  "updated_at": "2026-07-04T01:07:25.191829+00:00",
   "probe": {
     "dns": true,
     "whois": false,

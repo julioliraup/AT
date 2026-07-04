@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "primeshopindonesia.com",
       "domain_defanged": "primeshopindonesia[.]com",
-      "case_id": "PD-20260702-5DA455",
-      "analyzed_at": "2026-07-02T18:46:55.759Z",
+      "case_id": "PD-20260704-5DA455",
+      "analyzed_at": "2026-07-04T02:17:55.190Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Shopee"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f14be-8acc-7289-a422-0a8c38b204ed.png",
+          "url": "https://urlscan.io/result/019f14be-8acc-7289-a422-0a8c38b204ed/",
+          "title": "Shopee"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Shopee",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2026-03-29T15:27:46Z",
         "expires": "2027-03-29T15:27:46Z",
-        "age_days": 95,
+        "age_days": 96,
         "nameservers": [
           "NS1.DOMAINNAMEDNS.COM",
           "NS2.DOMAINNAMEDNS.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "148.66.3.118",
+        "ipinfo": {
+          "ip": "148.66.3.118",
+          "city": "Hoi Fu Court",
+          "region": "Yau Tsim Mong District",
+          "country": "HK",
+          "org": "AS45753 Netsec Limited",
+          "asn": "AS45753"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": "1509"
         },
-        "hosting": null
+        "hosting": {
+          "name": "NETSEC-HK",
+          "abuse": "abuse@netsec.com",
+          "url": "mailto:abuse@netsec.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS45753"
+        }
       },
       "report_services": [
         {
@@ -210,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (primeshopindonesia.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"primeshopindonesia.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008222; classtype:social-engineering; sid:6008222; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:46:37.075646+00:00",
+  "updated_at": "2026-07-04T02:17:45.411054+00:00",
   "probe": {
     "dns": false,
     "whois": false,

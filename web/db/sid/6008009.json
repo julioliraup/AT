@@ -73,37 +73,60 @@
     "phishdestroy": {
       "domain": "airbnb-ui-clone-two.vercel.app",
       "domain_defanged": "airbnb-ui-clone-two[.]vercel[.]app",
-      "case_id": "PD-20260702-36C117",
-      "analyzed_at": "2026-07-02T18:09:13.077Z",
+      "case_id": "PD-20260704-36C117",
+      "analyzed_at": "2026-07-04T01:46:27.017Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Airbnb"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2405-42ca-71c6-a2b9-9d6e50ae83c9.png",
           "url": "https://urlscan.io/result/019f2405-42ca-71c6-a2b9-9d6e50ae83c9/",
-          "pending": true
+          "title": "Airbnb"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Airbnb",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.2",
-        "ipinfo": null,
+        "ip": "64.29.17.194",
+        "ipinfo": {
+          "ip": "64.29.17.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.2",
-            "216.198.79.2"
+            "64.29.17.194",
+            "216.198.79.194"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -230,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (airbnb-ui-clone-two.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"airbnb-ui-clone-two.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008009; classtype:social-engineering; sid:6008009; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:09:08.770500+00:00",
+  "updated_at": "2026-07-04T01:46:22.985949+00:00",
   "probe": {
     "dns": true,
     "whois": false,

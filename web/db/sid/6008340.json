@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "drinkdar.click",
       "domain_defanged": "drinkdar[.]click",
-      "case_id": "PD-20260702-2877FB",
-      "analyzed_at": "2026-07-02T18:46:20.526Z",
+      "case_id": "PD-20260704-2877FB",
+      "analyzed_at": "2026-07-04T02:17:19.605Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Google"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e6c79-4441-7499-a77b-00b02570f5d1.png",
+          "url": "https://urlscan.io/result/019e6c79-4441-7499-a77b-00b02570f5d1/",
+          "title": "Sign in - Google Accounts"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Google",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.12.5",
+        "ipinfo": {
+          "ip": "104.21.12.5",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -197,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (drinkdar.click/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"drinkdar.click\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008340; classtype:social-engineering; sid:6008340; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T19:04:57.868798+00:00",
+  "updated_at": "2026-07-04T02:31:47.260587+00:00",
   "probe": {
     "dns": false,
     "whois": false,

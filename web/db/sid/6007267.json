@@ -73,18 +73,14 @@
     "phishdestroy": {
       "domain": "subinsholiday.com",
       "domain_defanged": "subinsholiday[.]com",
-      "case_id": "PD-20260702-36393C",
-      "analyzed_at": "2026-07-02T16:45:15.369Z",
+      "case_id": "PD-20260703-36393C",
+      "analyzed_at": "2026-07-03T23:51:18.159Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f23b8-64b5-713c-be35-7a26296aef1d/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -92,10 +88,12 @@
         "registrar": "BigRock Solutions Ltd",
         "created": "2021-11-01T08:34:57Z",
         "expires": "2026-11-01T08:34:57Z",
-        "age_days": 1704,
+        "age_days": 1705,
         "nameservers": [
-          "NS1.MD-114.HOSTGATORWEBSERVERS.COM",
-          "NS2.MD-114.HOSTGATORWEBSERVERS.COM"
+          "DNS1.BIGROCK.IN",
+          "DNS2.BIGROCK.IN",
+          "DNS3.BIGROCK.IN",
+          "DNS4.BIGROCK.IN"
         ]
       },
       "infrastructure": {
@@ -105,12 +103,15 @@
           "A": [
             "162.215.241.244"
           ],
-          "MX": [
-            "1 smtp.google.com."
-          ],
           "NS": [
-            "ns1.md-114.hostgatorwebservers.com.",
-            "ns2.md-114.hostgatorwebservers.com."
+            "dns3.hostgator.in.",
+            "dns3.bigrock.in.",
+            "dns1.bigrock.in.",
+            "dns4.hostgator.in.",
+            "dns2.bigrock.in.",
+            "dns1.hostgator.in.",
+            "dns2.hostgator.in.",
+            "dns4.bigrock.in."
           ]
         }
       },
@@ -250,10 +251,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (subinsholiday.com//R7/Login/)\"; flow:established,to_server; http.uri; content:\"//R7/Login/\"; startswith; fast_pattern; http.host; content:\"subinsholiday.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007267; classtype:social-engineering; sid:6007267; rev:1; metadata: signature_severity Major, created_et 2026_05_26, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T16:45:06.262251+00:00",
+  "updated_at": "2026-07-03T23:51:10.936317+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

@@ -74,43 +74,66 @@
     "phishdestroy": {
       "domain": "sharepoint3883-4388eral-a8qi.bolt.host",
       "domain_defanged": "sharepoint3883-4388eral-a8qi[.]bolt[.]host",
-      "case_id": "PD-20260702-6B42DA",
-      "analyzed_at": "2026-07-02T19:03:55.812Z",
+      "case_id": "PD-20260704-6B42DA",
+      "analyzed_at": "2026-07-04T02:30:32.733Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2437-5a73-71d9-82d9-0d3038b3204c.png",
           "url": "https://urlscan.io/result/019f2437-5a73-71d9-82d9-0d3038b3204c/",
-          "pending": true
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.13.118",
-        "ipinfo": null,
+        "ip": "104.26.12.118",
+        "ipinfo": {
+          "ip": "104.26.12.118",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.26.13.118",
-            "172.67.75.9",
-            "104.26.12.118"
-          ],
           "AAAA": [
-            "2606:4700:20::681a:d76",
             "2606:4700:20::681a:c76",
+            "2606:4700:20::681a:d76",
             "2606:4700:20::ac43:4b09"
+          ],
+          "A": [
+            "104.26.12.118",
+            "172.67.75.9",
+            "104.26.13.118"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -237,7 +260,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sharepoint3883-4388eral-a8qi.bolt.host/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sharepoint3883-4388eral-a8qi.bolt.host\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008330; classtype:social-engineering; sid:6008330; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T19:03:52.027737+00:00",
+  "updated_at": "2026-07-04T02:30:27.986415+00:00",
   "probe": {
     "dns": true,
     "whois": true,

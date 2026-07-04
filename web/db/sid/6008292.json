@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "support-mydpd-de.looksel.com",
       "domain_defanged": "support-mydpd-de[.]looksel[.]com",
-      "case_id": "PD-20260702-1321FC",
-      "analyzed_at": "2026-07-02T18:58:02.308Z",
+      "case_id": "PD-20260704-1321FC",
+      "analyzed_at": "2026-07-04T02:26:48.619Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e71f5-3e83-740f-aaf3-788e4b5088ff.png",
+          "url": "https://urlscan.io/result/019e71f5-3e83-740f-aaf3-788e4b5088ff/",
+          "title": "Paket empfangen: Flexible Paketzustellung | Empfangen » DPD"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "162.240.174.198",
+        "ipinfo": {
+          "ip": "162.240.174.198",
+          "hostname": "vps-1776713.swimsel.com",
+          "city": "Provo",
+          "region": "Utah",
+          "country": "US",
+          "org": "AS46606 Unified Layer",
+          "asn": "AS46606"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
+          "abuse": "abuse@hostopia.com.au",
+          "url": "mailto:abuse@hostopia.com.au",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS46606"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (support-mydpd-de.looksel.com/slbz/deutsche/host/prvt/empfangen/form.html)\"; flow:established,to_server; http.uri; content:\"/slbz/deutsche/host/prvt/empfangen/form.html\"; startswith; fast_pattern; http.host; content:\"support-mydpd-de.looksel.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008292; classtype:social-engineering; sid:6008292; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:57:55.493143+00:00",
+  "updated_at": "2026-07-04T02:26:40.744506+00:00",
   "probe": {
     "dns": false,
     "whois": false,

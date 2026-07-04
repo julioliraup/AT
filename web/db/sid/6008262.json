@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "netflix-clone-by-mayur.vercel.app",
       "domain_defanged": "netflix-clone-by-mayur[.]vercel[.]app",
-      "case_id": "PD-20260702-667CE7",
-      "analyzed_at": "2026-07-02T18:53:06.514Z",
+      "case_id": "PD-20260704-667CE7",
+      "analyzed_at": "2026-07-04T02:22:42.409Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f242d-734d-722e-84c2-0bf1f9d431d9/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2504-81a1-7015-9251-872b16249a7d.png",
+          "url": "https://urlscan.io/result/019f2504-81a1-7015-9251-872b16249a7d/",
+          "title": "Netflix - Watch TV Shows Online, Watch Movies Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.194",
+        "ip": "64.29.17.66",
         "ipinfo": {
-          "ip": "216.198.79.194",
+          "ip": "64.29.17.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -85,8 +94,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.194",
-            "64.29.17.194"
+            "64.29.17.66",
+            "216.198.79.66"
           ]
         }
       },
@@ -226,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netflix-clone-by-mayur.vercel.app/signup.html)\"; flow:established,to_server; http.uri; content:\"/signup.html\"; startswith; fast_pattern; http.host; content:\"netflix-clone-by-mayur.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008262; classtype:social-engineering; sid:6008262; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T18:53:04.034421+00:00",
+  "updated_at": "2026-07-04T02:22:31.514851+00:00",
   "probe": {
     "dns": true,
     "whois": false,

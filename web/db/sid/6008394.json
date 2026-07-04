@@ -72,37 +72,60 @@
     "phishdestroy": {
       "domain": "netflix-mu-one.vercel.app",
       "domain_defanged": "netflix-mu-one[.]vercel[.]app",
-      "case_id": "PD-20260702-53B4E4",
-      "analyzed_at": "2026-07-02T19:09:59.204Z",
+      "case_id": "PD-20260704-53B4E4",
+      "analyzed_at": "2026-07-04T02:35:42.756Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f243c-e5f6-77cd-8643-40cfd6a54dc6/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f263a-9bc9-757e-b1d7-bd9bd3eef121.png",
+          "url": "https://urlscan.io/result/019f263a-9bc9-757e-b1d7-bd9bd3eef121/",
+          "title": "Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.66",
-        "ipinfo": null,
+        "ip": "64.29.17.2",
+        "ipinfo": {
+          "ip": "64.29.17.2",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.66",
-            "216.198.79.66"
+            "64.29.17.2",
+            "216.198.79.2"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -230,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.netflix-mu-one.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.netflix-mu-one.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008394; classtype:social-engineering; sid:6008394; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-02T19:12:34.392120+00:00",
+  "updated_at": "2026-07-04T02:37:55.557599+00:00",
   "probe": {
     "dns": true,
     "whois": false,
