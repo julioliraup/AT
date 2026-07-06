@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "o1p2x9d.lol",
       "domain_defanged": "o1p2x9d[.]lol",
-      "case_id": "PD-20260704-5414C6",
-      "analyzed_at": "2026-07-04T09:46:21.409Z",
+      "case_id": "PD-20260706-5414C6",
+      "analyzed_at": "2026-07-06T01:41:18.225Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "OLX Group",
+            "PKO Bank Polski"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb657-0b9f-73d9-bff0-4f4f361e8172.png",
+          "url": "https://urlscan.io/result/019eb657-0b9f-73d9-bff0-4f4f361e8172/",
+          "title": "Bank Millennium 1768848617406"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: OLX Group, PKO Bank Polski",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3036::6815:224a",
+        "ipinfo": {
+          "ip": "2606:4700:3036::6815:224a",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (o1p2x9d.lol/o/ws6l0/1768848617406#selectedbank9)\"; flow:established,to_server; http.uri; content:\"/o/ws6l0/1768848617406#selectedbank9\"; startswith; fast_pattern; http.host; content:\"o1p2x9d.lol\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012685; classtype:social-engineering; sid:6012685; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:46:19.070720+00:00",
+  "updated_at": "2026-07-06T01:41:11.202562+00:00",
   "probe": {
     "dns": false,
     "whois": false,

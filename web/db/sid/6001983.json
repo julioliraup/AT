@@ -50,33 +50,74 @@
     "phishdestroy": {
       "domain": "tr.ee",
       "domain_defanged": "tr[.]ee",
-      "case_id": "PD-20260703-697321",
-      "analyzed_at": "2026-07-03T13:54:20.221Z",
+      "case_id": "PD-20260705-697321",
+      "analyzed_at": "2026-07-05T00:29:48.920Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Heimdal Security",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2842-44db-70ef-9a52-26d0d0e8f1a3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2f44-7091-738d-a068-9fa2301f2cba.png",
+          "url": "https://urlscan.io/result/019f2f44-7091-738d-a068-9fa2301f2cba/",
+          "title": "Log in to Roblox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Heimdal Security",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "151.101.130.133",
-        "ipinfo": null,
+        "ip": "151.101.2.133",
+        "ipinfo": {
+          "ip": "151.101.2.133",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
-            "151.101.130.133",
+            "151.101.2.133",
             "151.101.66.133",
             "151.101.194.133",
-            "151.101.2.133"
+            "151.101.130.133"
           ],
           "NS": [
             "ns-1110.awsdns-10.org.",
@@ -88,7 +129,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -211,11 +259,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tr .ee/MiOiT2)\"; flow:established,to_server; http.uri; content:\"/MiOiT2\"; startswith; fast_pattern; http.host;  content:\"tr.ee\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001983; classtype:social-engineering; sid:6001983; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T13:54:12.047072+00:00",
+  "updated_at": "2026-07-05T08:37:25.737283+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "amex-doc.short.gy",
       "domain_defanged": "amex-doc[.]short[.]gy",
-      "case_id": "PD-20260703-74DE08",
-      "analyzed_at": "2026-07-03T23:42:44.213Z",
+      "case_id": "PD-20260705-74DE08",
+      "analyzed_at": "2026-07-05T16:42:12.425Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3328-ae1d-762e-ad8b-3af09e72e8eb/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,18 +92,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "91.197.243.143",
-        "ipinfo": null,
+        "ip": "207.174.61.1",
+        "ipinfo": {
+          "ip": "207.174.61.1",
+          "city": "Claymont",
+          "region": "Delaware",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "91.197.243.143",
-            "207.174.61.1"
+            "207.174.61.1",
+            "91.197.243.143"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -226,7 +244,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amex-doc.short.gy/k2D7Dm/)\"; flow:established,to_server; http.uri; content:\"/k2D7Dm/\"; startswith; fast_pattern; http.host; content:\"amex-doc.short.gy\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007186; classtype:social-engineering; sid:6007186; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T23:42:34.738433+00:00",
+  "updated_at": "2026-07-05T16:42:08.461271+00:00",
   "probe": {
     "dns": true,
     "whois": true,

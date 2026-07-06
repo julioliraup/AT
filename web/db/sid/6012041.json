@@ -73,28 +73,172 @@
     "phishdestroy": {
       "domain": "sp1ct6-vromtek-biz-slortik-plarnix.pages.dev",
       "domain_defanged": "sp1ct6-vromtek-biz-slortik-plarnix[.]pages[.]dev",
-      "case_id": "PD-20260704-74066D",
-      "analyzed_at": "2026-07-04T08:52:51.879Z",
+      "case_id": "PD-20260706-74066D",
+      "analyzed_at": "2026-07-06T00:21:45.208Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 13,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2c54-9ff4-754c-a682-166e55bc8667/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f33bb-114e-7573-aefe-b344a14d21fc.png",
+          "url": "https://urlscan.io/result/019f33bb-114e-7573-aefe-b344a14d21fc/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.199",
+        "ip": "172.66.44.57",
         "ipinfo": {
-          "ip": "172.66.47.199",
+          "ip": "172.66.44.57",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +251,8 @@
             "2606:4700:310c::ac42:2fc7"
           ],
           "A": [
-            "172.66.47.199",
-            "172.66.44.57"
+            "172.66.44.57",
+            "172.66.47.199"
           ],
           "NS": [
             "kallie.ns.cloudflare.com.",
@@ -252,7 +396,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp1ct6-vromtek-biz-slortik-plarnix.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp1ct6-vromtek-biz-slortik-plarnix.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012041; classtype:social-engineering; sid:6012041; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T08:52:49.173515+00:00",
+  "updated_at": "2026-07-06T00:21:39.963051+00:00",
   "probe": {
     "dns": true,
     "whois": false,

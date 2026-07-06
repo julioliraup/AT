@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "onbit.pro",
       "domain_defanged": "onbit[.]pro",
-      "case_id": "PD-20260703-19C9CC",
-      "analyzed_at": "2026-07-03T23:48:20.618Z",
+      "case_id": "PD-20260705-19C9CC",
+      "analyzed_at": "2026-07-05T16:46:04.180Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f332c-3748-71dd-87e5-13e7924d859d/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,7 +69,14 @@
       },
       "infrastructure": {
         "ip": "104.21.41.220",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.41.220",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.21.41.220",
@@ -79,7 +90,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,10 +224,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (onbit.pro/29si4.pptx)\"; flow:established,to_server; http.uri; content:\"/29si4.pptx\"; startswith; fast_pattern; http.host; content:\"onbit.pro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007241; classtype:social-engineering; sid:6007241; rev:1; metadata: signature_severity Major, created_et 2026_05_26, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T23:48:07.132291+00:00",
+  "updated_at": "2026-07-05T16:45:59.575559+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

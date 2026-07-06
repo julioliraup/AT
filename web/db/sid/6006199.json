@@ -77,14 +77,18 @@
     "phishdestroy": {
       "domain": "ansr.pt.ha009.t.mydomain.zone",
       "domain_defanged": "ansr[.]pt[.]ha009[.]t[.]mydomain[.]zone",
-      "case_id": "PD-20260703-338035",
-      "analyzed_at": "2026-07-03T22:10:10.679Z",
+      "case_id": "PD-20260705-338035",
+      "analyzed_at": "2026-07-05T15:04:01.630Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f32ce-cc20-73b9-b753-d70ad7f301d2/",
+          "pending": true
         }
       },
       "detections": [],
@@ -103,18 +107,18 @@
           "asn": "AS398343"
         },
         "dns": {
-          "MX": [
-            "10 mail.ansr.pt.ha009.t.mydomain.zone."
+          "A": [
+            "38.114.101.32"
           ],
           "AAAA": [
             "2605:e440::1:7"
           ],
-          "A": [
-            "38.114.101.32"
+          "MX": [
+            "10 mail.ansr.pt.ha009.t.mydomain.zone."
           ],
           "NS": [
-            "ns1.justhost.ru.",
-            "ns2.justhost.ru."
+            "ns2.justhost.ru.",
+            "ns1.justhost.ru."
           ]
         }
       },
@@ -250,11 +254,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ansr.pt.ha009.t.mydomain.zone/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ansr.pt.ha009.t.mydomain.zone\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006199; classtype:social-engineering; sid:6006199; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T22:10:03.697889+00:00",
+  "updated_at": "2026-07-05T15:11:47.989463+00:00",
   "probe": {
     "dns": true,
     "whois": true,

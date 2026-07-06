@@ -18,80 +18,49 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://chatgpt.com/",
-      "domain": "chatgpt.com",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "104.18.32.47",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "9fa29729e8fe58d9-PDX",
-        "cf_cache_status": null,
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (4125)",
-      "sha256": "25a0576e925251fa731a8b48fdd71ef3612a347111f89e3432daff8c49a2e7ee",
-      "md5": "058932220d2fe2f799eed9953c4a87d4",
-      "cert": {
-        "subject_cn": "chatgpt.com",
-        "subject_alt_names": [
-          "chatgpt.com"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-05-08T23:52:00+00:00",
-        "not_valid_after": "2026-08-07T00:51:52+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "233878794696275104598992028002951447039",
-        "fingerprint_sha1": "54 A5 8C 57 DF 15 57 E5 16 51 9A 49 20 BF 72 24 54 DC D6 05",
-        "fingerprint_sha256": "55 B2 13 58 42 8E 3C DD F1 D2 65 D7 2D A0 24 8C 94 9E C1 84 D5 63 86 0F 73 42 C4 FA AA B2 C1 EC"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-05-11T16:34:14",
-      "first_seen_secs": 1778517254.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "chatgpt.com",
       "domain_defanged": "chatgpt[.]com",
-      "case_id": "PD-20260704-207727",
-      "analyzed_at": "2026-07-04T09:23:58.441Z",
+      "case_id": "PD-20260706-207727",
+      "analyzed_at": "2026-07-06T01:07:14.273Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {
+            "alphaMountain.ai": "AI/ML Applications (alphaMountain.ai)",
+            "BitDefender": "computersandsoftware",
+            "Sophos": "information technology",
+            "Forcepoint ThreatSeeker": "generative ai - text and code",
+            "Google": "technology"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2c71-1b36-7659-bc03-cdf6c8d3c51a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "TNT"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f34ea-56e9-748a-a0aa-e67fac5a369a.png",
+          "url": "https://urlscan.io/result/019f34ea-56e9-748a-a0aa-e67fac5a369a/",
+          "title": "货运天眼导航 - 海运费查询 · 船期查询 · 货代工具导航"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: TNT",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2022-11-30T23:59:19Z",
         "expires": "2026-11-30T23:59:19Z",
-        "age_days": 1311,
+        "age_days": 1313,
         "nameservers": [
           "HASSAN.NS.CLOUDFLARE.COM",
           "SAVANNA.NS.CLOUDFLARE.COM"
@@ -113,8 +82,8 @@
             "104.18.32.47"
           ],
           "AAAA": [
-            "2a06:98c1:3101::6812:202f",
-            "2606:4700:4408::ac40:9bd1"
+            "2606:4700:4408::ac40:9bd1",
+            "2a06:98c1:3101::6812:202f"
           ],
           "NS": [
             "hassan.ns.cloudflare.com.",
@@ -265,7 +234,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (chatgpt.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"chatgpt.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6012410; classtype:social-engineering; sid:6012410; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:23:54.453522+00:00",
+  "updated_at": "2026-07-06T01:07:00.203536+00:00",
   "probe": {
     "dns": true,
     "whois": true,

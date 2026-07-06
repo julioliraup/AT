@@ -55,37 +55,60 @@
     "phishdestroy": {
       "domain": "vdhedheb.vercel.app",
       "domain_defanged": "vdhedheb[.]vercel[.]app",
-      "case_id": "PD-20260703-7BC6E2",
-      "analyzed_at": "2026-07-03T15:20:10.603Z",
+      "case_id": "PD-20260705-7BC6E2",
+      "analyzed_at": "2026-07-05T09:32:34.187Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Banco Pichincha"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2890-dc2b-72dc-84ae-875f0a27751a.png",
           "url": "https://urlscan.io/result/019f2890-dc2b-72dc-84ae-875f0a27751a/",
-          "pending": true
+          "title": "Centro de Asignaciones | Exclusividad clientes"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Banco Pichincha",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.194",
-        "ipinfo": null,
+        "ip": "64.29.17.130",
+        "ipinfo": {
+          "ip": "64.29.17.130",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.194",
-            "216.198.79.194"
+            "64.29.17.130",
+            "216.198.79.130"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -212,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.vdhedheb.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.vdhedheb.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002709; classtype:social-engineering; sid:6002709; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T15:20:08.073191+00:00",
+  "updated_at": "2026-07-05T09:32:31.416229+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -22,27 +22,55 @@
     "phishdestroy": {
       "domain": "forwox.pro",
       "domain_defanged": "forwox[.]pro",
-      "case_id": "PD-20260704-3C5647",
-      "analyzed_at": "2026-07-04T09:53:09.482Z",
+      "case_id": "PD-20260706-3C5647",
+      "analyzed_at": "2026-07-06T01:52:56.155Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb95a-29ab-741f-9c18-3489c5211546.png",
+          "url": "https://urlscan.io/result/019eb95a-29ab-741f-9c18-3489c5211546/",
+          "title": "Fortnite Inventory Checker | Epic Games"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -169,7 +197,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (forwox.pro/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"forwox.pro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012763; classtype:social-engineering; sid:6012763; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:52:56.081667+00:00",
+  "updated_at": "2026-07-06T01:52:39.453312+00:00",
   "probe": {
     "dns": false,
     "whois": false,

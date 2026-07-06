@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "netbradesco-empresas.live",
       "domain_defanged": "netbradesco-empresas[.]live",
-      "case_id": "PD-20260703-5DF83E",
-      "analyzed_at": "2026-07-03T23:21:00.349Z",
+      "case_id": "PD-20260705-5DF83E",
+      "analyzed_at": "2026-07-05T16:18:10.890Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3312-b030-710b-868a-bfdd8f4ac4ac/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,26 +75,41 @@
       },
       "infrastructure": {
         "ip": "34.76.205.124",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "34.76.205.124",
+          "hostname": "124.205.76.34.bc.googleusercontent.com",
+          "city": "Brussels",
+          "region": "Brussels Capital",
+          "country": "BE",
+          "org": "AS396982 Google LLC",
+          "asn": "AS396982"
+        },
         "dns": {
+          "MX": [
+            "10 mx.all-harmless.domains."
+          ],
+          "AAAA": [
+            "2600:1901:0:51b9::"
+          ],
           "A": [
             "34.76.205.124"
           ],
           "NS": [
             "ns1.all-harmless.domains.",
             "ns2.all-harmless.domains."
-          ],
-          "AAAA": [
-            "2600:1901:0:51b9::"
-          ],
-          "MX": [
-            "10 mx.all-harmless.domains."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -217,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netbradesco-empresas.live/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"netbradesco-empresas.live\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6006974; classtype:social-engineering; sid:6006974; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T23:20:50.663956+00:00",
+  "updated_at": "2026-07-05T16:18:07.978222+00:00",
   "probe": {
     "dns": true,
     "whois": true,

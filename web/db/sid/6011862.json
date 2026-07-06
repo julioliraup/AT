@@ -49,21 +49,58 @@
     "phishdestroy": {
       "domain": "mansi2oo4.github.io",
       "domain_defanged": "mansi2oo4[.]github[.]io",
-      "case_id": "PD-20260704-258F95",
-      "analyzed_at": "2026-07-04T08:39:03.881Z",
+      "case_id": "PD-20260706-258F95",
+      "analyzed_at": "2026-07-06T00:06:23.003Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Certego",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f2c47-fc0f-73ce-bbd7-8b0c12debe7c.png",
           "url": "https://urlscan.io/result/019f2c47-fc0f-73ce-bbd7-8b0c12debe7c/",
-          "pending": true
+          "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Certego",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +116,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8003::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153"
-          ],
           "A": [
             "185.199.108.153",
-            "185.199.111.153",
+            "185.199.109.153",
             "185.199.110.153",
-            "185.199.109.153"
+            "185.199.111.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
@@ -229,7 +266,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mansi2oo4.github.io/Amazon-UI-Clone)\"; flow:established,to_server; http.uri; content:\"/Amazon-UI-Clone\"; startswith; fast_pattern; http.host; content:\"mansi2oo4.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011862; classtype:social-engineering; sid:6011862; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T08:39:00.598430+00:00",
+  "updated_at": "2026-07-06T00:06:19.182984+00:00",
   "probe": {
     "dns": true,
     "whois": true,

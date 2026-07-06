@@ -50,42 +50,116 @@
     "phishdestroy": {
       "domain": "webookmarks.com",
       "domain_defanged": "webookmarks[.]com",
-      "case_id": "PD-20260703-778E9F",
-      "analyzed_at": "2026-07-03T13:38:54.791Z",
+      "case_id": "PD-20260705-778E9F",
+      "analyzed_at": "2026-07-05T00:17:28.584Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f2834-2697-7464-8afb-5f2c30275766.png",
           "url": "https://urlscan.io/result/019f2834-2697-7464-8afb-5f2c30275766/",
-          "pending": true
+          "title": "Your Source for Social News and Networking"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameCheap, Inc.",
         "created": "2022-04-20T18:47:33Z",
         "expires": "2027-04-20T18:47:33Z",
-        "age_days": 1534,
+        "age_days": 1536,
         "nameservers": [
           "ARUSHI.NS.CLOUDFLARE.COM",
           "DEREK.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.21.28.233",
-        "ipinfo": null,
+        "ip": "172.67.147.199",
+        "ipinfo": {
+          "ip": "172.67.147.199",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "172.67.147.199",
+            "104.21.28.233"
+          ],
           "AAAA": [
             "2606:4700:3032::ac43:93c7",
             "2606:4700:3034::6815:1ce9"
-          ],
-          "A": [
-            "104.21.28.233",
-            "172.67.147.199"
           ],
           "MX": [
             "10 eforward1.registrar-servers.com.",
@@ -109,7 +183,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -232,11 +313,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webookmarks .com/story7110685/cisco-300-710-%E5%B0%82%E9%96%80%E7%9F%A5%E8%AD%98%E5%86%85%E5%AE%B9)\"; flow:established,to_server; http.uri; content:\"/story7110685/cisco-300-710-%E5%B0%82%E9%96%80%E7%9F%A5%E8%AD%98%E5%86%85%E5%AE%B9\"; startswith; fast_pattern; http.host;  content:\"webookmarks.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001851; classtype:social-engineering; sid:6001851; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T13:38:43.120422+00:00",
+  "updated_at": "2026-07-05T08:28:23.700336+00:00",
   "probe": {
     "dns": true,
     "whois": true,

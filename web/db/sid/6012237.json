@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "new-messeges-bird-dacc.kristina1080.workers.dev",
       "domain_defanged": "new-messeges-bird-dacc[.]kristina1080[.]workers[.]dev",
-      "case_id": "PD-20260704-6B8358",
-      "analyzed_at": "2026-07-04T09:09:05.325Z",
+      "case_id": "PD-20260706-6B8358",
+      "analyzed_at": "2026-07-06T00:43:08.158Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2c63-7a3b-74ca-8118-b56da5b676b6/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f33ba-a7d3-77d7-9622-1c87c2b165cf.png",
+          "url": "https://urlscan.io/result/019f33ba-a7d3-77d7-9622-1c87c2b165cf/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3035::ac43:b3fc",
-            "2606:4700:3030::6815:1fd6"
-          ],
           "A": [
             "172.67.179.252",
             "104.21.31.214"
+          ],
+          "AAAA": [
+            "2606:4700:3030::6815:1fd6",
+            "2606:4700:3035::ac43:b3fc"
           ]
         }
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (new-messeges-bird-dacc.kristina1080.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"new-messeges-bird-dacc.kristina1080.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012237; classtype:social-engineering; sid:6012237; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:09:02.540246+00:00",
+  "updated_at": "2026-07-06T00:43:05.096352+00:00",
   "probe": {
     "dns": true,
     "whois": false,

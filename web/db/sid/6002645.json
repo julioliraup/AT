@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "meta-id17622.invoice-partner.com",
       "domain_defanged": "meta-id17622[.]invoice-partner[.]com",
-      "case_id": "PD-20260703-1B4685",
-      "analyzed_at": "2026-07-03T15:12:56.066Z",
+      "case_id": "PD-20260705-1B4685",
+      "analyzed_at": "2026-07-05T09:27:44.421Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e39c7-74a2-77ea-98c8-6458839f3b2e.png",
+          "url": "https://urlscan.io/result/019e39c7-74a2-77ea-98c8-6458839f3b2e/",
+          "title": "Accounts Centre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "162.159.140.98",
+        "ipinfo": {
+          "ip": "162.159.140.98",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-id17622.invoice-partner.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"meta-id17622.invoice-partner.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002645; classtype:social-engineering; sid:6002645; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T15:12:52.926548+00:00",
+  "updated_at": "2026-07-05T09:27:41.210585+00:00",
   "probe": {
     "dns": false,
     "whois": false,

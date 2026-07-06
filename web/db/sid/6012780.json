@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "klelnanzeigen-deutsch.id735904.info",
       "domain_defanged": "klelnanzeigen-deutsch[.]id735904[.]info",
-      "case_id": "PD-20260704-570B12",
-      "analyzed_at": "2026-07-04T09:55:07.099Z",
+      "case_id": "PD-20260706-570B12",
+      "analyzed_at": "2026-07-06T01:55:05.863Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb7d7-5af6-738f-9e5e-7b7d40f127b6.png",
+          "url": "https://urlscan.io/result/019eb7d7-5af6-738f-9e5e-7b7d40f127b6/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.63.205",
+        "ipinfo": {
+          "ip": "104.21.63.205",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (klelnanzeigen-deutsch.id735904.info/getpaymentm/238112484/m9)\"; flow:established,to_server; http.uri; content:\"/getpaymentm/238112484/m9\"; startswith; fast_pattern; http.host; content:\"klelnanzeigen-deutsch.id735904.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012780; classtype:social-engineering; sid:6012780; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:55:03.765660+00:00",
+  "updated_at": "2026-07-06T01:55:00.866568+00:00",
   "probe": {
     "dns": false,
     "whois": false,

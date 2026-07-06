@@ -73,41 +73,65 @@
     "phishdestroy": {
       "domain": "kucoreinslogn.webflow.io",
       "domain_defanged": "kucoreinslogn[.]webflow[.]io",
-      "case_id": "PD-20260704-228FD0",
-      "analyzed_at": "2026-07-04T10:13:34.840Z",
+      "case_id": "PD-20260706-228FD0",
+      "analyzed_at": "2026-07-06T02:22:53.597Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Crypto",
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c9e-85c1-7128-a429-6feb7df0f92e.png",
           "url": "https://urlscan.io/result/019f2c9e-85c1-7128-a429-6feb7df0f92e/",
-          "pending": true
+          "title": "KUCOIN LOGIN"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Crypto, Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.18.36.248",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.36.248",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.18.36.248",
-            "172.64.151.8"
-          ],
           "AAAA": [
             "2a06:98c1:3102::ac40:9708",
             "2a06:98c1:3105::6812:24f8"
+          ],
+          "A": [
+            "104.18.36.248",
+            "172.64.151.8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +258,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kucoreinslogn.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kucoreinslogn.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012947; classtype:social-engineering; sid:6012947; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T10:13:26.316848+00:00",
+  "updated_at": "2026-07-06T02:22:43.571231+00:00",
   "probe": {
     "dns": true,
     "whois": true,

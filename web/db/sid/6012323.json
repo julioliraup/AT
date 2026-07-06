@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "flips.abuit.info",
       "domain_defanged": "flips[.]abuit[.]info",
-      "case_id": "PD-20260704-42E91D",
-      "analyzed_at": "2026-07-04T09:16:59.167Z",
+      "case_id": "PD-20260706-42E91D",
+      "analyzed_at": "2026-07-06T00:54:54.138Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Allegro"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb7ec-2f1a-759e-a472-c0ac2ef13a3b.png",
+          "url": "https://urlscan.io/result/019eb7ec-2f1a-759e-a472-c0ac2ef13a3b/",
+          "title": "Oferta specjalna: 90–95% taniej"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Allegro",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3033::ac43:b02f",
+        "ipinfo": {
+          "ip": "2606:4700:3033::ac43:b02f",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (flips.abuit.info/?app_vl=ZYFwlHFpbWKEmLqxy5qmnnx0YsC2wa-TpaiVYsBxj2phmqOgnLFwrYw&e=tomek%40elt.pl&sui=%7Bsui%7D&fn=Piotr&ln=Maliszewski&p=&z=PLNAMERAW-3005-IND1)\"; flow:established,to_server; http.uri; content:\"/?app_vl=ZYFwlHFpbWKEmLqxy5qmnnx0YsC2wa-TpaiVYsBxj2phmqOgnLFwrYw&e=tomek%40elt.pl&sui=%7Bsui%7D&fn=Piotr&ln=Maliszewski&p=&z=PLNAMERAW-3005-IND1\"; startswith; fast_pattern; http.host; content:\"flips.abuit.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012323; classtype:social-engineering; sid:6012323; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:16:45.814293+00:00",
+  "updated_at": "2026-07-06T00:54:49.545977+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "nikhilrangale.github.io",
       "domain_defanged": "nikhilrangale[.]github[.]io",
-      "case_id": "PD-20260703-35FCB1",
-      "analyzed_at": "2026-07-03T14:14:16.744Z",
+      "case_id": "PD-20260705-35FCB1",
+      "analyzed_at": "2026-07-05T00:51:48.106Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2854-889f-747c-9bdc-2657bcd93621/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2e70-4382-7294-927f-67adf4d91850.png",
+          "url": "https://urlscan.io/result/019f2e70-4382-7294-927f-67adf4d91850/",
+          "title": "Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -225,11 +234,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nikhilrangale.github.io/Netflix-Clone-UI/)\"; flow:established,to_server; http.uri; content:\"/Netflix-Clone-UI/\"; startswith; fast_pattern; http.host; content:\"nikhilrangale.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002171; classtype:social-engineering; sid:6002171; rev:1; metadata: signature_severity Major, created_et 2026_05_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T14:14:12.588567+00:00",
+  "updated_at": "2026-07-05T08:48:41.993139+00:00",
   "probe": {
     "dns": true,
     "whois": true,

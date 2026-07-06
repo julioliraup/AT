@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "auth-secure.me",
       "domain_defanged": "auth-secure[.]me",
-      "case_id": "PD-20260703-5AF565",
-      "analyzed_at": "2026-07-03T14:01:52.961Z",
+      "case_id": "PD-20260705-5AF565",
+      "analyzed_at": "2026-07-05T00:38:54.377Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2849-2f15-7308-a578-4fd1f7d9440c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2b84-72c2-750e-8d6a-a3f23fd7a4c1.png",
+          "url": "https://urlscan.io/result/019f2b84-72c2-750e-8d6a-a3f23fd7a4c1/",
+          "title": "Sign in to your Microsoft account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -227,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (auth-secure.me/E.3d1GYocKR07Z)\"; flow:established,to_server; http.uri; content:\"/E.3d1GYocKR07Z\"; startswith; fast_pattern; http.host; content:\"auth-secure.me\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002084; classtype:social-engineering; sid:6002084; rev:1; metadata: signature_severity Major, created_et 2026_05_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T14:05:44.062130+00:00",
+  "updated_at": "2026-07-05T08:45:16.157590+00:00",
   "probe": {
     "dns": true,
     "whois": true,

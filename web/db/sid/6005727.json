@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "multi-factorauth.webflow.io",
       "domain_defanged": "multi-factorauth[.]webflow[.]io",
-      "case_id": "PD-20260703-78866A",
-      "analyzed_at": "2026-07-03T21:24:08.934Z",
+      "case_id": "PD-20260705-78866A",
+      "analyzed_at": "2026-07-05T14:32:18.325Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f32b1-c068-7144-b893-d175f2d9ac3a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,21 +93,35 @@
       },
       "infrastructure": {
         "ip": "172.64.151.8",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.64.151.8",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.64.151.8",
             "104.18.36.248"
           ],
           "AAAA": [
-            "2a06:98c1:3105::6812:24f8",
-            "2a06:98c1:3102::ac40:9708"
+            "2a06:98c1:3102::ac40:9708",
+            "2a06:98c1:3105::6812:24f8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (multi-factorauth.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"multi-factorauth.webflow.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6005727; classtype:social-engineering; sid:6005727; rev:1; metadata: signature_severity Major, created_et 2026_05_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T21:23:59.921493+00:00",
+  "updated_at": "2026-07-05T14:32:15.276778+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "conbaseu-logrn.godaddysites.com",
       "domain_defanged": "conbaseu-logrn[.]godaddysites[.]com",
-      "case_id": "PD-20260703-4BD310",
-      "analyzed_at": "2026-07-03T23:58:22.205Z",
+      "case_id": "PD-20260705-4BD310",
+      "analyzed_at": "2026-07-05T16:51:33.530Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3331-3f07-72da-b567-84dec1a92315/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,7 +75,15 @@
       },
       "infrastructure": {
         "ip": "13.248.243.5",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "13.248.243.5",
+          "hostname": "a16e665f42988324c.awsglobalaccelerator.com",
+          "city": "Seattle",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "13.248.243.5",
@@ -81,7 +93,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -208,7 +227,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (conbaseu-logrn.godaddysites.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"conbaseu-logrn.godaddysites.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007326; classtype:social-engineering; sid:6007326; rev:1; metadata: signature_severity Major, created_et 2026_05_26, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T23:58:12.354250+00:00",
+  "updated_at": "2026-07-05T16:51:30.844885+00:00",
   "probe": {
     "dns": true,
     "whois": false,

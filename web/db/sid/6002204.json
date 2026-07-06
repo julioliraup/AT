@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.prywit.top",
       "domain_defanged": "t-mobile[.]prywit[.]top",
-      "case_id": "PD-20260703-5673E9",
-      "analyzed_at": "2026-07-03T14:19:22.517Z",
+      "case_id": "PD-20260705-5673E9",
+      "analyzed_at": "2026-07-05T00:56:07.265Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e2bba-deab-75c6-b7a3-053afbf4193a.png",
+          "url": "https://urlscan.io/result/019e2bba-deab-75c6-b7a3-053afbf4193a/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.209.157",
+        "ipinfo": {
+          "ip": "172.67.209.157",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,11 +219,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.prywit.top/pay?hXF=1QKn4?ihE=C4upt)\"; flow:established,to_server; http.uri; content:\"/pay?hXF=1QKn4?ihE=C4upt\"; startswith; fast_pattern; http.host; content:\"t-mobile.prywit.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002204; classtype:social-engineering; sid:6002204; rev:1; metadata: signature_severity Major, created_et 2026_05_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T14:19:18.323660+00:00",
+  "updated_at": "2026-07-05T08:50:05.016837+00:00",
   "probe": {
     "dns": false,
     "whois": false,

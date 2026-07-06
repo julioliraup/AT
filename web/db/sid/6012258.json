@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "m.365365m.app",
       "domain_defanged": "m[.]365365m[.]app",
-      "case_id": "PD-20260704-DE19E5",
-      "analyzed_at": "2026-07-04T09:10:57.006Z",
+      "case_id": "PD-20260706-DE19E5",
+      "analyzed_at": "2026-07-06T00:46:47.268Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec79b-10e8-713d-b776-352acee69f71.png",
+          "url": "https://urlscan.io/result/019ec79b-10e8-713d-b776-352acee69f71/",
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.65.235.196",
+        "ipinfo": {
+          "ip": "172.65.235.196",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.365365m.app/chs/)\"; flow:established,to_server; http.uri; content:\"/chs/\"; startswith; fast_pattern; http.host; content:\"m.365365m.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012258; classtype:social-engineering; sid:6012258; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:10:45.212550+00:00",
+  "updated_at": "2026-07-06T00:46:42.190219+00:00",
   "probe": {
     "dns": false,
     "whois": false,

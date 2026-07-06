@@ -55,41 +55,64 @@
     "phishdestroy": {
       "domain": "register11.agency-partner-management.com",
       "domain_defanged": "register11[.]agency-partner-management[.]com",
-      "case_id": "PD-20260703-1E2917",
-      "analyzed_at": "2026-07-03T15:14:33.433Z",
+      "case_id": "PD-20260705-1E2917",
+      "analyzed_at": "2026-07-05T09:28:41.584Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f288b-b724-76ad-9438-c98c92128741.png",
           "url": "https://urlscan.io/result/019f288b-b724-76ad-9438-c98c92128741/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.21.120",
-        "ipinfo": null,
+        "ip": "172.67.198.153",
+        "ipinfo": {
+          "ip": "172.67.198.153",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3034::ac43:c699",
-            "2606:4700:3037::6815:1578"
+            "2606:4700:3037::6815:1578",
+            "2606:4700:3034::ac43:c699"
           ],
           "A": [
-            "104.21.21.120",
-            "172.67.198.153"
+            "172.67.198.153",
+            "104.21.21.120"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (register11.agency-partner-management.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"register11.agency-partner-management.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002659; classtype:social-engineering; sid:6002659; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T15:14:29.645965+00:00",
+  "updated_at": "2026-07-05T09:28:38.554055+00:00",
   "probe": {
     "dns": true,
     "whois": false,

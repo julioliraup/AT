@@ -55,27 +55,43 @@
     "phishdestroy": {
       "domain": "login.microsoftonline.hmvegn.ie",
       "domain_defanged": "login[.]microsoftonline[.]hmvegn[.]ie",
-      "case_id": "PD-20260704-4A603A",
-      "analyzed_at": "2026-07-04T10:11:32.695Z",
+      "case_id": "PD-20260706-4A603A",
+      "analyzed_at": "2026-07-06T02:19:06.554Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c9c-a88e-7559-9a53-12de5f9f2e78.png",
           "url": "https://urlscan.io/result/019f2c9c-a88e-7559-9a53-12de5f9f2e78/",
-          "pending": true
+          "title": "Sign in to your Microsoft account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "20.82.96.115",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "20.82.96.115",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": {
           "A": [
             "20.82.96.115"
@@ -84,7 +100,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -211,7 +234,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (login.microsoftonline.hmvegn.ie/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"login.microsoftonline.hmvegn.ie\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012927; classtype:social-engineering; sid:6012927; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T10:11:28.855107+00:00",
+  "updated_at": "2026-07-06T02:18:59.550369+00:00",
   "probe": {
     "dns": true,
     "whois": true,

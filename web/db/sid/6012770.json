@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "tiktok.shop599.com",
       "domain_defanged": "tiktok[.]shop599[.]com",
-      "case_id": "PD-20260704-5DEE6B",
-      "analyzed_at": "2026-07-04T09:53:59.230Z",
+      "case_id": "PD-20260706-5DEE6B",
+      "analyzed_at": "2026-07-06T01:54:06.216Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "TikTok Shop"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eedae-a96f-76ce-8cd8-36a2315ddefa.png",
+          "url": "https://urlscan.io/result/019eedae-a96f-76ce-8cd8-36a2315ddefa/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, TikTok Shop",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.157.250.236",
+        "ipinfo": {
+          "ip": "43.157.250.236",
+          "city": "Jakarta",
+          "region": "Jakarta",
+          "country": "ID",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tiktok.shop599.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tiktok.shop599.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012770; classtype:social-engineering; sid:6012770; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:53:55.464507+00:00",
+  "updated_at": "2026-07-06T01:53:59.609759+00:00",
   "probe": {
     "dns": false,
     "whois": false,

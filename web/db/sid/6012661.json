@@ -49,26 +49,47 @@
     "phishdestroy": {
       "domain": "hotdoc-rf-pending-medicare.com",
       "domain_defanged": "hotdoc-rf-pending-medicare[.]com",
-      "case_id": "PD-20260704-682B24",
-      "analyzed_at": "2026-07-04T09:43:35.704Z",
+      "case_id": "PD-20260706-682B24",
+      "analyzed_at": "2026-07-06T01:37:29.214Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "HotDoc"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb95e-1039-726c-bae0-71221471ecd7.png",
+          "url": "https://urlscan.io/result/019eb95e-1039-726c-bae0-71221471ecd7/",
+          "title": "Security Verification - HotDocs"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: HotDoc",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Global Domain Group LLC",
         "created": "2026-06-11T02:11:20Z",
         "expires": "2027-06-11T02:11:20Z",
-        "age_days": 23,
+        "age_days": 24,
         "nameservers": []
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "45.74.61.7",
+        "ipinfo": {
+          "ip": "45.74.61.7",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS205397 69HOST LLC",
+          "asn": "AS205397"
+        },
         "dns": null
       },
       "report_to": {
@@ -208,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hotdoc-rf-pending-medicare.com/pages/captcha.php)\"; flow:established,to_server; http.uri; content:\"/pages/captcha.php\"; startswith; fast_pattern; http.host; content:\"hotdoc-rf-pending-medicare.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012661; classtype:social-engineering; sid:6012661; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:44:05.235455+00:00",
+  "updated_at": "2026-07-06T01:38:16.418205+00:00",
   "probe": {
     "dns": false,
     "whois": false,

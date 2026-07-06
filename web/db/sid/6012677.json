@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "netempresas.atualizacao-seguranca.com",
       "domain_defanged": "netempresas[.]atualizacao-seguranca[.]com",
-      "case_id": "PD-20260704-7B88CE",
-      "analyzed_at": "2026-07-04T09:45:40.923Z",
+      "case_id": "PD-20260706-7B88CE",
+      "analyzed_at": "2026-07-06T01:40:23.831Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Banco Bradesco"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb959-0b68-705a-b5f3-739b44ec71f6.png",
+          "url": "https://urlscan.io/result/019eb959-0b68-705a-b5f3-739b44ec71f6/",
+          "title": "Atendimento Empresarial"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Banco Bradesco",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "178.16.54.253",
+        "ipinfo": {
+          "ip": "178.16.54.253",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS202412 Omegatech LTD",
+          "asn": "AS202412"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.netempresas.atualizacao-seguranca.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.netempresas.atualizacao-seguranca.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012677; classtype:social-engineering; sid:6012677; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:45:38.025424+00:00",
+  "updated_at": "2026-07-06T01:40:18.106642+00:00",
   "probe": {
     "dns": false,
     "whois": false,

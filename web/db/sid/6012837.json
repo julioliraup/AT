@@ -73,41 +73,64 @@
     "phishdestroy": {
       "domain": "rapid-pine-457.allcompredirectportalshare.workers.dev",
       "domain_defanged": "rapid-pine-457[.]allcompredirectportalshare[.]workers[.]dev",
-      "case_id": "PD-20260704-6631B3",
-      "analyzed_at": "2026-07-04T10:01:05.519Z",
+      "case_id": "PD-20260706-6631B3",
+      "analyzed_at": "2026-07-06T02:05:28.003Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c93-16c2-71bc-a70e-10efd20a23f9.png",
           "url": "https://urlscan.io/result/019f2c93-16c2-71bc-a70e-10efd20a23f9/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.206.178",
-        "ipinfo": null,
+        "ip": "104.21.77.102",
+        "ipinfo": {
+          "ip": "104.21.77.102",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "104.21.77.102",
+            "172.67.206.178"
+          ],
           "AAAA": [
             "2606:4700:3036::6815:4d66",
             "2606:4700:3032::ac43:ceb2"
-          ],
-          "A": [
-            "172.67.206.178",
-            "104.21.77.102"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rapid-pine-457.allcompredirectportalshare.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"rapid-pine-457.allcompredirectportalshare.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012837; classtype:social-engineering; sid:6012837; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T10:01:02.690953+00:00",
+  "updated_at": "2026-07-06T02:05:16.991451+00:00",
   "probe": {
     "dns": true,
     "whois": false,

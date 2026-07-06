@@ -49,21 +49,48 @@
     "phishdestroy": {
       "domain": "u.to",
       "domain_defanged": "u[.]to",
-      "case_id": "PD-20260703-35EA94",
-      "analyzed_at": "2026-07-03T14:43:18.862Z",
+      "case_id": "PD-20260705-35EA94",
+      "analyzed_at": "2026-07-05T09:05:25.057Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f286f-1dc2-7664-8d03-9e74af03f51b/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f3091-f411-7357-9a85-06da2eb7cd67.png",
+          "url": "https://urlscan.io/result/019f3091-f411-7357-9a85-06da2eb7cd67/",
+          "title": "רק רגע..."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,15 +106,15 @@
           "asn": "AS59692"
         },
         "dns": {
+          "A": [
+            "186.2.165.57"
+          ],
           "NS": [
             "ns2.ucoz.net.",
             "ns3.ucoz.net."
           ],
           "MX": [
             "1 mx100.ucozmail.com."
-          ],
-          "A": [
-            "186.2.165.57"
           ]
         }
       },
@@ -227,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (u.to/gift-steam/mPaTIg)\"; flow:established,to_server; http.uri; content:\"/gift-steam/mPaTIg\"; startswith; fast_pattern; http.host; content:\"u.to\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002396; classtype:social-engineering; sid:6002396; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T14:43:10.611341+00:00",
+  "updated_at": "2026-07-05T09:05:21.000084+00:00",
   "probe": {
     "dns": true,
     "whois": false,

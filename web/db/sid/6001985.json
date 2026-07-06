@@ -50,27 +50,62 @@
     "phishdestroy": {
       "domain": "allegrolokalnie.pl",
       "domain_defanged": "allegrolokalnie[.]pl",
-      "case_id": "PD-20260703-4F4D33",
-      "analyzed_at": "2026-07-03T13:54:34.712Z",
+      "case_id": "PD-20260705-4F4D33",
+      "analyzed_at": "2026-07-05T00:30:01.206Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f2842-7e28-70ef-98f2-bc5060b601ff/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f2f58-1ec0-730f-80e7-6ae258caaf01.png",
+          "url": "https://urlscan.io/result/019f2f58-1ec0-730f-80e7-6ae258caaf01/",
+          "title": "Allegro Lokalnie - Wystaw ogłoszenia za darmo i kupuj od osób z Twojej okolicy"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "185.31.27.181",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.31.27.181",
+          "hostname": "allegrolokalnie.pl",
+          "city": "Poznań",
+          "region": "Greater Poland",
+          "country": "PL",
+          "org": "AS31621 Allegro sp. z o.o.",
+          "asn": "AS31621"
+        },
         "dns": {
           "MX": [
             "10 allegro.in.tmes.trendmicro.eu."
@@ -79,10 +114,10 @@
             "185.31.27.181"
           ],
           "NS": [
+            "dns2.allegro.pl.",
             "dns3.allegro.pl.",
             "dns4.allegro.pl.",
-            "dns1.allegro.pl.",
-            "dns2.allegro.pl."
+            "dns1.allegro.pl."
           ]
         }
       },
@@ -211,11 +246,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (allegrolokalnie .pl/o/oferta/Xiaomi-17-Pro-256-GB/214503809)\"; flow:established,to_server; http.uri; content:\"/o/oferta/Xiaomi-17-Pro-256-GB/214503809\"; startswith; fast_pattern; http.host;  content:\"allegrolokalnie.pl\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001985; classtype:social-engineering; sid:6001985; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T13:54:24.313021+00:00",
+  "updated_at": "2026-07-05T08:37:29.884001+00:00",
   "probe": {
     "dns": true,
     "whois": true,

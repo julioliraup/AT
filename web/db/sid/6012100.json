@@ -22,21 +22,30 @@
     "phishdestroy": {
       "domain": "coinbase_v_login.godaddysites.com",
       "domain_defanged": "coinbase_v_login[.]godaddysites[.]com",
-      "case_id": "PD-20260704-6BB1C1",
-      "analyzed_at": "2026-07-04T08:57:42.321Z",
+      "case_id": "PD-20260706-6BB1C1",
+      "analyzed_at": "2026-07-06T00:26:56.267Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c59-0e83-73e3-b31e-8cc6b238a3e5.png",
           "url": "https://urlscan.io/result/019f2c59-0e83-73e3-b31e-8cc6b238a3e5/",
-          "pending": true
+          "title": "Coinbase Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -194,7 +203,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (coinbase_v_login.godaddysites.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"coinbase_v_login.godaddysites.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012100; classtype:social-engineering; sid:6012100; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T08:57:39.529604+00:00",
+  "updated_at": "2026-07-06T00:26:52.029750+00:00",
   "probe": {
     "dns": true,
     "whois": false,

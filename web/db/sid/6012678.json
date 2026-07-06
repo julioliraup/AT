@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "accounts.iruabmkakw.com",
       "domain_defanged": "accounts[.]iruabmkakw[.]com",
-      "case_id": "PD-20260704-70B31D",
-      "analyzed_at": "2026-07-04T09:45:44.407Z",
+      "case_id": "PD-20260706-70B31D",
+      "analyzed_at": "2026-07-06T01:40:28.410Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Binance"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c85-087c-740c-a223-56238e3c834f.png",
           "url": "https://urlscan.io/result/019f2c85-087c-740c-a223-56238e3c834f/",
-          "pending": true
+          "title": "Bitcoin Exchange | Cryptocurrency Exchange | Binance"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Binance",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -74,12 +83,12 @@
           "MX": [
             "accounts.iruabmkakw.com.eo.dnse5.com."
           ],
-          "AAAA": [
-            "accounts.iruabmkakw.com.eo.dnse5.com."
-          ],
           "A": [
             "accounts.iruabmkakw.com.eo.dnse5.com.",
             "43.159.94.13"
+          ],
+          "AAAA": [
+            "accounts.iruabmkakw.com.eo.dnse5.com."
           ],
           "CNAME": [
             "accounts.iruabmkakw.com.eo.dnse5.com."
@@ -91,7 +100,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -218,7 +234,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (accounts.iruabmkakw.com/en/login)\"; flow:established,to_server; http.uri; content:\"/en/login\"; startswith; fast_pattern; http.host; content:\"accounts.iruabmkakw.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012678; classtype:social-engineering; sid:6012678; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:45:41.088896+00:00",
+  "updated_at": "2026-07-06T01:40:24.021783+00:00",
   "probe": {
     "dns": true,
     "whois": false,

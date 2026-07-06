@@ -50,21 +50,48 @@
     "phishdestroy": {
       "domain": "lite.evernote.com",
       "domain_defanged": "lite[.]evernote[.]com",
-      "case_id": "PD-20260703-53E9F6",
-      "analyzed_at": "2026-07-03T13:46:47.002Z",
+      "case_id": "PD-20260705-53E9F6",
+      "analyzed_at": "2026-07-05T00:22:34.259Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f283b-5b2b-774d-b481-c284be9ae028/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f2f60-6e96-7688-8938-13465eaef732.png",
+          "url": "https://urlscan.io/result/019f2f60-6e96-7688-8938-13465eaef732/",
+          "title": "Encrypted Messages Received From Universiti Teknikal Malaysia Melaka - UTeM"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -72,30 +99,37 @@
         "ip": "bendingspoons.map.fastly.net.",
         "ipinfo": null,
         "dns": {
+          "MX": [
+            "bendingspoons.map.fastly.net."
+          ],
           "A": [
             "bendingspoons.map.fastly.net.",
             "199.232.211.52",
             "199.232.215.52"
           ],
-          "AAAA": [
-            "bendingspoons.map.fastly.net.",
-            "2a04:4e42:4e::820",
-            "2a04:4e42:4f::820"
+          "CNAME": [
+            "bendingspoons.map.fastly.net."
           ],
           "NS": [
             "bendingspoons.map.fastly.net."
           ],
-          "MX": [
-            "bendingspoons.map.fastly.net."
-          ],
-          "CNAME": [
-            "bendingspoons.map.fastly.net."
+          "AAAA": [
+            "bendingspoons.map.fastly.net.",
+            "2a04:4e42:4e::820",
+            "2a04:4e42:4f::820"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -218,11 +252,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lite .evernote .com/note/def7c487-d207-e873-7d46-5b1bf924f520)\"; flow:established,to_server; http.uri; content:\"/note/def7c487-d207-e873-7d46-5b1bf924f520\"; startswith; fast_pattern; http.host;  content:\"lite.evernote.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001924; classtype:social-engineering; sid:6001924; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T13:46:42.064739+00:00",
+  "updated_at": "2026-07-05T08:34:10.600601+00:00",
   "probe": {
     "dns": true,
     "whois": false,

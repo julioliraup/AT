@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "santander-portugal-demo.webflow.io",
       "domain_defanged": "santander-portugal-demo[.]webflow[.]io",
-      "case_id": "PD-20260703-2FD5ED",
-      "analyzed_at": "2026-07-03T23:40:47.100Z",
+      "case_id": "PD-20260705-2FD5ED",
+      "analyzed_at": "2026-07-05T16:40:06.407Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3326-c035-74f8-8058-a8011c7ecf2e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,22 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
-        "ipinfo": null,
+        "ip": "172.64.151.8",
+        "ipinfo": {
+          "ip": "172.64.151.8",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "104.18.36.248",
-            "172.64.151.8"
+            "172.64.151.8",
+            "104.18.36.248"
           ],
           "AAAA": [
-            "2a06:98c1:3105::6812:24f8",
-            "2a06:98c1:3102::ac40:9708"
+            "2a06:98c1:3102::ac40:9708",
+            "2a06:98c1:3105::6812:24f8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (santander-portugal-demo.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"santander-portugal-demo.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007165; classtype:social-engineering; sid:6007165; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T23:40:43.219940+00:00",
+  "updated_at": "2026-07-05T16:40:02.409403+00:00",
   "probe": {
     "dns": true,
     "whois": true,

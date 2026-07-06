@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "safe-pvlox.cfd",
       "domain_defanged": "safe-pvlox[.]cfd",
-      "case_id": "PD-20260704-6B29EF",
-      "analyzed_at": "2026-07-04T09:54:44.491Z",
+      "case_id": "PD-20260706-6B29EF",
+      "analyzed_at": "2026-07-06T01:54:41.912Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb959-2b5b-7753-9052-5bf60f1d6856.png",
+          "url": "https://urlscan.io/result/019eb959-2b5b-7753-9052-5bf60f1d6856/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (safe-pvlox.cfd/m/eC514hH4eYS_4mY9l1MrII1z)\"; flow:established,to_server; http.uri; content:\"/m/eC514hH4eYS_4mY9l1MrII1z\"; startswith; fast_pattern; http.host; content:\"safe-pvlox.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012777; classtype:social-engineering; sid:6012777; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:54:37.037564+00:00",
+  "updated_at": "2026-07-06T01:54:37.413986+00:00",
   "probe": {
     "dns": false,
     "whois": false,

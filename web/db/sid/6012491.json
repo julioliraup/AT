@@ -55,21 +55,137 @@
     "phishdestroy": {
       "domain": "3capjiecp3qtjcx.s3-website-us-east-1.amazonaws.com",
       "domain_defanged": "3capjiecp3qtjcx[.]s3-website-us-east-1[.]amazonaws[.]com",
-      "case_id": "PD-20260704-5C7E0F",
-      "analyzed_at": "2026-07-04T09:30:38.832Z",
+      "case_id": "PD-20260706-5C7E0F",
+      "analyzed_at": "2026-07-06T01:19:39.318Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 11,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f2c77-361d-778b-849f-84b4f4a43e33/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f2c77-361d-778b-849f-84b4f4a43e33.png",
+          "url": "https://urlscan.io/result/019f2c77-361d-778b-849f-84b4f4a43e33/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -83,26 +199,26 @@
           "AAAA": [
             "s3-website.us-east-1.amazonaws.com."
           ],
-          "A": [
-            "s3-website.us-east-1.amazonaws.com.",
-            "54.231.167.69",
-            "16.15.253.28",
-            "16.15.254.17",
-            "52.217.113.133",
-            "54.231.161.133",
-            "16.15.246.116",
-            "16.15.207.8",
-            "54.231.225.149"
-          ],
-          "CNAME": [
-            "s3-website.us-east-1.amazonaws.com."
-          ],
           "NS": [
             "s3-website.us-east-1.amazonaws.com.",
             "ns-1286.awsdns-32.org.",
             "ns-1779.awsdns-30.co.uk.",
             "ns-437.awsdns-54.com.",
             "ns-611.awsdns-12.net."
+          ],
+          "CNAME": [
+            "s3-website.us-east-1.amazonaws.com."
+          ],
+          "A": [
+            "s3-website.us-east-1.amazonaws.com.",
+            "16.15.191.72",
+            "52.217.76.123",
+            "16.15.245.54",
+            "16.15.252.144",
+            "52.216.220.205",
+            "16.182.75.61",
+            "54.231.225.181",
+            "54.231.128.237"
           ]
         }
       },
@@ -235,7 +351,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (3capjiecp3qtjcx.s3-website-us-east-1.amazonaws.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"3capjiecp3qtjcx.s3-website-us-east-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012491; classtype:social-engineering; sid:6012491; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:30:35.662983+00:00",
+  "updated_at": "2026-07-06T01:19:35.216386+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -18,18 +18,49 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://titanprint.co.in/dashboard/login.php",
+      "domain": "titanprint.co.in",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "titanprint.co.in",
       "domain_defanged": "titanprint[.]co[.]in",
-      "case_id": "PD-20260704-3C6191",
-      "analyzed_at": "2026-07-04T10:36:37.874Z",
+      "case_id": "PD-20260706-3C6191",
+      "analyzed_at": "2026-07-06T02:40:11.757Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f354c-27ba-76e3-9972-2f33ce7907a7/",
+          "pending": true
         }
       },
       "detections": [],
@@ -37,12 +68,43 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.67.207.235",
+        "ipinfo": {
+          "ip": "172.67.207.235",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "MX": [
+            "0 _dc-mx.191927b0ae7d.titanprint.co.in."
+          ],
+          "NS": [
+            "adele.ns.cloudflare.com.",
+            "yoxall.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.67.207.235",
+            "104.21.82.229"
+          ],
+          "AAAA": [
+            "2606:4700:3035::6815:52e5",
+            "2606:4700:3033::ac43:cfeb"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -169,12 +231,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (titanprint.co.in/dashboard/login.php)\"; flow:established,to_server; http.uri; content:\"/dashboard/login.php\"; startswith; fast_pattern; http.host; content:\"titanprint.co.in\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6013116; classtype:social-engineering; sid:6013116; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T10:36:05.530830+00:00",
+  "updated_at": "2026-07-06T02:40:07.836425+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

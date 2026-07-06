@@ -18,82 +18,39 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.crestpointivsbk.com/",
-      "domain": "www.crestpointivsbk.com",
-      "url_count": 5,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "45.126.231.232",
-      "http_code": 200,
-      "http_response": {
-        "server": "home",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with CRLF, LF line terminators",
-      "sha256": "840baac1a262915d41d439b00a3cc9ad9d07c689624e7e66abef9d525239d38a",
-      "md5": "7e8cf9d3eecae00625811401d589bd9f",
-      "cert": {
-        "subject_cn": "crestpointivsbk.com",
-        "subject_alt_names": [
-          "crestpointivsbk.com",
-          "m.crestpointivsbk.com",
-          "www.crestpointivsbk.com"
-        ],
-        "issuer_cn": "E7",
-        "issuer_org": "Let's Encrypt",
-        "issuer_country": "US",
-        "not_valid_before": "2026-04-27T04:21:04+00:00",
-        "not_valid_after": "2026-07-26T04:21:03+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha384_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "554384239461055473887811440783359577489697",
-        "fingerprint_sha1": "9E 4A A1 85 26 2E E0 A8 DE 62 B4 84 C0 91 8B 89 4F AF 67 B2",
-        "fingerprint_sha256": "61 A4 F6 C2 80 0C 6D 22 6C 60 BB 1E F9 CC F1 BF EA E5 DA EB 0E 65 FD B4 55 3D 41 8F 6A 02 8B AA"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-07-02T03:01:03",
-      "first_seen_secs": 1782961263.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "crestpointivsbk.com",
       "domain_defanged": "crestpointivsbk[.]com",
-      "case_id": "PD-20260704-2290D1",
-      "analyzed_at": "2026-07-04T09:48:43.273Z",
+      "case_id": "PD-20260706-2290D1",
+      "analyzed_at": "2026-07-06T01:45:25.549Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Gambling"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c87-c354-727e-ba23-e8987a27a861.png",
           "url": "https://urlscan.io/result/019f2c87-c354-727e-ba23-e8987a27a861/",
-          "pending": true
+          "title": "70net永乐高(MACAU)官网入口-Master Website"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Gambling",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2026-04-07T10:58:22Z",
         "expires": "2027-04-07T10:58:22Z",
-        "age_days": 87,
+        "age_days": 89,
         "nameservers": [
           "NS1.TAOA.COM",
           "NS2.TAOA.COM"
@@ -101,14 +58,21 @@
       },
       "infrastructure": {
         "ip": "45.126.231.232",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "45.126.231.232",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS26658 HT",
+          "asn": "AS26658"
+        },
         "dns": {
           "A": [
             "45.126.231.232"
           ],
           "NS": [
-            "ns1.taoa.com.",
-            "ns2.taoa.com."
+            "ns2.taoa.com.",
+            "ns1.taoa.com."
           ]
         }
       },
@@ -121,7 +85,14 @@
           "method": "form",
           "iana_ids": "1509"
         },
-        "hosting": null
+        "hosting": {
+          "name": "HENGTONG-IDC-LLC",
+          "abuse": "hengtongidc@outlook.com",
+          "url": "mailto:hengtongidc@outlook.com",
+          "logo": "https://i.ibb.co/v6nwGBD0/pr-ASSUNUCUYERI-TR.jpg",
+          "method": "email",
+          "asn": "AS26658"
+        }
       },
       "report_services": [
         {
@@ -248,7 +219,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.crestpointivsbk.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.crestpointivsbk.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012721; classtype:social-engineering; sid:6012721; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:48:40.453734+00:00",
+  "updated_at": "2026-07-06T01:45:11.468830+00:00",
   "probe": {
     "dns": true,
     "whois": false,

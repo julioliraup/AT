@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "trdestekmerkezi.com.tr",
       "domain_defanged": "trdestekmerkezi[.]com[.]tr",
-      "case_id": "PD-20260703-5B4AE7",
-      "analyzed_at": "2026-07-03T15:07:50.574Z",
+      "case_id": "PD-20260705-5B4AE7",
+      "analyzed_at": "2026-07-05T09:23:53.275Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Instagram"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e3ab1-2b5d-70f9-b509-4ab4a5e08c73.png",
+          "url": "https://urlscan.io/result/019e3ab1-2b5d-70f9-b509-4ab4a5e08c73/",
+          "title": "instagram.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Instagram",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "91.151.88.8",
+        "ipinfo": {
+          "ip": "91.151.88.8",
+          "hostname": "the-flora.store",
+          "city": "Istanbul",
+          "region": "Istanbul",
+          "country": "TR",
+          "org": "AS212219 HOSTING DUNYAM",
+          "asn": "AS212219"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "HostingDunyam",
+          "abuse": "abuse@hostingdunyam.com.tr",
+          "url": "mailto:abuse@hostingdunyam.com.tr",
+          "logo": "https://i.ibb.co/5X4JyGc4/pr-Hosting-Dunyam.png",
+          "method": "email",
+          "asn": "AS212219"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (trdestekmerkezi.com.tr/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"trdestekmerkezi.com.tr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002596; classtype:social-engineering; sid:6002596; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T15:07:46.847669+00:00",
+  "updated_at": "2026-07-05T09:23:48.966586+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp10ct6-vrolor-biz-glurnik-slatem.pages.dev",
       "domain_defanged": "sp10ct6-vrolor-biz-glurnik-slatem[.]pages[.]dev",
-      "case_id": "PD-20260704-6944D0",
-      "analyzed_at": "2026-07-04T09:19:47.528Z",
+      "case_id": "PD-20260706-6944D0",
+      "analyzed_at": "2026-07-06T00:58:36.951Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2c6d-4847-7488-994d-9da05430d55a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2f1f-9ce2-7689-b9d6-03b1ce1e1b28.png",
+          "url": "https://urlscan.io/result/019f2f1f-9ce2-7689-b9d6-03b1ce1e1b28/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -107,8 +116,8 @@
             "172.66.47.105"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f69",
-            "2606:4700:310c::ac42:2c97"
+            "2606:4700:310c::ac42:2c97",
+            "2606:4700:310c::ac42:2f69"
           ],
           "NS": [
             "lisa.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-vrolor-biz-glurnik-slatem.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-vrolor-biz-glurnik-slatem.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012363; classtype:social-engineering; sid:6012363; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:19:40.704652+00:00",
+  "updated_at": "2026-07-06T00:58:32.347756+00:00",
   "probe": {
     "dns": true,
     "whois": false,

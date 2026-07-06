@@ -49,27 +49,43 @@
     "phishdestroy": {
       "domain": "reimagined-funicular-jmjb.vercel.app",
       "domain_defanged": "reimagined-funicular-jmjb[.]vercel[.]app",
-      "case_id": "PD-20260703-712AB6",
-      "analyzed_at": "2026-07-03T15:08:08.905Z",
+      "case_id": "PD-20260705-712AB6",
+      "analyzed_at": "2026-07-05T09:24:16.874Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Naver"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2885-d914-7219-945f-1f4dc4b2cfdd.png",
           "url": "https://urlscan.io/result/019f2885-d914-7219-945f-1f4dc4b2cfdd/",
-          "pending": true
+          "title": "Naver Sign in"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Naver",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "64.29.17.66",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "64.29.17.66",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "64.29.17.66",
@@ -79,7 +95,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -206,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (reimagined-funicular-jmjb.vercel.app/?naps)\"; flow:established,to_server; http.uri; content:\"/?naps\"; startswith; fast_pattern; http.host; content:\"reimagined-funicular-jmjb.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002599; classtype:social-engineering; sid:6002599; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T15:08:04.689684+00:00",
+  "updated_at": "2026-07-05T09:24:12.313586+00:00",
   "probe": {
     "dns": true,
     "whois": false,

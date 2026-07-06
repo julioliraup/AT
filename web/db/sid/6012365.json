@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "ldgrinyhgj.azalea1.workers.dev",
       "domain_defanged": "ldgrinyhgj[.]azalea1[.]workers[.]dev",
-      "case_id": "PD-20260704-3E5D44",
-      "analyzed_at": "2026-07-04T09:20:03.618Z",
+      "case_id": "PD-20260706-3E5D44",
+      "analyzed_at": "2026-07-06T00:58:45.582Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c6d-85f3-7619-8e2e-2b22da44acdc.png",
           "url": "https://urlscan.io/result/019f2c6d-85f3-7619-8e2e-2b22da44acdc/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.212.16",
+        "ip": "104.21.91.78",
         "ipinfo": {
-          "ip": "172.67.212.16",
+          "ip": "104.21.91.78",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +116,8 @@
             "2606:4700:3035::ac43:d410"
           ],
           "A": [
-            "172.67.212.16",
-            "104.21.91.78"
+            "104.21.91.78",
+            "172.67.212.16"
           ]
         }
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ldgrinyhgj.azalea1.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ldgrinyhgj.azalea1.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012365; classtype:social-engineering; sid:6012365; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:19:58.111642+00:00",
+  "updated_at": "2026-07-06T00:58:40.949437+00:00",
   "probe": {
     "dns": true,
     "whois": false,

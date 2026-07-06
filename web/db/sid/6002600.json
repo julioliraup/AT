@@ -72,27 +72,56 @@
     "phishdestroy": {
       "domain": "meta-id90013.agency-manager-support.com",
       "domain_defanged": "meta-id90013[.]agency-manager-support[.]com",
-      "case_id": "PD-20260703-40DD0A",
-      "analyzed_at": "2026-07-03T15:08:12.171Z",
+      "case_id": "PD-20260705-40DD0A",
+      "analyzed_at": "2026-07-05T09:24:20.765Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook",
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e56fd-2a46-73d4-97ab-92ab3a72b9a3.png",
+          "url": "https://urlscan.io/result/019e56fd-2a46-73d4-97ab-92ab3a72b9a3/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook, Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "162.159.140.98",
+        "ipinfo": {
+          "ip": "162.159.140.98",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -219,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-id90013.agency-manager-support.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"meta-id90013.agency-manager-support.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002600; classtype:social-engineering; sid:6002600; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T15:08:08.973406+00:00",
+  "updated_at": "2026-07-05T09:24:17.029229+00:00",
   "probe": {
     "dns": true,
     "whois": false,

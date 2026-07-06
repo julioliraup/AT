@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "liveinn.pt",
       "domain_defanged": "liveinn[.]pt",
-      "case_id": "PD-20260703-591AFE",
-      "analyzed_at": "2026-07-03T23:34:35.789Z",
+      "case_id": "PD-20260705-591AFE",
+      "analyzed_at": "2026-07-05T16:30:18.822Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f331d-ca29-7599-a156-f78b4546a4be/",
+          "pending": true
         }
       },
       "detections": [],
@@ -75,15 +79,15 @@
           "asn": "AS33876"
         },
         "dns": {
+          "NS": [
+            "ns1.pcplusserver.com.",
+            "ns2.pcplusserver.com."
+          ],
           "MX": [
             "1 SMTP.GOOGLE.COM."
           ],
           "A": [
             "185.11.167.214"
-          ],
-          "NS": [
-            "ns2.pcplusserver.com.",
-            "ns1.pcplusserver.com."
           ]
         }
       },
@@ -223,10 +227,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (liveinn.pt/.cgi/2026%20Tender%20Documents.html)\"; flow:established,to_server; http.uri; content:\"/.cgi/2026%20Tender%20Documents.html\"; startswith; fast_pattern; http.host; content:\"liveinn.pt\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007104; classtype:social-engineering; sid:6007104; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T23:34:29.361708+00:00",
+  "updated_at": "2026-07-05T16:30:08.011537+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

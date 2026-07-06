@@ -50,28 +50,45 @@
     "phishdestroy": {
       "domain": "shorturl.at",
       "domain_defanged": "shorturl[.]at",
-      "case_id": "PD-20260703-72F680",
-      "analyzed_at": "2026-07-03T13:48:50.273Z",
+      "case_id": "PD-20260705-72F680",
+      "analyzed_at": "2026-07-05T00:23:56.663Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f283d-3dce-77fa-b1dd-fdeb288b37ec/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f2f9e-0318-77b8-970c-b6b98f3acd84.png",
+          "url": "https://urlscan.io/result/019f2f9e-0318-77b8-970c-b6b98f3acd84/",
+          "title": "Flammes"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.69.88",
+        "ip": "104.26.9.129",
         "ipinfo": {
-          "ip": "172.67.69.88",
+          "ip": "104.26.9.129",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,14 +97,14 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:20::ac43:4558",
             "2606:4700:20::681a:881",
-            "2606:4700:20::681a:981"
+            "2606:4700:20::681a:981",
+            "2606:4700:20::ac43:4558"
           ],
           "A": [
+            "104.26.9.129",
             "172.67.69.88",
-            "104.26.8.129",
-            "104.26.9.129"
+            "104.26.8.129"
           ],
           "MX": [
             "0 mail.shorturl.at."
@@ -235,7 +252,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shorturl .at/sQxf0)\"; flow:established,to_server; http.uri; content:\"/sQxf0\"; startswith; fast_pattern; http.host;  content:\"shorturl.at\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001945; classtype:social-engineering; sid:6001945; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T13:49:20.286281+00:00",
+  "updated_at": "2026-07-05T08:35:25.462730+00:00",
   "probe": {
     "dns": true,
     "whois": true,

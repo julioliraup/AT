@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp10ct6-qurnex-biz-slurnor-vrolax.pages.dev",
       "domain_defanged": "sp10ct6-qurnex-biz-slurnor-vrolax[.]pages[.]dev",
-      "case_id": "PD-20260704-35BD8C",
-      "analyzed_at": "2026-07-04T09:01:27.324Z",
+      "case_id": "PD-20260706-35BD8C",
+      "analyzed_at": "2026-07-06T00:32:03.490Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f2c5c-7d4b-71d2-a1cd-f8aa7a02a7a8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f33c9-d9d7-7039-ba4d-3ea203c0b8ea.png",
+          "url": "https://urlscan.io/result/019f33c9-d9d7-7039-ba4d-3ea203c0b8ea/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.160",
+        "ip": "172.66.44.96",
         "ipinfo": {
-          "ip": "172.66.47.160",
+          "ip": "172.66.44.96",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "172.66.47.160",
-            "172.66.44.96"
+            "172.66.44.96",
+            "172.66.47.160"
           ],
           "AAAA": [
             "2606:4700:310c::ac42:2fa0",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-qurnex-biz-slurnor-vrolax.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-qurnex-biz-slurnor-vrolax.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012144; classtype:social-engineering; sid:6012144; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:01:19.695740+00:00",
+  "updated_at": "2026-07-06T00:32:00.658405+00:00",
   "probe": {
     "dns": true,
     "whois": false,

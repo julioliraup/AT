@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.hznodi.top",
       "domain_defanged": "t-mobile[.]hznodi[.]top",
-      "case_id": "PD-20260703-7D9DFF",
-      "analyzed_at": "2026-07-03T14:07:42.053Z",
+      "case_id": "PD-20260705-7D9DFF",
+      "analyzed_at": "2026-07-05T00:45:45.800Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e2bb9-c268-74eb-8be6-e768605ce4c9.png",
+          "url": "https://urlscan.io/result/019e2bb9-c268-74eb-8be6-e768605ce4c9/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,11 +219,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.hznodi.top/pay?jvA=dl5Yk?sAQ=u8aLM)\"; flow:established,to_server; http.uri; content:\"/pay?jvA=dl5Yk?sAQ=u8aLM\"; startswith; fast_pattern; http.host; content:\"t-mobile.hznodi.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002103; classtype:social-engineering; sid:6002103; rev:1; metadata: signature_severity Major, created_et 2026_05_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T14:07:34.876449+00:00",
+  "updated_at": "2026-07-05T08:46:05.126249+00:00",
   "probe": {
     "dns": false,
     "whois": false,

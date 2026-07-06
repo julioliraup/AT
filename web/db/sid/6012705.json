@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "codenf.top",
       "domain_defanged": "codenf[.]top",
-      "case_id": "PD-20260704-9B91BB",
-      "analyzed_at": "2026-07-04T09:47:50.092Z",
+      "case_id": "PD-20260706-9B91BB",
+      "analyzed_at": "2026-07-06T01:43:02.693Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb6c7-7193-76dc-afc2-a185f3c308b1.png",
+          "url": "https://urlscan.io/result/019eb6c7-7193-76dc-afc2-a185f3c308b1/",
+          "title": "Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "14.225.205.208",
+        "ipinfo": {
+          "ip": "14.225.205.208",
+          "hostname": "static.vnpt.vn",
+          "city": "Ho Chi Minh City",
+          "region": "Ho Chi Minh City (HCMC)",
+          "country": "VN",
+          "org": "AS135905 VIETNAM POSTS AND TELECOMMUNICATIONS GROUP",
+          "asn": "AS135905"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "HTTVSERVER-VN",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "https://i.ibb.co/PzwJ947R/pr-AZDIGI-AS-VN-AZDIGI-Corporation-VN.png",
+          "method": "email",
+          "asn": "AS135905"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (codenf.top/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"codenf.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012705; classtype:social-engineering; sid:6012705; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:47:47.855624+00:00",
+  "updated_at": "2026-07-06T01:42:56.999507+00:00",
   "probe": {
     "dns": false,
     "whois": false,

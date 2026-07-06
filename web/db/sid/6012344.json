@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "mlltop.com",
       "domain_defanged": "mlltop[.]com",
-      "case_id": "PD-20260704-1F2066",
-      "analyzed_at": "2026-07-04T09:18:35.864Z",
+      "case_id": "PD-20260706-1F2066",
+      "analyzed_at": "2026-07-06T00:56:56.431Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bank of America"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec7a5-e7f8-778d-b37e-ff0f5e2b5b8a.png",
+          "url": "https://urlscan.io/result/019ec7a5-e7f8-778d-b37e-ff0f5e2b5b8a/",
+          "title": "Wealth Management and Financial Services from Merrill Lynch"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bank of America",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2012-12-05T09:36:55Z",
         "expires": "2026-12-05T09:36:55Z",
-        "age_days": 4958,
+        "age_days": 4960,
         "nameservers": [
           "A.SHARE-DNS.COM",
           "B.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "176.56.39.177",
+        "ipinfo": {
+          "ip": "176.56.39.177",
+          "city": "London",
+          "region": "England",
+          "country": "GB",
+          "org": "AS21859 Zenlayer Inc",
+          "asn": "AS21859"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": "1923"
         },
-        "hosting": null
+        "hosting": {
+          "name": "BunnyCDN",
+          "abuse": "abuse@bunnycdn.com",
+          "url": "mailto:abuse@bunnycdn.com",
+          "logo": "https://i.ibb.co/SXfVJxZP/pr-Bunny-CDN.png",
+          "method": "email",
+          "asn": "AS21859"
+        }
       },
       "report_services": [
         {
@@ -210,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mlltop.com/content/boaml/en_us/home.html)\"; flow:established,to_server; http.uri; content:\"/content/boaml/en_us/home.html\"; startswith; fast_pattern; http.host; content:\"mlltop.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012344; classtype:social-engineering; sid:6012344; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:18:31.793383+00:00",
+  "updated_at": "2026-07-06T00:56:46.125508+00:00",
   "probe": {
     "dns": false,
     "whois": false,

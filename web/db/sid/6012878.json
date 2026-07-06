@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "xecloud.duckdns.org",
       "domain_defanged": "xecloud[.]duckdns[.]org",
-      "case_id": "PD-20260704-ACB8C4",
-      "analyzed_at": "2026-07-04T10:06:05.797Z",
+      "case_id": "PD-20260706-ACB8C4",
+      "analyzed_at": "2026-07-06T02:12:14.126Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "AT&T"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c97-ace2-777d-b597-e88f6ad6bf7b.png",
           "url": "https://urlscan.io/result/019f2c97-ace2-777d-b597-e88f6ad6bf7b/",
-          "pending": true
+          "title": "Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: AT&T",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -223,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xecloud.duckdns.org/cgi-bin/index.ha/)\"; flow:established,to_server; http.uri; content:\"/cgi-bin/index.ha/\"; startswith; fast_pattern; http.host; content:\"xecloud.duckdns.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012878; classtype:social-engineering; sid:6012878; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T10:05:59.432867+00:00",
+  "updated_at": "2026-07-06T02:12:06.014439+00:00",
   "probe": {
     "dns": true,
     "whois": true,

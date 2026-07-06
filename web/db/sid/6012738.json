@@ -18,58 +18,60 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://flowersshopping.online/",
-      "domain": "flowersshopping.online",
-      "url_count": 4,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-07-02T02:41:37",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "flowersshopping.online",
       "domain_defanged": "flowersshopping[.]online",
-      "case_id": "PD-20260704-3AAC6A",
-      "analyzed_at": "2026-07-04T09:49:54.717Z",
+      "case_id": "PD-20260706-3AAC6A",
+      "analyzed_at": "2026-07-06T01:48:22.062Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "PayPal"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb74e-8353-7479-9b0d-f50cd7546db7.png",
+          "url": "https://urlscan.io/result/019eb74e-8353-7479-9b0d-f50cd7546db7/",
+          "title": "PayPal Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: PayPal",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "46.202.140.169",
+        "ipinfo": {
+          "ip": "46.202.140.169",
+          "hostname": "srv1540807.hstgr.cloud",
+          "city": "Manchester",
+          "region": "England",
+          "country": "GB",
+          "org": "AS47583 Hostinger International Limited",
+          "asn": "AS47583"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Hostinger",
+          "abuse": "abuse@hostinger.com",
+          "url": "https://www.hostinger.com/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS47583"
+        }
       },
       "report_services": [
         {
@@ -196,7 +198,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (flowersshopping.online/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"flowersshopping.online\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012738; classtype:social-engineering; sid:6012738; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:49:52.061407+00:00",
+  "updated_at": "2026-07-06T01:48:07.077617+00:00",
   "probe": {
     "dns": false,
     "whois": false,

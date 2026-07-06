@@ -49,22 +49,44 @@
     "phishdestroy": {
       "domain": "s.teams-zvl.com",
       "domain_defanged": "s[.]teams-zvl[.]com",
-      "case_id": "PD-20260704-603C37",
-      "analyzed_at": "2026-07-04T09:44:58.436Z",
+      "case_id": "PD-20260706-603C37",
+      "analyzed_at": "2026-07-06T01:39:24.646Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb95a-5b67-7149-9c4a-fd20eabed3db.png",
+          "url": "https://urlscan.io/result/019eb95a-5b67-7149-9c4a-fd20eabed3db/",
+          "title": "Steam 社区 :: Меоw ❤️"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "141.98.234.134",
+        "ipinfo": {
+          "ip": "141.98.234.134",
+          "hostname": "167103.ip-ptr.tech",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS215540 GLOBAL CONNECTIVITY SOLUTIONS LLP",
+          "asn": "AS215540"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +218,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s.teams-zvl.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"s.teams-zvl.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012669; classtype:social-engineering; sid:6012669; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:44:55.409008+00:00",
+  "updated_at": "2026-07-06T01:39:18.847001+00:00",
   "probe": {
     "dns": false,
     "whois": false,

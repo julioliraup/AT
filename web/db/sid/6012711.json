@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "metameaslogiz.gitbook.io",
       "domain_defanged": "metameaslogiz[.]gitbook[.]io",
-      "case_id": "PD-20260704-37670F",
-      "analyzed_at": "2026-07-04T09:48:10.994Z",
+      "case_id": "PD-20260706-37670F",
+      "analyzed_at": "2026-07-06T01:43:18.987Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Metamask"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c87-4540-7085-91d8-118038230a5d.png",
           "url": "https://urlscan.io/result/019f2c87-4540-7085-91d8-118038230a5d/",
-          "pending": true
+          "title": "𝗠𝗲𝘁å𝗺å𝘀𝗸 𝗟𝗼𝗴𝗶𝗻 - Sign In - us - us"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Metamask",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.147.209",
+        "ip": "104.18.40.47",
         "ipinfo": {
-          "ip": "172.64.147.209",
+          "ip": "104.18.40.47",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.64.147.209",
-            "104.18.40.47"
-          ],
           "AAAA": [
             "2606:4700:4402::ac40:93d1",
             "2606:4700:4407::6812:282f"
+          ],
+          "A": [
+            "104.18.40.47",
+            "172.64.147.209"
           ]
         }
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (metameaslogiz.gitbook.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"metameaslogiz.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012711; classtype:social-engineering; sid:6012711; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-04T09:48:07.172512+00:00",
+  "updated_at": "2026-07-06T01:43:15.316611+00:00",
   "probe": {
     "dns": true,
     "whois": true,

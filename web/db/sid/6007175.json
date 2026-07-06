@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "kuc.fmr-max789.com",
       "domain_defanged": "kuc[.]fmr-max789[.]com",
-      "case_id": "PD-20260703-2FE90E",
-      "analyzed_at": "2026-07-03T23:41:34.481Z",
+      "case_id": "PD-20260705-2FE90E",
+      "analyzed_at": "2026-07-05T16:41:21.012Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3327-e4ab-769a-b1cf-565452cc2111/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,21 +93,35 @@
       },
       "infrastructure": {
         "ip": "104.21.51.136",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.51.136",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3030::6815:3388",
+            "2606:4700:3031::ac43:b525"
+          ],
           "A": [
             "104.21.51.136",
             "172.67.181.37"
-          ],
-          "AAAA": [
-            "2606:4700:3031::ac43:b525",
-            "2606:4700:3030::6815:3388"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kuc.fmr-max789.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kuc.fmr-max789.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007175; classtype:social-engineering; sid:6007175; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-03T23:41:31.449922+00:00",
+  "updated_at": "2026-07-05T16:41:17.776085+00:00",
   "probe": {
     "dns": true,
     "whois": false,
