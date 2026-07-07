@@ -19,58 +19,66 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://mrhussenroshddy.samcart.com/products/happiness",
-      "domain": "mrhussenroshddy.samcart.com",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "mrhussenroshddy.samcart.com",
       "domain_defanged": "mrhussenroshddy[.]samcart[.]com",
-      "case_id": "PD-20260706-13C7A1",
-      "analyzed_at": "2026-07-06T08:44:17.423Z",
+      "case_id": "PD-20260707-13C7A1",
+      "analyzed_at": "2026-07-07T04:58:30.906Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f3699-7e39-707e-98a3-1a5f88202d56.png",
           "url": "https://urlscan.io/result/019f3699-7e39-707e-98a3-1a5f88202d56/",
-          "pending": true
+          "title": "Login | SamCart"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "54.84.211.207",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "54.84.211.207",
+          "hostname": "ec2-54-84-211-207.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "A": [
             "54.84.211.207",
@@ -80,7 +88,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -207,7 +222,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mrhussenroshddy .samcart .com/products/happiness)\"; flow:established,to_server; http.uri; content:\"/products/happiness\"; startswith; fast_pattern; http.host;  content:\"mrhussenroshddy.samcart.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001341; classtype:social-engineering; sid:6001341; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T08:44:13.388104+00:00",
+  "updated_at": "2026-07-07T04:58:11.306503+00:00",
   "probe": {
     "dns": true,
     "whois": false,

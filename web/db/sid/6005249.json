@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "cookie-8ck.pages.dev",
       "domain_defanged": "cookie-8ck[.]pages[.]dev",
-      "case_id": "PD-20260705-24193E",
-      "analyzed_at": "2026-07-05T13:40:04.896Z",
+      "case_id": "PD-20260707-24193E",
+      "analyzed_at": "2026-07-07T08:27:54.194Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3281-f069-7018-9f3e-65c3d4702d2c.png",
           "url": "https://urlscan.io/result/019f3281-f069-7018-9f3e-65c3d4702d2c/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -229,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cookie-8ck.pages.dev/help/contact/644693907328391)\"; flow:established,to_server; http.uri; content:\"/help/contact/644693907328391\"; startswith; fast_pattern; http.host; content:\"cookie-8ck.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005249; classtype:social-engineering; sid:6005249; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T13:32:06.143966+00:00",
+  "updated_at": "2026-07-07T08:39:56.415510+00:00",
   "probe": {
     "dns": true,
     "whois": false,

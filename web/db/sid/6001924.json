@@ -50,21 +50,48 @@
     "phishdestroy": {
       "domain": "lite.evernote.com",
       "domain_defanged": "lite[.]evernote[.]com",
-      "case_id": "PD-20260706-53E9F6",
-      "analyzed_at": "2026-07-06T09:17:42.079Z",
+      "case_id": "PD-20260707-53E9F6",
+      "analyzed_at": "2026-07-07T05:26:00.827Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f36b8-1519-7117-8e31-582ba3081ca3/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f3815-72d8-7728-974c-fd966fb2e6a7.png",
+          "url": "https://urlscan.io/result/019f3815-72d8-7728-974c-fd966fb2e6a7/",
+          "title": "Fabrice RANDAZZO | TWINTEC-GMBH"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -95,7 +122,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -222,7 +256,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lite .evernote .com/note/def7c487-d207-e873-7d46-5b1bf924f520)\"; flow:established,to_server; http.uri; content:\"/note/def7c487-d207-e873-7d46-5b1bf924f520\"; startswith; fast_pattern; http.host;  content:\"lite.evernote.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001924; classtype:social-engineering; sid:6001924; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T09:17:38.798404+00:00",
+  "updated_at": "2026-07-07T05:25:56.686806+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -73,44 +73,198 @@
     "phishdestroy": {
       "domain": "mycom.cl",
       "domain_defanged": "mycom[.]cl",
-      "case_id": "PD-20260706-150FA7",
-      "analyzed_at": "2026-07-06T09:07:54.290Z",
+      "case_id": "PD-20260707-150FA7",
+      "analyzed_at": "2026-07-07T05:19:13.831Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 13,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Business/Economy, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f36af-1d04-704a-8e4e-9f189865bd90.png",
           "url": "https://urlscan.io/result/019f36af-1d04-704a-8e4e-9f189865bd90/",
-          "pending": true
+          "title": "Error detallado de IIS 8.5 - 403.14 - Forbidden"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "201.148.104.254",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "201.148.104.254",
+          "hostname": "plesk254.hosting.cl",
+          "city": "Santiago",
+          "region": "Santiago Metropolitan",
+          "country": "CL",
+          "org": "AS265839 HOSTING.CL",
+          "asn": "AS265839"
+        },
         "dns": {
+          "MX": [
+            "10 mail.mycom.cl.",
+            "1 smtp.google.com."
+          ],
           "A": [
             "201.148.104.254"
           ],
           "NS": [
             "dns10.hosting.cl.",
             "dns9.hosting.cl."
-          ],
-          "MX": [
-            "1 smtp.google.com.",
-            "10 mail.mycom.cl."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AS265839",
+          "abuse": "operaciones@hosting.cl",
+          "url": "mailto:operaciones@hosting.cl",
+          "logo": "https://i.ibb.co/YFpgrm3R/pr-AS265839.png",
+          "method": "email",
+          "asn": "AS265839"
+        }
       },
       "report_services": [
         {
@@ -237,7 +391,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .mycom .cl/a/)\"; flow:established,to_server; http.uri; content:\"/a/\"; startswith; fast_pattern; http.host;  content:\"www.mycom.cl\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001740; classtype:social-engineering; sid:6001740; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T09:07:49.481904+00:00",
+  "updated_at": "2026-07-07T05:19:09.693700+00:00",
   "probe": {
     "dns": true,
     "whois": true,

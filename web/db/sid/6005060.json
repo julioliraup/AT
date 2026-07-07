@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "app.whatsapp.hj.hl.cn",
       "domain_defanged": "app[.]whatsapp[.]hj[.]hl[.]cn",
-      "case_id": "PD-20260705-173F6F",
-      "analyzed_at": "2026-07-05T13:35:58.044Z",
+      "case_id": "PD-20260707-173F6F",
+      "analyzed_at": "2026-07-07T08:24:51.456Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WhatsApp"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e50f7-0308-703c-a4e3-70c17a5792e3.png",
+          "url": "https://urlscan.io/result/019e50f7-0308-703c-a4e3-70c17a5792e3/",
+          "title": "WhatsApp Web - 即时通讯消息应用"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WhatsApp",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "156.250.50.44",
+        "ipinfo": {
+          "ip": "156.250.50.44",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS9294 GNET INC.",
+          "asn": "AS9294"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "GNETINC-AS-AP GNET INC., US",
+          "abuse": "abuse@gnet.cc",
+          "url": "mailto:abuse@gnet.cc",
+          "logo": "",
+          "method": "email",
+          "asn": "AS9294"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app.whatsapp.hj.hl.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"app.whatsapp.hj.hl.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005060; classtype:social-engineering; sid:6005060; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T13:20:22.151130+00:00",
+  "updated_at": "2026-07-07T08:24:45.727961+00:00",
   "probe": {
     "dns": false,
     "whois": false,

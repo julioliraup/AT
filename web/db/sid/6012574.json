@@ -49,135 +49,21 @@
     "phishdestroy": {
       "domain": "bill.remote-otp.com",
       "domain_defanged": "bill[.]remote-otp[.]com",
-      "case_id": "PD-20260706-64D446",
-      "analyzed_at": "2026-07-06T01:29:01.094Z",
+      "case_id": "PD-20260707-64D446",
+      "analyzed_at": "2026-07-07T18:53:16.111Z",
       "intel": {
         "virustotal": {
-          "malicious": 9,
-          "suspicious": 1,
-          "total": 91,
-          "detections": [
-            {
-              "engine": "ADMINUSLabs",
-              "category": "malicious",
-              "result": "malicious"
-            },
-            {
-              "engine": "alphaMountain.ai",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Chong Lua Dao",
-              "category": "malicious",
-              "result": "malicious"
-            },
-            {
-              "engine": "CyRadar",
-              "category": "suspicious",
-              "result": "suspicious"
-            },
-            {
-              "engine": "Gridinsoft",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Kaspersky",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Lionic",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "SafeToOpen",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "SOCRadar",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Webroot",
-              "category": "malicious",
-              "result": "malicious"
-            }
-          ],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Phishing Simulation"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019f3024-eef2-77ab-92cc-1449a0aadb67.png",
-          "url": "https://urlscan.io/result/019f3024-eef2-77ab-92cc-1449a0aadb67/",
-          "title": "Simulazione attacco reale"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3ded-63bc-77df-9515-1e319e338149/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "VT: ADMINUSLabs",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: alphaMountain.ai",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Chong Lua Dao",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: CyRadar",
-          "type": "suspicious",
-          "severity": "medium"
-        },
-        {
-          "source": "VT: Gridinsoft",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Kaspersky",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Lionic",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: SafeToOpen",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: SOCRadar",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Webroot",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Phishing Simulation",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
@@ -188,13 +74,14 @@
           "MX": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ],
-          "AAAA": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
-          ],
           "A": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
-            "52.17.47.79",
-            "54.77.30.112"
+            "54.77.30.112",
+            "54.171.225.72",
+            "52.17.47.79"
+          ],
+          "AAAA": [
+            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ],
           "CNAME": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
@@ -206,14 +93,7 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Amazon AWS",
-          "abuse": "abuse@amazonaws.com",
-          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
-          "logo": "",
-          "method": "form",
-          "asn": "AS16509"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -336,12 +216,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bill.remote-otp.com/?rid=jY2jrPo)\"; flow:established,to_server; http.uri; content:\"/?rid=jY2jrPo\"; startswith; fast_pattern; http.host; content:\"bill.remote-otp.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012574; classtype:social-engineering; sid:6012574; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T21:52:55.820702+00:00",
+  "updated_at": "2026-07-07T18:53:06.376048+00:00",
   "probe": {
     "dns": true,
     "whois": false,

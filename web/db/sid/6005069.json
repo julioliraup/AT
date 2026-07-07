@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.ibpvlc.top",
       "domain_defanged": "t-mobile[.]ibpvlc[.]top",
-      "case_id": "PD-20260705-205EC6",
-      "analyzed_at": "2026-07-05T13:36:29.335Z",
+      "case_id": "PD-20260707-205EC6",
+      "analyzed_at": "2026-07-07T08:25:23.850Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4fe3-0dc7-7427-a85f-a36128eca1ed.png",
+          "url": "https://urlscan.io/result/019e4fe3-0dc7-7427-a85f-a36128eca1ed/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.89.174",
+        "ipinfo": {
+          "ip": "104.21.89.174",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +219,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.ibpvlc.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.ibpvlc.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005069; classtype:social-engineering; sid:6005069; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T13:20:43.032752+00:00",
+  "updated_at": "2026-07-07T08:25:20.645855+00:00",
   "probe": {
     "dns": false,
     "whois": false,

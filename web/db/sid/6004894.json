@@ -18,26 +18,75 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://gov-lrs.numero123.com/irs/data/index.html",
+      "domain": "gov-lrs.numero123.com",
+      "url_count": 0,
+      "city_data": false,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "gov-lrs.numero123.com",
       "domain_defanged": "gov-lrs[.]numero123[.]com",
-      "case_id": "PD-20260705-66D64B",
-      "analyzed_at": "2026-07-05T13:20:37.967Z",
+      "case_id": "PD-20260707-66D64B",
+      "analyzed_at": "2026-07-07T08:11:37.760Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "IRS"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4be8-c6ca-73bc-8521-017b5d9e1394.png",
+          "url": "https://urlscan.io/result/019e4be8-c6ca-73bc-8521-017b5d9e1394/",
+          "title": "Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: IRS",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "185.58.73.249",
+        "ipinfo": {
+          "ip": "185.58.73.249",
+          "hostname": "aluminij.avalon.hr",
+          "city": "Zagreb",
+          "region": "Zagreb",
+          "country": "HR",
+          "org": "AS201563 cyber_Folks d.o.o",
+          "asn": "AS201563"
+        },
         "dns": null
       },
       "report_to": {
@@ -165,12 +214,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gov-lrs.numero123.com/irs/data/index.html)\"; flow:established,to_server; http.uri; content:\"/irs/data/index.html\"; startswith; fast_pattern; http.host; content:\"gov-lrs.numero123.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004894; classtype:social-engineering; sid:6004894; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T13:10:29.253507+00:00",
+  "updated_at": "2026-07-07T08:11:32.637579+00:00",
   "probe": {
     "dns": false,
     "whois": false,

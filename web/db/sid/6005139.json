@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.kxoalu.top",
       "domain_defanged": "t-mobile[.]kxoalu[.]top",
-      "case_id": "PD-20260705-37B0BC",
-      "analyzed_at": "2026-07-05T13:43:17.610Z",
+      "case_id": "PD-20260707-37B0BC",
+      "analyzed_at": "2026-07-07T08:30:39.917Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4fe3-0288-703e-b9a1-2f0d32959e84.png",
+          "url": "https://urlscan.io/result/019e4fe3-0288-703e-b9a1-2f0d32959e84/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.190.234",
+        "ipinfo": {
+          "ip": "172.67.190.234",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +219,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.kxoalu.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.kxoalu.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005139; classtype:social-engineering; sid:6005139; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T13:24:03.045722+00:00",
+  "updated_at": "2026-07-07T08:30:33.171404+00:00",
   "probe": {
     "dns": false,
     "whois": false,
