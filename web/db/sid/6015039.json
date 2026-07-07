@@ -49,29 +49,38 @@
     "phishdestroy": {
       "domain": "adityapandey87.github.io",
       "domain_defanged": "adityapandey87[.]github[.]io",
-      "case_id": "PD-20260706-495380",
-      "analyzed_at": "2026-07-06T05:47:36.192Z",
+      "case_id": "PD-20260707-495380",
+      "analyzed_at": "2026-07-07T00:56:42.781Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f35f7-bb58-756d-b318-4b0116b07fc5/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3614-e697-76ff-938a-d16733562aa0.png",
+          "url": "https://urlscan.io/result/019f3614-e697-76ff-938a-d16733562aa0/",
+          "title": "Netflix Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.110.153",
+        "ip": "185.199.108.153",
         "ipinfo": {
-          "ip": "185.199.110.153",
-          "hostname": "cdn-185-199-110-153.github.com",
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,17 +88,17 @@
           "asn": "AS54113"
         },
         "dns": {
+          "A": [
+            "185.199.108.153",
+            "185.199.109.153",
+            "185.199.110.153",
+            "185.199.111.153"
+          ],
           "AAAA": [
-            "2606:50c0:8003::153",
             "2606:50c0:8001::153",
             "2606:50c0:8000::153",
-            "2606:50c0:8002::153"
-          ],
-          "A": [
-            "185.199.110.153",
-            "185.199.109.153",
-            "185.199.111.153",
-            "185.199.108.153"
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
@@ -229,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (adityapandey87.github.io/adityaportfolio/)\"; flow:established,to_server; http.uri; content:\"/adityaportfolio/\"; startswith; fast_pattern; http.host; content:\"adityapandey87.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015039; classtype:social-engineering; sid:6015039; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T05:47:33.404420+00:00",
+  "updated_at": "2026-07-07T00:56:40.108182+00:00",
   "probe": {
     "dns": true,
     "whois": true,

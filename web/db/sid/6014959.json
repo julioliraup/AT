@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "fiverr-orders-sale.pro",
       "domain_defanged": "fiverr-orders-sale[.]pro",
-      "case_id": "PD-20260706-15736F",
-      "analyzed_at": "2026-07-06T05:37:22.854Z",
+      "case_id": "PD-20260707-15736F",
+      "analyzed_at": "2026-07-07T00:47:35.505Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fiverr"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef0c4-ed08-7438-a886-f778721b525b.png",
+          "url": "https://urlscan.io/result/019ef0c4-ed08-7438-a886-f778721b525b/",
+          "title": "It needs a human touch"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fiverr",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fiverr-orders-sale.pro/project/mary2)\"; flow:established,to_server; http.uri; content:\"/project/mary2\"; startswith; fast_pattern; http.host; content:\"fiverr-orders-sale.pro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6014959; classtype:social-engineering; sid:6014959; rev:1; metadata: signature_severity Major, created_et 2026_06_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T05:42:06.353284+00:00",
+  "updated_at": "2026-07-07T00:47:29.359887+00:00",
   "probe": {
     "dns": false,
     "whois": false,

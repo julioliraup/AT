@@ -49,17 +49,38 @@
     "phishdestroy": {
       "domain": "bet1992.vip",
       "domain_defanged": "bet1992[.]vip",
-      "case_id": "PD-20260706-62FF58",
-      "analyzed_at": "2026-07-06T05:35:10.218Z",
+      "case_id": "PD-20260707-62FF58",
+      "analyzed_at": "2026-07-07T00:39:44.727Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ef0c8-3624-76a6-80e2-38fd892fb921.png",
+          "url": "https://urlscan.io/result/019ef0c8-3624-76a6-80e2-38fd892fb921/",
+          "title": "bet1992.vip"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bet1992.vip/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bet1992.vip\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6014857; classtype:social-engineering; sid:6014857; rev:1; metadata: signature_severity Major, created_et 2026_06_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T05:35:04.360859+00:00",
+  "updated_at": "2026-07-07T00:39:37.180421+00:00",
   "probe": {
     "dns": false,
     "whois": false,

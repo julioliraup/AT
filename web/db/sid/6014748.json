@@ -49,21 +49,78 @@
     "phishdestroy": {
       "domain": "guest.refassured.com",
       "domain_defanged": "guest[.]refassured[.]com",
-      "case_id": "PD-20260706-6D9FE5",
-      "analyzed_at": "2026-07-06T05:26:47.352Z",
+      "case_id": "PD-20260707-6D9FE5",
+      "analyzed_at": "2026-07-07T00:32:20.090Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f35e4-acb3-758f-9ee9-8923acccf820/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f360f-3507-76eb-8a20-d13f4147edb5.png",
+          "url": "https://urlscan.io/result/019f360f-3507-76eb-8a20-d13f4147edb5/",
+          "title": "RefAssured Reference"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,29 +128,16 @@
         "ip": "dhlbqommptxzl.cloudfront.net.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "dhlbqommptxzl.cloudfront.net."
-          ],
-          "A": [
-            "dhlbqommptxzl.cloudfront.net.",
-            "108.139.163.51",
-            "108.139.163.47",
-            "108.139.163.110",
-            "108.139.163.108"
-          ],
           "AAAA": [
             "dhlbqommptxzl.cloudfront.net.",
-            "2600:9000:20cf:e600:12:b5e0:9440:93a1",
-            "2600:9000:20cf:d800:12:b5e0:9440:93a1",
-            "2600:9000:20cf:ee00:12:b5e0:9440:93a1",
-            "2600:9000:20cf:f200:12:b5e0:9440:93a1",
-            "2600:9000:20cf:f800:12:b5e0:9440:93a1",
-            "2600:9000:20cf:e00:12:b5e0:9440:93a1",
-            "2600:9000:20cf:cc00:12:b5e0:9440:93a1",
-            "2600:9000:20cf:a200:12:b5e0:9440:93a1"
-          ],
-          "CNAME": [
-            "dhlbqommptxzl.cloudfront.net."
+            "2600:9000:20e0:3600:12:b5e0:9440:93a1",
+            "2600:9000:20e0:fc00:12:b5e0:9440:93a1",
+            "2600:9000:20e0:2400:12:b5e0:9440:93a1",
+            "2600:9000:20e0:1a00:12:b5e0:9440:93a1",
+            "2600:9000:20e0:9c00:12:b5e0:9440:93a1",
+            "2600:9000:20e0:2000:12:b5e0:9440:93a1",
+            "2600:9000:20e0:2800:12:b5e0:9440:93a1",
+            "2600:9000:20e0:5e00:12:b5e0:9440:93a1"
           ],
           "NS": [
             "dhlbqommptxzl.cloudfront.net.",
@@ -101,12 +145,32 @@
             "ns-1432.awsdns-51.org.",
             "ns-1954.awsdns-52.co.uk.",
             "ns-71.awsdns-08.com."
+          ],
+          "CNAME": [
+            "dhlbqommptxzl.cloudfront.net."
+          ],
+          "MX": [
+            "dhlbqommptxzl.cloudfront.net."
+          ],
+          "A": [
+            "dhlbqommptxzl.cloudfront.net.",
+            "108.138.14.115",
+            "108.138.14.117",
+            "108.138.14.118",
+            "108.138.14.90"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -233,7 +297,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (guest.refassured.com/0jR7GEZ0/)\"; flow:established,to_server; http.uri; content:\"/0jR7GEZ0/\"; startswith; fast_pattern; http.host; content:\"guest.refassured.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6014748; classtype:social-engineering; sid:6014748; rev:1; metadata: signature_severity Major, created_et 2026_06_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-06T05:26:44.432479+00:00",
+  "updated_at": "2026-07-07T00:32:16.301326+00:00",
   "probe": {
     "dns": true,
     "whois": false,
