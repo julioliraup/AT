@@ -74,27 +74,44 @@
     "phishdestroy": {
       "domain": "cinoa.com.ar",
       "domain_defanged": "cinoa[.]com[.]ar",
-      "case_id": "PD-20260706-26561C",
-      "analyzed_at": "2026-07-06T08:33:46.450Z",
+      "case_id": "PD-20260708-26561C",
+      "analyzed_at": "2026-07-08T03:29:50.040Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f368f-dd94-7508-996c-a74155b0c38a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Government of France"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3aa8-90cf-76bf-a3b9-90387f287c8e.png",
+          "url": "https://urlscan.io/result/019f3aa8-90cf-76bf-a3b9-90387f287c8e/",
+          "title": "3D SECURE"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Government of France",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "200.58.110.241",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "200.58.110.241",
+          "hostname": "c029.dattaweb.com",
+          "city": "Rosario",
+          "region": "Santa Fe",
+          "country": "AR",
+          "org": "AS27823 Dattatec.com",
+          "asn": "AS27823"
+        },
         "dns": {
           "MX": [
             "0 mail.cinoa.com.ar.",
@@ -104,14 +121,21 @@
             "200.58.110.241"
           ],
           "NS": [
-            "ns3.hostmar.com.",
-            "ns4.hostmar.com."
+            "ns4.hostmar.com.",
+            "ns3.hostmar.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Dattatec.com, AR",
+          "abuse": "ipmaster@hostmar.com",
+          "url": "mailto:ipmaster@hostmar.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS27823"
+        }
       },
       "report_services": [
         {
@@ -239,10 +263,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cinoa .com .ar/vps/am/3dsece .php)\"; flow:established,to_server; http.uri; content:\"/vps/am/3dsece.php\"; startswith; fast_pattern; http.host;  content:\"cinoa.com.ar\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001176; classtype:social-engineering; sid:6001176; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T04:45:58.205945+00:00",
+  "updated_at": "2026-07-08T17:36:28.760977+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

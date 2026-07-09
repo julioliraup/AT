@@ -50,39 +50,63 @@
     "phishdestroy": {
       "domain": "yalem-amazon-project.netlify.app",
       "domain_defanged": "yalem-amazon-project[.]netlify[.]app",
-      "case_id": "PD-20260706-5069D5",
-      "analyzed_at": "2026-07-06T08:36:56.699Z",
+      "case_id": "PD-20260708-5069D5",
+      "analyzed_at": "2026-07-08T03:34:35.302Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3692-c4cf-72ff-b707-1ad44166a1ab.png",
           "url": "https://urlscan.io/result/019f3692-c4cf-72ff-b707-1ad44166a1ab/",
-          "pending": true
+          "title": "amazon clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "54.232.119.62",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "54.232.119.62",
+          "hostname": "ec2-54-232-119-62.sa-east-1.compute.amazonaws.com",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
-          "AAAA": [
-            "2600:1f1e:7c1:c300::258"
-          ],
           "A": [
             "54.232.119.62"
+          ],
+          "AAAA": [
+            "2600:1f1e:7c1:c300::258"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -210,7 +234,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (yalem-amazon-project .netlify .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"yalem-amazon-project.netlify.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001228; classtype:social-engineering; sid:6001228; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T04:50:05.298995+00:00",
+  "updated_at": "2026-07-08T17:40:53.040224+00:00",
   "probe": {
     "dns": true,
     "whois": false,

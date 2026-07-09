@@ -18,58 +18,59 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://dpd.czplqw.ink/com/",
-      "domain": "dpd.czplqw.ink",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "dpd.czplqw.ink",
       "domain_defanged": "dpd[.]czplqw[.]ink",
-      "case_id": "PD-20260707-291A4E",
-      "analyzed_at": "2026-07-07T10:48:46.288Z",
+      "case_id": "PD-20260709-291A4E",
+      "analyzed_at": "2026-07-09T00:59:23.782Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7c56-664a-72ef-bf51-925fa0111b40.png",
+          "url": "https://urlscan.io/result/019e7c56-664a-72ef-bf51-925fa0111b40/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3037::ac43:9ebb",
+        "ipinfo": {
+          "ip": "2606:4700:3037::ac43:9ebb",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +197,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.czplqw.ink/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"dpd.czplqw.ink\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006594; classtype:social-engineering; sid:6006594; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T10:48:41.561353+00:00",
+  "updated_at": "2026-07-09T00:59:08.198015+00:00",
   "probe": {
     "dns": false,
     "whois": false,

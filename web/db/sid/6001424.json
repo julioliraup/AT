@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "tax.securebankinggroup.com",
       "domain_defanged": "tax[.]securebankinggroup[.]com",
-      "case_id": "PD-20260706-11765C",
-      "analyzed_at": "2026-07-06T08:49:28.320Z",
+      "case_id": "PD-20260708-11765C",
+      "analyzed_at": "2026-07-08T03:52:43.317Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3fdb-45ec-738d-a984-b8807652313a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -66,7 +70,15 @@
       },
       "infrastructure": {
         "ip": "52.204.246.179",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "52.204.246.179",
+          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "A": [
             "52.204.246.179",
@@ -76,7 +88,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -204,10 +223,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tax .securebankinggroup .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"tax.securebankinggroup.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001424; classtype:social-engineering; sid:6001424; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T05:04:55.968509+00:00",
+  "updated_at": "2026-07-08T17:56:00.082754+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

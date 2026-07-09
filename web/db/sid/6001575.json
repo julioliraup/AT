@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "loginservice.cloud",
       "domain_defanged": "loginservice[.]cloud",
-      "case_id": "PD-20260706-2A0DE7",
-      "analyzed_at": "2026-07-06T08:58:05.014Z",
+      "case_id": "PD-20260708-2A0DE7",
+      "analyzed_at": "2026-07-08T04:05:00.606Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3fe6-85f1-768f-b116-eb286285a66f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -66,13 +70,20 @@
       },
       "infrastructure": {
         "ip": "212.104.128.2",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "212.104.128.2",
+          "city": "Helsinki",
+          "region": "Uusimaa",
+          "country": "FI",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "212.104.128.2",
-            "212.104.128.1",
+            "212.104.128.0",
             "212.104.128.3",
-            "212.104.128.0"
+            "212.104.128.1"
           ],
           "NS": [
             "georgia.ns.cloudflare.com.",
@@ -82,7 +93,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,7 +228,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (loginservice .cloud/E .lEcQSl9-99fHIQ?/linkedin/slink?code=afSN103785)\"; flow:established,to_server; http.uri; content:\"/E.lEcQSl9-99fHIQ?/linkedin/slink?code=afSN103785\"; startswith; fast_pattern; http.host;  content:\"loginservice.cloud\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001575; classtype:social-engineering; sid:6001575; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T05:12:23.359540+00:00",
+  "updated_at": "2026-07-08T18:08:50.711440+00:00",
   "probe": {
     "dns": true,
     "whois": true,

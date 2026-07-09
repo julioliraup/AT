@@ -21,8 +21,8 @@
     "alienvault": {
       "url": "http://www.fsyinglilai.com/",
       "domain": "www.fsyinglilai.com",
-      "url_count": 5,
-      "city_data": false,
+      "url_count": 6,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -43,20 +43,24 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-02T03:04:24",
+      "first_seen": "2026-07-09T03:32:51",
       "first_seen_secs": null
     },
     "phishdestroy": {
       "domain": "fsyinglilai.com",
       "domain_defanged": "fsyinglilai[.]com",
-      "case_id": "PD-20260707-6F9680",
-      "analyzed_at": "2026-07-07T18:13:26.884Z",
+      "case_id": "PD-20260709-6F9680",
+      "analyzed_at": "2026-07-09T07:32:52.612Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f45cb-2fa0-7701-ad86-69b3fedcadf5/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,18 +68,32 @@
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2023-06-09T18:45:01Z",
         "expires": "2027-06-09T18:45:01Z",
-        "age_days": 1123,
+        "age_days": 1125,
         "nameservers": [
           "A1.SHARE-DNS.COM",
           "B1.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
+        "ip": "colojaku.cdnfree.org.",
         "ipinfo": null,
         "dns": {
           "NS": [
             "a.share-dns.com.",
             "b.share-dns.net."
+          ],
+          "AAAA": [
+            "colojaku.cdnfree.org."
+          ],
+          "CNAME": [
+            "colojaku.cdnfree.org."
+          ],
+          "A": [
+            "colojaku.cdnfree.org.",
+            "51.91.240.20"
+          ],
+          "MX": [
+            "colojaku.cdnfree.org."
           ]
         }
       },
@@ -215,12 +233,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.fsyinglilai.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.fsyinglilai.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011995; classtype:social-engineering; sid:6011995; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T18:13:18.907524+00:00",
+  "updated_at": "2026-07-09T07:32:48.489420+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

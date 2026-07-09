@@ -21,17 +21,17 @@
     "alienvault": {
       "url": "http://bafkreiciaij2qznniztu7ofqnyoatv7tuuonnqbdm3v76jiqz3x2jhifka.ipfs.dweb.link/",
       "domain": "bafkreiciaij2qznniztu7ofqnyoatv7tuuonnqbdm3v76jiqz3x2jhifka.ipfs.dweb.link",
-      "url_count": 6,
+      "url_count": 7,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "209.94.90.3",
+      "ip": "209.94.90.2",
       "http_code": 200,
       "http_response": {
         "server": "cloudflare",
         "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a14a76492f67ef20-PDX",
+        "cf_ray": "a18445418b746e10-PDX",
         "cf_cache_status": "HIT",
         "alt_svc": "h3=\":443\"; ma=86400"
       },
@@ -45,28 +45,44 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (4611)",
-      "sha256": "3e136350926a1f47d769a14892a7890bb691046187b41d4c112fb79e3d1193bf",
-      "md5": "b9b96043b801c66e52f1ad53278796f5",
-      "cert": null,
+      "sha256": "501dc3e50194f8a4cdeec258857586f5a4893e20a1d7ea61619b9fa40063174d",
+      "md5": "6980dfc867343ad6ebf21104534783e0",
+      "cert": {
+        "subject_cn": "dweb.link",
+        "subject_alt_names": [
+          "*.dweb.link",
+          "*.ipfs.dweb.link",
+          "*.ipns.dweb.link",
+          "dweb.link"
+        ],
+        "issuer_cn": "E8",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-23T08:27:48+00:00",
+        "not_valid_after": "2026-08-21T08:27:47+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "566268716425702735113805451471174292407222",
+        "fingerprint_sha1": "C4 1B E4 86 BD F4 23 6A 14 5E 37 F6 7C 23 79 85 84 FA AF AB",
+        "fingerprint_sha256": "FB A4 C2 00 56 DC D2 48 EB 5C D7 4E 4F 7A 29 20 F6 E9 36 A8 BA 47 3E 45 1D CB A8 97 03 B4 11 6E"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-07-02T03:00:54",
-      "first_seen_secs": 1782961254.0
+      "first_seen": "2026-07-09T03:30:34",
+      "first_seen_secs": 1783567834.0
     },
     "phishdestroy": {
       "domain": "bafkreiciaij2qznniztu7ofqnyoatv7tuuonnqbdm3v76jiqz3x2jhifka.ipfs.dweb.link",
       "domain_defanged": "bafkreiciaij2qznniztu7ofqnyoatv7tuuonnqbdm3v76jiqz3x2jhifka[.]ipfs[.]dweb[.]link",
-      "case_id": "PD-20260707-677313",
-      "analyzed_at": "2026-07-07T18:40:28.182Z",
+      "case_id": "PD-20260709-677313",
+      "analyzed_at": "2026-07-09T07:54:57.810Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f3de1-abea-7576-b720-7806712e0c7f/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -74,12 +90,19 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "209.94.90.2",
-        "ipinfo": null,
+        "ip": "209.94.90.3",
+        "ipinfo": {
+          "ip": "209.94.90.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS40680 Protocol Labs",
+          "asn": "AS40680"
+        },
         "dns": {
           "A": [
-            "209.94.90.2",
-            "209.94.90.3"
+            "209.94.90.3",
+            "209.94.90.2"
           ],
           "AAAA": [
             "2602:fea2:2::3",
@@ -89,7 +112,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "PROTOCOL",
+          "abuse": "abuse@protocol.ai",
+          "url": "mailto:abuse@protocol.ai",
+          "logo": "https://i.ibb.co/4nbxLg8d/pr-PROTOCOL.png",
+          "method": "email",
+          "asn": "AS40680"
+        }
       },
       "report_services": [
         {
@@ -216,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bafkreiciaij2qznniztu7ofqnyoatv7tuuonnqbdm3v76jiqz3x2jhifka.ipfs.dweb.link/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bafkreiciaij2qznniztu7ofqnyoatv7tuuonnqbdm3v76jiqz3x2jhifka.ipfs.dweb.link\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012364; classtype:social-engineering; sid:6012364; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T18:40:23.593046+00:00",
+  "updated_at": "2026-07-09T07:54:54.783677+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "kuc.fmr-max789.com",
       "domain_defanged": "kuc[.]fmr-max789[.]com",
-      "case_id": "PD-20260707-2FE90E",
-      "analyzed_at": "2026-07-07T11:27:01.957Z",
+      "case_id": "PD-20260709-2FE90E",
+      "analyzed_at": "2026-07-09T02:02:33.631Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3c54-d834-73a6-9512-f92786612334.png",
           "url": "https://urlscan.io/result/019f3c54-d834-73a6-9512-f92786612334/",
-          "pending": true
+          "title": "KUCOIN"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.51.136",
+        "ip": "172.67.181.37",
         "ipinfo": {
-          "ip": "104.21.51.136",
+          "ip": "172.67.181.37",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3030::6815:3388",
-            "2606:4700:3031::ac43:b525"
-          ],
           "A": [
-            "104.21.51.136",
-            "172.67.181.37"
+            "172.67.181.37",
+            "104.21.51.136"
+          ],
+          "AAAA": [
+            "2606:4700:3031::ac43:b525",
+            "2606:4700:3030::6815:3388"
           ]
         }
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kuc.fmr-max789.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kuc.fmr-max789.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007175; classtype:social-engineering; sid:6007175; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T11:26:59.218473+00:00",
+  "updated_at": "2026-07-09T02:02:30.535257+00:00",
   "probe": {
     "dns": true,
     "whois": false,

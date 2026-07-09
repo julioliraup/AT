@@ -78,14 +78,18 @@
     "phishdestroy": {
       "domain": "kcoinlogin.github.io",
       "domain_defanged": "kcoinlogin[.]github[.]io",
-      "case_id": "PD-20260706-603699",
-      "analyzed_at": "2026-07-06T08:51:56.854Z",
+      "case_id": "PD-20260708-603699",
+      "analyzed_at": "2026-07-08T03:55:14.027Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3fdd-93e6-708f-8b3b-7b6dc027623f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -94,25 +98,40 @@
       },
       "infrastructure": {
         "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
+          ],
           "A": [
             "185.199.108.153",
-            "185.199.111.153",
             "185.199.109.153",
-            "185.199.110.153"
-          ],
-          "AAAA": [
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8000::153"
+            "185.199.110.153",
+            "185.199.111.153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -240,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kcoinlogin .github .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"kcoinlogin.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001465; classtype:social-engineering; sid:6001465; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T05:06:36.662968+00:00",
+  "updated_at": "2026-07-08T18:01:04.735350+00:00",
   "probe": {
     "dns": true,
     "whois": true,

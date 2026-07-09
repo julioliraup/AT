@@ -81,14 +81,18 @@
     "phishdestroy": {
       "domain": "mail.supplier-gas-elpiji.duckdns.org",
       "domain_defanged": "mail[.]supplier-gas-elpiji[.]duckdns[.]org",
-      "case_id": "PD-20260706-7811DB",
-      "analyzed_at": "2026-07-06T08:58:15.035Z",
+      "case_id": "PD-20260708-7811DB",
+      "analyzed_at": "2026-07-08T04:05:20.263Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3fe6-d3fd-7288-bf74-9456d36d9399/",
+          "pending": true
         }
       },
       "detections": [],
@@ -97,19 +101,33 @@
       },
       "infrastructure": {
         "ip": "64.23.249.192",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "64.23.249.192",
+          "city": "Santa Clara",
+          "region": "California",
+          "country": "US",
+          "org": "AS14061 DigitalOcean, LLC",
+          "asn": "AS14061"
+        },
         "dns": {
-          "MX": [
-            "50 mail.supplier-gas-elpiji.duckdns.org."
-          ],
           "A": [
             "64.23.249.192"
+          ],
+          "MX": [
+            "50 mail.supplier-gas-elpiji.duckdns.org."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DigitalOcean",
+          "abuse": "abuse@digitalocean.com",
+          "url": "https://www.digitalocean.com/company/contact#abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14061"
+        }
       },
       "report_services": [
         {
@@ -237,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail .supplier-gas-elpiji .duckdns .org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"mail.supplier-gas-elpiji.duckdns.org\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001578; classtype:social-engineering; sid:6001578; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T05:12:32.275287+00:00",
+  "updated_at": "2026-07-08T18:08:57.185820+00:00",
   "probe": {
     "dns": true,
     "whois": true,

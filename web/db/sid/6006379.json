@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "boutiqueelkesuperior.spahotel.guru",
       "domain_defanged": "boutiqueelkesuperior[.]spahotel[.]guru",
-      "case_id": "PD-20260707-36C0E4",
-      "analyzed_at": "2026-07-07T10:28:42.974Z",
+      "case_id": "PD-20260709-36C0E4",
+      "analyzed_at": "2026-07-09T00:39:03.328Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3c1f-7535-7177-bb2e-a15dc62a2aa2.png",
           "url": "https://urlscan.io/result/019f3c1f-7535-7177-bb2e-a15dc62a2aa2/",
-          "pending": true
+          "title": "Boutique Hotel Elke Spa Superior Sant Feliu de Guixols - Sant Feliu de Guixols, Spain"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (boutiqueelkesuperior.spahotel.guru/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"boutiqueelkesuperior.spahotel.guru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006379; classtype:social-engineering; sid:6006379; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T10:28:39.791713+00:00",
+  "updated_at": "2026-07-09T00:38:59.694327+00:00",
   "probe": {
     "dns": true,
     "whois": true,

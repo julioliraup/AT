@@ -49,21 +49,81 @@
     "phishdestroy": {
       "domain": "ristek.link",
       "domain_defanged": "ristek[.]link",
-      "case_id": "PD-20260707-3B1BF9",
-      "analyzed_at": "2026-07-07T11:26:36.039Z",
+      "case_id": "PD-20260709-3B1BF9",
+      "analyzed_at": "2026-07-09T02:01:56.223Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {
+            "Sophos": "phishing and fraud",
+            "Forcepoint ThreatSeeker": "elevated exposure"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f3c54-73d5-72ee-ae2c-cee614f6d769.png",
           "url": "https://urlscan.io/result/019f3c54-73d5-72ee-ae2c-cee614f6d769/",
-          "pending": true
+          "title": "Ristek.link"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "malware",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,17 +138,17 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3037::ac43:cfd7",
-            "2606:4700:3031::6815:2576"
+          "NS": [
+            "alaric.ns.cloudflare.com.",
+            "sierra.ns.cloudflare.com."
           ],
           "A": [
             "172.67.207.215",
             "104.21.37.118"
           ],
-          "NS": [
-            "alaric.ns.cloudflare.com.",
-            "sierra.ns.cloudflare.com."
+          "AAAA": [
+            "2606:4700:3031::6815:2576",
+            "2606:4700:3037::ac43:cfd7"
           ]
         }
       },
@@ -228,7 +288,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ristek.link/backupbase)\"; flow:established,to_server; http.uri; content:\"/backupbase\"; startswith; fast_pattern; http.host; content:\"ristek.link\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007166; classtype:social-engineering; sid:6007166; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T11:26:31.980585+00:00",
+  "updated_at": "2026-07-09T02:01:49.641439+00:00",
   "probe": {
     "dns": true,
     "whois": true,

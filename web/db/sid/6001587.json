@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "spotify.servernotification.events",
       "domain_defanged": "spotify[.]servernotification[.]events",
-      "case_id": "PD-20260706-2AB6C2",
-      "analyzed_at": "2026-07-06T08:58:47.973Z",
+      "case_id": "PD-20260708-2AB6C2",
+      "analyzed_at": "2026-07-08T04:06:19.492Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3fe7-bb62-72bf-a580-9c2857ca7f06/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,23 +69,38 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.174.59.74",
-        "ipinfo": null,
+        "ip": "3.174.59.11",
+        "ipinfo": {
+          "ip": "3.174.59.11",
+          "hostname": "server-3-174-59-11.gig52.r.cloudfront.net",
+          "city": "Rio de Janeiro",
+          "region": "Rio de Janeiro",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
-          "A": [
-            "3.174.59.74",
-            "3.174.59.128",
-            "3.174.59.11",
-            "3.174.59.126"
-          ],
           "MX": [
             "0 servernotification-events.mail.protection.outlook.com."
+          ],
+          "A": [
+            "3.174.59.11",
+            "3.174.59.128",
+            "3.174.59.74",
+            "3.174.59.126"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -209,7 +228,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (spotify .servernotification .events/premium/campaign/rejoin6m/login/jYIzT3IkJkRzitEx5knZyYGJ069Fh6em0RVs=6Bw==9SklWTVBfQGZVVl5QVw==/PFbnBhvz5dwOkHR1eD_R-l48VOHQKA2m/)\"; flow:established,to_server; http.uri; content:\"/premium/campaign/rejoin6m/login/jYIzT3IkJkRzitEx5knZyYGJ069Fh6em0RVs=6Bw==9SklWTVBfQGZVVl5QVw==/PFbnBhvz5dwOkHR1eD_R-l48VOHQKA2m/\"; startswith; fast_pattern; http.host;  content:\"spotify.servernotification.events\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001587; classtype:social-engineering; sid:6001587; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T05:13:01.439666+00:00",
+  "updated_at": "2026-07-08T18:09:28.268246+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -19,31 +19,109 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://profile-meta.program-ads-agency.com/",
+      "domain": "profile-meta.program-ads-agency.com",
+      "url_count": 2,
+      "city_data": false,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.66.0.96",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "9fb789f8af83da91-PDX",
+        "cf_cache_status": "HIT",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (28357), with no line terminators",
+      "sha256": "1b71aa2c47e84b5ca70c1cd142cddec7f23637b2afd5986d868d38bb957d1b6a",
+      "md5": "325e5a9bde6d635a5e86a901823a0949",
+      "cert": {
+        "subject_cn": "profile-meta.program-ads-agency.com",
+        "subject_alt_names": [
+          "profile-meta.program-ads-agency.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-08T17:17:42+00:00",
+        "not_valid_after": "2026-08-06T18:17:30+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "93289581376941313927095658796788234557",
+        "fingerprint_sha1": "E3 57 9D B7 BA 4E 37 CD 9F 90 AE 25 21 84 63 E9 86 9A 1B 17",
+        "fingerprint_sha256": "0A 52 CE 7D AF 34 3A 35 98 63 BE 5C 0A F8 A4 1E A3 58 AA 27 D5 22 26 BF AB 8B 0F CF 01 6A 8B 92"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-05-14T05:31:28",
+      "first_seen_secs": 1778736688.0
+    },
     "phishdestroy": {
       "domain": "profile-meta.program-ads-agency.com",
       "domain_defanged": "profile-meta[.]program-ads-agency[.]com",
-      "case_id": "PD-20260706-9A57C5",
-      "analyzed_at": "2026-07-06T08:34:27.045Z",
+      "case_id": "PD-20260708-9A57C5",
+      "analyzed_at": "2026-07-08T03:30:44.772Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e23e5-d3d1-754c-bbe4-5212eeb3df0c.png",
+          "url": "https://urlscan.io/result/019e23e5-d3d1-754c-bbe4-5212eeb3df0c/",
+          "title": "Accounts Centre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "162.159.140.98",
+        "ipinfo": {
+          "ip": "162.159.140.98",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -171,12 +249,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (profile-meta .program-ads-agency .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"profile-meta.program-ads-agency.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001182; classtype:social-engineering; sid:6001182; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T04:46:26.338930+00:00",
+  "updated_at": "2026-07-08T17:36:42.615139+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

@@ -74,27 +74,43 @@
     "phishdestroy": {
       "domain": "easy-bank-mu.vercel.app",
       "domain_defanged": "easy-bank-mu[.]vercel[.]app",
-      "case_id": "PD-20260706-216918",
-      "analyzed_at": "2026-07-06T08:30:17.025Z",
+      "case_id": "PD-20260708-216918",
+      "analyzed_at": "2026-07-08T03:24:58.459Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f368c-ab93-7457-8b0d-7ee7583a4566/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Banking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3809-39f2-720d-be50-b430d26254fb.png",
+          "url": "https://urlscan.io/result/019f3809-39f2-720d-be50-b430d26254fb/",
+          "title": "Easybank landing page"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Banking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "216.198.79.130",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.198.79.130",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "216.198.79.130",
@@ -104,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -232,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .easy-bank-mu .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.easy-bank-mu.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001094; classtype:social-engineering; sid:6001094; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T04:35:43.265832+00:00",
+  "updated_at": "2026-07-08T17:32:13.643834+00:00",
   "probe": {
     "dns": true,
     "whois": false,

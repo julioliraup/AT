@@ -50,21 +50,29 @@
     "phishdestroy": {
       "domain": "ipfs.io",
       "domain_defanged": "ipfs[.]io",
-      "case_id": "PD-20260706-775F71",
-      "analyzed_at": "2026-07-06T07:59:38.093Z",
+      "case_id": "PD-20260708-775F71",
+      "analyzed_at": "2026-07-08T02:43:20.725Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f3670-9c32-701c-8907-c9940d03e6b2/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3f3f-1ad9-7171-a3ff-2b3e80d7b081.png",
+          "url": "https://urlscan.io/result/019f3f3f-1ad9-7171-a3ff-2b3e80d7b081/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -235,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ipfs .io/ipfs/bafkreiatmr6qgs4jzvvqgllrbnpdyslwy6rfazygzkdr74zspvpwwhqdcy)\"; flow:established,to_server; http.uri; content:\"/ipfs/bafkreiatmr6qgs4jzvvqgllrbnpdyslwy6rfazygzkdr74zspvpwwhqdcy\"; startswith; fast_pattern; http.host;  content:\"ipfs.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000702; classtype:social-engineering; sid:6000702; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T03:58:41.806532+00:00",
+  "updated_at": "2026-07-08T17:11:26.612912+00:00",
   "probe": {
     "dns": true,
     "whois": true,

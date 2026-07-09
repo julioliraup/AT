@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "princemedia.co.za",
       "domain_defanged": "princemedia[.]co[.]za",
-      "case_id": "PD-20260706-68DAEF",
-      "analyzed_at": "2026-07-06T08:55:02.367Z",
+      "case_id": "PD-20260708-68DAEF",
+      "analyzed_at": "2026-07-08T03:59:11.175Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3fe1-3242-76a0-8db7-3330a016b69f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -66,13 +70,25 @@
       },
       "infrastructure": {
         "ip": "86.107.77.205",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "86.107.77.205",
+          "hostname": "cp.tela-host.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS216395 HostBet Cloud Technologies Private Limited",
+          "asn": "AS216395"
+        },
         "dns": {
-          "MX": [
-            "0 princemedia.co.za."
-          ],
           "A": [
             "86.107.77.205"
+          ],
+          "NS": [
+            "ns6.tela-host.com.",
+            "ns5.tela-host.com."
+          ],
+          "MX": [
+            "0 princemedia.co.za."
           ]
         }
       },
@@ -206,7 +222,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (princemedia .co .za/mipaz/pages/login .php)\"; flow:established,to_server; http.uri; content:\"/mipaz/pages/login.php\"; startswith; fast_pattern; http.host;  content:\"princemedia.co.za\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001521; classtype:social-engineering; sid:6001521; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T05:08:41.005212+00:00",
+  "updated_at": "2026-07-08T18:05:45.249440+00:00",
   "probe": {
     "dns": true,
     "whois": true,

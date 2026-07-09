@@ -72,28 +72,37 @@
     "phishdestroy": {
       "domain": "facebook-login-clone-nine.vercel.app",
       "domain_defanged": "facebook-login-clone-nine[.]vercel[.]app",
-      "case_id": "PD-20260707-765C99",
-      "analyzed_at": "2026-07-07T10:23:16.293Z",
+      "case_id": "PD-20260709-765C99",
+      "analyzed_at": "2026-07-09T00:33:20.598Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3c1a-7a39-729a-b96c-5beaec95ccb2.png",
           "url": "https://urlscan.io/result/019f3c1a-7a39-729a-b96c-5beaec95ccb2/",
-          "pending": true
+          "title": "Facebook-log in or sign up"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
+        "ip": "64.29.17.194",
         "ipinfo": {
-          "ip": "216.198.79.66",
+          "ip": "64.29.17.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -102,8 +111,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "64.29.17.194",
+            "216.198.79.194"
           ]
         }
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.facebook-login-clone-nine.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.facebook-login-clone-nine.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006329; classtype:social-engineering; sid:6006329; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T10:24:49.141673+00:00",
+  "updated_at": "2026-07-09T00:34:55.920209+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,21 +49,183 @@
     "phishdestroy": {
       "domain": "foresee.ae",
       "domain_defanged": "foresee[.]ae",
-      "case_id": "PD-20260707-75FA38",
-      "analyzed_at": "2026-07-07T11:08:16.290Z",
+      "case_id": "PD-20260709-75FA38",
+      "analyzed_at": "2026-07-09T01:31:41.355Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 13,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "Forcepoint ThreatSeeker": "phishing and other frauds. information technology",
+            "Sophos": "phishing and fraud",
+            "Xcitium Verdict Cloud": "technical information",
+            "alphaMountain.ai": "Business/Economy, Information Technology, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f3c43-abfd-73bd-b325-b84a88613026.png",
           "url": "https://urlscan.io/result/019f3c43-abfd-73bd-b325-b84a88613026/",
-          "pending": true
+          "title": "Home - Foresee"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,16 +241,16 @@
           "asn": "AS197352"
         },
         "dns": {
-          "A": [
-            "46.21.26.31"
-          ],
           "MX": [
             "10 foresee-ae.mail.protection.outlook.com."
           ],
+          "A": [
+            "46.21.26.31"
+          ],
           "NS": [
             "ns1.etisalatdomains.ae.",
-            "ns3.etisalatdomains.ae.",
             "ns4.etisalatdomains.ae.",
+            "ns3.etisalatdomains.ae.",
             "ns2.etisalatdomains.ae."
           ]
         }
@@ -229,7 +391,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (foresee.ae/tes)\"; flow:established,to_server; http.uri; content:\"/tes\"; startswith; fast_pattern; http.host; content:\"foresee.ae\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006835; classtype:social-engineering; sid:6006835; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T11:08:11.995591+00:00",
+  "updated_at": "2026-07-09T01:31:30.338682+00:00",
   "probe": {
     "dns": true,
     "whois": true,

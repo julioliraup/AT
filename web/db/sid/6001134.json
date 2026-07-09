@@ -50,8 +50,8 @@
     "phishdestroy": {
       "domain": "service-cloudflare.com",
       "domain_defanged": "service-cloudflare[.]com",
-      "case_id": "PD-20260706-75A116",
-      "analyzed_at": "2026-07-06T08:32:09.422Z",
+      "case_id": "PD-20260708-75A116",
+      "analyzed_at": "2026-07-08T03:27:25.311Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -60,8 +60,8 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f368e-5fe5-7236-b0ab-2411bdb142ba/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f368e-5fe5-7236-b0ab-2411bdb142ba.png",
+          "url": "https://urlscan.io/result/019f368e-5fe5-7236-b0ab-2411bdb142ba/"
         }
       },
       "detections": [],
@@ -69,7 +69,7 @@
         "registrar": "Cloudflare, Inc.",
         "created": "2026-03-30T01:27:13Z",
         "expires": "2027-03-30T01:27:13Z",
-        "age_days": 98,
+        "age_days": 100,
         "nameservers": [
           "BRADEN.NS.CLOUDFLARE.COM",
           "LOVE.NS.CLOUDFLARE.COM"
@@ -77,7 +77,14 @@
       },
       "infrastructure": {
         "ip": "38.54.108.85",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "38.54.108.85",
+          "city": "Washington",
+          "region": "District of Columbia",
+          "country": "US",
+          "org": "AS138915 Kaopu Cloud HK Limited",
+          "asn": "AS138915"
+        },
         "dns": {
           "A": [
             "38.54.108.85"
@@ -97,7 +104,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "KAOPU-HK",
+          "abuse": "abuse@kaopucloud.com",
+          "url": "mailto:abuse@kaopucloud.com",
+          "logo": "https://i.ibb.co/fG49XXxR/pr-KAOPU-HK.png",
+          "method": "email",
+          "asn": "AS138915"
+        }
       },
       "report_services": [
         {
@@ -225,10 +239,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .service-cloudflare .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.service-cloudflare.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001134; classtype:social-engineering; sid:6001134; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T04:39:20.371474+00:00",
+  "updated_at": "2026-07-08T17:34:06.557769+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

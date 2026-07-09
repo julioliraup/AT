@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "01bced66.sweet-credit-9cdf.pages.dev",
       "domain_defanged": "01bced66[.]sweet-credit-9cdf[.]pages[.]dev",
-      "case_id": "PD-20260706-602573",
-      "analyzed_at": "2026-07-06T08:48:44.595Z",
+      "case_id": "PD-20260708-602573",
+      "analyzed_at": "2026-07-08T03:52:03.977Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3fda-ac55-7069-a5d3-e0c8329662e4/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,22 +93,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.80",
-        "ipinfo": null,
+        "ip": "172.66.44.176",
+        "ipinfo": {
+          "ip": "172.66.44.176",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "172.66.44.176",
+            "172.66.47.80"
+          ],
           "AAAA": [
             "2606:4700:310c::ac42:2cb0",
             "2606:4700:310c::ac42:2f50"
-          ],
-          "A": [
-            "172.66.47.80",
-            "172.66.44.176"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -232,7 +250,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (01bced66 .sweet-credit-9cdf .pages .dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"01bced66.sweet-credit-9cdf.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001411; classtype:social-engineering; sid:6001411; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T05:04:13.176177+00:00",
+  "updated_at": "2026-07-08T17:55:12.444216+00:00",
   "probe": {
     "dns": true,
     "whois": false,

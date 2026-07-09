@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "test.currentnewsalerts.com",
       "domain_defanged": "test[.]currentnewsalerts[.]com",
-      "case_id": "PD-20260706-5F89B2",
-      "analyzed_at": "2026-07-06T08:06:36.053Z",
+      "case_id": "PD-20260708-5F89B2",
+      "analyzed_at": "2026-07-08T02:56:13.571Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3676-fc87-76a9-8324-11ee55093a08.png",
           "url": "https://urlscan.io/result/019f3676-fc87-76a9-8324-11ee55093a08/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -223,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (test .currentnewsalerts .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"test.currentnewsalerts.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000809; classtype:social-engineering; sid:6000809; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T04:05:38.302426+00:00",
+  "updated_at": "2026-07-08T17:17:14.056868+00:00",
   "probe": {
     "dns": true,
     "whois": false,

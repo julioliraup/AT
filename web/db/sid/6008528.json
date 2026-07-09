@@ -18,22 +18,45 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://securewebapps.azurewebsites.net/",
+      "domain": "securewebapps.azurewebsites.net",
+      "url_count": 8,
+      "city_data": false,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": null,
+      "http_code": 0,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-07-09T03:31:44",
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "securewebapps.azurewebsites.net",
       "domain_defanged": "securewebapps[.]azurewebsites[.]net",
-      "case_id": "PD-20260707-47E41E",
-      "analyzed_at": "2026-07-07T13:13:39.663Z",
+      "case_id": "PD-20260709-47E41E",
+      "analyzed_at": "2026-07-09T04:01:02.206Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f3cb6-771a-7658-8c08-e335e2ef8515/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -41,30 +64,8 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "waws-prod-plc-009.sip.azurewebsites.windows.net.",
         "ipinfo": null,
-        "dns": {
-          "AAAA": [
-            "waws-prod-plc-009.sip.azurewebsites.windows.net.",
-            "waws-prod-plc-009-a648.polandcentral.cloudapp.azure.com."
-          ],
-          "MX": [
-            "waws-prod-plc-009.sip.azurewebsites.windows.net.",
-            "waws-prod-plc-009-a648.polandcentral.cloudapp.azure.com."
-          ],
-          "A": [
-            "waws-prod-plc-009.sip.azurewebsites.windows.net.",
-            "waws-prod-plc-009-a648.polandcentral.cloudapp.azure.com.",
-            "20.215.12.4"
-          ],
-          "CNAME": [
-            "waws-prod-plc-009.sip.azurewebsites.windows.net."
-          ],
-          "NS": [
-            "waws-prod-plc-009.sip.azurewebsites.windows.net.",
-            "waws-prod-plc-009-a648.polandcentral.cloudapp.azure.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -195,10 +196,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (securewebapps.azurewebsites.net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"securewebapps.azurewebsites.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008528; classtype:social-engineering; sid:6008528; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T13:13:26.511443+00:00",
+  "updated_at": "2026-07-09T04:00:56.978323+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

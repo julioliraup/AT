@@ -70,35 +70,43 @@
     "phishdestroy": {
       "domain": "uu1505.com",
       "domain_defanged": "uu1505[.]com",
-      "case_id": "PD-20260707-6C7AD0",
-      "analyzed_at": "2026-07-07T11:11:45.646Z",
+      "case_id": "PD-20260709-6C7AD0",
+      "analyzed_at": "2026-07-09T01:37:57.557Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f3c46-ddbb-771f-b1a7-a9c01191d549/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f330c-5f63-75fc-9160-de759a4006b6.png",
+          "url": "https://urlscan.io/result/019f330c-5f63-75fc-9160-de759a4006b6/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2019-02-27T19:41:38Z",
         "expires": "2027-02-27T19:41:38Z",
-        "age_days": 2686,
+        "age_days": 2688,
         "nameservers": [
           "IGNACIO.NS.CLOUDFLARE.COM",
           "WREN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "23.145.136.67",
+        "ip": "23.145.136.66",
         "ipinfo": {
-          "ip": "23.145.136.67",
+          "ip": "23.145.136.66",
           "city": "Tokyo",
           "region": "Tokyo",
           "country": "JP",
@@ -107,7 +115,6 @@
         },
         "dns": {
           "A": [
-            "23.145.136.67",
             "23.145.136.66"
           ],
           "NS": [
@@ -259,7 +266,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (uu1505.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"uu1505.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006904; classtype:social-engineering; sid:6006904; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T11:11:41.700240+00:00",
+  "updated_at": "2026-07-09T01:37:52.276151+00:00",
   "probe": {
     "dns": true,
     "whois": true,

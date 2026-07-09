@@ -19,32 +19,68 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://us-support-ledgor-en.pages.dev/page1.html/page1.html/",
+      "domain": "us-support-ledgor-en.pages.dev",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "us-support-ledgor-en.pages.dev",
       "domain_defanged": "us-support-ledgor-en[.]pages[.]dev",
-      "case_id": "PD-20260706-7475C1",
-      "analyzed_at": "2026-07-06T07:56:58.556Z",
+      "case_id": "PD-20260708-7475C1",
+      "analyzed_at": "2026-07-08T02:37:38.961Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f366e-2d0e-764d-b0ba-263c0e5576b7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3a43-3789-70e0-87ed-40f27e4ea9dd.png",
+          "url": "https://urlscan.io/result/019f3a43-3789-70e0-87ed-40f27e4ea9dd/",
+          "title": "Ledger.com/start - Secure Your Crypto Journey"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.200",
+        "ip": "172.66.47.56",
         "ipinfo": {
-          "ip": "172.66.44.200",
+          "ip": "172.66.47.56",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -52,13 +88,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.44.200",
-            "172.66.47.56"
-          ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f38",
-            "2606:4700:310c::ac42:2cc8"
+            "2606:4700:310c::ac42:2cc8",
+            "2606:4700:310c::ac42:2f38"
+          ],
+          "A": [
+            "172.66.47.56",
+            "172.66.44.200"
           ],
           "NS": [
             "darl.ns.cloudflare.com.",
@@ -203,7 +239,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (us-support-ledgor-en .pages .dev/page1 .html/page1 .html/)\"; flow:established,to_server; http.uri; content:\"/page1.html/page1.html/\"; startswith; fast_pattern; http.host;  content:\"us-support-ledgor-en.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000874; classtype:social-engineering; sid:6000874; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T04:13:42.198031+00:00",
+  "updated_at": "2026-07-08T17:20:17.322289+00:00",
   "probe": {
     "dns": true,
     "whois": false,

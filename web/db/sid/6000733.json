@@ -50,29 +50,38 @@
     "phishdestroy": {
       "domain": "newsalerts.eu",
       "domain_defanged": "newsalerts[.]eu",
-      "case_id": "PD-20260706-21926D",
-      "analyzed_at": "2026-07-06T08:01:42.141Z",
+      "case_id": "PD-20260708-21926D",
+      "analyzed_at": "2026-07-08T02:47:11.717Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3672-80d2-76fb-ae6d-44220da86292.png",
           "url": "https://urlscan.io/result/019f3672-80d2-76fb-ae6d-44220da86292/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "52.204.246.179",
+        "ip": "34.194.247.17",
         "ipinfo": {
-          "ip": "52.204.246.179",
-          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
+          "ip": "34.194.247.17",
+          "hostname": "ec2-34-194-247-17.compute-1.amazonaws.com",
           "city": "Ashburn",
           "region": "Virginia",
           "country": "US",
@@ -80,18 +89,18 @@
           "asn": "AS14618"
         },
         "dns": {
+          "A": [
+            "34.194.247.17",
+            "52.204.246.179"
+          ],
+          "MX": [
+            "10 mx0.us.cf-ops.net."
+          ],
           "NS": [
             "ns-1044.awsdns-02.org.",
             "ns-1618.awsdns-10.co.uk.",
             "ns-317.awsdns-39.com.",
             "ns-812.awsdns-37.net."
-          ],
-          "A": [
-            "52.204.246.179",
-            "34.194.247.17"
-          ],
-          "MX": [
-            "10 mx0.us.cf-ops.net."
           ]
         }
       },
@@ -232,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (newsalerts .eu/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/\"; startswith; fast_pattern; http.host;  content:\"newsalerts.eu\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000733; classtype:social-engineering; sid:6000733; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T04:00:04.578254+00:00",
+  "updated_at": "2026-07-08T17:12:55.926531+00:00",
   "probe": {
     "dns": true,
     "whois": true,

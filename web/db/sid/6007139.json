@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "start-ledge-en.pages.dev",
       "domain_defanged": "start-ledge-en[.]pages[.]dev",
-      "case_id": "PD-20260707-4F30B1",
-      "analyzed_at": "2026-07-07T11:24:54.651Z",
+      "case_id": "PD-20260709-4F30B1",
+      "analyzed_at": "2026-07-09T01:59:37.436Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f3c52-e8e3-74e3-b218-851c823da99f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f417e-5df7-7189-a0e6-e6abb7cf9b6f.png",
+          "url": "https://urlscan.io/result/019f417e-5df7-7189-a0e6-e6abb7cf9b6f/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (start-ledge-en.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"start-ledge-en.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007139; classtype:social-engineering; sid:6007139; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T11:24:52.753656+00:00",
+  "updated_at": "2026-07-09T01:59:33.332415+00:00",
   "probe": {
     "dns": true,
     "whois": false,

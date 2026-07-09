@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "pemenang2021.blogspot.com",
       "domain_defanged": "pemenang2021[.]blogspot[.]com",
-      "case_id": "PD-20260707-28959C",
-      "analyzed_at": "2026-07-07T11:19:50.976Z",
+      "case_id": "PD-20260709-28959C",
+      "analyzed_at": "2026-07-09T01:50:11.446Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Shopee"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3c4e-46a2-701e-80f1-ad37b110caeb.png",
           "url": "https://urlscan.io/result/019f3c4e-46a2-701e-80f1-ad37b110caeb/",
-          "pending": true
+          "title": "SHOPEE2021"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Shopee",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,18 +80,18 @@
         "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
         "dns": {
-          "A": [
-            "blogspot.l.googleusercontent.com.",
-            "142.251.132.33"
+          "MX": [
+            "blogspot.l.googleusercontent.com."
           ],
           "AAAA": [
             "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4004:811::2001"
+            "2800:3f0:4004:802::2001"
+          ],
+          "A": [
+            "blogspot.l.googleusercontent.com.",
+            "142.250.219.1"
           ],
           "CNAME": [
-            "blogspot.l.googleusercontent.com."
-          ],
-          "MX": [
             "blogspot.l.googleusercontent.com."
           ],
           "NS": [
@@ -92,7 +101,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -220,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.pemenang2021.blogspot.com/?m=1)\"; flow:established,to_server; http.uri; content:\"/?m=1\"; startswith; fast_pattern; http.host; content:\"www.pemenang2021.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007120; classtype:social-engineering; sid:6007120; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T11:23:47.832973+00:00",
+  "updated_at": "2026-07-09T01:58:10.062895+00:00",
   "probe": {
     "dns": true,
     "whois": false,

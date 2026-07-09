@@ -77,21 +77,30 @@
     "phishdestroy": {
       "domain": "login.alexa.abductist.duckdns.org",
       "domain_defanged": "login[.]alexa[.]abductist[.]duckdns[.]org",
-      "case_id": "PD-20260707-4B4DBF",
-      "analyzed_at": "2026-07-07T11:23:27.870Z",
+      "case_id": "PD-20260709-4B4DBF",
+      "analyzed_at": "2026-07-09T01:57:44.716Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f3c51-95fc-75b9-bcc2-cb37a3cd13e6/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f412b-b135-74a8-9031-b042216fda56.png",
+          "url": "https://urlscan.io/result/019f412b-b135-74a8-9031-b042216fda56/",
+          "title": "Amazon Sign-In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (login.alexa.abductist.duckdns.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"login.alexa.abductist.duckdns.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007113; classtype:social-engineering; sid:6007113; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T11:23:25.201485+00:00",
+  "updated_at": "2026-07-09T01:57:39.205340+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "5mp.eu",
       "domain_defanged": "5mp[.]eu",
-      "case_id": "PD-20260706-60A47D",
-      "analyzed_at": "2026-07-06T07:51:56.745Z",
+      "case_id": "PD-20260708-60A47D",
+      "analyzed_at": "2026-07-08T02:27:52.209Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f3669-9221-70dc-a024-bafe9defed3c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Outlook Web Access"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3f2f-1cc7-716f-b5f6-caac73564ed8.png",
+          "url": "https://urlscan.io/result/019f3f2f-1cc7-716f-b5f6-caac73564ed8/",
+          "title": "Outlook"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Outlook Web Access",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,16 +112,16 @@
           "asn": "AS62214"
         },
         "dns": {
+          "A": [
+            "185.80.49.249"
+          ],
           "MX": [
             "10 mx2.nethely.hu.",
             "10 mx1.nethely.hu."
           ],
           "NS": [
-            "ns1.dotroll.com.",
-            "ns2.dotroll.com."
-          ],
-          "A": [
-            "185.80.49.249"
+            "ns2.dotroll.com.",
+            "ns1.dotroll.com."
           ]
         }
       },
@@ -253,7 +262,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .5mp .eu/fajlok2/scba/index_www .5mp .eu_ .html)\"; flow:established,to_server; http.uri; content:\"/fajlok2/scba/index_www.5mp.eu_.html\"; startswith; fast_pattern; http.host;  content:\"www.5mp.eu\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000590; classtype:social-engineering; sid:6000590; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T03:51:19.401818+00:00",
+  "updated_at": "2026-07-08T17:03:55.207590+00:00",
   "probe": {
     "dns": true,
     "whois": true,

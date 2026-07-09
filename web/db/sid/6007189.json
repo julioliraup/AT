@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "aktifkaanpaylatters4.yzeb.my.id",
       "domain_defanged": "aktifkaanpaylatters4[.]yzeb[.]my[.]id",
-      "case_id": "PD-20260707-F358CB",
-      "analyzed_at": "2026-07-07T11:27:45.856Z",
+      "case_id": "PD-20260709-F358CB",
+      "analyzed_at": "2026-07-09T02:03:37.327Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea314-2a31-74e2-a354-b631d0da4fa0.png",
+          "url": "https://urlscan.io/result/019ea314-2a31-74e2-a354-b631d0da4fa0/",
+          "title": "DANA - Apa pun transaksinya selalu ada DANA"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.164.83",
+        "ipinfo": {
+          "ip": "172.67.164.83",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -220,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aktifkaanpaylatters4.yzeb.my.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aktifkaanpaylatters4.yzeb.my.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007189; classtype:social-engineering; sid:6007189; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T11:27:42.329356+00:00",
+  "updated_at": "2026-07-09T02:03:31.564640+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "wrightgtonhealthclub.spahotel.guru",
       "domain_defanged": "wrightgtonhealthclub[.]spahotel[.]guru",
-      "case_id": "PD-20260707-1F6159",
-      "analyzed_at": "2026-07-07T10:32:57.267Z",
+      "case_id": "PD-20260709-1F6159",
+      "analyzed_at": "2026-07-09T00:43:48.713Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3c23-57a4-776f-9e89-bd0e4c79509d.png",
           "url": "https://urlscan.io/result/019f3c23-57a4-776f-9e89-bd0e4c79509d/",
-          "pending": true
+          "title": "Wrightington Hotel, Health Club & Spa Wigan - Wigan, United Kingdom"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wrightgtonhealthclub.spahotel.guru/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"wrightgtonhealthclub.spahotel.guru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006438; classtype:social-engineering; sid:6006438; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T10:32:54.155975+00:00",
+  "updated_at": "2026-07-09T00:43:44.155291+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -18,31 +18,110 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://gala-yeni.cam/",
+      "domain": "gala-yeni.cam",
+      "url_count": 5,
+      "city_data": false,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "104.21.56.51",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a02ca86e083db876-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (535)",
+      "sha256": "53ba18d93b7986fba14498aa0e62b097b402f4e94594ca794857ccadce4576dc",
+      "md5": "da5a3c02e9964350699d5246a2e8abbb",
+      "cert": {
+        "subject_cn": "gala-yeni.cam",
+        "subject_alt_names": [
+          "*.gala-yeni.cam",
+          "gala-yeni.cam"
+        ],
+        "issuer_cn": "E7",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-22T13:23:23+00:00",
+        "not_valid_after": "2026-08-20T13:23:22+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "438329182900638008596761526958864110217546",
+        "fingerprint_sha1": "14 24 66 EE 36 D5 80 28 74 00 4C B1 E0 DF CD 5C 8B D4 83 9E",
+        "fingerprint_sha256": "F4 DA 8E 26 AE EE 2E 4B E9 9B 2F 21 B6 50 BA 66 72 D4 6E 4F CF 62 09 2A 0E 34 89 6B DD 93 75 5A"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-05-28T10:40:38",
+      "first_seen_secs": 1779964838.0
+    },
     "phishdestroy": {
       "domain": "gala-yeni.cam",
       "domain_defanged": "gala-yeni[.]cam",
-      "case_id": "PD-20260707-B34C76",
-      "analyzed_at": "2026-07-07T10:28:21.392Z",
+      "case_id": "PD-20260709-B34C76",
+      "analyzed_at": "2026-07-09T00:38:27.487Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea2a3-ceda-740c-bd54-f89bd62815a1.png",
+          "url": "https://urlscan.io/result/019ea2a3-ceda-740c-bd54-f89bd62815a1/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.56.51",
+        "ipinfo": {
+          "ip": "104.21.56.51",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -169,12 +248,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gala-yeni.cam/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"gala-yeni.cam\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006371; classtype:social-engineering; sid:6006371; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T10:28:08.970387+00:00",
+  "updated_at": "2026-07-09T00:38:19.144080+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

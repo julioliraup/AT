@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "28ecne20f9u.securebankinggroup.org",
       "domain_defanged": "28ecne20f9u[.]securebankinggroup[.]org",
-      "case_id": "PD-20260706-1FB7E3",
-      "analyzed_at": "2026-07-06T07:49:54.689Z",
+      "case_id": "PD-20260708-1FB7E3",
+      "analyzed_at": "2026-07-08T02:26:00.631Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f3667-b553-75eb-be18-79dfde55ac7a.png",
           "url": "https://urlscan.io/result/019f3667-b553-75eb-be18-79dfde55ac7a/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -247,7 +256,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (28ecne20f9u .securebankinggroup .org/s/63bzgfsvbwsfcdx7y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63bzgfsvbwsfcdx7y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"28ecne20f9u.securebankinggroup.org\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000560; classtype:social-engineering; sid:6000560; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T03:50:18.419111+00:00",
+  "updated_at": "2026-07-08T17:01:36.592542+00:00",
   "probe": {
     "dns": true,
     "whois": true,

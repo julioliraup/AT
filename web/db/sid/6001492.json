@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "banban87.github.io",
       "domain_defanged": "banban87[.]github[.]io",
-      "case_id": "PD-20260706-474A47",
-      "analyzed_at": "2026-07-06T08:53:24.970Z",
+      "case_id": "PD-20260708-474A47",
+      "analyzed_at": "2026-07-08T03:57:26.409Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f3fdf-9903-74ff-a44d-7e472dc19891/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,26 +69,41 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.109.153",
-        "ipinfo": null,
+        "ip": "185.199.108.153",
+        "ipinfo": {
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
-            "185.199.109.153",
             "185.199.108.153",
             "185.199.110.153",
+            "185.199.109.153",
             "185.199.111.153"
           ],
           "AAAA": [
+            "2606:50c0:8000::153",
             "2606:50c0:8001::153",
             "2606:50c0:8002::153",
-            "2606:50c0:8003::153",
-            "2606:50c0:8000::153"
+            "2606:50c0:8003::153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -212,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (banban87 .github .io/banana/)\"; flow:established,to_server; http.uri; content:\"/banana/\"; startswith; fast_pattern; http.host;  content:\"banban87.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001492; classtype:social-engineering; sid:6001492; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-07T05:07:28.536935+00:00",
+  "updated_at": "2026-07-08T18:03:31.730701+00:00",
   "probe": {
     "dns": true,
     "whois": true,
