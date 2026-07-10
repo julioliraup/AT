@@ -72,21 +72,30 @@
     "phishdestroy": {
       "domain": "next13-rentbnb-clone.vercel.app",
       "domain_defanged": "next13-rentbnb-clone[.]vercel[.]app",
-      "case_id": "PD-20260708-5A5182",
-      "analyzed_at": "2026-07-08T21:33:23.158Z",
+      "case_id": "PD-20260710-5A5182",
+      "analyzed_at": "2026-07-10T09:18:50.311Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Airbnb"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f43a6-5691-7156-a06e-11612eac67f2.png",
           "url": "https://urlscan.io/result/019f43a6-5691-7156-a06e-11612eac67f2/",
-          "pending": true
+          "title": "Airbnb"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Airbnb",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (next13-rentbnb-clone.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"next13-rentbnb-clone.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004288; classtype:social-engineering; sid:6004288; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-09T17:14:40.830054+00:00",
+  "updated_at": "2026-07-10T09:24:33.559477+00:00",
   "probe": {
     "dns": true,
     "whois": false,

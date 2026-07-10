@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "pimco-du2.pages.dev",
       "domain_defanged": "pimco-du2[.]pages[.]dev",
-      "case_id": "PD-20260708-48DE6F",
-      "analyzed_at": "2026-07-08T20:47:54.543Z",
+      "case_id": "PD-20260710-48DE6F",
+      "analyzed_at": "2026-07-10T08:39:43.353Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f437c-b47c-721a-9fa0-c2e554304c73.png",
           "url": "https://urlscan.io/result/019f437c-b47c-721a-9fa0-c2e554304c73/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.147",
+        "ip": "172.66.44.109",
         "ipinfo": {
-          "ip": "172.66.47.147",
+          "ip": "172.66.44.109",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "A": [
-            "172.66.47.147",
-            "172.66.44.109"
+            "172.66.44.109",
+            "172.66.47.147"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f93",
-            "2606:4700:310c::ac42:2c6d"
+            "2606:4700:310c::ac42:2c6d",
+            "2606:4700:310c::ac42:2f93"
           ],
           "NS": [
             "lou.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pimco-du2.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"pimco-du2.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003494; classtype:social-engineering; sid:6003494; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-09T16:15:09.890851+00:00",
+  "updated_at": "2026-07-10T08:39:39.185833+00:00",
   "probe": {
     "dns": true,
     "whois": false,

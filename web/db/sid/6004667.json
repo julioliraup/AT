@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "annulation-socgen.duckdns.org",
       "domain_defanged": "annulation-socgen[.]duckdns[.]org",
-      "case_id": "PD-20260709-6C7D51",
-      "analyzed_at": "2026-07-09T17:38:31.530Z",
+      "case_id": "PD-20260710-6C7D51",
+      "analyzed_at": "2026-07-10T09:40:38.476Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f40b5-a57a-70d8-bf07-c71962769fec.png",
+          "url": "https://urlscan.io/result/019f40b5-a57a-70d8-bf07-c71962769fec/"
         }
       },
       "detections": [],
@@ -88,7 +92,14 @@
       },
       "infrastructure": {
         "ip": "64.89.160.102",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "64.89.160.102",
+          "city": "Luxembourg",
+          "region": "Luxembourg",
+          "country": "LU",
+          "org": "AS205759 Ghosty Networks LLC",
+          "asn": "AS205759"
+        },
         "dns": {
           "A": [
             "64.89.160.102"
@@ -227,10 +238,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (annulation-socgen.duckdns.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"annulation-socgen.duckdns.org\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004667; classtype:social-engineering; sid:6004667; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-09T17:38:24.358908+00:00",
+  "updated_at": "2026-07-10T09:40:28.567825+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

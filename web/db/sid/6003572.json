@@ -18,51 +18,23 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.coinbaseinv.com/",
-      "domain": "www.coinbaseinv.com",
-      "url_count": 4,
-      "city_data": false,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.67.170.5",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": "9ff871767c27b74e-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (394)",
-      "sha256": "fdd82380e042e27c07c8cb2490239a00e6f7edc2b7dc66e3bc46e875a801c605",
-      "md5": "7cd67df03940fc45d0d0020f7717dcbd",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-05-22T02:38:08",
-      "first_seen_secs": 1779417488.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "coinbaseinv.com",
       "domain_defanged": "coinbaseinv[.]com",
-      "case_id": "PD-20260708-6BC4BA",
-      "analyzed_at": "2026-07-08T20:55:15.083Z",
+      "case_id": "PD-20260710-6BC4BA",
+      "analyzed_at": "2026-07-10T08:48:46.952Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ec9ba-7f0c-751a-8220-769dfcd7740f.png",
+          "url": "https://urlscan.io/result/019ec9ba-7f0c-751a-8220-769dfcd7740f/",
+          "title": "Coinbase INV"
         }
       },
       "detections": [],
@@ -70,14 +42,22 @@
         "registrar": "GoDaddy.com, LLC",
         "created": "2026-05-19T10:07:55Z",
         "expires": "2027-05-19T10:07:55Z",
-        "age_days": 50,
+        "age_days": 51,
         "nameservers": [
           "NS21.DOMAINCONTROL.COM",
           "NS22.DOMAINCONTROL.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.170.5",
+        "ipinfo": {
+          "ip": "172.67.170.5",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -89,7 +69,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,15 +199,16 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.coinbaseinv.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.coinbaseinv.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003572; classtype:social-engineering; sid:6003572; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-09T16:20:18.892951+00:00",
+  "updated_at": "2026-07-10T08:48:32.748943+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

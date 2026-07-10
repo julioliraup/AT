@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "fortle.cc",
       "domain_defanged": "fortle[.]cc",
-      "case_id": "PD-20260709-787FC7",
-      "analyzed_at": "2026-07-09T17:21:34.271Z",
+      "case_id": "PD-20260710-787FC7",
+      "analyzed_at": "2026-07-10T09:28:18.882Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e62f4-8eb2-75c9-8f65-201bf628eb6d.png",
+          "url": "https://urlscan.io/result/019e62f4-8eb2-75c9-8f65-201bf628eb6d/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3032::6815:9f",
+        "ipinfo": {
+          "ip": "2606:4700:3032::6815:9f",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -220,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fortle.cc/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fortle.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004385; classtype:social-engineering; sid:6004385; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-09T17:21:26.504872+00:00",
+  "updated_at": "2026-07-10T09:28:09.648233+00:00",
   "probe": {
     "dns": true,
     "whois": false,

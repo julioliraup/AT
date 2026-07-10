@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "dpd.fxrqtm.cfd",
       "domain_defanged": "dpd[.]fxrqtm[.]cfd",
-      "case_id": "PD-20260709-6C47DC",
-      "analyzed_at": "2026-07-09T16:05:51.075Z",
+      "case_id": "PD-20260710-6C47DC",
+      "analyzed_at": "2026-07-10T08:25:30.672Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e415c-2324-778c-b292-6c2e3cf9d9a3.png",
+          "url": "https://urlscan.io/result/019e415c-2324-778c-b292-6c2e3cf9d9a3/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.155.73",
+        "ipinfo": {
+          "ip": "172.67.155.73",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +223,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.fxrqtm.cfd/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"dpd.fxrqtm.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003340; classtype:social-engineering; sid:6003340; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-09T16:05:47.483213+00:00",
+  "updated_at": "2026-07-10T08:25:25.958006+00:00",
   "probe": {
     "dns": false,
     "whois": false,

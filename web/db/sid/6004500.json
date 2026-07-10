@@ -73,17 +73,30 @@
     "phishdestroy": {
       "domain": "fand-whatsapp.com.cn",
       "domain_defanged": "fand-whatsapp[.]com[.]cn",
-      "case_id": "PD-20260709-2E9645",
-      "analyzed_at": "2026-07-09T17:28:30.025Z",
+      "case_id": "PD-20260710-2E9645",
+      "analyzed_at": "2026-07-10T09:33:12.388Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f428a-a71d-7029-8c70-67a2015d404e.png",
+          "url": "https://urlscan.io/result/019f428a-a71d-7029-8c70-67a2015d404e/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,8 +116,8 @@
             "104.21.21.45"
           ],
           "AAAA": [
-            "2606:4700:3031::6815:152d",
-            "2606:4700:3036::ac43:c466"
+            "2606:4700:3036::ac43:c466",
+            "2606:4700:3031::6815:152d"
           ],
           "NS": [
             "colette.ns.cloudflare.com.",
@@ -248,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.fand-whatsapp.com.cn/wp-admin/includes/misc.php)\"; flow:established,to_server; http.uri; content:\"/wp-admin/includes/misc.php\"; startswith; fast_pattern; http.host; content:\"www.fand-whatsapp.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004500; classtype:social-engineering; sid:6004500; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-09T17:28:25.949299+00:00",
+  "updated_at": "2026-07-10T09:33:08.399909+00:00",
   "probe": {
     "dns": true,
     "whois": true,
