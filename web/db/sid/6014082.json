@@ -49,21 +49,57 @@
     "phishdestroy": {
       "domain": "cr-bind-fenix.s3.us-east-1.amazonaws.com",
       "domain_defanged": "cr-bind-fenix[.]s3[.]us-east-1[.]amazonaws[.]com",
-      "case_id": "PD-20260709-7F9AE6",
-      "analyzed_at": "2026-07-09T09:41:49.863Z",
+      "case_id": "PD-20260710-7F9AE6",
+      "analyzed_at": "2026-07-10T03:06:23.732Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f4641-4037-76ed-8568-1704cfc6b85a/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f4641-4037-76ed-8568-1704cfc6b85a.png",
+          "url": "https://urlscan.io/result/019f4641-4037-76ed-8568-1704cfc6b85a/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,6 +107,17 @@
         "ip": "s3-r-w.us-east-1.amazonaws.com.",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "s3-r-w.us-east-1.amazonaws.com.",
+            "16.15.237.103",
+            "16.15.236.117",
+            "52.217.192.90",
+            "52.217.138.42",
+            "16.15.212.53",
+            "16.182.70.2",
+            "16.15.191.124",
+            "52.216.33.170"
+          ],
           "AAAA": [
             "s3-r-w.us-east-1.amazonaws.com."
           ],
@@ -86,23 +133,19 @@
             "ns-1567.awsdns-03.co.uk.",
             "ns-479.awsdns-59.com.",
             "ns-537.awsdns-03.net."
-          ],
-          "A": [
-            "s3-r-w.us-east-1.amazonaws.com.",
-            "52.216.8.30",
-            "52.217.197.194",
-            "16.15.223.119",
-            "16.182.106.2",
-            "16.15.229.95",
-            "16.15.228.126",
-            "52.217.71.96",
-            "52.216.212.138"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -229,7 +272,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cr-bind-fenix.s3.us-east-1.amazonaws.com/XAc6geBVOhc?email=redacted@abuse.ionos.com)\"; flow:established,to_server; http.uri; content:\"/XAc6geBVOhc?email=redacted@abuse.ionos.com\"; startswith; fast_pattern; http.host; content:\"cr-bind-fenix.s3.us-east-1.amazonaws.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6014082; classtype:social-engineering; sid:6014082; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-09T09:41:46.680349+00:00",
+  "updated_at": "2026-07-10T03:06:14.287928+00:00",
   "probe": {
     "dns": true,
     "whois": false,

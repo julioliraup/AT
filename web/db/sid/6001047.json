@@ -74,165 +74,21 @@
     "phishdestroy": {
       "domain": "capitalone-11r.pages.dev",
       "domain_defanged": "capitalone-11r[.]pages[.]dev",
-      "case_id": "PD-20260708-243214",
-      "analyzed_at": "2026-07-08T03:22:07.484Z",
+      "case_id": "PD-20260709-243214",
+      "analyzed_at": "2026-07-09T13:24:38.895Z",
       "intel": {
         "virustotal": {
-          "malicious": 13,
-          "suspicious": 0,
-          "total": 91,
-          "detections": [
-            {
-              "engine": "ADMINUSLabs",
-              "category": "malicious",
-              "result": "malicious"
-            },
-            {
-              "engine": "Criminal IP",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "alphaMountain.ai",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "BitDefender",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "CyRadar",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "ESET",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Forcepoint ThreatSeeker",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Fortinet",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "G-Data",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Kaspersky",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Lionic",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Sophos",
-              "category": "malicious",
-              "result": "phishing"
-            },
-            {
-              "engine": "Webroot",
-              "category": "malicious",
-              "result": "malicious"
-            }
-          ],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Generic Cloudflare"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019f3689-5c05-7790-9eec-f57453efd207.png",
-          "url": "https://urlscan.io/result/019f3689-5c05-7790-9eec-f57453efd207/",
-          "title": "Suspected Phishing | Cloudflare"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f470d-3f4c-7105-9d66-63ef366ac134/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "VT: ADMINUSLabs",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Criminal IP",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: alphaMountain.ai",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: BitDefender",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: CyRadar",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: ESET",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Forcepoint ThreatSeeker",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Fortinet",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: G-Data",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Kaspersky",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Lionic",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Sophos",
-          "type": "phishing",
-          "severity": "high"
-        },
-        {
-          "source": "VT: Webroot",
-          "type": "malicious",
-          "severity": "high"
-        },
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Generic Cloudflare",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
@@ -247,6 +103,10 @@
           "asn": "AS13335"
         },
         "dns": {
+          "NS": [
+            "buck.ns.cloudflare.com.",
+            "ollie.ns.cloudflare.com."
+          ],
           "AAAA": [
             "2606:4700:310c::ac42:2f70",
             "2606:4700:310c::ac42:2c90"
@@ -254,10 +114,6 @@
           "A": [
             "172.66.44.144",
             "172.66.47.112"
-          ],
-          "NS": [
-            "buck.ns.cloudflare.com.",
-            "ollie.ns.cloudflare.com."
           ]
         }
       },
@@ -393,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (capitalone-11r .pages .dev/faq)\"; flow:established,to_server; http.uri; content:\"/faq\"; startswith; fast_pattern; http.host;  content:\"capitalone-11r.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001047; classtype:social-engineering; sid:6001047; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-08T17:30:12.256141+00:00",
+  "updated_at": "2026-07-09T13:24:36.079266+00:00",
   "probe": {
     "dns": true,
     "whois": false,

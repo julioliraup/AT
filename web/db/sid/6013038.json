@@ -49,27 +49,59 @@
     "phishdestroy": {
       "domain": "fortflow.pro",
       "domain_defanged": "fortflow[.]pro",
-      "case_id": "PD-20260709-108E67",
-      "analyzed_at": "2026-07-09T08:36:07.733Z",
+      "case_id": "PD-20260710-108E67",
+      "analyzed_at": "2026-07-10T01:41:28.783Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecd35-2588-770b-ad57-28f07bc5b617.png",
+          "url": "https://urlscan.io/result/019ecd35-2588-770b-ad57-28f07bc5b617/",
+          "title": "Inventory Check | Fortnite"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +228,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.fortflow.pro/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.fortflow.pro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013038; classtype:social-engineering; sid:6013038; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-09T08:36:02.099357+00:00",
+  "updated_at": "2026-07-10T01:41:23.650948+00:00",
   "probe": {
     "dns": false,
     "whois": false,
