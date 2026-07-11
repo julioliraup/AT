@@ -49,18 +49,23 @@
     "phishdestroy": {
       "domain": "surl.lu",
       "domain_defanged": "surl[.]lu",
-      "case_id": "PD-20260710-6E7417",
-      "analyzed_at": "2026-07-10T01:16:55.447Z",
+      "case_id": "PD-20260711-6E7417",
+      "analyzed_at": "2026-07-11T03:52:32.255Z",
       "intel": {
         "virustotal": {
           "malicious": 12,
-          "suspicious": 0,
+          "suspicious": 1,
           "total": 91,
           "detections": [
             {
               "engine": "ADMINUSLabs",
               "category": "malicious",
               "result": "malicious"
+            },
+            {
+              "engine": "AILabs (MONITORAPP)",
+              "category": "suspicious",
+              "result": "suspicious"
             },
             {
               "engine": "alphaMountain.ai",
@@ -105,7 +110,7 @@
             {
               "engine": "Sophos",
               "category": "malicious",
-              "result": "phishing"
+              "result": "malware"
             },
             {
               "engine": "VIPRE",
@@ -120,10 +125,10 @@
           ],
           "categories": {
             "BitDefender": "business",
-            "Sophos": "phishing and fraud",
-            "Webroot": "Phishing and Other Frauds",
             "Forcepoint ThreatSeeker": "phishing and other frauds",
-            "Google": "technology"
+            "Sophos": "spyware and malware",
+            "Webroot": "Phishing and Other Frauds",
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
           }
         },
         "urlscan": {
@@ -140,6 +145,11 @@
           "source": "VT: ADMINUSLabs",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "VT: AILabs (MONITORAPP)",
+          "type": "suspicious",
+          "severity": "medium"
         },
         {
           "source": "VT: alphaMountain.ai",
@@ -183,7 +193,7 @@
         },
         {
           "source": "VT: Sophos",
-          "type": "phishing",
+          "type": "malware",
           "severity": "high"
         },
         {
@@ -201,9 +211,9 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.41.208",
+        "ip": "172.67.193.150",
         "ipinfo": {
-          "ip": "104.21.41.208",
+          "ip": "172.67.193.150",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -212,12 +222,12 @@
         },
         "dns": {
           "A": [
-            "104.21.41.208",
-            "172.67.193.150"
+            "172.67.193.150",
+            "104.21.41.208"
           ],
           "AAAA": [
-            "2606:4700:3032::ac43:c196",
-            "2606:4700:3030::6815:29d0"
+            "2606:4700:3030::6815:29d0",
+            "2606:4700:3032::ac43:c196"
           ],
           "NS": [
             "dina.ns.cloudflare.com.",
@@ -357,12 +367,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (surl.lu/axrnyj)\"; flow:established,to_server; http.uri; content:\"/axrnyj\"; startswith; fast_pattern; http.host; content:\"surl.lu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003026; classtype:social-engineering; sid:6003026; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T19:23:50.951810+00:00",
+  "updated_at": "2026-07-11T03:52:26.455691+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -50,17 +50,53 @@
     "phishdestroy": {
       "domain": "ersfilter-my.sharepoint.com",
       "domain_defanged": "ersfilter-my[.]sharepoint[.]com",
-      "case_id": "PD-20260710-1262E3",
-      "analyzed_at": "2026-07-10T13:56:40.867Z",
+      "case_id": "PD-20260711-1262E3",
+      "analyzed_at": "2026-07-11T01:32:25.658Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "error": "no_results"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -238,7 +274,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ersfilter-my .sharepoint .com/personal/nradonich_ersfilter_com/_layouts/15/doc .aspx?guestaccesstoken=t6T%2FHN1dKbYHlYX%2BeIMbaZufA43rrGZ6%2FaAAewNocDI%3D&docid=1_18168db23429e45f29fdf2e7be120efc4&wdFormId=%7BB9970F62-44C3-4D09-9929-6E1EB652DA57%7D&action=formsubmit&CID=7c889288-793f-4e2b-b7c4-fed5506273ef)\"; flow:established,to_server; http.uri; content:\"/personal/nradonich_ersfilter_com/_layouts/15/doc.aspx?guestaccesstoken=t6T%2FHN1dKbYHlYX%2BeIMbaZufA43rrGZ6%2FaAAewNocDI%3D&docid=1_18168db23429e45f29fdf2e7be120efc4&wdFormId=%7BB9970F62-44C3-4D09-9929-6E1EB652DA57%7D&action=formsubmit&CID=7c889288-793f-4e2b-b7c4-fed5506273ef\"; startswith; fast_pattern; http.host;  content:\"ersfilter-my.sharepoint.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000323; classtype:social-engineering; sid:6000323; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T13:56:36.981708+00:00",
+  "updated_at": "2026-07-11T01:32:22.178881+00:00",
   "probe": {
     "dns": true,
     "whois": false,
