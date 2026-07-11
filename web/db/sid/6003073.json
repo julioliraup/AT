@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "home-bridn.wasmer.app",
       "domain_defanged": "home-bridn[.]wasmer[.]app",
-      "case_id": "PD-20260709-4AA471",
-      "analyzed_at": "2026-07-09T15:41:48.784Z",
+      "case_id": "PD-20260710-4AA471",
+      "analyzed_at": "2026-07-10T19:26:21.423Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4d7e-c2bc-7105-aac4-065b4b05b8ec/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,21 +92,13 @@
       },
       "infrastructure": {
         "ip": "5.78.30.216",
-        "ipinfo": {
-          "ip": "5.78.30.216",
-          "hostname": "static.216.30.78.5.clients.your-server.de",
-          "city": "Hillsboro",
-          "region": "Oregon",
-          "country": "US",
-          "org": "AS212317 Hetzner Online GmbH",
-          "asn": "AS212317"
-        },
+        "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "2a01:4ff:1f2:5878::"
-          ],
           "A": [
             "5.78.30.216"
+          ],
+          "AAAA": [
+            "2a01:4ff:1f2:5878::"
           ],
           "NS": [
             "alpha.ns.wasmernet.com.",
@@ -235,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (home-bridn.wasmer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"home-bridn.wasmer.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003073; classtype:social-engineering; sid:6003073; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T08:13:49.609307+00:00",
+  "updated_at": "2026-07-10T19:26:18.791239+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "insightfulconsultants.co.uk",
       "domain_defanged": "insightfulconsultants[.]co[.]uk",
-      "case_id": "PD-20260709-4D6749",
-      "analyzed_at": "2026-07-09T17:46:03.677Z",
+      "case_id": "PD-20260710-4D6749",
+      "analyzed_at": "2026-07-10T21:38:49.575Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4df8-0b66-75cd-b1a0-4c6b19c32e14/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,12 +69,16 @@
       },
       "infrastructure": {
         "ip": "217.160.0.227",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "217.160.0.227",
+          "hostname": "217-160-0-227.elastic-ssl.ui-r.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS8560 IONOS SE",
+          "asn": "AS8560"
+        },
         "dns": {
-          "MX": [
-            "10 mx01.ionos.co.uk.",
-            "10 mx00.ionos.co.uk."
-          ],
           "AAAA": [
             "2001:8d8:100f:f000::217"
           ],
@@ -78,16 +86,27 @@
             "217.160.0.227"
           ],
           "NS": [
-            "ns1074.ui-dns.com.",
-            "ns1061.ui-dns.de.",
+            "ns1121.ui-dns.org.",
             "ns1109.ui-dns.biz.",
-            "ns1121.ui-dns.org."
+            "ns1061.ui-dns.de.",
+            "ns1074.ui-dns.com."
+          ],
+          "MX": [
+            "10 mx00.ionos.co.uk.",
+            "10 mx01.ionos.co.uk."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CRONON-AS",
+          "abuse": "abuse@vautron.de",
+          "url": "mailto:abuse@vautron.de",
+          "logo": "https://i.ibb.co/F4bxDB72/pr-CRONON-AS.png",
+          "method": "email",
+          "asn": "AS8560"
+        }
       },
       "report_services": [
         {
@@ -210,12 +229,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (insightfulconsultants.co.uk/ram)\"; flow:established,to_server; http.uri; content:\"/ram\"; startswith; fast_pattern; http.host; content:\"insightfulconsultants.co.uk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004785; classtype:social-engineering; sid:6004785; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:47:01.934776+00:00",
+  "updated_at": "2026-07-10T21:38:46.210180+00:00",
   "probe": {
     "dns": true,
     "whois": true,

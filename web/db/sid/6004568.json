@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "url-tracker.com",
       "domain_defanged": "url-tracker[.]com",
-      "case_id": "PD-20260709-8D50E6",
-      "analyzed_at": "2026-07-09T17:32:58.877Z",
+      "case_id": "PD-20260710-8D50E6",
+      "analyzed_at": "2026-07-10T21:21:04.342Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4de7-ca4f-731a-b2ed-40030f0cc8d8/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,7 +68,7 @@
         "registrar": "NameCheap, Inc.",
         "created": "2024-04-11T07:26:42Z",
         "expires": "2027-04-11T07:26:42Z",
-        "age_days": 819,
+        "age_days": 820,
         "nameservers": [
           "NS1.DIGITALOCEAN.COM",
           "NS2.DIGITALOCEAN.COM",
@@ -73,14 +77,21 @@
       },
       "infrastructure": {
         "ip": "137.184.94.165",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "137.184.94.165",
+          "city": "Santa Clara",
+          "region": "California",
+          "country": "US",
+          "org": "AS14061 DigitalOcean, LLC",
+          "asn": "AS14061"
+        },
         "dns": {
           "A": [
             "137.184.94.165"
           ],
           "NS": [
-            "ns2.digitalocean.com.",
             "ns1.digitalocean.com.",
+            "ns2.digitalocean.com.",
             "ns3.digitalocean.com."
           ]
         }
@@ -94,7 +105,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "DigitalOcean",
+          "abuse": "abuse@digitalocean.com",
+          "url": "https://www.digitalocean.com/company/contact#abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14061"
+        }
       },
       "report_services": [
         {
@@ -217,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.url-tracker.com/14ff53/)\"; flow:established,to_server; http.uri; content:\"/14ff53/\"; startswith; fast_pattern; http.host; content:\"www.url-tracker.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004568; classtype:social-engineering; sid:6004568; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:36:01.600448+00:00",
+  "updated_at": "2026-07-10T21:20:59.831254+00:00",
   "probe": {
     "dns": true,
     "whois": false,

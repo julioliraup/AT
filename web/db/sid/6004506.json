@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "capitalone.zhygr.com",
       "domain_defanged": "capitalone[.]zhygr[.]com",
-      "case_id": "PD-20260709-120BAE",
-      "analyzed_at": "2026-07-09T17:28:53.402Z",
+      "case_id": "PD-20260710-120BAE",
+      "analyzed_at": "2026-07-10T21:15:36.647Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4de2-c93f-733f-a07a-d78b1f2746c0/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,22 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.140.213",
-        "ipinfo": null,
+        "ip": "104.21.27.20",
+        "ipinfo": {
+          "ip": "104.21.27.20",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
             "2606:4700:3035::ac43:8cd5",
             "2606:4700:3034::6815:1b14"
           ],
           "A": [
-            "172.67.140.213",
-            "104.21.27.20"
+            "104.21.27.20",
+            "172.67.140.213"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -226,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (capitalone.zhygr.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"capitalone.zhygr.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004506; classtype:social-engineering; sid:6004506; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:33:24.263077+00:00",
+  "updated_at": "2026-07-10T21:15:32.488183+00:00",
   "probe": {
     "dns": true,
     "whois": false,

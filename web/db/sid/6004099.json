@@ -80,14 +80,18 @@
     "phishdestroy": {
       "domain": "appsbizzhost.com.au",
       "domain_defanged": "appsbizzhost[.]com[.]au",
-      "case_id": "PD-20260709-316DC9",
-      "analyzed_at": "2026-07-09T16:59:14.961Z",
+      "case_id": "PD-20260710-316DC9",
+      "analyzed_at": "2026-07-10T20:47:36.167Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4dc9-25de-734b-ac03-e078df9924a8/",
+          "pending": true
         }
       },
       "detections": [],
@@ -96,27 +100,42 @@
       },
       "infrastructure": {
         "ip": "216.194.164.236",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.194.164.236",
+          "hostname": "server.appsbizzhost.com.au",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS22611 InMotion Hosting, Inc.",
+          "asn": "AS22611"
+        },
         "dns": {
-          "MX": [
-            "10 alt4.aspmx.l.google.com.",
-            "5 alt2.aspmx.l.google.com.",
-            "5 alt1.aspmx.l.google.com.",
-            "1 aspmx.l.google.com.",
-            "10 alt3.aspmx.l.google.com."
-          ],
           "A": [
             "216.194.164.236"
           ],
+          "MX": [
+            "5 alt2.aspmx.l.google.com.",
+            "1 aspmx.l.google.com.",
+            "5 alt1.aspmx.l.google.com.",
+            "10 alt4.aspmx.l.google.com.",
+            "10 alt3.aspmx.l.google.com."
+          ],
           "NS": [
-            "dns2.appsbizzhost.com.au.",
-            "dns1.appsbizzhost.com.au."
+            "dns1.appsbizzhost.com.au.",
+            "dns2.appsbizzhost.com.au."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "INMOTION, US",
+          "abuse": "abuse@inmotionhosting.com",
+          "url": "mailto:abuse@inmotionhosting.com",
+          "logo": "https://i.ibb.co/YFYJYwHg/pr-IMH-IAD-US.png",
+          "method": "email",
+          "asn": "AS22611"
+        }
       },
       "report_services": [
         {
@@ -239,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (appsbizzhost.com.au/capo)\"; flow:established,to_server; http.uri; content:\"/capo\"; startswith; fast_pattern; http.host; content:\"appsbizzhost.com.au\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004099; classtype:social-engineering; sid:6004099; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:15:20.837159+00:00",
+  "updated_at": "2026-07-10T20:47:31.164763+00:00",
   "probe": {
     "dns": true,
     "whois": true,

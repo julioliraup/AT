@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "news-google-chrome.com.cn",
       "domain_defanged": "news-google-chrome[.]com[.]cn",
-      "case_id": "PD-20260709-60D227",
-      "analyzed_at": "2026-07-09T18:01:57.862Z",
+      "case_id": "PD-20260710-60D227",
+      "analyzed_at": "2026-07-10T21:54:51.620Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4e06-b965-7337-9782-cbbb19d9767c/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,16 +92,23 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.188.181",
-        "ipinfo": null,
+        "ip": "104.21.60.25",
+        "ipinfo": {
+          "ip": "104.21.60.25",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "104.21.60.25",
+            "172.67.188.181"
+          ],
           "AAAA": [
             "2606:4700:3035::ac43:bcb5",
             "2606:4700:3036::6815:3c19"
-          ],
-          "A": [
-            "172.67.188.181",
-            "104.21.60.25"
           ],
           "NS": [
             "mira.ns.cloudflare.com.",
@@ -107,7 +118,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,15 +248,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (news-google-chrome.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"news-google-chrome.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005126; classtype:social-engineering; sid:6005126; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T10:16:50.198167+00:00",
+  "updated_at": "2026-07-10T21:54:48.066012+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

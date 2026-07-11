@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "committed.wasmer.app",
       "domain_defanged": "committed[.]wasmer[.]app",
-      "case_id": "PD-20260709-2534C5",
-      "analyzed_at": "2026-07-09T16:39:03.166Z",
+      "case_id": "PD-20260710-2534C5",
+      "analyzed_at": "2026-07-10T20:24:12.055Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4db3-b90d-7449-827b-49f46065b869/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,14 +74,22 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "5.78.28.161",
-        "ipinfo": null,
+        "ip": "5.161.22.175",
+        "ipinfo": {
+          "ip": "5.161.22.175",
+          "hostname": "static.175.22.161.5.clients.your-server.de",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS213230 Hetzner Online GmbH",
+          "asn": "AS213230"
+        },
         "dns": {
-          "AAAA": [
-            "2a01:4ff:1f2:5872::"
-          ],
           "A": [
-            "5.78.28.161"
+            "5.161.22.175"
+          ],
+          "AAAA": [
+            "2a01:4ff:f2:2004::1"
           ],
           "NS": [
             "alpha.ns.wasmernet.com.",
@@ -215,7 +227,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (committed.wasmer.app/longevityanalysis)\"; flow:established,to_server; http.uri; content:\"/longevityanalysis\"; startswith; fast_pattern; http.host; content:\"committed.wasmer.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003865; classtype:social-engineering; sid:6003865; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:05:11.020720+00:00",
+  "updated_at": "2026-07-10T20:28:27.913662+00:00",
   "probe": {
     "dns": true,
     "whois": false,

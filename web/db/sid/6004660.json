@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "webmail.secureinvestingonline.com",
       "domain_defanged": "webmail[.]secureinvestingonline[.]com",
-      "case_id": "PD-20260709-1560F4",
-      "analyzed_at": "2026-07-09T17:30:06.191Z",
+      "case_id": "PD-20260710-1560F4",
+      "analyzed_at": "2026-07-10T21:17:02.382Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4de4-17b8-703f-9d73-b2965614f48f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,7 +93,15 @@
       },
       "infrastructure": {
         "ip": "13.210.89.195",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "13.210.89.195",
+          "hostname": "ec2-13-210-89-195.ap-southeast-2.compute.amazonaws.com",
+          "city": "Sydney",
+          "region": "New South Wales",
+          "country": "AU",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "13.210.89.195",
@@ -99,7 +111,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -227,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webmail.secureinvestingonline.com/secure/training/6422c2/8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/secure/training/6422c2/8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"webmail.secureinvestingonline.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004660; classtype:social-engineering; sid:6004660; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:40:12.429454+00:00",
+  "updated_at": "2026-07-10T21:28:49.627887+00:00",
   "probe": {
     "dns": true,
     "whois": false,

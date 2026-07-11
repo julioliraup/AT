@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "cita-digital-apklm-2026.cr-web.workers.dev",
       "domain_defanged": "cita-digital-apklm-2026[.]cr-web[.]workers[.]dev",
-      "case_id": "PD-20260709-5CECF3",
-      "analyzed_at": "2026-07-09T16:38:11.856Z",
+      "case_id": "PD-20260710-5CECF3",
+      "analyzed_at": "2026-07-10T20:23:22.648Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4db2-f809-70b9-a69a-3d5af062d471/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,22 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.33.193",
-        "ipinfo": null,
+        "ip": "172.67.191.247",
+        "ipinfo": {
+          "ip": "172.67.191.247",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.21.33.193",
-            "172.67.191.247"
-          ],
           "AAAA": [
-            "2606:4700:3037::ac43:bff7",
-            "2606:4700:3035::6815:21c1"
+            "2606:4700:3035::6815:21c1",
+            "2606:4700:3037::ac43:bff7"
+          ],
+          "A": [
+            "172.67.191.247",
+            "104.21.33.193"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -226,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cita-digital-apklm-2026.cr-web.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cita-digital-apklm-2026.cr-web.workers.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003823; classtype:social-engineering; sid:6003823; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:03:28.665443+00:00",
+  "updated_at": "2026-07-10T20:23:20.012722+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "portail-swiss.com",
       "domain_defanged": "portail-swiss[.]com",
-      "case_id": "PD-20260709-1F2BE7",
-      "analyzed_at": "2026-07-09T17:25:15.801Z",
+      "case_id": "PD-20260710-1F2BE7",
+      "analyzed_at": "2026-07-10T21:12:25.304Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4ddf-ddaf-76cf-94d6-106856959017/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,7 +68,7 @@
         "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
         "created": "2026-05-21T09:41:29Z",
         "expires": "2027-05-21T09:41:29Z",
-        "age_days": 49,
+        "age_days": 50,
         "nameservers": [
           "NS1.OPENPROVIDER.NL",
           "NS2.OPENPROVIDER.BE",
@@ -73,7 +77,14 @@
       },
       "infrastructure": {
         "ip": "180.178.160.215",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "180.178.160.215",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS213441 SLAYER GROUP LIMITED",
+          "asn": "AS213441"
+        },
         "dns": {
           "A": [
             "180.178.160.215"
@@ -222,10 +233,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (portail-swiss.com/pages/carte.php)\"; flow:established,to_server; http.uri; content:\"/pages/carte.php\"; startswith; fast_pattern; http.host; content:\"portail-swiss.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004599; classtype:social-engineering; sid:6004599; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:37:23.687790+00:00",
+  "updated_at": "2026-07-10T21:23:35.908242+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

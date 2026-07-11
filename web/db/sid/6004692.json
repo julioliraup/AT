@@ -18,79 +18,22 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://skt-1601.twil.io/skatdk",
-      "domain": "skt-1601.twil.io",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": true,
-      "tlp": "WHITE",
-      "ip": "3.169.173.53",
-      "http_code": 403,
-      "http_response": {
-        "server": null,
-        "content_type": "text/plain; charset=utf8",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/plain",
-      "filemagic": "ASCII text, with no line terminators",
-      "sha256": "657ebe16f4793ec138e4e46b61bfb7e049b6ce0de451590c092b1c097c8110b4",
-      "md5": "c151e921ba43a66546307b0430e9f142",
-      "cert": {
-        "subject_cn": "*.prod.twil.io",
-        "subject_alt_names": [
-          "*.prod.twil.io",
-          "*.tokyo.us1.twil.io",
-          "*.osaka.us1.twil.io",
-          "*.sydney.us1.twil.io",
-          "*.frankfurt.us1.twil.io",
-          "*.us1.twil.io",
-          "*.ashburn.us1.twil.io",
-          "*.twil.io",
-          "*.dublin.us1.twil.io",
-          "*.singapore.us1.twil.io",
-          "*.umatilla.us1.twil.io",
-          "*.sao-paulo.us1.twil.io"
-        ],
-        "issuer_cn": "Amazon RSA 2048 M01",
-        "issuer_org": "Amazon",
-        "issuer_country": "US",
-        "not_valid_before": "2026-01-20T00:00:00+00:00",
-        "not_valid_after": "2027-02-18T23:59:59+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_rsa",
-        "x509_version": "v3",
-        "serial_number": "01 9C 4E D2 55 80 92 4F 56 5D C8 20 C5 2D 54 C6",
-        "fingerprint_sha1": "72 82 EA 26 2F 39 7F 10 4A 51 98 69 48 58 71 DC 70 8A 30 17",
-        "fingerprint_sha256": "E8 50 A0 53 07 CB 3F 2D C2 A5 60 72 90 AE 99 BD 30 64 23 62 D3 71 43 2B 09 86 08 14 9D 89 95 EE"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-06-03T13:07:00",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "skt-1601.twil.io",
       "domain_defanged": "skt-1601[.]twil[.]io",
-      "case_id": "PD-20260709-534C88",
-      "analyzed_at": "2026-07-09T17:40:32.720Z",
+      "case_id": "PD-20260710-534C88",
+      "analyzed_at": "2026-07-10T21:33:05.976Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4df2-cd31-7206-91e6-f0ad2812da30/",
+          "pending": true
         }
       },
       "detections": [],
@@ -105,13 +48,13 @@
             "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com.",
             "d2uv2dvtmwgf4w.cloudfront.net."
           ],
-          "A": [
+          "NS": [
             "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com.",
             "d2uv2dvtmwgf4w.cloudfront.net.",
-            "13.33.131.14",
-            "13.33.131.45",
-            "13.33.131.103",
-            "13.33.131.121"
+            "ns-1062.awsdns-04.org.",
+            "ns-1622.awsdns-10.co.uk.",
+            "ns-48.awsdns-06.com.",
+            "ns-559.awsdns-05.net."
           ],
           "AAAA": [
             "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com.",
@@ -120,13 +63,13 @@
           "CNAME": [
             "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com."
           ],
-          "NS": [
+          "A": [
             "twil-io-e1o9nclap9noax-us1.edge.prod.twilio.com.",
             "d2uv2dvtmwgf4w.cloudfront.net.",
-            "ns-1062.awsdns-04.org.",
-            "ns-1622.awsdns-10.co.uk.",
-            "ns-48.awsdns-06.com.",
-            "ns-559.awsdns-05.net."
+            "108.139.119.70",
+            "108.139.119.91",
+            "108.139.119.92",
+            "108.139.119.82"
           ]
         }
       },
@@ -255,12 +198,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (skt-1601.twil.io/skatdk)\"; flow:established,to_server; http.uri; content:\"/skatdk\"; startswith; fast_pattern; http.host; content:\"skt-1601.twil.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004692; classtype:social-engineering; sid:6004692; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:41:25.048594+00:00",
+  "updated_at": "2026-07-10T21:32:52.934936+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "mercadolibre.com.ar",
       "domain_defanged": "mercadolibre[.]com[.]ar",
-      "case_id": "PD-20260709-794349",
-      "analyzed_at": "2026-07-09T17:02:16.771Z",
+      "case_id": "PD-20260710-794349",
+      "analyzed_at": "2026-07-10T20:50:11.815Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f4dcb-842e-76ab-98ba-affdeb7b705b/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,16 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "108.158.137.91",
-        "ipinfo": null,
+        "ip": "13.33.131.87",
+        "ipinfo": {
+          "ip": "13.33.131.87",
+          "hostname": "server-13-33-131-87.gig52.r.cloudfront.net",
+          "city": "Rio de Janeiro",
+          "region": "Rio de Janeiro",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "MX": [
             "1 aspmx.l.google.com.",
@@ -81,16 +93,23 @@
             "ns-771.awsdns-32.net."
           ],
           "A": [
-            "108.158.137.91",
-            "108.158.137.105",
-            "108.158.137.30",
-            "108.158.137.58"
+            "13.33.131.87",
+            "13.33.131.47",
+            "13.33.131.92",
+            "13.33.131.20"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -213,12 +232,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.mercadolibre.com.ar/gz/account-verification?go=https%3A%2F%2Fwww.mercadolibre.com.ar%2Fp%2FMLA54224113%2F&tid=7f50f1ff-8b04-4bc5-b80e-6df8e6da8d2a)\"; flow:established,to_server; http.uri; content:\"/gz/account-verification?go=https%3A%2F%2Fwww.mercadolibre.com.ar%2Fp%2FMLA54224113%2F&tid=7f50f1ff-8b04-4bc5-b80e-6df8e6da8d2a\"; startswith; fast_pattern; http.host; content:\"www.mercadolibre.com.ar\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004143; classtype:social-engineering; sid:6004143; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-10T09:17:37.211869+00:00",
+  "updated_at": "2026-07-10T20:50:05.964813+00:00",
   "probe": {
     "dns": true,
     "whois": true,
