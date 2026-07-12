@@ -72,21 +72,30 @@
     "phishdestroy": {
       "domain": "htyd.vercel.app",
       "domain_defanged": "htyd[.]vercel[.]app",
-      "case_id": "PD-20260710-256815",
-      "analyzed_at": "2026-07-10T10:46:23.902Z",
+      "case_id": "PD-20260712-256815",
+      "analyzed_at": "2026-07-12T00:46:35.065Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f4ba2-b978-770c-9334-7b8f5261e0c1.png",
           "url": "https://urlscan.io/result/019f4ba2-b978-770c-9334-7b8f5261e0c1/",
-          "pending": true
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -239,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (htyd.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"htyd.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005615; classtype:social-engineering; sid:6005615; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T05:46:54.842272+00:00",
+  "updated_at": "2026-07-12T00:46:25.383290+00:00",
   "probe": {
     "dns": true,
     "whois": false,

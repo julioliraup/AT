@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "eqe-qhx-biz-rkp-vtn-sp3ct1.pages.dev",
       "domain_defanged": "eqe-qhx-biz-rkp-vtn-sp3ct1[.]pages[.]dev",
-      "case_id": "PD-20260710-5DE93E",
-      "analyzed_at": "2026-07-10T11:19:00.078Z",
+      "case_id": "PD-20260712-5DE93E",
+      "analyzed_at": "2026-07-12T01:37:14.561Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f4bc0-927d-775c-a277-51408c65338a.png",
           "url": "https://urlscan.io/result/019f4bc0-927d-775c-a277-51408c65338a/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (eqe-qhx-biz-rkp-vtn-sp3ct1.pages.dev/form_submit_appeal/)\"; flow:established,to_server; http.uri; content:\"/form_submit_appeal/\"; startswith; fast_pattern; http.host; content:\"eqe-qhx-biz-rkp-vtn-sp3ct1.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006099; classtype:social-engineering; sid:6006099; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T06:08:56.175422+00:00",
+  "updated_at": "2026-07-12T01:37:11.632857+00:00",
   "probe": {
     "dns": true,
     "whois": false,

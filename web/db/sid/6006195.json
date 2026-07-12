@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "feiji-tgle.com.cn",
       "domain_defanged": "feiji-tgle[.]com[.]cn",
-      "case_id": "PD-20260710-2B86B7",
-      "analyzed_at": "2026-07-10T23:21:28.823Z",
+      "case_id": "PD-20260712-2B86B7",
+      "analyzed_at": "2026-07-12T01:46:22.812Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telegram"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea293-90a1-736d-b266-987d19fcde31.png",
+          "url": "https://urlscan.io/result/019ea293-90a1-736d-b266-987d19fcde31/",
+          "title": "纸飞机客户端-安全高并发即时通讯系统首页"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telegram",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.154.72",
+        "ipinfo": {
+          "ip": "172.67.154.72",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (feiji-tgle.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"feiji-tgle.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006195; classtype:social-engineering; sid:6006195; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T06:16:32.307279+00:00",
+  "updated_at": "2026-07-12T01:46:18.049584+00:00",
   "probe": {
     "dns": true,
     "whois": true,

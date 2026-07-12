@@ -49,27 +49,110 @@
     "phishdestroy": {
       "domain": "p0nt-bra-fidelis1.dynv6.net",
       "domain_defanged": "p0nt-bra-fidelis1[.]dynv6[.]net",
-      "case_id": "PD-20260710-A18700",
-      "analyzed_at": "2026-07-10T10:28:23.069Z",
+      "case_id": "PD-20260712-A18700",
+      "analyzed_at": "2026-07-12T00:22:45.635Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Banco Bradesco"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e4ffc-878d-7735-912f-1dd069831fac.png",
+          "url": "https://urlscan.io/result/019e4ffc-878d-7735-912f-1dd069831fac/",
+          "title": "Bradesco"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Banco Bradesco",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2001:19f0:5c01:b09:5400:6ff:fe2b:ea25",
+        "ipinfo": {
+          "ip": "2001:19f0:5c01:b09:5400:6ff:fe2b:ea25",
+          "city": "Elk Grove Village",
+          "region": "Illinois",
+          "country": "US",
+          "org": "AS20473 The Constant Company, LLC",
+          "asn": "AS20473"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Vultr/Choopa",
+          "abuse": "abuse@vultr.com",
+          "url": "mailto:abuse@vultr.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS20473"
+        }
       },
       "report_services": [
         {
@@ -192,12 +275,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (p0nt-bra-fidelis1.dynv6.net/B8420266/755498457442026/mobile/index.php?hash=15867159226a0fa9f35152d2.36982946)\"; flow:established,to_server; http.uri; content:\"/B8420266/755498457442026/mobile/index.php?hash=15867159226a0fa9f35152d2.36982946\"; startswith; fast_pattern; http.host; content:\"p0nt-bra-fidelis1.dynv6.net\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6005330; classtype:social-engineering; sid:6005330; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T05:33:19.631441+00:00",
+  "updated_at": "2026-07-12T00:22:40.457822+00:00",
   "probe": {
     "dns": false,
     "whois": false,

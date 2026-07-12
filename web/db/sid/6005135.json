@@ -49,35 +49,112 @@
     "phishdestroy": {
       "domain": "getmysocial.com",
       "domain_defanged": "getmysocial[.]com",
-      "case_id": "PD-20260710-7161D7",
-      "analyzed_at": "2026-07-10T10:17:28.265Z",
+      "case_id": "PD-20260712-7161D7",
+      "analyzed_at": "2026-07-12T00:01:37.939Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f4b88-3b21-75b7-abb2-729e6538d7a1/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f534e-c495-756e-8d53-f670ac43fcc9.png",
+          "url": "https://urlscan.io/result/019f534e-c495-756e-8d53-f670ac43fcc9/",
+          "title": "Kayla's Social Links"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameCheap, Inc.",
         "created": "2025-01-03T17:21:59Z",
         "expires": "2027-01-03T17:21:59Z",
-        "age_days": 552,
+        "age_days": 554,
         "nameservers": [
           "ADDILYN.NS.CLOUDFLARE.COM",
           "JOSE.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.26.4.102",
+        "ip": "172.67.74.105",
         "ipinfo": {
-          "ip": "104.26.4.102",
+          "ip": "172.67.74.105",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -86,14 +163,14 @@
         },
         "dns": {
           "A": [
-            "104.26.4.102",
             "172.67.74.105",
+            "104.26.4.102",
             "104.26.5.102"
           ],
           "AAAA": [
+            "2606:4700:20::ac43:4a69",
             "2606:4700:20::681a:466",
-            "2606:4700:20::681a:566",
-            "2606:4700:20::ac43:4a69"
+            "2606:4700:20::681a:566"
           ],
           "MX": [
             "1 aspmx.l.google.com.",
@@ -247,12 +324,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (getmysocial.com/61sr168r1et61ht67)\"; flow:established,to_server; http.uri; content:\"/61sr168r1et61ht67\"; startswith; fast_pattern; http.host; content:\"getmysocial.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005135; classtype:social-engineering; sid:6005135; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T05:24:12.615516+00:00",
+  "updated_at": "2026-07-12T00:01:29.952936+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,27 +49,57 @@
     "phishdestroy": {
       "domain": "web.coinbase-china.info",
       "domain_defanged": "web[.]coinbase-china[.]info",
-      "case_id": "PD-20260710-302454",
-      "analyzed_at": "2026-07-10T11:23:12.517Z",
+      "case_id": "PD-20260712-302454",
+      "analyzed_at": "2026-07-12T01:42:45.640Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Crypto Scam",
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e58af-5e8b-71ab-875f-4487631b4216.png",
+          "url": "https://urlscan.io/result/019e58af-5e8b-71ab-875f-4487631b4216/",
+          "title": "Coinbase"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Crypto Scam, Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "54.179.238.221",
+        "ipinfo": {
+          "ip": "54.179.238.221",
+          "hostname": "ec2-54-179-238-221.ap-southeast-1.compute.amazonaws.com",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -192,12 +222,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (web.coinbase-china.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"web.coinbase-china.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006149; classtype:social-engineering; sid:6006149; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T06:11:41.379541+00:00",
+  "updated_at": "2026-07-12T01:42:37.996681+00:00",
   "probe": {
     "dns": false,
     "whois": false,

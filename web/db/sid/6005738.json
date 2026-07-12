@@ -49,50 +49,73 @@
     "phishdestroy": {
       "domain": "shorturl.asia",
       "domain_defanged": "shorturl[.]asia",
-      "case_id": "PD-20260710-70A761",
-      "analyzed_at": "2026-07-10T22:51:48.463Z",
+      "case_id": "PD-20260712-70A761",
+      "analyzed_at": "2026-07-12T00:55:49.397Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f4e3a-dc6e-7208-b7f9-8102ae66cf33/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f5384-c147-7464-a5aa-30696522b660.png",
+          "url": "https://urlscan.io/result/019f5384-c147-7464-a5aa-30696522b660/",
+          "title": "Blox Fruits | Play on Roblox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.69.104",
-        "ipinfo": null,
+        "ip": "104.26.6.175",
+        "ipinfo": {
+          "ip": "104.26.6.175",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "MX": [
-            "0 _dc-mx.96520469e9ea.shorturl.asia."
-          ],
           "A": [
-            "172.67.69.104",
             "104.26.6.175",
+            "172.67.69.104",
             "104.26.7.175"
+          ],
+          "AAAA": [
+            "2606:4700:20::ac43:4568",
+            "2606:4700:20::681a:7af",
+            "2606:4700:20::681a:6af"
           ],
           "NS": [
             "fay.ns.cloudflare.com.",
             "merlin.ns.cloudflare.com."
           ],
-          "AAAA": [
-            "2606:4700:20::681a:6af",
-            "2606:4700:20::681a:7af",
-            "2606:4700:20::ac43:4568"
+          "MX": [
+            "0 _dc-mx.96520469e9ea.shorturl.asia."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -215,12 +238,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shorturl.asia/8iEGW)\"; flow:established,to_server; http.uri; content:\"/8iEGW\"; startswith; fast_pattern; http.host; content:\"shorturl.asia\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6005738; classtype:social-engineering; sid:6005738; rev:1; metadata: signature_severity Major, created_et 2026_05_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T05:51:20.533316+00:00",
+  "updated_at": "2026-07-12T00:55:43.766146+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,21 +49,88 @@
     "phishdestroy": {
       "domain": "wendy.mystagingwebsite.com",
       "domain_defanged": "wendy[.]mystagingwebsite[.]com",
-      "case_id": "PD-20260710-29B59D",
-      "analyzed_at": "2026-07-10T10:24:22.786Z",
+      "case_id": "PD-20260712-29B59D",
+      "analyzed_at": "2026-07-12T00:17:01.215Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f4b8e-8f0b-70e5-9368-35737f4ff28f.png",
           "url": "https://urlscan.io/result/019f4b8e-8f0b-70e5-9368-35737f4ff28f/",
-          "pending": true
+          "title": "410 Gone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,7 +138,7 @@
         "ip": "fusion.mystagingwebsite.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
+          "MX": [
             "fusion.mystagingwebsite.com."
           ],
           "A": [
@@ -79,20 +146,27 @@
             "199.16.172.100",
             "199.16.173.200"
           ],
+          "CNAME": [
+            "fusion.mystagingwebsite.com."
+          ],
           "NS": [
             "fusion.mystagingwebsite.com."
           ],
-          "MX": [
-            "fusion.mystagingwebsite.com."
-          ],
-          "CNAME": [
+          "AAAA": [
             "fusion.mystagingwebsite.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Automattic",
+          "abuse": "abuse@automattic.com",
+          "url": "mailto:abuse@automattic.com",
+          "logo": "https://i.ibb.co/ns4GBV5B/pr-Automattic.png",
+          "method": "email",
+          "asn": "AS2635"
+        }
       },
       "report_services": [
         {
@@ -215,12 +289,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wendy.mystagingwebsite.com/wp-content/plugins/sincous/public/index.php)\"; flow:established,to_server; http.uri; content:\"/wp-content/plugins/sincous/public/index.php\"; startswith; fast_pattern; http.host; content:\"wendy.mystagingwebsite.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005257; classtype:social-engineering; sid:6005257; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T05:30:05.813866+00:00",
+  "updated_at": "2026-07-12T00:16:57.124235+00:00",
   "probe": {
     "dns": true,
     "whois": false,

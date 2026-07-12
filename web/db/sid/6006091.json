@@ -18,31 +18,87 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://admin.coinbase-china.info/admin/auth/login",
+      "domain": "admin.coinbase-china.info",
+      "url_count": 0,
+      "city_data": false,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "admin.coinbase-china.info",
       "domain_defanged": "admin[.]coinbase-china[.]info",
-      "case_id": "PD-20260710-221717",
-      "analyzed_at": "2026-07-10T11:18:20.233Z",
+      "case_id": "PD-20260712-221717",
+      "analyzed_at": "2026-07-12T01:36:35.971Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e58ac-1dd1-7048-8dd9-325b5f241518.png",
+          "url": "https://urlscan.io/result/019e58ac-1dd1-7048-8dd9-325b5f241518/",
+          "title": "总后台"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "54.179.238.221",
+        "ipinfo": {
+          "ip": "54.179.238.221",
+          "hostname": "ec2-54-179-238-221.ap-southeast-1.compute.amazonaws.com",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -165,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (admin.coinbase-china.info/admin/auth/login)\"; flow:established,to_server; http.uri; content:\"/admin/auth/login\"; startswith; fast_pattern; http.host; content:\"admin.coinbase-china.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006091; classtype:social-engineering; sid:6006091; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T06:08:19.468413+00:00",
+  "updated_at": "2026-07-12T01:36:30.597318+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -72,26 +72,35 @@
     "phishdestroy": {
       "domain": "postailedger.com",
       "domain_defanged": "postailedger[.]com",
-      "case_id": "PD-20260710-495ADE",
-      "analyzed_at": "2026-07-10T22:44:27.496Z",
+      "case_id": "PD-20260712-495ADE",
+      "analyzed_at": "2026-07-12T00:45:23.932Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f4e34-1f58-737f-8ffc-324f1310296a.png",
           "url": "https://urlscan.io/result/019f4e34-1f58-737f-8ffc-324f1310296a/",
-          "pending": true
+          "title": "Ledger by Post AI — The AI bookkeeper for service businesses."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2026-04-23T17:46:11Z",
         "expires": "2027-04-23T17:46:11Z",
-        "age_days": 78,
+        "age_days": 79,
         "nameservers": [
           "NS37.DOMAINCONTROL.COM",
           "NS38.DOMAINCONTROL.COM"
@@ -261,7 +270,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (postailedger.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"postailedger.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011445; classtype:social-engineering; sid:6011445; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-11T12:12:12.891530+00:00",
+  "updated_at": "2026-07-12T06:24:14.697151+00:00",
   "probe": {
     "dns": true,
     "whois": true,
