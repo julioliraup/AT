@@ -49,26 +49,34 @@
     "phishdestroy": {
       "domain": "ghotkshop.com",
       "domain_defanged": "ghotkshop[.]com",
-      "case_id": "PD-20260711-3B47D0",
-      "analyzed_at": "2026-07-11T10:07:37.118Z",
+      "case_id": "PD-20260713-3B47D0",
+      "analyzed_at": "2026-07-13T01:34:18.123Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f50a5-9469-70ec-978d-ccad1577e366/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f50a5-9469-70ec-978d-ccad1577e366.png",
+          "url": "https://urlscan.io/result/019f50a5-9469-70ec-978d-ccad1577e366/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Web Commerce Communications Limited dba WebNic.cc",
         "created": "2026-03-27T07:49:17Z",
         "expires": "2027-03-27T07:49:17Z",
-        "age_days": 106,
+        "age_days": 107,
         "nameservers": [
           "AMANDA.NS.CLOUDFLARE.COM",
           "MICAH.NS.CLOUDFLARE.COM"
@@ -238,12 +246,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ghotkshop.com/h5/index.html)\"; flow:established,to_server; http.uri; content:\"/h5/index.html\"; startswith; fast_pattern; http.host; content:\"www.ghotkshop.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009630; classtype:social-engineering; sid:6009630; rev:1; metadata: signature_severity Major, created_et 2026_05_31, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:51:35.914405+00:00",
+  "updated_at": "2026-07-13T01:34:14.097250+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "mitrashopnetwork.com",
       "domain_defanged": "mitrashopnetwork[.]com",
-      "case_id": "PD-20260711-1ABB70",
-      "analyzed_at": "2026-07-11T09:23:58.979Z",
+      "case_id": "PD-20260713-1ABB70",
+      "analyzed_at": "2026-07-13T00:34:04.187Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Shopee"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2483-cd4b-7397-8cb4-c8bef8e7003b.png",
+          "url": "https://urlscan.io/result/019f2483-cd4b-7397-8cb4-c8bef8e7003b/",
+          "title": "Shopee"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Shopee",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2026-03-29T15:27:44Z",
         "expires": "2027-03-29T15:27:44Z",
-        "age_days": 103,
+        "age_days": 105,
         "nameservers": [
           "NS1.DOMAINNAMEDNS.COM",
           "NS2.DOMAINNAMEDNS.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "148.66.3.118",
+        "ipinfo": {
+          "ip": "148.66.3.118",
+          "city": "Hoi Fu Court",
+          "region": "Yau Tsim Mong District",
+          "country": "HK",
+          "org": "AS45753 Netsec Limited",
+          "asn": "AS45753"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": "1509"
         },
-        "hosting": null
+        "hosting": {
+          "name": "NETSEC-HK",
+          "abuse": "abuse@netsec.com",
+          "url": "mailto:abuse@netsec.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS45753"
+        }
       },
       "report_services": [
         {
@@ -206,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mitrashopnetwork.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mitrashopnetwork.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008923; classtype:social-engineering; sid:6008923; rev:1; metadata: signature_severity Major, created_et 2026_05_29, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:21:55.497497+00:00",
+  "updated_at": "2026-07-13T00:33:54.356210+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "03713659.com",
       "domain_defanged": "03713659[.]com",
-      "case_id": "PD-20260711-2FD61A",
-      "analyzed_at": "2026-07-11T09:24:31.392Z",
+      "case_id": "PD-20260713-2FD61A",
+      "analyzed_at": "2026-07-13T00:35:12.052Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f507e-1e8d-7565-b000-7733bee22168/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f5507-907e-7503-91cd-c681d1c8f977.png",
+          "url": "https://urlscan.io/result/019f5507-907e-7503-91cd-c681d1c8f977/",
+          "title": "365体育 - No.1体育投注，英超联赛和欧冠联"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2020-11-16T04:40:40Z",
         "expires": "2026-11-16T04:40:40Z",
-        "age_days": 2063,
+        "age_days": 2064,
         "nameservers": [
           "FREEDNS1.REGISTRAR-SERVERS.COM",
           "FREEDNS2.REGISTRAR-SERVERS.COM",
@@ -113,7 +122,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -236,15 +252,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (03713659.com/index.html)\"; flow:established,to_server; http.uri; content:\"/index.html\"; startswith; fast_pattern; http.host; content:\"03713659.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008931; classtype:social-engineering; sid:6008931; rev:1; metadata: signature_severity Major, created_et 2026_05_29, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:22:23.590931+00:00",
+  "updated_at": "2026-07-13T00:34:59.649888+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

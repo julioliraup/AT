@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp1ct6-plornok-biz-fraptek-slurnix.pages.dev",
       "domain_defanged": "sp1ct6-plornok-biz-fraptek-slurnix[.]pages[.]dev",
-      "case_id": "PD-20260711-5B705D",
-      "analyzed_at": "2026-07-11T10:05:36.730Z",
+      "case_id": "PD-20260713-5B705D",
+      "analyzed_at": "2026-07-13T01:31:54.698Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f50a3-be26-767f-8d0e-541ded4c73e7.png",
           "url": "https://urlscan.io/result/019f50a3-be26-767f-8d0e-541ded4c73e7/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp1ct6-plornok-biz-fraptek-slurnix.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp1ct6-plornok-biz-fraptek-slurnix.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009598; classtype:social-engineering; sid:6009598; rev:1; metadata: signature_severity Major, created_et 2026_05_31, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:49:33.478774+00:00",
+  "updated_at": "2026-07-13T01:31:46.240190+00:00",
   "probe": {
     "dns": true,
     "whois": false,

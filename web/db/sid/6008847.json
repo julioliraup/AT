@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "brt.jfowgi.help",
       "domain_defanged": "brt[.]jfowgi[.]help",
-      "case_id": "PD-20260711-21E14A",
-      "analyzed_at": "2026-07-11T09:19:38.648Z",
+      "case_id": "PD-20260713-21E14A",
+      "analyzed_at": "2026-07-13T00:27:28.084Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e73d5-a30c-7475-8253-20daced5d1f4.png",
+          "url": "https://urlscan.io/result/019e73d5-a30c-7475-8253-20daced5d1f4/",
+          "title": "Spedizioni Internazionali e Servizi di Logistica - BRT"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "205.185.126.124",
+        "ipinfo": {
+          "ip": "205.185.126.124",
+          "hostname": "b000.b001.banligo.com",
+          "city": "Las Vegas",
+          "region": "Nevada",
+          "country": "US",
+          "org": "AS53667 FranTech Solutions",
+          "asn": "AS53667"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "PONYNET, US",
+          "abuse": "",
+          "url": "",
+          "logo": "",
+          "method": "email",
+          "asn": "AS53667"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (brt.jfowgi.help/track-it)\"; flow:established,to_server; http.uri; content:\"/track-it\"; startswith; fast_pattern; http.host; content:\"brt.jfowgi.help\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008847; classtype:social-engineering; sid:6008847; rev:1; metadata: signature_severity Major, created_et 2026_05_29, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:19:14.360032+00:00",
+  "updated_at": "2026-07-13T00:27:23.048539+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -49,22 +49,44 @@
     "phishdestroy": {
       "domain": "game-mall.shop",
       "domain_defanged": "game-mall[.]shop",
-      "case_id": "PD-20260711-40B7DD",
-      "analyzed_at": "2026-07-11T10:10:14.284Z",
+      "case_id": "PD-20260713-40B7DD",
+      "analyzed_at": "2026-07-13T01:37:30.825Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7e94-9e2a-7745-b3e8-2f92c4d8f76c.png",
+          "url": "https://urlscan.io/result/019e7e94-9e2a-7745-b3e8-2f92c4d8f76c/",
+          "title": "App"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "64.118.144.242",
+        "ipinfo": {
+          "ip": "64.118.144.242",
+          "city": "Tokyo",
+          "region": "Tokyo",
+          "country": "JP",
+          "org": "AS138997 Eons Data Communications Limited",
+          "asn": "AS138997"
+        },
         "dns": null
       },
       "report_to": {
@@ -192,12 +214,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (game-mall.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"game-mall.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009667; classtype:social-engineering; sid:6009667; rev:1; metadata: signature_severity Major, created_et 2026_05_31, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:53:47.466657+00:00",
+  "updated_at": "2026-07-13T01:37:25.491925+00:00",
   "probe": {
     "dns": false,
     "whois": false,

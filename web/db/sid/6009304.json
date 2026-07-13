@@ -49,21 +49,67 @@
     "phishdestroy": {
       "domain": "disponibilizamosumnovolmt.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "disponibilizamosumnovolmt[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260711-3A8979",
-      "analyzed_at": "2026-07-11T09:45:53.538Z",
+      "case_id": "PD-20260713-3A8979",
+      "analyzed_at": "2026-07-13T01:05:30.066Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "PREBYTES",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f5091-b051-7599-8b45-b562cf9ee0b1/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f5091-b051-7599-8b45-b562cf9ee0b1.png",
+          "url": "https://urlscan.io/result/019f5091-b051-7599-8b45-b562cf9ee0b1/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: PREBYTES",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +125,17 @@
           "asn": "AS40401"
         },
         "dns": {
-          "A": [
-            "149.137.136.9",
-            "149.137.137.254",
-            "149.137.140.9",
-            "149.137.141.9"
-          ],
           "AAAA": [
             "2605:72c0:6fc:b3::b005:1",
             "2605:72c0:6fd:b3::b005:1",
             "2605:72c0:6fe:b3::b005:1",
             "2605:72c0:6ff:b3::b005:1"
+          ],
+          "A": [
+            "149.137.136.9",
+            "149.137.137.254",
+            "149.137.140.9",
+            "149.137.141.9"
           ]
         }
       },
@@ -225,12 +271,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (disponibilizamosumnovolmt.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"disponibilizamosumnovolmt.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009304; classtype:social-engineering; sid:6009304; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:37:09.142670+00:00",
+  "updated_at": "2026-07-13T01:05:26.647856+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,21 +49,77 @@
     "phishdestroy": {
       "domain": "emergenciadiaria.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "emergenciadiaria[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260711-E42D27",
-      "analyzed_at": "2026-07-11T09:03:04.731Z",
+      "case_id": "PD-20260713-E42D27",
+      "analyzed_at": "2026-07-13T00:09:50.312Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f506a-7f15-76a3-ad91-7bf3501d1bc4/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f506a-7f15-76a3-ad91-7bf3501d1bc4.png",
+          "url": "https://urlscan.io/result/019f506a-7f15-76a3-ad91-7bf3501d1bc4/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -225,12 +281,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (emergenciadiaria.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"emergenciadiaria.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008618; classtype:social-engineering; sid:6008618; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:09:53.210510+00:00",
+  "updated_at": "2026-07-13T00:09:45.054387+00:00",
   "probe": {
     "dns": true,
     "whois": false,

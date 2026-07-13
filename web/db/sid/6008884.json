@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "qs2frz.cfd",
       "domain_defanged": "qs2frz[.]cfd",
-      "case_id": "PD-20260711-69CAC0",
-      "analyzed_at": "2026-07-11T09:21:50.698Z",
+      "case_id": "PD-20260713-69CAC0",
+      "analyzed_at": "2026-07-13T00:30:23.940Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7364-97d1-70b8-b7e9-2eefc6858d05.png",
+          "url": "https://urlscan.io/result/019e7364-97d1-70b8-b7e9-2eefc6858d05/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.173.247",
+        "ipinfo": {
+          "ip": "172.67.173.247",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (qs2frz.cfd/o/3ui2o/1771403167516#selectedbank9)\"; flow:established,to_server; http.uri; content:\"/o/3ui2o/1771403167516#selectedbank9\"; startswith; fast_pattern; http.host; content:\"qs2frz.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008884; classtype:social-engineering; sid:6008884; rev:1; metadata: signature_severity Major, created_et 2026_05_29, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:20:31.206087+00:00",
+  "updated_at": "2026-07-13T00:30:13.891298+00:00",
   "probe": {
     "dns": false,
     "whois": false,

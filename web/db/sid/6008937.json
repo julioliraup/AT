@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "dpd.qtrzvpnxml.cyou",
       "domain_defanged": "dpd[.]qtrzvpnxml[.]cyou",
-      "case_id": "PD-20260711-6DD6F4",
-      "analyzed_at": "2026-07-11T09:24:56.782Z",
+      "case_id": "PD-20260713-6DD6F4",
+      "analyzed_at": "2026-07-13T00:36:22.716Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e73d2-b0e4-766b-b724-544a993409ef.png",
+          "url": "https://urlscan.io/result/019e73d2-b0e4-766b-b724-544a993409ef/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +219,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.qtrzvpnxml.cyou/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"dpd.qtrzvpnxml.cyou\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008937; classtype:social-engineering; sid:6008937; rev:1; metadata: signature_severity Major, created_et 2026_05_29, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:22:39.547092+00:00",
+  "updated_at": "2026-07-13T00:36:15.770582+00:00",
   "probe": {
     "dns": false,
     "whois": false,

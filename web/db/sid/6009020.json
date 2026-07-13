@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "dpd.renewu.xyz",
       "domain_defanged": "dpd[.]renewu[.]xyz",
-      "case_id": "PD-20260711-EAAAF7",
-      "analyzed_at": "2026-07-11T09:29:47.802Z",
+      "case_id": "PD-20260713-EAAAF7",
+      "analyzed_at": "2026-07-13T00:43:59.032Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7d0d-f6f8-74c9-938e-25f3bfa58abf.png",
+          "url": "https://urlscan.io/result/019e7d0d-f6f8-74c9-938e-25f3bfa58abf/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.183.179",
+        "ipinfo": {
+          "ip": "172.67.183.179",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +219,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.renewu.xyz/uk/)\"; flow:established,to_server; http.uri; content:\"/uk/\"; startswith; fast_pattern; http.host; content:\"dpd.renewu.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009020; classtype:social-engineering; sid:6009020; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:25:41.661404+00:00",
+  "updated_at": "2026-07-13T00:43:54.625460+00:00",
   "probe": {
     "dns": false,
     "whois": false,

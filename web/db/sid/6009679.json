@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "swanbitcoinpolicy.info",
       "domain_defanged": "swanbitcoinpolicy[.]info",
-      "case_id": "PD-20260711-47C6FB",
-      "analyzed_at": "2026-07-11T10:10:51.481Z",
+      "case_id": "PD-20260713-47C6FB",
+      "analyzed_at": "2026-07-13T01:38:28.591Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DocuSign"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7e95-5353-77d1-beeb-c365ab510251.png",
+          "url": "https://urlscan.io/result/019e7e95-5353-77d1-beeb-c365ab510251/",
+          "title": "DocuSign - Download to View Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DocuSign",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.8.58",
+        "ipinfo": {
+          "ip": "104.21.8.58",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (swanbitcoinpolicy.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"swanbitcoinpolicy.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009679; classtype:social-engineering; sid:6009679; rev:1; metadata: signature_severity Major, created_et 2026_05_31, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:54:13.456544+00:00",
+  "updated_at": "2026-07-13T01:38:24.167911+00:00",
   "probe": {
     "dns": false,
     "whois": false,

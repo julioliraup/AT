@@ -49,21 +49,68 @@
     "phishdestroy": {
       "domain": "meteora-eng.wixstudio.com",
       "domain_defanged": "meteora-eng[.]wixstudio[.]com",
-      "case_id": "PD-20260711-69F94E",
-      "analyzed_at": "2026-07-11T09:44:53.184Z",
+      "case_id": "PD-20260713-69F94E",
+      "analyzed_at": "2026-07-13T01:04:20.559Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f5090-c323-7130-a6b4-3f71a819110c.png",
           "url": "https://urlscan.io/result/019f5090-c323-7130-a6b4-3f71a819110c/",
-          "pending": true
+          "title": "404 Fehler: Seite nicht gefunden | Wix Studio"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,6 +118,11 @@
         "ip": "username.wix.com.",
         "ipinfo": null,
         "dns": {
+          "MX": [
+            "username.wix.com.",
+            "username-ccm.wixsite.com.",
+            "username-ccm-206-118.wixsite.com."
+          ],
           "A": [
             "username.wix.com.",
             "username-ccm.wixsite.com.",
@@ -78,11 +130,6 @@
             "34.144.206.118"
           ],
           "AAAA": [
-            "username.wix.com.",
-            "username-ccm.wixsite.com.",
-            "username-ccm-206-118.wixsite.com."
-          ],
-          "MX": [
             "username.wix.com.",
             "username-ccm.wixsite.com.",
             "username-ccm-206-118.wixsite.com."
@@ -99,7 +146,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -222,12 +276,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meteora-eng.wixstudio.com/us-en)\"; flow:established,to_server; http.uri; content:\"/us-en\"; startswith; fast_pattern; http.host; content:\"meteora-eng.wixstudio.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6009289; classtype:social-engineering; sid:6009289; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:36:27.122010+00:00",
+  "updated_at": "2026-07-13T01:04:16.976057+00:00",
   "probe": {
     "dns": true,
     "whois": false,

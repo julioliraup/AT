@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "rafizaman577.github.io",
       "domain_defanged": "rafizaman577[.]github[.]io",
-      "case_id": "PD-20260711-6CC595",
-      "analyzed_at": "2026-07-11T09:34:08.981Z",
+      "case_id": "PD-20260713-6CC595",
+      "analyzed_at": "2026-07-13T00:49:32.606Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5086-efe4-73f6-a308-93ab3cf26c89/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f5130-165c-730f-abf1-ca669e62a976.png",
+          "url": "https://urlscan.io/result/019f5130-165c-730f-abf1-ca669e62a976/",
+          "title": "Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +88,17 @@
           "asn": "AS54113"
         },
         "dns": {
+          "AAAA": [
+            "2606:50c0:8002::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8003::153",
+            "2606:50c0:8000::153"
+          ],
           "A": [
             "185.199.108.153",
             "185.199.110.153",
-            "185.199.111.153",
-            "185.199.109.153"
-          ],
-          "AAAA": [
-            "2606:50c0:8003::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153"
+            "185.199.109.153",
+            "185.199.111.153"
           ]
         }
       },
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rafizaman577.github.io/Netflix/)\"; flow:established,to_server; http.uri; content:\"/Netflix/\"; startswith; fast_pattern; http.host; content:\"rafizaman577.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009094; classtype:social-engineering; sid:6009094; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:28:26.171076+00:00",
+  "updated_at": "2026-07-13T00:49:27.447739+00:00",
   "probe": {
     "dns": true,
     "whois": true,

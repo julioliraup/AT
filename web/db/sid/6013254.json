@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "sparkasse-bayreuth.de",
       "domain_defanged": "sparkasse-bayreuth[.]de",
-      "case_id": "PD-20260711-7F85A0",
-      "analyzed_at": "2026-07-11T13:55:29.303Z",
+      "case_id": "PD-20260713-7F85A0",
+      "analyzed_at": "2026-07-13T06:28:24.036Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5a29-9936-72cc-9a2a-ac082a09562c/",
+          "pending": true
         }
       },
       "detections": [],
@@ -100,20 +104,20 @@
         },
         "dns": {
           "MX": [
-            "10 d01es.mail.s-web.de.",
-            "10 e02es.mail.s-web.de.",
             "10 e01es.mail.s-web.de.",
-            "10 d02es.mail.s-web.de."
+            "10 d02es.mail.s-web.de.",
+            "10 d01es.mail.s-web.de.",
+            "10 e02es.mail.s-web.de."
           ],
           "A": [
             "195.140.52.51"
           ],
           "NS": [
             "ns2.s-fg-net.com.",
-            "ns1.s-fg-net.de.",
-            "ns5.s-fg-net.com.",
             "ns4.s-fg-net.de.",
-            "ns3.s-fg-net.eu."
+            "ns5.s-fg-net.com.",
+            "ns3.s-fg-net.eu.",
+            "ns1.s-fg-net.de."
           ]
         }
       },
@@ -249,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.sparkasse-bayreuth.de/de/home/login-online-banking.html)\"; flow:established,to_server; http.uri; content:\"/de/home/login-online-banking.html\"; startswith; fast_pattern; http.host; content:\"www.sparkasse-bayreuth.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013254; classtype:social-engineering; sid:6013254; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T07:34:04.692362+00:00",
+  "updated_at": "2026-07-13T06:28:20.097123+00:00",
   "probe": {
     "dns": true,
     "whois": true,

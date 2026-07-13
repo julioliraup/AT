@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "fortnw.top",
       "domain_defanged": "fortnw[.]top",
-      "case_id": "PD-20260711-641F4B",
-      "analyzed_at": "2026-07-11T09:36:32.990Z",
+      "case_id": "PD-20260713-641F4B",
+      "analyzed_at": "2026-07-13T00:53:53.698Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7c32-4524-747f-ba13-45667e1c8d7b.png",
+          "url": "https://urlscan.io/result/019e7c32-4524-747f-ba13-45667e1c8d7b/",
+          "title": "Fortnite Inventory Checker & Safe Rental Market | Epic Games Locker"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.128.85",
+        "ipinfo": {
+          "ip": "172.67.128.85",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fortnw.top/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fortnw.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009139; classtype:social-engineering; sid:6009139; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:30:25.346055+00:00",
+  "updated_at": "2026-07-13T00:53:47.860184+00:00",
   "probe": {
     "dns": false,
     "whois": false,

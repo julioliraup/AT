@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "app.token-im.shop",
       "domain_defanged": "app[.]token-im[.]shop",
-      "case_id": "PD-20260711-6CD9E7",
-      "analyzed_at": "2026-07-11T09:30:48.334Z",
+      "case_id": "PD-20260713-6CD9E7",
+      "analyzed_at": "2026-07-13T00:45:12.922Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "imToken"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8578-e902-70ad-b77f-cf59a6cea047.png",
+          "url": "https://urlscan.io/result/019e8578-e902-70ad-b77f-cf59a6cea047/",
+          "title": "TRC ETH BTC BNB多链钱包最新下载"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: imToken",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "202.95.11.185",
+        "ipinfo": {
+          "ip": "202.95.11.185",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS152194 CTG Server Limited",
+          "asn": "AS152194"
+        },
         "dns": null
       },
       "report_to": {
@@ -192,12 +213,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app.token-im.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"app.token-im.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009035; classtype:social-engineering; sid:6009035; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:26:13.521649+00:00",
+  "updated_at": "2026-07-13T00:45:08.835160+00:00",
   "probe": {
     "dns": false,
     "whois": false,

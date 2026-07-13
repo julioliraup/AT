@@ -70,26 +70,34 @@
     "phishdestroy": {
       "domain": "1505mmm.com",
       "domain_defanged": "1505mmm[.]com",
-      "case_id": "PD-20260711-587460",
-      "analyzed_at": "2026-07-11T09:22:25.579Z",
+      "case_id": "PD-20260713-587460",
+      "analyzed_at": "2026-07-13T00:31:11.830Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f507c-33d0-7444-a1ff-d040d7eb2381/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f507c-33d0-7444-a1ff-d040d7eb2381.png",
+          "url": "https://urlscan.io/result/019f507c-33d0-7444-a1ff-d040d7eb2381/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2021-05-17T07:07:22Z",
         "expires": "2027-05-17T07:07:22Z",
-        "age_days": 1881,
+        "age_days": 1882,
         "nameservers": [
           "GIANCARLO.NS.CLOUDFLARE.COM",
           "VEDA.NS.CLOUDFLARE.COM"
@@ -254,12 +262,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (1505mmm.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"1505mmm.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008896; classtype:social-engineering; sid:6008896; rev:1; metadata: signature_severity Major, created_et 2026_05_29, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:20:58.038298+00:00",
+  "updated_at": "2026-07-13T00:31:04.275860+00:00",
   "probe": {
     "dns": true,
     "whois": true,

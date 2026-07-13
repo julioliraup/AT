@@ -70,26 +70,34 @@
     "phishdestroy": {
       "domain": "ee1505.com",
       "domain_defanged": "ee1505[.]com",
-      "case_id": "PD-20260711-AA72DD",
-      "analyzed_at": "2026-07-11T10:06:54.128Z",
+      "case_id": "PD-20260713-AA72DD",
+      "analyzed_at": "2026-07-13T01:33:49.578Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f50a4-e9cb-7644-8607-bc4cb201ea1a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f50a4-e9cb-7644-8607-bc4cb201ea1a.png",
+          "url": "https://urlscan.io/result/019f50a4-e9cb-7644-8607-bc4cb201ea1a/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2019-02-27T19:41:33Z",
         "expires": "2027-02-27T19:41:33Z",
-        "age_days": 2690,
+        "age_days": 2692,
         "nameservers": [
           "IGNACIO.NS.CLOUDFLARE.COM",
           "WREN.NS.CLOUDFLARE.COM"
@@ -254,12 +262,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ee1505.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ee1505.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009621; classtype:social-engineering; sid:6009621; rev:1; metadata: signature_severity Major, created_et 2026_05_31, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:51:04.755326+00:00",
+  "updated_at": "2026-07-13T01:33:45.331002+00:00",
   "probe": {
     "dns": true,
     "whois": true,

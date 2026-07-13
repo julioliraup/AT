@@ -55,27 +55,54 @@
     "phishdestroy": {
       "domain": "dpd.rqtmzvp.ink",
       "domain_defanged": "dpd[.]rqtmzvp[.]ink",
-      "case_id": "PD-20260711-951C81",
-      "analyzed_at": "2026-07-11T10:04:55.104Z",
+      "case_id": "PD-20260713-951C81",
+      "analyzed_at": "2026-07-13T01:30:53.802Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea3fc-ea34-73be-a51f-b4fdeabe796a.png",
+          "url": "https://urlscan.io/result/019ea3fc-ea34-73be-a51f-b4fdeabe796a/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.186.64",
+        "ipinfo": {
+          "ip": "172.67.186.64",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -198,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.rqtmzvp.ink/track/)\"; flow:established,to_server; http.uri; content:\"/track/\"; startswith; fast_pattern; http.host; content:\"dpd.rqtmzvp.ink\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009586; classtype:social-engineering; sid:6009586; rev:1; metadata: signature_severity Major, created_et 2026_05_31, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T04:48:54.536148+00:00",
+  "updated_at": "2026-07-13T01:30:48.880234+00:00",
   "probe": {
     "dns": true,
     "whois": true,
