@@ -709,7 +709,7 @@ setTimeout(() => {
             <p style="font-size:0.9em; line-height:1.4; color:var(--text-muted); margin-bottom:15px;">
                 This is what we get when we try to list detailed information of the vectors. We can solve this by paying for APIs that meet our demand.
             </p>
-            <a href="https://github.com/julioliraup/AT/#how-to-donate" target="_blank" style="display:inline-block; background:rgba(0,229,255,0.1); border:1px solid var(--cyan); color:var(--cyan); padding:8px 15px; text-decoration:none; border-radius:4px; font-size:0.85em; transition:0.3s; text-transform:uppercase; letter-spacing:1px;" onmouseover="this.style.background='var(--cyan)'; this.style.color='#000';" onmouseout="this.style.background='rgba(0,229,255,0.1)'; this.style.color='var(--cyan)';">
+            <a href="https://github.com/julioliraup/Antiphishing/blob/main/FUNDING.md" target="_blank" style="display:inline-block; background:rgba(0,229,255,0.1); border:1px solid var(--cyan); color:var(--cyan); padding:8px 15px; text-decoration:none; border-radius:4px; font-size:0.85em; transition:0.3s; text-transform:uppercase; letter-spacing:1px;" onmouseover="this.style.background='var(--cyan)'; this.style.color='#000';" onmouseout="this.style.background='rgba(0,229,255,0.1)'; this.style.color='var(--cyan)';">
                 Contribute
             </a>
         </div>
