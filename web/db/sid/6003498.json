@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "bancopichinchastage.prod.acquia-sites.com",
       "domain_defanged": "bancopichinchastage[.]prod[.]acquia-sites[.]com",
-      "case_id": "PD-20260711-3FD577",
-      "analyzed_at": "2026-07-11T21:55:49.342Z",
+      "case_id": "PD-20260713-3FD577",
+      "analyzed_at": "2026-07-13T14:41:14.999Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5bec-d0be-7128-8429-2630185797c1/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,7 +93,15 @@
       },
       "infrastructure": {
         "ip": "44.219.167.206",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "44.219.167.206",
+          "hostname": "ec2-44-219-167-206.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
           "A": [
             "44.219.167.206",
@@ -99,7 +111,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -227,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bancopichinchastage.prod.acquia-sites.com/restrict_ip/access_denied)\"; flow:established,to_server; http.uri; content:\"/restrict_ip/access_denied\"; startswith; fast_pattern; http.host; content:\"bancopichinchastage.prod.acquia-sites.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003498; classtype:social-engineering; sid:6003498; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T20:09:03.132658+00:00",
+  "updated_at": "2026-07-14T02:50:52.696786+00:00",
   "probe": {
     "dns": true,
     "whois": false,

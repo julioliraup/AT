@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "recanto.pt",
       "domain_defanged": "recanto[.]pt",
-      "case_id": "PD-20260711-414FE3",
-      "analyzed_at": "2026-07-11T22:40:52.651Z",
+      "case_id": "PD-20260713-414FE3",
+      "analyzed_at": "2026-07-13T15:24:14.794Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5c14-2e11-733c-ab41-b42ab45de25d/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,39 +69,24 @@
       },
       "infrastructure": {
         "ip": "185.12.116.108",
-        "ipinfo": {
-          "ip": "185.12.116.108",
-          "hostname": "cpanel108.dnscpanel.com",
-          "city": "Faro",
-          "region": "Faro",
-          "country": "PT",
-          "org": "AS33876 DMNS - DOMINIOS, S.A.",
-          "asn": "AS33876"
-        },
+        "ipinfo": null,
         "dns": {
-          "MX": [
-            "0 mail.recanto.pt."
-          ],
           "A": [
             "185.12.116.108"
           ],
+          "MX": [
+            "0 mail.recanto.pt."
+          ],
           "NS": [
-            "ns2.dnscpanel.com.",
             "ns3.dnscpanel.com.",
-            "ns1.dnscpanel.com."
+            "ns1.dnscpanel.com.",
+            "ns2.dnscpanel.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Flesk-AS",
-          "abuse": "abuse@dominios.pt",
-          "url": "mailto:abuse@dominios.pt",
-          "logo": "https://i.ibb.co/HLqxJkmq/pr-Flesk-AS.jpg",
-          "method": "email",
-          "asn": "AS33876"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -225,7 +214,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (recanto.pt/pri.html)\"; flow:established,to_server; http.uri; content:\"/pri.html\"; startswith; fast_pattern; http.host; content:\"recanto.pt\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004053; classtype:social-engineering; sid:6004053; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T20:30:54.485075+00:00",
+  "updated_at": "2026-07-14T03:16:19.540082+00:00",
   "probe": {
     "dns": true,
     "whois": false,

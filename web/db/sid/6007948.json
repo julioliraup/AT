@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "flow.templemail.info",
       "domain_defanged": "flow[.]templemail[.]info",
-      "case_id": "PD-20260712-2C9630",
-      "analyzed_at": "2026-07-12T23:17:30.704Z",
+      "case_id": "PD-20260714-2C9630",
+      "analyzed_at": "2026-07-14T06:33:16.577Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Allegro"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb7ef-721c-71c6-8e14-c5507bbf3931.png",
+          "url": "https://urlscan.io/result/019eb7ef-721c-71c6-8e14-c5507bbf3931/",
+          "title": "Oferta specjalna: 90–95% taniej"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Allegro",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.166.101",
+        "ipinfo": {
+          "ip": "172.67.166.101",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -220,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (flow.templemail.info/ga/click/2-11067546-10-7329-14492-7919-a55414dac8-06b62b6196)\"; flow:established,to_server; http.uri; content:\"/ga/click/2-11067546-10-7329-14492-7919-a55414dac8-06b62b6196\"; startswith; fast_pattern; http.host; content:\"flow.templemail.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007948; classtype:social-engineering; sid:6007948; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T23:17:28.556328+00:00",
+  "updated_at": "2026-07-14T06:33:13.023512+00:00",
   "probe": {
     "dns": true,
     "whois": true,

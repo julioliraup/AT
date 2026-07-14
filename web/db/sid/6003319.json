@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "gemini-login-account.gitbook.io",
       "domain_defanged": "gemini-login-account[.]gitbook[.]io",
-      "case_id": "PD-20260711-21752A",
-      "analyzed_at": "2026-07-11T21:45:22.958Z",
+      "case_id": "PD-20260713-21752A",
+      "analyzed_at": "2026-07-13T14:31:22.933Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5be3-c923-730e-89ce-8257a736a656/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,22 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.40.47",
-        "ipinfo": null,
+        "ip": "172.64.147.209",
+        "ipinfo": {
+          "ip": "172.64.147.209",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.18.40.47",
-            "172.64.147.209"
-          ],
           "AAAA": [
             "2a06:98c1:310d::6812:282f",
             "2606:4700:4401::ac40:93d1"
+          ],
+          "A": [
+            "172.64.147.209",
+            "104.18.40.47"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -231,7 +249,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gemini-login-account.gitbook.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"gemini-login-account.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003319; classtype:social-engineering; sid:6003319; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T20:02:22.331094+00:00",
+  "updated_at": "2026-07-14T02:40:16.408592+00:00",
   "probe": {
     "dns": true,
     "whois": true,

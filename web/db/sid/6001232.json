@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "amazonclone-nine-psi.vercel.app",
       "domain_defanged": "amazonclone-nine-psi[.]vercel[.]app",
-      "case_id": "PD-20260711-31C84A",
-      "analyzed_at": "2026-07-11T18:55:37.161Z",
+      "case_id": "PD-20260713-31C84A",
+      "analyzed_at": "2026-07-13T11:42:25.045Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5b49-16e2-741d-8a06-88dba2e9e76b/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,18 +93,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
-        "ipinfo": null,
+        "ip": "216.198.79.194",
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -228,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazonclone-nine-psi .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"amazonclone-nine-psi.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001232; classtype:social-engineering; sid:6001232; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T18:15:50.670242+00:00",
+  "updated_at": "2026-07-14T00:48:58.832733+00:00",
   "probe": {
     "dns": true,
     "whois": false,

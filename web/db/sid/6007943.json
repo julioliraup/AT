@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "2705kqztrm.integradatalink.com",
       "domain_defanged": "2705kqztrm[.]integradatalink[.]com",
-      "case_id": "PD-20260712-33DB88",
-      "analyzed_at": "2026-07-12T23:17:10.926Z",
+      "case_id": "PD-20260714-33DB88",
+      "analyzed_at": "2026-07-14T06:32:51.502Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f1496-e6db-773f-b13d-a5d153a733dc.png",
+          "url": "https://urlscan.io/result/019f1496-e6db-773f-b13d-a5d153a733dc/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -220,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (2705kqztrm.integradatalink.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"2705kqztrm.integradatalink.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007943; classtype:social-engineering; sid:6007943; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T23:17:08.688349+00:00",
+  "updated_at": "2026-07-14T06:32:48.241582+00:00",
   "probe": {
     "dns": true,
     "whois": false,

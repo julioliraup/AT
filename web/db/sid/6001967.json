@@ -71,14 +71,18 @@
     "phishdestroy": {
       "domain": "loginso.fr",
       "domain_defanged": "loginso[.]fr",
-      "case_id": "PD-20260711-6713F8",
-      "analyzed_at": "2026-07-11T19:59:28.850Z",
+      "case_id": "PD-20260713-6713F8",
+      "analyzed_at": "2026-07-13T12:57:42.165Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5b8e-050a-7451-b0fe-cd47626ab964/",
+          "pending": true
         }
       },
       "detections": [],
@@ -87,7 +91,14 @@
       },
       "infrastructure": {
         "ip": "43.167.17.187",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "43.167.17.187",
+          "city": "Tokyo",
+          "region": "Tokyo",
+          "country": "JP",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": {
           "A": [
             "43.167.17.187"
@@ -96,16 +107,23 @@
             "10 mail.loginso.fr."
           ],
           "NS": [
-            "ns22.lwsdns.com.",
-            "ns23.lwsdns.com.",
             "ns24.lwsdns.com.",
-            "ns21.lwsdns.com."
+            "ns22.lwsdns.com.",
+            "ns21.lwsdns.com.",
+            "ns23.lwsdns.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -233,7 +251,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (loginso .fr/Ameliz/Assurance-Maladie)\"; flow:established,to_server; http.uri; content:\"/Ameliz/Assurance-Maladie\"; startswith; fast_pattern; http.host;  content:\"loginso.fr\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001967; classtype:social-engineering; sid:6001967; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T18:45:03.199288+00:00",
+  "updated_at": "2026-07-14T01:24:50.652690+00:00",
   "probe": {
     "dns": true,
     "whois": true,

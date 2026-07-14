@@ -49,21 +49,79 @@
     "phishdestroy": {
       "domain": "aumentoja31.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "aumentoja31[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260712-E36AD9",
-      "analyzed_at": "2026-07-12T22:45:23.302Z",
+      "case_id": "PD-20260714-E36AD9",
+      "analyzed_at": "2026-07-14T05:44:02.558Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "File Sharing/Storage, Information Technology, Media Sharing, Suspicious (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f5881-b2cf-762e-b284-63aa601bf430/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f5881-b2cf-762e-b284-63aa601bf430.png",
+          "url": "https://urlscan.io/result/019f5881-b2cf-762e-b284-63aa601bf430/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -229,7 +287,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aumentoja31.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"aumentoja31.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007349; classtype:social-engineering; sid:6007349; rev:1; metadata: signature_severity Major, created_et 2026_05_26, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T22:45:19.745263+00:00",
+  "updated_at": "2026-07-14T05:43:59.077061+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "sourcefuel.co.zw",
       "domain_defanged": "sourcefuel[.]co[.]zw",
-      "case_id": "PD-20260711-2CF3F8",
-      "analyzed_at": "2026-07-11T22:00:10.416Z",
+      "case_id": "PD-20260713-2CF3F8",
+      "analyzed_at": "2026-07-13T14:45:34.972Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5bf0-c846-75ed-9fa1-caed787263e3/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,16 +69,24 @@
       },
       "infrastructure": {
         "ip": "45.33.25.98",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "45.33.25.98",
+          "hostname": "ns2.impressivehost.com",
+          "city": "Richardson",
+          "region": "Texas",
+          "country": "US",
+          "org": "AS63949 Akamai Connected Cloud",
+          "asn": "AS63949"
+        },
         "dns": {
+          "AAAA": [
+            "a28:3c00::f03c:91ff:fe26:827b"
+          ],
           "A": [
             "45.33.25.98"
           ],
           "MX": [
             "65535 suspended.impressivehost.com."
-          ],
-          "AAAA": [
-            "a28:3c00::f03c:91ff:fe26:827b"
           ],
           "NS": [
             "ns1.impressivehost.com.",
@@ -86,7 +98,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Linode/Akamai",
+          "abuse": "abuse@linode.com",
+          "url": "mailto:abuse@linode.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS63949"
+        }
       },
       "report_services": [
         {
@@ -214,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sourcefuel.co.zw/postInf3gmbh-delivery/amount.php)\"; flow:established,to_server; http.uri; content:\"/postInf3gmbh-delivery/amount.php\"; startswith; fast_pattern; http.host; content:\"sourcefuel.co.zw\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003563; classtype:social-engineering; sid:6003563; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T20:11:17.155424+00:00",
+  "updated_at": "2026-07-14T02:54:20.098903+00:00",
   "probe": {
     "dns": true,
     "whois": false,

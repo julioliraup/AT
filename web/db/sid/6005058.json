@@ -22,7 +22,7 @@
       "url": "http://phi-go.com/v3/signin/identifier",
       "domain": "phi-go.com",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "phi-go.com",
       "domain_defanged": "phi-go[.]com",
-      "case_id": "PD-20260711-4647D4",
-      "analyzed_at": "2026-07-11T23:56:08.822Z",
+      "case_id": "PD-20260713-4647D4",
+      "analyzed_at": "2026-07-13T16:42:04.849Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -64,25 +64,18 @@
         "registrar": "GMO Internet Group, Inc. d/b/a Onamae.com",
         "created": "2025-06-23T10:22:23Z",
         "expires": "2027-06-23T10:22:23Z",
-        "age_days": 383,
+        "age_days": 385,
         "nameservers": [
           "DNS1.ONAMAE-EXPIRED.COM",
           "DNS2.ONAMAE-EXPIRED.COM"
         ]
       },
       "infrastructure": {
-        "ip": "160.251.64.80",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "0 ."
-          ],
           "NS": [
             "dns1.onamae-expired.com.",
             "dns2.onamae-expired.com."
-          ],
-          "A": [
-            "160.251.64.80"
           ]
         }
       },
@@ -223,10 +216,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (phi-go.com/v3/signin/identifier)\"; flow:established,to_server; http.uri; content:\"/v3/signin/identifier\"; startswith; fast_pattern; http.host; content:\"phi-go.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005058; classtype:social-engineering; sid:6005058; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T21:13:47.563709+00:00",
+  "updated_at": "2026-07-14T04:06:28.746583+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

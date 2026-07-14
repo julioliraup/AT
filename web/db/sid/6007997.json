@@ -49,29 +49,51 @@
     "phishdestroy": {
       "domain": "shahidulconsultantbd.com",
       "domain_defanged": "shahidulconsultantbd[.]com",
-      "case_id": "PD-20260712-7A959B",
-      "analyzed_at": "2026-07-12T23:19:56.209Z",
+      "case_id": "PD-20260714-7A959B",
+      "analyzed_at": "2026-07-14T06:36:39.231Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8719-5cbc-7493-9dca-7f2d8fbcd149.png",
+          "url": "https://urlscan.io/result/019e8719-5cbc-7493-9dca-7f2d8fbcd149/",
+          "title": "Microsoft 365 Payment"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2016-08-07T16:42:20Z",
         "expires": "2026-08-07T16:42:20Z",
-        "age_days": 3626,
+        "age_days": 3627,
         "nameservers": [
           "NS1.SUSPENDED-DOMAIN.COM",
           "NS2.SUSPENDED-DOMAIN.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "151.158.44.107",
+        "ipinfo": {
+          "ip": "151.158.44.107",
+          "hostname": "server11.webhostbd.net",
+          "city": "Dhaka",
+          "region": "Dhaka Division",
+          "country": "BD",
+          "org": "AS138145 Web Host BD",
+          "asn": "AS138145"
+        },
         "dns": null
       },
       "report_to": {
@@ -210,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.shahidulconsultantbd.com/aus-mebnersLtd/)\"; flow:established,to_server; http.uri; content:\"/aus-mebnersLtd/\"; startswith; fast_pattern; http.host; content:\"www.shahidulconsultantbd.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007997; classtype:social-engineering; sid:6007997; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T23:19:53.874090+00:00",
+  "updated_at": "2026-07-14T06:36:35.257185+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "techyguy.co.bw",
       "domain_defanged": "techyguy[.]co[.]bw",
-      "case_id": "PD-20260711-2A13AA",
-      "analyzed_at": "2026-07-11T21:44:58.401Z",
+      "case_id": "PD-20260713-2A13AA",
+      "analyzed_at": "2026-07-13T14:31:04.216Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5be3-7f3c-76a3-95ed-130d186567ff/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,23 +69,37 @@
       },
       "infrastructure": {
         "ip": "209.182.197.211",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "209.182.197.211",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS22611 InMotion Hosting, Inc.",
+          "asn": "AS22611"
+        },
         "dns": {
           "A": [
             "209.182.197.211"
           ],
-          "NS": [
-            "ns1.webhostinghub.com.",
-            "ns2.webhostinghub.com."
-          ],
           "MX": [
             "0 techyguy.co.bw."
+          ],
+          "NS": [
+            "ns2.webhostinghub.com.",
+            "ns1.webhostinghub.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "INMOTION, US",
+          "abuse": "abuse@inmotionhosting.com",
+          "url": "mailto:abuse@inmotionhosting.com",
+          "logo": "https://i.ibb.co/YFYJYwHg/pr-IMH-IAD-US.png",
+          "method": "email",
+          "asn": "AS22611"
+        }
       },
       "report_services": [
         {
@@ -209,7 +227,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (techyguy.co.bw/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"techyguy.co.bw\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003307; classtype:social-engineering; sid:6003307; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T20:01:49.302916+00:00",
+  "updated_at": "2026-07-14T02:39:48.615841+00:00",
   "probe": {
     "dns": true,
     "whois": true,

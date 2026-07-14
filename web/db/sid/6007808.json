@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "ppp63.028426.com",
       "domain_defanged": "ppp63[.]028426[.]com",
-      "case_id": "PD-20260712-27E5FC",
-      "analyzed_at": "2026-07-12T23:10:00.400Z",
+      "case_id": "PD-20260714-27E5FC",
+      "analyzed_at": "2026-07-14T06:23:03.452Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f5898-3dc5-768a-9796-e1e2ea454d5e.png",
           "url": "https://urlscan.io/result/019f5898-3dc5-768a-9796-e1e2ea454d5e/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -221,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ppp63.028426.com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/\"; startswith; fast_pattern; http.host; content:\"ppp63.028426.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007808; classtype:social-engineering; sid:6007808; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T23:09:57.381561+00:00",
+  "updated_at": "2026-07-14T06:23:00.780967+00:00",
   "probe": {
     "dns": true,
     "whois": false,

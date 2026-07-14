@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "dieschweizerpost.com",
       "domain_defanged": "dieschweizerpost[.]com",
-      "case_id": "PD-20260711-25A7CE",
-      "analyzed_at": "2026-07-11T22:23:11.815Z",
+      "case_id": "PD-20260713-25A7CE",
+      "analyzed_at": "2026-07-13T15:09:37.049Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5c06-c8a0-725e-91bc-4de305135ebe/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,7 +68,7 @@
         "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
         "created": "2026-05-08T23:36:15Z",
         "expires": "2027-05-08T23:36:15Z",
-        "age_days": 63,
+        "age_days": 65,
         "nameservers": [
           "INA1.REGISTRAR.EU",
           "INA2.REGISTRAR.EU",
@@ -73,15 +77,22 @@
       },
       "infrastructure": {
         "ip": "185.53.179.136",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.53.179.136",
+          "city": "Toronto",
+          "region": "Ontario",
+          "country": "CA",
+          "org": "AS206834 Team Internet AG",
+          "asn": "AS206834"
+        },
         "dns": {
-          "A": [
-            "185.53.179.136"
-          ],
           "NS": [
             "ina2.registrar.eu.",
-            "ina1.registrar.eu.",
-            "ina3.registrar.eu."
+            "ina3.registrar.eu.",
+            "ina1.registrar.eu."
+          ],
+          "A": [
+            "185.53.179.136"
           ]
         }
       },
@@ -94,7 +105,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "TEAMINTERNET-CA-AS, DE",
+          "abuse": "abuse@teaminternet.com",
+          "url": "mailto:abuse@teaminternet.com",
+          "logo": "https://i.ibb.co/0yZnxXcx/pr-TEAMINTERNET-AS-DE.png",
+          "method": "email",
+          "asn": "AS206834"
+        }
       },
       "report_services": [
         {
@@ -222,7 +240,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dieschweizerpost.com/pages/login.php)\"; flow:established,to_server; http.uri; content:\"/pages/login.php\"; startswith; fast_pattern; http.host; content:\"dieschweizerpost.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003859; classtype:social-engineering; sid:6003859; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T20:21:16.410664+00:00",
+  "updated_at": "2026-07-14T03:07:59.464529+00:00",
   "probe": {
     "dns": true,
     "whois": true,

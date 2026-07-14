@@ -49,21 +49,84 @@
     "phishdestroy": {
       "domain": "novasconsultas.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "novasconsultas[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260712-40584B",
-      "analyzed_at": "2026-07-12T22:46:31.013Z",
+      "case_id": "PD-20260714-40584B",
+      "analyzed_at": "2026-07-14T05:44:58.020Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "File Sharing/Storage, Information Technology, Media Sharing, Suspicious (alphaMountain.ai)",
+            "BitDefender": "computersandsoftware",
+            "Dr.Web": "not recommended site",
+            "Sophos": "personal network storage",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "information technology"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f5882-bc5e-73e4-ae85-e5149f59d1df/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f5882-bc5e-73e4-ae85-e5149f59d1df.png",
+          "url": "https://urlscan.io/result/019f5882-bc5e-73e4-ae85-e5149f59d1df/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -229,7 +292,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (novasconsultas.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"novasconsultas.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007365; classtype:social-engineering; sid:6007365; rev:1; metadata: signature_severity Major, created_et 2026_05_26, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T22:46:28.558598+00:00",
+  "updated_at": "2026-07-14T05:44:54.478310+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "popularairservice.com",
       "domain_defanged": "popularairservice[.]com",
-      "case_id": "PD-20260711-562CF9",
-      "analyzed_at": "2026-07-11T21:20:20.344Z",
+      "case_id": "PD-20260713-562CF9",
+      "analyzed_at": "2026-07-13T14:11:06.657Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5bd1-3a07-7289-a23f-68f6412e8663/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,7 +68,7 @@
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2020-10-04T14:08:03Z",
         "expires": "2026-10-04T14:08:03Z",
-        "age_days": 2106,
+        "age_days": 2108,
         "nameservers": [
           "NS1.ALLBANGLAHOST.COM",
           "NS2.ALLBANGLAHOST.COM"
@@ -72,17 +76,25 @@
       },
       "infrastructure": {
         "ip": "104.250.129.66",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.250.129.66",
+          "hostname": "titan.noc223.com",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS53850 GorillaServers, Inc.",
+          "asn": "AS53850"
+        },
         "dns": {
           "A": [
             "104.250.129.66"
           ],
+          "NS": [
+            "dns1.gotmyhost.com.",
+            "dns2.gotmyhost.com."
+          ],
           "MX": [
             "0 popularairservice.com."
-          ],
-          "NS": [
-            "dns2.gotmyhost.com.",
-            "dns1.gotmyhost.com."
           ]
         }
       },
@@ -223,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (popularairservice.com/wp-content/themes/twentytwentyfour/style/home/details.php?lang=en)\"; flow:established,to_server; http.uri; content:\"/wp-content/themes/twentytwentyfour/style/home/details.php?lang=en\"; startswith; fast_pattern; http.host; content:\"popularairservice.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002975; classtype:social-engineering; sid:6002975; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T19:50:02.343815+00:00",
+  "updated_at": "2026-07-14T02:13:46.390765+00:00",
   "probe": {
     "dns": true,
     "whois": true,

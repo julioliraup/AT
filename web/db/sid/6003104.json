@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "mnmbk-6c118.web.app",
       "domain_defanged": "mnmbk-6c118[.]web[.]app",
-      "case_id": "PD-20260711-1574F9",
-      "analyzed_at": "2026-07-11T21:31:08.256Z",
+      "case_id": "PD-20260713-1574F9",
+      "analyzed_at": "2026-07-13T14:19:29.204Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5bd8-e524-73ee-a816-9af3902e2d80/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,19 +69,33 @@
       },
       "infrastructure": {
         "ip": "199.36.158.100",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "199.36.158.100",
+          "city": "Mountain View",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
-          "A": [
-            "199.36.158.100"
-          ],
           "AAAA": [
             "2620:0:890::100"
+          ],
+          "A": [
+            "199.36.158.100"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -205,7 +223,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mnmbk-6c118.web.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mnmbk-6c118.web.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003104; classtype:social-engineering; sid:6003104; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T19:54:38.549299+00:00",
+  "updated_at": "2026-07-14T02:21:22.868838+00:00",
   "probe": {
     "dns": true,
     "whois": false,

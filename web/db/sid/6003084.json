@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "m.mbx72.net",
       "domain_defanged": "m[.]mbx72[.]net",
-      "case_id": "PD-20260711-5C865B",
-      "analyzed_at": "2026-07-11T21:13:06.037Z",
+      "case_id": "PD-20260713-5C865B",
+      "analyzed_at": "2026-07-13T14:06:00.601Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5bcc-8bd0-760f-8995-90cfd72d39db/",
+          "pending": true
         }
       },
       "detections": [],
@@ -69,6 +73,12 @@
         "dns": {
           "CNAME": [
             "m.mbx72.net.securesdns.com."
+          ],
+          "A": [
+            "m.mbx72.net.securesdns.com.",
+            "m.mbx72.net.fastliii.com.",
+            "cdn-209-cdn-209-b06-ws.fastliii.com.",
+            "172.65.201.65"
           ],
           "MX": [
             "m.mbx72.net.securesdns.com.",
@@ -84,12 +94,6 @@
             "m.mbx72.net.securesdns.com.",
             "m.mbx72.net.fastliii.com.",
             "cdn-209-cdn-209-b06-ws.fastliii.com."
-          ],
-          "A": [
-            "m.mbx72.net.securesdns.com.",
-            "m.mbx72.net.fastliii.com.",
-            "cdn-209-cdn-209-b06-ws.fastliii.com.",
-            "172.65.201.65"
           ]
         }
       },
@@ -223,7 +227,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.mbx72.net/account/reg?code=20152)\"; flow:established,to_server; http.uri; content:\"/account/reg?code=20152\"; startswith; fast_pattern; http.host; content:\"m.mbx72.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003084; classtype:social-engineering; sid:6003084; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T19:53:56.609764+00:00",
+  "updated_at": "2026-07-14T02:19:15.253397+00:00",
   "probe": {
     "dns": true,
     "whois": false,

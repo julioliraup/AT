@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "trezbridgen.zapier.app",
       "domain_defanged": "trezbridgen[.]zapier[.]app",
-      "case_id": "PD-20260711-3ABA11",
-      "analyzed_at": "2026-07-11T21:52:38.432Z",
+      "case_id": "PD-20260713-3ABA11",
+      "analyzed_at": "2026-07-13T14:38:08.082Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5be9-f7c5-73cf-817a-d93894d3dc7c/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,17 +69,31 @@
       },
       "infrastructure": {
         "ip": "64.239.123.129",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "64.239.123.129",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "64.239.123.129",
-            "64.239.123.65"
+            "64.239.123.1"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -203,7 +221,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (trezbridgen.zapier.app/homepage)\"; flow:established,to_server; http.uri; content:\"/homepage\"; startswith; fast_pattern; http.host; content:\"trezbridgen.zapier.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003444; classtype:social-engineering; sid:6003444; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T20:07:27.006039+00:00",
+  "updated_at": "2026-07-14T02:47:35.504283+00:00",
   "probe": {
     "dns": true,
     "whois": false,

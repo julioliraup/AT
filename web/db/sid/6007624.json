@@ -49,21 +49,77 @@
     "phishdestroy": {
       "domain": "novasoportunidadesterca.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "novasoportunidadesterca[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260712-AEE0DB",
-      "analyzed_at": "2026-07-12T23:00:33.146Z",
+      "case_id": "PD-20260714-AEE0DB",
+      "analyzed_at": "2026-07-14T06:05:03.468Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f588f-9573-7378-9145-559b252f3159/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f588f-9573-7378-9145-559b252f3159.png",
+          "url": "https://urlscan.io/result/019f588f-9573-7378-9145-559b252f3159/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -229,7 +285,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (novasoportunidadesterca.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"novasoportunidadesterca.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007624; classtype:social-engineering; sid:6007624; rev:1; metadata: signature_severity Major, created_et 2026_05_26, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T23:00:29.400580+00:00",
+  "updated_at": "2026-07-14T06:04:59.096381+00:00",
   "probe": {
     "dns": true,
     "whois": false,

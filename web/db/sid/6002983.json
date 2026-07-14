@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "vickyadin.co.nz",
       "domain_defanged": "vickyadin[.]co[.]nz",
-      "case_id": "PD-20260711-81C15A",
-      "analyzed_at": "2026-07-11T21:21:00.434Z",
+      "case_id": "PD-20260713-81C15A",
+      "analyzed_at": "2026-07-13T14:11:43.262Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5bd1-c7e3-766e-91fe-126e195823af/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,30 +93,45 @@
       },
       "infrastructure": {
         "ip": "122.201.127.17",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "122.201.127.17",
+          "hostname": "ip7ac97f11.ipv4.syd02.ds.network",
+          "city": "Sydney",
+          "region": "New South Wales",
+          "country": "AU",
+          "org": "AS38719 Dreamscape Networks Limited",
+          "asn": "AS38719"
+        },
         "dns": {
           "NS": [
             "ns2.syrahost.com.",
             "ns1.syrahost.com."
           ],
-          "A": [
-            "122.201.127.17"
-          ],
           "AAAA": [
             "2405:3f00:a222:bbbb:bba1:2:ffff:ffff"
           ],
+          "A": [
+            "122.201.127.17"
+          ],
           "MX": [
-            "5 alt1.aspmx.l.google.com.",
+            "5 alt2.aspmx.l.google.com.",
             "10 alt4.aspmx.l.google.com.",
-            "10 alt3.aspmx.l.google.com.",
             "1 aspmx.l.google.com.",
-            "5 alt2.aspmx.l.google.com."
+            "10 alt3.aspmx.l.google.com.",
+            "5 alt1.aspmx.l.google.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DREAMSCAPE-AS-AP Dreamscape Networks Limited, AU",
+          "abuse": "abuse@dreamscapenetworks.com",
+          "url": "mailto:abuse@dreamscapenetworks.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS38719"
+        }
       },
       "report_services": [
         {
@@ -240,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.vickyadin.co.nz/mazzellacompanies/)\"; flow:established,to_server; http.uri; content:\"/mazzellacompanies/\"; startswith; fast_pattern; http.host; content:\"www.vickyadin.co.nz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002983; classtype:social-engineering; sid:6002983; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T19:50:19.353391+00:00",
+  "updated_at": "2026-07-14T02:14:11.071426+00:00",
   "probe": {
     "dns": true,
     "whois": true,

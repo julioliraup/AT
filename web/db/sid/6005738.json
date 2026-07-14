@@ -49,11 +49,26 @@
     "phishdestroy": {
       "domain": "shorturl.asia",
       "domain_defanged": "shorturl[.]asia",
-      "case_id": "PD-20260712-70A761",
-      "analyzed_at": "2026-07-12T00:55:49.397Z",
+      "case_id": "PD-20260714-70A761",
+      "analyzed_at": "2026-07-14T04:35:36.670Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": true,
@@ -61,12 +76,22 @@
           "brands": [
             "Roblox"
           ],
-          "screenshot": "https://urlscan.io/screenshots/019f5384-c147-7464-a5aa-30696522b660.png",
-          "url": "https://urlscan.io/result/019f5384-c147-7464-a5aa-30696522b660/",
+          "screenshot": "https://urlscan.io/screenshots/019f5be2-7f97-70a2-9931-01b80dfac1ad.png",
+          "url": "https://urlscan.io/result/019f5be2-7f97-70a2-9931-01b80dfac1ad/",
           "title": "Blox Fruits | Play on Roblox"
         }
       },
       "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
         {
           "source": "URLScan.io",
           "type": "Targeting: Roblox",
@@ -77,9 +102,9 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.6.175",
+        "ip": "172.67.69.104",
         "ipinfo": {
-          "ip": "104.26.6.175",
+          "ip": "172.67.69.104",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -88,18 +113,18 @@
         },
         "dns": {
           "A": [
-            "104.26.6.175",
             "172.67.69.104",
+            "104.26.6.175",
             "104.26.7.175"
-          ],
-          "AAAA": [
-            "2606:4700:20::ac43:4568",
-            "2606:4700:20::681a:7af",
-            "2606:4700:20::681a:6af"
           ],
           "NS": [
             "fay.ns.cloudflare.com.",
             "merlin.ns.cloudflare.com."
+          ],
+          "AAAA": [
+            "2606:4700:20::681a:6af",
+            "2606:4700:20::681a:7af",
+            "2606:4700:20::ac43:4568"
           ],
           "MX": [
             "0 _dc-mx.96520469e9ea.shorturl.asia."
@@ -238,12 +263,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shorturl.asia/8iEGW)\"; flow:established,to_server; http.uri; content:\"/8iEGW\"; startswith; fast_pattern; http.host; content:\"shorturl.asia\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6005738; classtype:social-engineering; sid:6005738; rev:1; metadata: signature_severity Major, created_et 2026_05_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T21:41:44.705985+00:00",
+  "updated_at": "2026-07-14T04:35:30.212007+00:00",
   "probe": {
     "dns": true,
     "whois": true,

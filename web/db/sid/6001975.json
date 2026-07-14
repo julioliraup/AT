@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "kyc.digitalmps.app",
       "domain_defanged": "kyc[.]digitalmps[.]app",
-      "case_id": "PD-20260711-1F7A30",
-      "analyzed_at": "2026-07-11T20:00:00.328Z",
+      "case_id": "PD-20260713-1F7A30",
+      "analyzed_at": "2026-07-13T12:58:23.588Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5b8e-a669-737b-9119-4c2048ae8751/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,22 +69,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.72.196",
-        "ipinfo": null,
+        "ip": "172.67.154.142",
+        "ipinfo": {
+          "ip": "172.67.154.142",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.21.72.196",
-            "172.67.154.142"
-          ],
           "AAAA": [
-            "2606:4700:3035::6815:48c4",
-            "2606:4700:3034::ac43:9a8e"
+            "2606:4700:3034::ac43:9a8e",
+            "2606:4700:3035::6815:48c4"
+          ],
+          "A": [
+            "172.67.154.142",
+            "104.21.72.196"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -208,7 +226,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kyc .digitalmps .app/pri-login/SG_q9yHlm4g/login .php?rand=4groeukflzwl7vhv&amp\\;mod=1)\"; flow:established,to_server; http.uri; content:\"/pri-login/SG_q9yHlm4g/login.php?rand=4groeukflzwl7vhv&amp|3b|mod=1\"; startswith; fast_pattern; http.host;  content:\"kyc.digitalmps.app\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001975; classtype:social-engineering; sid:6001975; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T18:45:29.848467+00:00",
+  "updated_at": "2026-07-14T01:25:12.669019+00:00",
   "probe": {
     "dns": true,
     "whois": false,

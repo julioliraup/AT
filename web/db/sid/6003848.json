@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "2-c3p.pages.dev",
       "domain_defanged": "2-c3p[.]pages[.]dev",
-      "case_id": "PD-20260711-44D00A",
-      "analyzed_at": "2026-07-11T22:23:49.348Z",
+      "case_id": "PD-20260713-44D00A",
+      "analyzed_at": "2026-07-13T15:09:56.129Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5c07-13e8-76fd-a92c-c142096ce7be/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,26 +92,40 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.103",
-        "ipinfo": null,
+        "ip": "172.66.47.153",
+        "ipinfo": {
+          "ip": "172.66.47.153",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "172.66.47.153",
+            "172.66.44.103"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2f99",
+            "2606:4700:310c::ac42:2c67"
+          ],
           "NS": [
             "nina.ns.cloudflare.com.",
             "plato.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c67",
-            "2606:4700:310c::ac42:2f99"
-          ],
-          "A": [
-            "172.66.44.103",
-            "172.66.47.153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -235,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (2-c3p.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"2-c3p.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003848; classtype:social-engineering; sid:6003848; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T20:20:53.257904+00:00",
+  "updated_at": "2026-07-14T03:07:38.831913+00:00",
   "probe": {
     "dns": true,
     "whois": false,

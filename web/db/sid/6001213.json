@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "licensingterms.azurewebsites.net",
       "domain_defanged": "licensingterms[.]azurewebsites[.]net",
-      "case_id": "PD-20260711-1262A5",
-      "analyzed_at": "2026-07-11T18:59:07.776Z",
+      "case_id": "PD-20260713-1262A5",
+      "analyzed_at": "2026-07-13T11:47:49.063Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f5b4e-081e-72be-a2ce-de7a97bf7cbd/",
+          "pending": true
         }
       },
       "detections": [],
@@ -68,6 +72,11 @@
         "ip": "waws-prod-blu-117.sip.azurewebsites.windows.net.",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "waws-prod-blu-117.sip.azurewebsites.windows.net.",
+            "waws-prod-blu-117.eastus.cloudapp.azure.com.",
+            "40.114.68.21"
+          ],
           "MX": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net.",
             "waws-prod-blu-117.eastus.cloudapp.azure.com."
@@ -75,11 +84,6 @@
           "AAAA": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net.",
             "waws-prod-blu-117.eastus.cloudapp.azure.com."
-          ],
-          "A": [
-            "waws-prod-blu-117.sip.azurewebsites.windows.net.",
-            "waws-prod-blu-117.eastus.cloudapp.azure.com.",
-            "40.114.68.21"
           ],
           "CNAME": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net."
@@ -220,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (licensingterms .azurewebsites .net/licensing/terms/product/StorageArrayandAzureDataBoxTerms/Al)\"; flow:established,to_server; http.uri; content:\"/licensing/terms/product/StorageArrayandAzureDataBoxTerms/Al\"; startswith; fast_pattern; http.host;  content:\"licensingterms.azurewebsites.net\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001213; classtype:social-engineering; sid:6001213; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T18:15:18.873443+00:00",
+  "updated_at": "2026-07-14T00:48:19.018699+00:00",
   "probe": {
     "dns": true,
     "whois": false,

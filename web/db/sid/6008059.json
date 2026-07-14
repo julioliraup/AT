@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "coiennsqiuarelogin.webflow.io",
       "domain_defanged": "coiennsqiuarelogin[.]webflow[.]io",
-      "case_id": "PD-20260712-44431E",
-      "analyzed_at": "2026-07-12T23:23:00.784Z",
+      "case_id": "PD-20260714-44431E",
+      "analyzed_at": "2026-07-14T06:42:39.015Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinsquare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f58a4-262b-713a-8bd2-f6838892212c.png",
           "url": "https://urlscan.io/result/019f58a4-262b-713a-8bd2-f6838892212c/",
-          "pending": true
+          "title": "Coinsquare $ Login | Secure Access Your To Cryptocurrency Account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinsquare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
+        "ip": "172.64.151.8",
         "ipinfo": {
-          "ip": "104.18.36.248",
+          "ip": "172.64.151.8",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.18.36.248",
-            "172.64.151.8"
-          ],
           "AAAA": [
-            "2a06:98c1:3102::ac40:9708",
-            "2a06:98c1:3105::6812:24f8"
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
+          ],
+          "A": [
+            "172.64.151.8",
+            "104.18.36.248"
           ]
         }
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (coiennsqiuarelogin.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"coiennsqiuarelogin.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008059; classtype:social-engineering; sid:6008059; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-12T23:22:57.964318+00:00",
+  "updated_at": "2026-07-14T06:42:35.193848+00:00",
   "probe": {
     "dns": true,
     "whois": true,
