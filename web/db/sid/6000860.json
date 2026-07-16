@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "mmapphubs.pages.dev",
       "domain_defanged": "mmapphubs[.]pages[.]dev",
-      "case_id": "PD-20260713-7895C2",
-      "analyzed_at": "2026-07-13T11:28:37.116Z",
+      "case_id": "PD-20260716-7895C2",
+      "analyzed_at": "2026-07-16T00:52:37.282Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b3c-74c3-722b-a515-f8de1e69603f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6191-d22e-76c0-8016-4e5fb0132654.png",
+          "url": "https://urlscan.io/result/019f6191-d22e-76c0-8016-4e5fb0132654/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,6 +112,10 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2c4c",
+            "2606:4700:310c::ac42:2fb4"
+          ],
           "A": [
             "172.66.44.76",
             "172.66.47.180"
@@ -110,10 +123,6 @@
           "NS": [
             "athena.ns.cloudflare.com.",
             "vicky.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c4c",
-            "2606:4700:310c::ac42:2fb4"
           ]
         }
       },
@@ -249,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mmapphubs .pages .dev/assets)\"; flow:established,to_server; http.uri; content:\"/assets\"; startswith; fast_pattern; http.host;  content:\"mmapphubs.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000860; classtype:social-engineering; sid:6000860; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:30:02.839784+00:00",
+  "updated_at": "2026-07-16T00:52:34.196673+00:00",
   "probe": {
     "dns": true,
     "whois": false,

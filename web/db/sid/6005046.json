@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "ethanprojects.co.za",
       "domain_defanged": "ethanprojects[.]co[.]za",
-      "case_id": "PD-20260713-AF9858",
-      "analyzed_at": "2026-07-13T16:40:32.822Z",
+      "case_id": "PD-20260716-AF9858",
+      "analyzed_at": "2026-07-16T05:44:47.838Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f6974-c2d9-7779-81d0-eb26995e7deb/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,23 +69,38 @@
       },
       "infrastructure": {
         "ip": "213.136.65.221",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "213.136.65.221",
+          "hostname": "server-private.wandepay.site",
+          "city": "Lauterbourg",
+          "region": "Grand Est",
+          "country": "FR",
+          "org": "AS51167 Contabo GmbH",
+          "asn": "AS51167"
+        },
         "dns": {
+          "MX": [
+            "0 ethanprojects.co.za."
+          ],
           "NS": [
-            "ns2.wandepay.site.",
-            "ns1.wandepay.site."
+            "ns1.wandepay.site.",
+            "ns2.wandepay.site."
           ],
           "A": [
             "213.136.65.221"
-          ],
-          "MX": [
-            "0 ethanprojects.co.za."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Contabo",
+          "abuse": "abuse@contabo.com",
+          "url": "mailto:abuse@contabo.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS51167"
+        }
       },
       "report_services": [
         {
@@ -204,12 +223,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ethanprojects.co.za/postfinances/)\"; flow:established,to_server; http.uri; content:\"/postfinances/\"; startswith; fast_pattern; http.host; content:\"ethanprojects.co.za\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6005046; classtype:social-engineering; sid:6005046; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T04:05:56.512420+00:00",
+  "updated_at": "2026-07-16T05:44:42.818412+00:00",
   "probe": {
     "dns": true,
     "whois": true,

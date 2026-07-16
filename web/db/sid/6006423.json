@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "aisios.com.cn",
       "domain_defanged": "aisios[.]com[.]cn",
-      "case_id": "PD-20260713-3F31D7",
-      "analyzed_at": "2026-07-13T18:50:33.346Z",
+      "case_id": "PD-20260716-3F31D7",
+      "analyzed_at": "2026-07-16T07:16:08.431Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f69c8-6366-7447-972a-79438facf878/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,15 +93,22 @@
       },
       "infrastructure": {
         "ip": "104.21.69.133",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.69.133",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3034::ac43:d0b9",
-            "2606:4700:3036::6815:4585"
-          ],
           "A": [
             "104.21.69.133",
             "172.67.208.185"
+          ],
+          "AAAA": [
+            "2606:4700:3036::6815:4585",
+            "2606:4700:3034::ac43:d0b9"
           ],
           "NS": [
             "jasper.ns.cloudflare.com.",
@@ -107,7 +118,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,15 +248,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aisios.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aisios.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006423; classtype:social-engineering; sid:6006423; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T05:05:31.208247+00:00",
+  "updated_at": "2026-07-16T07:16:04.900924+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

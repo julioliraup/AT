@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "xalvo-remti-biz-kopra-zenlo-sp21ct3.pages.dev",
       "domain_defanged": "xalvo-remti-biz-kopra-zenlo-sp21ct3[.]pages[.]dev",
-      "case_id": "PD-20260713-33F321",
-      "analyzed_at": "2026-07-13T11:19:05.648Z",
+      "case_id": "PD-20260716-33F321",
+      "analyzed_at": "2026-07-16T00:41:02.933Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b33-bc7b-7232-9c00-02d18a2b0ff8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6419-6bee-773a-885b-78227399ba61.png",
+          "url": "https://urlscan.io/result/019f6419-6bee-773a-885b-78227399ba61/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.226",
+        "ip": "172.66.47.30",
         "ipinfo": {
-          "ip": "172.66.44.226",
+          "ip": "172.66.47.30",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -83,13 +92,13 @@
             "2606:4700:310c::ac42:2f1e",
             "2606:4700:310c::ac42:2ce2"
           ],
+          "A": [
+            "172.66.47.30",
+            "172.66.44.226"
+          ],
           "NS": [
             "jake.ns.cloudflare.com.",
             "rose.ns.cloudflare.com."
-          ],
-          "A": [
-            "172.66.44.226",
-            "172.66.47.30"
           ]
         }
       },
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xalvo-remti-biz-kopra-zenlo-sp21ct3 .pages .dev/:/)\"; flow:established,to_server; http.uri; content:\"/:/\"; startswith; fast_pattern; http.host;  content:\"xalvo-remti-biz-kopra-zenlo-sp21ct3.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000729; classtype:social-engineering; sid:6000729; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:25:00.525533+00:00",
+  "updated_at": "2026-07-16T00:40:59.792872+00:00",
   "probe": {
     "dns": true,
     "whois": false,

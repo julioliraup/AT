@@ -50,21 +50,148 @@
     "phishdestroy": {
       "domain": "licensingterms.azurewebsites.net",
       "domain_defanged": "licensingterms[.]azurewebsites[.]net",
-      "case_id": "PD-20260713-1262A5",
-      "analyzed_at": "2026-07-13T11:47:49.063Z",
+      "case_id": "PD-20260716-1262A5",
+      "analyzed_at": "2026-07-16T01:11:09.080Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 11,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f5b4e-081e-72be-a2ce-de7a97bf7cbd/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f61a1-76e7-77a8-8ad0-8f7c84a7ee5b.png",
+          "url": "https://urlscan.io/result/019f61a1-76e7-77a8-8ad0-8f7c84a7ee5b/",
+          "title": "Web App - Unavailable"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -72,18 +199,18 @@
         "ip": "waws-prod-blu-117.sip.azurewebsites.windows.net.",
         "ipinfo": null,
         "dns": {
-          "A": [
+          "AAAA": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net.",
-            "waws-prod-blu-117.eastus.cloudapp.azure.com.",
-            "40.114.68.21"
+            "waws-prod-blu-117.eastus.cloudapp.azure.com."
           ],
           "MX": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net.",
             "waws-prod-blu-117.eastus.cloudapp.azure.com."
           ],
-          "AAAA": [
+          "A": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net.",
-            "waws-prod-blu-117.eastus.cloudapp.azure.com."
+            "waws-prod-blu-117.eastus.cloudapp.azure.com.",
+            "40.114.68.21"
           ],
           "CNAME": [
             "waws-prod-blu-117.sip.azurewebsites.windows.net."
@@ -96,7 +223,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -224,7 +358,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (licensingterms .azurewebsites .net/licensing/terms/product/Promotions/)\"; flow:established,to_server; http.uri; content:\"/licensing/terms/product/Promotions/\"; startswith; fast_pattern; http.host;  content:\"licensingterms.azurewebsites.net\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001114; classtype:social-engineering; sid:6001114; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:45:30.177728+00:00",
+  "updated_at": "2026-07-16T01:15:23.308751+00:00",
   "probe": {
     "dns": true,
     "whois": false,

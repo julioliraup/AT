@@ -19,52 +19,34 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://work-with-us-n244245456.pages.dev/help/contact/716963313698236/",
-      "domain": "work-with-us-n244245456.pages.dev",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "work-with-us-n244245456.pages.dev",
       "domain_defanged": "work-with-us-n244245456[.]pages[.]dev",
-      "case_id": "PD-20260713-1F161D",
-      "analyzed_at": "2026-07-13T11:20:45.014Z",
+      "case_id": "PD-20260716-1F161D",
+      "analyzed_at": "2026-07-16T00:43:34.333Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b35-4091-770c-936d-abaf7c2a79cc/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f618a-8f4d-73a8-af97-27a10493771f.png",
+          "url": "https://urlscan.io/result/019f618a-8f4d-73a8-af97-27a10493771f/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -83,13 +65,13 @@
             "2606:4700:310c::ac42:2d24",
             "2606:4700:310c::ac42:2edc"
           ],
-          "A": [
-            "172.66.46.220",
-            "172.66.45.36"
-          ],
           "NS": [
             "rosemary.ns.cloudflare.com.",
             "tate.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.46.220",
+            "172.66.45.36"
           ]
         }
       },
@@ -225,12 +207,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (work-with-us-n244245456 .pages .dev/help/contact/716963313698236/)\"; flow:established,to_server; http.uri; content:\"/help/contact/716963313698236/\"; startswith; fast_pattern; http.host;  content:\"work-with-us-n244245456.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000749; classtype:social-engineering; sid:6000749; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:26:01.641648+00:00",
+  "updated_at": "2026-07-16T00:43:21.212824+00:00",
   "probe": {
     "dns": true,
     "whois": false,

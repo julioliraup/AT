@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "account-alert-center-243.pages.dev",
       "domain_defanged": "account-alert-center-243[.]pages[.]dev",
-      "case_id": "PD-20260713-45F8EF",
-      "analyzed_at": "2026-07-13T11:23:34.289Z",
+      "case_id": "PD-20260716-45F8EF",
+      "analyzed_at": "2026-07-16T00:47:46.386Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b37-d5cd-759f-8ee5-05ca9970da1f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f618c-ff40-7229-bd18-38d758e6a189.png",
+          "url": "https://urlscan.io/result/019f618c-ff40-7229-bd18-38d758e6a189/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.166",
+        "ip": "172.66.47.90",
         "ipinfo": {
-          "ip": "172.66.44.166",
+          "ip": "172.66.47.90",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,13 +112,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "A": [
+            "172.66.47.90",
+            "172.66.44.166"
+          ],
           "AAAA": [
             "2606:4700:310c::ac42:2ca6",
             "2606:4700:310c::ac42:2f5a"
-          ],
-          "A": [
-            "172.66.44.166",
-            "172.66.47.90"
           ],
           "NS": [
             "garret.ns.cloudflare.com.",
@@ -249,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (account-alert-center-243 .pages .dev/appeal_form)\"; flow:established,to_server; http.uri; content:\"/appeal_form\"; startswith; fast_pattern; http.host;  content:\"account-alert-center-243.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000794; classtype:social-engineering; sid:6000794; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:27:30.348737+00:00",
+  "updated_at": "2026-07-16T00:47:43.785601+00:00",
   "probe": {
     "dns": true,
     "whois": false,

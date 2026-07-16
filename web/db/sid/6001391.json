@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "finance-ndax.pages.dev",
       "domain_defanged": "finance-ndax[.]pages[.]dev",
-      "case_id": "PD-20260713-4B89C3",
-      "analyzed_at": "2026-07-13T12:10:55.858Z",
+      "case_id": "PD-20260716-4B89C3",
+      "analyzed_at": "2026-07-16T01:36:57.964Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b63-3150-72a9-b795-f93dae36c377/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f61b8-7ff8-716e-8f29-65aab15bdcac.png",
+          "url": "https://urlscan.io/result/019f61b8-7ff8-716e-8f29-65aab15bdcac/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,13 +112,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2fc1",
-            "2606:4700:310c::ac42:2c3f"
-          ],
           "A": [
             "172.66.47.193",
             "172.66.44.63"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2fc1",
+            "2606:4700:310c::ac42:2c3f"
           ],
           "NS": [
             "dan.ns.cloudflare.com.",
@@ -249,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (finance-ndax .pages .dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"finance-ndax.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001391; classtype:social-engineering; sid:6001391; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:58:28.887716+00:00",
+  "updated_at": "2026-07-16T01:36:54.223355+00:00",
   "probe": {
     "dns": true,
     "whois": false,

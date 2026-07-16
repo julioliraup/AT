@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "xbox-clone-5h5w.vercel.app",
       "domain_defanged": "xbox-clone-5h5w[.]vercel[.]app",
-      "case_id": "PD-20260713-734E63",
-      "analyzed_at": "2026-07-13T11:26:04.448Z",
+      "case_id": "PD-20260716-734E63",
+      "analyzed_at": "2026-07-16T00:50:36.869Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b3a-2155-716f-ba4f-cbecc12a6ee4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f618f-ca32-705d-873e-97dc1fdea082.png",
+          "url": "https://urlscan.io/result/019f618f-ca32-705d-873e-97dc1fdea082/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.194",
+        "ip": "216.198.79.66",
         "ipinfo": {
-          "ip": "216.198.79.194",
+          "ip": "216.198.79.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.194",
-            "64.29.17.194"
+            "216.198.79.66",
+            "64.29.17.66"
           ]
         }
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xbox-clone-5h5w .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"xbox-clone-5h5w.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000828; classtype:social-engineering; sid:6000828; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:28:41.032745+00:00",
+  "updated_at": "2026-07-16T00:50:33.541091+00:00",
   "probe": {
     "dns": true,
     "whois": false,

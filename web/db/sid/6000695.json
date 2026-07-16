@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sgin12-dhl.mdbgo.io",
       "domain_defanged": "sgin12-dhl[.]mdbgo[.]io",
-      "case_id": "PD-20260713-7D6BD8",
-      "analyzed_at": "2026-07-13T11:16:23.080Z",
+      "case_id": "PD-20260716-7D6BD8",
+      "analyzed_at": "2026-07-16T00:37:56.378Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b31-4295-742c-8b89-4f9131a2e6ff/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DHL"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6186-a00f-73b9-9377-e55f1021257e.png",
+          "url": "https://urlscan.io/result/019f6186-a00f-73b9-9377-e55f1021257e/",
+          "title": "DHL | Tracking System"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DHL",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -233,12 +242,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sgin12-dhl .mdbgo .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sgin12-dhl.mdbgo.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000695; classtype:social-engineering; sid:6000695; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:23:46.282920+00:00",
+  "updated_at": "2026-07-16T00:37:49.617344+00:00",
   "probe": {
     "dns": true,
     "whois": true,

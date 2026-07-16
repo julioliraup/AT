@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "69faf1f96e16da18b0206fec--chimerical-custard-0c06e1.netlify.app",
       "domain_defanged": "69faf1f96e16da18b0206fec--chimerical-custard-0c06e1[.]netlify[.]app",
-      "case_id": "PD-20260713-573063",
-      "analyzed_at": "2026-07-13T10:47:02.474Z",
+      "case_id": "PD-20260715-573063",
+      "analyzed_at": "2026-07-15T23:59:46.515Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b16-6540-733a-91cb-62eb64d5febb/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f616b-e28e-75d6-9aef-c83b2f6f352a.png",
+          "url": "https://urlscan.io/result/019f616b-e28e-75d6-9aef-c83b2f6f352a/",
+          "title": "Webmail Sign-in"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -104,11 +113,11 @@
           "asn": "AS16509"
         },
         "dns": {
-          "AAAA": [
-            "2600:1f1e:7c1:c300::258"
-          ],
           "A": [
             "54.232.119.62"
+          ],
+          "AAAA": [
+            "2600:1f1e:7c1:c300::258"
           ]
         }
       },
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (69faf1f96e16da18b0206fec--chimerical-custard-0c06e1 .netlify .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"69faf1f96e16da18b0206fec--chimerical-custard-0c06e1.netlify.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000292; classtype:social-engineering; sid:6000292; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:03:41.367101+00:00",
+  "updated_at": "2026-07-15T23:59:43.600069+00:00",
   "probe": {
     "dns": true,
     "whois": false,

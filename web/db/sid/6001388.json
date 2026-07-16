@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "ribanholdlogip.gitbook.io",
       "domain_defanged": "ribanholdlogip[.]gitbook[.]io",
-      "case_id": "PD-20260713-23FB2E",
-      "analyzed_at": "2026-07-13T12:10:46.762Z",
+      "case_id": "PD-20260716-23FB2E",
+      "analyzed_at": "2026-07-16T01:36:46.721Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b63-0e31-738b-baa3-6903e655dba7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Robinhood"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f61b8-5fac-70af-b73e-4f299c47bc74.png",
+          "url": "https://urlscan.io/result/019f61b8-5fac-70af-b73e-4f299c47bc74/",
+          "title": "Róbinhood Login | Log in to My Account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Robinhood",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -108,8 +117,8 @@
             "172.64.147.209"
           ],
           "AAAA": [
-            "2606:4700:4401::ac40:93d1",
-            "2a06:98c1:310d::6812:282f"
+            "2a06:98c1:310d::6812:282f",
+            "2606:4700:4401::ac40:93d1"
           ]
         }
       },
@@ -245,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ribanholdlogip .gitbook .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"ribanholdlogip.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001388; classtype:social-engineering; sid:6001388; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:58:23.238670+00:00",
+  "updated_at": "2026-07-16T01:36:43.557913+00:00",
   "probe": {
     "dns": true,
     "whois": true,

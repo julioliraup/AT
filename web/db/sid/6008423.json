@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "spikecatcher.info",
       "domain_defanged": "spikecatcher[.]info",
-      "case_id": "PD-20260713-73D23A",
-      "analyzed_at": "2026-07-13T20:51:02.622Z",
+      "case_id": "PD-20260716-73D23A",
+      "analyzed_at": "2026-07-16T09:14:26.933Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f6a34-b2c9-70ce-9849-6e1bc1452601/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,18 +69,25 @@
       },
       "infrastructure": {
         "ip": "104.21.14.63",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.14.63",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.21.14.63",
-            "172.67.158.33"
+          "MX": [
+            "10 eternal-havoc1.pricycor.info."
           ],
           "AAAA": [
             "2606:4700:3036::ac43:9e21",
             "2606:4700:3034::6815:e3f"
           ],
-          "MX": [
-            "10 eternal-havoc1.pricycor.info."
+          "A": [
+            "104.21.14.63",
+            "172.67.158.33"
           ],
           "NS": [
             "demi.ns.cloudflare.com.",
@@ -86,7 +97,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -209,12 +227,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (spikecatcher.info/PL-1466-160526/?u=83C1466&e=nelar@0f976da0516b8821e1a545a81cb9d9060e79.org&s3=jozef&s4=sbeczka&s5=&s6=&s7=&s8=)\"; flow:established,to_server; http.uri; content:\"/PL-1466-160526/?u=83C1466&e=nelar@0f976da0516b8821e1a545a81cb9d9060e79.org&s3=jozef&s4=sbeczka&s5=&s6=&s7=&s8=\"; startswith; fast_pattern; http.host; content:\"spikecatcher.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008423; classtype:social-engineering; sid:6008423; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T07:20:24.157351+00:00",
+  "updated_at": "2026-07-16T09:14:23.680626+00:00",
   "probe": {
     "dns": true,
     "whois": true,

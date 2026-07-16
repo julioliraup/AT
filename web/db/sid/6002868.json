@@ -22,7 +22,7 @@
       "url": "http://obnova-predplatneho.com/captcha",
       "domain": "obnova-predplatneho.com",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "obnova-predplatneho.com",
       "domain_defanged": "obnova-predplatneho[.]com",
-      "case_id": "PD-20260713-1AC4C0",
-      "analyzed_at": "2026-07-13T14:02:31.724Z",
+      "case_id": "PD-20260716-1AC4C0",
+      "analyzed_at": "2026-07-16T03:22:57.718Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5bc9-5d21-732a-85ac-e4330bf015b6/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,7 +64,7 @@
         "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
         "created": "2026-05-15T14:07:14Z",
         "expires": "2027-05-15T14:07:14Z",
-        "age_days": 58,
+        "age_days": 61,
         "nameservers": [
           "NS1.OPENPROVIDER.NL",
           "NS2.OPENPROVIDER.BE",
@@ -76,25 +72,8 @@
         ]
       },
       "infrastructure": {
-        "ip": "180.178.160.153",
-        "ipinfo": {
-          "ip": "180.178.160.153",
-          "city": "Frankfurt am Main",
-          "region": "Hesse",
-          "country": "DE",
-          "org": "AS213441 SLAYER GROUP LIMITED",
-          "asn": "AS213441"
-        },
-        "dns": {
-          "A": [
-            "180.178.160.153"
-          ],
-          "NS": [
-            "ns1.openprovider.nl.",
-            "ns2.openprovider.be.",
-            "ns3.openprovider.eu."
-          ]
-        }
+        "ipinfo": null,
+        "dns": null
       },
       "report_to": {
         "registrar": {
@@ -233,10 +212,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (obnova-predplatneho.com/captcha)\"; flow:established,to_server; http.uri; content:\"/captcha\"; startswith; fast_pattern; http.host; content:\"obnova-predplatneho.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6002868; classtype:social-engineering; sid:6002868; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T02:07:54.428331+00:00",
+  "updated_at": "2026-07-16T03:25:03.185231+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

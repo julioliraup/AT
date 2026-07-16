@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "mofa.pages.dev",
       "domain_defanged": "mofa[.]pages[.]dev",
-      "case_id": "PD-20260713-2C8978",
-      "analyzed_at": "2026-07-13T18:35:06.237Z",
+      "case_id": "PD-20260716-2C8978",
+      "analyzed_at": "2026-07-16T07:02:32.511Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f69bb-ef0e-7624-b646-3bbaeeaec2a0/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,39 +93,25 @@
       },
       "infrastructure": {
         "ip": "172.66.47.33",
-        "ipinfo": {
-          "ip": "172.66.47.33",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ipinfo": null,
         "dns": {
           "AAAA": [
             "2606:4700:310c::ac42:2cdf",
             "2606:4700:310c::ac42:2f21"
           ],
-          "NS": [
-            "jo.ns.cloudflare.com.",
-            "tim.ns.cloudflare.com."
-          ],
           "A": [
             "172.66.47.33",
             "172.66.44.223"
+          ],
+          "NS": [
+            "jo.ns.cloudflare.com.",
+            "tim.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -244,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mofa.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mofa.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006194; classtype:social-engineering; sid:6006194; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T04:55:28.793261+00:00",
+  "updated_at": "2026-07-16T07:02:29.475233+00:00",
   "probe": {
     "dns": true,
     "whois": false,

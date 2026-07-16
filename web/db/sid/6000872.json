@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "amazon-clone-project-khaki.vercel.app",
       "domain_defanged": "amazon-clone-project-khaki[.]vercel[.]app",
-      "case_id": "PD-20260713-3A9548",
-      "analyzed_at": "2026-07-13T11:29:27.190Z",
+      "case_id": "PD-20260716-3A9548",
+      "analyzed_at": "2026-07-16T00:53:52.906Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b3d-385d-728b-a643-8dfe42a60dba/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6192-9125-738b-9866-b239ba05b8eb.png",
+          "url": "https://urlscan.io/result/019f6192-9125-738b-9866-b239ba05b8eb/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
+        "ip": "64.29.17.66",
         "ipinfo": {
-          "ip": "216.198.79.66",
+          "ip": "64.29.17.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "64.29.17.66",
+            "216.198.79.66"
           ]
         }
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazon-clone-project-khaki .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"amazon-clone-project-khaki.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000872; classtype:social-engineering; sid:6000872; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:30:26.815704+00:00",
+  "updated_at": "2026-07-16T00:53:49.541140+00:00",
   "probe": {
     "dns": true,
     "whois": false,

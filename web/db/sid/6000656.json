@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "claimusdtwebflow.pages.dev",
       "domain_defanged": "claimusdtwebflow[.]pages[.]dev",
-      "case_id": "PD-20260713-DE6B1D",
-      "analyzed_at": "2026-07-13T11:12:48.823Z",
+      "case_id": "PD-20260716-DE6B1D",
+      "analyzed_at": "2026-07-16T00:33:08.725Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b2d-fc82-7169-8c3f-2784c8b25d62/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6184-2c84-733e-9ade-057d794ee6f2.png",
+          "url": "https://urlscan.io/result/019f6184-2c84-733e-9ade-057d794ee6f2/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -104,16 +113,16 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2d29",
-            "2606:4700:310c::ac42:2ed7"
-          ],
-          "NS": [
-            "alice.ns.cloudflare.com.",
-            "roan.ns.cloudflare.com."
+            "2606:4700:310c::ac42:2ed7",
+            "2606:4700:310c::ac42:2d29"
           ],
           "A": [
             "172.66.46.215",
             "172.66.45.41"
+          ],
+          "NS": [
+            "alice.ns.cloudflare.com.",
+            "roan.ns.cloudflare.com."
           ]
         }
       },
@@ -249,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (claimusdtwebflow .pages .dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"claimusdtwebflow.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000656; classtype:social-engineering; sid:6000656; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:22:19.966862+00:00",
+  "updated_at": "2026-07-16T00:32:54.933951+00:00",
   "probe": {
     "dns": true,
     "whois": false,

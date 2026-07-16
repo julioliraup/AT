@@ -50,29 +50,38 @@
     "phishdestroy": {
       "domain": "verification.healthyemployee.me",
       "domain_defanged": "verification[.]healthyemployee[.]me",
-      "case_id": "PD-20260713-2A8845",
-      "analyzed_at": "2026-07-13T11:33:54.646Z",
+      "case_id": "PD-20260716-2A8845",
+      "analyzed_at": "2026-07-16T00:57:07.996Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b41-4e4e-77ed-a0ab-0f2e7a0e8be0/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6195-9460-77ed-85a6-a361965d7a0d.png",
+          "url": "https://urlscan.io/result/019f6195-9460-77ed-85a6-a361965d7a0d/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "34.194.247.17",
+        "ip": "52.204.246.179",
         "ipinfo": {
-          "ip": "34.194.247.17",
-          "hostname": "ec2-34-194-247-17.compute-1.amazonaws.com",
+          "ip": "52.204.246.179",
+          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
           "city": "Ashburn",
           "region": "Virginia",
           "country": "US",
@@ -81,8 +90,8 @@
         },
         "dns": {
           "A": [
-            "34.194.247.17",
-            "52.204.246.179"
+            "52.204.246.179",
+            "34.194.247.17"
           ]
         }
       },
@@ -218,12 +227,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (verification .healthyemployee .me/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"verification.healthyemployee.me\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000915; classtype:social-engineering; sid:6000915; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:32:37.360835+00:00",
+  "updated_at": "2026-07-16T00:57:01.257102+00:00",
   "probe": {
     "dns": true,
     "whois": true,

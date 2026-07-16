@@ -50,17 +50,53 @@
     "phishdestroy": {
       "domain": "ersfilter-my.sharepoint.com",
       "domain_defanged": "ersfilter-my[.]sharepoint[.]com",
-      "case_id": "PD-20260713-1262E3",
-      "analyzed_at": "2026-07-13T10:49:26.499Z",
+      "case_id": "PD-20260716-1262E3",
+      "analyzed_at": "2026-07-16T00:02:06.939Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "error": "no_results"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -68,14 +104,6 @@
         "ip": "ersfilter.sharepoint.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "ersfilter.sharepoint.com.",
-            "42-ipv4v6e.clump.dprodmgd105.aa-rt.sharepoint.com.",
-            "193267-ipv4v6e.farm.dprodmgd105.aa-rt.sharepoint.com.",
-            "193267-ipv4v6e.farm.dprodmgd105.sharepointonline.com.akadns.net.",
-            "193267-ipv4v6.farm.dprodmgd105.aa-rt.sharepoint.com.dual-spo-0005.spo-msedge.net.",
-            "dual-spo-0005.spo-msedge.net."
-          ],
           "AAAA": [
             "ersfilter.sharepoint.com.",
             "42-ipv4v6e.clump.dprodmgd105.aa-rt.sharepoint.com.",
@@ -86,10 +114,7 @@
             "2620:1ec:8f8::10",
             "2620:1ec:8fa::10"
           ],
-          "CNAME": [
-            "ersfilter.sharepoint.com."
-          ],
-          "NS": [
+          "MX": [
             "ersfilter.sharepoint.com.",
             "42-ipv4v6e.clump.dprodmgd105.aa-rt.sharepoint.com.",
             "193267-ipv4v6e.farm.dprodmgd105.aa-rt.sharepoint.com.",
@@ -106,6 +131,17 @@
             "dual-spo-0005.spo-msedge.net.",
             "13.107.136.10",
             "13.107.138.10"
+          ],
+          "CNAME": [
+            "ersfilter.sharepoint.com."
+          ],
+          "NS": [
+            "ersfilter.sharepoint.com.",
+            "42-ipv4v6e.clump.dprodmgd105.aa-rt.sharepoint.com.",
+            "193267-ipv4v6e.farm.dprodmgd105.aa-rt.sharepoint.com.",
+            "193267-ipv4v6e.farm.dprodmgd105.sharepointonline.com.akadns.net.",
+            "193267-ipv4v6.farm.dprodmgd105.aa-rt.sharepoint.com.dual-spo-0005.spo-msedge.net.",
+            "dual-spo-0005.spo-msedge.net."
           ]
         }
       },
@@ -234,12 +270,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ersfilter-my .sharepoint .com/personal/nradonich_ersfilter_com/_layouts/15/doc .aspx?guestaccesstoken=t6T%2FHN1dKbYHlYX%2BeIMbaZufA43rrGZ6%2FaAAewNocDI%3D&docid=1_18168db23429e45f29fdf2e7be120efc4&wdFormId=%7BB9970F62-44C3-4D09-9929-6E1EB652DA57%7D&action=formsubmit&CID=7c889288-793f-4e2b-b7c4-fed5506273ef)\"; flow:established,to_server; http.uri; content:\"/personal/nradonich_ersfilter_com/_layouts/15/doc.aspx?guestaccesstoken=t6T%2FHN1dKbYHlYX%2BeIMbaZufA43rrGZ6%2FaAAewNocDI%3D&docid=1_18168db23429e45f29fdf2e7be120efc4&wdFormId=%7BB9970F62-44C3-4D09-9929-6E1EB652DA57%7D&action=formsubmit&CID=7c889288-793f-4e2b-b7c4-fed5506273ef\"; startswith; fast_pattern; http.host;  content:\"ersfilter-my.sharepoint.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000323; classtype:social-engineering; sid:6000323; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:04:59.607125+00:00",
+  "updated_at": "2026-07-16T00:02:03.063296+00:00",
   "probe": {
     "dns": true,
     "whois": false,

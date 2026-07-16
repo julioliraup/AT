@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "gridqueue-datapoint.pages.dev",
       "domain_defanged": "gridqueue-datapoint[.]pages[.]dev",
-      "case_id": "PD-20260713-275384",
-      "analyzed_at": "2026-07-13T16:06:02.393Z",
+      "case_id": "PD-20260716-275384",
+      "analyzed_at": "2026-07-16T05:19:40.724Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f695d-c3ac-721f-a526-d014b4d26828/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,15 +69,22 @@
       },
       "infrastructure": {
         "ip": "172.66.44.84",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.44.84",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.66.44.84",
             "172.66.47.172"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2c54",
-            "2606:4700:310c::ac42:2fac"
+            "2606:4700:310c::ac42:2fac",
+            "2606:4700:310c::ac42:2c54"
           ],
           "NS": [
             "bella.ns.cloudflare.com.",
@@ -83,7 +94,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,12 +224,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gridqueue-datapoint.pages.dev/welcome_to_meta_for_business/)\"; flow:established,to_server; http.uri; content:\"/welcome_to_meta_for_business/\"; startswith; fast_pattern; http.host; content:\"gridqueue-datapoint.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004621; classtype:social-engineering; sid:6004621; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T03:46:16.867585+00:00",
+  "updated_at": "2026-07-16T05:19:38.439710+00:00",
   "probe": {
     "dns": true,
     "whois": false,

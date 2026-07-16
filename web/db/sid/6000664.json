@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "easybank-sage.vercel.app",
       "domain_defanged": "easybank-sage[.]vercel[.]app",
-      "case_id": "PD-20260713-7057ED",
-      "analyzed_at": "2026-07-13T11:13:35.766Z",
+      "case_id": "PD-20260716-7057ED",
+      "analyzed_at": "2026-07-16T00:33:45.195Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b2e-b50e-71ca-892b-f313b371ee63/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Banking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6184-992e-77e9-bc25-67f36d574d8e.png",
+          "url": "https://urlscan.io/result/019f6184-992e-77e9-bc25-67f36d574d8e/",
+          "title": "Frontend Mentor | Easybank landing page"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Banking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.194",
+        "ip": "64.29.17.194",
         "ipinfo": {
-          "ip": "216.198.79.194",
+          "ip": "64.29.17.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.194",
-            "64.29.17.194"
+            "64.29.17.194",
+            "216.198.79.194"
           ]
         }
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (easybank-sage .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"easybank-sage.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000664; classtype:social-engineering; sid:6000664; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:22:41.267758+00:00",
+  "updated_at": "2026-07-16T00:33:40.716844+00:00",
   "probe": {
     "dns": true,
     "whois": false,

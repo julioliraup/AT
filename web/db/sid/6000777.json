@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "webmail.creditunion-authority.com",
       "domain_defanged": "webmail[.]creditunion-authority[.]com",
-      "case_id": "PD-20260713-C90D11",
-      "analyzed_at": "2026-07-13T11:22:35.601Z",
+      "case_id": "PD-20260716-C90D11",
+      "analyzed_at": "2026-07-16T00:46:47.263Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b36-f08b-755a-830d-7456f80185cd/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f618c-4ecc-725b-833f-1f4b3edfa65d.png",
+          "url": "https://urlscan.io/result/019f618c-4ecc-725b-833f-1f4b3edfa65d/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -218,12 +227,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webmail .creditunion-authority .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"webmail.creditunion-authority.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000777; classtype:social-engineering; sid:6000777; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:26:54.821603+00:00",
+  "updated_at": "2026-07-16T00:46:44.081291+00:00",
   "probe": {
     "dns": true,
     "whois": false,

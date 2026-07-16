@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "amazonaws-assets-secure-node-aws-views.s3.us-east-1.amazonaws.com",
       "domain_defanged": "amazonaws-assets-secure-node-aws-views[.]s3[.]us-east-1[.]amazonaws[.]com",
-      "case_id": "PD-20260713-987E25",
-      "analyzed_at": "2026-07-13T16:55:16.616Z",
+      "case_id": "PD-20260716-987E25",
+      "analyzed_at": "2026-07-16T05:59:08.318Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f6981-e098-74bf-8b0f-b5dec2301551/",
+          "pending": true
         }
       },
       "detections": [],
@@ -73,6 +77,17 @@
           "MX": [
             "s3-r-w.us-east-1.amazonaws.com."
           ],
+          "A": [
+            "s3-r-w.us-east-1.amazonaws.com.",
+            "54.231.138.146",
+            "52.216.35.146",
+            "16.15.207.169",
+            "16.15.255.228",
+            "16.15.214.149",
+            "16.182.106.170",
+            "16.15.244.246",
+            "52.216.48.218"
+          ],
           "CNAME": [
             "s3-r-w.us-east-1.amazonaws.com."
           ],
@@ -82,17 +97,6 @@
             "ns-1567.awsdns-03.co.uk.",
             "ns-479.awsdns-59.com.",
             "ns-537.awsdns-03.net."
-          ],
-          "A": [
-            "s3-r-w.us-east-1.amazonaws.com.",
-            "52.217.175.122",
-            "52.217.138.234",
-            "52.216.78.64",
-            "16.15.252.118",
-            "16.182.73.250",
-            "16.15.252.51",
-            "52.217.225.138",
-            "52.217.233.2"
           ]
         }
       },
@@ -221,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazonaws-assets-secure-node-aws-views.s3.us-east-1.amazonaws.com/confirm?e=belorx@e3a52135c2ab3eae0161a3bb87466c084aa1.com)\"; flow:established,to_server; http.uri; content:\"/confirm?e=belorx@e3a52135c2ab3eae0161a3bb87466c084aa1.com\"; startswith; fast_pattern; http.host; content:\"amazonaws-assets-secure-node-aws-views.s3.us-east-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005222; classtype:social-engineering; sid:6005222; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T04:12:13.320390+00:00",
+  "updated_at": "2026-07-16T05:59:04.409455+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -136,31 +136,40 @@
     "phishdestroy": {
       "domain": "amazonwebservices.security-unauthorised-request.com",
       "domain_defanged": "amazonwebservices[.]security-unauthorised-request[.]com",
-      "case_id": "PD-20260713-5C10A5",
-      "analyzed_at": "2026-07-13T11:20:38.562Z",
+      "case_id": "PD-20260716-5C10A5",
+      "analyzed_at": "2026-07-16T00:43:08.804Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b35-289d-74ac-b83f-548e95985c42/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f67c7-5295-7512-90d5-40921a2db19b.png",
+          "url": "https://urlscan.io/result/019f67c7-5295-7512-90d5-40921a2db19b/",
+          "title": "Amazon Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.174.26.56",
+        "ip": "3.174.59.74",
         "ipinfo": {
-          "ip": "3.174.26.56",
-          "hostname": "server-3-174-26-56.for50.r.cloudfront.net",
-          "city": "Fortaleza",
-          "region": "Ceará",
+          "ip": "3.174.59.74",
+          "hostname": "server-3-174-59-74.gig52.r.cloudfront.net",
+          "city": "Rio de Janeiro",
+          "region": "Rio de Janeiro",
           "country": "BR",
           "org": "AS16509 Amazon.com, Inc.",
           "asn": "AS16509"
@@ -170,10 +179,10 @@
             "0 security-unauthorised-request-com.mail.protection.outlook.com."
           ],
           "A": [
-            "3.174.26.56",
-            "3.174.26.84",
-            "3.174.26.69",
-            "3.174.26.116"
+            "3.174.59.74",
+            "3.174.59.11",
+            "3.174.59.126",
+            "3.174.59.128"
           ]
         }
       },
@@ -314,7 +323,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazonwebservices .security-unauthorised-request .com/login/Mgk-WCxcfmgseLHDblkV8Onp_5Wk9ykC3UkY=2Aw==7VlpWTVhZaFtYUF5Z/U5vi3iQc2ZYY-EdD-wtEnZbBycRD5f72/)\"; flow:established,to_server; http.uri; content:\"/login/Mgk-WCxcfmgseLHDblkV8Onp_5Wk9ykC3UkY=2Aw==7VlpWTVhZaFtYUF5Z/U5vi3iQc2ZYY-EdD-wtEnZbBycRD5f72/\"; startswith; fast_pattern; http.host;  content:\"amazonwebservices.security-unauthorised-request.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000762; classtype:social-engineering; sid:6000762; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:26:26.108563+00:00",
+  "updated_at": "2026-07-16T00:45:31.334595+00:00",
   "probe": {
     "dns": true,
     "whois": false,

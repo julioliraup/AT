@@ -50,26 +50,130 @@
     "phishdestroy": {
       "domain": "digitalprocurements.com",
       "domain_defanged": "digitalprocurements[.]com",
-      "case_id": "PD-20260713-5A1391",
-      "analyzed_at": "2026-07-13T10:35:17.411Z",
+      "case_id": "PD-20260715-5A1391",
+      "analyzed_at": "2026-07-15T23:49:27.140Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 8,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b0b-a31a-76a9-9e4a-f07ebba553bf/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6163-144e-707e-afbf-52a2b19a1531.png",
+          "url": "https://urlscan.io/result/019f6163-144e-707e-afbf-52a2b19a1531/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2017-06-12T17:52:58Z",
         "expires": "2028-06-12T17:52:58Z",
-        "age_days": 3317,
+        "age_days": 3320,
         "nameservers": [
           "NS-1019.AWSDNS-63.NET",
           "NS-132.AWSDNS-16.COM",
@@ -78,10 +182,10 @@
         ]
       },
       "infrastructure": {
-        "ip": "52.204.246.179",
+        "ip": "34.194.247.17",
         "ipinfo": {
-          "ip": "52.204.246.179",
-          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
+          "ip": "34.194.247.17",
+          "hostname": "ec2-34-194-247-17.compute-1.amazonaws.com",
           "city": "Ashburn",
           "region": "Virginia",
           "country": "US",
@@ -93,8 +197,8 @@
             "10 mx0.us.cf-ops.net."
           ],
           "A": [
-            "52.204.246.179",
-            "34.194.247.17"
+            "34.194.247.17",
+            "52.204.246.179"
           ],
           "NS": [
             "ns-1019.awsdns-63.net.",
@@ -243,12 +347,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (digitalprocurements .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"digitalprocurements.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000126; classtype:social-engineering; sid:6000126; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-13T23:57:23.479538+00:00",
+  "updated_at": "2026-07-15T23:49:21.836229+00:00",
   "probe": {
     "dns": true,
     "whois": true,

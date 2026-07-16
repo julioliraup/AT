@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "ristek.link",
       "domain_defanged": "ristek[.]link",
-      "case_id": "PD-20260713-3B1BF9",
-      "analyzed_at": "2026-07-13T19:41:54.966Z",
+      "case_id": "PD-20260716-3B1BF9",
+      "analyzed_at": "2026-07-16T07:55:41.211Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f69ec-96f2-7701-856d-900120a3b579/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,16 +68,23 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.207.215",
-        "ipinfo": null,
+        "ip": "104.21.37.118",
+        "ipinfo": {
+          "ip": "104.21.37.118",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3031::6815:2576",
-            "2606:4700:3037::ac43:cfd7"
-          ],
           "A": [
-            "172.67.207.215",
-            "104.21.37.118"
+            "104.21.37.118",
+            "172.67.207.215"
+          ],
+          "AAAA": [
+            "2606:4700:3037::ac43:cfd7",
+            "2606:4700:3031::6815:2576"
           ],
           "NS": [
             "alaric.ns.cloudflare.com.",
@@ -83,7 +94,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,12 +224,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ristek.link/backupbase)\"; flow:established,to_server; http.uri; content:\"/backupbase\"; startswith; fast_pattern; http.host; content:\"ristek.link\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007166; classtype:social-engineering; sid:6007166; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T05:34:43.670690+00:00",
+  "updated_at": "2026-07-16T07:55:38.049311+00:00",
   "probe": {
     "dns": true,
     "whois": true,

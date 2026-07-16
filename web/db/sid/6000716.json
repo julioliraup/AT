@@ -74,28 +74,37 @@
     "phishdestroy": {
       "domain": "sso-cad-netcoins-com-auth.webflow.io",
       "domain_defanged": "sso-cad-netcoins-com-auth[.]webflow[.]io",
-      "case_id": "PD-20260713-48A6E4",
-      "analyzed_at": "2026-07-13T11:18:11.049Z",
+      "case_id": "PD-20260716-48A6E4",
+      "analyzed_at": "2026-07-16T00:39:53.136Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b32-e733-75fa-b225-4a97a597f342/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netcoins"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6187-e57d-75bc-bde8-e2677f02bfe3.png",
+          "url": "https://urlscan.io/result/019f6187-e57d-75bc-bde8-e2677f02bfe3/",
+          "title": "Netcoins | Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netcoins",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.151.8",
+        "ip": "104.18.36.248",
         "ipinfo": {
-          "ip": "172.64.151.8",
+          "ip": "104.18.36.248",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,13 +112,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.64.151.8",
-            "104.18.36.248"
-          ],
           "AAAA": [
             "2a06:98c1:3102::ac40:9708",
             "2a06:98c1:3105::6812:24f8"
+          ],
+          "A": [
+            "104.18.36.248",
+            "172.64.151.8"
           ]
         }
       },
@@ -245,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso-cad-netcoins-com-auth .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sso-cad-netcoins-com-auth.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000716; classtype:social-engineering; sid:6000716; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:24:28.043929+00:00",
+  "updated_at": "2026-07-16T00:39:49.436869+00:00",
   "probe": {
     "dns": true,
     "whois": true,

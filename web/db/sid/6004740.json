@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "q-r.to",
       "domain_defanged": "q-r[.]to",
-      "case_id": "PD-20260713-3C7DB2",
-      "analyzed_at": "2026-07-13T16:15:20.744Z",
+      "case_id": "PD-20260716-3C7DB2",
+      "analyzed_at": "2026-07-16T05:26:37.183Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f6964-1df5-701c-bcd5-af05bc47aff2/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,8 +74,16 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "108.158.137.114",
-        "ipinfo": null,
+        "ip": "108.158.137.40",
+        "ipinfo": {
+          "ip": "108.158.137.40",
+          "hostname": "server-108-158-137-40.gig51.r.cloudfront.net",
+          "city": "Rio de Janeiro",
+          "region": "Rio de Janeiro",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "NS": [
             "ns-125.awsdns-15.com.",
@@ -80,16 +92,23 @@
             "ns-968.awsdns-57.net."
           ],
           "A": [
-            "108.158.137.114",
+            "108.158.137.40",
             "108.158.137.83",
-            "108.158.137.120",
-            "108.158.137.40"
+            "108.158.137.114",
+            "108.158.137.120"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -212,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (q-r.to/bgoHDU)\"; flow:established,to_server; http.uri; content:\"/bgoHDU\"; startswith; fast_pattern; http.host; content:\"q-r.to\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004740; classtype:social-engineering; sid:6004740; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T03:50:53.077562+00:00",
+  "updated_at": "2026-07-16T05:26:34.701998+00:00",
   "probe": {
     "dns": true,
     "whois": false,

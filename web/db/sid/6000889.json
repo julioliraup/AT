@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "sso-en--netcoins-io-cdn-s.webflow.io",
       "domain_defanged": "sso-en--netcoins-io-cdn-s[.]webflow[.]io",
-      "case_id": "PD-20260713-27478E",
-      "analyzed_at": "2026-07-13T11:31:32.886Z",
+      "case_id": "PD-20260716-27478E",
+      "analyzed_at": "2026-07-16T00:55:16.606Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f5b3f-246d-779d-a995-907c03e6eb12/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netcoins"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6193-7830-7794-979d-abc2f054e28d.png",
+          "url": "https://urlscan.io/result/019f6193-7830-7794-979d-abc2f054e28d/",
+          "title": "Log In | NetCoins"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netcoins",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,13 +112,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2a06:98c1:3102::ac40:9708",
-            "2a06:98c1:3105::6812:24f8"
-          ],
           "A": [
             "172.64.151.8",
             "104.18.36.248"
+          ],
+          "AAAA": [
+            "2a06:98c1:3102::ac40:9708",
+            "2a06:98c1:3105::6812:24f8"
           ]
         }
       },
@@ -245,15 +254,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso-en--netcoins-io-cdn-s .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sso-en--netcoins-io-cdn-s.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000889; classtype:social-engineering; sid:6000889; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:31:02.361319+00:00",
+  "updated_at": "2026-07-16T00:55:13.430361+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

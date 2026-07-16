@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "liveinn.pt",
       "domain_defanged": "liveinn[.]pt",
-      "case_id": "PD-20260713-591AFE",
-      "analyzed_at": "2026-07-13T19:38:47.524Z",
+      "case_id": "PD-20260716-591AFE",
+      "analyzed_at": "2026-07-16T07:52:30.569Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f69e9-ae40-725c-a79f-8a81b5cca52d/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,23 +69,38 @@
       },
       "infrastructure": {
         "ip": "185.11.167.214",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.11.167.214",
+          "hostname": "server.pcplusserver.com",
+          "city": "Faro",
+          "region": "Faro",
+          "country": "PT",
+          "org": "AS33876 DMNS - DOMINIOS, S.A.",
+          "asn": "AS33876"
+        },
         "dns": {
-          "A": [
-            "185.11.167.214"
-          ],
           "MX": [
             "1 SMTP.GOOGLE.COM."
           ],
           "NS": [
-            "ns2.pcplusserver.com.",
-            "ns1.pcplusserver.com."
+            "ns1.pcplusserver.com.",
+            "ns2.pcplusserver.com."
+          ],
+          "A": [
+            "185.11.167.214"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Flesk-AS",
+          "abuse": "abuse@dominios.pt",
+          "url": "mailto:abuse@dominios.pt",
+          "logo": "https://i.ibb.co/HLqxJkmq/pr-Flesk-AS.jpg",
+          "method": "email",
+          "asn": "AS33876"
+        }
       },
       "report_services": [
         {
@@ -204,12 +223,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (liveinn.pt/.cgi/2026%20Tender%20Documents.html)\"; flow:established,to_server; http.uri; content:\"/.cgi/2026%20Tender%20Documents.html\"; startswith; fast_pattern; http.host; content:\"liveinn.pt\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007104; classtype:social-engineering; sid:6007104; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T05:31:45.002047+00:00",
+  "updated_at": "2026-07-16T07:52:17.755109+00:00",
   "probe": {
     "dns": true,
     "whois": false,

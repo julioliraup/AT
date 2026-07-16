@@ -74,27 +74,55 @@
     "phishdestroy": {
       "domain": "member001.business-ad-agency.com",
       "domain_defanged": "member001[.]business-ad-agency[.]com",
-      "case_id": "PD-20260713-16961F",
-      "analyzed_at": "2026-07-13T10:46:44.821Z",
+      "case_id": "PD-20260715-16961F",
+      "analyzed_at": "2026-07-15T23:59:29.516Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1547-4f69-701e-b29e-9efb041d7f98.png",
+          "url": "https://urlscan.io/result/019e1547-4f69-701e-b29e-9efb041d7f98/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.74.161",
+        "ipinfo": {
+          "ip": "104.21.74.161",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -217,12 +245,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (member001 .business-ad-agency .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"member001.business-ad-agency.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000286; classtype:social-engineering; sid:6000286; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-14T00:03:31.878860+00:00",
+  "updated_at": "2026-07-15T23:59:26.306700+00:00",
   "probe": {
     "dns": true,
     "whois": false,
