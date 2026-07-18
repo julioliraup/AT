@@ -103,25 +103,27 @@ document.getElementById('search').oninput = (e) => {
 
 load();
 
-// Banner logic: Show "Too many requests" after 5 seconds, only once.
-setTimeout(() => {
-    if (localStorage.getItem('donateBannerShown')) return;
-    localStorage.setItem('donateBannerShown', 'true');
-    
-    const banner = document.createElement('div');
-    banner.innerHTML = `
-        <div style="position:fixed; bottom:20px; right:20px; background:rgba(20,20,20,0.95); border:1px solid var(--cyan); border-radius:8px; padding:20px; box-shadow:0 0 20px rgba(0,229,255,0.2); z-index:9999; max-width:350px; color:var(--text); font-family:'Orbitron', sans-serif;">
-            <button onclick="this.parentElement.remove()" style="position:absolute; top:10px; right:10px; background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:20px; padding:0; line-height:1;">&times;</button>
-            <h3 style="margin-top:0; color:var(--neon-pink); font-size:1.1em; display:flex; align-items:center; gap:8px;">
-                &#x26A0; Too many requests
-            </h3>
-            <p style="font-size:0.9em; line-height:1.4; color:var(--text-muted); margin-bottom:15px;">
-                This is what we get when we try to list detailed information of the vectors. We can solve this by paying for APIs that meet our demand.
-            </p>
-            <a href="https://github.com/julioliraup/Antiphishing/blob/main/FUNDING.md" target="_blank" style="display:inline-block; background:rgba(0,229,255,0.1); border:1px solid var(--cyan); color:var(--cyan); padding:8px 15px; text-decoration:none; border-radius:4px; font-size:0.85em; transition:0.3s; text-transform:uppercase; letter-spacing:1px;" onmouseover="this.style.background='var(--cyan)'; this.style.color='#000';" onmouseout="this.style.background='rgba(0,229,255,0.1)'; this.style.color='var(--cyan)';">
-                Contribute
-            </a>
-        </div>
-    `;
-    document.body.appendChild(banner.firstElementChild);
-}, 5000);
+// Banner logic: Show "Too many requests" after 5 seconds, only once using a cookie valid for 8 hours.
+    setTimeout(() => {
+        // Check if the cookie is already set
+        if (document.cookie.split('; ').some(row => row.startsWith('donateBannerShown='))) return;
+        // Set cookie with 8 hour expiry (28800 seconds)
+        document.cookie = 'donateBannerShown=true; max-age=28800; path=/';
+        
+        const banner = document.createElement('div');
+        banner.innerHTML = `
+            <div style="position:fixed; bottom:20px; right:20px; background:rgba(20,20,20,0.95); border:1px solid var(--cyan); border-radius:8px; padding:20px; box-shadow:0 0 20px rgba(0,229,255,0.2); z-index:9999; max-width:350px; color:var(--text); font-family:'Orbitron', sans-serif;">
+                <button onclick="this.parentElement.remove()" style="position:absolute; top:10px; right:10px; background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:20px; padding:0; line-height:1;">&times;</button>
+                <h3 style="margin-top:0; color:var(--neon-pink); font-size:1.1em; display:flex; align-items:center; gap:8px;">
+                    &#x26A0; Too many requests
+                </h3>
+                <p style="font-size:0.9em; line-height:1.4; color:var(--text-muted); margin-bottom:15px;">
+                    This is what we get when we try to list detailed information of the vectors. We can solve this by paying for APIs that meet our demand.
+                </p>
+                <a href="https://github.com/sponsors/julioliraup" target="_blank" style="display:inline-block; background:rgba(0,229,255,0.1); border:1px solid var(--cyan); color:var(--cyan); padding:8px 15px; text-decoration:none; border-radius:4px; font-size:0.85em; transition:0.3s; text-transform:uppercase; letter-spacing:1px;" onmouseover="this.style.background='var(--cyan)'; this.style.color='#000';" onmouseout="this.style.background='rgba(0,229,255,0.1)'; this.style.color='var(--cyan)';">
+                    Contribute
+                </a>
+            </div>
+        `;
+        document.body.appendChild(banner.firstElementChild);
+    }, 5000);
