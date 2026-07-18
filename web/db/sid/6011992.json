@@ -49,45 +49,177 @@
     "phishdestroy": {
       "domain": "goshenmedia.co.ls",
       "domain_defanged": "goshenmedia[.]co[.]ls",
-      "case_id": "PD-20260716-761AF1",
-      "analyzed_at": "2026-07-16T13:14:41.922Z",
+      "case_id": "PD-20260718-761AF1",
+      "analyzed_at": "2026-07-18T00:30:22.306Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 10,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "suspicious",
+              "result": "spam"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f6b10-a758-734c-96ef-8a8c910bfda4.png",
           "url": "https://urlscan.io/result/019f6b10-a758-734c-96ef-8a8c910bfda4/",
-          "pending": true
+          "title": "Index of /"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "spam",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "5.254.34.166",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "5.254.34.166",
+          "hostname": "abo.zeecom.services",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS3223 Voxility LLP",
+          "asn": "AS3223"
+        },
         "dns": {
-          "NS": [
-            "ns1.zeecom.services.",
-            "ns3.zeecom.tech.",
-            "ns4.zeecom.tech.",
-            "ns2.zeecom.services."
-          ],
           "A": [
             "5.254.34.166"
           ],
           "MX": [
             "0 goshenmedia.co.ls."
+          ],
+          "NS": [
+            "ns3.zeecom.tech.",
+            "ns1.zeecom.services.",
+            "ns4.zeecom.tech.",
+            "ns2.zeecom.services."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ADVANCEDHOSTERS-AS, NL",
+          "abuse": "abuse@datawebglobalgroup.com",
+          "url": "mailto:abuse@datawebglobalgroup.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS3223"
+        }
       },
       "report_services": [
         {
@@ -210,12 +342,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (goshenmedia.co.ls/.well-known/axa.ch-26/axa.ch-ba/axa.ch/login.php)\"; flow:established,to_server; http.uri; content:\"/.well-known/axa.ch-26/axa.ch-ba/axa.ch/login.php\"; startswith; fast_pattern; http.host; content:\"goshenmedia.co.ls\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011992; classtype:social-engineering; sid:6011992; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:22:09.886443+00:00",
+  "updated_at": "2026-07-18T00:30:14.716022+00:00",
   "probe": {
     "dns": true,
     "whois": true,

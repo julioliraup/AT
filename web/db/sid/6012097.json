@@ -18,38 +18,93 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://allbestads.com/sign-in?op_token=5uDn296H92rPrYiwWwnVlDb0IiLK7ooomlZ2wta8I5hKXL0TAfeyrNQHVVxsNnqUI685CK8Tp5eMnnT80p8pyweso7d3FJA6DPV&uuid=921eea32-fe6a-4445-9a13-bde8d63cc8e7&hash=2&language=en",
+      "domain": "allbestads.com",
+      "url_count": 0,
+      "city_data": false,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "allbestads.com",
       "domain_defanged": "allbestads[.]com",
-      "case_id": "PD-20260716-3CDA34",
-      "analyzed_at": "2026-07-16T13:23:03.356Z",
+      "case_id": "PD-20260718-3CDA34",
+      "analyzed_at": "2026-07-18T00:39:01.654Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea61a-db92-7732-bd07-919dc5c543f1.png",
+          "url": "https://urlscan.io/result/019ea61a-db92-7732-bd07-919dc5c543f1/",
+          "title": "Booking.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Unstoppable Domains Inc.",
         "created": "2025-10-11T04:08:40Z",
         "expires": "2026-10-11T04:08:40Z",
-        "age_days": 278,
+        "age_days": 279,
         "nameservers": [
           "GABE.NS.CLOUDFLARE.COM",
           "GRACE.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.2.116",
+        "ipinfo": {
+          "ip": "104.21.2.116",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -172,12 +227,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (allbestads.com/sign-in?op_token=5uDn296H92rPrYiwWwnVlDb0IiLK7ooomlZ2wta8I5hKXL0TAfeyrNQHVVxsNnqUI685CK8Tp5eMnnT80p8pyweso7d3FJA6DPV&uuid=921eea32-fe6a-4445-9a13-bde8d63cc8e7&hash=2&language=en)\"; flow:established,to_server; http.uri; content:\"/sign-in?op_token=5uDn296H92rPrYiwWwnVlDb0IiLK7ooomlZ2wta8I5hKXL0TAfeyrNQHVVxsNnqUI685CK8Tp5eMnnT80p8pyweso7d3FJA6DPV&uuid=921eea32-fe6a-4445-9a13-bde8d63cc8e7&hash=2&language=en\"; startswith; fast_pattern; http.host; content:\"allbestads.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012097; classtype:social-engineering; sid:6012097; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:26:49.953872+00:00",
+  "updated_at": "2026-07-18T00:38:56.811667+00:00",
   "probe": {
     "dns": false,
     "whois": false,

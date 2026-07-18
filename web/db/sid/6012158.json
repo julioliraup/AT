@@ -72,14 +72,19 @@
     "phishdestroy": {
       "domain": "webmail--support.framer.website",
       "domain_defanged": "webmail--support[.]framer[.]website",
-      "case_id": "PD-20260716-31D37C",
-      "analyzed_at": "2026-07-16T13:28:49.745Z",
+      "case_id": "PD-20260718-31D37C",
+      "analyzed_at": "2026-07-18T00:44:09.232Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f6052-988a-76ba-891a-a4bebad35c9c.png",
+          "url": "https://urlscan.io/result/019f6052-988a-76ba-891a-a4bebad35c9c/",
+          "title": "Site Not Found | Framer"
         }
       },
       "detections": [],
@@ -87,18 +92,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "31.43.160.6",
-        "ipinfo": null,
+        "ip": "31.43.161.6",
+        "ipinfo": {
+          "ip": "31.43.161.6",
+          "hostname": "sites.framer.app",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "31.43.160.6",
-            "31.43.161.6"
+            "31.43.161.6",
+            "31.43.160.6"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -221,12 +241,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webmail--support.framer.website/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"webmail--support.framer.website\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6012158; classtype:social-engineering; sid:6012158; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:29:53.904020+00:00",
+  "updated_at": "2026-07-18T00:44:05.808928+00:00",
   "probe": {
     "dns": true,
     "whois": true,

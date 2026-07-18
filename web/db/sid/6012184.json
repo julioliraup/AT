@@ -77,41 +77,69 @@
     "phishdestroy": {
       "domain": "markin.github.io",
       "domain_defanged": "markin[.]github[.]io",
-      "case_id": "PD-20260716-576720",
-      "analyzed_at": "2026-07-16T13:31:13.928Z",
+      "case_id": "PD-20260718-576720",
+      "analyzed_at": "2026-07-18T00:46:27.773Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Google"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6054-0429-718a-a10b-f7899c912d87.png",
+          "url": "https://urlscan.io/result/019f6054-0429-718a-a10b-f7899c912d87/",
+          "title": "Sign in - Google Accounts"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Google",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.110.153",
-        "ipinfo": null,
+        "ip": "185.199.109.153",
+        "ipinfo": {
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
+          "A": [
+            "185.199.109.153",
+            "185.199.108.153",
+            "185.199.111.153",
+            "185.199.110.153"
+          ],
           "AAAA": [
             "2606:50c0:8001::153",
             "2606:50c0:8003::153",
             "2606:50c0:8002::153",
             "2606:50c0:8000::153"
-          ],
-          "A": [
-            "185.199.110.153",
-            "185.199.109.153",
-            "185.199.111.153",
-            "185.199.108.153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -234,12 +262,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (markin.github.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"markin.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012184; classtype:social-engineering; sid:6012184; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:31:10.885172+00:00",
+  "updated_at": "2026-07-18T00:46:24.319493+00:00",
   "probe": {
     "dns": true,
     "whois": true,

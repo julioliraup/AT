@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "facebookweb.github.io",
       "domain_defanged": "facebookweb[.]github[.]io",
-      "case_id": "PD-20260716-532374",
-      "analyzed_at": "2026-07-16T12:02:47.547Z",
+      "case_id": "PD-20260717-532374",
+      "analyzed_at": "2026-07-17T23:27:40.921Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f6ace-d1dc-70c9-aeb6-a4a778cf56d9/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -69,25 +65,40 @@
       },
       "infrastructure": {
         "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
-          "A": [
-            "185.199.108.153",
-            "185.199.110.153",
-            "185.199.111.153",
-            "185.199.109.153"
-          ],
           "AAAA": [
             "2606:50c0:8002::153",
+            "2606:50c0:8001::153",
             "2606:50c0:8000::153",
-            "2606:50c0:8003::153",
-            "2606:50c0:8001::153"
+            "2606:50c0:8003::153"
+          ],
+          "A": [
+            "185.199.108.153",
+            "185.199.109.153",
+            "185.199.111.153",
+            "185.199.110.153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -210,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (facebookweb.github.io/.com-application-help.center-/)\"; flow:established,to_server; http.uri; content:\"/.com-application-help.center-/\"; startswith; fast_pattern; http.host; content:\"facebookweb.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011123; classtype:social-engineering; sid:6011123; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T05:42:08.843693+00:00",
+  "updated_at": "2026-07-17T23:27:37.282742+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -18,31 +18,86 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://store-steampowered.online/gift_card",
+      "domain": "store-steampowered.online",
+      "url_count": 0,
+      "city_data": false,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "store-steampowered.online",
       "domain_defanged": "store-steampowered[.]online",
-      "case_id": "PD-20260716-6F52D8",
-      "analyzed_at": "2026-07-16T13:22:24.112Z",
+      "case_id": "PD-20260718-6F52D8",
+      "analyzed_at": "2026-07-18T00:38:19.470Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea4b1-4b3c-758a-9793-954accc609de.png",
+          "url": "https://urlscan.io/result/019ea4b1-4b3c-758a-9793-954accc609de/",
+          "title": "Welcome summer! Get a $50 gift card!"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "62.60.226.105",
+        "ipinfo": {
+          "ip": "62.60.226.105",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS214351 FEMO IT SOLUTIONS LIMITED",
+          "asn": "AS214351"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "NTSERVICE-AS",
+          "abuse": "abuse@ntup.net",
+          "url": "mailto:abuse@ntup.net",
+          "logo": "https://i.ibb.co/7dwYD8jV/pr-NTSERVICE-AS.png",
+          "method": "email",
+          "asn": "AS214351"
+        }
       },
       "report_services": [
         {
@@ -165,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (store-steampowered.online/gift_card)\"; flow:established,to_server; http.uri; content:\"/gift_card\"; startswith; fast_pattern; http.host; content:\"store-steampowered.online\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012085; classtype:social-engineering; sid:6012085; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:26:15.982703+00:00",
+  "updated_at": "2026-07-18T00:38:14.966745+00:00",
   "probe": {
     "dns": false,
     "whois": false,

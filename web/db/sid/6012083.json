@@ -73,35 +73,63 @@
     "phishdestroy": {
       "domain": "terzor-io.gitlab.io",
       "domain_defanged": "terzor-io[.]gitlab[.]io",
-      "case_id": "PD-20260716-37193E",
-      "analyzed_at": "2026-07-16T13:22:03.107Z",
+      "case_id": "PD-20260718-37193E",
+      "analyzed_at": "2026-07-18T00:38:11.627Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f65b4-9730-7407-8df5-0c87306b6575.png",
+          "url": "https://urlscan.io/result/019f65b4-9730-7407-8df5-0c87306b6575/",
+          "title": "Trézor.io/Start® | Starting Up Your Device | Trézor®p"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "35.185.44.232",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "35.185.44.232",
+          "hostname": "232.44.185.35.bc.googleusercontent.com",
+          "city": "North Charleston",
+          "region": "South Carolina",
+          "country": "US",
+          "org": "AS396982 Google LLC",
+          "asn": "AS396982"
+        },
         "dns": {
-          "A": [
-            "35.185.44.232"
-          ],
           "AAAA": [
             "2600:1901:0:7b8a::"
+          ],
+          "A": [
+            "35.185.44.232"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -224,12 +252,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (terzor-io.gitlab.io/begin)\"; flow:established,to_server; http.uri; content:\"/begin\"; startswith; fast_pattern; http.host; content:\"terzor-io.gitlab.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012083; classtype:social-engineering; sid:6012083; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:26:12.361709+00:00",
+  "updated_at": "2026-07-18T00:38:08.422166+00:00",
   "probe": {
     "dns": true,
     "whois": true,

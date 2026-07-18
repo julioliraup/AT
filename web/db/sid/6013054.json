@@ -49,31 +49,55 @@
     "phishdestroy": {
       "domain": "come.ac",
       "domain_defanged": "come[.]ac",
-      "case_id": "PD-20260716-38A17B",
-      "analyzed_at": "2026-07-16T18:23:16.913Z",
+      "case_id": "PD-20260718-38A17B",
+      "analyzed_at": "2026-07-18T01:22:23.459Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f7155-5ba7-74f4-8e42-236680fe4ea9.png",
+          "url": "https://urlscan.io/result/019f7155-5ba7-74f4-8e42-236680fe4ea9/",
+          "title": "404 - Page Not Found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.20.238",
-        "ipinfo": null,
+        "ip": "172.67.194.221",
+        "ipinfo": {
+          "ip": "172.67.194.221",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "104.21.20.238",
-            "172.67.194.221"
-          ],
-          "AAAA": [
-            "2606:4700:3031::ac43:c2dd",
-            "2606:4700:3031::6815:14ee"
+            "172.67.194.221",
+            "104.21.20.238"
           ],
           "MX": [
             "1 aspmx.l.google.com.",
@@ -81,6 +105,10 @@
             "10 alt4.aspmx.l.google.com.",
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com."
+          ],
+          "AAAA": [
+            "2606:4700:3031::6815:14ee",
+            "2606:4700:3031::ac43:c2dd"
           ],
           "NS": [
             "grant.ns.cloudflare.com.",
@@ -90,7 +118,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -213,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (come.ac/ZE2Ts)\"; flow:established,to_server; http.uri; content:\"/ZE2Ts\"; startswith; fast_pattern; http.host; content:\"come.ac\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013054; classtype:social-engineering; sid:6013054; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T08:42:03.563895+00:00",
+  "updated_at": "2026-07-18T01:22:17.532574+00:00",
   "probe": {
     "dns": true,
     "whois": true,

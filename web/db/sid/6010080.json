@@ -73,18 +73,14 @@
     "phishdestroy": {
       "domain": "location-lost.info",
       "domain_defanged": "location-lost[.]info",
-      "case_id": "PD-20260716-40362E",
-      "analyzed_at": "2026-07-16T10:55:21.266Z",
+      "case_id": "PD-20260717-40362E",
+      "analyzed_at": "2026-07-17T22:31:04.343Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f6a91-1482-74dc-94c1-7377e9565327/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -93,12 +89,15 @@
       },
       "infrastructure": {
         "ip": "172.67.165.70",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.165.70",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3035::6815:39b4",
-            "2606:4700:3035::ac43:a546"
-          ],
           "A": [
             "172.67.165.70",
             "104.21.57.180"
@@ -106,12 +105,23 @@
           "NS": [
             "peaches.ns.cloudflare.com.",
             "randall.ns.cloudflare.com."
+          ],
+          "AAAA": [
+            "2606:4700:3035::ac43:a546",
+            "2606:4700:3035::6815:39b4"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (location-lost.info/fhn)\"; flow:established,to_server; http.uri; content:\"/fhn\"; startswith; fast_pattern; http.host; content:\"location-lost.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010080; classtype:social-engineering; sid:6010080; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T04:54:56.834944+00:00",
+  "updated_at": "2026-07-17T22:30:58.387285+00:00",
   "probe": {
     "dns": true,
     "whois": true,

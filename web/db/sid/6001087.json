@@ -50,23 +50,14 @@
     "phishdestroy": {
       "domain": "janesantos.com.br",
       "domain_defanged": "janesantos[.]com[.]br",
-      "case_id": "PD-20260716-768B02",
-      "analyzed_at": "2026-07-16T01:13:22.575Z",
+      "case_id": "PD-20260717-768B02",
+      "analyzed_at": "2026-07-17T13:49:11.359Z",
       "intel": {
         "virustotal": {
-          "malicious": 0,
-          "suspicious": 0,
-          "total": 91,
-          "detections": [],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019f61a2-8846-7727-a097-74393de00bcf.png",
-          "url": "https://urlscan.io/result/019f61a2-8846-7727-a097-74393de00bcf/",
-          "title": "janesantos.com.br | 502: Bad gateway"
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -75,22 +66,15 @@
       },
       "infrastructure": {
         "ip": "172.67.193.201",
-        "ipinfo": {
-          "ip": "172.67.193.201",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "2606:4700:3030::6815:5a22",
+            "2606:4700:3035::ac43:c1c9"
+          ],
           "A": [
             "172.67.193.201",
             "104.21.90.34"
-          ],
-          "AAAA": [
-            "2606:4700:3035::ac43:c1c9",
-            "2606:4700:3030::6815:5a22"
           ],
           "NS": [
             "arely.ns.cloudflare.com.",
@@ -100,14 +84,7 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -230,12 +207,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .janesantos .com .br/jb/css/index/app/index .html?&userid=937d9f67d2bf35e38b4e41bf412dbe50&ue=8ce9a235729de086297f1a48eedf142d)\"; flow:established,to_server; http.uri; content:\"/jb/css/index/app/index.html?&userid=937d9f67d2bf35e38b4e41bf412dbe50&ue=8ce9a235729de086297f1a48eedf142d\"; startswith; fast_pattern; http.host;  content:\"www.janesantos.com.br\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001087; classtype:social-engineering; sid:6001087; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-16T21:53:37.498523+00:00",
+  "updated_at": "2026-07-17T13:49:08.678791+00:00",
   "probe": {
     "dns": false,
     "whois": false,

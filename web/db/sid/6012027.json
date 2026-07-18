@@ -49,29 +49,65 @@
     "phishdestroy": {
       "domain": "s3.eu-north-1.amazonaws.com",
       "domain_defanged": "s3[.]eu-north-1[.]amazonaws[.]com",
-      "case_id": "PD-20260716-2C5CA0",
-      "analyzed_at": "2026-07-16T13:17:36.879Z",
+      "case_id": "PD-20260718-2C5CA0",
+      "analyzed_at": "2026-07-18T00:33:30.232Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Certego",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f6b13-5349-73fa-a657-711a9d237242/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f7294-cf58-736b-9792-fc2cdad43889.png",
+          "url": "https://urlscan.io/result/019f7294-cf58-736b-9792-fc2cdad43889/",
+          "title": "Coin Strike"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Certego",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "52.95.170.37",
+        "ip": "3.5.218.131",
         "ipinfo": {
-          "ip": "52.95.170.37",
-          "hostname": "s3.eu-north-1.amazonaws.com",
+          "ip": "3.5.218.131",
           "city": "Stockholm",
           "region": "Stockholm",
           "country": "SE",
@@ -80,8 +116,8 @@
         },
         "dns": {
           "A": [
-            "52.95.170.37",
-            "3.5.216.235"
+            "3.5.218.131",
+            "52.95.170.67"
           ],
           "NS": [
             "ns-1503.awsdns-59.org.",
@@ -223,12 +259,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s3.eu-north-1.amazonaws.com/us-east-3.console.aws.amazon.com007/Dhll.html)\"; flow:established,to_server; http.uri; content:\"/us-east-3.console.aws.amazon.com007/Dhll.html\"; startswith; fast_pattern; http.host; content:\"s3.eu-north-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012027; classtype:social-engineering; sid:6012027; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:23:20.599484+00:00",
+  "updated_at": "2026-07-18T00:33:25.436612+00:00",
   "probe": {
     "dns": true,
     "whois": false,

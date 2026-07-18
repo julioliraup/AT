@@ -73,37 +73,64 @@
     "phishdestroy": {
       "domain": "galabet.galay.cam",
       "domain_defanged": "galabet[.]galay[.]cam",
-      "case_id": "PD-20260716-1F8AED",
-      "analyzed_at": "2026-07-16T13:31:02.493Z",
+      "case_id": "PD-20260718-1F8AED",
+      "analyzed_at": "2026-07-18T00:46:20.045Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6053-c941-714f-ab4e-b2ebbdd650ad.png",
+          "url": "https://urlscan.io/result/019f6053-c941-714f-ab4e-b2ebbdd650ad/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.75.210",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.75.210",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.21.75.210",
             "172.67.182.1"
           ],
           "AAAA": [
-            "2606:4700:3030::ac43:b601",
-            "2606:4700:3036::6815:4bd2"
+            "2606:4700:3036::6815:4bd2",
+            "2606:4700:3030::ac43:b601"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -226,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (galabet.galay.cam/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"galabet.galay.cam\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012182; classtype:social-engineering; sid:6012182; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:31:05.670342+00:00",
+  "updated_at": "2026-07-18T00:46:16.067947+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -55,18 +55,14 @@
     "phishdestroy": {
       "domain": "apple-map.live",
       "domain_defanged": "apple-map[.]live",
-      "case_id": "PD-20260716-6A789C",
-      "analyzed_at": "2026-07-16T11:53:01.848Z",
+      "case_id": "PD-20260717-6A789C",
+      "analyzed_at": "2026-07-17T23:18:08.673Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f6ac5-e261-73b3-b42a-208486b5377d/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -75,25 +71,39 @@
       },
       "infrastructure": {
         "ip": "104.21.13.18",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.13.18",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3033::6815:d12",
-            "2606:4700:3033::ac43:a7e7"
+          "A": [
+            "104.21.13.18",
+            "172.67.167.231"
           ],
           "NS": [
             "ivan.ns.cloudflare.com.",
             "nicole.ns.cloudflare.com."
           ],
-          "A": [
-            "104.21.13.18",
-            "172.67.167.231"
+          "AAAA": [
+            "2606:4700:3031::ac43:a7e7",
+            "2606:4700:3037::6815:d12"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -221,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (apple-map.live/igk)\"; flow:established,to_server; http.uri; content:\"/igk\"; startswith; fast_pattern; http.host; content:\"apple-map.live\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011141; classtype:social-engineering; sid:6011141; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T05:42:46.024708+00:00",
+  "updated_at": "2026-07-17T23:28:30.278268+00:00",
   "probe": {
     "dns": true,
     "whois": true,

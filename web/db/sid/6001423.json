@@ -50,26 +50,43 @@
     "phishdestroy": {
       "domain": "uspsmailjourney.com",
       "domain_defanged": "uspsmailjourney[.]com",
-      "case_id": "PD-20260716-247EA7",
-      "analyzed_at": "2026-07-16T01:38:55.887Z",
+      "case_id": "PD-20260717-247EA7",
+      "analyzed_at": "2026-07-17T02:21:38.733Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f6893-a841-7759-a064-53827fddc7a9.png",
           "url": "https://urlscan.io/result/019f6893-a841-7759-a064-53827fddc7a9/",
-          "pending": true
+          "title": "uspsmailjourney.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Amazon Registrar, Inc.",
         "created": "2019-04-30T21:22:36Z",
         "expires": "2027-04-30T21:22:36Z",
-        "age_days": 2633,
+        "age_days": 2634,
         "nameservers": [
           "NS-1097.AWSDNS-09.ORG",
           "NS-161.AWSDNS-20.COM",
@@ -243,7 +260,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .uspsmailjourney .com/home)\"; flow:established,to_server; http.uri; content:\"/home\"; startswith; fast_pattern; http.host;  content:\"www.uspsmailjourney.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001423; classtype:social-engineering; sid:6001423; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-16T22:04:46.658178+00:00",
+  "updated_at": "2026-07-17T14:07:27.510871+00:00",
   "probe": {
     "dns": true,
     "whois": false,

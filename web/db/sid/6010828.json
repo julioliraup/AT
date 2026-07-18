@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "postch-swisspost.com",
       "domain_defanged": "postch-swisspost[.]com",
-      "case_id": "PD-20260716-1DBE3F",
-      "analyzed_at": "2026-07-16T11:38:24.059Z",
+      "case_id": "PD-20260717-1DBE3F",
+      "analyzed_at": "2026-07-17T23:06:58.763Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f6ab8-7c1c-777a-87f2-65baeffb3be4/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,7 +64,7 @@
         "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
         "created": "2026-06-03T22:35:09Z",
         "expires": "2027-06-03T22:35:09Z",
-        "age_days": 42,
+        "age_days": 44,
         "nameservers": [
           "INA1.REGISTRAR.EU",
           "INA2.REGISTRAR.EU",
@@ -77,15 +73,22 @@
       },
       "infrastructure": {
         "ip": "185.53.179.136",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.53.179.136",
+          "city": "Toronto",
+          "region": "Ontario",
+          "country": "CA",
+          "org": "AS206834 Team Internet AG",
+          "asn": "AS206834"
+        },
         "dns": {
-          "A": [
-            "185.53.179.136"
-          ],
           "NS": [
             "ina3.registrar.eu.",
-            "ina2.registrar.eu.",
-            "ina1.registrar.eu."
+            "ina1.registrar.eu.",
+            "ina2.registrar.eu."
+          ],
+          "A": [
+            "185.53.179.136"
           ]
         }
       },
@@ -98,7 +101,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "TEAMINTERNET-CA-AS, DE",
+          "abuse": "abuse@teaminternet.com",
+          "url": "mailto:abuse@teaminternet.com",
+          "logo": "https://i.ibb.co/0yZnxXcx/pr-TEAMINTERNET-AS-DE.png",
+          "method": "email",
+          "asn": "AS206834"
+        }
       },
       "report_services": [
         {
@@ -226,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (postch-swisspost.com/pages/ban.php)\"; flow:established,to_server; http.uri; content:\"/pages/ban.php\"; startswith; fast_pattern; http.host; content:\"postch-swisspost.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010828; classtype:social-engineering; sid:6010828; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T05:26:40.755649+00:00",
+  "updated_at": "2026-07-17T23:10:12.881441+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "9945670.com",
       "domain_defanged": "9945670[.]com",
-      "case_id": "PD-20260716-4C0F50",
-      "analyzed_at": "2026-07-16T13:20:22.109Z",
+      "case_id": "PD-20260718-4C0F50",
+      "analyzed_at": "2026-07-18T00:36:16.737Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec782-c4a8-74ae-8d0a-8e28bc76f784.png",
+          "url": "https://urlscan.io/result/019ec782-c4a8-74ae-8d0a-8e28bc76f784/",
+          "title": "Sharepoint Viewer - Verify to View"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Wild West Domains, LLC",
         "created": "2026-02-05T19:17:35Z",
         "expires": "2027-02-05T19:17:35Z",
-        "age_days": 160,
+        "age_days": 162,
         "nameservers": [
           "NS1.BDM.MICROSOFTONLINE.COM",
           "NS2.BDM.MICROSOFTONLINE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "135.119.92.10",
+        "ipinfo": {
+          "ip": "135.119.92.10",
+          "city": "Des Moines",
+          "region": "Iowa",
+          "country": "US",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -206,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (9945670.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"9945670.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012061; classtype:social-engineering; sid:6012061; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:24:58.750541+00:00",
+  "updated_at": "2026-07-18T00:36:11.833297+00:00",
   "probe": {
     "dns": false,
     "whois": false,

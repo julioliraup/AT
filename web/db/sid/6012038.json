@@ -49,41 +49,64 @@
     "phishdestroy": {
       "domain": "mrtm-ywoc-dm31.rdials-compasslabservices-com-s-account.workers.dev",
       "domain_defanged": "mrtm-ywoc-dm31[.]rdials-compasslabservices-com-s-account[.]workers[.]dev",
-      "case_id": "PD-20260716-67DCFE",
-      "analyzed_at": "2026-07-16T13:18:33.869Z",
+      "case_id": "PD-20260718-67DCFE",
+      "analyzed_at": "2026-07-18T00:34:10.250Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6b14-3166-7119-932b-4a3806e0f8be.png",
           "url": "https://urlscan.io/result/019f6b14-3166-7119-932b-4a3806e0f8be/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.84.186",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.84.186",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3034::6815:54ba",
-            "2606:4700:3032::ac43:c3b8"
-          ],
           "A": [
             "104.21.84.186",
             "172.67.195.184"
+          ],
+          "AAAA": [
+            "2606:4700:3032::ac43:c3b8",
+            "2606:4700:3034::6815:54ba"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,12 +229,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mrtm-ywoc-dm31.rdials-compasslabservices-com-s-account.workers.dev/api/session/init)\"; flow:established,to_server; http.uri; content:\"/api/session/init\"; startswith; fast_pattern; http.host; content:\"mrtm-ywoc-dm31.rdials-compasslabservices-com-s-account.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012038; classtype:social-engineering; sid:6012038; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T07:23:48.239151+00:00",
+  "updated_at": "2026-07-18T00:34:02.344203+00:00",
   "probe": {
     "dns": true,
     "whois": false,
