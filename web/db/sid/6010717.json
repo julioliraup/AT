@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "amangirwal.github.io",
       "domain_defanged": "amangirwal[.]github[.]io",
-      "case_id": "PD-20260717-1DC6E8",
-      "analyzed_at": "2026-07-17T23:04:32.328Z",
+      "case_id": "PD-20260720-1DC6E8",
+      "analyzed_at": "2026-07-20T09:24:30.973Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7ed7-5a43-73ee-b3d9-1516a5d57f63/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,26 +74,41 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ip": "185.199.110.153",
+        "ipinfo": {
+          "ip": "185.199.110.153",
+          "hostname": "cdn-185-199-110-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
-            "185.199.108.153",
-            "185.199.109.153",
+            "185.199.110.153",
             "185.199.111.153",
-            "185.199.110.153"
+            "185.199.109.153",
+            "185.199.108.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153",
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -216,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amangirwal.github.io/netflix_clone/)\"; flow:established,to_server; http.uri; content:\"/netflix_clone/\"; startswith; fast_pattern; http.host; content:\"amangirwal.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010717; classtype:social-engineering; sid:6010717; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T23:04:29.702358+00:00",
+  "updated_at": "2026-07-20T09:24:28.013573+00:00",
   "probe": {
     "dns": true,
     "whois": true,

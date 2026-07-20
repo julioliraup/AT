@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "ffaffx.021110f6-5146-4ad7-abf0-b91adf8d5ff3.click",
       "domain_defanged": "ffaffx[.]021110f6-5146-4ad7-abf0-b91adf8d5ff3[.]click",
-      "case_id": "PD-20260717-563A7B",
-      "analyzed_at": "2026-07-17T21:59:27.288Z",
+      "case_id": "PD-20260720-563A7B",
+      "analyzed_at": "2026-07-20T08:15:44.307Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e98-63ac-71bd-b032-c422fb003017/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,22 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.68.203",
-        "ipinfo": null,
+        "ip": "172.67.198.115",
+        "ipinfo": {
+          "ip": "172.67.198.115",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.21.68.203",
-            "172.67.198.115"
-          ],
           "AAAA": [
-            "2606:4700:3030::ac43:c673",
-            "2606:4700:3033::6815:44cb"
+            "2606:4700:3033::6815:44cb",
+            "2606:4700:3030::ac43:c673"
+          ],
+          "A": [
+            "172.67.198.115",
+            "104.21.68.203"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ffaffx.021110f6-5146-4ad7-abf0-b91adf8d5ff3.click/ab753813-65b8-4970-99d4-b2b2abc212e6.php)\"; flow:established,to_server; http.uri; content:\"/ab753813-65b8-4970-99d4-b2b2abc212e6.php\"; startswith; fast_pattern; http.host; content:\"ffaffx.021110f6-5146-4ad7-abf0-b91adf8d5ff3.click\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6009550; classtype:social-engineering; sid:6009550; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:59:25.002903+00:00",
+  "updated_at": "2026-07-20T08:15:41.997540+00:00",
   "probe": {
     "dns": true,
     "whois": true,

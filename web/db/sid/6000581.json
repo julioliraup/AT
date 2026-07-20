@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "parasuramanphillips-projec26985.pages.dev",
       "domain_defanged": "parasuramanphillips-projec26985[.]pages[.]dev",
-      "case_id": "PD-20260717-759F7B",
-      "analyzed_at": "2026-07-17T13:21:02.334Z",
+      "case_id": "PD-20260719-759F7B",
+      "analyzed_at": "2026-07-19T01:46:31.165Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f703c-d274-7175-9633-5f76cb1119b0.png",
           "url": "https://urlscan.io/result/019f703c-d274-7175-9633-5f76cb1119b0/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.131",
+        "ip": "172.66.44.125",
         "ipinfo": {
-          "ip": "172.66.47.131",
+          "ip": "172.66.44.125",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -83,13 +92,13 @@
             "2606:4700:310c::ac42:2c7d",
             "2606:4700:310c::ac42:2f83"
           ],
-          "A": [
-            "172.66.47.131",
-            "172.66.44.125"
-          ],
           "NS": [
             "jill.ns.cloudflare.com.",
             "peter.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.44.125",
+            "172.66.47.131"
           ]
         }
       },
@@ -225,11 +234,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (parasuramanphillips-projec26985 .pages .dev/help/contact/259735718919223/)\"; flow:established,to_server; http.uri; content:\"/help/contact/259735718919223/\"; startswith; fast_pattern; http.host;  content:\"parasuramanphillips-projec26985.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000581; classtype:social-engineering; sid:6000581; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:21:00.162675+00:00",
+  "updated_at": "2026-07-19T23:32:16.569217+00:00",
   "probe": {
     "dns": true,
     "whois": false,

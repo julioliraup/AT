@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "sp1ct6-glarnor-biz-frapvik-vrolqar.pages.dev",
       "domain_defanged": "sp1ct6-glarnor-biz-frapvik-vrolqar[.]pages[.]dev",
-      "case_id": "PD-20260717-3A777D",
-      "analyzed_at": "2026-07-17T23:04:37.350Z",
+      "case_id": "PD-20260720-3A777D",
+      "analyzed_at": "2026-07-20T09:24:36.671Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7ed7-7087-72bc-8664-f8aff5ff0069/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,12 +75,15 @@
       },
       "infrastructure": {
         "ip": "172.66.47.18",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.18",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2cee",
-            "2606:4700:310c::ac42:2f12"
-          ],
           "A": [
             "172.66.47.18",
             "172.66.44.238"
@@ -84,12 +91,23 @@
           "NS": [
             "kallie.ns.cloudflare.com.",
             "max.ns.cloudflare.com."
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2cee",
+            "2606:4700:310c::ac42:2f12"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +234,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp1ct6-glarnor-biz-frapvik-vrolqar.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp1ct6-glarnor-biz-frapvik-vrolqar.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010719; classtype:social-engineering; sid:6010719; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T23:04:35.300135+00:00",
+  "updated_at": "2026-07-20T09:24:34.260675+00:00",
   "probe": {
     "dns": true,
     "whois": false,

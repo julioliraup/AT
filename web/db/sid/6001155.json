@@ -74,24 +74,37 @@
     "phishdestroy": {
       "domain": "my--bitmart-oauth-azure.webflow.io",
       "domain_defanged": "my--bitmart-oauth-azure[.]webflow[.]io",
-      "case_id": "PD-20260717-1313C3",
-      "analyzed_at": "2026-07-17T13:52:30.691Z",
+      "case_id": "PD-20260719-1313C3",
+      "analyzed_at": "2026-07-19T02:35:43.084Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bitmart"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f61aa-b325-765c-870e-336b029ef9fc.png",
+          "url": "https://urlscan.io/result/019f61aa-b325-765c-870e-336b029ef9fc/",
+          "title": "Log in to your BitMart® account | BitMart® Exchange | US"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bitmart",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.151.8",
+        "ip": "104.18.36.248",
         "ipinfo": {
-          "ip": "172.64.151.8",
+          "ip": "104.18.36.248",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -100,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "172.64.151.8",
-            "104.18.36.248"
+            "104.18.36.248",
+            "172.64.151.8"
           ],
           "AAAA": [
             "2a06:98c1:3105::6812:24f8",
@@ -241,11 +254,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (my--bitmart-oauth-azure .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"my--bitmart-oauth-azure.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001155; classtype:social-engineering; sid:6001155; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:52:27.051978+00:00",
+  "updated_at": "2026-07-19T23:53:05.007589+00:00",
   "probe": {
     "dns": true,
     "whois": true,

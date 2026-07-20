@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "97ee8.catex.at",
       "domain_defanged": "97ee8[.]catex[.]at",
-      "case_id": "PD-20260717-673F40",
-      "analyzed_at": "2026-07-17T21:56:08.135Z",
+      "case_id": "PD-20260720-673F40",
+      "analyzed_at": "2026-07-20T08:11:52.910Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e94-da95-750a-8ec1-a03ce169629e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,7 +69,14 @@
       },
       "infrastructure": {
         "ip": "31.59.121.53",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "31.59.121.53",
+          "city": "Paris",
+          "region": "Île-de-France",
+          "country": "FR",
+          "org": "AS56971 AS56971 Cloud",
+          "asn": "AS56971"
+        },
         "dns": {
           "A": [
             "31.59.121.53"
@@ -74,7 +85,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CloudBackbone",
+          "abuse": "abuse@cloudbackbone.net",
+          "url": "mailto:abuse@cloudbackbone.net",
+          "logo": "https://i.ibb.co/rKHxvDbX/pr-Cloud-Backbone.png",
+          "method": "email",
+          "asn": "AS56971"
+        }
       },
       "report_services": [
         {
@@ -201,10 +219,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (97ee8.catex.at/cnbcard/web_sms.php)\"; flow:established,to_server; http.uri; content:\"/cnbcard/web_sms.php\"; startswith; fast_pattern; http.host; content:\"97ee8.catex.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009486; classtype:social-engineering; sid:6009486; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:56:04.280004+00:00",
+  "updated_at": "2026-07-20T08:11:48.832988+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

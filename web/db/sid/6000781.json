@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "gemiximlogen.gitbook.io",
       "domain_defanged": "gemiximlogen[.]gitbook[.]io",
-      "case_id": "PD-20260717-3C7EA3",
-      "analyzed_at": "2026-07-17T13:31:18.639Z",
+      "case_id": "PD-20260719-3C7EA3",
+      "analyzed_at": "2026-07-19T01:59:07.757Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Gemini"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7046-39e3-735c-912e-397f3dad4d4e.png",
           "url": "https://urlscan.io/result/019f7046-39e3-735c-912e-397f3dad4d4e/",
-          "pending": true
+          "title": "G𝓮miñi : Login | Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Gemini",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,13 +112,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2a06:98c1:310d::6812:282f",
+            "2606:4700:4401::ac40:93d1"
+          ],
           "A": [
             "104.18.40.47",
             "172.64.147.209"
-          ],
-          "AAAA": [
-            "2606:4700:4401::ac40:93d1",
-            "2a06:98c1:310d::6812:282f"
           ]
         }
       },
@@ -245,11 +254,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gemiximlogen .gitbook .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"gemiximlogen.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000781; classtype:social-engineering; sid:6000781; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:31:13.093169+00:00",
+  "updated_at": "2026-07-19T23:38:56.614851+00:00",
   "probe": {
     "dns": true,
     "whois": true,

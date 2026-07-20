@@ -74,14 +74,19 @@
     "phishdestroy": {
       "domain": "klamotte-vivaldihaus.de",
       "domain_defanged": "klamotte-vivaldihaus[.]de",
-      "case_id": "PD-20260717-645DAD",
-      "analyzed_at": "2026-07-17T13:51:13.905Z",
+      "case_id": "PD-20260719-645DAD",
+      "analyzed_at": "2026-07-19T02:34:02.709Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f61a8-dcc9-7567-b825-d9cc150c446a.png",
+          "url": "https://urlscan.io/result/019f61a8-dcc9-7567-b825-d9cc150c446a/",
+          "title": "Home - Vivaldi-Haus"
         }
       },
       "detections": [],
@@ -90,29 +95,44 @@
       },
       "infrastructure": {
         "ip": "217.160.0.22",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "217.160.0.22",
+          "hostname": "217-160-0-22.elastic-ssl.ui-r.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS8560 IONOS SE",
+          "asn": "AS8560"
+        },
         "dns": {
           "A": [
             "217.160.0.22"
-          ],
-          "AAAA": [
-            "2001:8d8:100f:f000::2cb"
           ],
           "MX": [
             "10 mx01.ionos.de.",
             "10 mx00.ionos.de."
           ],
+          "AAAA": [
+            "2001:8d8:100f:f000::2cb"
+          ],
           "NS": [
-            "ns1067.ui-dns.com.",
-            "ns1067.ui-dns.biz.",
             "ns1067.ui-dns.de.",
-            "ns1067.ui-dns.org."
+            "ns1067.ui-dns.org.",
+            "ns1067.ui-dns.biz.",
+            "ns1067.ui-dns.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CRONON-AS",
+          "abuse": "abuse@vautron.de",
+          "url": "mailto:abuse@vautron.de",
+          "logo": "https://i.ibb.co/F4bxDB72/pr-CRONON-AS.png",
+          "method": "email",
+          "asn": "AS8560"
+        }
       },
       "report_services": [
         {
@@ -235,11 +255,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .klamotte-vivaldihaus .de/jox)\"; flow:established,to_server; http.uri; content:\"/jox\"; startswith; fast_pattern; http.host;  content:\"www.klamotte-vivaldihaus.de\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001131; classtype:social-engineering; sid:6001131; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:51:10.709420+00:00",
+  "updated_at": "2026-07-19T23:52:18.178850+00:00",
   "probe": {
     "dns": true,
     "whois": true,

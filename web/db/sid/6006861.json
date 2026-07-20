@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "ie.nhyfhbc.net",
       "domain_defanged": "ie[.]nhyfhbc[.]net",
-      "case_id": "PD-20260717-5F3412",
-      "analyzed_at": "2026-07-17T19:30:15.682Z",
+      "case_id": "PD-20260720-5F3412",
+      "analyzed_at": "2026-07-20T05:40:04.722Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5f3a-78f7-77bd-95b3-2af3955ed1b9.png",
+          "url": "https://urlscan.io/result/019e5f3a-78f7-77bd-95b3-2af3955ed1b9/",
+          "title": "Adobe-PDF Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "87.106.100.91",
+        "ipinfo": {
+          "ip": "87.106.100.91",
+          "hostname": "ip87-106-100-91.pbiaas.com",
+          "city": "London",
+          "region": "England",
+          "country": "GB",
+          "org": "AS8560 IONOS SE",
+          "asn": "AS8560"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CRONON-AS",
+          "abuse": "abuse@vautron.de",
+          "url": "mailto:abuse@vautron.de",
+          "logo": "https://i.ibb.co/F4bxDB72/pr-CRONON-AS.png",
+          "method": "email",
+          "asn": "AS8560"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ie.nhyfhbc.net/adodmsisk/index.html)\"; flow:established,to_server; http.uri; content:\"/adodmsisk/index.html\"; startswith; fast_pattern; http.host; content:\"ie.nhyfhbc.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006861; classtype:social-engineering; sid:6006861; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:30:13.386327+00:00",
+  "updated_at": "2026-07-20T05:40:01.106910+00:00",
   "probe": {
     "dns": false,
     "whois": false,

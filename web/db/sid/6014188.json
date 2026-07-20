@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "ghotkshop.com",
       "domain_defanged": "ghotkshop[.]com",
-      "case_id": "PD-20260717-3B47D0",
-      "analyzed_at": "2026-07-17T22:03:45.951Z",
+      "case_id": "PD-20260720-3B47D0",
+      "analyzed_at": "2026-07-20T08:20:56.971Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e9d-27d8-7635-896b-8a5b2c19f618/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,23 +92,30 @@
         "registrar": "Web Commerce Communications Limited dba WebNic.cc",
         "created": "2026-03-27T07:49:17Z",
         "expires": "2027-03-27T07:49:17Z",
-        "age_days": 112,
+        "age_days": 115,
         "nameservers": [
           "AMANDA.NS.CLOUDFLARE.COM",
           "MICAH.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.180.92",
-        "ipinfo": null,
+        "ip": "104.21.18.41",
+        "ipinfo": {
+          "ip": "104.21.18.41",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.67.180.92",
-            "104.21.18.41"
-          ],
           "AAAA": [
-            "2606:4700:3036::ac43:b45c",
-            "2606:4700:3031::6815:1229"
+            "2606:4700:3031::6815:1229",
+            "2606:4700:3036::ac43:b45c"
+          ],
+          "A": [
+            "104.21.18.41",
+            "172.67.180.92"
           ],
           "NS": [
             "amanda.ns.cloudflare.com.",
@@ -121,7 +132,14 @@
           "method": "form",
           "iana_ids": "460"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -249,7 +267,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ghotkshop.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ghotkshop.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6014188; classtype:social-engineering; sid:6014188; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-18T02:13:17.874841+00:00",
+  "updated_at": "2026-07-20T12:41:05.770078+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -50,29 +50,50 @@
     "phishdestroy": {
       "domain": "netflixmoi.com",
       "domain_defanged": "netflixmoi[.]com",
-      "case_id": "PD-20260717-2F7A25",
-      "analyzed_at": "2026-07-17T13:12:39.188Z",
+      "case_id": "PD-20260719-2F7A25",
+      "analyzed_at": "2026-07-19T01:36:14.173Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1a29-7ff2-7559-be58-85b57c80a72c.png",
+          "url": "https://urlscan.io/result/019e1a29-7ff2-7559-be58-85b57c80a72c/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Gname.com Pte. Ltd.",
         "created": "2026-05-08T03:45:54Z",
         "expires": "2027-05-08T03:45:54Z",
-        "age_days": 70,
+        "age_days": 71,
         "nameservers": [
           "A.SHARE-DNS.COM",
           "B.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.132.54",
+        "ipinfo": {
+          "ip": "172.67.132.54",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -84,7 +105,14 @@
           "method": "form",
           "iana_ids": "1923"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -207,11 +235,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .netflixmoi .com/m/)\"; flow:established,to_server; http.uri; content:\"/m/\"; startswith; fast_pattern; http.host;  content:\"www.netflixmoi.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000394; classtype:social-engineering; sid:6000394; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:12:36.287160+00:00",
+  "updated_at": "2026-07-19T23:25:47.321610+00:00",
   "probe": {
     "dns": false,
     "whois": false,

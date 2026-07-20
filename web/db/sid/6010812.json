@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "visitwatertownwi.com",
       "domain_defanged": "visitwatertownwi[.]com",
-      "case_id": "PD-20260717-4D981D",
-      "analyzed_at": "2026-07-17T23:03:25.164Z",
+      "case_id": "PD-20260720-4D981D",
+      "analyzed_at": "2026-07-20T09:23:23.955Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7ed6-547c-75e3-a8a0-3b705f4e93c3/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,7 +68,7 @@
         "registrar": "NameCheap, Inc.",
         "created": "2018-01-31T15:39:30Z",
         "expires": "2027-01-31T15:39:30Z",
-        "age_days": 3089,
+        "age_days": 3091,
         "nameservers": [
           "DNS1.REGISTRAR-SERVERS.COM",
           "DNS2.REGISTRAR-SERVERS.COM"
@@ -72,7 +76,15 @@
       },
       "infrastructure": {
         "ip": "8.29.157.216",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "8.29.157.216",
+          "hostname": "cloudhost-1466325.us-midwest-1.nxcli.net",
+          "city": "Detroit",
+          "region": "Michigan",
+          "country": "US",
+          "org": "AS36444 Liquid Web, L.L.C",
+          "asn": "AS36444"
+        },
         "dns": {
           "MX": [
             "10 in1-smtp.messagingengine.com.",
@@ -224,10 +236,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (visitwatertownwi.com/sgnv/sg/login/fr/login.php)\"; flow:established,to_server; http.uri; content:\"/sgnv/sg/login/fr/login.php\"; startswith; fast_pattern; http.host; content:\"visitwatertownwi.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010812; classtype:social-engineering; sid:6010812; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T23:09:29.332280+00:00",
+  "updated_at": "2026-07-20T09:29:45.623813+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "freehoroscope.ca",
       "domain_defanged": "freehoroscope[.]ca",
-      "case_id": "PD-20260717-41520F",
-      "analyzed_at": "2026-07-17T21:30:12.797Z",
+      "case_id": "PD-20260720-41520F",
+      "analyzed_at": "2026-07-20T07:44:55.739Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e7c-2d84-75fc-8b27-c3230e060cbe/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,23 +93,38 @@
       },
       "infrastructure": {
         "ip": "45.42.212.150",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "45.42.212.150",
+          "hostname": "ips150.securednshost.com",
+          "city": "Las Vegas",
+          "region": "Nevada",
+          "country": "US",
+          "org": "AS13649 Flexential Colorado Corp.",
+          "asn": "AS13649"
+        },
         "dns": {
+          "MX": [
+            "0 freehoroscope.ca."
+          ],
           "A": [
             "45.42.212.150"
           ],
           "NS": [
-            "ns1.securednshost.com.",
-            "ns.securednshost.com."
-          ],
-          "MX": [
-            "0 freehoroscope.ca."
+            "ns.securednshost.com.",
+            "ns1.securednshost.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ASN-VINS",
+          "abuse": "abuse@flexential.com",
+          "url": "mailto:abuse@flexential.com",
+          "logo": "https://i.ibb.co/4ZC80QqZ/pr-ASN-VINS.png",
+          "method": "email",
+          "asn": "AS13649"
+        }
       },
       "report_services": [
         {
@@ -232,7 +251,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (freehoroscope.ca/SF/sf_marley/sf_marley/)\"; flow:established,to_server; http.uri; content:\"/SF/sf_marley/sf_marley/\"; startswith; fast_pattern; http.host; content:\"freehoroscope.ca\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009013; classtype:social-engineering; sid:6009013; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:30:09.204675+00:00",
+  "updated_at": "2026-07-20T07:44:50.702544+00:00",
   "probe": {
     "dns": true,
     "whois": true,

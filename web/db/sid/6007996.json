@@ -22,7 +22,7 @@
       "url": "http://aaxpress.co.uk/",
       "domain": "aaxpress.co.uk",
       "url_count": 2,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "aaxpress.co.uk",
       "domain_defanged": "aaxpress[.]co[.]uk",
-      "case_id": "PD-20260717-429045",
-      "analyzed_at": "2026-07-17T20:33:06.012Z",
+      "case_id": "PD-20260720-429045",
+      "analyzed_at": "2026-07-20T06:44:43.816Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e45-11a6-71a8-a5ab-120a91dbc4a1/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "46.225.10.184",
+        "ipinfo": {
+          "ip": "46.225.10.184",
+          "hostname": "static.184.10.225.46.clients.your-server.de",
+          "city": "Nuremberg",
+          "region": "Bavaria",
+          "country": "DE",
+          "org": "AS24940 Hetzner Online GmbH",
+          "asn": "AS24940"
+        },
         "dns": {
+          "A": [
+            "46.225.10.184"
+          ],
           "MX": [
             "0 aaxpress-co-uk.mail.protection.outlook.com."
           ],
@@ -77,7 +93,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Hetzner",
+          "abuse": "abuse@hetzner.com",
+          "url": "https://www.hetzner.com/legal/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS24940"
+        }
       },
       "report_services": [
         {
@@ -204,12 +227,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aaxpress.co.uk/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aaxpress.co.uk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007996; classtype:social-engineering; sid:6007996; rev:1; metadata: signature_severity Major, created_et 2026_05_27, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T20:33:03.391297+00:00",
+  "updated_at": "2026-07-20T06:44:40.576211+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

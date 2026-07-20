@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "s3.us-east-1.amazonaws.com",
       "domain_defanged": "s3[.]us-east-1[.]amazonaws[.]com",
-      "case_id": "PD-20260717-205A36",
-      "analyzed_at": "2026-07-17T13:55:05.040Z",
+      "case_id": "PD-20260719-205A36",
+      "analyzed_at": "2026-07-19T02:38:56.364Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f783d-ae58-77b3-8f2c-d1a69aaeec3c/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,25 +69,26 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "16.15.213.162",
+        "ip": "52.217.112.104",
         "ipinfo": {
-          "ip": "16.15.213.162",
+          "ip": "52.217.112.104",
+          "hostname": "s3-1.amazonaws.com",
           "city": "Ashburn",
           "region": "Virginia",
           "country": "US",
-          "org": "AS14618 Amazon.com, Inc.",
-          "asn": "AS14618"
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
         },
         "dns": {
           "A": [
-            "16.15.213.162",
-            "16.15.244.192",
-            "54.231.161.176",
-            "16.15.212.153",
-            "52.217.94.38",
-            "16.15.237.165",
-            "16.15.255.145",
-            "54.231.166.232"
+            "52.217.112.104",
+            "16.15.253.249",
+            "52.216.27.142",
+            "16.15.223.4",
+            "16.15.191.219",
+            "16.182.98.232",
+            "54.231.138.232",
+            "52.217.235.24"
           ],
           "NS": [
             "ns-1184.awsdns-20.org.",
@@ -101,7 +106,7 @@
           "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
           "logo": "",
           "method": "form",
-          "asn": "AS14618"
+          "asn": "AS16509"
         }
       },
       "report_services": [
@@ -225,11 +230,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s3 .us-east-1 .amazonaws .com/daexterminating .com/index .html)\"; flow:established,to_server; http.uri; content:\"/daexterminating.com/index.html\"; startswith; fast_pattern; http.host;  content:\"s3.us-east-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001205; classtype:social-engineering; sid:6001205; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:55:01.967963+00:00",
+  "updated_at": "2026-07-19T23:54:32.972202+00:00",
   "probe": {
     "dns": true,
     "whois": false,

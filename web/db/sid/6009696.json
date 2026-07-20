@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "sp1ct6-trapnex-biz-drurnik-slavtor.pages.dev",
       "domain_defanged": "sp1ct6-trapnex-biz-drurnik-slavtor[.]pages[.]dev",
-      "case_id": "PD-20260717-AF03D9",
-      "analyzed_at": "2026-07-17T22:09:24.963Z",
+      "case_id": "PD-20260720-AF03D9",
+      "analyzed_at": "2026-07-20T08:24:51.352Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7ea0-bc8e-72f7-8ebf-a6d6fae28921/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,15 +93,22 @@
       },
       "infrastructure": {
         "ip": "172.66.47.126",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.126",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.66.47.126",
-            "172.66.44.130"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2f7e",
             "2606:4700:310c::ac42:2c82"
+          ],
+          "A": [
+            "172.66.47.126",
+            "172.66.44.130"
           ],
           "NS": [
             "marty.ns.cloudflare.com.",
@@ -107,7 +118,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +252,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp1ct6-trapnex-biz-drurnik-slavtor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp1ct6-trapnex-biz-drurnik-slavtor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009696; classtype:social-engineering; sid:6009696; rev:1; metadata: signature_severity Major, created_et 2026_05_31, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T22:09:22.398867+00:00",
+  "updated_at": "2026-07-20T08:24:49.019793+00:00",
   "probe": {
     "dns": true,
     "whois": false,

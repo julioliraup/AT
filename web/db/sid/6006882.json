@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "energetic-indigo-dxeo7k8pg2.edgeone.app",
       "domain_defanged": "energetic-indigo-dxeo7k8pg2[.]edgeone[.]app",
-      "case_id": "PD-20260717-3E3E42",
-      "analyzed_at": "2026-07-17T19:31:20.303Z",
+      "case_id": "PD-20260720-3E3E42",
+      "analyzed_at": "2026-07-20T05:41:29.434Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f718f-d76a-777a-9544-4daf28a02dbd.png",
           "url": "https://urlscan.io/result/019f718f-d76a-777a-9544-4daf28a02dbd/",
-          "pending": true
+          "title": "Email Update"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -101,22 +110,29 @@
           "MX": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ],
-          "NS": [
-            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
+          "A": [
+            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
+            "43.174.246.29",
+            "43.174.247.29"
           ],
           "CNAME": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ],
-          "A": [
-            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
-            "43.174.247.29",
-            "43.174.246.29"
+          "NS": [
+            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -243,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (energetic-indigo-dxeo7k8pg2.edgeone.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"energetic-indigo-dxeo7k8pg2.edgeone.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006882; classtype:social-engineering; sid:6006882; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:31:18.245755+00:00",
+  "updated_at": "2026-07-20T05:41:23.242604+00:00",
   "probe": {
     "dns": true,
     "whois": false,

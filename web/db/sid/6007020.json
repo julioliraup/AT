@@ -73,27 +73,48 @@
     "phishdestroy": {
       "domain": "9389m.cc",
       "domain_defanged": "9389m[.]cc",
-      "case_id": "PD-20260717-DE5AF9",
-      "analyzed_at": "2026-07-17T19:38:45.574Z",
+      "case_id": "PD-20260720-DE5AF9",
+      "analyzed_at": "2026-07-20T05:50:10.818Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e74e1-617f-70fc-9aec-6260e733bfdb.png",
+          "url": "https://urlscan.io/result/019e74e1-617f-70fc-9aec-6260e733bfdb/",
+          "title": "welcome-bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
+        "ip": "180.178.39.180",
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "NETSEC-HK",
+          "abuse": "abuse@netsec.com",
+          "url": "mailto:abuse@netsec.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS45753"
+        }
       },
       "report_services": [
         {
@@ -220,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (9389m.cc/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"9389m.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007020; classtype:social-engineering; sid:6007020; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:38:42.723062+00:00",
+  "updated_at": "2026-07-20T05:50:05.808175+00:00",
   "probe": {
     "dns": true,
     "whois": true,

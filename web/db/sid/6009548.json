@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "ameli-et-moi.my",
       "domain_defanged": "ameli-et-moi[.]my",
-      "case_id": "PD-20260717-30B910",
-      "analyzed_at": "2026-07-17T21:59:21.981Z",
+      "case_id": "PD-20260720-30B910",
+      "analyzed_at": "2026-07-20T08:15:38.707Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e98-4dcc-77fe-924f-1961e25f9487/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,13 +69,20 @@
       },
       "infrastructure": {
         "ip": "138.226.236.169",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "138.226.236.169",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS205775 NEON CORE NETWORK LLC",
+          "asn": "AS205775"
+        },
         "dns": {
-          "A": [
-            "138.226.236.169"
-          ],
           "MX": [
             "10 feedback-smtp.eu-west-1.amazonses.com."
+          ],
+          "A": [
+            "138.226.236.169"
           ],
           "NS": [
             "ns1.dyna-ns.net.",
@@ -208,7 +219,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ameli-et-moi.my/pages/ban.php)\"; flow:established,to_server; http.uri; content:\"/pages/ban.php\"; startswith; fast_pattern; http.host; content:\"ameli-et-moi.my\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6009548; classtype:social-engineering; sid:6009548; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:59:18.449578+00:00",
+  "updated_at": "2026-07-20T08:15:35.443758+00:00",
   "probe": {
     "dns": true,
     "whois": true,

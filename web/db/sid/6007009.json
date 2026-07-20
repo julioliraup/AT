@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "dpd.bvxtrmqplx.club",
       "domain_defanged": "dpd[.]bvxtrmqplx[.]club",
-      "case_id": "PD-20260717-7C77E7",
-      "analyzed_at": "2026-07-17T19:38:14.383Z",
+      "case_id": "PD-20260720-7C77E7",
+      "analyzed_at": "2026-07-20T05:49:26.391Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7a75-f061-710e-810a-076e342d74e3.png",
+          "url": "https://urlscan.io/result/019e7a75-f061-710e-810a-076e342d74e3/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.45.205",
+        "ipinfo": {
+          "ip": "104.21.45.205",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.bvxtrmqplx.club/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"dpd.bvxtrmqplx.club\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007009; classtype:social-engineering; sid:6007009; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:38:12.359735+00:00",
+  "updated_at": "2026-07-20T05:49:22.700800+00:00",
   "probe": {
     "dns": false,
     "whois": false,

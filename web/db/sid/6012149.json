@@ -49,37 +49,60 @@
     "phishdestroy": {
       "domain": "amazonpk-clone.vercel.app",
       "domain_defanged": "amazonpk-clone[.]vercel[.]app",
-      "case_id": "PD-20260717-391C50",
-      "analyzed_at": "2026-07-17T19:31:44.441Z",
+      "case_id": "PD-20260720-391C50",
+      "analyzed_at": "2026-07-20T05:42:06.560Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7190-35ac-71fc-b486-809a9275c830.png",
           "url": "https://urlscan.io/result/019f7190-35ac-71fc-b486-809a9275c830/",
-          "pending": true
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
-        "ipinfo": null,
+        "ip": "64.29.17.130",
+        "ipinfo": {
+          "ip": "64.29.17.130",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "64.29.17.130",
+            "216.198.79.130"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -207,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.amazonpk-clone.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.amazonpk-clone.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012149; classtype:social-engineering; sid:6012149; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-18T00:43:27.202535+00:00",
+  "updated_at": "2026-07-20T10:47:14.637865+00:00",
   "probe": {
     "dns": true,
     "whois": false,

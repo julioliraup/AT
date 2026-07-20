@@ -73,26 +73,35 @@
     "phishdestroy": {
       "domain": "bet6855.com",
       "domain_defanged": "bet6855[.]com",
-      "case_id": "PD-20260717-68D6EA",
-      "analyzed_at": "2026-07-17T19:42:35.062Z",
+      "case_id": "PD-20260720-68D6EA",
+      "analyzed_at": "2026-07-20T05:55:26.120Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f719a-22dd-754e-bf85-d8e6a4ecbfea.png",
           "url": "https://urlscan.io/result/019f719a-22dd-754e-bf85-d8e6a4ecbfea/",
-          "pending": true
+          "title": "welcome-bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Name.com, Inc.",
         "created": "2022-11-24T11:28:07Z",
         "expires": "2026-11-24T11:28:07Z",
-        "age_days": 1331,
+        "age_days": 1333,
         "nameservers": [
           "NS1CNB.NAME.COM",
           "NS2BLS.NAME.COM",
@@ -110,23 +119,23 @@
             "ns3cna.name.com.",
             "ns1cnb.name.com."
           ],
-          "MX": [
-            "p-kc180zjcdn.abcty1.com."
-          ],
           "CNAME": [
-            "p-kc180zjcdn.abcty1.com."
-          ],
-          "AAAA": [
             "p-kc180zjcdn.abcty1.com."
           ],
           "A": [
             "p-kc180zjcdn.abcty1.com.",
-            "103.194.105.22",
             "103.194.105.19",
-            "180.178.39.180",
             "182.16.3.83",
-            "116.213.38.212",
-            "116.213.36.226"
+            "103.194.105.22",
+            "180.178.39.180",
+            "116.213.36.226",
+            "116.213.38.212"
+          ],
+          "AAAA": [
+            "p-kc180zjcdn.abcty1.com."
+          ],
+          "MX": [
+            "p-kc180zjcdn.abcty1.com."
           ]
         }
       },
@@ -266,7 +275,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.bet6855.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.bet6855.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007095; classtype:social-engineering; sid:6007095; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:42:31.475377+00:00",
+  "updated_at": "2026-07-20T05:55:22.470206+00:00",
   "probe": {
     "dns": true,
     "whois": false,

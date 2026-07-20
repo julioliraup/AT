@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "mobil2e.de",
       "domain_defanged": "mobil2e[.]de",
-      "case_id": "PD-20260717-7ECD63",
-      "analyzed_at": "2026-07-17T23:25:24.739Z",
+      "case_id": "PD-20260720-7ECD63",
+      "analyzed_at": "2026-07-20T09:45:08.073Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7eea-3ab1-719a-89b5-bbcdf4523dd0/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,29 +75,44 @@
       },
       "infrastructure": {
         "ip": "217.160.0.4",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "217.160.0.4",
+          "hostname": "217-160-0-4.elastic-ssl.ui-r.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS8560 IONOS SE",
+          "asn": "AS8560"
+        },
         "dns": {
+          "AAAA": [
+            "2001:8d8:100f:f000::295"
+          ],
           "MX": [
-            "150 dhmx02.web.de.",
-            "100 dhmx01.web.de."
+            "100 dhmx01.web.de.",
+            "150 dhmx02.web.de."
           ],
           "A": [
             "217.160.0.4"
           ],
-          "AAAA": [
-            "2001:8d8:100f:f000::295"
-          ],
           "NS": [
             "webde.ui-dns.de.",
-            "webde.ui-dns.org.",
             "webde.ui-dns.biz.",
+            "webde.ui-dns.org.",
             "webde.ui-dns.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CRONON-AS",
+          "abuse": "abuse@vautron.de",
+          "url": "mailto:abuse@vautron.de",
+          "logo": "https://i.ibb.co/F4bxDB72/pr-CRONON-AS.png",
+          "method": "email",
+          "asn": "AS8560"
+        }
       },
       "report_services": [
         {
@@ -220,10 +239,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mobil2e.de/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mobil2e.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011092; classtype:social-engineering; sid:6011092; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T23:25:16.032184+00:00",
+  "updated_at": "2026-07-20T09:45:05.114702+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

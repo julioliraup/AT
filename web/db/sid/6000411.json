@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "ping-8485-vincom.pages.dev",
       "domain_defanged": "ping-8485-vincom[.]pages[.]dev",
-      "case_id": "PD-20260717-6F2544",
-      "analyzed_at": "2026-07-17T13:13:24.237Z",
+      "case_id": "PD-20260719-6F2544",
+      "analyzed_at": "2026-07-19T01:37:26.646Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f7035-d507-760b-aba9-29f6b46acd7b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7215-ed06-771e-a75f-194d885c7e7a.png",
+          "url": "https://urlscan.io/result/019f7215-ed06-771e-a75f-194d885c7e7a/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -225,11 +234,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ping-8485-vincom .pages .dev/help/contact/106886234981123/)\"; flow:established,to_server; http.uri; content:\"/help/contact/106886234981123/\"; startswith; fast_pattern; http.host;  content:\"ping-8485-vincom.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000411; classtype:social-engineering; sid:6000411; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:13:22.177244+00:00",
+  "updated_at": "2026-07-19T23:26:24.261258+00:00",
   "probe": {
     "dns": true,
     "whois": false,

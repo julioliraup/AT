@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "sunsetcp.com.au",
       "domain_defanged": "sunsetcp[.]com[.]au",
-      "case_id": "PD-20260717-DDED17",
-      "analyzed_at": "2026-07-17T22:43:39.095Z",
+      "case_id": "PD-20260720-DDED17",
+      "analyzed_at": "2026-07-20T09:04:24.070Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7ec4-efcd-719d-a1f2-05ced6a44642/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,23 +93,38 @@
       },
       "infrastructure": {
         "ip": "104.161.44.18",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.161.44.18",
+          "hostname": "server2.stellarhosting.com",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS53755 Input Output Flood LLC",
+          "asn": "AS53755"
+        },
         "dns": {
-          "MX": [
-            "0 sunsetcp.com.au."
-          ],
           "A": [
             "104.161.44.18"
           ],
           "NS": [
             "ns1.stellarhosting.com.",
             "ns2.stellarhosting.com."
+          ],
+          "MX": [
+            "0 sunsetcp.com.au."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "IOFLOOD, US",
+          "abuse": "abuse@ioflood.com",
+          "url": "mailto:abuse@ioflood.com",
+          "logo": "https://i.ibb.co/Z1ND6rWW/pr-IOFLOOD-US.png",
+          "method": "email",
+          "asn": "AS53755"
+        }
       },
       "report_services": [
         {
@@ -232,7 +251,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.sunsetcp.com.au/wp-includes/sitemaps/ifezwla/)\"; flow:established,to_server; http.uri; content:\"/wp-includes/sitemaps/ifezwla/\"; startswith; fast_pattern; http.host; content:\"www.sunsetcp.com.au\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010298; classtype:social-engineering; sid:6010298; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T22:43:35.449026+00:00",
+  "updated_at": "2026-07-20T09:04:19.789094+00:00",
   "probe": {
     "dns": true,
     "whois": true,

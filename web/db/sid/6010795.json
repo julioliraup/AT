@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "sunrisemailweb.flazio.com",
       "domain_defanged": "sunrisemailweb[.]flazio[.]com",
-      "case_id": "PD-20260717-5C3CF1",
-      "analyzed_at": "2026-07-17T23:08:41.374Z",
+      "case_id": "PD-20260720-5C3CF1",
+      "analyzed_at": "2026-07-20T09:28:59.870Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7edb-7483-770c-aad5-3bb7c617c5cb/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,7 +92,15 @@
       },
       "infrastructure": {
         "ip": "35.190.27.135",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "35.190.27.135",
+          "hostname": "135.27.190.35.bc.googleusercontent.com",
+          "city": "Kansas City",
+          "region": "Missouri",
+          "country": "US",
+          "org": "AS396982 Google LLC",
+          "asn": "AS396982"
+        },
         "dns": {
           "A": [
             "35.190.27.135"
@@ -97,7 +109,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -224,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sunrisemailweb.flazio.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sunrisemailweb.flazio.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010795; classtype:social-engineering; sid:6010795; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T23:08:38.567734+00:00",
+  "updated_at": "2026-07-20T09:28:56.917288+00:00",
   "probe": {
     "dns": true,
     "whois": false,

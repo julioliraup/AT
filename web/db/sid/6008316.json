@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "zum.csam.in",
       "domain_defanged": "zum[.]csam[.]in",
-      "case_id": "PD-20260717-5B0961",
-      "analyzed_at": "2026-07-17T20:51:01.601Z",
+      "case_id": "PD-20260720-5B0961",
+      "analyzed_at": "2026-07-20T07:04:13.696Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e56-eb7c-71d7-b07f-8bc225ab9f99/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,22 +74,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.82.169",
-        "ipinfo": null,
+        "ip": "172.67.159.213",
+        "ipinfo": {
+          "ip": "172.67.159.213",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3035::6815:52a9",
-            "2606:4700:3034::ac43:9fd5"
+            "2606:4700:3034::ac43:9fd5",
+            "2606:4700:3035::6815:52a9"
           ],
           "A": [
-            "104.21.82.169",
-            "172.67.159.213"
+            "172.67.159.213",
+            "104.21.82.169"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (zum.csam.in/page/Garenaffteam/x-3page/)\"; flow:established,to_server; http.uri; content:\"/page/Garenaffteam/x-3page/\"; startswith; fast_pattern; http.host; content:\"zum.csam.in\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008316; classtype:social-engineering; sid:6008316; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T20:50:58.821734+00:00",
+  "updated_at": "2026-07-20T07:04:11.216040+00:00",
   "probe": {
     "dns": true,
     "whois": false,

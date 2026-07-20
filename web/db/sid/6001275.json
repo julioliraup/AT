@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "linky.ph",
       "domain_defanged": "linky[.]ph",
-      "case_id": "PD-20260717-473DDE",
-      "analyzed_at": "2026-07-17T13:58:48.180Z",
+      "case_id": "PD-20260719-473DDE",
+      "analyzed_at": "2026-07-19T02:42:52.513Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7841-48db-7379-9a3b-a438ab9aaa6d/",
+          "pending": true
         }
       },
       "detections": [],
@@ -75,17 +79,17 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.21.18.16",
-            "172.67.179.149"
-          ],
           "MX": [
             "10 mx1.privateemail.com.",
             "10 mx2.privateemail.com."
           ],
+          "A": [
+            "104.21.18.16",
+            "172.67.179.149"
+          ],
           "AAAA": [
-            "2606:4700:3034::6815:1210",
-            "2606:4700:3037::ac43:b395"
+            "2606:4700:3037::ac43:b395",
+            "2606:4700:3034::6815:1210"
           ],
           "NS": [
             "giancarlo.ns.cloudflare.com.",
@@ -225,11 +229,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (linky .ph/notfound)\"; flow:established,to_server; http.uri; content:\"/notfound\"; startswith; fast_pattern; http.host;  content:\"linky.ph\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001275; classtype:social-engineering; sid:6001275; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:58:45.350838+00:00",
+  "updated_at": "2026-07-19T23:57:10.475765+00:00",
   "probe": {
     "dns": true,
     "whois": false,

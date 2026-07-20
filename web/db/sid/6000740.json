@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "ledhgyta-zbxncg.pages.dev",
       "domain_defanged": "ledhgyta-zbxncg[.]pages[.]dev",
-      "case_id": "PD-20260717-786966",
-      "analyzed_at": "2026-07-17T13:28:48.367Z",
+      "case_id": "PD-20260719-786966",
+      "analyzed_at": "2026-07-19T01:56:22.804Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f7043-eeda-748e-a1bd-3e8d0f979139/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f723a-3942-73d8-88f5-55d51d36ebed.png",
+          "url": "https://urlscan.io/result/019f723a-3942-73d8-88f5-55d51d36ebed/",
+          "title": "Ledger Live"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -225,11 +234,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledhgyta-zbxncg .pages .dev/index .htm)\"; flow:established,to_server; http.uri; content:\"/index.htm\"; startswith; fast_pattern; http.host;  content:\"ledhgyta-zbxncg.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000740; classtype:social-engineering; sid:6000740; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:28:46.049475+00:00",
+  "updated_at": "2026-07-19T23:37:20.612125+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -72,27 +72,56 @@
     "phishdestroy": {
       "domain": "brt.qgzkkr.help",
       "domain_defanged": "brt[.]qgzkkr[.]help",
-      "case_id": "PD-20260717-67C374",
-      "analyzed_at": "2026-07-17T19:31:49.842Z",
+      "case_id": "PD-20260720-67C374",
+      "analyzed_at": "2026-07-20T05:42:13.045Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DPD"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e5f3a-45c7-704c-995d-2a66b36742af.png",
+          "url": "https://urlscan.io/result/019e5f3a-45c7-704c-995d-2a66b36742af/",
+          "title": "Spedizioni Internazionali e Servizi di Logistica - BRT"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DPD",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "205.185.126.124",
+        "ipinfo": {
+          "ip": "205.185.126.124",
+          "hostname": "b000.b001.banligo.com",
+          "city": "Las Vegas",
+          "region": "Nevada",
+          "country": "US",
+          "org": "AS53667 FranTech Solutions",
+          "asn": "AS53667"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "PONYNET, US",
+          "abuse": "",
+          "url": "",
+          "logo": "",
+          "method": "email",
+          "asn": "AS53667"
+        }
       },
       "report_services": [
         {
@@ -219,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (brt.qgzkkr.help/track-it/)\"; flow:established,to_server; http.uri; content:\"/track-it/\"; startswith; fast_pattern; http.host; content:\"brt.qgzkkr.help\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006894; classtype:social-engineering; sid:6006894; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:31:47.567199+00:00",
+  "updated_at": "2026-07-20T05:42:09.351011+00:00",
   "probe": {
     "dns": true,
     "whois": true,

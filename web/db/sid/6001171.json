@@ -74,24 +74,37 @@
     "phishdestroy": {
       "domain": "amazon-clone-project-alpha.vercel.app",
       "domain_defanged": "amazon-clone-project-alpha[.]vercel[.]app",
-      "case_id": "PD-20260717-3905C4",
-      "analyzed_at": "2026-07-17T13:53:15.718Z",
+      "case_id": "PD-20260719-3905C4",
+      "analyzed_at": "2026-07-19T02:36:53.161Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f61ac-11be-75cf-b0a9-2d9acc99ab58.png",
+          "url": "https://urlscan.io/result/019f61ac-11be-75cf-b0a9-2d9acc99ab58/",
+          "title": "Amazon Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.130",
+        "ip": "216.198.79.130",
         "ipinfo": {
-          "ip": "64.29.17.130",
+          "ip": "216.198.79.130",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -100,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.130",
-            "216.198.79.130"
+            "216.198.79.130",
+            "64.29.17.130"
           ]
         }
       },
@@ -237,11 +250,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .amazon-clone-project-alpha .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.amazon-clone-project-alpha.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001171; classtype:social-engineering; sid:6001171; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:53:13.237816+00:00",
+  "updated_at": "2026-07-19T23:53:28.493364+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -74,41 +74,64 @@
     "phishdestroy": {
       "domain": "help---cloud--ledger.webflow.io",
       "domain_defanged": "help---cloud--ledger[.]webflow[.]io",
-      "case_id": "PD-20260717-21C22F",
-      "analyzed_at": "2026-07-17T13:32:14.905Z",
+      "case_id": "PD-20260719-21C22F",
+      "analyzed_at": "2026-07-19T01:59:26.370Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7047-1485-7314-ab80-053d44b7171b.png",
           "url": "https://urlscan.io/result/019f7047-1485-7314-ab80-053d44b7171b/",
-          "pending": true
+          "title": "Ledger® Live*Download - Secure (Webflow) | us"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
-        "ipinfo": null,
+        "ip": "172.64.151.8",
+        "ipinfo": {
+          "ip": "172.64.151.8",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.18.36.248",
-            "172.64.151.8"
-          ],
           "AAAA": [
             "2a06:98c1:3105::6812:24f8",
             "2a06:98c1:3102::ac40:9708"
+          ],
+          "A": [
+            "172.64.151.8",
+            "104.18.36.248"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -231,11 +254,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (help---cloud--ledger .webflow .io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"help---cloud--ledger.webflow.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000787; classtype:social-engineering; sid:6000787; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:32:11.870753+00:00",
+  "updated_at": "2026-07-19T23:39:05.358088+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -72,37 +72,108 @@
     "phishdestroy": {
       "domain": "solflare-pages.zapier.app",
       "domain_defanged": "solflare-pages[.]zapier[.]app",
-      "case_id": "PD-20260717-4F15C2",
-      "analyzed_at": "2026-07-17T15:33:09.107Z",
+      "case_id": "PD-20260720-4F15C2",
+      "analyzed_at": "2026-07-20T01:18:09.848Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f70b5-c519-743a-b353-a2c5b2971431.png",
           "url": "https://urlscan.io/result/019f70b5-c519-743a-b353-a2c5b2971431/",
-          "pending": true
+          "title": "Forms"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.239.109.129",
-        "ipinfo": null,
+        "ip": "64.239.123.193",
+        "ipinfo": {
+          "ip": "64.239.123.193",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.239.109.129",
+            "64.239.123.193",
             "64.239.109.65"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -229,7 +300,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (solflare-pages.zapier.app/org)\"; flow:established,to_server; http.uri; content:\"/org\"; startswith; fast_pattern; http.host; content:\"solflare-pages.zapier.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6002802; classtype:social-engineering; sid:6002802; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T15:33:06.352569+00:00",
+  "updated_at": "2026-07-20T01:18:06.655609+00:00",
   "probe": {
     "dns": true,
     "whois": false,

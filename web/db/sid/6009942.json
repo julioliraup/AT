@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "dsignpost.com",
       "domain_defanged": "dsignpost[.]com",
-      "case_id": "PD-20260717-2234F1",
-      "analyzed_at": "2026-07-17T22:22:46.364Z",
+      "case_id": "PD-20260720-2234F1",
+      "analyzed_at": "2026-07-20T08:37:49.340Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7eac-9a5d-748d-a9d0-8b740bb43faf/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,7 +92,7 @@
         "registrar": "GoDaddy.com, LLC",
         "created": "2019-05-07T11:45:55Z",
         "expires": "2027-05-07T11:45:55Z",
-        "age_days": 2628,
+        "age_days": 2630,
         "nameservers": [
           "RNS401.WEBHOSTBOX.NET",
           "RNS402.WEBHOSTBOX.NET"
@@ -96,17 +100,24 @@
       },
       "infrastructure": {
         "ip": "119.18.54.40",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "119.18.54.40",
+          "city": "Mumbai",
+          "region": "Maharashtra",
+          "country": "IN",
+          "org": "AS394695 PDR",
+          "asn": "AS394695"
+        },
         "dns": {
+          "NS": [
+            "rns401.webhostbox.net.",
+            "rns402.webhostbox.net."
+          ],
           "MX": [
             "0 mail.dsignpost.com."
           ],
           "A": [
             "119.18.54.40"
-          ],
-          "NS": [
-            "rns402.webhostbox.net.",
-            "rns401.webhostbox.net."
           ]
         }
       },
@@ -119,7 +130,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Public Domain Registry",
+          "abuse": "abuse@publicdomainregistry.com",
+          "url": "mailto:abuse@publicdomainregistry.com",
+          "logo": "https://i.ibb.co/LX6RBjjk/pr-24-SHELLS.png",
+          "method": "email",
+          "asn": "AS394695"
+        }
       },
       "report_services": [
         {
@@ -246,7 +264,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dsignpost.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"dsignpost.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009942; classtype:social-engineering; sid:6009942; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T22:22:42.039227+00:00",
+  "updated_at": "2026-07-20T08:37:44.190927+00:00",
   "probe": {
     "dns": true,
     "whois": true,

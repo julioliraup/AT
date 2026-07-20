@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "rare-blue-d4nhaptpng.edgeone.app",
       "domain_defanged": "rare-blue-d4nhaptpng[.]edgeone[.]app",
-      "case_id": "PD-20260717-7B2010",
-      "analyzed_at": "2026-07-17T19:31:57.805Z",
+      "case_id": "PD-20260720-7B2010",
+      "analyzed_at": "2026-07-20T05:42:23.704Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7190-69e8-7641-9f39-fe28c2be37d6.png",
           "url": "https://urlscan.io/result/019f7190-69e8-7641-9f39-fe28c2be37d6/",
-          "pending": true
+          "title": "MAIL"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -95,16 +104,16 @@
         "ip": "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
+            "43.174.246.29",
+            "43.174.247.29"
+          ],
           "AAAA": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ],
           "MX": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
-          ],
-          "A": [
-            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
-            "43.174.247.29",
-            "43.174.246.29"
           ],
           "CNAME": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
@@ -116,7 +125,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -243,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rare-blue-d4nhaptpng.edgeone.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"rare-blue-d4nhaptpng.edgeone.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006897; classtype:social-engineering; sid:6006897; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:31:54.657196+00:00",
+  "updated_at": "2026-07-20T05:42:20.197885+00:00",
   "probe": {
     "dns": true,
     "whois": false,

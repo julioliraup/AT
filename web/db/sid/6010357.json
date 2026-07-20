@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "dreamhost.com",
       "domain_defanged": "dreamhost[.]com",
-      "case_id": "PD-20260717-A7FDEC",
-      "analyzed_at": "2026-07-17T22:46:34.650Z",
+      "case_id": "PD-20260720-A7FDEC",
+      "analyzed_at": "2026-07-20T09:07:15.412Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7ec7-8d1b-721e-87ca-aa01f813936d/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,7 +92,7 @@
         "registrar": "DreamHost, LLC",
         "created": "1997-09-23T04:00:00Z",
         "expires": "2026-09-22T04:00:00Z",
-        "age_days": 10524,
+        "age_days": 10527,
         "nameservers": [
           "NS1.DREAMHOST.COM",
           "NS2.DREAMHOST.COM",
@@ -96,33 +100,41 @@
         ]
       },
       "infrastructure": {
-        "ip": "13.226.209.120",
-        "ipinfo": null,
+        "ip": "3.163.24.24",
+        "ipinfo": {
+          "ip": "3.163.24.24",
+          "hostname": "server-3-163-24-24.hio52.r.cloudfront.net",
+          "city": "Hillsboro",
+          "region": "Oregon",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
-          "A": [
-            "13.226.209.120",
-            "13.226.209.3",
-            "13.226.209.15",
-            "13.226.209.40"
-          ],
           "MX": [
-            "0 mx1.dreamhost.com.",
-            "0 mx2.dreamhost.com."
+            "0 mx2.dreamhost.com.",
+            "0 mx1.dreamhost.com."
+          ],
+          "AAAA": [
+            "2600:9000:201d:7c00:1d:5c4:5c40:93a1",
+            "2600:9000:201d:bc00:1d:5c4:5c40:93a1",
+            "2600:9000:201d:e200:1d:5c4:5c40:93a1",
+            "2600:9000:201d:1000:1d:5c4:5c40:93a1",
+            "2600:9000:201d:c200:1d:5c4:5c40:93a1",
+            "2600:9000:201d:1a00:1d:5c4:5c40:93a1",
+            "2600:9000:201d:ee00:1d:5c4:5c40:93a1",
+            "2600:9000:201d:4a00:1d:5c4:5c40:93a1"
+          ],
+          "A": [
+            "3.163.24.24",
+            "3.163.24.88",
+            "3.163.24.68",
+            "3.163.24.79"
           ],
           "NS": [
             "ns2.dreamhost.com.",
             "ns1.dreamhost.com.",
             "ns3.dreamhost.com."
-          ],
-          "AAAA": [
-            "2600:9000:260f:6c00:1d:5c4:5c40:93a1",
-            "2600:9000:260f:3400:1d:5c4:5c40:93a1",
-            "2600:9000:260f:8600:1d:5c4:5c40:93a1",
-            "2600:9000:260f:bc00:1d:5c4:5c40:93a1",
-            "2600:9000:260f:f000:1d:5c4:5c40:93a1",
-            "2600:9000:260f:1400:1d:5c4:5c40:93a1",
-            "2600:9000:260f:ca00:1d:5c4:5c40:93a1",
-            "2600:9000:260f:ae00:1d:5c4:5c40:93a1"
           ]
         }
       },
@@ -135,7 +147,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -262,7 +281,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.dreamhost.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.dreamhost.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6010357; classtype:social-engineering; sid:6010357; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T22:46:32.235102+00:00",
+  "updated_at": "2026-07-20T09:07:12.235021+00:00",
   "probe": {
     "dns": true,
     "whois": false,

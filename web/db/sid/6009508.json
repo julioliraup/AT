@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "pixeltannu.github.io",
       "domain_defanged": "pixeltannu[.]github[.]io",
-      "case_id": "PD-20260717-314395",
-      "analyzed_at": "2026-07-17T21:45:45.551Z",
+      "case_id": "PD-20260720-314395",
+      "analyzed_at": "2026-07-20T08:01:15.189Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e8b-1f7b-7077-b906-fc12ebb2ed71/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,12 +69,20 @@
       },
       "infrastructure": {
         "ip": "185.199.111.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.111.153",
+          "hostname": "cdn-185-199-111-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
             "185.199.111.153",
-            "185.199.108.153",
             "185.199.110.153",
+            "185.199.108.153",
             "185.199.109.153"
           ],
           "AAAA": [
@@ -83,7 +95,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -211,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pixeltannu.github.io/netflix.clone)\"; flow:established,to_server; http.uri; content:\"/netflix.clone\"; startswith; fast_pattern; http.host; content:\"pixeltannu.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009508; classtype:social-engineering; sid:6009508; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:57:20.383699+00:00",
+  "updated_at": "2026-07-20T08:12:56.109739+00:00",
   "probe": {
     "dns": true,
     "whois": true,

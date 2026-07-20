@@ -50,44 +50,186 @@
     "phishdestroy": {
       "domain": "jsz.nyx.temporary.site",
       "domain_defanged": "jsz[.]nyx[.]temporary[.]site",
-      "case_id": "PD-20260717-4821A2",
-      "analyzed_at": "2026-07-17T13:44:25.623Z",
+      "case_id": "PD-20260719-4821A2",
+      "analyzed_at": "2026-07-19T02:17:13.480Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 11,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Dr.Web",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f7052-3a15-71ce-8c3a-bb51301241b1.png",
           "url": "https://urlscan.io/result/019f7052-3a15-71ce-8c3a-bb51301241b1/",
-          "pending": true
+          "title": "Advanced Composites Mexico"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Dr.Web",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "162.241.194.204",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "162.241.194.204",
+          "hostname": "162-241-194-204.unifiedlayer.com",
+          "city": "Atlanta",
+          "region": "Georgia",
+          "country": "US",
+          "org": "AS19871 Network Solutions, LLC",
+          "asn": "AS19871"
+        },
         "dns": {
           "A": [
             "162.241.194.204"
           ],
           "MX": [
-            "0 mail.jsz.nyx.temporary.site.",
-            "10 jsz.nyx.temporary.site."
+            "10 jsz.nyx.temporary.site.",
+            "0 mail.jsz.nyx.temporary.site."
           ],
           "NS": [
-            "ns1.temporary.site.",
-            "ns2.temporary.site."
+            "ns2.temporary.site.",
+            "ns1.temporary.site."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "NETWORK-SOLUTIONS-HOSTING, US",
+          "abuse": "net-eng-team@newfold.com",
+          "url": "mailto:net-eng-team@newfold.com",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS19871"
+        }
       },
       "report_services": [
         {
@@ -210,11 +352,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (jsz .nyx .temporary .site/3https .netflix .com .pago .php)\"; flow:established,to_server; http.uri; content:\"/3https.netflix.com.pago.php\"; startswith; fast_pattern; http.host;  content:\"jsz.nyx.temporary.site\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000994; classtype:social-engineering; sid:6000994; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:44:21.965629+00:00",
+  "updated_at": "2026-07-19T23:47:57.959447+00:00",
   "probe": {
     "dns": true,
     "whois": true,

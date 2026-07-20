@@ -73,31 +73,47 @@
     "phishdestroy": {
       "domain": "qegdh-und-1.pages.dev",
       "domain_defanged": "qegdh-und-1[.]pages[.]dev",
-      "case_id": "PD-20260717-252BFE",
-      "analyzed_at": "2026-07-17T19:35:28.762Z",
+      "case_id": "PD-20260720-252BFE",
+      "analyzed_at": "2026-07-20T05:46:44.121Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7193-a178-708a-9c90-4d3936274199.png",
           "url": "https://urlscan.io/result/019f7193-a178-708a-9c90-4d3936274199/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.158",
-        "ipinfo": null,
+        "ip": "172.66.47.98",
+        "ipinfo": {
+          "ip": "172.66.47.98",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.66.44.158",
-            "172.66.47.98"
+            "172.66.47.98",
+            "172.66.44.158"
           ],
           "AAAA": [
             "2606:4700:310c::ac42:2f62",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -238,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (qegdh-und-1.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"qegdh-und-1.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6006966; classtype:social-engineering; sid:6006966; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:35:26.515949+00:00",
+  "updated_at": "2026-07-20T05:46:40.749781+00:00",
   "probe": {
     "dns": true,
     "whois": false,

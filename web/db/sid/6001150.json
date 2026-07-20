@@ -74,24 +74,37 @@
     "phishdestroy": {
       "domain": "facebook-signup-page-1zav.vercel.app",
       "domain_defanged": "facebook-signup-page-1zav[.]vercel[.]app",
-      "case_id": "PD-20260717-786AB0",
-      "analyzed_at": "2026-07-17T13:49:48.342Z",
+      "case_id": "PD-20260719-786AB0",
+      "analyzed_at": "2026-07-19T02:31:47.811Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f6432-3c38-72ab-b889-7abeb0106282.png",
+          "url": "https://urlscan.io/result/019f6432-3c38-72ab-b889-7abeb0106282/",
+          "title": "Facebook Sign up page"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.2",
+        "ip": "64.29.17.130",
         "ipinfo": {
-          "ip": "216.198.79.2",
+          "ip": "64.29.17.130",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -100,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.2",
-            "64.29.17.2"
+            "64.29.17.130",
+            "216.198.79.130"
           ]
         }
       },
@@ -242,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (facebook-signup-page-1zav .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"facebook-signup-page-1zav.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001150; classtype:social-engineering; sid:6001150; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:52:04.602730+00:00",
+  "updated_at": "2026-07-19T23:52:47.989666+00:00",
   "probe": {
     "dns": true,
     "whois": false,

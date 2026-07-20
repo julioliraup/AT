@@ -74,21 +74,30 @@
     "phishdestroy": {
       "domain": "sso-lve-ledgr.pages.dev",
       "domain_defanged": "sso-lve-ledgr[.]pages[.]dev",
-      "case_id": "PD-20260717-7A5418",
-      "analyzed_at": "2026-07-17T13:20:38.817Z",
+      "case_id": "PD-20260719-7A5418",
+      "analyzed_at": "2026-07-19T01:46:01.149Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f703c-7696-7059-9ad5-25e50eda618f.png",
           "url": "https://urlscan.io/result/019f703c-7696-7059-9ad5-25e50eda618f/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -249,11 +258,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso-lve-ledgr .pages .dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sso-lve-ledgr.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000571; classtype:social-engineering; sid:6000571; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:20:36.185519+00:00",
+  "updated_at": "2026-07-19T23:31:53.280443+00:00",
   "probe": {
     "dns": true,
     "whois": false,

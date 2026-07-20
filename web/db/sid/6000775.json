@@ -50,21 +50,30 @@
     "phishdestroy": {
       "domain": "accounts.bmwweb.biz",
       "domain_defanged": "accounts[.]bmwweb[.]biz",
-      "case_id": "PD-20260717-6E7714",
-      "analyzed_at": "2026-07-17T13:30:57.761Z",
+      "case_id": "PD-20260719-6E7714",
+      "analyzed_at": "2026-07-19T01:58:45.764Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Binance"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7045-e712-764e-b61b-81e6ca826460.png",
           "url": "https://urlscan.io/result/019f7045-e712-764e-b61b-81e6ca826460/",
-          "pending": true
+          "title": "Log In | Binance"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Binance",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -76,23 +85,30 @@
             "accounts.bmwweb.biz.eo.dnse5.com.",
             "43.159.94.13"
           ],
-          "NS": [
+          "MX": [
             "accounts.bmwweb.biz.eo.dnse5.com."
           ],
           "AAAA": [
             "accounts.bmwweb.biz.eo.dnse5.com."
           ],
-          "MX": [
+          "CNAME": [
             "accounts.bmwweb.biz.eo.dnse5.com."
           ],
-          "CNAME": [
+          "NS": [
             "accounts.bmwweb.biz.eo.dnse5.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -215,11 +231,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (accounts .bmwweb .biz/en/login)\"; flow:established,to_server; http.uri; content:\"/en/login\"; startswith; fast_pattern; http.host;  content:\"accounts.bmwweb.biz\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000775; classtype:social-engineering; sid:6000775; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:30:54.252845+00:00",
+  "updated_at": "2026-07-19T23:38:41.315329+00:00",
   "probe": {
     "dns": true,
     "whois": true,

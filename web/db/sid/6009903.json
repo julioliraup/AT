@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "m.csam.in",
       "domain_defanged": "m[.]csam[.]in",
-      "case_id": "PD-20260717-A68BB3",
-      "analyzed_at": "2026-07-17T22:20:17.675Z",
+      "case_id": "PD-20260720-A68BB3",
+      "analyzed_at": "2026-07-20T08:35:52.066Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7eaa-d04b-725d-91e9-7dcf57ac8bc3/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,21 +75,35 @@
       },
       "infrastructure": {
         "ip": "104.21.82.169",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.82.169",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3034::ac43:9fd5",
-            "2606:4700:3035::6815:52a9"
-          ],
           "A": [
             "104.21.82.169",
             "172.67.159.213"
+          ],
+          "AAAA": [
+            "2606:4700:3034::ac43:9fd5",
+            "2606:4700:3035::6815:52a9"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.csam.in/page/Garenaffteam/x-4page/)\"; flow:established,to_server; http.uri; content:\"/page/Garenaffteam/x-4page/\"; startswith; fast_pattern; http.host; content:\"m.csam.in\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009903; classtype:social-engineering; sid:6009903; rev:1; metadata: signature_severity Major, created_et 2026_05_31, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T22:20:15.590582+00:00",
+  "updated_at": "2026-07-20T08:35:49.856564+00:00",
   "probe": {
     "dns": true,
     "whois": false,

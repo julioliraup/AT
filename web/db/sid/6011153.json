@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "filou.ext5723518.pro",
       "domain_defanged": "filou[.]ext5723518[.]pro",
-      "case_id": "PD-20260717-70DF98",
-      "analyzed_at": "2026-07-17T23:29:06.327Z",
+      "case_id": "PD-20260720-70DF98",
+      "analyzed_at": "2026-07-20T09:48:11.507Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7eed-086a-771b-9ab1-1595288e4146/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,22 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.188.139",
-        "ipinfo": null,
+        "ip": "104.21.8.147",
+        "ipinfo": {
+          "ip": "104.21.8.147",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "A": [
+            "104.21.8.147",
+            "172.67.188.139"
+          ],
           "AAAA": [
             "2606:4700:3030::ac43:bc8b",
             "2606:4700:3033::6815:893"
-          ],
-          "A": [
-            "172.67.188.139",
-            "104.21.8.147"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (filou.ext5723518.pro/captcha.php)\"; flow:established,to_server; http.uri; content:\"/captcha.php\"; startswith; fast_pattern; http.host; content:\"filou.ext5723518.pro\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6011153; classtype:social-engineering; sid:6011153; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T23:29:03.606300+00:00",
+  "updated_at": "2026-07-20T09:48:09.027250+00:00",
   "probe": {
     "dns": true,
     "whois": true,

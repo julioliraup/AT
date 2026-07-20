@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "pop.goood-mail.com",
       "domain_defanged": "pop[.]goood-mail[.]com",
-      "case_id": "PD-20260717-7AFDF0",
-      "analyzed_at": "2026-07-17T23:30:44.643Z",
+      "case_id": "PD-20260720-7AFDF0",
+      "analyzed_at": "2026-07-20T09:49:47.934Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7eee-7976-730d-aa0e-678ce3e90493/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,7 +92,14 @@
       },
       "infrastructure": {
         "ip": "46.101.239.207",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "46.101.239.207",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS14061 DigitalOcean, LLC",
+          "asn": "AS14061"
+        },
         "dns": {
           "MX": [
             "100 mx.torpig-sinkhole.org.",
@@ -106,7 +117,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DigitalOcean",
+          "abuse": "abuse@digitalocean.com",
+          "url": "https://www.digitalocean.com/company/contact#abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14061"
+        }
       },
       "report_services": [
         {
@@ -233,7 +251,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pop.goood-mail.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"pop.goood-mail.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011185; classtype:social-engineering; sid:6011185; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T23:30:40.576878+00:00",
+  "updated_at": "2026-07-20T09:49:42.209750+00:00",
   "probe": {
     "dns": true,
     "whois": false,

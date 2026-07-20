@@ -50,28 +50,37 @@
     "phishdestroy": {
       "domain": "varkel-sonvik-biz-denter-halrex-sp7ct12.pages.dev",
       "domain_defanged": "varkel-sonvik-biz-denter-halrex-sp7ct12[.]pages[.]dev",
-      "case_id": "PD-20260717-29825F",
-      "analyzed_at": "2026-07-17T13:14:29.343Z",
+      "case_id": "PD-20260719-29825F",
+      "analyzed_at": "2026-07-19T01:39:05.641Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7036-d22a-7414-b753-984762f30bce.png",
           "url": "https://urlscan.io/result/019f7036-d22a-7414-b753-984762f30bce/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.84",
+        "ip": "172.66.44.172",
         "ipinfo": {
-          "ip": "172.66.47.84",
+          "ip": "172.66.44.172",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,13 +88,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.47.84",
-            "172.66.44.172"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2f54",
             "2606:4700:310c::ac42:2cac"
+          ],
+          "A": [
+            "172.66.44.172",
+            "172.66.47.84"
           ],
           "NS": [
             "jerry.ns.cloudflare.com.",
@@ -225,11 +234,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (varkel-sonvik-biz-denter-halrex-sp7ct12 .pages .dev/form_submit_appeal/)\"; flow:established,to_server; http.uri; content:\"/form_submit_appeal/\"; startswith; fast_pattern; http.host;  content:\"varkel-sonvik-biz-denter-halrex-sp7ct12.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000432; classtype:social-engineering; sid:6000432; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:14:26.675414+00:00",
+  "updated_at": "2026-07-19T23:27:10.185077+00:00",
   "probe": {
     "dns": true,
     "whois": false,

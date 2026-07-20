@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "verifiedspcl.pages.dev",
       "domain_defanged": "verifiedspcl[.]pages[.]dev",
-      "case_id": "PD-20260717-500368",
-      "analyzed_at": "2026-07-17T21:25:12.524Z",
+      "case_id": "PD-20260720-500368",
+      "analyzed_at": "2026-07-20T07:40:33.728Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e78-2f35-722f-9d40-52580859018d/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,16 +68,23 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.254",
-        "ipinfo": null,
+        "ip": "172.66.45.2",
+        "ipinfo": {
+          "ip": "172.66.45.2",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.66.46.254",
-            "172.66.45.2"
+            "172.66.45.2",
+            "172.66.46.254"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2d02",
-            "2606:4700:310c::ac42:2efe"
+            "2606:4700:310c::ac42:2efe",
+            "2606:4700:310c::ac42:2d02"
           ],
           "NS": [
             "keyla.ns.cloudflare.com.",
@@ -83,7 +94,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,7 +228,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (verifiedspcl.pages.dev/support/management)\"; flow:established,to_server; http.uri; content:\"/support/management\"; startswith; fast_pattern; http.host; content:\"verifiedspcl.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008935; classtype:social-engineering; sid:6008935; rev:1; metadata: signature_severity Major, created_et 2026_05_29, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:25:10.333622+00:00",
+  "updated_at": "2026-07-20T07:40:31.222663+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,42 +49,194 @@
     "phishdestroy": {
       "domain": "customerarea-aruba.superrein-hamburg.de",
       "domain_defanged": "customerarea-aruba[.]superrein-hamburg[.]de",
-      "case_id": "PD-20260717-4FCAE7",
-      "analyzed_at": "2026-07-17T15:34:27.109Z",
+      "case_id": "PD-20260720-4FCAE7",
+      "analyzed_at": "2026-07-20T01:19:20.209Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 13,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f70b6-f5c0-75e7-82a7-d0637621abd3.png",
           "url": "https://urlscan.io/result/019f70b6-f5c0-75e7-82a7-d0637621abd3/",
-          "pending": true
+          "title": "404 Not Found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "92.205.215.241",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "92.205.215.241",
+          "hostname": "sh23241.ispgateway.de",
+          "city": "Strasbourg",
+          "region": "Grand Est",
+          "country": "FR",
+          "org": "AS20773 Host Europe GmbH",
+          "asn": "AS20773"
+        },
         "dns": {
           "AAAA": [
             "2a00:1169:103:ec30::"
           ],
-          "A": [
-            "92.205.215.241"
-          ],
           "MX": [
             "100 mxlb.ispgateway.de."
+          ],
+          "A": [
+            "92.205.215.241"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "GoDaddy",
+          "abuse": "abuse@hosteurope.de",
+          "url": "mailto:abuse@hosteurope.de",
+          "logo": "https://i.ibb.co/0p91XBSb/pr-Go-Daddy.png",
+          "method": "email",
+          "asn": "AS20773"
+        }
       },
       "report_services": [
         {
@@ -211,7 +363,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (customerarea-aruba.superrein-hamburg.de/index.html)\"; flow:established,to_server; http.uri; content:\"/index.html\"; startswith; fast_pattern; http.host; content:\"customerarea-aruba.superrein-hamburg.de\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6002814; classtype:social-engineering; sid:6002814; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T15:34:23.026529+00:00",
+  "updated_at": "2026-07-20T01:19:15.816433+00:00",
   "probe": {
     "dns": true,
     "whois": true,

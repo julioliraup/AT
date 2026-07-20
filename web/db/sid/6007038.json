@@ -70,26 +70,34 @@
     "phishdestroy": {
       "domain": "1165nnn.com",
       "domain_defanged": "1165nnn[.]com",
-      "case_id": "PD-20260717-79565F",
-      "analyzed_at": "2026-07-17T19:39:41.671Z",
+      "case_id": "PD-20260720-79565F",
+      "analyzed_at": "2026-07-20T05:51:29.648Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f7197-7ddd-76a9-ab4d-0f2a1d0382ee/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7197-7ddd-76a9-ab4d-0f2a1d0382ee.png",
+          "url": "https://urlscan.io/result/019f7197-7ddd-76a9-ab4d-0f2a1d0382ee/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2022-04-23T07:12:07Z",
         "expires": "2027-04-23T07:12:07Z",
-        "age_days": 1546,
+        "age_days": 1548,
         "nameservers": [
           "DEE.NS.CLOUDFLARE.COM",
           "SANTINO.NS.CLOUDFLARE.COM"
@@ -258,7 +266,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (1165nnn.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"1165nnn.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007038; classtype:social-engineering; sid:6007038; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:39:38.724762+00:00",
+  "updated_at": "2026-07-20T05:51:24.250442+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -73,26 +73,35 @@
     "phishdestroy": {
       "domain": "empresasenegociossuporte.net",
       "domain_defanged": "empresasenegociossuporte[.]net",
-      "case_id": "PD-20260717-197C86",
-      "analyzed_at": "2026-07-17T19:35:18.244Z",
+      "case_id": "PD-20260720-197C86",
+      "analyzed_at": "2026-07-20T05:46:31.796Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7193-78da-71cb-82b3-74c7f3d9cc3c.png",
           "url": "https://urlscan.io/result/019f7193-78da-71cb-82b3-74c7f3d9cc3c/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Sav.com, LLC",
         "created": "2026-05-21T17:28:39Z",
         "expires": "2027-05-21T17:28:39Z",
-        "age_days": 57,
+        "age_days": 59,
         "nameservers": [
           "ANAHI.NS.CLOUDFLARE.COM",
           "NOLAN.NS.CLOUDFLARE.COM"
@@ -114,8 +123,8 @@
             "104.21.50.59"
           ],
           "AAAA": [
-            "2606:4700:3031::ac43:9d88",
-            "2606:4700:3031::6815:323b"
+            "2606:4700:3031::6815:323b",
+            "2606:4700:3031::ac43:9d88"
           ],
           "NS": [
             "anahi.ns.cloudflare.com.",
@@ -259,7 +268,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (empresasenegociossuporte.net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"empresasenegociossuporte.net\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6006963; classtype:social-engineering; sid:6006963; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:35:09.826966+00:00",
+  "updated_at": "2026-07-20T05:46:22.519701+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -74,42 +74,58 @@
     "phishdestroy": {
       "domain": "docusign-signing-evelope65792.com",
       "domain_defanged": "docusign-signing-evelope65792[.]com",
-      "case_id": "PD-20260717-621A3C",
-      "analyzed_at": "2026-07-17T13:23:52.499Z",
+      "case_id": "PD-20260719-621A3C",
+      "analyzed_at": "2026-07-19T01:50:16.980Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f703f-6952-731f-a730-cce240d58100.png",
           "url": "https://urlscan.io/result/019f703f-6952-731f-a730-cce240d58100/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Cloudflare, Inc.",
         "created": "2026-05-05T11:30:37Z",
         "expires": "2027-05-05T11:30:37Z",
-        "age_days": 73,
+        "age_days": 74,
         "nameservers": [
           "RANDY.NS.CLOUDFLARE.COM",
           "SUSAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.128.154",
-        "ipinfo": null,
+        "ip": "104.21.2.23",
+        "ipinfo": {
+          "ip": "104.21.2.23",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3031::6815:217",
-            "2606:4700:3033::ac43:809a"
+            "2606:4700:3033::ac43:809a",
+            "2606:4700:3031::6815:217"
           ],
           "A": [
-            "172.67.128.154",
-            "104.21.2.23"
+            "104.21.2.23",
+            "172.67.128.154"
           ],
           "NS": [
             "randy.ns.cloudflare.com.",
@@ -126,7 +142,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -249,11 +272,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (docusign-signing-evelope65792 .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"docusign-signing-evelope65792.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000643; classtype:social-engineering; sid:6000643; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:23:49.109123+00:00",
+  "updated_at": "2026-07-19T23:34:37.408650+00:00",
   "probe": {
     "dns": true,
     "whois": true,

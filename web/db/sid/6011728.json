@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "sg-activation.bolt.host",
       "domain_defanged": "sg-activation[.]bolt[.]host",
-      "case_id": "PD-20260717-6DB150",
-      "analyzed_at": "2026-07-17T23:58:20.825Z",
+      "case_id": "PD-20260720-6DB150",
+      "analyzed_at": "2026-07-20T10:21:26.986Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7f0b-7a03-75d1-bfb1-e3c473a86135/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,18 +68,18 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.13.118",
+        "ip": "172.67.75.9",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "172.67.75.9",
+            "104.26.13.118",
+            "104.26.12.118"
+          ],
           "AAAA": [
             "2606:4700:20::681a:c76",
-            "2606:4700:20::ac43:4b09",
-            "2606:4700:20::681a:d76"
-          ],
-          "A": [
-            "104.26.13.118",
-            "172.67.75.9",
-            "104.26.12.118"
+            "2606:4700:20::681a:d76",
+            "2606:4700:20::ac43:4b09"
           ]
         }
       },
@@ -208,7 +212,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sg-activation.bolt.host/~/index.html)\"; flow:established,to_server; http.uri; content:\"/~/index.html\"; startswith; fast_pattern; http.host; content:\"sg-activation.bolt.host\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6011728; classtype:social-engineering; sid:6011728; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T23:58:17.808833+00:00",
+  "updated_at": "2026-07-20T10:21:23.885662+00:00",
   "probe": {
     "dns": true,
     "whois": true,

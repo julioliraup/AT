@@ -49,35 +49,36 @@
     "phishdestroy": {
       "domain": "alpahidatakayama.spahotel.guru",
       "domain_defanged": "alpahidatakayama[.]spahotel[.]guru",
-      "case_id": "PD-20260717-797695",
-      "analyzed_at": "2026-07-17T19:38:37.339Z",
+      "case_id": "PD-20260720-797695",
+      "analyzed_at": "2026-07-20T05:49:55.188Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f7196-8292-7429-8db8-aede36be0302/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f719f-27a2-774d-88b3-9d882c09c2fa.png",
+          "url": "https://urlscan.io/result/019f719f-27a2-774d-88b3-9d882c09c2fa/",
+          "title": "Spa Hotel Alpina Hida Takayama (Adults Only) - Takayama (Gifu), Japan"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "52.29.26.157",
-        "ipinfo": {
-          "ip": "52.29.26.157",
-          "hostname": "ec2-52-29-26-157.eu-central-1.compute.amazonaws.com",
-          "city": "Frankfurt am Main",
-          "region": "Hesse",
-          "country": "DE",
-          "org": "AS16509 Amazon.com, Inc.",
-          "asn": "AS16509"
-        },
+        "ipinfo": null,
         "dns": {
           "A": [
             "52.29.26.157"
@@ -220,7 +221,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (alpahidatakayama.spahotel.guru/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"alpahidatakayama.spahotel.guru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007017; classtype:social-engineering; sid:6007017; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:38:32.347087+00:00",
+  "updated_at": "2026-07-20T05:49:49.939379+00:00",
   "probe": {
     "dns": true,
     "whois": true,

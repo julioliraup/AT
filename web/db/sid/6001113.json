@@ -74,24 +74,37 @@
     "phishdestroy": {
       "domain": "amazon-clone-taupe-six.vercel.app",
       "domain_defanged": "amazon-clone-taupe-six[.]vercel[.]app",
-      "case_id": "PD-20260717-42D1D6",
-      "analyzed_at": "2026-07-17T13:50:17.186Z",
+      "case_id": "PD-20260719-42D1D6",
+      "analyzed_at": "2026-07-19T02:32:32.685Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f5b51-7de1-72da-9cbd-a767eed5ffa5.png",
+          "url": "https://urlscan.io/result/019f5b51-7de1-72da-9cbd-a767eed5ffa5/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
+        "ip": "64.29.17.194",
         "ipinfo": {
-          "ip": "216.198.79.66",
+          "ip": "64.29.17.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -100,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "64.29.17.194",
+            "216.198.79.194"
           ]
         }
       },
@@ -237,11 +250,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .amazon-clone-taupe-six .vercel .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"www.amazon-clone-taupe-six.vercel.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001113; classtype:social-engineering; sid:6001113; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:50:14.935379+00:00",
+  "updated_at": "2026-07-19T23:51:54.605782+00:00",
   "probe": {
     "dns": true,
     "whois": false,

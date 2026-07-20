@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "microsoft365office.duckdns.org",
       "domain_defanged": "microsoft365office[.]duckdns[.]org",
-      "case_id": "PD-20260717-47F500",
-      "analyzed_at": "2026-07-17T21:51:47.670Z",
+      "case_id": "PD-20260720-47F500",
+      "analyzed_at": "2026-07-20T08:08:11.727Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e91-7a98-77aa-b883-ff1fe640278f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,7 +69,14 @@
       },
       "infrastructure": {
         "ip": "138.226.236.115",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "138.226.236.115",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS205775 NEON CORE NETWORK LLC",
+          "asn": "AS205775"
+        },
         "dns": {
           "MX": [
             "50 microsoft365office.duckdns.org."
@@ -204,7 +215,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.microsoft365office.duckdns.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.microsoft365office.duckdns.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009412; classtype:social-engineering; sid:6009412; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:51:44.222594+00:00",
+  "updated_at": "2026-07-20T08:08:08.624784+00:00",
   "probe": {
     "dns": true,
     "whois": true,

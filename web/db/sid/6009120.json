@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "lnk.ua",
       "domain_defanged": "lnk[.]ua",
-      "case_id": "PD-20260717-417524",
-      "analyzed_at": "2026-07-17T21:35:59.101Z",
+      "case_id": "PD-20260720-417524",
+      "analyzed_at": "2026-07-20T07:50:44.065Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e81-7e29-7610-a21c-021b49cada9e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,16 +92,23 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.26.59",
-        "ipinfo": null,
+        "ip": "172.67.168.59",
+        "ipinfo": {
+          "ip": "172.67.168.59",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.21.26.59",
-            "172.67.168.59"
-          ],
           "AAAA": [
-            "2606:4700:3031::ac43:a83b",
-            "2606:4700:3037::6815:1a3b"
+            "2606:4700:3037::6815:1a3b",
+            "2606:4700:3031::ac43:a83b"
+          ],
+          "A": [
+            "172.67.168.59",
+            "104.21.26.59"
           ],
           "NS": [
             "janet.ns.cloudflare.com.",
@@ -107,7 +118,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +252,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lnk.ua/tSU6QVByr)\"; flow:established,to_server; http.uri; content:\"/tSU6QVByr\"; startswith; fast_pattern; http.host; content:\"lnk.ua\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009120; classtype:social-engineering; sid:6009120; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:35:55.483038+00:00",
+  "updated_at": "2026-07-20T07:50:40.818386+00:00",
   "probe": {
     "dns": true,
     "whois": true,

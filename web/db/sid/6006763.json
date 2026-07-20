@@ -49,21 +49,38 @@
     "phishdestroy": {
       "domain": "heavenlyhounds.info",
       "domain_defanged": "heavenlyhounds[.]info",
-      "case_id": "PD-20260717-58D679",
-      "analyzed_at": "2026-07-17T19:24:33.940Z",
+      "case_id": "PD-20260720-58D679",
+      "analyzed_at": "2026-07-20T05:32:38.633Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f7189-a346-71de-a522-b1ec11e368d2.png",
           "url": "https://urlscan.io/result/019f7189-a346-71de-a522-b1ec11e368d2/",
-          "pending": true
+          "title": "Welcome to nginx!"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -82,12 +99,12 @@
             "2606:4700:3030::ac43:8efc",
             "2606:4700:3036::6815:5f2b"
           ],
+          "MX": [
+            "10 storm-crypt1.heavenlyhounds.info."
+          ],
           "A": [
             "104.21.95.43",
             "172.67.142.252"
-          ],
-          "MX": [
-            "10 storm-crypt1.heavenlyhounds.info."
           ],
           "NS": [
             "meadow.ns.cloudflare.com.",
@@ -231,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (heavenlyhounds.info/PL-1466-160526/?u=81C1466&e=cemoi%40wp)\"; flow:established,to_server; http.uri; content:\"/PL-1466-160526/?u=81C1466&e=cemoi%40wp\"; startswith; fast_pattern; http.host; content:\"heavenlyhounds.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006763; classtype:social-engineering; sid:6006763; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:24:31.050590+00:00",
+  "updated_at": "2026-07-20T05:32:22.718368+00:00",
   "probe": {
     "dns": true,
     "whois": true,

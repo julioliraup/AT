@@ -22,7 +22,7 @@
       "url": "http://creditoradvice.co.uk/buzz/pages/redraiffeisen.php",
       "domain": "creditoradvice.co.uk",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "creditoradvice.co.uk",
       "domain_defanged": "creditoradvice[.]co[.]uk",
-      "case_id": "PD-20260717-77C1EB",
-      "analyzed_at": "2026-07-17T16:58:40.349Z",
+      "case_id": "PD-20260719-77C1EB",
+      "analyzed_at": "2026-07-19T05:51:21.135Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f78ed-d729-722a-8290-98cce090b967/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,40 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.67.136.35",
+        "ipinfo": {
+          "ip": "172.67.136.35",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "172.67.136.35",
+            "104.21.78.175"
+          ],
+          "NS": [
+            "arturo.ns.cloudflare.com.",
+            "melina.ns.cloudflare.com."
+          ],
+          "AAAA": [
+            "2606:4700:3031::ac43:8823",
+            "2606:4700:3033::6815:4eaf"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,16 +224,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (creditoradvice.co.uk/buzz/pages/redraiffeisen.php)\"; flow:established,to_server; http.uri; content:\"/buzz/pages/redraiffeisen.php\"; startswith; fast_pattern; http.host; content:\"creditoradvice.co.uk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004257; classtype:social-engineering; sid:6004257; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T16:58:32.909100+00:00",
+  "updated_at": "2026-07-20T02:58:44.624567+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": true,
+    "whois": true,
+    "status": "active"
+  }
 }

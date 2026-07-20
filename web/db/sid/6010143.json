@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "hfczqs.wasmer.app",
       "domain_defanged": "hfczqs[.]wasmer[.]app",
-      "case_id": "PD-20260717-255E64",
-      "analyzed_at": "2026-07-17T22:35:08.143Z",
+      "case_id": "PD-20260720-255E64",
+      "analyzed_at": "2026-07-20T08:55:06.712Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7ebc-6ea1-7158-a1d7-cc8337fd153a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,13 +92,21 @@
       },
       "infrastructure": {
         "ip": "5.78.30.216",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "5.78.30.216",
+          "hostname": "static.216.30.78.5.clients.your-server.de",
+          "city": "Hillsboro",
+          "region": "Oregon",
+          "country": "US",
+          "org": "AS212317 Hetzner Online GmbH",
+          "asn": "AS212317"
+        },
         "dns": {
-          "A": [
-            "5.78.30.216"
-          ],
           "AAAA": [
             "2a01:4ff:1f2:5878::"
+          ],
+          "A": [
+            "5.78.30.216"
           ],
           "NS": [
             "alpha.ns.wasmernet.com.",
@@ -231,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hfczqs.wasmer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"hfczqs.wasmer.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010143; classtype:social-engineering; sid:6010143; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T22:35:05.129605+00:00",
+  "updated_at": "2026-07-20T08:55:03.390317+00:00",
   "probe": {
     "dns": true,
     "whois": false,

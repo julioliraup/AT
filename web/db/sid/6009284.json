@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "heet.pl",
       "domain_defanged": "heet[.]pl",
-      "case_id": "PD-20260717-2FA644",
-      "analyzed_at": "2026-07-17T21:44:13.056Z",
+      "case_id": "PD-20260720-2FA644",
+      "analyzed_at": "2026-07-20T07:59:43.732Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e89-bb69-7709-8cba-f204437d8fdf/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,24 +93,39 @@
       },
       "infrastructure": {
         "ip": "109.95.156.156",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "109.95.156.156",
+          "hostname": "web03-s224.hosting.eu1.dhosting.com",
+          "city": "Warsaw",
+          "region": "Mazovia",
+          "country": "PL",
+          "org": "AS48896 dhosting.pl Sp. z o.o.",
+          "asn": "AS48896"
+        },
         "dns": {
+          "A": [
+            "109.95.156.156"
+          ],
           "MX": [
             "10 mx-2.dpoczta.pl.",
             "10 mx-1.dpoczta.pl."
           ],
-          "A": [
-            "109.95.156.156"
-          ],
           "NS": [
-            "ns2.dhosting.pl.",
-            "ns1.dhosting.pl."
+            "ns1.dhosting.pl.",
+            "ns2.dhosting.pl."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "DHOSTING-AS",
+          "abuse": "abuse@dhosting.pl",
+          "url": "mailto:abuse@dhosting.pl",
+          "logo": "https://i.ibb.co/FLtRDdf5/pr-DHOSTING-AS.png",
+          "method": "email",
+          "asn": "AS48896"
+        }
       },
       "report_services": [
         {
@@ -233,7 +252,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (heet.pl/lol/)\"; flow:established,to_server; http.uri; content:\"/lol/\"; startswith; fast_pattern; http.host; content:\"heet.pl\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6009284; classtype:social-engineering; sid:6009284; rev:1; metadata: signature_severity Major, created_et 2026_05_30, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:44:09.441301+00:00",
+  "updated_at": "2026-07-20T07:59:39.637861+00:00",
   "probe": {
     "dns": true,
     "whois": true,

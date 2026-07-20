@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "lnsta.fr",
       "domain_defanged": "lnsta[.]fr",
-      "case_id": "PD-20260717-58B92B",
-      "analyzed_at": "2026-07-17T20:59:52.950Z",
+      "case_id": "PD-20260720-58B92B",
+      "analyzed_at": "2026-07-20T07:13:49.185Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e5f-b37d-753b-8b23-5e8af73efa05/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,28 +92,43 @@
       },
       "infrastructure": {
         "ip": "164.132.235.17",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "164.132.235.17",
+          "hostname": "cluster023.hosting.ovh.net",
+          "city": "Dunkirk",
+          "region": "Hauts-de-France",
+          "country": "FR",
+          "org": "AS16276 OVH SAS",
+          "asn": "AS16276"
+        },
         "dns": {
-          "AAAA": [
-            "2001:41d0:301::23"
-          ],
           "A": [
             "164.132.235.17"
           ],
-          "NS": [
-            "ns109.ovh.net.",
-            "dns109.ovh.net."
+          "AAAA": [
+            "2001:41d0:301::23"
           ],
           "MX": [
             "1 mx1.mail.ovh.net.",
             "5 mx2.mail.ovh.net.",
             "100 mx3.mail.ovh.net."
+          ],
+          "NS": [
+            "ns109.ovh.net.",
+            "dns109.ovh.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "OVH",
+          "abuse": "abuse@ovh.net",
+          "url": "https://www.ovh.com/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16276"
+        }
       },
       "report_services": [
         {
@@ -236,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lnsta.fr/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"lnsta.fr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008480; classtype:social-engineering; sid:6008480; rev:1; metadata: signature_severity Major, created_et 2026_05_28, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T20:59:48.859140+00:00",
+  "updated_at": "2026-07-20T07:13:45.067028+00:00",
   "probe": {
     "dns": true,
     "whois": true,

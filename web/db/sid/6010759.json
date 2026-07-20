@@ -82,14 +82,18 @@
     "phishdestroy": {
       "domain": "cez.dvf.mybluehost.me",
       "domain_defanged": "cez[.]dvf[.]mybluehost[.]me",
-      "case_id": "PD-20260717-49D62D",
-      "analyzed_at": "2026-07-17T23:06:37.456Z",
+      "case_id": "PD-20260720-49D62D",
+      "analyzed_at": "2026-07-20T09:26:47.788Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7ed9-70b6-77b8-8486-44f6af224b58/",
+          "pending": true
         }
       },
       "detections": [],
@@ -98,23 +102,38 @@
       },
       "infrastructure": {
         "ip": "50.6.245.84",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "50.6.245.84",
+          "hostname": "50-6-245-84.unifiedlayer.com",
+          "city": "Toronto",
+          "region": "Ontario",
+          "country": "CA",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": {
-          "MX": [
-            "0 mail.cez.dvf.mybluehost.me."
-          ],
           "A": [
             "50.6.245.84"
           ],
+          "MX": [
+            "0 mail.cez.dvf.mybluehost.me."
+          ],
           "NS": [
-            "ns2.mybluehost.me.",
-            "ns1.mybluehost.me."
+            "ns1.mybluehost.me.",
+            "ns2.mybluehost.me."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -241,7 +260,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cez.dvf.mybluehost.me/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cez.dvf.mybluehost.me\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010759; classtype:social-engineering; sid:6010759; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T23:06:34.965113+00:00",
+  "updated_at": "2026-07-20T09:26:44.820691+00:00",
   "probe": {
     "dns": true,
     "whois": true,

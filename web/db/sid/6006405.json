@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "hr.dropcloud.it",
       "domain_defanged": "hr[.]dropcloud[.]it",
-      "case_id": "PD-20260717-4BB521",
-      "analyzed_at": "2026-07-17T19:04:52.089Z",
+      "case_id": "PD-20260720-4BB521",
+      "analyzed_at": "2026-07-20T04:48:57.220Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7177-9b6b-72f6-a756-dff06f302fac.png",
           "url": "https://urlscan.io/result/019f7177-9b6b-72f6-a756-dff06f302fac/",
-          "pending": true
+          "title": "hr.dropcloud.it"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,14 +80,14 @@
         "ip": "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
-          ],
           "A": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
-            "54.74.181.206",
             "52.17.47.79",
+            "54.74.181.206",
             "63.35.11.110"
+          ],
+          "MX": [
+            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ],
           "AAAA": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
@@ -93,7 +102,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -220,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hr.dropcloud.it/paycheckaction?rid=giiTdAh)\"; flow:established,to_server; http.uri; content:\"/paycheckaction?rid=giiTdAh\"; startswith; fast_pattern; http.host; content:\"hr.dropcloud.it\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006405; classtype:social-engineering; sid:6006405; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:04:48.507984+00:00",
+  "updated_at": "2026-07-20T04:48:53.738655+00:00",
   "probe": {
     "dns": true,
     "whois": true,

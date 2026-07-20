@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "bnc.klkhds.click",
       "domain_defanged": "bnc[.]klkhds[.]click",
-      "case_id": "PD-20260717-34307A",
-      "analyzed_at": "2026-07-17T21:26:19.054Z",
+      "case_id": "PD-20260720-34307A",
+      "analyzed_at": "2026-07-20T07:41:22.930Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7e78-ee3e-7588-876f-238b378bcdfe/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,21 +69,35 @@
       },
       "infrastructure": {
         "ip": "172.67.151.53",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.151.53",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3033::6815:408a",
-            "2606:4700:3032::ac43:9735"
-          ],
           "A": [
             "172.67.151.53",
             "104.21.64.138"
+          ],
+          "AAAA": [
+            "2606:4700:3032::ac43:9735",
+            "2606:4700:3033::6815:408a"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bnc.klkhds.click/?id=veren2@76c9a8d1999161c398089d96ef03f7577939.org)\"; flow:established,to_server; http.uri; content:\"/?id=veren2@76c9a8d1999161c398089d96ef03f7577939.org\"; startswith; fast_pattern; http.host; content:\"bnc.klkhds.click\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008947; classtype:social-engineering; sid:6008947; rev:1; metadata: signature_severity Major, created_et 2026_05_29, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T21:26:16.599295+00:00",
+  "updated_at": "2026-07-20T07:41:19.960288+00:00",
   "probe": {
     "dns": true,
     "whois": true,

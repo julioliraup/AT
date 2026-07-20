@@ -73,26 +73,47 @@
     "phishdestroy": {
       "domain": "ledger-entry.com",
       "domain_defanged": "ledger-entry[.]com",
-      "case_id": "PD-20260717-658755",
-      "analyzed_at": "2026-07-17T19:31:54.580Z",
+      "case_id": "PD-20260720-658755",
+      "analyzed_at": "2026-07-20T05:42:20.140Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea2d7-4b7a-7011-9f74-4b44b32a4d70.png",
+          "url": "https://urlscan.io/result/019ea2d7-4b7a-7011-9f74-4b44b32a4d70/",
+          "title": "靖匠界｜Ledger官网购买咨询｜Ledger Wallet下载｜售后验真与型号对比"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-04-27T15:10:25Z",
         "expires": "2027-04-27T15:10:25Z",
-        "age_days": 81,
+        "age_days": 83,
         "nameservers": []
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.154.193.155",
+        "ipinfo": {
+          "ip": "43.154.193.155",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
@@ -104,7 +125,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -231,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledger-entry.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledger-entry.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006896; classtype:social-engineering; sid:6006896; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:31:52.241969+00:00",
+  "updated_at": "2026-07-20T05:42:17.386712+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -56,21 +56,30 @@
     "phishdestroy": {
       "domain": "j53n.vip",
       "domain_defanged": "j53n[.]vip",
-      "case_id": "PD-20260717-5412CB",
-      "analyzed_at": "2026-07-17T13:26:16.445Z",
+      "case_id": "PD-20260719-5412CB",
+      "analyzed_at": "2026-07-19T01:53:12.233Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7041-9b4a-70c1-aac1-b73415ffd527.png",
           "url": "https://urlscan.io/result/019f7041-9b4a-70c1-aac1-b73415ffd527/",
-          "pending": true
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,19 +87,19 @@
         "ip": "huayang.302.gn301.xyz.",
         "ipinfo": null,
         "dns": {
+          "CNAME": [
+            "huayang.302.gn301.xyz."
+          ],
           "NS": [
             "ns1.1111343.com.",
             "ns2.1111343.com.",
             "ns3.1111343.com.",
             "ns4.1111343.com."
           ],
-          "CNAME": [
-            "huayang.302.gn301.xyz."
-          ],
           "A": [
             "huayang.302.gn301.xyz.",
-            "103.27.177.163",
-            "103.27.177.164"
+            "103.27.177.164",
+            "103.27.177.163"
           ]
         }
       },
@@ -219,11 +228,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (j53n .vip/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"j53n.vip\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000691; classtype:social-engineering; sid:6000691; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T13:26:12.050586+00:00",
+  "updated_at": "2026-07-19T23:36:03.831418+00:00",
   "probe": {
     "dns": true,
     "whois": true,

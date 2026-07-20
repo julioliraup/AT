@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "bridge-trezor.plasmic.run",
       "domain_defanged": "bridge-trezor[.]plasmic[.]run",
-      "case_id": "PD-20260717-943DF2",
-      "analyzed_at": "2026-07-17T22:08:54.039Z",
+      "case_id": "PD-20260720-943DF2",
+      "analyzed_at": "2026-07-20T08:24:13.830Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f7ea0-28cc-76c0-9a58-f0b952bd850f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,18 +92,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.150.1.1",
-        "ipinfo": null,
+        "ip": "216.150.16.1",
+        "ipinfo": {
+          "ip": "216.150.16.1",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.150.1.1",
-            "216.150.16.129"
+            "216.150.16.1",
+            "216.150.1.193"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -226,7 +244,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bridge-trezor.plasmic.run/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bridge-trezor.plasmic.run\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009687; classtype:social-engineering; sid:6009687; rev:1; metadata: signature_severity Major, created_et 2026_05_31, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T22:08:50.915086+00:00",
+  "updated_at": "2026-07-20T08:24:10.188095+00:00",
   "probe": {
     "dns": true,
     "whois": true,

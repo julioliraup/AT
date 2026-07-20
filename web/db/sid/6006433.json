@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "amazon-clone-teal-three.vercel.app",
       "domain_defanged": "amazon-clone-teal-three[.]vercel[.]app",
-      "case_id": "PD-20260717-6B1399",
-      "analyzed_at": "2026-07-17T19:06:50.648Z",
+      "case_id": "PD-20260720-6B1399",
+      "analyzed_at": "2026-07-20T04:50:48.669Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f7179-6a88-7170-94ed-c5b28c60d7a5.png",
           "url": "https://urlscan.io/result/019f7179-6a88-7170-94ed-c5b28c60d7a5/",
-          "pending": true
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.66",
+        "ip": "64.29.17.2",
         "ipinfo": {
-          "ip": "64.29.17.66",
+          "ip": "64.29.17.2",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.66",
-            "216.198.79.66"
+            "64.29.17.2",
+            "216.198.79.2"
           ]
         }
       },
@@ -244,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.amazon-clone-teal-three.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.amazon-clone-teal-three.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006433; classtype:social-engineering; sid:6006433; rev:1; metadata: signature_severity Major, created_et 2026_05_24, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-17T19:06:48.628425+00:00",
+  "updated_at": "2026-07-20T04:50:46.583350+00:00",
   "probe": {
     "dns": true,
     "whois": false,
