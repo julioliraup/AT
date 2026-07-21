@@ -50,18 +50,14 @@
     "phishdestroy": {
       "domain": "shorturl.at",
       "domain_defanged": "shorturl[.]at",
-      "case_id": "PD-20260719-72F680",
-      "analyzed_at": "2026-07-19T03:22:24.333Z",
+      "case_id": "PD-20260720-72F680",
+      "analyzed_at": "2026-07-20T16:53:14.988Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f7865-79e1-71ec-b0d5-739252151d4b/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -69,45 +65,31 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.69.88",
-        "ipinfo": {
-          "ip": "172.67.69.88",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ip": "104.26.8.129",
+        "ipinfo": null,
         "dns": {
-          "A": [
-            "172.67.69.88",
-            "104.26.8.129",
-            "104.26.9.129"
-          ],
           "AAAA": [
-            "2606:4700:20::ac43:4558",
+            "2606:4700:20::681a:981",
             "2606:4700:20::681a:881",
-            "2606:4700:20::681a:981"
+            "2606:4700:20::ac43:4558"
+          ],
+          "A": [
+            "104.26.8.129",
+            "104.26.9.129",
+            "172.67.69.88"
+          ],
+          "MX": [
+            "0 mail.shorturl.at."
           ],
           "NS": [
             "jason.ns.cloudflare.com.",
             "mia.ns.cloudflare.com."
-          ],
-          "MX": [
-            "0 mail.shorturl.at."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -235,10 +217,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shorturl .at/sQxf0)\"; flow:established,to_server; http.uri; content:\"/sQxf0\"; startswith; fast_pattern; http.host;  content:\"shorturl.at\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001945; classtype:social-engineering; sid:6001945; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-20T00:33:36.040957+00:00",
+  "updated_at": "2026-07-20T16:53:27.912254+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }
