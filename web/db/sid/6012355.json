@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "webauto.sk",
       "domain_defanged": "webauto[.]sk",
-      "case_id": "PD-20260720-553026",
-      "analyzed_at": "2026-07-20T10:57:48.338Z",
+      "case_id": "PD-20260721-553026",
+      "analyzed_at": "2026-07-21T21:12:43.851Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8686-1999-7769-8838-70a4a0099e89/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,14 +69,21 @@
       },
       "infrastructure": {
         "ip": "37.205.15.246",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "37.205.15.246",
+          "city": "Prague",
+          "region": "Prague",
+          "country": "CZ",
+          "org": "AS24971 MasterDC s.r.o.",
+          "asn": "AS24971"
+        },
         "dns": {
-          "A": [
-            "37.205.15.246"
-          ],
           "MX": [
             "5 mailin1.webauto.sk.",
             "10 mailin2.webauto.sk."
+          ],
+          "A": [
+            "37.205.15.246"
           ],
           "AAAA": [
             "2a03:3b40:fe:836::1"
@@ -86,7 +97,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "GREENFLOID-AS",
+          "abuse": "abuse@greenfloid.com",
+          "url": "mailto:abuse@greenfloid.com",
+          "logo": "https://i.ibb.co/Ndb6W5dY/pr-GREENFLOID-AS.png",
+          "method": "email",
+          "asn": "AS24971"
+        }
       },
       "report_services": [
         {
@@ -209,12 +227,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webauto.sk/js/body.html)\"; flow:established,to_server; http.uri; content:\"/js/body.html\"; startswith; fast_pattern; http.host; content:\"webauto.sk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012355; classtype:social-engineering; sid:6012355; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T03:49:30.226896+00:00",
+  "updated_at": "2026-07-21T21:12:38.200827+00:00",
   "probe": {
     "dns": true,
     "whois": true,

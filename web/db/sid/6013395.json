@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "lootcentral.com.br",
       "domain_defanged": "lootcentral[.]com[.]br",
-      "case_id": "PD-20260720-607728",
-      "analyzed_at": "2026-07-20T11:55:36.007Z",
+      "case_id": "PD-20260721-607728",
+      "analyzed_at": "2026-07-21T22:30:35.841Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f86cd-6534-7768-a33a-b209bed4d2dd/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,17 +93,25 @@
       },
       "infrastructure": {
         "ip": "186.209.113.105",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "186.209.113.105",
+          "hostname": "br52-cp.valueserver.com.br",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS53107 EVEO S.A.",
+          "asn": "AS53107"
+        },
         "dns": {
-          "A": [
-            "186.209.113.105"
-          ],
           "MX": [
             "0 lootcentral.com.br."
           ],
           "NS": [
             "ns2.ynk.rocks.",
             "ns1.ynk.rocks."
+          ],
+          "A": [
+            "186.209.113.105"
           ]
         }
       },
@@ -228,12 +240,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.lootcentral.com.br/voice/)\"; flow:established,to_server; http.uri; content:\"/voice/\"; startswith; fast_pattern; http.host; content:\"www.lootcentral.com.br\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013395; classtype:social-engineering; sid:6013395; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T04:31:32.367109+00:00",
+  "updated_at": "2026-07-21T22:30:31.299234+00:00",
   "probe": {
     "dns": true,
     "whois": true,
