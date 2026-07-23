@@ -136,18 +136,14 @@
     "phishdestroy": {
       "domain": "microsoft.authorised-support.com",
       "domain_defanged": "microsoft[.]authorised-support[.]com",
-      "case_id": "PD-20260722-2590D9",
-      "analyzed_at": "2026-07-22T04:46:44.439Z",
+      "case_id": "PD-20260723-2590D9",
+      "analyzed_at": "2026-07-23T07:43:24.926Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f8825-c2b1-7562-b2b7-e0cb58bea698/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -155,23 +151,38 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.174.59.128",
-        "ipinfo": null,
+        "ip": "3.174.59.126",
+        "ipinfo": {
+          "ip": "3.174.59.126",
+          "hostname": "server-3-174-59-126.gig52.r.cloudfront.net",
+          "city": "Rio de Janeiro",
+          "region": "Rio de Janeiro",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
-          "A": [
-            "3.174.59.128",
-            "3.174.59.126",
-            "3.174.59.74",
-            "3.174.59.11"
-          ],
           "MX": [
             "0 authorised-support-com.mail.protection.outlook.com."
+          ],
+          "A": [
+            "3.174.59.126",
+            "3.174.59.128",
+            "3.174.59.74",
+            "3.174.59.11"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -298,7 +309,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (microsoft .authorised-support .com/new-account/EOzAFbYj1bjLmgufSIlKJJR9Kpvsy5kc3UkY=3Ag==5WFxWR1pGWlNBallaUlxbakJcQV1qRVRGRkJaR1E=/6Xx5KG1mKRNjeU3rSnC8diFTM7R4V1de)\"; flow:established,to_server; http.uri; content:\"/new-account/EOzAFbYj1bjLmgufSIlKJJR9Kpvsy5kc3UkY=3Ag==5WFxWR1pGWlNBallaUlxbakJcQV1qRVRGRkJaR1E=/6Xx5KG1mKRNjeU3rSnC8diFTM7R4V1de\"; startswith; fast_pattern; http.host;  content:\"microsoft.authorised-support.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001500; classtype:social-engineering; sid:6001500; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-22T04:46:40.589653+00:00",
+  "updated_at": "2026-07-23T07:43:22.012211+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -50,41 +50,64 @@
     "phishdestroy": {
       "domain": "roblox.com.ge",
       "domain_defanged": "roblox[.]com[.]ge",
-      "case_id": "PD-20260721-394233",
-      "analyzed_at": "2026-07-21T20:51:11.493Z",
+      "case_id": "PD-20260723-394233",
+      "analyzed_at": "2026-07-23T00:57:13.081Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f8672-61b0-73bf-9770-e59eacf89b64/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8b09-2bc8-761a-a65c-d280dc1d7f31.png",
+          "url": "https://urlscan.io/result/019f8b09-2bc8-761a-a65c-d280dc1d7f31/",
+          "title": "Rellxz_ - Roblox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "91.240.20.15",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "91.240.20.15",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS59939 WIBO Baltic UAB",
+          "asn": "AS59939"
+        },
         "dns": {
-          "NS": [
-            "ns1.eggywall.org.",
-            "ns2.eggywall.org."
-          ],
           "A": [
             "91.240.20.15",
             "91.240.20.16"
+          ],
+          "NS": [
+            "ns1.eggywall.org.",
+            "ns2.eggywall.org."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "WIBO-AS, LT",
+          "abuse": "abuse@hooray.solutions",
+          "url": "mailto:abuse@hooray.solutions",
+          "logo": "",
+          "method": "email",
+          "asn": "AS59939"
+        }
       },
       "report_services": [
         {
@@ -212,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (roblox .com .ge/communities/5040898348/)\"; flow:established,to_server; http.uri; content:\"/communities/5040898348/\"; startswith; fast_pattern; http.host;  content:\"roblox.com.ge\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000599; classtype:social-engineering; sid:6000599; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-22T03:42:18.499392+00:00",
+  "updated_at": "2026-07-23T06:51:35.250240+00:00",
   "probe": {
     "dns": true,
     "whois": false,

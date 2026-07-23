@@ -73,18 +73,14 @@
     "phishdestroy": {
       "domain": "mycom.cl",
       "domain_defanged": "mycom[.]cl",
-      "case_id": "PD-20260722-150FA7",
-      "analyzed_at": "2026-07-22T05:06:42.715Z",
+      "case_id": "PD-20260723-150FA7",
+      "analyzed_at": "2026-07-23T07:57:06.083Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f8838-0c93-77ad-8240-9a828f4cca4b/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -103,6 +99,9 @@
           "asn": "AS265839"
         },
         "dns": {
+          "A": [
+            "201.148.104.254"
+          ],
           "MX": [
             "10 mail.mycom.cl.",
             "1 smtp.google.com."
@@ -110,9 +109,6 @@
           "NS": [
             "dns9.hosting.cl.",
             "dns10.hosting.cl."
-          ],
-          "A": [
-            "201.148.104.254"
           ]
         }
       },
@@ -252,10 +248,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .mycom .cl/a/)\"; flow:established,to_server; http.uri; content:\"/a/\"; startswith; fast_pattern; http.host;  content:\"www.mycom.cl\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001740; classtype:social-engineering; sid:6001740; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-22T05:06:38.674652+00:00",
+  "updated_at": "2026-07-23T07:57:02.695478+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }
