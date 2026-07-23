@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "outconfiadd.webcindario.com",
       "domain_defanged": "outconfiadd[.]webcindario[.]com",
-      "case_id": "PD-20260721-70F9C1",
-      "analyzed_at": "2026-07-21T20:44:08.722Z",
+      "case_id": "PD-20260723-70F9C1",
+      "analyzed_at": "2026-07-23T00:48:32.529Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f866b-eda9-736f-82d3-a159463ed979.png",
           "url": "https://urlscan.io/result/019f866b-eda9-736f-82d3-a159463ed979/",
-          "pending": true
+          "title": "Iniciar sesión en tu cuenta Microsoft"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,27 +80,34 @@
         "ip": "server.webcindario.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "server.webcindario.com."
-          ],
           "MX": [
-            "server.webcindario.com."
-          ],
-          "NS": [
             "server.webcindario.com."
           ],
           "A": [
             "server.webcindario.com.",
             "5.57.226.202"
           ],
+          "AAAA": [
+            "server.webcindario.com."
+          ],
           "CNAME": [
+            "server.webcindario.com."
+          ],
+          "NS": [
             "server.webcindario.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ABANSYS_AND_HOSTYTEC-AS",
+          "abuse": "abuse@abansysandhostytec.com",
+          "url": "mailto:abuse@abansysandhostytec.com",
+          "logo": "https://i.ibb.co/Nn7t7bhZ/pr-ABANSYS-AND-HOSTYTEC-AS.png",
+          "method": "email",
+          "asn": "AS29119"
+        }
       },
       "report_services": [
         {
@@ -218,7 +234,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (outconfiadd.webcindario.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"outconfiadd.webcindario.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011966; classtype:social-engineering; sid:6011966; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:44:01.354580+00:00",
+  "updated_at": "2026-07-23T00:48:25.718231+00:00",
   "probe": {
     "dns": true,
     "whois": false,

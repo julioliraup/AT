@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "rodovias-dr9.pages.dev",
       "domain_defanged": "rodovias-dr9[.]pages[.]dev",
-      "case_id": "PD-20260721-1AC55E",
-      "analyzed_at": "2026-07-21T21:16:02.274Z",
+      "case_id": "PD-20260723-1AC55E",
+      "analyzed_at": "2026-07-23T01:37:32.167Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8689-2248-7599-bded-b3cafe2defab.png",
           "url": "https://urlscan.io/result/019f8689-2248-7599-bded-b3cafe2defab/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.230",
+        "ip": "172.66.45.26",
         "ipinfo": {
-          "ip": "172.66.46.230",
+          "ip": "172.66.45.26",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "A": [
-            "172.66.46.230",
-            "172.66.45.26"
+            "172.66.45.26",
+            "172.66.46.230"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2d1a",
-            "2606:4700:310c::ac42:2ee6"
+            "2606:4700:310c::ac42:2ee6",
+            "2606:4700:310c::ac42:2d1a"
           ],
           "NS": [
             "cruz.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rodovias-dr9.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"rodovias-dr9.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6012405; classtype:social-engineering; sid:6012405; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:16:00.214062+00:00",
+  "updated_at": "2026-07-23T01:37:27.911766+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -72,28 +72,37 @@
     "phishdestroy": {
       "domain": "eri0-dreayi.vercel.app",
       "domain_defanged": "eri0-dreayi[.]vercel[.]app",
-      "case_id": "PD-20260721-CD0958",
-      "analyzed_at": "2026-07-21T21:29:58.954Z",
+      "case_id": "PD-20260723-CD0958",
+      "analyzed_at": "2026-07-23T01:53:33.446Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f8695-e65c-71af-9f69-5eff66fb0ade/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "LinkedIn"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8ab9-7767-7614-8e3f-6c78bcb9064e.png",
+          "url": "https://urlscan.io/result/019f8ab9-7767-7614-8e3f-6c78bcb9064e/",
+          "title": "LinkedIn Login, Sign in | LinkedIn"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: LinkedIn",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.2",
+        "ip": "64.29.17.130",
         "ipinfo": {
-          "ip": "216.198.79.2",
+          "ip": "64.29.17.130",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -102,8 +111,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.2",
-            "64.29.17.2"
+            "64.29.17.130",
+            "216.198.79.130"
           ]
         }
       },
@@ -243,7 +252,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (eri0-dreayi.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"eri0-dreayi.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012607; classtype:social-engineering; sid:6012607; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:29:55.002077+00:00",
+  "updated_at": "2026-07-23T01:53:29.974055+00:00",
   "probe": {
     "dns": true,
     "whois": false,

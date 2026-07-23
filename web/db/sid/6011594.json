@@ -49,45 +49,127 @@
     "phishdestroy": {
       "domain": "abhishek-codelab.github.io",
       "domain_defanged": "abhishek-codelab[.]github[.]io",
-      "case_id": "PD-20260721-2783D2",
-      "analyzed_at": "2026-07-21T20:16:14.686Z",
+      "case_id": "PD-20260723-2783D2",
+      "analyzed_at": "2026-07-23T00:16:54.430Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019f8652-6337-703b-917c-2979433ab693.png",
           "url": "https://urlscan.io/result/019f8652-6337-703b-917c-2979433ab693/",
-          "pending": true
+          "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.111.153",
-        "ipinfo": null,
+        "ip": "185.199.109.153",
+        "ipinfo": {
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
-            "185.199.111.153",
-            "185.199.108.153",
+            "185.199.109.153",
             "185.199.110.153",
-            "185.199.109.153"
+            "185.199.111.153",
+            "185.199.108.153"
           ],
           "AAAA": [
             "2606:50c0:8000::153",
-            "2606:50c0:8002::153",
             "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
             "2606:50c0:8003::153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -214,7 +296,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (abhishek-codelab.github.io/Amazon-Homepage-Clone/)\"; flow:established,to_server; http.uri; content:\"/Amazon-Homepage-Clone/\"; startswith; fast_pattern; http.host; content:\"abhishek-codelab.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011594; classtype:social-engineering; sid:6011594; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:16:11.214184+00:00",
+  "updated_at": "2026-07-23T00:16:50.108174+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "ne12netempresa.com",
       "domain_defanged": "ne12netempresa[.]com",
-      "case_id": "PD-20260720-312D58",
-      "analyzed_at": "2026-07-20T15:59:49.881Z",
+      "case_id": "PD-20260722-312D58",
+      "analyzed_at": "2026-07-22T04:06:18.660Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8800-be20-745f-b8b5-a56304ef51f8/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,7 +69,7 @@
         "registrar": "Internet Domain Service BS Corp",
         "created": "2026-05-08T07:40:16Z",
         "expires": "2027-05-08T07:40:16Z",
-        "age_days": 73,
+        "age_days": 74,
         "nameservers": [
           "NS-CANADA.TOPDNS.COM",
           "NS-UK.TOPDNS.COM",
@@ -74,7 +78,14 @@
       },
       "infrastructure": {
         "ip": "181.214.221.46",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "181.214.221.46",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS210356 KAUA REIS DA SILVA trading as BattleHost",
+          "asn": "AS210356"
+        },
         "dns": {
           "A": [
             "181.214.221.46"
@@ -218,15 +229,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ne12netempresa .com/acesso-seguro .php?token=16645381396a019ed855f416 .91533538)\"; flow:established,to_server; http.uri; content:\"/acesso-seguro.php?token=16645381396a019ed855f416.91533538\"; startswith; fast_pattern; http.host;  content:\"ne12netempresa.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000943; classtype:social-engineering; sid:6000943; rev:2; metadata: signature_severity Major, created_et 2026_05_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T08:23:33.722901+00:00",
+  "updated_at": "2026-07-22T04:06:13.190010+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "dpd.plmnvxqjtr.cfd",
       "domain_defanged": "dpd[.]plmnvxqjtr[.]cfd",
-      "case_id": "PD-20260720-511D0F",
-      "analyzed_at": "2026-07-20T16:43:50.848Z",
+      "case_id": "PD-20260722-511D0F",
+      "analyzed_at": "2026-07-22T05:07:40.555Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8838-ee84-72dd-bf82-52517cf78213/",
+          "pending": true
         }
       },
       "detections": [],
@@ -90,21 +94,35 @@
       },
       "infrastructure": {
         "ip": "104.21.94.228",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.94.228",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.21.94.228",
             "172.67.140.223"
           ],
           "AAAA": [
-            "2606:4700:3036::ac43:8cdf",
-            "2606:4700:3037::6815:5ee4"
+            "2606:4700:3037::6815:5ee4",
+            "2606:4700:3036::ac43:8cdf"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -227,12 +245,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd .plmnvxqjtr .cfd/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host;  content:\"dpd.plmnvxqjtr.cfd\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001755; classtype:social-engineering; sid:6001755; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T09:00:28.213970+00:00",
+  "updated_at": "2026-07-22T05:07:36.530993+00:00",
   "probe": {
     "dns": true,
     "whois": true,

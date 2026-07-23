@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "scotiaonlinebank-chi.vercel.app",
       "domain_defanged": "scotiaonlinebank-chi[.]vercel[.]app",
-      "case_id": "PD-20260720-61C838",
-      "analyzed_at": "2026-07-20T19:10:24.359Z",
+      "case_id": "PD-20260722-61C838",
+      "analyzed_at": "2026-07-22T07:02:23.065Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f88a1-f104-7441-8c07-286fe7a76f49/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,18 +68,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.66",
-        "ipinfo": null,
+        "ip": "216.198.79.194",
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "64.29.17.66",
-            "216.198.79.66"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -203,7 +221,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (scotiaonlinebank-chi.vercel.app/global/en/global-site.html)\"; flow:established,to_server; http.uri; content:\"/global/en/global-site.html\"; startswith; fast_pattern; http.host; content:\"scotiaonlinebank-chi.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003724; classtype:social-engineering; sid:6003724; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T10:52:29.983505+00:00",
+  "updated_at": "2026-07-22T07:10:22.088479+00:00",
   "probe": {
     "dns": true,
     "whois": false,

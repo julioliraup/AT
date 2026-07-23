@@ -50,29 +50,50 @@
     "phishdestroy": {
       "domain": "pnckswqpwks.com",
       "domain_defanged": "pnckswqpwks[.]com",
-      "case_id": "PD-20260720-7AD653",
-      "analyzed_at": "2026-07-20T15:14:25.249Z",
+      "case_id": "PD-20260722-7AD653",
+      "analyzed_at": "2026-07-22T03:11:12.239Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e161d-5452-772c-bbd2-d0fe4d5c7cf7.png",
+          "url": "https://urlscan.io/result/019e161d-5452-772c-bbd2-d0fe4d5c7cf7/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NICENIC INTERNATIONAL GROUP CO., LIMITED",
         "created": "2026-05-09T01:21:50Z",
         "expires": "2027-05-09T01:21:50Z",
-        "age_days": 72,
+        "age_days": 74,
         "nameservers": [
           "CARRERA.NS.CLOUDFLARE.COM",
           "TRACE.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.159.179",
+        "ipinfo": {
+          "ip": "172.67.159.179",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -84,7 +105,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -207,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pnckswqpwks .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"pnckswqpwks.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000172; classtype:social-engineering; sid:6000172; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T07:51:16.660492+00:00",
+  "updated_at": "2026-07-22T03:11:07.095861+00:00",
   "probe": {
     "dns": false,
     "whois": false,

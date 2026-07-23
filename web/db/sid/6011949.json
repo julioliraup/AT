@@ -49,26 +49,47 @@
     "phishdestroy": {
       "domain": "bcaxe-reward.com",
       "domain_defanged": "bcaxe-reward[.]com",
-      "case_id": "PD-20260721-162BAC",
-      "analyzed_at": "2026-07-21T20:42:27.894Z",
+      "case_id": "PD-20260723-162BAC",
+      "analyzed_at": "2026-07-23T00:46:48.868Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f2c4e-18f5-7253-80bd-922ae55f99ae.png",
+          "url": "https://urlscan.io/result/019f2c4e-18f5-7253-80bd-922ae55f99ae/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-06-07T17:03:26Z",
         "expires": "2027-06-07T17:03:26Z",
-        "age_days": 44,
+        "age_days": 45,
         "nameservers": []
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3036::ac43:be0c",
+        "ipinfo": {
+          "ip": "2606:4700:3036::ac43:be0c",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -80,7 +101,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -207,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bcaxe-reward.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bcaxe-reward.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6011949; classtype:social-engineering; sid:6011949; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:42:24.392641+00:00",
+  "updated_at": "2026-07-23T00:46:43.860421+00:00",
   "probe": {
     "dns": false,
     "whois": false,

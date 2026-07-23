@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "office-docusign-net.tammy-e82.workers.dev",
       "domain_defanged": "office-docusign-net[.]tammy-e82[.]workers[.]dev",
-      "case_id": "PD-20260721-6BBA0B",
-      "analyzed_at": "2026-07-21T21:25:17.458Z",
+      "case_id": "PD-20260723-6BBA0B",
+      "analyzed_at": "2026-07-23T01:48:59.387Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8691-9aff-7684-8c26-83ef3302d6c7.png",
           "url": "https://urlscan.io/result/019f8691-9aff-7684-8c26-83ef3302d6c7/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.72.169",
+        "ip": "172.67.187.34",
         "ipinfo": {
-          "ip": "104.21.72.169",
+          "ip": "172.67.187.34",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.21.72.169",
-            "172.67.187.34"
-          ],
           "AAAA": [
             "2606:4700:3037::6815:48a9",
             "2606:4700:3036::ac43:bb22"
+          ],
+          "A": [
+            "172.67.187.34",
+            "104.21.72.169"
           ]
         }
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (office-docusign-net.tammy-e82.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"office-docusign-net.tammy-e82.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012536; classtype:social-engineering; sid:6012536; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:25:15.103020+00:00",
+  "updated_at": "2026-07-23T01:48:56.321281+00:00",
   "probe": {
     "dns": true,
     "whois": false,

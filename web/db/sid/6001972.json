@@ -71,14 +71,18 @@
     "phishdestroy": {
       "domain": "s.raumwerk-reichel.de",
       "domain_defanged": "s[.]raumwerk-reichel[.]de",
-      "case_id": "PD-20260720-33B419",
-      "analyzed_at": "2026-07-20T16:55:01.857Z",
+      "case_id": "PD-20260722-33B419",
+      "analyzed_at": "2026-07-22T05:20:44.252Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8844-e2ac-775f-bb50-8c58142d3611/",
+          "pending": true
         }
       },
       "detections": [],
@@ -87,13 +91,21 @@
       },
       "infrastructure": {
         "ip": "92.205.55.151",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "92.205.55.151",
+          "hostname": "sh23487.ispgateway.de",
+          "city": "Strasbourg",
+          "region": "Grand Est",
+          "country": "FR",
+          "org": "AS21499 Host Europe GmbH",
+          "asn": "AS21499"
+        },
         "dns": {
-          "MX": [
-            "100 mxlb.ispgateway.de."
-          ],
           "AAAA": [
             "2a00:1169:103:2af0::"
+          ],
+          "MX": [
+            "100 mxlb.ispgateway.de."
           ],
           "A": [
             "92.205.55.151"
@@ -225,12 +237,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s .raumwerk-reichel .de/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"s.raumwerk-reichel.de\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001972; classtype:social-engineering; sid:6001972; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T09:10:35.928510+00:00",
+  "updated_at": "2026-07-22T05:20:40.201806+00:00",
   "probe": {
     "dns": true,
     "whois": true,

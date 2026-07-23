@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp10ct6-fraltex-biz-plurnik-vranor.pages.dev",
       "domain_defanged": "sp10ct6-fraltex-biz-plurnik-vranor[.]pages[.]dev",
-      "case_id": "PD-20260721-36F3EA",
-      "analyzed_at": "2026-07-21T20:38:55.278Z",
+      "case_id": "PD-20260723-36F3EA",
+      "analyzed_at": "2026-07-23T00:41:18.062Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8667-271e-719a-843e-570e7cb7908a.png",
           "url": "https://urlscan.io/result/019f8667-271e-719a-843e-570e7cb7908a/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-fraltex-biz-plurnik-vranor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-fraltex-biz-plurnik-vranor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011894; classtype:social-engineering; sid:6011894; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:38:52.626382+00:00",
+  "updated_at": "2026-07-23T00:41:08.958370+00:00",
   "probe": {
     "dns": true,
     "whois": false,

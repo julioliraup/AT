@@ -73,35 +73,51 @@
     "phishdestroy": {
       "domain": "imtokevn.im",
       "domain_defanged": "imtokevn[.]im",
-      "case_id": "PD-20260721-1DFD07",
-      "analyzed_at": "2026-07-21T20:51:15.360Z",
+      "case_id": "PD-20260723-1DFD07",
+      "analyzed_at": "2026-07-23T00:57:17.677Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8672-70d1-73ce-83ed-98a30670a9de.png",
           "url": "https://urlscan.io/result/019f8672-70d1-73ce-83ed-98a30670a9de/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.22.152",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.22.152",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3032::ac43:cd5a",
+            "2606:4700:3037::6815:1698"
+          ],
           "A": [
             "104.21.22.152",
             "172.67.205.90"
-          ],
-          "AAAA": [
-            "2606:4700:3037::6815:1698",
-            "2606:4700:3032::ac43:cd5a"
           ],
           "NS": [
             "gina.ns.cloudflare.com.",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -238,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.imtokevn.im/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.imtokevn.im\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012076; classtype:social-engineering; sid:6012076; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:51:11.641206+00:00",
+  "updated_at": "2026-07-23T00:57:13.291223+00:00",
   "probe": {
     "dns": true,
     "whois": true,

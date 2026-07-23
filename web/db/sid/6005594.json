@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "novacart.ro",
       "domain_defanged": "novacart[.]ro",
-      "case_id": "PD-20260720-44FB0D",
-      "analyzed_at": "2026-07-20T21:34:56.695Z",
+      "case_id": "PD-20260722-44FB0D",
+      "analyzed_at": "2026-07-22T16:31:33.820Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8aab-0c08-707e-b463-0c28a5cf62df/",
+          "pending": true
         }
       },
       "detections": [],
@@ -75,17 +79,17 @@
           "asn": "AS43927"
         },
         "dns": {
-          "MX": [
-            "0 novacart.ro."
-          ],
           "A": [
             "185.250.104.81"
           ],
+          "MX": [
+            "0 novacart.ro."
+          ],
           "NS": [
-            "ns2.hosterion.net.",
             "ns1.hosterion.net.",
-            "ns2.hosterion.com.",
-            "ns1.hosterion.com."
+            "ns2.hosterion.net.",
+            "ns1.hosterion.com.",
+            "ns2.hosterion.com."
           ]
         }
       },
@@ -221,15 +225,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (novacart.ro/po/pages/login.php)\"; flow:established,to_server; http.uri; content:\"/po/pages/login.php\"; startswith; fast_pattern; http.host; content:\"novacart.ro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005594; classtype:social-engineering; sid:6005594; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T12:14:08.663846+00:00",
+  "updated_at": "2026-07-22T16:31:28.260199+00:00",
   "probe": {
     "dns": true,
-    "whois": false,
+    "whois": true,
     "status": "active"
   }
 }

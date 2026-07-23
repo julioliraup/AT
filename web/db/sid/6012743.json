@@ -49,26 +49,47 @@
     "phishdestroy": {
       "domain": "hotdoc-rf-pending.com",
       "domain_defanged": "hotdoc-rf-pending[.]com",
-      "case_id": "PD-20260721-3E6131",
-      "analyzed_at": "2026-07-21T21:31:55.170Z",
+      "case_id": "PD-20260723-3E6131",
+      "analyzed_at": "2026-07-23T01:55:54.380Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "HotDoc"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb97b-d63e-77bf-b47e-c4b59adf0dcb.png",
+          "url": "https://urlscan.io/result/019eb97b-d63e-77bf-b47e-c4b59adf0dcb/",
+          "title": "Security Verification - HotDocs"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: HotDoc",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Global Domain Group LLC",
         "created": "2026-06-11T00:12:36Z",
         "expires": "2027-06-11T00:12:36Z",
-        "age_days": 40,
+        "age_days": 42,
         "nameservers": []
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "45.74.61.7",
+        "ipinfo": {
+          "ip": "45.74.61.7",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS205397 69HOST LLC",
+          "asn": "AS205397"
+        },
         "dns": null
       },
       "report_to": {
@@ -208,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hotdoc-rf-pending.com/pages/captcha.php/)\"; flow:established,to_server; http.uri; content:\"/pages/captcha.php/\"; startswith; fast_pattern; http.host; content:\"hotdoc-rf-pending.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012743; classtype:social-engineering; sid:6012743; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:39:04.139489+00:00",
+  "updated_at": "2026-07-23T02:03:07.942913+00:00",
   "probe": {
     "dns": false,
     "whois": false,

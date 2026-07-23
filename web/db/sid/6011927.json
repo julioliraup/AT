@@ -73,26 +73,35 @@
     "phishdestroy": {
       "domain": "phldgn.com",
       "domain_defanged": "phldgn[.]com",
-      "case_id": "PD-20260721-4EC455",
-      "analyzed_at": "2026-07-21T20:41:11.019Z",
+      "case_id": "PD-20260723-4EC455",
+      "analyzed_at": "2026-07-23T00:44:49.440Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8669-3840-740d-9bd4-206d994ea3ad.png",
           "url": "https://urlscan.io/result/019f8669-3840-740d-9bd4-206d994ea3ad/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Metaregistrar BV",
         "created": "2026-06-06T12:48:02Z",
         "expires": "2027-06-06T12:48:02Z",
-        "age_days": 45,
+        "age_days": 46,
         "nameservers": [
           "GLORIA.NS.CLOUDFLARE.COM",
           "GRAHAM.NS.CLOUDFLARE.COM"
@@ -100,15 +109,22 @@
       },
       "infrastructure": {
         "ip": "172.67.147.57",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.147.57",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.67.147.57",
             "104.21.41.125"
           ],
           "AAAA": [
-            "2606:4700:3030::ac43:9339",
-            "2606:4700:3030::6815:297d"
+            "2606:4700:3030::6815:297d",
+            "2606:4700:3030::ac43:9339"
           ],
           "NS": [
             "gloria.ns.cloudflare.com.",
@@ -125,7 +141,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -252,7 +275,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (phldgn.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"phldgn.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011927; classtype:social-engineering; sid:6011927; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:41:02.461956+00:00",
+  "updated_at": "2026-07-23T00:44:39.775238+00:00",
   "probe": {
     "dns": true,
     "whois": false,

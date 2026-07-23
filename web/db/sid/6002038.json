@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "customer-sp-alexk.pages.dev",
       "domain_defanged": "customer-sp-alexk[.]pages[.]dev",
-      "case_id": "PD-20260720-1381C8",
-      "analyzed_at": "2026-07-20T16:59:14.149Z",
+      "case_id": "PD-20260722-1381C8",
+      "analyzed_at": "2026-07-22T05:24:44.192Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8848-8be5-7025-9e8a-9864d299092f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,15 +93,22 @@
       },
       "infrastructure": {
         "ip": "172.66.47.197",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.197",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2c3b",
+            "2606:4700:310c::ac42:2fc5"
+          ],
           "A": [
             "172.66.47.197",
             "172.66.44.59"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2fc5",
-            "2606:4700:310c::ac42:2c3b"
           ],
           "NS": [
             "anderson.ns.cloudflare.com.",
@@ -107,7 +118,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (customer-sp-alexk.pages.dev/help/contact/845811820275247)\"; flow:established,to_server; http.uri; content:\"/help/contact/845811820275247\"; startswith; fast_pattern; http.host; content:\"customer-sp-alexk.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002038; classtype:social-engineering; sid:6002038; rev:1; metadata: signature_severity Major, created_et 2026_05_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T09:13:56.489410+00:00",
+  "updated_at": "2026-07-22T05:24:40.945466+00:00",
   "probe": {
     "dns": true,
     "whois": false,

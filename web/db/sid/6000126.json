@@ -50,26 +50,35 @@
     "phishdestroy": {
       "domain": "digitalprocurements.com",
       "domain_defanged": "digitalprocurements[.]com",
-      "case_id": "PD-20260720-5A1391",
-      "analyzed_at": "2026-07-20T15:11:37.943Z",
+      "case_id": "PD-20260722-5A1391",
+      "analyzed_at": "2026-07-22T03:08:06.501Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8015-256d-75b0-95ad-e9b5bc7343bb.png",
           "url": "https://urlscan.io/result/019f8015-256d-75b0-95ad-e9b5bc7343bb/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2017-06-12T17:52:58Z",
         "expires": "2028-06-12T17:52:58Z",
-        "age_days": 3324,
+        "age_days": 3326,
         "nameservers": [
           "NS-1019.AWSDNS-63.NET",
           "NS-132.AWSDNS-16.COM",
@@ -243,12 +252,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (digitalprocurements .com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a\"; startswith; fast_pattern; http.host;  content:\"digitalprocurements.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000126; classtype:social-engineering; sid:6000126; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T07:49:15.044768+00:00",
+  "updated_at": "2026-07-22T03:08:02.155640+00:00",
   "probe": {
     "dns": true,
     "whois": true,

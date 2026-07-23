@@ -22,7 +22,7 @@
       "url": "http://maps-ubi-localizado.com/a.php",
       "domain": "maps-ubi-localizado.com",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "maps-ubi-localizado.com",
       "domain_defanged": "maps-ubi-localizado[.]com",
-      "case_id": "PD-20260721-7B5F42",
-      "analyzed_at": "2026-07-21T23:00:53.533Z",
+      "case_id": "PD-20260723-7B5F42",
+      "analyzed_at": "2026-07-23T03:11:13.162Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8cf4-a8a8-7468-8886-9772aff48e7e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,15 +68,30 @@
         "registrar": "Sav.com, LLC",
         "created": "2026-06-08T21:00:41Z",
         "expires": "2027-06-08T21:00:41Z",
-        "age_days": 43,
+        "age_days": 44,
         "nameservers": [
           "NS1.ALL-HARMLESS.DOMAINS",
           "NS2.ALL-HARMLESS.DOMAINS"
         ]
       },
       "infrastructure": {
+        "ip": "34.76.205.124",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "NS": [
+            "ns1.all-harmless.domains.",
+            "ns2.all-harmless.domains."
+          ],
+          "MX": [
+            "10 mx.all-harmless.domains."
+          ],
+          "A": [
+            "34.76.205.124"
+          ],
+          "AAAA": [
+            "2600:1901:0:51b9::"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -203,12 +222,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (maps-ubi-localizado.com/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"maps-ubi-localizado.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013756; classtype:social-engineering; sid:6013756; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T23:00:42.565025+00:00",
+  "updated_at": "2026-07-23T03:11:03.456975+00:00",
   "probe": {
-    "dns": false,
+    "dns": true,
     "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "status": "active"
+  }
 }

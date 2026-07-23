@@ -73,36 +73,61 @@
     "phishdestroy": {
       "domain": "owa.supersaverdining.com",
       "domain_defanged": "owa[.]supersaverdining[.]com",
-      "case_id": "PD-20260721-226978",
-      "analyzed_at": "2026-07-21T20:30:54.734Z",
+      "case_id": "PD-20260723-226978",
+      "analyzed_at": "2026-07-23T00:32:04.229Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f865f-d0e6-7570-863d-87e30de9cc1d.png",
           "url": "https://urlscan.io/result/019f865f-d0e6-7570-863d-87e30de9cc1d/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.104.102.7",
-        "ipinfo": null,
+        "ip": "13.210.89.195",
+        "ipinfo": {
+          "ip": "13.210.89.195",
+          "hostname": "ec2-13-210-89-195.ap-southeast-2.compute.amazonaws.com",
+          "city": "Sydney",
+          "region": "New South Wales",
+          "country": "AU",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
+            "13.210.89.195",
             "3.104.102.7"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -229,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (owa.supersaverdining.com/education_redirect_second/8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second/8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"owa.supersaverdining.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011789; classtype:social-engineering; sid:6011789; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:30:51.851280+00:00",
+  "updated_at": "2026-07-23T00:32:00.520054+00:00",
   "probe": {
     "dns": true,
     "whois": false,

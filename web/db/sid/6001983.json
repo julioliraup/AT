@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "tr.ee",
       "domain_defanged": "tr[.]ee",
-      "case_id": "PD-20260720-697321",
-      "analyzed_at": "2026-07-20T16:55:36.764Z",
+      "case_id": "PD-20260722-697321",
+      "analyzed_at": "2026-07-22T05:21:21.553Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8845-742a-753d-8b51-20c1e1940019/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,14 +69,21 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "151.101.130.133",
-        "ipinfo": null,
+        "ip": "151.101.2.133",
+        "ipinfo": {
+          "ip": "151.101.2.133",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
-            "151.101.130.133",
-            "151.101.194.133",
             "151.101.2.133",
-            "151.101.66.133"
+            "151.101.66.133",
+            "151.101.194.133",
+            "151.101.130.133"
           ],
           "NS": [
             "ns-1110.awsdns-10.org.",
@@ -84,7 +95,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -207,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tr .ee/MiOiT2)\"; flow:established,to_server; http.uri; content:\"/MiOiT2\"; startswith; fast_pattern; http.host;  content:\"tr.ee\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001983; classtype:social-engineering; sid:6001983; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T09:11:15.906608+00:00",
+  "updated_at": "2026-07-22T05:21:18.602146+00:00",
   "probe": {
     "dns": true,
     "whois": true,

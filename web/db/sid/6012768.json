@@ -55,27 +55,55 @@
     "phishdestroy": {
       "domain": "julian-wine-cleanup-searched.trycloudflare.com",
       "domain_defanged": "julian-wine-cleanup-searched[.]trycloudflare[.]com",
-      "case_id": "PD-20260721-5627F9",
-      "analyzed_at": "2026-07-21T21:32:47.695Z",
+      "case_id": "PD-20260723-5627F9",
+      "analyzed_at": "2026-07-23T01:56:43.018Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Google"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ebb13-6cc8-7519-a8ba-f2e94888d0ea.png",
+          "url": "https://urlscan.io/result/019ebb13-6cc8-7519-a8ba-f2e94888d0ea/",
+          "title": "Gmail"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Google",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.16.231.132",
+        "ipinfo": {
+          "ip": "104.16.231.132",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -203,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (julian-wine-cleanup-searched.trycloudflare.com/login.html)\"; flow:established,to_server; http.uri; content:\"/login.html\"; startswith; fast_pattern; http.host; content:\"julian-wine-cleanup-searched.trycloudflare.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012768; classtype:social-engineering; sid:6012768; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:40:54.154861+00:00",
+  "updated_at": "2026-07-23T02:04:48.746490+00:00",
   "probe": {
     "dns": true,
     "whois": false,

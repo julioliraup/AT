@@ -55,26 +55,35 @@
     "phishdestroy": {
       "domain": "securedbankfinancing.com",
       "domain_defanged": "securedbankfinancing[.]com",
-      "case_id": "PD-20260721-3E033F",
-      "analyzed_at": "2026-07-21T20:31:34.863Z",
+      "case_id": "PD-20260723-3E033F",
+      "analyzed_at": "2026-07-23T00:32:42.214Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8660-6ebf-77f0-964a-ef963ecab0b2.png",
           "url": "https://urlscan.io/result/019f8660-6ebf-77f0-964a-ef963ecab0b2/",
-          "pending": true
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2024-03-08T16:11:23Z",
         "expires": "2027-03-08T16:11:23Z",
-        "age_days": 865,
+        "age_days": 866,
         "nameservers": [
           "NS-1350.AWSDNS-40.ORG",
           "NS-1942.AWSDNS-50.CO.UK",
@@ -83,10 +92,10 @@
         ]
       },
       "infrastructure": {
-        "ip": "3.104.102.7",
+        "ip": "13.210.89.195",
         "ipinfo": {
-          "ip": "3.104.102.7",
-          "hostname": "ec2-3-104-102-7.ap-southeast-2.compute.amazonaws.com",
+          "ip": "13.210.89.195",
+          "hostname": "ec2-13-210-89-195.ap-southeast-2.compute.amazonaws.com",
           "city": "Sydney",
           "region": "New South Wales",
           "country": "AU",
@@ -94,11 +103,12 @@
           "asn": "AS16509"
         },
         "dns": {
+          "A": [
+            "13.210.89.195",
+            "3.104.102.7"
+          ],
           "MX": [
             "10 mx0.us.cf-ops.net."
-          ],
-          "A": [
-            "3.104.102.7"
           ],
           "NS": [
             "ns-1350.awsdns-40.org.",
@@ -252,7 +262,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (securedbankfinancing.com/education_redirect_second/8c5781c2-7b1e-4035-b1d7-990e269e5380)\"; flow:established,to_server; http.uri; content:\"/education_redirect_second/8c5781c2-7b1e-4035-b1d7-990e269e5380\"; startswith; fast_pattern; http.host; content:\"securedbankfinancing.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011881; classtype:social-engineering; sid:6011881; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:37:48.286470+00:00",
+  "updated_at": "2026-07-23T00:39:58.525708+00:00",
   "probe": {
     "dns": true,
     "whois": true,

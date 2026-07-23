@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "sharedfiles.slatestructural.com",
       "domain_defanged": "sharedfiles[.]slatestructural[.]com",
-      "case_id": "PD-20260721-7E7414",
-      "analyzed_at": "2026-07-21T21:20:15.922Z",
+      "case_id": "PD-20260723-7E7414",
+      "analyzed_at": "2026-07-23T01:43:31.929Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Sharepoint"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb1af-297a-751a-bdf7-e779ee6be348.png",
+          "url": "https://urlscan.io/result/019eb1af-297a-751a-bdf7-e779ee6be348/",
+          "title": "Microsoft-SharePoint"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Sharepoint",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "192.254.186.147",
+        "ipinfo": {
+          "ip": "192.254.186.147",
+          "hostname": "192-254-186-147.unifiedlayer.com",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sharedfiles.slatestructural.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sharedfiles.slatestructural.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012467; classtype:social-engineering; sid:6012467; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:20:12.141117+00:00",
+  "updated_at": "2026-07-23T01:43:27.478609+00:00",
   "probe": {
     "dns": false,
     "whois": false,

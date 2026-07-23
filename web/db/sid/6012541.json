@@ -73,34 +73,46 @@
     "phishdestroy": {
       "domain": "coinbaseru.ru",
       "domain_defanged": "coinbaseru[.]ru",
-      "case_id": "PD-20260721-30D51A",
-      "analyzed_at": "2026-07-21T21:25:32.717Z",
+      "case_id": "PD-20260723-30D51A",
+      "analyzed_at": "2026-07-23T01:49:15.615Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8691-d57c-728f-89df-88e198793270.png",
           "url": "https://urlscan.io/result/019f8691-d57c-728f-89df-88e198793270/",
-          "pending": true
+          "title": "Биржа Coinbase — Вход на официальный сайт"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "87.236.16.13",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "87.236.16.13",
+          "city": "Saint Petersburg",
+          "region": "St.-Petersburg",
+          "country": "RU",
+          "org": "AS198610 Beget LLC",
+          "asn": "AS198610"
+        },
         "dns": {
           "A": [
             "87.236.16.13"
-          ],
-          "MX": [
-            "10 mx1.beget.com.",
-            "20 mx2.beget.com."
           ],
           "NS": [
             "ns2.beget.ru.",
@@ -109,6 +121,10 @@
             "ns1.beget.pro.",
             "ns2.beget.com.",
             "ns1.beget.com."
+          ],
+          "MX": [
+            "10 mx1.beget.com.",
+            "20 mx2.beget.com."
           ]
         }
       },
@@ -241,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (coinbaseru.ru/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"coinbaseru.ru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012541; classtype:social-engineering; sid:6012541; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:25:28.420813+00:00",
+  "updated_at": "2026-07-23T01:49:11.571613+00:00",
   "probe": {
     "dns": true,
     "whois": true,

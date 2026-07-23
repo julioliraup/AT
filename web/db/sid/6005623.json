@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "metamsakwallct.gitbook.io",
       "domain_defanged": "metamsakwallct[.]gitbook[.]io",
-      "case_id": "PD-20260720-5F300C",
-      "analyzed_at": "2026-07-20T21:34:51.632Z",
+      "case_id": "PD-20260722-5F300C",
+      "analyzed_at": "2026-07-22T16:31:28.160Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8aaa-f696-767e-81fc-ca231f5726c5/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,21 +69,35 @@
       },
       "infrastructure": {
         "ip": "104.18.40.47",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.40.47",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.18.40.47",
-            "172.64.147.209"
-          ],
           "AAAA": [
             "2a06:98c1:310d::6812:282f",
             "2606:4700:4401::ac40:93d1"
+          ],
+          "A": [
+            "104.18.40.47",
+            "172.64.147.209"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -207,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (metamsakwallct.gitbook.io/us)\"; flow:established,to_server; http.uri; content:\"/us\"; startswith; fast_pattern; http.host; content:\"metamsakwallct.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005623; classtype:social-engineering; sid:6005623; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T12:15:23.116583+00:00",
+  "updated_at": "2026-07-22T16:33:40.704525+00:00",
   "probe": {
     "dns": true,
     "whois": true,

@@ -74,27 +74,43 @@
     "phishdestroy": {
       "domain": "sso--en-uphold-help.typedream.app",
       "domain_defanged": "sso--en-uphold-help[.]typedream[.]app",
-      "case_id": "PD-20260720-1B82B2",
-      "analyzed_at": "2026-07-20T15:07:45.123Z",
+      "case_id": "PD-20260722-1B82B2",
+      "analyzed_at": "2026-07-22T03:02:48.801Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Uphold"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8011-9769-712a-918b-9c6d84c26cc3.png",
           "url": "https://urlscan.io/result/019f8011-9769-712a-918b-9c6d84c26cc3/",
-          "pending": true
+          "title": "Uphold Login | Sign In@"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Uphold",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.206.36",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.206.36",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.67.206.36",
@@ -104,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -227,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso--en-uphold-help .typedream .app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"sso--en-uphold-help.typedream.app\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000054; classtype:social-engineering; sid:6000054; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T07:46:19.421091+00:00",
+  "updated_at": "2026-07-22T03:02:45.944643+00:00",
   "probe": {
     "dns": true,
     "whois": false,

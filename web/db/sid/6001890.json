@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "eavizer.com",
       "domain_defanged": "eavizer[.]com",
-      "case_id": "PD-20260720-29638A",
-      "analyzed_at": "2026-07-20T16:44:08.609Z",
+      "case_id": "PD-20260722-29638A",
+      "analyzed_at": "2026-07-22T05:07:58.785Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8839-33b6-704a-93c8-ba56a60b0a0c/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,7 +92,7 @@
         "registrar": "Key-Systems GmbH",
         "created": "2016-07-04T09:23:07Z",
         "expires": "2027-07-04T09:23:07Z",
-        "age_days": 3668,
+        "age_days": 3669,
         "nameservers": [
           "NS1.F5CLOUDDNS.COM",
           "NS2.F5CLOUDDNS.COM"
@@ -96,17 +100,25 @@
       },
       "infrastructure": {
         "ip": "159.69.109.80",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "159.69.109.80",
+          "hostname": "static.80.109.69.159.clients.your-server.de",
+          "city": "Nuremberg",
+          "region": "Bavaria",
+          "country": "DE",
+          "org": "AS24940 Hetzner Online GmbH",
+          "asn": "AS24940"
+        },
         "dns": {
-          "A": [
-            "159.69.109.80"
-          ],
           "MX": [
             "5 mail.eavizer.com."
           ],
+          "A": [
+            "159.69.109.80"
+          ],
           "NS": [
-            "ns2.f5clouddns.com.",
-            "ns1.f5clouddns.com."
+            "ns1.f5clouddns.com.",
+            "ns2.f5clouddns.com."
           ]
         }
       },
@@ -119,7 +131,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Hetzner",
+          "abuse": "abuse@hetzner.com",
+          "url": "https://www.hetzner.com/legal/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS24940"
+        }
       },
       "report_services": [
         {
@@ -247,7 +266,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .eavizer .com/awb-login/pRVAQ9gQYB/)\"; flow:established,to_server; http.uri; content:\"/awb-login/pRVAQ9gQYB/\"; startswith; fast_pattern; http.host;  content:\"www.eavizer.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001890; classtype:social-engineering; sid:6001890; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T09:06:30.756997+00:00",
+  "updated_at": "2026-07-22T05:16:10.375957+00:00",
   "probe": {
     "dns": true,
     "whois": false,

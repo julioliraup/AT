@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "bill.remote-otp.com",
       "domain_defanged": "bill[.]remote-otp[.]com",
-      "case_id": "PD-20260721-64D446",
-      "analyzed_at": "2026-07-21T21:28:08.821Z",
+      "case_id": "PD-20260723-64D446",
+      "analyzed_at": "2026-07-23T01:51:25.151Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8694-352a-70a8-9a14-3dadbb2ee419.png",
           "url": "https://urlscan.io/result/019f8694-352a-70a8-9a14-3dadbb2ee419/",
-          "pending": true
+          "title": "bill.remote-otp.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -80,20 +89,27 @@
           "A": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
             "63.35.11.110",
-            "54.74.181.206",
-            "52.17.47.79"
-          ],
-          "NS": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
+            "52.17.47.79",
+            "54.74.181.206"
           ],
           "CNAME": [
+            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
+          ],
+          "NS": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -220,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bill.remote-otp.com/?rid=jY2jrPo)\"; flow:established,to_server; http.uri; content:\"/?rid=jY2jrPo\"; startswith; fast_pattern; http.host; content:\"bill.remote-otp.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012574; classtype:social-engineering; sid:6012574; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:28:05.126726+00:00",
+  "updated_at": "2026-07-23T01:51:20.489409+00:00",
   "probe": {
     "dns": true,
     "whois": false,

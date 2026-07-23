@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "member12.agency-ad-meta.com",
       "domain_defanged": "member12[.]agency-ad-meta[.]com",
-      "case_id": "PD-20260720-71DF19",
-      "analyzed_at": "2026-07-20T16:46:52.373Z",
+      "case_id": "PD-20260722-71DF19",
+      "analyzed_at": "2026-07-22T05:11:45.728Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f883c-aa0d-744e-8ef6-3bff4e3a8344/",
+          "pending": true
         }
       },
       "detections": [],
@@ -90,21 +94,35 @@
       },
       "infrastructure": {
         "ip": "172.67.175.120",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.175.120",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3032::6815:116a",
-            "2606:4700:3037::ac43:af78"
-          ],
           "A": [
             "172.67.175.120",
             "104.21.17.106"
+          ],
+          "AAAA": [
+            "2606:4700:3032::6815:116a",
+            "2606:4700:3037::ac43:af78"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -227,12 +245,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (member12 .agency-ad-meta .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"member12.agency-ad-meta.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001818; classtype:social-engineering; sid:6001818; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T09:03:31.149251+00:00",
+  "updated_at": "2026-07-22T05:11:42.566742+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "pub-0670180e6ac942308e1a7b5d1496d509.r2.dev",
       "domain_defanged": "pub-0670180e6ac942308e1a7b5d1496d509[.]r2[.]dev",
-      "case_id": "PD-20260720-398E98",
-      "analyzed_at": "2026-07-20T18:35:31.360Z",
+      "case_id": "PD-20260722-398E98",
+      "analyzed_at": "2026-07-22T06:27:08.616Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8881-afb7-73ee-abfc-7905ff804675/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,21 +69,35 @@
       },
       "infrastructure": {
         "ip": "104.18.50.34",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.50.34",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:311b::6812:362d",
-            "2606:4700:311b::6812:3222"
-          ],
           "A": [
             "104.18.50.34",
             "104.18.54.45"
+          ],
+          "AAAA": [
+            "2606:4700:311b::6812:362d",
+            "2606:4700:311b::6812:3222"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -202,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pub-0670180e6ac942308e1a7b5d1496d509.r2.dev/docusign-paydocument.html)\"; flow:established,to_server; http.uri; content:\"/docusign-paydocument.html\"; startswith; fast_pattern; http.host; content:\"pub-0670180e6ac942308e1a7b5d1496d509.r2.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003057; classtype:social-engineering; sid:6003057; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T10:11:50.843363+00:00",
+  "updated_at": "2026-07-22T06:27:05.622111+00:00",
   "probe": {
     "dns": true,
     "whois": false,

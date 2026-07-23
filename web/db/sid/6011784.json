@@ -73,22 +73,43 @@
     "phishdestroy": {
       "domain": "teste.atualizacao-empresas.com",
       "domain_defanged": "teste[.]atualizacao-empresas[.]com",
-      "case_id": "PD-20260721-31FBF7",
-      "analyzed_at": "2026-07-21T20:30:36.017Z",
+      "case_id": "PD-20260723-31FBF7",
+      "analyzed_at": "2026-07-23T00:31:39.427Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Santander"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea941-3d4d-75df-8593-af5a197e67af.png",
+          "url": "https://urlscan.io/result/019ea941-3d4d-75df-8593-af5a197e67af/",
+          "title": "Santander"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Santander",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "178.16.54.253",
+        "ipinfo": {
+          "ip": "178.16.54.253",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS202412 Omegatech LTD",
+          "asn": "AS202412"
+        },
         "dns": null
       },
       "report_to": {
@@ -220,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (teste.atualizacao-empresas.com/inicio)\"; flow:established,to_server; http.uri; content:\"/inicio\"; startswith; fast_pattern; http.host; content:\"teste.atualizacao-empresas.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011784; classtype:social-engineering; sid:6011784; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:30:32.870577+00:00",
+  "updated_at": "2026-07-23T00:31:33.688277+00:00",
   "probe": {
     "dns": true,
     "whois": false,

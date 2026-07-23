@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "claims-fraud-esl-org.sbs",
       "domain_defanged": "claims-fraud-esl-org[.]sbs",
-      "case_id": "PD-20260721-24A329",
-      "analyzed_at": "2026-07-21T20:37:35.323Z",
+      "case_id": "PD-20260723-24A329",
+      "analyzed_at": "2026-07-23T00:39:51.213Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "ESL Federal Credit Union"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea763-6f60-7272-9f87-f97e67d87d3e.png",
+          "url": "https://urlscan.io/result/019ea763-6f60-7272-9f87-f97e67d87d3e/",
+          "title": "ESL Federal Credit Union - Log in"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: ESL Federal Credit Union",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "103.240.147.251",
+        "ipinfo": {
+          "ip": "103.240.147.251",
+          "city": "Milan",
+          "region": "Lombardy",
+          "country": "IT",
+          "org": "AS36007 Kamatera, Inc.",
+          "asn": "AS36007"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "KAMATERA",
+          "abuse": "abuse@cloudwm.com",
+          "url": "mailto:abuse@cloudwm.com",
+          "logo": "https://i.ibb.co/9kbMYYDW/pr-CLOUDWEBMANAGE-CANADA.png",
+          "method": "email",
+          "asn": "AS36007"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (claims-fraud-esl-org.sbs/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"claims-fraud-esl-org.sbs\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011879; classtype:social-engineering; sid:6011879; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:37:30.250430+00:00",
+  "updated_at": "2026-07-23T00:39:42.449772+00:00",
   "probe": {
     "dns": false,
     "whois": false,

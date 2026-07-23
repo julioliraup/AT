@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "instagramloginforyou.github.io",
       "domain_defanged": "instagramloginforyou[.]github[.]io",
-      "case_id": "PD-20260720-28EFE9",
-      "analyzed_at": "2026-07-20T16:47:49.524Z",
+      "case_id": "PD-20260722-28EFE9",
+      "analyzed_at": "2026-07-22T05:12:52.900Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f883d-b109-770b-b44f-1240346c2cfe/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,18 +69,26 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.111.153",
-        "ipinfo": null,
+        "ip": "185.199.110.153",
+        "ipinfo": {
+          "ip": "185.199.110.153",
+          "hostname": "cdn-185-199-110-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
+            "185.199.110.153",
             "185.199.111.153",
             "185.199.108.153",
-            "185.199.110.153",
             "185.199.109.153"
           ],
           "AAAA": [
-            "2606:50c0:8002::153",
             "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
             "2606:50c0:8003::153",
             "2606:50c0:8000::153"
           ]
@@ -84,7 +96,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -207,12 +226,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (instagramloginforyou .github .io/ig)\"; flow:established,to_server; http.uri; content:\"/ig\"; startswith; fast_pattern; http.host;  content:\"instagramloginforyou.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001835; classtype:social-engineering; sid:6001835; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T09:04:09.841574+00:00",
+  "updated_at": "2026-07-22T05:12:49.432175+00:00",
   "probe": {
     "dns": true,
     "whois": true,

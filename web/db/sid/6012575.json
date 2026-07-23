@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "t-mobile.bcpaym.top",
       "domain_defanged": "t-mobile[.]bcpaym[.]top",
-      "case_id": "PD-20260721-7A4360",
-      "analyzed_at": "2026-07-21T21:28:15.375Z",
+      "case_id": "PD-20260723-7A4360",
+      "analyzed_at": "2026-07-23T01:51:32.795Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb19e-b9a0-73e5-a246-bbe7702d26f0.png",
+          "url": "https://urlscan.io/result/019eb19e-b9a0-73e5-a246-bbe7702d26f0/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.153.64",
+        "ipinfo": {
+          "ip": "172.67.153.64",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +223,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.bcpaym.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.bcpaym.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012575; classtype:social-engineering; sid:6012575; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:28:08.916579+00:00",
+  "updated_at": "2026-07-23T01:51:25.299243+00:00",
   "probe": {
     "dns": false,
     "whois": false,

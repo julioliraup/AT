@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "2026-05-24.sqllq.com",
       "domain_defanged": "2026-05-24[.]sqllq[.]com",
-      "case_id": "PD-20260720-712D37",
-      "analyzed_at": "2026-07-20T22:17:19.386Z",
+      "case_id": "PD-20260722-712D37",
+      "analyzed_at": "2026-07-22T17:04:25.345Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8ac9-1f91-71a5-b8ca-3fe3dba81e6d/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,22 +68,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.172.129",
-        "ipinfo": null,
+        "ip": "104.21.30.80",
+        "ipinfo": {
+          "ip": "104.21.30.80",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.67.172.129",
-            "104.21.30.80"
-          ],
           "AAAA": [
-            "2606:4700:3034::6815:1e50",
-            "2606:4700:3035::ac43:ac81"
+            "2606:4700:3035::ac43:ac81",
+            "2606:4700:3034::6815:1e50"
+          ],
+          "A": [
+            "104.21.30.80",
+            "172.67.172.129"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -202,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (2026-05-24.sqllq.com/en/?howtosuecslplasma.org#nolanguage)\"; flow:established,to_server; http.uri; content:\"/en/?howtosuecslplasma.org#nolanguage\"; startswith; fast_pattern; http.host; content:\"2026-05-24.sqllq.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6006061; classtype:social-engineering; sid:6006061; rev:1; metadata: signature_severity Major, created_et 2026_05_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T12:42:26.776106+00:00",
+  "updated_at": "2026-07-22T17:04:21.208019+00:00",
   "probe": {
     "dns": true,
     "whois": false,

@@ -49,27 +49,54 @@
     "phishdestroy": {
       "domain": "kynticsha.shop",
       "domain_defanged": "kynticsha[.]shop",
-      "case_id": "PD-20260721-42211C",
-      "analyzed_at": "2026-07-21T20:29:47.163Z",
+      "case_id": "PD-20260723-42211C",
+      "analyzed_at": "2026-07-23T00:31:01.432Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea940-9e0f-7058-bf54-c827c1785c47.png",
+          "url": "https://urlscan.io/result/019ea940-9e0f-7058-bf54-c827c1785c47/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "154.220.96.199",
+        "ipinfo": {
+          "ip": "154.220.96.199",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS135097 LUOGELANG (FRANCE) LIMITED",
+          "asn": "AS135097"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "MYCLOUD-AS-AP",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "https://i.ibb.co/5tYBLWX/pr-COMING-AS.jpg",
+          "method": "email",
+          "asn": "AS135097"
+        }
       },
       "report_services": [
         {
@@ -197,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kynticsha.shop/h5/)\"; flow:established,to_server; http.uri; content:\"/h5/\"; startswith; fast_pattern; http.host; content:\"kynticsha.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011847; classtype:social-engineering; sid:6011847; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:35:10.743447+00:00",
+  "updated_at": "2026-07-23T00:36:23.318349+00:00",
   "probe": {
     "dns": false,
     "whois": false,

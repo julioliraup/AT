@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "store.workshopcommunityweb.com",
       "domain_defanged": "store[.]workshopcommunityweb[.]com",
-      "case_id": "PD-20260721-3AC3E3",
-      "analyzed_at": "2026-07-21T21:15:05.266Z",
+      "case_id": "PD-20260723-3AC3E3",
+      "analyzed_at": "2026-07-23T01:35:29.302Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eac8c-b8a9-7351-94b9-21017bcff39c.png",
+          "url": "https://urlscan.io/result/019eac8c-b8a9-7351-94b9-21017bcff39c/",
+          "title": "Steam Workshop::Tag Tracker"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.161.153",
+        "ipinfo": {
+          "ip": "172.67.161.153",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (store.workshopcommunityweb.com/sharedfiles/filesdetails/id=35225482505/)\"; flow:established,to_server; http.uri; content:\"/sharedfiles/filesdetails/id=35225482505/\"; startswith; fast_pattern; http.host; content:\"store.workshopcommunityweb.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012387; classtype:social-engineering; sid:6012387; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:15:01.966433+00:00",
+  "updated_at": "2026-07-23T01:35:24.407751+00:00",
   "probe": {
     "dns": false,
     "whois": false,

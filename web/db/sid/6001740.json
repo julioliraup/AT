@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "mycom.cl",
       "domain_defanged": "mycom[.]cl",
-      "case_id": "PD-20260720-150FA7",
-      "analyzed_at": "2026-07-20T16:43:03.015Z",
+      "case_id": "PD-20260722-150FA7",
+      "analyzed_at": "2026-07-22T05:06:42.715Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8838-0c93-77ad-8240-9a828f4cca4b/",
+          "pending": true
         }
       },
       "detections": [],
@@ -100,15 +104,15 @@
         },
         "dns": {
           "MX": [
-            "1 smtp.google.com.",
-            "10 mail.mycom.cl."
+            "10 mail.mycom.cl.",
+            "1 smtp.google.com."
+          ],
+          "NS": [
+            "dns9.hosting.cl.",
+            "dns10.hosting.cl."
           ],
           "A": [
             "201.148.104.254"
-          ],
-          "NS": [
-            "dns10.hosting.cl.",
-            "dns9.hosting.cl."
           ]
         }
       },
@@ -244,15 +248,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .mycom .cl/a/)\"; flow:established,to_server; http.uri; content:\"/a/\"; startswith; fast_pattern; http.host;  content:\"www.mycom.cl\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001740; classtype:social-engineering; sid:6001740; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T08:59:50.728774+00:00",
+  "updated_at": "2026-07-22T05:06:38.674652+00:00",
   "probe": {
     "dns": true,
-    "whois": true,
+    "whois": false,
     "status": "active"
   }
 }

@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "m20r.top",
       "domain_defanged": "m20r[.]top",
-      "case_id": "PD-20260721-17E292",
-      "analyzed_at": "2026-07-21T20:30:45.009Z",
+      "case_id": "PD-20260723-17E292",
+      "analyzed_at": "2026-07-23T00:31:47.808Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea4bf-086a-74f9-9c55-05ce841829ee.png",
+          "url": "https://urlscan.io/result/019ea4bf-086a-74f9-9c55-05ce841829ee/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "154.39.104.136",
+        "ipinfo": {
+          "ip": "154.39.104.136",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS18186 Nebula Global LLC",
+          "asn": "AS18186"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.m20r.top/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.m20r.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011786; classtype:social-engineering; sid:6011786; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:30:40.497596+00:00",
+  "updated_at": "2026-07-23T00:31:42.906681+00:00",
   "probe": {
     "dns": false,
     "whois": false,

@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "docusign-electronicsignature.remote-otp.com",
       "domain_defanged": "docusign-electronicsignature[.]remote-otp[.]com",
-      "case_id": "PD-20260721-7C6931",
-      "analyzed_at": "2026-07-21T21:16:47.023Z",
+      "case_id": "PD-20260723-7C6931",
+      "analyzed_at": "2026-07-23T01:38:50.811Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8689-cff7-733a-852c-4d9870cd4312.png",
           "url": "https://urlscan.io/result/019f8689-cff7-733a-852c-4d9870cd4312/",
-          "pending": true
+          "title": "docusign-electronicsignature.remote-otp.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -73,8 +82,8 @@
         "dns": {
           "A": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
-            "52.17.47.79",
             "63.35.11.110",
+            "52.17.47.79",
             "54.74.181.206"
           ],
           "MX": [
@@ -83,17 +92,24 @@
           "AAAA": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ],
-          "NS": [
+          "CNAME": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ],
-          "CNAME": [
+          "NS": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -220,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (docusign-electronicsignature.remote-otp.com/ID74591NF/html/ap0785185?rid=oFMAfF5)\"; flow:established,to_server; http.uri; content:\"/ID74591NF/html/ap0785185?rid=oFMAfF5\"; startswith; fast_pattern; http.host; content:\"docusign-electronicsignature.remote-otp.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012415; classtype:social-engineering; sid:6012415; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:16:43.244119+00:00",
+  "updated_at": "2026-07-23T01:38:45.076399+00:00",
   "probe": {
     "dns": true,
     "whois": false,

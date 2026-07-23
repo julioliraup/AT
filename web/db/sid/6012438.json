@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "bradesco.atualizacao-seguranca.com",
       "domain_defanged": "bradesco[.]atualizacao-seguranca[.]com",
-      "case_id": "PD-20260721-2CEA45",
-      "analyzed_at": "2026-07-21T21:18:14.362Z",
+      "case_id": "PD-20260723-2CEA45",
+      "analyzed_at": "2026-07-23T01:40:40.203Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Banco Bradesco"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb8e1-2c8e-723e-91c1-fd7e1b83e6b3.png",
+          "url": "https://urlscan.io/result/019eb8e1-2c8e-723e-91c1-fd7e1b83e6b3/",
+          "title": "Atendimento Empresarial"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Banco Bradesco",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "178.16.54.253",
+        "ipinfo": {
+          "ip": "178.16.54.253",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS202412 Omegatech LTD",
+          "asn": "AS202412"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bradesco.atualizacao-seguranca.com/login.php?hash=6912088696a299f9f7c83e7.19404289)\"; flow:established,to_server; http.uri; content:\"/login.php?hash=6912088696a299f9f7c83e7.19404289\"; startswith; fast_pattern; http.host; content:\"bradesco.atualizacao-seguranca.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012438; classtype:social-engineering; sid:6012438; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:18:11.001606+00:00",
+  "updated_at": "2026-07-23T01:40:33.584389+00:00",
   "probe": {
     "dns": false,
     "whois": false,

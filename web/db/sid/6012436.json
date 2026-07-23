@@ -49,22 +49,44 @@
     "phishdestroy": {
       "domain": "xc-amazon.com",
       "domain_defanged": "xc-amazon[.]com",
-      "case_id": "PD-20260721-61EC54",
-      "analyzed_at": "2026-07-21T21:18:07.501Z",
+      "case_id": "PD-20260723-61EC54",
+      "analyzed_at": "2026-07-23T01:40:30.020Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eae31-0a3d-73f3-9683-af826565e68b.png",
+          "url": "https://urlscan.io/result/019eae31-0a3d-73f3-9683-af826565e68b/",
+          "title": "Amazon Sign-in"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "132.148.176.183",
+        "ipinfo": {
+          "ip": "132.148.176.183",
+          "hostname": "183.176.148.132.host.secureserver.net",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS26496 GoDaddy.com, LLC",
+          "asn": "AS26496"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +218,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.xc-amazon.com/ap/us/en/Login.php)\"; flow:established,to_server; http.uri; content:\"/ap/us/en/Login.php\"; startswith; fast_pattern; http.host; content:\"www.xc-amazon.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012436; classtype:social-engineering; sid:6012436; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:18:04.416711+00:00",
+  "updated_at": "2026-07-23T01:40:26.536987+00:00",
   "probe": {
     "dns": false,
     "whois": false,

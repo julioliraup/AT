@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "worker-sweet-thunder-0bd5.jdl71756.workers.dev",
       "domain_defanged": "worker-sweet-thunder-0bd5[.]jdl71756[.]workers[.]dev",
-      "case_id": "PD-20260721-73FE75",
-      "analyzed_at": "2026-07-21T20:31:00.183Z",
+      "case_id": "PD-20260723-73FE75",
+      "analyzed_at": "2026-07-23T00:32:11.027Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f865f-e750-76bc-9e4b-bb3aa2eecf98.png",
           "url": "https://urlscan.io/result/019f865f-e750-76bc-9e4b-bb3aa2eecf98/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.34.167",
+        "ip": "172.67.163.73",
         "ipinfo": {
-          "ip": "104.21.34.167",
+          "ip": "172.67.163.73",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "104.21.34.167",
-            "172.67.163.73"
+            "172.67.163.73",
+            "104.21.34.167"
           ],
           "AAAA": [
             "2606:4700:3037::ac43:a349",
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (worker-sweet-thunder-0bd5.jdl71756.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"worker-sweet-thunder-0bd5.jdl71756.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011791; classtype:social-engineering; sid:6011791; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:30:57.023211+00:00",
+  "updated_at": "2026-07-23T00:32:08.196849+00:00",
   "probe": {
     "dns": true,
     "whois": false,

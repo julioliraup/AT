@@ -50,14 +50,18 @@
     "phishdestroy": {
       "domain": "lite.evernote.com",
       "domain_defanged": "lite[.]evernote[.]com",
-      "case_id": "PD-20260720-53E9F6",
-      "analyzed_at": "2026-07-20T16:52:10.057Z",
+      "case_id": "PD-20260722-53E9F6",
+      "analyzed_at": "2026-07-22T05:17:48.863Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8842-3592-77ae-a90f-7ad256a5a6b5/",
+          "pending": true
         }
       },
       "detections": [],
@@ -68,6 +72,11 @@
         "ip": "bendingspoons.map.fastly.net.",
         "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "bendingspoons.map.fastly.net.",
+            "2a04:4e42:4e::820",
+            "2a04:4e42:4f::820"
+          ],
           "MX": [
             "bendingspoons.map.fastly.net."
           ],
@@ -76,15 +85,10 @@
             "199.232.211.52",
             "199.232.215.52"
           ],
-          "AAAA": [
-            "bendingspoons.map.fastly.net.",
-            "2a04:4e42:4e::820",
-            "2a04:4e42:4f::820"
-          ],
-          "NS": [
+          "CNAME": [
             "bendingspoons.map.fastly.net."
           ],
-          "CNAME": [
+          "NS": [
             "bendingspoons.map.fastly.net."
           ]
         }
@@ -214,12 +218,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lite .evernote .com/note/def7c487-d207-e873-7d46-5b1bf924f520)\"; flow:established,to_server; http.uri; content:\"/note/def7c487-d207-e873-7d46-5b1bf924f520\"; startswith; fast_pattern; http.host;  content:\"lite.evernote.com\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6001924; classtype:social-engineering; sid:6001924; rev:2; metadata: signature_severity Major, created_et 2026_05_12, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T09:08:24.950299+00:00",
+  "updated_at": "2026-07-22T05:17:45.506416+00:00",
   "probe": {
     "dns": true,
     "whois": false,

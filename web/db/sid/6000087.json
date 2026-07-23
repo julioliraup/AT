@@ -50,27 +50,56 @@
     "phishdestroy": {
       "domain": "meta-id19239234.invoice-ads-program.com",
       "domain_defanged": "meta-id19239234[.]invoice-ads-program[.]com",
-      "case_id": "PD-20260720-7A98F0",
-      "analyzed_at": "2026-07-20T15:09:34.400Z",
+      "case_id": "PD-20260722-7A98F0",
+      "analyzed_at": "2026-07-22T03:05:09.552Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook",
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e1651-e0df-71cd-9f5c-0f3af1ca6f9d.png",
+          "url": "https://urlscan.io/result/019e1651-e0df-71cd-9f5c-0f3af1ca6f9d/",
+          "title": "Suspected phishing site | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook, Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.66.0.96",
+        "ipinfo": {
+          "ip": "172.66.0.96",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -193,12 +222,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-id19239234 .invoice-ads-program .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"meta-id19239234.invoice-ads-program.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000087; classtype:social-engineering; sid:6000087; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T07:47:42.468926+00:00",
+  "updated_at": "2026-07-22T03:05:05.451098+00:00",
   "probe": {
     "dns": false,
     "whois": false,

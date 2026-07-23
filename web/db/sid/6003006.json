@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "fs.cpa-advogados.com",
       "domain_defanged": "fs[.]cpa-advogados[.]com",
-      "case_id": "PD-20260720-1C8CBC",
-      "analyzed_at": "2026-07-20T18:32:11.731Z",
+      "case_id": "PD-20260722-1C8CBC",
+      "analyzed_at": "2026-07-22T06:24:10.347Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f887e-f755-77fc-80df-627f2a0e9213/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,15 +69,22 @@
       },
       "infrastructure": {
         "ip": "172.67.195.135",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.195.135",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3030::6815:447d",
-            "2606:4700:3035::ac43:c387"
-          ],
           "A": [
             "172.67.195.135",
             "104.21.68.125"
+          ],
+          "AAAA": [
+            "2606:4700:3035::ac43:c387",
+            "2606:4700:3030::6815:447d"
           ],
           "MX": [
             "1 mx1.titan.email.",
@@ -83,7 +94,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,12 +224,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fs.cpa-advogados.com/vc)\"; flow:established,to_server; http.uri; content:\"/vc\"; startswith; fast_pattern; http.host; content:\"fs.cpa-advogados.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003006; classtype:social-engineering; sid:6003006; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T10:08:48.875282+00:00",
+  "updated_at": "2026-07-22T06:24:07.651647+00:00",
   "probe": {
     "dns": true,
     "whois": false,

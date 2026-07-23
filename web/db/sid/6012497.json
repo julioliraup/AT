@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "hasolanalsa.co",
       "domain_defanged": "hasolanalsa[.]co",
-      "case_id": "PD-20260721-30958E",
-      "analyzed_at": "2026-07-21T21:22:14.153Z",
+      "case_id": "PD-20260723-30958E",
+      "analyzed_at": "2026-07-23T01:46:11.820Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Garanti"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb182-1423-76bb-917f-16fdb5d5e5fd.png",
+          "url": "https://urlscan.io/result/019eb182-1423-76bb-917f-16fdb5d5e5fd/",
+          "title": "Garanti BBVA Mobil"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Garanti",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "31.56.209.156",
+        "ipinfo": {
+          "ip": "31.56.209.156",
+          "city": "Kerkrade",
+          "region": "Limburg",
+          "country": "NL",
+          "org": "AS209373 SWISSNET LLC",
+          "asn": "AS209373"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hasolanalsa.co/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"hasolanalsa.co\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012497; classtype:social-engineering; sid:6012497; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:22:10.209402+00:00",
+  "updated_at": "2026-07-23T01:46:08.252872+00:00",
   "probe": {
     "dns": false,
     "whois": false,

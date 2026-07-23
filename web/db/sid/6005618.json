@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "feijicz.com.cn",
       "domain_defanged": "feijicz[.]com[.]cn",
-      "case_id": "PD-20260720-212155",
-      "analyzed_at": "2026-07-20T21:36:27.058Z",
+      "case_id": "PD-20260722-212155",
+      "analyzed_at": "2026-07-22T16:33:12.935Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f8aac-8ebf-733f-91b2-d2ea7a873868/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,20 +92,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.88.105",
+        "ip": "172.67.176.227",
         "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "2606:4700:3030::6815:5869",
+            "2606:4700:3033::ac43:b0e3"
+          ],
           "A": [
-            "104.21.88.105",
-            "172.67.176.227"
+            "172.67.176.227",
+            "104.21.88.105"
           ],
           "NS": [
             "kirk.ns.cloudflare.com.",
             "macy.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:3033::ac43:b0e3",
-            "2606:4700:3030::6815:5869"
           ]
         }
       },
@@ -230,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (feijicz.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"feijicz.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005618; classtype:social-engineering; sid:6005618; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T12:15:10.668819+00:00",
+  "updated_at": "2026-07-22T16:33:05.850093+00:00",
   "probe": {
     "dns": true,
     "whois": true,

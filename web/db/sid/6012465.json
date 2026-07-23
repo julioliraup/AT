@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "cpgtestwebapp.azurewebsites.net",
       "domain_defanged": "cpgtestwebapp[.]azurewebsites[.]net",
-      "case_id": "PD-20260721-50A659",
-      "analyzed_at": "2026-07-21T21:20:09.524Z",
+      "case_id": "PD-20260723-50A659",
+      "analyzed_at": "2026-07-23T01:43:18.132Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f868c-e558-7719-9ce2-bb7266c4d266.png",
           "url": "https://urlscan.io/result/019f868c-e558-7719-9ce2-bb7266c4d266/",
-          "pending": true
+          "title": "What are you reporting to the CMA? - Report an issue to the CMA - GOV.UK - Report an issue to the CMA"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -77,6 +86,11 @@
         "ip": "waws-prod-ln1-067.sip.azurewebsites.windows.net.",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "waws-prod-ln1-067.sip.azurewebsites.windows.net.",
+            "waws-prod-ln1-067-5993.uksouth.cloudapp.azure.com.",
+            "51.104.28.76"
+          ],
           "MX": [
             "waws-prod-ln1-067.sip.azurewebsites.windows.net.",
             "waws-prod-ln1-067-5993.uksouth.cloudapp.azure.com."
@@ -84,11 +98,6 @@
           "AAAA": [
             "waws-prod-ln1-067.sip.azurewebsites.windows.net.",
             "waws-prod-ln1-067-5993.uksouth.cloudapp.azure.com."
-          ],
-          "A": [
-            "waws-prod-ln1-067.sip.azurewebsites.windows.net.",
-            "waws-prod-ln1-067-5993.uksouth.cloudapp.azure.com.",
-            "51.104.28.76"
           ],
           "CNAME": [
             "waws-prod-ln1-067.sip.azurewebsites.windows.net."
@@ -101,7 +110,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -228,7 +244,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cpgtestwebapp.azurewebsites.net/wizard/start_submit)\"; flow:established,to_server; http.uri; content:\"/wizard/start_submit\"; startswith; fast_pattern; http.host; content:\"cpgtestwebapp.azurewebsites.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012465; classtype:social-engineering; sid:6012465; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T21:20:06.547777+00:00",
+  "updated_at": "2026-07-23T01:43:14.697627+00:00",
   "probe": {
     "dns": true,
     "whois": false,

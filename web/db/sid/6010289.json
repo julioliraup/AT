@@ -22,7 +22,7 @@
       "url": "http://rechnundoub.com/privatkunden/srsltid/cc.php",
       "domain": "rechnundoub.com",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "rechnundoub.com",
       "domain_defanged": "rechnundoub[.]com",
-      "case_id": "PD-20260721-233566",
-      "analyzed_at": "2026-07-21T18:38:40.544Z",
+      "case_id": "PD-20260722-233566",
+      "analyzed_at": "2026-07-22T22:25:46.556Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f85f9-0d0b-721e-9637-f0b6f8bee6ba/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,32 +64,15 @@
         "registrar": "Register SPA",
         "created": "2026-06-01T07:06:33Z",
         "expires": "2027-06-01T07:06:33Z",
-        "age_days": 50,
+        "age_days": 51,
         "nameservers": [
           "SUSPENDED1.PLAINDNS.NET",
           "SUSPENDED2.PLAINDNS.NET"
         ]
       },
       "infrastructure": {
-        "ip": "195.110.124.154",
-        "ipinfo": {
-          "ip": "195.110.124.154",
-          "hostname": "ns5.register.it",
-          "city": "Milan",
-          "region": "Lombardy",
-          "country": "IT",
-          "org": "AS39729 REGISTER S.P.A.",
-          "asn": "AS39729"
-        },
-        "dns": {
-          "NS": [
-            "suspended2.plaindns.net.",
-            "suspended1.plaindns.net."
-          ],
-          "A": [
-            "195.110.124.154"
-          ]
-        }
+        "ipinfo": null,
+        "dns": null
       },
       "report_to": {
         "registrar": {
@@ -104,14 +83,7 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": {
-          "name": "REGISTER-AS, IT",
-          "abuse": "abuse@register.it",
-          "url": "mailto:abuse@register.it",
-          "logo": "https://i.ibb.co/qYpL644t/pr-REGISTER-AS-IT.png",
-          "method": "email",
-          "asn": "AS39729"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -238,10 +210,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rechnundoub.com/privatkunden/srsltid/cc.php)\"; flow:established,to_server; http.uri; content:\"/privatkunden/srsltid/cc.php\"; startswith; fast_pattern; http.host; content:\"rechnundoub.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010289; classtype:social-engineering; sid:6010289; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T18:38:34.507866+00:00",
+  "updated_at": "2026-07-22T22:25:42.699236+00:00",
   "probe": {
-    "dns": true,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

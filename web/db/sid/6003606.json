@@ -74,14 +74,18 @@
     "phishdestroy": {
       "domain": "sslserver1.sviluppo.host",
       "domain_defanged": "sslserver1[.]sviluppo[.]host",
-      "case_id": "PD-20260720-7EEB15",
-      "analyzed_at": "2026-07-20T19:10:09.688Z",
+      "case_id": "PD-20260722-7EEB15",
+      "analyzed_at": "2026-07-22T07:02:09.914Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f88a1-bdac-704a-96b4-59acc58d8b45/",
+          "pending": true
         }
       },
       "detections": [],
@@ -90,20 +94,35 @@
       },
       "infrastructure": {
         "ip": "149.62.185.18",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "149.62.185.18",
+          "hostname": "w3003.shared.host.it",
+          "city": "Turin",
+          "region": "Piedmont",
+          "country": "IT",
+          "org": "AS47242 Host SpA",
+          "asn": "AS47242"
+        },
         "dns": {
-          "NS": [
-            "ns1.host-anycast.it.",
-            "ns2.host-anycast.com."
-          ],
           "A": [
             "149.62.185.18"
+          ],
+          "NS": [
+            "ns2.host-anycast.com.",
+            "ns1.host-anycast.it."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "COLTENGINE",
+          "abuse": "ripe@host.it",
+          "url": "mailto:ripe@host.it",
+          "logo": "https://i.ibb.co/mFrcXtZb/pr-COLTENGINE.png",
+          "method": "email",
+          "asn": "AS47242"
+        }
       },
       "report_services": [
         {
@@ -226,12 +245,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sslserver1.sviluppo.host/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sslserver1.sviluppo.host\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003606; classtype:social-engineering; sid:6003606; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T10:45:40.773907+00:00",
+  "updated_at": "2026-07-22T07:02:04.829954+00:00",
   "probe": {
     "dns": true,
     "whois": true,

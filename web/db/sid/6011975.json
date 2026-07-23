@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "segurapaymentsonline.lol",
       "domain_defanged": "segurapaymentsonline[.]lol",
-      "case_id": "PD-20260721-3FC5F4",
-      "analyzed_at": "2026-07-21T20:44:47.643Z",
+      "case_id": "PD-20260723-3FC5F4",
+      "analyzed_at": "2026-07-23T00:49:15.853Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "will bank"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea770-504a-74a5-8420-0b204b727961.png",
+          "url": "https://urlscan.io/result/019ea770-504a-74a5-8420-0b204b727961/",
+          "title": "WillBank"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: will bank",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.96.3",
+        "ipinfo": {
+          "ip": "188.114.96.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (segurapaymentsonline.lol/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"segurapaymentsonline.lol\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011975; classtype:social-engineering; sid:6011975; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T20:44:44.363638+00:00",
+  "updated_at": "2026-07-23T00:49:11.180616+00:00",
   "probe": {
     "dns": false,
     "whois": false,

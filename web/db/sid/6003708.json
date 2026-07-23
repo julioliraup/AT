@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "my-mail-sign-in-users.weeblysite.com",
       "domain_defanged": "my-mail-sign-in-users[.]weeblysite[.]com",
-      "case_id": "PD-20260720-3DA6BA",
-      "analyzed_at": "2026-07-20T19:16:44.716Z",
+      "case_id": "PD-20260722-3DA6BA",
+      "analyzed_at": "2026-07-22T07:09:24.639Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019f88a8-5f7a-7128-ad07-0486ce0e22da/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,18 +92,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "74.115.51.55",
-        "ipinfo": null,
+        "ip": "74.115.51.54",
+        "ipinfo": {
+          "ip": "74.115.51.54",
+          "hostname": "weeblysite.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
         "dns": {
           "A": [
-            "74.115.51.55",
-            "74.115.51.54"
+            "74.115.51.54",
+            "74.115.51.55"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -222,12 +241,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (my-mail-sign-in-users.weeblysite.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"my-mail-sign-in-users.weeblysite.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003708; classtype:social-engineering; sid:6003708; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-21T10:51:33.256646+00:00",
+  "updated_at": "2026-07-22T07:09:21.670804+00:00",
   "probe": {
     "dns": true,
     "whois": false,
