@@ -448,7 +448,7 @@ def _resolve_domain_ip(obj):
         if results:
             return results[0][4][0]
     except socket.gaierror as exc:
-        print(f'[ipinfo] DNS resolution failed for {url_base}: {exc}',
+        print(f'[Down] DNS resolution failed for {url_base}: {exc}',
               file=sys.stderr)
     return None
 
@@ -486,7 +486,7 @@ def enrich_staleness(obj):
     if url_base == 'unknown':
         return obj
 
-    dns_ok = _resolve_domain_ip(obj) is not None
+    dns_ok = _resolve_domain_ip(obj)
     whois_ok = _whois_responsive(url_base)
 
     if dns_ok or whois_ok is None:
