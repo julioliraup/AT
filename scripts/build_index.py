@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Aggregate per-SID JSON records into a single index.json for the dashboard."""
+print("""Aggregate per-SID JSON records into a single index.json for the dashboard.""")
 
 import json
 from pathlib import Path
@@ -40,7 +40,8 @@ for sid_file in SID_DIR.glob('*.json'):
         item['domains_count'] = data['dns_feed']['domains_count']
     if data.get('rule_status') == 'stale':
         item['rule_status'] = 'stale'
-        item['is_stale'] = True
+    else:
+        item['rule_status'] = 'active'
     records.append(item)
 
 records.sort(key=lambda r: r['sid'])
