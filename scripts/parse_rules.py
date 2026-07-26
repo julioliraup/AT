@@ -463,6 +463,7 @@ def _whois_responsive(domain):
     if not domain or domain == 'unknown':
         return None
     if shutil.which('whois') is None:
+        print("[ERR] Install whois")
         return None
 
     try:
@@ -477,7 +478,7 @@ def _whois_responsive(domain):
             return True
     except (OSError, subprocess.TimeoutExpired):
         pass
-    return False
+    return None
 
 
 def enrich_staleness(obj):
@@ -489,7 +490,7 @@ def enrich_staleness(obj):
     dns_ok = _resolve_domain_ip(obj)
     whois_ok = _whois_responsive(url_base)
 
-    if dns_ok or whois_ok is None:
+    if dns_ok or whois_ok:
         obj['probe'] = {
             'dns': dns_ok,
             'whois': whois_ok,
