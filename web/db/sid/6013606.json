@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "swisborg-logiapp.webflow.io",
       "domain_defanged": "swisborg-logiapp[.]webflow[.]io",
-      "case_id": "PD-20260725-1327F2",
-      "analyzed_at": "2026-07-25T15:57:40.472Z",
+      "case_id": "PD-20260729-1327F2",
+      "analyzed_at": "2026-07-29T09:59:38.989Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fad50-c13c-70bf-9834-d07f631caf6d/",
+          "pending": true
         }
       },
       "detections": [],
@@ -98,13 +102,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2a06:98c1:3102::ac40:9708",
-            "2a06:98c1:3105::6812:24f8"
-          ],
           "A": [
             "104.18.36.248",
             "172.64.151.8"
+          ],
+          "AAAA": [
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
           ]
         }
       },
@@ -244,9 +248,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (swisborg-logiapp.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"swisborg-logiapp.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013606; classtype:social-engineering; sid:6013606; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-25T15:57:32.095959+00:00",
+  "updated_at": "2026-07-29T09:59:35.559480+00:00",
   "probe": {
-    "dns": true,
+    "dns": "172.64.151.8",
     "whois": true,
     "status": "active"
   }

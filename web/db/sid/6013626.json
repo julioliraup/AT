@@ -22,7 +22,7 @@
       "url": "http://fresti.pt/mat/",
       "domain": "fresti.pt",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "fresti.pt",
       "domain_defanged": "fresti[.]pt",
-      "case_id": "PD-20260725-CFFE1D",
-      "analyzed_at": "2026-07-25T15:59:11.939Z",
+      "case_id": "PD-20260729-CFFE1D",
+      "analyzed_at": "2026-07-29T10:00:59.675Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -64,43 +64,17 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.22.249",
-        "ipinfo": {
-          "ip": "104.21.22.249",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ipinfo": null,
         "dns": {
-          "A": [
-            "104.21.22.249",
-            "172.67.207.229"
-          ],
           "NS": [
-            "aspen.ns.cloudflare.com.",
-            "hayes.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:3037::ac43:cfe5",
-            "2606:4700:3032::6815:16f9"
-          ],
-          "MX": [
-            "5 _dc-mx.32a93287f5b3.fresti.pt."
+            "leif.ns.cloudflare.com.",
+            "magnolia.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -227,10 +201,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fresti.pt/mat/)\"; flow:established,to_server; http.uri; content:\"/mat/\"; startswith; fast_pattern; http.host; content:\"fresti.pt\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6013626; classtype:social-engineering; sid:6013626; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-25T15:59:03.648668+00:00",
+  "updated_at": "2026-07-29T10:00:48.517455+00:00",
   "probe": {
-    "dns": true,
+    "dns": false,
     "whois": false,
-    "status": "active"
-  }
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

@@ -22,7 +22,7 @@
       "url": "http://salecreekmarina.com/kofthqin/",
       "domain": "salecreekmarina.com",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "salecreekmarina.com",
       "domain_defanged": "salecreekmarina[.]com",
-      "case_id": "PD-20260725-7F0D18",
-      "analyzed_at": "2026-07-25T12:24:52.616Z",
+      "case_id": "PD-20260729-7F0D18",
+      "analyzed_at": "2026-07-29T07:21:23.436Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019facbf-dc00-7053-ae25-99dea18a4e27/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,15 +68,26 @@
         "registrar": "Gname 011 Inc",
         "created": "2025-08-20T18:31:49Z",
         "expires": "2026-08-20T18:31:49Z",
-        "age_days": 338,
+        "age_days": 342,
         "nameservers": [
           "A3.SHARE-DNS.COM",
           "B3.SHARE-DNS.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "154.36.161.208",
+        "ipinfo": {
+          "ip": "154.36.161.208",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS979 NetLab Global",
+          "asn": "AS979"
+        },
         "dns": {
+          "A": [
+            "154.36.161.208"
+          ],
           "NS": [
             "a.share-dns.com.",
             "b.share-dns.net."
@@ -88,7 +103,14 @@
           "method": "form",
           "iana_ids": "1923"
         },
-        "hosting": null
+        "hosting": {
+          "name": "GTT-BACKBONE GTT, US",
+          "abuse": "abuse@gtt.net",
+          "url": "mailto:abuse@gtt.net",
+          "logo": "https://i.ibb.co/pvNFhYx0/pr-GTT-BACKBONE-GTT-US.png",
+          "method": "email",
+          "asn": "AS979"
+        }
       },
       "report_services": [
         {
@@ -215,12 +237,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (salecreekmarina.com/kofthqin/)\"; flow:established,to_server; http.uri; content:\"/kofthqin/\"; startswith; fast_pattern; http.host; content:\"salecreekmarina.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011377; classtype:social-engineering; sid:6011377; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-25T12:24:49.328352+00:00",
+  "updated_at": "2026-07-29T07:21:19.848498+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "154.36.161.208",
+    "whois": null,
+    "status": "active"
+  }
 }

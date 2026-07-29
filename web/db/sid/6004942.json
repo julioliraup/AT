@@ -55,41 +55,68 @@
     "phishdestroy": {
       "domain": "l.ead.me",
       "domain_defanged": "l[.]ead[.]me",
-      "case_id": "PD-20260724-63C21C",
-      "analyzed_at": "2026-07-24T21:50:14.756Z",
+      "case_id": "PD-20260729-63C21C",
+      "analyzed_at": "2026-07-29T01:48:46.337Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f961b-8787-766d-af3b-443cbca636c0/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fa90a-7e8b-746a-a85f-20fc78312d38.png",
+          "url": "https://urlscan.io/result/019fa90a-7e8b-746a-a85f-20fc78312d38/",
+          "title": "Why did a QR Code or link bring me to the Help Center? – QR Code Generator Support"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.175.14.43",
+        "ip": "108.158.137.40",
         "ipinfo": {
-          "ip": "3.175.14.43",
-          "hostname": "server-3-175-14-43.for50.r.cloudfront.net",
-          "city": "Fortaleza",
-          "region": "Ceará",
+          "ip": "108.158.137.40",
+          "hostname": "server-108-158-137-40.gig51.r.cloudfront.net",
+          "city": "Rio de Janeiro",
+          "region": "Rio de Janeiro",
           "country": "BR",
           "org": "AS16509 Amazon.com, Inc.",
           "asn": "AS16509"
         },
         "dns": {
           "A": [
-            "3.175.14.43",
-            "3.175.14.51",
-            "3.175.14.94",
-            "3.175.14.129"
+            "108.158.137.40",
+            "108.158.137.120",
+            "108.158.137.114",
+            "108.158.137.83"
           ]
         }
       },
@@ -225,14 +252,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (l.ead.me/bgoniM)\"; flow:established,to_server; http.uri; content:\"/bgoniM\"; startswith; fast_pattern; http.host; content:\"l.ead.me\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004942; classtype:social-engineering; sid:6004942; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-24T21:51:28.521504+00:00",
+  "updated_at": "2026-07-29T01:48:32.148314+00:00",
   "probe": {
-    "dns": true,
+    "dns": "143.204.1.43",
     "whois": true,
     "status": "active"
   }

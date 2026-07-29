@@ -78,29 +78,46 @@
     "phishdestroy": {
       "domain": "nethrashivani.github.io",
       "domain_defanged": "nethrashivani[.]github[.]io",
-      "case_id": "PD-20260724-43587F",
-      "analyzed_at": "2026-07-24T14:14:50.370Z",
+      "case_id": "PD-20260728-43587F",
+      "analyzed_at": "2026-07-28T01:14:45.523Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f947a-97f8-73ff-9686-a6d7902fdcb5/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f9ae0-c7c5-7269-abfb-3df2c703bd4d.png",
+          "url": "https://urlscan.io/result/019f9ae0-c7c5-7269-abfb-3df2c703bd4d/",
+          "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "185.199.111.153",
         "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
+          "ip": "185.199.111.153",
+          "hostname": "cdn-185-199-111-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -108,17 +125,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
-            "185.199.108.153",
-            "185.199.109.153",
+            "185.199.111.153",
             "185.199.110.153",
-            "185.199.111.153"
+            "185.199.109.153",
+            "185.199.108.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8001::153",
+            "2606:50c0:8000::153",
+            "2606:50c0:8003::153",
+            "2606:50c0:8002::153"
           ]
         }
       },
@@ -254,13 +271,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nethrashivani .github .io/Airbnb_clone_Tailwind)\"; flow:established,to_server; http.uri; content:\"/Airbnb_clone_Tailwind\"; startswith; fast_pattern; http.host;  content:\"nethrashivani.github.io\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000483; classtype:social-engineering; sid:6000483; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-24T14:14:46.841626+00:00",
+  "updated_at": "2026-07-28T20:22:23.882631+00:00",
   "probe": {
-    "dns": true,
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }

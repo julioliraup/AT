@@ -50,21 +50,67 @@
     "phishdestroy": {
       "domain": "maisaumentoparavoce.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "maisaumentoparavoce[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260724-3F3642",
-      "analyzed_at": "2026-07-24T12:57:04.846Z",
+      "case_id": "PD-20260728-3F3642",
+      "analyzed_at": "2026-07-28T00:08:50.494Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f9433-6747-720e-b81f-1be0b0905801/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019f9acc-e758-7198-a4b3-dcf01c2365cb.png",
+          "url": "https://urlscan.io/result/019f9acc-e758-7198-a4b3-dcf01c2365cb/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -226,14 +272,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (maisaumentoparavoce .s3 .us-east-005 .backblazeb2 .com/aumento .html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host;  content:\"maisaumentoparavoce.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000196; classtype:social-engineering; sid:6000196; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-24T12:56:51.541765+00:00",
+  "updated_at": "2026-07-28T19:59:09.723635+00:00",
   "probe": {
-    "dns": true,
-    "whois": false,
+    "dns": "149.137.137.254",
+    "whois": null,
     "status": "active"
   }
 }

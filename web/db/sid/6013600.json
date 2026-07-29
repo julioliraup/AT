@@ -22,7 +22,7 @@
       "url": "http://agritrader.net.ve/weblog/log.php",
       "domain": "agritrader.net.ve",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "agritrader.net.ve",
       "domain_defanged": "agritrader[.]net[.]ve",
-      "case_id": "PD-20260725-55AB25",
-      "analyzed_at": "2026-07-25T15:57:20.116Z",
+      "case_id": "PD-20260729-55AB25",
+      "analyzed_at": "2026-07-29T09:59:17.385Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fad50-6d64-7269-a165-d5ea9b5c8cac/",
+          "pending": true
         }
       },
       "detections": [],
@@ -75,15 +79,15 @@
           "asn": "AS49915"
         },
         "dns": {
-          "A": [
-            "190.114.12.98"
+          "NS": [
+            "ns9.venezueladns.com.",
+            "ns10.venezueladns.com."
           ],
           "MX": [
             "0 agritrader.net.ve."
           ],
-          "NS": [
-            "ns9.venezueladns.com.",
-            "ns10.venezueladns.com."
+          "A": [
+            "190.114.12.98"
           ]
         }
       },
@@ -216,9 +220,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (agritrader.net.ve/weblog/log.php)\"; flow:established,to_server; http.uri; content:\"/weblog/log.php\"; startswith; fast_pattern; http.host; content:\"agritrader.net.ve\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013600; classtype:social-engineering; sid:6013600; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-25T15:57:11.957092+00:00",
+  "updated_at": "2026-07-29T09:59:12.633216+00:00",
   "probe": {
-    "dns": true,
+    "dns": "190.114.12.98",
     "whois": true,
     "status": "active"
   }

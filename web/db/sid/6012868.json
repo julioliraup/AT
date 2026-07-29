@@ -73,8 +73,8 @@
     "phishdestroy": {
       "domain": "n-jp.co",
       "domain_defanged": "n-jp[.]co",
-      "case_id": "PD-20260725-DC0E7F",
-      "analyzed_at": "2026-07-25T14:56:50.578Z",
+      "case_id": "PD-20260729-DC0E7F",
+      "analyzed_at": "2026-07-29T08:54:34.242Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -83,7 +83,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f99c7-6864-700f-982b-44988a911d57/",
+          "url": "https://urlscan.io/result/019fad15-2bd1-742a-bd17-beb2a27c773e/",
           "pending": true
         }
       },
@@ -93,15 +93,22 @@
       },
       "infrastructure": {
         "ip": "104.21.49.179",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.49.179",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3032::ac43:a584",
+            "2606:4700:3032::6815:31b3"
+          ],
           "A": [
             "104.21.49.179",
             "172.67.165.132"
-          ],
-          "AAAA": [
-            "2606:4700:3032::6815:31b3",
-            "2606:4700:3032::ac43:a584"
           ],
           "NS": [
             "burt.ns.cloudflare.com.",
@@ -111,7 +118,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -238,10 +252,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (n-jp.co/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"n-jp.co\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6012868; classtype:social-engineering; sid:6012868; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-25T14:56:48.437725+00:00",
+  "updated_at": "2026-07-29T08:54:31.195792+00:00",
   "probe": {
-    "dns": true,
-    "whois": false,
+    "dns": "104.21.49.179",
+    "whois": null,
     "status": "active"
   }
 }

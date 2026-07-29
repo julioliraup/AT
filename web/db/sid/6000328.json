@@ -50,31 +50,55 @@
     "phishdestroy": {
       "domain": "49.51.43.12",
       "domain_defanged": "49[.]51[.]43[.]12",
-      "case_id": "PD-20260724-3A3DA7",
-      "analyzed_at": "2026-07-24T13:53:30.406Z",
+      "case_id": "PD-20260728-3A3DA7",
+      "analyzed_at": "2026-07-28T00:38:41.127Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "error": "http_400"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f9467-10c0-7358-9423-883796185c92/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Google"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fa562-220a-724e-9fd9-b13eae584302.png",
+          "url": "https://urlscan.io/result/019fa562-220a-724e-9fd9-b13eae584302/",
+          "title": "Sign in - Google Accounts"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Google",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "49.51.43.12",
+        "ipinfo": {
+          "ip": "49.51.43.12",
+          "city": "Santa Clara",
+          "region": "California",
+          "country": "US",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -197,13 +221,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (49 .51 .43 .12/v3/signin/identifier?amp%3Bfollowup=https%3A%2F%2Faccounts .google .com&amp%3Bifkv=AWnogHe_pDujLaO-hl3d_3DQFjS6PW6JGM3LRrD13mxmiaQWTJuHz9b6nwmaSIh76M5SMOelnJex7g&amp%3Bpassive=1209600&continue=https%3A%2F%2Faccounts .google .com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AWa2Pav4a5xoguuXZ6e9hTNmmZY1TsU4p8yfdfgL3ZFGkdYyazY9GZ7HWCwc_rPmUAIRlzJ1o40ggQ&dsh=S1963348150%3A1778385692872888)\"; flow:established,to_server; http.uri; content:\"/v3/signin/identifier?amp%3Bfollowup=https%3A%2F%2Faccounts.google.com&amp%3Bifkv=AWnogHe_pDujLaO-hl3d_3DQFjS6PW6JGM3LRrD13mxmiaQWTJuHz9b6nwmaSIh76M5SMOelnJex7g&amp%3Bpassive=1209600&continue=https%3A%2F%2Faccounts.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AWa2Pav4a5xoguuXZ6e9hTNmmZY1TsU4p8yfdfgL3ZFGkdYyazY9GZ7HWCwc_rPmUAIRlzJ1o40ggQ&dsh=S1963348150%3A1778385692872888\"; startswith; fast_pattern; http.host;  content:\"49.51.43.12\"; endswith; reference:url,phishstats.info; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000328; classtype:social-engineering; sid:6000328; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-24T13:53:13.782088+00:00",
+  "updated_at": "2026-07-28T20:08:22.900370+00:00",
   "probe": {
-    "dns": true,
+    "dns": "49.51.43.12",
     "whois": true,
     "status": "active"
   }

@@ -18,68 +18,15 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://bafkreibfgs3ja2tfyrozjrdkoqaktezyutqo7dr5hqq44ygase4t5y57eu.ipfs.dweb.link/",
-      "domain": "bafkreibfgs3ja2tfyrozjrdkoqaktezyutqo7dr5hqq44ygase4t5y57eu.ipfs.dweb.link",
-      "url_count": 3,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "209.94.90.2",
-      "http_code": 200,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a02caf2a0d6b58c2-PDX",
-        "cf_cache_status": "HIT",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (4611)",
-      "sha256": "611d8de6417d662541caeef3b9576a6b7e17c4dc20f6912dda95122f00547f3c",
-      "md5": "3bd4900d64bd3d4e007c01ed13fb4fa9",
-      "cert": {
-        "subject_cn": "dweb.link",
-        "subject_alt_names": [
-          "*.dweb.link",
-          "*.ipfs.dweb.link",
-          "*.ipns.dweb.link",
-          "dweb.link"
-        ],
-        "issuer_cn": "E8",
-        "issuer_org": "Let's Encrypt",
-        "issuer_country": "US",
-        "not_valid_before": "2026-05-23T08:27:48+00:00",
-        "not_valid_after": "2026-08-21T08:27:47+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha384_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "566268716425702735113805451471174292407222",
-        "fingerprint_sha1": "C4 1B E4 86 BD F4 23 6A 14 5E 37 F6 7C 23 79 85 84 FA AF AB",
-        "fingerprint_sha256": "FB A4 C2 00 56 DC D2 48 EB 5C D7 4E 4F 7A 29 20 F6 E9 36 A8 BA 47 3E 45 1D CB A8 97 03 B4 11 6E"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-05-28T10:42:11",
-      "first_seen_secs": 1779964931.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "bafkreibfgs3ja2tfyrozjrdkoqaktezyutqo7dr5hqq44ygase4t5y57eu.ipfs.dweb.link",
       "domain_defanged": "bafkreibfgs3ja2tfyrozjrdkoqaktezyutqo7dr5hqq44ygase4t5y57eu[.]ipfs[.]dweb[.]link",
-      "case_id": "PD-20260725-3EC281",
-      "analyzed_at": "2026-07-25T00:03:29.253Z",
+      "case_id": "PD-20260729-3EC281",
+      "analyzed_at": "2026-07-29T02:31:47.726Z",
       "intel": {
         "virustotal": {
-          "malicious": 19,
+          "malicious": 20,
           "suspicious": 0,
           "total": 91,
           "detections": [
@@ -134,6 +81,11 @@
               "result": "phishing"
             },
             {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
               "engine": "G-Data",
               "category": "malicious",
               "result": "phishing"
@@ -179,9 +131,7 @@
               "result": "phishing"
             }
           ],
-          "categories": {
-            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
-          }
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
@@ -244,6 +194,11 @@
           "severity": "high"
         },
         {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
           "source": "VT: G-Data",
           "type": "phishing",
           "severity": "high"
@@ -293,9 +248,9 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "209.94.90.2",
+        "ip": "209.94.90.3",
         "ipinfo": {
-          "ip": "209.94.90.2",
+          "ip": "209.94.90.3",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -303,13 +258,13 @@
           "asn": "AS40680"
         },
         "dns": {
+          "A": [
+            "209.94.90.3",
+            "209.94.90.2"
+          ],
           "AAAA": [
             "2602:fea2:2::2",
             "2602:fea2:2::3"
-          ],
-          "A": [
-            "209.94.90.2",
-            "209.94.90.3"
           ]
         }
       },
@@ -449,9 +404,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bafkreibfgs3ja2tfyrozjrdkoqaktezyutqo7dr5hqq44ygase4t5y57eu.ipfs.dweb.link/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bafkreibfgs3ja2tfyrozjrdkoqaktezyutqo7dr5hqq44ygase4t5y57eu.ipfs.dweb.link\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006662; classtype:social-engineering; sid:6006662; rev:1; metadata: signature_severity Major, created_et 2026_05_25, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-25T00:03:25.908410+00:00",
+  "updated_at": "2026-07-29T02:31:33.480230+00:00",
   "probe": {
-    "dns": true,
+    "dns": "209.94.90.2",
     "whois": true,
     "status": "active"
   }

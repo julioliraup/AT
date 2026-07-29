@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "xecloud.duckdns.org",
       "domain_defanged": "xecloud[.]duckdns[.]org",
-      "case_id": "PD-20260725-ACB8C4",
-      "analyzed_at": "2026-07-25T14:57:28.959Z",
+      "case_id": "PD-20260729-ACB8C4",
+      "analyzed_at": "2026-07-29T08:55:12.205Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +59,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f99c7-fe46-778a-baff-b0d340cb4466/",
+          "url": "https://urlscan.io/result/019fad15-c017-77ab-bfd6-842660905c51/",
           "pending": true
         }
       },
@@ -69,19 +69,34 @@
       },
       "infrastructure": {
         "ip": "192.169.69.25",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "192.169.69.25",
+          "hostname": "sinkhole.hyas.com",
+          "city": "Seattle",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS27323 Wowrack.com",
+          "asn": "AS27323"
+        },
         "dns": {
-          "MX": [
-            "50 xecloud.duckdns.org."
-          ],
           "A": [
             "192.169.69.25"
+          ],
+          "MX": [
+            "50 xecloud.duckdns.org."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "SERVERSTADIUM",
+          "abuse": "abuse@wowrack.com",
+          "url": "mailto:abuse@wowrack.com",
+          "logo": "https://i.ibb.co/vCmVzGKq/pr-SERVERSTADIUM.png",
+          "method": "email",
+          "asn": "AS27323"
+        }
       },
       "report_services": [
         {
@@ -209,9 +224,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.xecloud.duckdns.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.xecloud.duckdns.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013048; classtype:social-engineering; sid:6013048; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-25T15:10:27.914746+00:00",
+  "updated_at": "2026-07-29T09:09:52.491334+00:00",
   "probe": {
-    "dns": true,
+    "dns": "192.169.69.25",
     "whois": true,
     "status": "active"
   }

@@ -49,28 +49,94 @@
     "phishdestroy": {
       "domain": "ultrajaumento5.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "ultrajaumento5[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260724-77D365",
-      "analyzed_at": "2026-07-24T22:06:09.722Z",
+      "case_id": "PD-20260729-77D365",
+      "analyzed_at": "2026-07-29T02:02:20.543Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019f962a-15ed-703c-a48e-e12da7f43677/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fa92e-04db-74c1-8ac3-cc0900aa3825.png",
+          "url": "https://urlscan.io/result/019fa92e-04db-74c1-8ac3-cc0900aa3825/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "149.137.137.254",
+        "ip": "149.137.136.9",
         "ipinfo": {
-          "ip": "149.137.137.254",
+          "ip": "149.137.136.9",
           "hostname": "s3.us-east-005.backblazeb2.com",
           "city": "Leesburg",
           "region": "Virginia",
@@ -80,10 +146,10 @@
         },
         "dns": {
           "A": [
+            "149.137.136.9",
             "149.137.137.254",
             "149.137.140.9",
-            "149.137.141.9",
-            "149.137.136.9"
+            "149.137.141.9"
           ],
           "AAAA": [
             "2605:72c0:6fc:b3::b005:1",
@@ -229,10 +295,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ultrajaumento5.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"ultrajaumento5.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005102; classtype:social-engineering; sid:6005102; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-24T22:06:00.762780+00:00",
+  "updated_at": "2026-07-29T02:02:17.643301+00:00",
   "probe": {
-    "dns": true,
-    "whois": false,
+    "dns": "149.137.141.9",
+    "whois": null,
     "status": "active"
   }
 }

@@ -22,7 +22,7 @@
       "url": "http://www.qantasmoney-verifications.ns01.info/",
       "domain": "www.qantasmoney-verifications.ns01.info",
       "url_count": 19,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -55,18 +55,14 @@
     "phishdestroy": {
       "domain": "qantasmoney-verifications.ns01.info",
       "domain_defanged": "qantasmoney-verifications[.]ns01[.]info",
-      "case_id": "PD-20260725-51B32A",
-      "analyzed_at": "2026-07-25T11:24:15.921Z",
+      "case_id": "PD-20260729-51B32A",
+      "analyzed_at": "2026-07-29T06:21:20.059Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019f9904-c98f-776f-9818-5d7e79151c84/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -75,20 +71,31 @@
       },
       "infrastructure": {
         "ip": "204.16.169.54",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "204.16.169.54",
+          "hostname": "abuse-sinkhole.changeip.com",
+          "city": "Chicago",
+          "region": "Illinois",
+          "country": "US",
+          "org": "AS19557 CHANGEIP COM",
+          "asn": "AS19557"
+        },
         "dns": {
           "A": [
             "204.16.169.54"
-          ],
-          "NS": [
-            "ns2.changeip.com.",
-            "ns1.changeip.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CHANGEIP-01",
+          "abuse": "networking@changeip.cc",
+          "url": "mailto:networking@changeip.cc",
+          "logo": "",
+          "method": "email",
+          "asn": "AS19557"
+        }
       },
       "report_services": [
         {
@@ -216,9 +223,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.qantasmoney-verifications.ns01.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.qantasmoney-verifications.ns01.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010493; classtype:social-engineering; sid:6010493; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-25T11:24:15.958401+00:00",
+  "updated_at": "2026-07-29T06:21:20.240612+00:00",
   "probe": {
-    "dns": true,
+    "dns": "204.16.169.54",
     "whois": true,
     "status": "active"
   }
