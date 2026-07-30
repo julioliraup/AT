@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "support.northstarresolution.help",
       "domain_defanged": "support[.]northstarresolution[.]help",
-      "case_id": "PD-20260729-300AE5",
-      "analyzed_at": "2026-07-29T10:06:41.800Z",
+      "case_id": "PD-20260730-300AE5",
+      "analyzed_at": "2026-07-30T02:13:37.471Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecde3-fe80-767d-9a9b-b93b251c6fe9.png",
+          "url": "https://urlscan.io/result/019ecde3-fe80-767d-9a9b-b93b251c6fe9/",
+          "title": "Business Support Help"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "160.22.106.179",
+        "ipinfo": {
+          "ip": "160.22.106.179",
+          "city": "Hanoi",
+          "region": "Hanoi",
+          "country": "VN",
+          "org": "AS150862 VPSTTT COMPUTER COMPANY LIMITED",
+          "asn": "AS150862"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (support.northstarresolution.help/user-support/)\"; flow:established,to_server; http.uri; content:\"/user-support/\"; startswith; fast_pattern; http.host; content:\"support.northstarresolution.help\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013705; classtype:social-engineering; sid:6013705; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T10:06:36.780682+00:00",
+  "updated_at": "2026-07-30T02:13:28.166061+00:00",
   "probe": {
     "dns": null,
     "whois": true,

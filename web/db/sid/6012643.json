@@ -55,21 +55,58 @@
     "phishdestroy": {
       "domain": "psee.io",
       "domain_defanged": "psee[.]io",
-      "case_id": "PD-20260729-114ADA",
-      "analyzed_at": "2026-07-29T08:40:41.623Z",
+      "case_id": "PD-20260730-114ADA",
+      "analyzed_at": "2026-07-30T00:14:04.415Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fad08-7765-73ac-93ec-33121c999103/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fae9e-e559-779b-b058-fffced124e1d.png",
+          "url": "https://urlscan.io/result/019fae9e-e559-779b-b058-fffced124e1d/",
+          "title": "PicSee | SocialVIP™"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -88,14 +125,14 @@
           "MX": [
             "10 mail.psee.io."
           ],
+          "NS": [
+            "deb.ns.cloudflare.com.",
+            "kirk.ns.cloudflare.com."
+          ],
           "A": [
             "98.91.170.238",
             "34.233.115.184",
             "3.81.241.14"
-          ],
-          "NS": [
-            "deb.ns.cloudflare.com.",
-            "kirk.ns.cloudflare.com."
           ]
         }
       },
@@ -235,7 +272,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (psee.io/96lbzj)\"; flow:established,to_server; http.uri; content:\"/96lbzj\"; startswith; fast_pattern; http.host; content:\"psee.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012643; classtype:social-engineering; sid:6012643; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T08:40:38.560040+00:00",
+  "updated_at": "2026-07-30T00:14:01.012298+00:00",
   "probe": {
     "dns": "100.56.144.160",
     "whois": true,

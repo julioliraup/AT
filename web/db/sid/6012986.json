@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "marketbuffalo.click",
       "domain_defanged": "marketbuffalo[.]click",
-      "case_id": "PD-20260729-33E014",
-      "analyzed_at": "2026-07-29T09:04:03.232Z",
+      "case_id": "PD-20260730-33E014",
+      "analyzed_at": "2026-07-30T00:54:03.415Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "M&T Bank"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecf37-3d2b-7628-b314-389a3fe56cb8.png",
+          "url": "https://urlscan.io/result/019ecf37-3d2b-7628-b314-389a3fe56cb8/",
+          "title": "Personal Banking | M&T Bank"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: M&T Bank",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "31.56.229.111",
+        "ipinfo": {
+          "ip": "31.56.229.111",
+          "city": "Kansas City",
+          "region": "Missouri",
+          "country": "US",
+          "org": "AS56971 AS56971 Cloud",
+          "asn": "AS56971"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CloudBackbone",
+          "abuse": "abuse@cloudbackbone.net",
+          "url": "mailto:abuse@cloudbackbone.net",
+          "logo": "https://i.ibb.co/rKHxvDbX/pr-Cloud-Backbone.png",
+          "method": "email",
+          "asn": "AS56971"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (marketbuffalo.click/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"marketbuffalo.click\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012986; classtype:social-engineering; sid:6012986; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:03:50.922234+00:00",
+  "updated_at": "2026-07-30T00:54:00.381644+00:00",
   "probe": {
     "dns": null,
     "whois": true,

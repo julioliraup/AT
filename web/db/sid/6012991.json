@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "booking-ceom-dubaei-thinges-todeo.webflow.io",
       "domain_defanged": "booking-ceom-dubaei-thinges-todeo[.]webflow[.]io",
-      "case_id": "PD-20260729-63FB4C",
-      "analyzed_at": "2026-07-29T09:04:25.274Z",
+      "case_id": "PD-20260730-63FB4C",
+      "analyzed_at": "2026-07-30T00:54:36.255Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fad1e-31ac-7698-a3b1-aac87e3b5e1a.png",
           "url": "https://urlscan.io/result/019fad1e-31ac-7698-a3b1-aac87e3b5e1a/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
+          ],
           "A": [
             "172.64.151.8",
             "104.18.36.248"
-          ],
-          "AAAA": [
-            "2a06:98c1:3102::ac40:9708",
-            "2a06:98c1:3105::6812:24f8"
           ]
         }
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (booking-ceom-dubaei-thinges-todeo.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"booking-ceom-dubaei-thinges-todeo.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012991; classtype:social-engineering; sid:6012991; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:04:19.869151+00:00",
+  "updated_at": "2026-07-30T00:54:31.422183+00:00",
   "probe": {
     "dns": "172.64.151.8",
     "whois": true,

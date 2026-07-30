@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "verify-badge-vip32.pages.dev",
       "domain_defanged": "verify-badge-vip32[.]pages[.]dev",
-      "case_id": "PD-20260729-659E4A",
-      "analyzed_at": "2026-07-29T09:03:17.820Z",
+      "case_id": "PD-20260730-659E4A",
+      "analyzed_at": "2026-07-30T00:53:21.140Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fad1d-28fe-740c-b137-152265982bb1.png",
           "url": "https://urlscan.io/result/019fad1d-28fe-740c-b137-152265982bb1/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.251",
+        "ip": "172.66.47.5",
         "ipinfo": {
-          "ip": "172.66.44.251",
+          "ip": "172.66.47.5",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,12 +88,12 @@
         },
         "dns": {
           "A": [
-            "172.66.44.251",
-            "172.66.47.5"
+            "172.66.47.5",
+            "172.66.44.251"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2cfb",
-            "2606:4700:310c::ac42:2f05"
+            "2606:4700:310c::ac42:2f05",
+            "2606:4700:310c::ac42:2cfb"
           ],
           "NS": [
             "justin.ns.cloudflare.com.",
@@ -228,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (verify-badge-vip32.pages.dev/privacy-centers)\"; flow:established,to_server; http.uri; content:\"/privacy-centers\"; startswith; fast_pattern; http.host; content:\"verify-badge-vip32.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012978; classtype:social-engineering; sid:6012978; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:03:14.981723+00:00",
+  "updated_at": "2026-07-30T00:53:14.707187+00:00",
   "probe": {
     "dns": "172.66.47.5",
     "whois": null,

@@ -49,17 +49,30 @@
     "phishdestroy": {
       "domain": "verify-badge-vip2.pages.dev",
       "domain_defanged": "verify-badge-vip2[.]pages[.]dev",
-      "case_id": "PD-20260729-25B627",
-      "analyzed_at": "2026-07-29T08:59:03.698Z",
+      "case_id": "PD-20260730-25B627",
+      "analyzed_at": "2026-07-30T00:46:17.644Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f99cb-8803-737a-a28d-e13104d7e34d.png",
+          "url": "https://urlscan.io/result/019f99cb-8803-737a-a28d-e13104d7e34d/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -75,8 +88,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2ee4",
-            "2606:4700:310c::ac42:2d1c"
+            "2606:4700:310c::ac42:2d1c",
+            "2606:4700:310c::ac42:2ee4"
           ],
           "A": [
             "172.66.45.28",
@@ -224,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (verify-badge-vip2.pages.dev/privacy-centers)\"; flow:established,to_server; http.uri; content:\"/privacy-centers\"; startswith; fast_pattern; http.host; content:\"verify-badge-vip2.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012933; classtype:social-engineering; sid:6012933; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T08:59:01.435608+00:00",
+  "updated_at": "2026-07-30T00:46:06.787995+00:00",
   "probe": {
     "dns": "172.66.46.228",
     "whois": null,

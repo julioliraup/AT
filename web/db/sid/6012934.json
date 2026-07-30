@@ -49,17 +49,30 @@
     "phishdestroy": {
       "domain": "verify-badge-vip.pages.dev",
       "domain_defanged": "verify-badge-vip[.]pages[.]dev",
-      "case_id": "PD-20260729-197115",
-      "analyzed_at": "2026-07-29T08:59:06.447Z",
+      "case_id": "PD-20260730-197115",
+      "analyzed_at": "2026-07-30T00:46:24.159Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f99cb-8fd9-715b-9dcb-f073ae3b26af.png",
+          "url": "https://urlscan.io/result/019f99cb-8fd9-715b-9dcb-f073ae3b26af/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -224,9 +237,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (verify-badge-vip.pages.dev/privacy-centers)\"; flow:established,to_server; http.uri; content:\"/privacy-centers\"; startswith; fast_pattern; http.host; content:\"verify-badge-vip.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012934; classtype:social-engineering; sid:6012934; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T08:59:03.883975+00:00",
+  "updated_at": "2026-07-30T00:46:17.992302+00:00",
   "probe": {
-    "dns": "172.66.44.150",
+    "dns": "172.66.47.106",
     "whois": null,
     "status": "active"
   }

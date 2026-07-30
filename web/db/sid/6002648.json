@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "secure-datalink.org",
       "domain_defanged": "secure-datalink[.]org",
-      "case_id": "PD-20260728-25F03C",
-      "analyzed_at": "2026-07-28T06:59:41.321Z",
+      "case_id": "PD-20260729-25F03C",
+      "analyzed_at": "2026-07-29T16:29:23.588Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fa785-a280-771d-80e5-d3452b680724/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -69,22 +65,14 @@
       },
       "infrastructure": {
         "ip": "54.77.52.186",
-        "ipinfo": {
-          "ip": "54.77.52.186",
-          "hostname": "ec2-54-77-52-186.eu-west-1.compute.amazonaws.com",
-          "city": "Dublin",
-          "region": "Leinster",
-          "country": "IE",
-          "org": "AS16509 Amazon.com, Inc.",
-          "asn": "AS16509"
-        },
+        "ipinfo": null,
         "dns": {
+          "MX": [
+            "10 inbound-smtp.us-west-2.amazonaws.com."
+          ],
           "A": [
             "54.77.52.186",
             "52.50.69.200"
-          ],
-          "MX": [
-            "10 inbound-smtp.us-west-2.amazonaws.com."
           ],
           "NS": [
             "ns-1350.awsdns-40.org.",
@@ -96,14 +84,7 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Amazon AWS",
-          "abuse": "abuse@amazonaws.com",
-          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
-          "logo": "",
-          "method": "form",
-          "asn": "AS16509"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -226,15 +207,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (secure-datalink.org/landing/form/5e42684b-bad0-49ae-9d0c-b2e349deea7c)\"; flow:established,to_server; http.uri; content:\"/landing/form/5e42684b-bad0-49ae-9d0c-b2e349deea7c\"; startswith; fast_pattern; http.host; content:\"secure-datalink.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002648; classtype:social-engineering; sid:6002648; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-28T23:16:56.891689+00:00",
+  "updated_at": "2026-07-29T16:29:16.658740+00:00",
   "probe": {
-    "dns": "54.77.52.186",
-    "whois": null,
+    "dns": "52.50.69.200",
+    "whois": true,
     "status": "active"
   }
 }

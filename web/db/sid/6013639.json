@@ -18,81 +18,59 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.gov-parkingrs.cyou/com/",
-      "domain": "www.gov-parkingrs.cyou",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "43.153.78.56",
-      "http_code": 200,
-      "http_response": {
-        "server": null,
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": "h3=\":443\"; ma=2592000"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text",
-      "sha256": "da4a6d3cfee65af41ab4797e6efa6208cd37193178c5500e63188be2967e5519",
-      "md5": "f823e4c0a0f1fb7e5a6f3f3dbc331096",
-      "cert": {
-        "subject_cn": "www.gov-parkingrs.cyou",
-        "subject_alt_names": [
-          "www.gov-parkingrs.cyou"
-        ],
-        "issuer_cn": "YE1",
-        "issuer_org": "Let's Encrypt",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-16T07:43:47+00:00",
-        "not_valid_after": "2026-09-14T07:43:46+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha384_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "572176579614893576575833262792509757923547",
-        "fingerprint_sha1": "6B 30 65 F3 CF FD 74 F8 B3 7C 97 8E 12 9F 8B DE 39 EF 98 04",
-        "fingerprint_sha256": "25 76 9D F1 F0 92 3A 6D 3D B8 7E B1 0D D9 A6 58 E0 32 AD 46 F7 EB 38 99 19 C6 73 93 4E 3A 0A 8A"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-06-16T15:43:53",
-      "first_seen_secs": 1781624633.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "gov-parkingrs.cyou",
       "domain_defanged": "gov-parkingrs[.]cyou",
-      "case_id": "PD-20260729-48DDE3",
-      "analyzed_at": "2026-07-29T10:01:38.944Z",
+      "case_id": "PD-20260730-48DDE3",
+      "analyzed_at": "2026-07-30T02:05:06.371Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edbf3-b9fe-72fd-a24b-f97d230cdb11.png",
+          "url": "https://urlscan.io/result/019edbf3-b9fe-72fd-a24b-f97d230cdb11/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.153.78.56",
+        "ipinfo": {
+          "ip": "43.153.78.56",
+          "city": "Santa Clara",
+          "region": "California",
+          "country": "US",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -219,10 +197,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingrs.cyou/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingrs.cyou\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013639; classtype:social-engineering; sid:6013639; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T10:01:36.875660+00:00",
+  "updated_at": "2026-07-30T02:04:48.430417+00:00",
   "probe": {
-    "dns": "43.153.78.56",
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

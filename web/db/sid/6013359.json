@@ -49,21 +49,67 @@
     "phishdestroy": {
       "domain": "utensil-steep-dk.s3.ap-southeast-1.amazonaws.com",
       "domain_defanged": "utensil-steep-dk[.]s3[.]ap-southeast-1[.]amazonaws[.]com",
-      "case_id": "PD-20260729-B413BF",
-      "analyzed_at": "2026-07-29T09:39:48.087Z",
+      "case_id": "PD-20260730-B413BF",
+      "analyzed_at": "2026-07-30T01:33:54.502Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fad3e-95ce-736c-968c-d5c8e51bd6b8/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fad3e-95ce-736c-968c-d5c8e51bd6b8.png",
+          "url": "https://urlscan.io/result/019fad3e-95ce-736c-968c-d5c8e51bd6b8/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,22 +117,22 @@
         "ip": "s3-r-w.ap-southeast-1.amazonaws.com.",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "s3-r-w.ap-southeast-1.amazonaws.com.",
+            "52.219.125.90",
+            "3.5.147.125",
+            "52.219.133.39",
+            "3.5.149.128",
+            "52.219.164.166",
+            "3.5.149.148",
+            "3.5.149.147",
+            "3.5.147.1"
+          ],
           "AAAA": [
             "s3-r-w.ap-southeast-1.amazonaws.com."
           ],
           "MX": [
             "s3-r-w.ap-southeast-1.amazonaws.com."
-          ],
-          "A": [
-            "s3-r-w.ap-southeast-1.amazonaws.com.",
-            "3.5.151.174",
-            "3.5.151.95",
-            "3.5.147.6",
-            "52.219.124.183",
-            "3.5.151.219",
-            "3.5.147.214",
-            "52.219.164.186",
-            "3.5.147.23"
           ],
           "CNAME": [
             "s3-r-w.ap-southeast-1.amazonaws.com."
@@ -102,7 +148,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -229,9 +282,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (utensil-steep-dk.s3.ap-southeast-1.amazonaws.com/VSPt3S5ZdJKeeK?email=redacted@abuse.ionos.com)\"; flow:established,to_server; http.uri; content:\"/VSPt3S5ZdJKeeK?email=redacted@abuse.ionos.com\"; startswith; fast_pattern; http.host; content:\"utensil-steep-dk.s3.ap-southeast-1.amazonaws.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6013359; classtype:social-engineering; sid:6013359; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:39:45.615728+00:00",
+  "updated_at": "2026-07-30T01:33:46.915897+00:00",
   "probe": {
-    "dns": "3.5.151.229",
+    "dns": "3.5.149.242",
     "whois": null,
     "status": "active"
   }

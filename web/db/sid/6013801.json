@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "aauth---trazorr.gitbook.io",
       "domain_defanged": "aauth---trazorr[.]gitbook[.]io",
-      "case_id": "PD-20260729-1C3EE4",
-      "analyzed_at": "2026-07-29T10:01:51.534Z",
+      "case_id": "PD-20260730-1C3EE4",
+      "analyzed_at": "2026-07-30T02:05:33.382Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fad52-c786-70ba-a32d-93e6b57c5541.png",
           "url": "https://urlscan.io/result/019fad52-c786-70ba-a32d-93e6b57c5541/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.147.209",
+        "ip": "104.18.40.47",
         "ipinfo": {
-          "ip": "172.64.147.209",
+          "ip": "104.18.40.47",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "A": [
-            "172.64.147.209",
-            "104.18.40.47"
+            "104.18.40.47",
+            "172.64.147.209"
           ],
           "AAAA": [
-            "2606:4700:4401::ac40:93d1",
-            "2a06:98c1:310d::6812:282f"
+            "2a06:98c1:310d::6812:282f",
+            "2606:4700:4401::ac40:93d1"
           ]
         }
       },
@@ -249,7 +258,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aauth---trazorr.gitbook.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aauth---trazorr.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013801; classtype:social-engineering; sid:6013801; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T10:14:48.607686+00:00",
+  "updated_at": "2026-07-30T02:23:44.704700+00:00",
   "probe": {
     "dns": "104.18.40.47",
     "whois": true,

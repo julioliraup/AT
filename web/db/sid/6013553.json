@@ -72,27 +72,55 @@
     "phishdestroy": {
       "domain": "gov-parkingry.cyou",
       "domain_defanged": "gov-parkingry[.]cyou",
-      "case_id": "PD-20260729-3EA0CF",
-      "analyzed_at": "2026-07-29T09:55:49.981Z",
+      "case_id": "PD-20260730-3EA0CF",
+      "analyzed_at": "2026-07-30T01:55:01.371Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecdf2-3efa-76fb-b245-681e0bfbca45.png",
+          "url": "https://urlscan.io/result/019ecdf2-3efa-76fb-b245-681e0bfbca45/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.166.204.50",
+        "ipinfo": {
+          "ip": "43.166.204.50",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -219,7 +247,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingry.cyou/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingry.cyou\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013553; classtype:social-engineering; sid:6013553; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:55:48.190336+00:00",
+  "updated_at": "2026-07-30T01:54:57.579398+00:00",
   "probe": {
     "dns": "43.166.204.50",
     "whois": true,

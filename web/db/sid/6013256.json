@@ -49,29 +49,86 @@
     "phishdestroy": {
       "domain": "godisgreat1000x-hub.github.io",
       "domain_defanged": "godisgreat1000x-hub[.]github[.]io",
-      "case_id": "PD-20260729-797DA0",
-      "analyzed_at": "2026-07-29T09:23:27.988Z",
+      "case_id": "PD-20260730-797DA0",
+      "analyzed_at": "2026-07-30T01:14:26.781Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019fad2f-a145-747c-8241-6084f05d2825.png",
           "url": "https://urlscan.io/result/019fad2f-a145-747c-8241-6084f05d2825/",
-          "pending": true
+          "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "185.199.111.153",
         "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
+          "ip": "185.199.111.153",
+          "hostname": "cdn-185-199-111-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,16 +137,16 @@
         },
         "dns": {
           "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
+            "2606:50c0:8003::153",
             "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153"
           ],
           "A": [
-            "185.199.108.153",
-            "185.199.109.153",
+            "185.199.111.153",
             "185.199.110.153",
-            "185.199.111.153"
+            "185.199.109.153",
+            "185.199.108.153"
           ]
         }
       },
@@ -230,9 +287,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (godisgreat1000x-hub.github.io/admin.html)\"; flow:established,to_server; http.uri; content:\"/admin.html\"; startswith; fast_pattern; http.host; content:\"godisgreat1000x-hub.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013256; classtype:social-engineering; sid:6013256; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:31:19.529105+00:00",
+  "updated_at": "2026-07-30T01:21:58.509114+00:00",
   "probe": {
-    "dns": "185.199.111.153",
+    "dns": "185.199.110.153",
     "whois": true,
     "status": "active"
   }

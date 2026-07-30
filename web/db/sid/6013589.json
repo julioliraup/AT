@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "sso-uphold-cdn.infinityfreeapp.com",
       "domain_defanged": "sso-uphold-cdn[.]infinityfreeapp[.]com",
-      "case_id": "PD-20260729-630F41",
-      "analyzed_at": "2026-07-29T09:58:44.558Z",
+      "case_id": "PD-20260730-630F41",
+      "analyzed_at": "2026-07-30T01:59:46.592Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Uphold"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fad4f-ed28-771a-9dd9-e8605f936b0b.png",
           "url": "https://urlscan.io/result/019fad4f-ed28-771a-9dd9-e8605f936b0b/",
-          "pending": true
+          "title": "Uphold Account Login - Secure Access*"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Uphold",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -212,7 +221,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso-uphold-cdn.infinityfreeapp.com/?i=1/)\"; flow:established,to_server; http.uri; content:\"/?i=1/\"; startswith; fast_pattern; http.host; content:\"sso-uphold-cdn.infinityfreeapp.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013589; classtype:social-engineering; sid:6013589; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:58:40.006311+00:00",
+  "updated_at": "2026-07-30T01:59:42.666940+00:00",
   "probe": {
     "dns": "185.27.134.135",
     "whois": null,

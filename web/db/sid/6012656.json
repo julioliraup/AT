@@ -73,21 +73,38 @@
     "phishdestroy": {
       "domain": "tiny.cc",
       "domain_defanged": "tiny[.]cc",
-      "case_id": "PD-20260729-4E3A79",
-      "analyzed_at": "2026-07-29T08:41:27.508Z",
+      "case_id": "PD-20260730-4E3A79",
+      "analyzed_at": "2026-07-30T00:15:01.758Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "AutoShun",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fad09-2a9d-704c-9070-688b9a349b69/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019faf96-be68-7658-a454-e231f1c92a4d.png",
+          "url": "https://urlscan.io/result/019faf96-be68-7658-a454-e231f1c92a4d/",
+          "title": "Swapfinder - Where singles come out to play!"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: AutoShun",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -106,16 +123,16 @@
           "A": [
             "157.245.113.153"
           ],
+          "NS": [
+            "pdns1.registrar-servers.com.",
+            "pdns2.registrar-servers.com."
+          ],
           "MX": [
             "10 eforward1.registrar-servers.com.",
             "10 eforward2.registrar-servers.com.",
             "10 eforward3.registrar-servers.com.",
             "15 eforward4.registrar-servers.com.",
             "20 eforward5.registrar-servers.com."
-          ],
-          "NS": [
-            "pdns1.registrar-servers.com.",
-            "pdns2.registrar-servers.com."
           ]
         }
       },
@@ -255,7 +272,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.tiny.cc/jd94101/)\"; flow:established,to_server; http.uri; content:\"/jd94101/\"; startswith; fast_pattern; http.host; content:\"www.tiny.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012656; classtype:social-engineering; sid:6012656; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T08:41:24.641293+00:00",
+  "updated_at": "2026-07-30T00:14:56.848179+00:00",
   "probe": {
     "dns": "157.245.113.153",
     "whois": null,

@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "s.teams-rl.com",
       "domain_defanged": "s[.]teams-rl[.]com",
-      "case_id": "PD-20260729-2F24EA",
-      "analyzed_at": "2026-07-29T10:03:12.092Z",
+      "case_id": "PD-20260730-2F24EA",
+      "analyzed_at": "2026-07-30T02:06:55.786Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed04f-80d0-77db-96bc-e9ccd5d550fe.png",
+          "url": "https://urlscan.io/result/019ed04f-80d0-77db-96bc-e9ccd5d550fe/",
+          "title": "Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.130.208",
+        "ipinfo": {
+          "ip": "172.67.130.208",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s.teams-rl.com/p/fjbd-cbch/capluzli/)\"; flow:established,to_server; http.uri; content:\"/p/fjbd-cbch/capluzli/\"; startswith; fast_pattern; http.host; content:\"s.teams-rl.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013656; classtype:social-engineering; sid:6013656; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T10:03:03.997002+00:00",
+  "updated_at": "2026-07-30T02:06:50.191314+00:00",
   "probe": {
     "dns": false,
     "whois": false,

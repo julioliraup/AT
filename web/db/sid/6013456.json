@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "dh00566nnvh04.cloudfront.net",
       "domain_defanged": "dh00566nnvh04[.]cloudfront[.]net",
-      "case_id": "PD-20260729-2E2ECB",
-      "analyzed_at": "2026-07-29T09:48:24.531Z",
+      "case_id": "PD-20260730-2E2ECB",
+      "analyzed_at": "2026-07-30T01:44:06.235Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0a29-ac4c-763b-b6b6-80275028065a.png",
+          "url": "https://urlscan.io/result/019f0a29-ac4c-763b-b6b6-80275028065a/",
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "18.66.92.75",
+        "ipinfo": {
+          "ip": "18.66.92.75",
+          "hostname": "server-18-66-92-75.fra56.r.cloudfront.net",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dh00566nnvh04.cloudfront.net/?cid=8458657)\"; flow:established,to_server; http.uri; content:\"/?cid=8458657\"; startswith; fast_pattern; http.host; content:\"dh00566nnvh04.cloudfront.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013456; classtype:social-engineering; sid:6013456; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:48:22.367084+00:00",
+  "updated_at": "2026-07-30T01:44:02.544237+00:00",
   "probe": {
     "dns": false,
     "whois": false,

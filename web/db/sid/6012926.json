@@ -73,24 +73,37 @@
     "phishdestroy": {
       "domain": "bitmartlogiene.webflow.io",
       "domain_defanged": "bitmartlogiene[.]webflow[.]io",
-      "case_id": "PD-20260729-7BAC78",
-      "analyzed_at": "2026-07-29T08:58:30.059Z",
+      "case_id": "PD-20260730-7BAC78",
+      "analyzed_at": "2026-07-30T00:44:52.865Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Crypto"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f99cb-2d77-779c-b082-885e827f69da.png",
+          "url": "https://urlscan.io/result/019f99cb-2d77-779c-b082-885e827f69da/",
+          "title": "BitMart login |- Cryptocurrency Exchange"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Crypto",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
+        "ip": "172.64.151.8",
         "ipinfo": {
-          "ip": "104.18.36.248",
+          "ip": "172.64.151.8",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -99,12 +112,12 @@
         },
         "dns": {
           "A": [
-            "104.18.36.248",
-            "172.64.151.8"
+            "172.64.151.8",
+            "104.18.36.248"
           ],
           "AAAA": [
-            "2a06:98c1:3102::ac40:9708",
-            "2a06:98c1:3105::6812:24f8"
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
           ]
         }
       },
@@ -244,10 +257,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bitmartlogiene.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bitmartlogiene.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012926; classtype:social-engineering; sid:6012926; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T08:58:20.813104+00:00",
+  "updated_at": "2026-07-30T00:44:44.356387+00:00",
   "probe": {
     "dns": "172.64.151.8",
-    "whois": true,
+    "whois": null,
     "status": "active"
   }
 }

@@ -55,17 +55,30 @@
     "phishdestroy": {
       "domain": "ledger-com-start.blogspot.com",
       "domain_defanged": "ledger-com-start[.]blogspot[.]com",
-      "case_id": "PD-20260729-4D3419",
-      "analyzed_at": "2026-07-29T08:59:36.716Z",
+      "case_id": "PD-20260730-4D3419",
+      "analyzed_at": "2026-07-30T00:47:18.183Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f99cb-c689-7175-bd1d-2df846d82140.png",
+          "url": "https://urlscan.io/result/019f99cb-c689-7175-bd1d-2df846d82140/",
+          "title": "Ledger.com/Start® - The Most Secure Hardware Crypto Wallet | Official"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -75,11 +88,11 @@
         "dns": {
           "AAAA": [
             "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4004:80f::2001"
+            "2800:3f0:4004:80e::2001"
           ],
           "A": [
             "blogspot.l.googleusercontent.com.",
-            "172.217.172.1"
+            "142.250.219.33"
           ],
           "MX": [
             "blogspot.l.googleusercontent.com."
@@ -94,7 +107,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -221,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ledger-com-start.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ledger-com-start.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012939; classtype:social-engineering; sid:6012939; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T08:59:33.992372+00:00",
+  "updated_at": "2026-07-30T00:47:09.263717+00:00",
   "probe": {
     "dns": "142.251.33.193",
     "whois": null,

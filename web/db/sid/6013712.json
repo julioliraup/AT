@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "wordpress-212591-0.cloudclusters.net",
       "domain_defanged": "wordpress-212591-0[.]cloudclusters[.]net",
-      "case_id": "PD-20260729-5523E7",
-      "analyzed_at": "2026-07-29T10:07:45.191Z",
+      "case_id": "PD-20260730-5523E7",
+      "analyzed_at": "2026-07-30T02:14:30.396Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Swiss Post",
+            "Schweizerische Bundesbahnen"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed087-dea7-767c-a76d-8805bce50398.png",
+          "url": "https://urlscan.io/result/019ed087-dea7-767c-a76d-8805bce50398/",
+          "title": "Login | SwissPass"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Swiss Post, Schweizerische Bundesbahnen",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "108.181.197.177",
+        "ipinfo": {
+          "ip": "108.181.197.177",
+          "city": "Dallas",
+          "region": "Texas",
+          "country": "US",
+          "org": "AS40676 Psychz Networks",
+          "asn": "AS40676"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AS40676, US",
+          "abuse": "abuse@psychz.net",
+          "url": "mailto:abuse@psychz.net",
+          "logo": "https://i.ibb.co/gbJpPj2w/pr-AS40676-US.png",
+          "method": "email",
+          "asn": "AS40676"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wordpress-212591-0.cloudclusters.net/client10337/C90aGVt/CH/)\"; flow:established,to_server; http.uri; content:\"/client10337/C90aGVt/CH/\"; startswith; fast_pattern; http.host; content:\"wordpress-212591-0.cloudclusters.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013712; classtype:social-engineering; sid:6013712; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T10:07:42.958129+00:00",
+  "updated_at": "2026-07-30T02:14:26.496431+00:00",
   "probe": {
     "dns": false,
     "whois": false,

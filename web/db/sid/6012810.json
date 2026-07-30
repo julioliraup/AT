@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "xpapsuq.lol",
       "domain_defanged": "xpapsuq[.]lol",
-      "case_id": "PD-20260729-22D67B",
-      "analyzed_at": "2026-07-29T08:50:33.675Z",
+      "case_id": "PD-20260730-22D67B",
+      "analyzed_at": "2026-07-30T00:32:34.563Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "OLX Group"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eb657-15a8-7799-813a-a37a6ab4a73c.png",
+          "url": "https://urlscan.io/result/019eb657-15a8-7799-813a-a37a6ab4a73c/",
+          "title": "Ozon generator domowy"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: OLX Group",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3037::ac43:9baa",
+        "ipinfo": {
+          "ip": "2606:4700:3037::ac43:9baa",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xpapsuq.lol/o/ws6l0/1768848617406#selectedbank9)\"; flow:established,to_server; http.uri; content:\"/o/ws6l0/1768848617406#selectedbank9\"; startswith; fast_pattern; http.host; content:\"xpapsuq.lol\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012810; classtype:social-engineering; sid:6012810; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T08:50:31.366737+00:00",
+  "updated_at": "2026-07-30T00:32:31.335766+00:00",
   "probe": {
     "dns": null,
     "whois": true,

@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "booking-coom-duubai-fllight-tickets.webflow.io",
       "domain_defanged": "booking-coom-duubai-fllight-tickets[.]webflow[.]io",
-      "case_id": "PD-20260729-608284",
-      "analyzed_at": "2026-07-29T08:56:22.742Z",
+      "case_id": "PD-20260730-608284",
+      "analyzed_at": "2026-07-30T00:41:44.007Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fad16-d3a0-76bb-83c4-eb5b8709f623.png",
           "url": "https://urlscan.io/result/019fad16-d3a0-76bb-83c4-eb5b8709f623/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (booking-coom-duubai-fllight-tickets.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"booking-coom-duubai-fllight-tickets.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012895; classtype:social-engineering; sid:6012895; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T08:56:19.632789+00:00",
+  "updated_at": "2026-07-30T00:41:40.851328+00:00",
   "probe": {
     "dns": "172.64.151.8",
     "whois": true,

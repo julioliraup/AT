@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "exodussupport.vercel.app",
       "domain_defanged": "exodussupport[.]vercel[.]app",
-      "case_id": "PD-20260729-3B4686",
-      "analyzed_at": "2026-07-29T10:01:25.838Z",
+      "case_id": "PD-20260730-3B4686",
+      "analyzed_at": "2026-07-30T02:04:28.118Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Exodus Wallet"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fad52-6319-7508-8360-acd9d5783dee.png",
           "url": "https://urlscan.io/result/019fad52-6319-7508-8360-acd9d5783dee/",
-          "pending": true
+          "title": "Exodus Crypto Wallet Help & Support"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Exodus Wallet",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.2",
+        "ip": "64.29.17.66",
         "ipinfo": {
-          "ip": "216.198.79.2",
+          "ip": "64.29.17.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -79,8 +88,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.2",
-            "64.29.17.2"
+            "64.29.17.66",
+            "216.198.79.66"
           ]
         }
       },
@@ -221,9 +230,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.exodussupport.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.exodussupport.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013829; classtype:social-engineering; sid:6013829; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T10:17:03.162635+00:00",
+  "updated_at": "2026-07-30T02:26:01.476833+00:00",
   "probe": {
-    "dns": "64.29.17.2",
+    "dns": "64.29.17.194",
     "whois": null,
     "status": "active"
   }

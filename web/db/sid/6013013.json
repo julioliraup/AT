@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "help-live-lebbger.webflow.io",
       "domain_defanged": "help-live-lebbger[.]webflow[.]io",
-      "case_id": "PD-20260729-794932",
-      "analyzed_at": "2026-07-29T09:06:25.212Z",
+      "case_id": "PD-20260730-794932",
+      "analyzed_at": "2026-07-30T00:56:19.547Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fad20-0631-720a-a80a-bf755b8658d4.png",
           "url": "https://urlscan.io/result/019fad20-0631-720a-a80a-bf755b8658d4/",
-          "pending": true
+          "title": "Ledger® Live* : Desktop | Most Secure Crypto Wallet (webflow)"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (help-live-lebbger.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"help-live-lebbger.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013013; classtype:social-engineering; sid:6013013; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:06:21.914953+00:00",
+  "updated_at": "2026-07-30T00:56:16.761256+00:00",
   "probe": {
     "dns": "172.64.151.8",
     "whois": true,

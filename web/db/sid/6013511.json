@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "privacy-services-division.pages.dev",
       "domain_defanged": "privacy-services-division[.]pages[.]dev",
-      "case_id": "PD-20260729-2F0853",
-      "analyzed_at": "2026-07-29T09:52:01.609Z",
+      "case_id": "PD-20260730-2F0853",
+      "analyzed_at": "2026-07-30T01:50:09.809Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fad49-c722-77ef-8c50-10186cb2f8c4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019faebd-d743-76a3-ad79-eb8c6c4d4ddf.png",
+          "url": "https://urlscan.io/result/019faebd-d743-76a3-ad79-eb8c6c4d4ddf/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.108",
+        "ip": "172.66.44.148",
         "ipinfo": {
-          "ip": "172.66.47.108",
+          "ip": "172.66.44.148",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "A": [
-            "172.66.47.108",
-            "172.66.44.148"
+            "172.66.44.148",
+            "172.66.47.108"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f6c",
-            "2606:4700:310c::ac42:2c94"
+            "2606:4700:310c::ac42:2c94",
+            "2606:4700:310c::ac42:2f6c"
           ],
           "NS": [
             "aron.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (privacy-services-division.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"privacy-services-division.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013511; classtype:social-engineering; sid:6013511; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:51:58.799853+00:00",
+  "updated_at": "2026-07-30T01:50:00.925942+00:00",
   "probe": {
     "dns": "172.66.44.148",
     "whois": null,

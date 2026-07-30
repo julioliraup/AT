@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "ledgerrecover.app",
       "domain_defanged": "ledgerrecover[.]app",
-      "case_id": "PD-20260729-544ABA",
-      "analyzed_at": "2026-07-29T09:03:50.752Z",
+      "case_id": "PD-20260730-544ABA",
+      "analyzed_at": "2026-07-30T00:54:00.314Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ec524-90c6-77dc-b4fb-7acedc841729.png",
+          "url": "https://urlscan.io/result/019ec524-90c6-77dc-b4fb-7acedc841729/",
+          "title": "Ledger Crypto Wallet – Security for DeFi & Web3"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "82.221.136.26",
+        "ipinfo": {
+          "ip": "82.221.136.26",
+          "hostname": "keilir.orangewebsite.com",
+          "city": "Reykjavík",
+          "region": "Capital Region",
+          "country": "IS",
+          "org": "AS50613 Advania Island ehf",
+          "asn": "AS50613"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "FlokiNET",
+          "abuse": "abuse@flokinet.is",
+          "url": "mailto:abuse@flokinet.is",
+          "logo": "https://i.ibb.co/DDJz3Bpy/pr-Floki-NET.png",
+          "method": "email",
+          "asn": "AS50613"
+        }
       },
       "report_services": [
         {
@@ -196,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledgerrecover.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledgerrecover.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012985; classtype:social-engineering; sid:6012985; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:03:47.434315+00:00",
+  "updated_at": "2026-07-30T00:53:56.285628+00:00",
   "probe": {
     "dns": false,
     "whois": false,

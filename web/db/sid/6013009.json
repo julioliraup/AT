@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "verify-badge-vip9.pages.dev",
       "domain_defanged": "verify-badge-vip9[.]pages[.]dev",
-      "case_id": "PD-20260729-137544",
-      "analyzed_at": "2026-07-29T09:05:53.948Z",
+      "case_id": "PD-20260730-137544",
+      "analyzed_at": "2026-07-30T00:55:58.219Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fad1f-8ae7-72cb-97b6-6e7a6e517249.png",
           "url": "https://urlscan.io/result/019fad1f-8ae7-72cb-97b6-6e7a6e517249/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,13 +93,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2c9b",
-            "2606:4700:310c::ac42:2f65"
-          ],
           "A": [
             "172.66.47.101",
             "172.66.44.155"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2c9b",
+            "2606:4700:310c::ac42:2f65"
           ],
           "NS": [
             "justin.ns.cloudflare.com.",
@@ -234,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (verify-badge-vip9.pages.dev/privacy-centers)\"; flow:established,to_server; http.uri; content:\"/privacy-centers\"; startswith; fast_pattern; http.host; content:\"verify-badge-vip9.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013009; classtype:social-engineering; sid:6013009; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:05:51.646503+00:00",
+  "updated_at": "2026-07-30T00:55:56.401425+00:00",
   "probe": {
     "dns": "172.66.47.101",
     "whois": null,

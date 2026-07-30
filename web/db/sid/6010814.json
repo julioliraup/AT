@@ -23,17 +23,13 @@
       "domain": "tinyurl.com",
       "domain_defanged": "tinyurl[.]com",
       "case_id": "PD-20260729-6E602D",
-      "analyzed_at": "2026-07-29T06:44:26.043Z",
+      "analyzed_at": "2026-07-29T21:16:00.431Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fac9e-05bd-760d-8cd9-442e4a4380d8/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -51,28 +47,15 @@
       },
       "infrastructure": {
         "ip": "104.18.111.161",
-        "ipinfo": {
-          "ip": "104.18.111.161",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ipinfo": null,
         "dns": {
           "A": [
             "104.18.111.161",
             "104.17.112.233"
           ],
           "AAAA": [
-            "2606:4700::6811:70e9",
-            "2606:4700::6812:6fa1"
-          ],
-          "NS": [
-            "constitution.ns.tinyurl.com.",
-            "freedom.ns.tinyurl.com.",
-            "liberty.ns.tinyurl.com.",
-            "revolution.ns.tinyurl.com."
+            "2606:4700::6812:6fa1",
+            "2606:4700::6811:70e9"
           ],
           "MX": [
             "1 aspmx.l.google.com.",
@@ -80,6 +63,12 @@
             "10 aspmx3.googlemail.com.",
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com."
+          ],
+          "NS": [
+            "constitution.ns.tinyurl.com.",
+            "freedom.ns.tinyurl.com.",
+            "liberty.ns.tinyurl.com.",
+            "revolution.ns.tinyurl.com."
           ]
         }
       },
@@ -92,14 +81,7 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -226,7 +208,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tinyurl.com/InterDelivery)\"; flow:established,to_server; http.uri; content:\"/InterDelivery\"; startswith; fast_pattern; http.host; content:\"tinyurl.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010814; classtype:social-engineering; sid:6010814; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T06:44:11.888275+00:00",
+  "updated_at": "2026-07-29T21:15:46.851711+00:00",
   "probe": {
     "dns": "104.18.111.161",
     "whois": true,

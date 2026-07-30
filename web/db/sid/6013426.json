@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "tryugwyigiuqyugfq-tyieghoirurgqh.pages.dev",
       "domain_defanged": "tryugwyigiuqyugfq-tyieghoirurgqh[.]pages[.]dev",
-      "case_id": "PD-20260729-62AC13",
-      "analyzed_at": "2026-07-29T09:45:26.045Z",
+      "case_id": "PD-20260730-62AC13",
+      "analyzed_at": "2026-07-30T01:40:53.817Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fad43-bdf6-769a-8319-e2a5b7cf3c20.png",
           "url": "https://urlscan.io/result/019fad43-bdf6-769a-8319-e2a5b7cf3c20/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -228,7 +237,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tryugwyigiuqyugfq-tyieghoirurgqh.pages.dev/?e=aran@7998e30432222a0842c9980c5cd10770824a.com)\"; flow:established,to_server; http.uri; content:\"/?e=aran@7998e30432222a0842c9980c5cd10770824a.com\"; startswith; fast_pattern; http.host; content:\"tryugwyigiuqyugfq-tyieghoirurgqh.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013426; classtype:social-engineering; sid:6013426; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:45:19.951195+00:00",
+  "updated_at": "2026-07-30T01:40:51.658891+00:00",
   "probe": {
     "dns": "172.66.44.84",
     "whois": null,

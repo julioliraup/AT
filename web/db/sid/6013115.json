@@ -75,21 +75,108 @@
     "phishdestroy": {
       "domain": "dc.crsorgi.gov.in.index.dc-p.xyz",
       "domain_defanged": "dc[.]crsorgi[.]gov[.]in[.]index[.]dc-p[.]xyz",
-      "case_id": "PD-20260729-31EAA0",
-      "analyzed_at": "2026-07-29T09:16:48.885Z",
+      "case_id": "PD-20260730-31EAA0",
+      "analyzed_at": "2026-07-30T01:04:55.652Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 7,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019fad29-8948-7299-ad15-ec82c5e8c9f0.png",
           "url": "https://urlscan.io/result/019fad29-8948-7299-ad15-ec82c5e8c9f0/",
-          "pending": true
+          "title": "Redirecting..."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -97,31 +184,38 @@
         "ip": "dc-p.xyz.",
         "ipinfo": null,
         "dns": {
-          "CNAME": [
+          "AAAA": [
             "dc-p.xyz."
           ],
           "MX": [
             "dc-p.xyz."
           ],
-          "AAAA": [
+          "NS": [
+            "dc-p.xyz.",
+            "ns2.parklogic.com.",
+            "ns1.parklogic.com."
+          ],
+          "CNAME": [
             "dc-p.xyz."
           ],
           "A": [
             "dc-p.xyz.",
-            "172.233.211.67",
             "172.233.211.57",
+            "172.233.211.67",
             "172.239.61.123"
-          ],
-          "NS": [
-            "dc-p.xyz.",
-            "ns1.parklogic.com.",
-            "ns2.parklogic.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Linode/Akamai",
+          "abuse": "abuse@linode.com",
+          "url": "mailto:abuse@linode.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS63949"
+        }
       },
       "report_services": [
         {
@@ -248,7 +342,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dc.crsorgi.gov.in.index.dc-p.xyz/crs/)\"; flow:established,to_server; http.uri; content:\"/crs/\"; startswith; fast_pattern; http.host; content:\"dc.crsorgi.gov.in.index.dc-p.xyz\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6013115; classtype:social-engineering; sid:6013115; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T09:16:41.368186+00:00",
+  "updated_at": "2026-07-30T01:04:51.846526+00:00",
   "probe": {
     "dns": "168.119.146.17",
     "whois": true,
