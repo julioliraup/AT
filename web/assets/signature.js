@@ -577,12 +577,108 @@ const buildPhishDestroyHtml = (pd) => {
 // Main loader
 // ---------------------------------------------------------------------------
 
-/**
- * Fetch the SID JSON record and render the full detail view.
- */
+const PROTO_STYLE = {
+    dns:   { label: 'DNS',   color: 'var(--neon-pink)', bg: 'rgba(255,0,85,0.12)' },
+    tls:   { label: 'TLS',   color: '#00ff80',           bg: 'rgba(0,255,128,0.08)' },
+    http:  { label: 'HTTP',  color: 'var(--cyan)',        bg: 'rgba(0,229,255,0.1)' },
+    https: { label: 'HTTPS', color: 'var(--cyan)',        bg: 'rgba(0,229,255,0.1)' },
+};
+
+function protocolBadge(proto) {
+    const s = PROTO_STYLE[proto] || { label: (proto || '').toUpperCase(), color: 'var(--cyan)', bg: 'rgba(0,229,255,0.1)' };
+    return `<span class="badge" style="border-color:${s.color};color:${s.color};background:${s.bg};font-size:0.75em;letter-spacing:2px;">${s.label}</span>`;
+}
+
+function renderDomainView(el, d, domain) {
+    const proto = d.protocol || 'dns';
+    const ps = PROTO_STYLE[proto] || PROTO_STYLE.dns;
+    const tld = domain.includes('.') ? domain.split('.').pop().toLowerCase() : 'unknown';
+    const feed = d.dns_feed || {};
+    const topTlds = feed.top_tlds || [];
+
+    const refs = Array.isArray(d.references) && d.references.length > 0;
+    const refsHtml = refs
+        ? `<ul class="ref-list">${d.references.map(r => `<li>${r}</li>`).join('')}</ul>`
+        : `<span class="data-value">No references</span>`;
+
+    const tldRows = topTlds.map(t =>
+        `<div style="display:flex;justify-content:space-between;align-items:center;
+                     padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+            <span style="color:${t.tld === tld ? ps.color : 'var(--text)'};font-weight:${t.tld === tld ? 'bold' : 'normal'};">
+                .${t.tld}${t.tld === tld ? ' \u2190 this domain' : ''}
+            </span>
+            <span class="badge" style="font-size:0.65em;">${t.count.toLocaleString()}</span>
+         </div>`
+    ).join('');
+
+    el.innerHTML = `
+    <div class="card glow" style="border-top:4px solid ${ps.color};">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:15px;margin-bottom:20px;">
+            <h1 style="margin:0;font-size:2em;color:var(--text);word-break:break-all;">
+                ${domain}
+            </h1>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                ${protocolBadge(proto)}
+                <span class="badge high" style="font-size:0.7em;">${val(d.severity, 'high')} severity</span>
+            </div>
+        </div>
+
+        <h2 style="color:var(--text-muted);font-size:1.1em;margin-bottom:30px;">${val(d.msg)}</h2>
+
+        <h2 class="section-title">FEED ENTRY</h2>
+        <div class="grid-2">
+            <div class="data-group">
+                <span class="data-label">Detection Protocol</span>
+                <span class="data-value" style="color:${ps.color};text-transform:uppercase;">${proto}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">SID</span>
+                <span class="data-value" style="color:var(--cyan);">${d.sid}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Domain</span>
+                <span class="data-value" style="word-break:break-all;">${domain}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">TLD</span>
+                <span class="data-value">.${tld}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Class Type</span>
+                <span class="data-value">${val(d.classtype)}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Risk Score</span>
+                <span class="data-value">${val(d.risk_score)}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Feed Size</span>
+                <span class="data-value">${(feed.domains_count || 0).toLocaleString()} domains</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Updated At</span>
+                <span class="data-value" style="font-size:0.85em;color:var(--text-muted);">${fmtDate(d.updated_at)}</span>
+            </div>
+        </div>
+
+        <div class="data-group" style="margin-top:20px;">
+            <span class="data-label">References</span>
+            ${refsHtml}
+        </div>
+
+        ${topTlds.length > 0 ? `
+        <h2 class="section-title" style="margin-top:40px;">TOP TLDs IN FEED</h2>
+        <div class="card" style="padding:15px 20px;">
+            ${tldRows}
+        </div>` : ''}
+    </div>`;
+}
+
 async function load() {
-    const sid = new URLSearchParams(location.search).get('sid');
-    const el  = document.getElementById('detail');
+    const params = new URLSearchParams(location.search);
+    const sid    = params.get('sid');
+    const domain = params.get('domain');
+    const el     = document.getElementById('detail');
 
     if (!sid) {
         el.innerHTML = `<h1 style="color:var(--neon-pink);">[ ERROR: SID NOT SPECIFIED ]</h1>`;
@@ -593,6 +689,12 @@ async function load() {
         const resp = await fetch(`./db/sid/${sid}.json`);
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const d = await resp.json();
+
+        if (domain) {
+            document.title = `${domain} - SID ${d.sid} - Antiphishing`;
+            renderDomainView(el, d, domain);
+            return;
+        }
 
         document.title = `SID ${d.sid} - Antiphishing`;
 
@@ -624,6 +726,11 @@ async function load() {
             </div>` : ''}
         ` : '';
 
+        const proto = d.protocol || '';
+        const protoBadgeHtml = (proto === 'dns' || proto === 'tls')
+            ? protocolBadge(proto)
+            : '';
+
         const pdData = d.intel?.phishdestroy;
         const ipinfoFallback = d.intel?.ipinfo || pdData?.infrastructure?.ipinfo;
 
@@ -634,7 +741,8 @@ async function load() {
                 <h1 style="margin:0;font-size:2.5em;color:var(--text);">
                     SID <span style="color:var(--cyan);">${d.sid}</span>
                 </h1>
-                <div>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                    ${protoBadgeHtml}
                     <span class="badge ${severityClass}">${val(d.severity, 'Unknown')} Severity</span>
                     <span class="badge ${actionClass}">${val(d.action, 'Unknown')}</span>
                     ${staleBadge}
@@ -679,7 +787,7 @@ async function load() {
 
         ${buildOtxHtml(d.intel?.alienvault, ipinfoFallback)}
         ${buildPhishDestroyHtml(pdData)}
-        ${buildGlobalMapHtml(d)}`;  
+        ${buildGlobalMapHtml(d)}`;
 
     } catch (err) {
         console.error('[signature]', err);

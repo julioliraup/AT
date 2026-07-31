@@ -138,6 +138,33 @@ def parse_rule(line):
 # DNS / TLS feed enrichment
 # ---------------------------------------------------------------------------
 
+import base64
+import re as _re
+
+_TLD_RE = _re.compile(r'\.([^.]+)$')
+
+
+def _decode_domains(domains_file):
+    path = Path(domains_file)
+    if not path.is_file():
+        return []
+    decoded = []
+    for raw in path.read_text(encoding='utf-8').splitlines():
+        raw = raw.strip()
+        if not raw:
+            continue
+        try:
+            decoded.append(base64.b64decode(raw).decode('utf-8').strip())
+        except Exception:
+            pass
+    return decoded
+
+
+def _tld(domain):
+    m = _TLD_RE.search(domain)
+    return m.group(1).lower() if m else 'unknown'
+
+
 def enrich_dns(obj, domains_file):
     """Attach domain-feed statistics to rules that match on dns or tls.
 
@@ -146,20 +173,76 @@ def enrich_dns(obj, domains_file):
     if obj['protocol'] not in ('dns', 'tls'):
         return obj
 
-    domains = []
-    path = Path(domains_file)
-    if path.is_file():
-        domains = [
-            ln.strip()
-            for ln in path.read_text(encoding='utf-8').splitlines()
-            if ln.strip()
-        ]
+    domains = _decode_domains(domains_file)
+
+    from collections import Counter
+    tld_counts = Counter(_tld(d) for d in domains)
+    top_tlds = [{'tld': t, 'count': c} for t, c in tld_counts.most_common(10)]
 
     obj['dns_feed'] = {
         'domains_count':  len(domains),
+        'top_tlds':       top_tlds,
         'sample_domains': domains[:10],
     }
     return obj
+
+
+def build_dns_tls_sids(domains_file):
+    """Generate web/db/sid/6000000.json and web/db/sid/6000001.json.
+
+    Each file is a self-contained collection of all decoded domain entries
+    derived from *domains_file*.  Domains are not duplicated in index.json;
+    only the count is surfaced there via ``dns_feed.domains_count``.
+    """
+    FEED_SIDS = [
+        {
+            'sid':      6000000,
+            'protocol': 'dns',
+            'msg':      'AT DNS query to suspicious domain - Phishing',
+        },
+        {
+            'sid':      6000001,
+            'protocol': 'tls',
+            'msg':      'AT TLS SNI to suspicious domain - Phishing',
+        },
+    ]
+
+    domains = _decode_domains(domains_file)
+
+    from collections import Counter
+    tld_counts = Counter(_tld(d) for d in domains)
+    top_tlds = [{'tld': t, 'count': c} for t, c in tld_counts.most_common(20)]
+
+    for meta in FEED_SIDS:
+        record = {
+            'sid':        meta['sid'],
+            'protocol':   meta['protocol'],
+            'msg':        meta['msg'],
+            'classtype':  'social-engineering',
+            'rev':        1,
+            'action':     'alert',
+            'severity':   'high',
+            'risk_score': 85,
+            'references': ['github.com/julioliraup/Antiphishing'],
+            'intel': {
+                'virustotal':  None,
+                'urlhaus':     None,
+                'shodan':      None,
+                'ipinfo':      None,
+                'alienvault':  None,
+                'phishdestroy': None,
+            },
+            'updated_at': datetime.now(timezone.utc).isoformat(),
+            'dns_feed': {
+                'domains_count': len(domains),
+                'top_tlds':      top_tlds,
+                'domains':       domains,
+            },
+        }
+        out = OUT_DIR / f"{meta['sid']}.json"
+        with open(out, 'w', encoding='utf-8') as wf:
+            json.dump(record, wf, indent=2, ensure_ascii=False)
+        print(f'[dns/tls] wrote {out} ({len(domains)} domains)', file=sys.stderr)
 
 
 # ---------------------------------------------------------------------------
@@ -573,6 +656,8 @@ def main():
 
     rules_path, domains_path = sys.argv[1], sys.argv[2]
 
+    build_dns_tls_sids(domains_path)
+
     with open(rules_path, encoding='utf-8') as fh:
         for raw_line in fh:
             line = raw_line.strip()
@@ -583,10 +668,13 @@ def main():
             if obj is None:
                 continue
 
+            if obj['sid'] in (6000000, 6000001):
+                continue
+
             obj = enrich_dns(obj, domains_path)
             obj = enrich_otx(obj)
             obj = enrich_staleness(obj)
-            
+
             obj = enrich_phishdestroy(obj)
             if not obj['intel'].get('phishdestroy'):
                 obj = enrich_ipinfo(obj)
