@@ -1,8 +1,8 @@
 {
   "sid": 6003278,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.rwoayh.top",
-  "msg": "AT related malicious URL (t-mobile.rwoayh.top/pay/)",
+  "url_path": "/",
+  "url_base": "rogersreplay.com",
+  "msg": "AT related malicious URL (rogersreplay.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.rwoayh.top/pay/",
-      "domain": "t-mobile.rwoayh.top",
-      "url_count": 0,
+      "url": "http://rogersreplay.com/",
+      "domain": "rogersreplay.com",
+      "url_count": 2,
       "city_data": false,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "199.36.158.100",
+      "http_code": 200,
+      "http_response": {
+        "server": null,
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,46 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (1140)",
+      "sha256": "519732608744f6b4e0ca36c3771869622c576980420363dfec02455386f9d7e9",
+      "md5": "b6ba3d139ae15d3570bdf4c680e2b08e",
+      "cert": {
+        "subject_cn": "rogersreplay.ca",
+        "subject_alt_names": [
+          "rogersreplay.ca",
+          "www.rogersreplay.ca",
+          "rogersreplay.co",
+          "www.rogersreplay.co",
+          "rogersreplay.com",
+          "www.rogersreplay.com",
+          "rogersreplay.net",
+          "www.rogersreplay.net",
+          "rogersreplay.us",
+          "www.rogersreplay.us"
+        ],
+        "issuer_cn": "WR3",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-04-12T02:35:06+00:00",
+        "not_valid_after": "2026-07-11T03:34:21+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "7D CE 29 FB 6B 28 E8 A2 0A F3 01 2A 74 05 E9 47",
+        "fingerprint_sha1": "01 4D 33 A8 AA 5C 40 8F B7 D8 34 C3 B8 E3 75 8C 9D 66 5E 00",
+        "fingerprint_sha256": "57 BF 7A 48 C8 9B C3 2C F5 5C 17 3D 53 7B 41 DF 7C D5 AD 77 C5 D8 D3 13 C7 67 DA CC 28 48 07 68"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-05-21T02:39:14",
+      "first_seen_secs": 1779331154.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.rwoayh.top",
-      "domain_defanged": "t-mobile[.]rwoayh[.]top",
-      "case_id": "PD-20260729-87B44C",
-      "analyzed_at": "2026-07-29T17:43:16.269Z",
+      "domain": "rogersreplay.com",
+      "domain_defanged": "rogersreplay[.]com",
+      "case_id": "PD-20260730-6A7BE7",
+      "analyzed_at": "2026-07-30T19:32:06.414Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -61,14 +93,30 @@
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "Amazon Registrar, Inc.",
+        "created": "2025-06-05T19:04:32Z",
+        "expires": "2026-06-05T19:04:32Z",
+        "age_days": 420,
+        "nameservers": [
+          "NS-1368.AWSDNS-43.ORG",
+          "NS-2027.AWSDNS-61.CO.UK",
+          "NS-605.AWSDNS-11.NET",
+          "NS-99.AWSDNS-12.COM"
+        ]
       },
       "infrastructure": {
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://phish.report/contacts/Amazon-AWS",
+          "logo": "https://i.ibb.co/NdgZw5r3/pr-Amazon-AWS.png",
+          "method": "form",
+          "iana_ids": ""
+        },
         "hosting": null
       },
       "report_services": [
@@ -192,13 +240,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.rwoayh.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.rwoayh.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003278; classtype:social-engineering; sid:6003278; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T17:43:14.038568+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rogersreplay.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"rogersreplay.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003278; classtype:social-engineering; sid:6003278; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:07:54.139055+00:00",
   "probe": {
-    "dns": null,
+    "dns": "199.36.158.100",
     "whois": true,
     "status": "active"
   }

@@ -1,8 +1,8 @@
 {
   "sid": 6003147,
-  "url_path": "/win0/",
-  "url_base": "min.ambulace.fr",
-  "msg": "AT related malicious URL (min.ambulace.fr/win0/)",
+  "url_path": "/Express",
+  "url_base": "ht-links.de",
+  "msg": "AT related malicious URL (ht-links.de/Express)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "phishstats.info",
+    "openphish.com",
     "julioliraup.github.io/AT/signature.html?sid=6003147"
   ],
   "intel": {
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://min.ambulace.fr/win0/",
-      "domain": "min.ambulace.fr",
+      "url": "http://ht-links.de/Express",
+      "domain": "ht-links.de",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "min.ambulace.fr",
-      "domain_defanged": "min[.]ambulace[.]fr",
-      "case_id": "PD-20260729-6AEE25",
-      "analyzed_at": "2026-07-29T17:32:07.892Z",
+      "domain": "ht-links.de",
+      "domain_defanged": "ht-links[.]de",
+      "case_id": "PD-20260730-7A8D79",
+      "analyzed_at": "2026-07-30T19:21:47.959Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb479-c797-75ed-b662-943aeb605be4/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,21 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "193.34.145.201",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "MX": [
+            "10 mail.ht-links.de."
+          ],
+          "A": [
+            "193.34.145.201"
+          ],
+          "NS": [
+            "ns1.contabo.net.",
+            "ns2.contabo.net.",
+            "ns3.contabo.net."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,13 +209,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (min.ambulace.fr/win0/)\"; flow:established,to_server; http.uri; content:\"/win0/\"; startswith; fast_pattern; http.host; content:\"min.ambulace.fr\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003147; classtype:social-engineering; sid:6003147; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T17:32:05.694102+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ht-links.de/Express)\"; flow:established,to_server; http.uri; content:\"/Express\"; startswith; fast_pattern; http.host; content:\"ht-links.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003147; classtype:social-engineering; sid:6003147; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:00:12.296664+00:00",
   "probe": {
-    "dns": null,
+    "dns": "193.34.145.201",
     "whois": true,
     "status": "active"
   }

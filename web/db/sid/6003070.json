@@ -1,8 +1,8 @@
 {
   "sid": 6003070,
-  "url_path": "/login.html",
-  "url_base": "himself-vessels-optimize-located.trycloudflare.com",
-  "msg": "AT related malicious URL (himself-vessels-optimize-located.trycloudflare.com/login.html)",
+  "url_path": "/index.html",
+  "url_base": "agricole.bolt.host",
+  "msg": "AT related malicious URL (agricole.bolt.host/index.html)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6003070"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://himself-vessels-optimize-located.trycloudflare.com/login.html",
-      "domain": "himself-vessels-optimize-located.trycloudflare.com",
+      "url": "http://agricole.bolt.host/index.html",
+      "domain": "agricole.bolt.host",
       "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "104.26.12.118",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "9fe3f2218c7987ab-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,49 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text",
+      "sha256": "65c6224a681e6224a4a5cc1c472adc26fa3cd473a5298a3b2042cc8535ad520b",
+      "md5": "bc58e596baa590f707e516b0119a3a8f",
+      "cert": {
+        "subject_cn": "bolt.host",
+        "subject_alt_names": [
+          "bolt.host",
+          "*.bolt.host",
+          "*.preview.bolt.host"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-04-04T19:40:52+00:00",
+        "not_valid_after": "2026-07-03T20:40:35+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "169561750652651448443695693111223249043",
+        "fingerprint_sha1": "87 5D DC 18 06 EA 82 BE 62 13 36 61 C0 6F C8 BB 93 B1 6E 77",
+        "fingerprint_sha256": "2D 6C C5 08 BC 29 0E DF 7F 5E D7 1A E1 FA D6 9F 9F 5D 03 D5 47 28 54 80 1D 65 A6 A7 6C 1A 73 20"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-05-19T11:35:37",
-      "first_seen_secs": null
+      "first_seen": "2026-05-19T14:48:15",
+      "first_seen_secs": 1779202095.0
     },
     "phishdestroy": {
-      "domain": "himself-vessels-optimize-located.trycloudflare.com",
-      "domain_defanged": "himself-vessels-optimize-located[.]trycloudflare[.]com",
-      "case_id": "PD-20260729-3FD38B",
-      "analyzed_at": "2026-07-29T17:20:28.867Z",
+      "domain": "agricole.bolt.host",
+      "domain_defanged": "agricole[.]bolt[.]host",
+      "case_id": "PD-20260730-35D8EC",
+      "analyzed_at": "2026-07-30T19:14:13.703Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb472-d92c-757e-b9fd-c4e2d2796951/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +93,20 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "104.26.13.118",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "104.26.13.118",
+            "104.26.12.118",
+            "172.67.75.9"
+          ],
+          "AAAA": [
+            "2606:4700:20::681a:d76",
+            "2606:4700:20::ac43:4b09",
+            "2606:4700:20::681a:c76"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,16 +233,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (himself-vessels-optimize-located.trycloudflare.com/login.html)\"; flow:established,to_server; http.uri; content:\"/login.html\"; startswith; fast_pattern; http.host; content:\"himself-vessels-optimize-located.trycloudflare.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003070; classtype:social-engineering; sid:6003070; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T17:20:26.611391+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (agricole.bolt.host/index.html)\"; flow:established,to_server; http.uri; content:\"/index.html\"; startswith; fast_pattern; http.host; content:\"agricole.bolt.host\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003070; classtype:social-engineering; sid:6003070; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T02:56:07.677058+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "104.26.12.118",
+    "whois": true,
+    "status": "active"
+  }
 }

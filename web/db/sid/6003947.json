@@ -1,8 +1,8 @@
 {
   "sid": 6003947,
-  "url_path": "/",
-  "url_base": "www.meuservidorcorporativo.app",
-  "msg": "AT related malicious URL (www.meuservidorcorporativo.app/)",
+  "url_path": "/facebook.com-id-00463710",
+  "url_base": "picture-ads-202665.pages.dev",
+  "msg": "AT related malicious URL (picture-ads-202665.pages.dev/facebook.com-id-00463710)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.meuservidorcorporativo.app/",
-      "domain": "www.meuservidorcorporativo.app",
-      "url_count": 2,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://picture-ads-202665.pages.dev/facebook.com-id-00463710",
+      "domain": "picture-ads-202665.pages.dev",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.66.44.91",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a124d02e8eadb338-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "6cbbec1510d3f7ecd743b8ec9385395b780c27713a31eb619c373e04d2fa9aa2",
+      "md5": "a1a7e7e634936f5ca31ccec7140546bc",
+      "cert": {
+        "subject_cn": "picture-ads-202665.pages.dev",
+        "subject_alt_names": [
+          "*.picture-ads-202665.pages.dev",
+          "picture-ads-202665.pages.dev"
+        ],
+        "issuer_cn": "E8",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-19T06:23:50+00:00",
+        "not_valid_after": "2026-08-17T06:23:49+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "590823663701844087507431871638526917953835",
+        "fingerprint_sha1": "6D 6C 23 EB CA AB E7 F4 60 90 47 0E 75 C0 DE 71 0A CC B1 FA",
+        "fingerprint_sha256": "CD B8 70 60 75 63 F8 8C 7F B3 01 E3 DB D2 2F B5 5D 4B DE C7 01 B7 54 ED 57 8A 50 EA EC 01 CF AF"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-05-21T08:58:22",
-      "first_seen_secs": null
+      "first_seen": "2026-06-27T13:25:51",
+      "first_seen_secs": 1782566751.0
     },
     "phishdestroy": {
-      "domain": "meuservidorcorporativo.app",
-      "domain_defanged": "meuservidorcorporativo[.]app",
-      "case_id": "PD-20260729-2D9113",
-      "analyzed_at": "2026-07-29T18:39:54.628Z",
+      "domain": "picture-ads-202665.pages.dev",
+      "domain_defanged": "picture-ads-202665[.]pages[.]dev",
+      "case_id": "PD-20260730-739B8D",
+      "analyzed_at": "2026-07-30T20:15:22.138Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb4aa-d262-77a5-840a-e5933b16589c/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +92,22 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "172.66.44.91",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2fa5",
+            "2606:4700:310c::ac42:2c5b"
+          ],
+          "A": [
+            "172.66.44.91",
+            "172.66.47.165"
+          ],
+          "NS": [
+            "ace.ns.cloudflare.com.",
+            "adaline.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,16 +234,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.meuservidorcorporativo.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.meuservidorcorporativo.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003947; classtype:social-engineering; sid:6003947; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T18:39:45.027947+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (picture-ads-202665.pages.dev/facebook.com-id-00463710)\"; flow:established,to_server; http.uri; content:\"/facebook.com-id-00463710\"; startswith; fast_pattern; http.host; content:\"picture-ads-202665.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003947; classtype:social-engineering; sid:6003947; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:46:27.755254+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "172.66.44.91",
+    "whois": null,
+    "status": "active"
+  }
 }

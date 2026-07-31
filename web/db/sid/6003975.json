@@ -1,8 +1,8 @@
 {
   "sid": 6003975,
-  "url_path": "/bu.adpobe.reading.us/30bg/30bg/index.html",
-  "url_base": "s3.us-east-2.amazonaws.com",
-  "msg": "AT related malicious URL (s3.us-east-2.amazonaws.com/bu.adpobe.reading.us/30bg/30bg/index.html)",
+  "url_path": "/",
+  "url_base": "playful-griffin-463442.framer.app",
+  "msg": "AT related malicious URL (playful-griffin-463442.framer.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6003975"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://s3.us-east-2.amazonaws.com/bu.adpobe.reading.us/30bg/30bg/index.html",
-      "domain": "s3.us-east-2.amazonaws.com",
-      "url_count": 0,
+      "url": "http://playful-griffin-463442.framer.app/",
+      "domain": "playful-griffin-463442.framer.app",
+      "url_count": 3,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "31.43.160.6",
+      "http_code": 200,
+      "http_response": {
+        "server": "Framer/e66ed00",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=2592000"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (57912), with CRLF line terminators",
+      "sha256": "3d745d63d876946f330b8486b3e591ac6e614e216305c455db441643cfb7bcc1",
+      "md5": "217e3d9b3688801173f19b231c9ef541",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-05-21T11:37:54",
+      "first_seen_secs": 1779363474.0
     },
     "phishdestroy": {
-      "domain": "s3.us-east-2.amazonaws.com",
-      "domain_defanged": "s3[.]us-east-2[.]amazonaws[.]com",
-      "case_id": "PD-20260729-398134",
-      "analyzed_at": "2026-07-29T18:41:54.686Z",
+      "domain": "playful-griffin-463442.framer.app",
+      "domain_defanged": "playful-griffin-463442[.]framer[.]app",
+      "case_id": "PD-20260730-718297",
+      "analyzed_at": "2026-07-30T20:26:28.549Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb4b4-fe27-71f9-8848-b199cf9725b2/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,45 +74,18 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "3.5.133.91",
-        "ipinfo": {
-          "ip": "3.5.133.91",
-          "hostname": "s3-fips-r-w.us-east-2.amazonaws.com",
-          "city": "Columbus",
-          "region": "Ohio",
-          "country": "US",
-          "org": "AS16509 Amazon.com, Inc.",
-          "asn": "AS16509"
-        },
+        "ip": "31.43.161.6",
+        "ipinfo": null,
         "dns": {
           "A": [
-            "3.5.133.91",
-            "3.5.129.121",
-            "3.5.128.31",
-            "3.5.88.37",
-            "52.219.98.97",
-            "3.5.130.195",
-            "16.12.66.145",
-            "3.5.92.205"
-          ],
-          "NS": [
-            "ns-1093.awsdns-08.org.",
-            "ns-1819.awsdns-35.co.uk.",
-            "ns-296.awsdns-37.com.",
-            "ns-983.awsdns-58.net."
+            "31.43.161.6",
+            "31.43.160.6"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Amazon AWS",
-          "abuse": "abuse@amazonaws.com",
-          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
-          "logo": "",
-          "method": "form",
-          "asn": "AS16509"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -225,13 +208,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s3.us-east-2.amazonaws.com/bu.adpobe.reading.us/30bg/30bg/index.html)\"; flow:established,to_server; http.uri; content:\"/bu.adpobe.reading.us/30bg/30bg/index.html\"; startswith; fast_pattern; http.host; content:\"s3.us-east-2.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003975; classtype:social-engineering; sid:6003975; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T18:41:51.722376+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (playful-griffin-463442.framer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"playful-griffin-463442.framer.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003975; classtype:social-engineering; sid:6003975; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:47:32.654595+00:00",
   "probe": {
-    "dns": "3.5.128.18",
+    "dns": "31.43.160.6",
     "whois": null,
     "status": "active"
   }

@@ -1,8 +1,8 @@
 {
   "sid": 6005254,
-  "url_path": "/sso/login/8ce2e418-677a-43a7-ba7d-66eace99dc36",
-  "url_base": "my-smbc-jp.com",
-  "msg": "AT related malicious URL (my-smbc-jp.com/sso/login/8ce2e418-677a-43a7-ba7d-66eace99dc36)",
+  "url_path": "/",
+  "url_base": "m.galabetresmigrisi.com",
+  "msg": "AT related malicious URL (m.galabetresmigrisi.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://my-smbc-jp.com/sso/login/8ce2e418-677a-43a7-ba7d-66eace99dc36",
-      "domain": "my-smbc-jp.com",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://m.galabetresmigrisi.com/",
+      "domain": "m.galabetresmigrisi.com",
+      "url_count": 10,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.209.184",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a23196bf6e7eb7b9-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,54 +43,67 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "af544dc98a24a2ad9ebf029f6d788300e5a0910155de6cb6f9f51c4e90310af0",
+      "md5": "0851449b09319fef615087a5c4cee21c",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:08:38",
+      "first_seen_secs": 1785384518.0
     },
     "phishdestroy": {
-      "domain": "my-smbc-jp.com",
-      "domain_defanged": "my-smbc-jp[.]com",
-      "case_id": "PD-20260729-1D7A1C",
-      "analyzed_at": "2026-07-29T19:58:21.564Z",
+      "domain": "m.galabetresmigrisi.com",
+      "domain_defanged": "m[.]galabetresmigrisi[.]com",
+      "case_id": "PD-20260731-6FBB2A",
+      "analyzed_at": "2026-07-31T05:09:55.698Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb694-3a54-7687-ba30-7d22e1efb469/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "registrar": "NameCheap, Inc.",
-        "created": "2026-05-17T20:37:52Z",
-        "expires": "2027-05-17T20:37:52Z",
-        "age_days": 72,
-        "nameservers": [
-          "NS1.DIGITALOCEAN.COM",
-          "NS2.DIGITALOCEAN.COM",
-          "NS3.DIGITALOCEAN.COM"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "104.21.37.148",
+        "ipinfo": {
+          "ip": "104.21.37.148",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:3036::ac43:d1b8",
+            "2606:4700:3036::6815:2594"
+          ],
+          "A": [
+            "104.21.37.148",
+            "172.67.209.184"
+          ]
+        }
       },
       "report_to": {
-        "registrar": {
-          "name": "Name SRS AB",
-          "abuse": "abuse@namesrs.com",
-          "url": "https://phish.report/contacts/Name-SRS-AB",
-          "logo": "https://i.ibb.co/kgH8Frhf/pr-Name-SRS-AB.png",
+        "registrar": null,
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
           "method": "form",
-          "iana_ids": "638"
-        },
-        "hosting": null
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,11 +229,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (my-smbc-jp.com/sso/login/8ce2e418-677a-43a7-ba7d-66eace99dc36)\"; flow:established,to_server; http.uri; content:\"/sso/login/8ce2e418-677a-43a7-ba7d-66eace99dc36\"; startswith; fast_pattern; http.host; content:\"my-smbc-jp.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005254; classtype:social-engineering; sid:6005254; rev:1; metadata: signature_severity Major, created_et 2026_05_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T19:58:17.760485+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.galabetresmigrisi.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"m.galabetresmigrisi.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005254; classtype:social-engineering; sid:6005254; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T05:09:52.902355+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.67.209.184",
+    "whois": null,
     "status": "active"
   }
 }

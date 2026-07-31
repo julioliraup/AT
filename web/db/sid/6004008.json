@@ -1,8 +1,8 @@
 {
   "sid": 6004008,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.maukjd.top",
-  "msg": "AT related malicious URL (t-mobile.maukjd.top/pay/)",
+  "url_path": "/",
+  "url_base": "rational-delivers-637567.framer.app",
+  "msg": "AT related malicious URL (rational-delivers-637567.framer.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6004008"
   ],
   "intel": {
@@ -19,21 +19,21 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.maukjd.top/pay/",
-      "domain": "t-mobile.maukjd.top",
-      "url_count": 1,
-      "city_data": false,
+      "url": "http://rational-delivers-637567.framer.app/",
+      "domain": "rational-delivers-637567.framer.app",
+      "url_count": 3,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "172.67.171.123",
-      "http_code": 200,
+      "ip": "31.43.160.6",
+      "http_code": 404,
       "http_response": {
-        "server": "cloudflare",
+        "server": "Framer/e66ed00",
         "content_type": "text/html; charset=utf-8",
-        "cf_ray": "9feb6580aaffb642-PDX",
-        "cf_cache_status": "DYNAMIC",
-        "alt_svc": "h3=\":443\"; ma=86400"
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=2592000"
       },
       "city": null,
       "region": null,
@@ -44,25 +44,46 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (503)",
-      "sha256": "b442bd217d234e43c22a740195979855b9fa97b316da10408fd41daa202ff9b0",
-      "md5": "ee71b440076e81c8dcdbd830ff0a33b4",
-      "cert": null,
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "a19d8ba6e0113132f05883c09a3646afc494025abba70ed647b0fd8cbaaee0ea",
+      "md5": "78f285f211fced6e3505d0a00ff2bbf8",
+      "cert": {
+        "subject_cn": "*.framer.app",
+        "subject_alt_names": [
+          "*.framer.app"
+        ],
+        "issuer_cn": "E8",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-04-07T03:22:11+00:00",
+        "not_valid_after": "2026-07-06T03:22:10+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "499729738272198895796022362865955407160340",
+        "fingerprint_sha1": "C8 98 40 47 D6 D0 F4 DD 2A 09 B4 D0 A7 0F 98 C5 AF 29 FB F9",
+        "fingerprint_sha256": "A5 60 01 FF 73 B2 E7 69 AD 9C 32 94 E0 33 0F 01 55 D4 0D 0A 6C 11 DE 79 E1 B1 00 FF BA 8A C4 4C"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-05-20T12:37:55",
-      "first_seen_secs": 1779280675.0
+      "first_seen": "2026-05-21T11:39:46",
+      "first_seen_secs": 1779363586.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.maukjd.top",
-      "domain_defanged": "t-mobile[.]maukjd[.]top",
-      "case_id": "PD-20260729-2557B6",
-      "analyzed_at": "2026-07-29T18:44:09.372Z",
+      "domain": "rational-delivers-637567.framer.app",
+      "domain_defanged": "rational-delivers-637567[.]framer[.]app",
+      "case_id": "PD-20260730-1D3C0B",
+      "analyzed_at": "2026-07-30T20:28:28.472Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb4b6-d29d-73d9-85b1-37ca1d4c62cd/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,8 +91,14 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "31.43.160.6",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "31.43.160.6",
+            "31.43.161.6"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -198,14 +225,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.maukjd.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.maukjd.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004008; classtype:social-engineering; sid:6004008; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T18:44:07.296012+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rational-delivers-637567.framer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"rational-delivers-637567.framer.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004008; classtype:social-engineering; sid:6004008; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:48:34.286928+00:00",
   "probe": {
-    "dns": "172.67.171.123",
-    "whois": true,
+    "dns": "31.43.160.6",
+    "whois": null,
     "status": "active"
   }
 }

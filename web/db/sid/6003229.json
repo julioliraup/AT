@@ -1,8 +1,8 @@
 {
   "sid": 6003229,
-  "url_path": "/",
-  "url_base": "www.minfogbo-cctv.bet",
-  "msg": "AT related malicious URL (www.minfogbo-cctv.bet/)",
+  "url_path": "/assfv43/",
+  "url_base": "aizhara.apsny.land",
+  "msg": "AT related malicious URL (aizhara.apsny.land/assfv43/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.minfogbo-cctv.bet/",
-      "domain": "www.minfogbo-cctv.bet",
+      "url": "http://aizhara.apsny.land/assfv43/",
+      "domain": "aizhara.apsny.land",
       "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "91.238.3.25",
+      "http_code": 200,
+      "http_response": {
+        "server": "BitNinja-Waf3, nginx",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (1183)",
+      "sha256": "319ba793de139cb61b1540828f307a4b746df72ba6bd6f5ae73919a1cecbca87",
+      "md5": "17d3908bddf2525742fe10c5ef9753cd",
+      "cert": {
+        "subject_cn": "aizhara.apsny.land",
+        "subject_alt_names": [
+          "aizhara.apsny.land",
+          "www.aizhara.apsny.land"
+        ],
+        "issuer_cn": "R12",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-12T20:35:29+00:00",
+        "not_valid_after": "2026-08-10T20:35:28+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "06 C4 49 5C 94 90 B8 DB B4 A0 87 1C 57 0A 25 21 49 D2",
+        "fingerprint_sha1": "E3 E5 16 F2 9A 9A 3F 2E 3C 1B 74 68 A1 97 00 E5 72 CE 39 A3",
+        "fingerprint_sha256": "0F 72 E8 EE 0D 53 24 25 C7 73 AE 86 69 D5 19 F7 0E 3B BC DF 72 B0 15 EA 2F 14 F7 C9 DF B3 DC EA"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-05-21T09:55:41",
-      "first_seen_secs": null
+      "first_seen": "2026-06-05T18:32:10",
+      "first_seen_secs": 1780684330.0
     },
     "phishdestroy": {
-      "domain": "minfogbo-cctv.bet",
-      "domain_defanged": "minfogbo-cctv[.]bet",
-      "case_id": "PD-20260729-642784",
-      "analyzed_at": "2026-07-29T17:40:58.914Z",
+      "domain": "aizhara.apsny.land",
+      "domain_defanged": "aizhara[.]apsny[.]land",
+      "case_id": "PD-20260730-538E11",
+      "analyzed_at": "2026-07-30T19:23:13.681Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb47b-0f53-770e-b6d3-8b482a43c008/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,22 +92,19 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "156.250.96.36",
-        "ipinfo": {
-          "ip": "156.250.96.36",
-          "city": "Tung Chung",
-          "region": "Islands",
-          "country": "HK",
-          "org": "AS142286 LUOGELANG (FRANCE) LIMITED",
-          "asn": "AS142286"
-        },
+        "ip": "91.238.3.25",
+        "ipinfo": null,
         "dns": {
           "A": [
-            "156.250.96.36"
+            "91.238.3.25"
           ],
           "NS": [
-            "ns03.domaincontrol.com.",
-            "ns04.domaincontrol.com."
+            "ns1.apsdns.su.",
+            "ns2.apsdns.su."
+          ],
+          "MX": [
+            "10 mail.aizhara.apsny.land.",
+            "20 mail.aizhara.apsny.land."
           ]
         }
       },
@@ -208,13 +233,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.minfogbo-cctv.bet/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.minfogbo-cctv.bet\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003229; classtype:social-engineering; sid:6003229; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T17:40:55.655802+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aizhara.apsny.land/assfv43/)\"; flow:established,to_server; http.uri; content:\"/assfv43/\"; startswith; fast_pattern; http.host; content:\"aizhara.apsny.land\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003229; classtype:social-engineering; sid:6003229; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:06:05.405479+00:00",
   "probe": {
-    "dns": "156.250.96.36",
+    "dns": "91.238.3.25",
     "whois": true,
     "status": "active"
   }

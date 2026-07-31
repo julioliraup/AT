@@ -1,8 +1,8 @@
 {
   "sid": 6003271,
-  "url_path": "/ss/?LOG=592e9bbbfd157feb1b703aba3ec7b974816a94b38a2c62f5138787d0b9b4ee87",
-  "url_base": "hostperepe.sviluppo.host",
-  "msg": "AT related malicious URL (hostperepe.sviluppo.host/ss/?LOG=592e9bbbfd157feb1b703aba3ec7b974816a94b38a2c62f5138787d0b9b4ee87)",
+  "url_path": "/",
+  "url_base": "www.cool-bet365.com.cn",
+  "msg": "AT related malicious URL (www.cool-bet365.com.cn/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://hostperepe.sviluppo.host/ss/?LOG=592e9bbbfd157feb1b703aba3ec7b974816a94b38a2c62f5138787d0b9b4ee87",
-      "domain": "hostperepe.sviluppo.host",
-      "url_count": 0,
+      "url": "http://www.cool-bet365.com.cn/",
+      "domain": "www.cool-bet365.com.cn",
+      "url_count": 12,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "45.199.18.112",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (362), with CRLF line terminators",
+      "sha256": "1d952461759457c970745e1d736cfb634e62448bfbb24854f4357c61208711ee",
+      "md5": "c8f2cf37c4e4175f911073bb4178b35f",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T03:56:47",
+      "first_seen_secs": 1785383807.0
     },
     "phishdestroy": {
-      "domain": "hostperepe.sviluppo.host",
-      "domain_defanged": "hostperepe[.]sviluppo[.]host",
-      "case_id": "PD-20260729-2BF201",
-      "analyzed_at": "2026-07-29T17:42:57.244Z",
+      "domain": "cool-bet365.com.cn",
+      "domain_defanged": "cool-bet365[.]com[.]cn",
+      "case_id": "PD-20260730-24F5F8",
+      "analyzed_at": "2026-07-30T19:31:41.531Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb482-d634-7398-96ea-fbb3a7732a60/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,36 +74,21 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "149.62.187.110",
-        "ipinfo": {
-          "ip": "149.62.187.110",
-          "hostname": "w3007.shared.host.it",
-          "city": "Turin",
-          "region": "Piedmont",
-          "country": "IT",
-          "org": "AS47242 Host SpA",
-          "asn": "AS47242"
-        },
+        "ip": "45.199.18.112",
+        "ipinfo": null,
         "dns": {
           "A": [
-            "149.62.187.110"
+            "45.199.18.112"
           ],
           "NS": [
-            "ns2.host-anycast.com.",
-            "ns1.host-anycast.it."
+            "ns1.nowcndns.com.",
+            "ns2.nowcndns.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "COLTENGINE",
-          "abuse": "ripe@host.it",
-          "url": "mailto:ripe@host.it",
-          "logo": "https://i.ibb.co/mFrcXtZb/pr-COLTENGINE.png",
-          "method": "email",
-          "asn": "AS47242"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -216,13 +211,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hostperepe.sviluppo.host/ss/?LOG=592e9bbbfd157feb1b703aba3ec7b974816a94b38a2c62f5138787d0b9b4ee87)\"; flow:established,to_server; http.uri; content:\"/ss/?LOG=592e9bbbfd157feb1b703aba3ec7b974816a94b38a2c62f5138787d0b9b4ee87\"; startswith; fast_pattern; http.host; content:\"hostperepe.sviluppo.host\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003271; classtype:social-engineering; sid:6003271; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T17:42:53.493243+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.cool-bet365.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.cool-bet365.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003271; classtype:social-engineering; sid:6003271; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:07:39.408580+00:00",
   "probe": {
-    "dns": "149.62.187.110",
+    "dns": "45.199.18.112",
     "whois": true,
     "status": "active"
   }

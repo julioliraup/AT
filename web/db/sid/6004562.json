@@ -1,8 +1,8 @@
 {
   "sid": 6004562,
-  "url_path": "/",
-  "url_base": "www.voxera.icu",
-  "msg": "AT related malicious URL (www.voxera.icu/)",
+  "url_path": "/dropboxess.html?email=a.b@c",
+  "url_base": "myownm.s3.us-east-1.amazonaws.com",
+  "msg": "AT related malicious URL (myownm.s3.us-east-1.amazonaws.com/dropboxess.html?email=a.b@c)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,15 +19,15 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.voxera.icu/",
-      "domain": "www.voxera.icu",
-      "url_count": 3,
-      "city_data": false,
+      "url": "http://myownm.s3.us-east-1.amazonaws.com/dropboxess.html?email=a.b@c",
+      "domain": "myownm.s3.us-east-1.amazonaws.com",
+      "url_count": 0,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
-      "tlp": "WHITE",
+      "tlp": null,
       "ip": null,
-      "http_code": 0,
+      "http_code": null,
       "http_response": null,
       "city": null,
       "region": null,
@@ -43,20 +43,24 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-05-28T10:41:05",
+      "first_seen": null,
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "voxera.icu",
-      "domain_defanged": "voxera[.]icu",
-      "case_id": "PD-20260729-3BDE8D",
-      "analyzed_at": "2026-07-29T19:47:43.341Z",
+      "domain": "myownm.s3.us-east-1.amazonaws.com",
+      "domain_defanged": "myownm[.]s3[.]us-east-1[.]amazonaws[.]com",
+      "case_id": "PD-20260731-359908",
+      "analyzed_at": "2026-07-31T04:28:39.491Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb66e-71a6-73b8-be2c-0a26b97cee95/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,37 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "s3-r-w.us-east-1.amazonaws.com.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "MX": [
+            "s3-r-w.us-east-1.amazonaws.com."
+          ],
+          "AAAA": [
+            "s3-r-w.us-east-1.amazonaws.com."
+          ],
+          "A": [
+            "s3-r-w.us-east-1.amazonaws.com.",
+            "16.15.246.76",
+            "16.15.212.20",
+            "16.182.100.186",
+            "52.217.139.130",
+            "16.15.199.241",
+            "52.217.233.250",
+            "16.15.223.182",
+            "16.15.245.183"
+          ],
+          "CNAME": [
+            "s3-r-w.us-east-1.amazonaws.com."
+          ],
+          "NS": [
+            "s3-r-w.us-east-1.amazonaws.com.",
+            "ns-1106.awsdns-10.org.",
+            "ns-1567.awsdns-03.co.uk.",
+            "ns-479.awsdns-59.com.",
+            "ns-537.awsdns-03.net."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -195,13 +228,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.voxera.icu/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.voxera.icu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004562; classtype:social-engineering; sid:6004562; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T19:47:08.385359+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (myownm.s3.us-east-1.amazonaws.com/dropboxess.html?email=a.b@c)\"; flow:established,to_server; http.uri; content:\"/dropboxess.html?email=a.b@c\"; startswith; fast_pattern; http.host; content:\"myownm.s3.us-east-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004562; classtype:social-engineering; sid:6004562; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T04:28:37.268173+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "54.231.232.10",
+    "whois": null,
+    "status": "active"
+  }
 }

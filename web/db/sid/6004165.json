@@ -1,8 +1,8 @@
 {
   "sid": 6004165,
-  "url_path": "/conceptlab/TenderRFP.php",
-  "url_base": "bhabanagarafoundation.org",
-  "msg": "AT related malicious URL (bhabanagarafoundation.org/conceptlab/TenderRFP.php)",
+  "url_path": "/",
+  "url_base": "com--dubai-booking.webflow.io",
+  "msg": "AT related malicious URL (com--dubai-booking.webflow.io/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://bhabanagarafoundation.org/conceptlab/TenderRFP.php",
-      "domain": "bhabanagarafoundation.org",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://com--dubai-booking.webflow.io/",
+      "domain": "com--dubai-booking.webflow.io",
+      "url_count": 10,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.18.36.248",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a23186b38b523d49-PDX",
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,59 +43,76 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "ccba2b2d1573c8e71de08f13b07730e46bf96a200ad1f1dd1fe020e7463b68d3",
+      "md5": "9576c9422b27c1c9911ace114dda8e74",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T03:55:24",
+      "first_seen_secs": 1785383724.0
     },
     "phishdestroy": {
-      "domain": "bhabanagarafoundation.org",
-      "domain_defanged": "bhabanagarafoundation[.]org",
-      "case_id": "PD-20260729-298683",
-      "analyzed_at": "2026-07-29T18:53:21.838Z",
+      "domain": "com--dubai-booking.webflow.io",
+      "domain_defanged": "com--dubai-booking[.]webflow[.]io",
+      "case_id": "PD-20260731-567969",
+      "analyzed_at": "2026-07-31T03:57:21.826Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fac71-df92-736e-81e1-96d0720fc710.png",
+          "url": "https://urlscan.io/result/019fac71-df92-736e-81e1-96d0720fc710/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "103.65.139.82",
+        "ip": "104.18.36.248",
         "ipinfo": {
-          "ip": "103.65.139.82",
-          "hostname": "server10.secureserverpanel.com",
-          "city": "Dhaka",
-          "region": "Dhaka Division",
-          "country": "BD",
-          "org": "AS151967 DLITS",
-          "asn": "AS151967"
+          "ip": "104.18.36.248",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
+          ],
           "A": [
-            "103.65.139.82"
-          ],
-          "NS": [
-            "ns11.secureserverpanel.com.",
-            "ns10.secureserverpanel.com."
-          ],
-          "MX": [
-            "0 bhabanagarafoundation.org."
+            "104.18.36.248",
+            "172.64.151.8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,14 +235,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bhabanagarafoundation.org/conceptlab/TenderRFP.php)\"; flow:established,to_server; http.uri; content:\"/conceptlab/TenderRFP.php\"; startswith; fast_pattern; http.host; content:\"bhabanagarafoundation.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004165; classtype:social-engineering; sid:6004165; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T18:55:57.169389+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (com--dubai-booking.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"com--dubai-booking.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004165; classtype:social-engineering; sid:6004165; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:57:18.952642+00:00",
   "probe": {
-    "dns": "103.65.139.82",
+    "dns": "104.18.36.248",
     "whois": true,
     "status": "active"
   }

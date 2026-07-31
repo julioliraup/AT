@@ -1,8 +1,8 @@
 {
   "sid": 6003358,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.xpcajq.top",
-  "msg": "AT related malicious URL (t-mobile.xpcajq.top/pay/)",
+  "url_path": "/",
+  "url_base": "8-tv.cc",
+  "msg": "AT related malicious URL (8-tv.cc/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.xpcajq.top/pay/",
-      "domain": "t-mobile.xpcajq.top",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://8-tv.cc/",
+      "domain": "8-tv.cc",
+      "url_count": 3,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.244.77.105",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (56677), with no line terminators",
+      "sha256": "9a006e246397c0b8521ab351958f641d238acf2ba5cb78631bb274bae37999d5",
+      "md5": "8842204152f8d8a1f0b2621add8d0823",
+      "cert": {
+        "subject_cn": "www.8-tv.cc",
+        "subject_alt_names": [
+          "8-tv.cc",
+          "www.8-tv.cc"
+        ],
+        "issuer_cn": "R13",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-04-09T02:52:56+00:00",
+        "not_valid_after": "2026-07-08T02:52:55+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "05 74 6F 7C 6C 35 31 D5 DD 6A 42 F6 BC 50 4F 08 F6 BA",
+        "fingerprint_sha1": "EC D1 7F 42 44 55 30 5F 7E 3A DA 7B 85 FA 2A FB BF 25 51 30",
+        "fingerprint_sha256": "0A 12 C9 17 4D 87 50 6E 46 58 B2 B3 BF 60 EE 32 81 41 C5 42 EA 99 0C 08 80 D0 9F C1 3C B5 A3 CC"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-05-21T06:39:09",
+      "first_seen_secs": 1779345549.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.xpcajq.top",
-      "domain_defanged": "t-mobile[.]xpcajq[.]top",
-      "case_id": "PD-20260729-54499F",
-      "analyzed_at": "2026-07-29T17:47:04.766Z",
+      "domain": "8-tv.cc",
+      "domain_defanged": "8-tv[.]cc",
+      "case_id": "PD-20260730-1A3FF2",
+      "analyzed_at": "2026-07-30T19:37:53.773Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb488-7c98-71bd-8d02-86ab23a81a78/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +92,27 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "cdn-host.snse.cc.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "CNAME": [
+            "cdn-host.snse.cc."
+          ],
+          "AAAA": [
+            "cdn-host.snse.cc."
+          ],
+          "A": [
+            "cdn-host.snse.cc.",
+            "104.244.77.105"
+          ],
+          "MX": [
+            "cdn-host.snse.cc."
+          ],
+          "NS": [
+            "ns1.1233dns.com.",
+            "ns2.951dns.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,14 +239,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.xpcajq.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.xpcajq.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003358; classtype:social-engineering; sid:6003358; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T17:47:02.325447+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (8-tv.cc/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"8-tv.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003358; classtype:social-engineering; sid:6003358; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:10:14.111958+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "104.244.77.105",
+    "whois": null,
     "status": "active"
   }
 }

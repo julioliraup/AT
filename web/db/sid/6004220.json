@@ -1,8 +1,8 @@
 {
   "sid": 6004220,
-  "url_path": "/",
-  "url_base": "boerse.raiffeisen.ch",
-  "msg": "AT related malicious URL (boerse.raiffeisen.ch/)",
+  "url_path": "/local/components/promo//red/en.html?eta=redacted@abuse.ionos.com",
+  "url_base": "seoma.ru",
+  "msg": "AT related malicious URL (seoma.ru/local/components/promo//red/en.html?eta=redacted@abuse.ionos.com)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6004220"
   ],
   "intel": {
@@ -19,8 +19,8 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://boerse.raiffeisen.ch/",
-      "domain": "boerse.raiffeisen.ch",
+      "url": "http://seoma.ru/local/components/promo//red/en.html?eta=redacted@abuse.ionos.com",
+      "domain": "seoma.ru",
       "url_count": 0,
       "city_data": true,
       "deep_analysis": false,
@@ -47,16 +47,21 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "boerse.raiffeisen.ch",
-      "domain_defanged": "boerse[.]raiffeisen[.]ch",
-      "case_id": "PD-20260729-3CC52B",
-      "analyzed_at": "2026-07-29T19:01:08.881Z",
+      "domain": "seoma.ru",
+      "domain_defanged": "seoma[.]ru",
+      "case_id": "PD-20260731-4C934A",
+      "analyzed_at": "2026-07-31T04:01:48.939Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019fac75-2f9d-733d-84e0-7ffedea486e2.png",
+          "url": "https://urlscan.io/result/019fac75-2f9d-733d-84e0-7ffedea486e2/",
+          "title": "Интернет-маркетплэйс SEOMA. Продажа керемической плитки."
         }
       },
       "detections": [],
@@ -64,24 +69,35 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "82.98.90.191",
+        "ip": "193.135.134.218",
         "ipinfo": {
-          "ip": "82.98.90.191",
-          "city": "Frankfurt am Main",
-          "region": "Hesse",
-          "country": "DE",
-          "org": "AS44152 adesso as a service GmbH",
-          "asn": "AS44152"
+          "ip": "193.135.134.218",
+          "city": "Moscow",
+          "region": "Moscow",
+          "country": "RU",
+          "org": "AS208626 ServTech LTD",
+          "asn": "AS208626"
         },
         "dns": {
           "A": [
-            "82.98.90.191"
+            "193.135.134.218"
+          ],
+          "NS": [
+            "dave.ns.cloudflare.com.",
+            "hattie.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "serv-tech",
+          "abuse": "abuse@serv-tech.ru",
+          "url": "mailto:abuse@serv-tech.ru",
+          "logo": "https://i.ibb.co/TMDjhyMX/pr-serv-tech.png",
+          "method": "email",
+          "asn": "AS208626"
+        }
       },
       "report_services": [
         {
@@ -207,10 +223,10 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (boerse.raiffeisen.ch/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"boerse.raiffeisen.ch\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004220; classtype:social-engineering; sid:6004220; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T19:01:03.410395+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (seoma.ru/local/components/promo//red/en.html?eta=redacted@abuse.ionos.com)\"; flow:established,to_server; http.uri; content:\"/local/components/promo//red/en.html?eta=redacted@abuse.ionos.com\"; startswith; fast_pattern; http.host; content:\"seoma.ru\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004220; classtype:social-engineering; sid:6004220; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T04:01:41.114888+00:00",
   "probe": {
-    "dns": "82.98.90.191",
+    "dns": "193.135.134.218",
     "whois": true,
     "status": "active"
   }

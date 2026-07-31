@@ -1,8 +1,8 @@
 {
   "sid": 6003301,
-  "url_path": "/com",
-  "url_base": "dpd.vlinbgo.cfd",
-  "msg": "AT related malicious URL (dpd.vlinbgo.cfd/com)",
+  "url_path": "/fr/",
+  "url_base": "www.gamsgo.com",
+  "msg": "AT related malicious URL (www.gamsgo.com/fr/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://dpd.vlinbgo.cfd/com",
-      "domain": "dpd.vlinbgo.cfd",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://www.gamsgo.com/fr/",
+      "domain": "www.gamsgo.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.66.40.242",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html;charset=utf-8",
+        "cf_ray": "9fe726c89d53debd-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,35 +43,67 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (5384)",
+      "sha256": "2895cbe26297daf87233b18b2e5093445fe91f224ebe43b8ec2d5b99e96db461",
+      "md5": "782706a7f270979fdc965648272a4cc3",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-05-20T00:05:52",
+      "first_seen_secs": 1779235552.0
     },
     "phishdestroy": {
-      "domain": "dpd.vlinbgo.cfd",
-      "domain_defanged": "dpd[.]vlinbgo[.]cfd",
-      "case_id": "PD-20260729-6ED6A9",
-      "analyzed_at": "2026-07-29T17:44:22.436Z",
+      "domain": "gamsgo.com",
+      "domain_defanged": "gamsgo[.]com",
+      "case_id": "PD-20260730-2BBD0F",
+      "analyzed_at": "2026-07-30T19:33:24.277Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb484-6725-75dd-9f15-42542f73e6bd/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "Dominet (HK) Limited",
+        "created": "2020-06-08T16:40:48Z",
+        "expires": "2030-06-08T16:40:48Z",
+        "age_days": 2243,
+        "nameservers": [
+          "CORY.NS.CLOUDFLARE.COM",
+          "NINA.NS.CLOUDFLARE.COM"
+        ]
       },
       "infrastructure": {
+        "ip": "104.20.46.4",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "MX": [
+            "1 aspmx.l.google.com.",
+            "5 alt1.aspmx.l.google.com.",
+            "5 alt2.aspmx.l.google.com.",
+            "10 alt3.aspmx.l.google.com.",
+            "10 alt4.aspmx.l.google.com."
+          ],
+          "A": [
+            "104.20.46.4",
+            "172.66.151.109"
+          ],
+          "AAAA": [
+            "2606:4700:10::6814:2e04",
+            "2606:4700:10::ac42:976d"
+          ],
+          "NS": [
+            "cory.ns.cloudflare.com.",
+            "nina.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,14 +230,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.vlinbgo.cfd/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"dpd.vlinbgo.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003301; classtype:social-engineering; sid:6003301; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T17:44:20.431063+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gamsgo.com/fr/)\"; flow:established,to_server; http.uri; content:\"/fr/\"; startswith; fast_pattern; http.host; content:\"www.gamsgo.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003301; classtype:social-engineering; sid:6003301; rev:1; metadata: signature_severity Major, created_et 2026_05_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:08:31.928930+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.66.40.242",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6000077,
   "url_path": "/",
-  "url_base": "meta-profile.agency-manager-support.com",
-  "msg": "AT related malicious URL (meta-profile .agency-manager-support .com/)",
+  "url_base": "client028.business-agency-partners.com",
+  "msg": "AT related malicious URL (client028 .business-agency-partners .com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 2,
@@ -20,16 +20,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://meta-profile.agency-manager-support.com/",
-      "domain": "meta-profile.agency-manager-support.com",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://client028.business-agency-partners.com/",
+      "domain": "client028.business-agency-partners.com",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.67.214.64",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "9fb7c880eaa77b78-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -38,26 +44,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "33e5af87a9bbacc6b454368458309d91e417e052053be328a01021371ca7f3fc",
+      "md5": "b080ce584498fad550ab44862b5757a2",
+      "cert": {
+        "subject_cn": "business-agency-partners.com",
+        "subject_alt_names": [
+          "*.business-agency-partners.com",
+          "business-agency-partners.com"
+        ],
+        "issuer_cn": "E8",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-06T00:19:07+00:00",
+        "not_valid_after": "2026-08-04T00:19:06+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "506258929892923842010556590269131004470684",
+        "fingerprint_sha1": "06 C3 1C 07 59 15 2D 2F CE 9B 53 88 AB A9 B9 63 02 13 99 5A",
+        "fingerprint_sha256": "5C A6 01 CE 11 08 4C 1C 82 2C E5 1D D2 53 DC A6 34 92 29 9F 46 FD 2F EC 6C 53 C0 93 CF BF 1F 4F"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-05-14T05:54:45",
-      "first_seen_secs": null
+      "first_seen": "2026-05-14T06:18:01",
+      "first_seen_secs": 1778739481.0
     },
     "phishdestroy": {
-      "domain": "meta-profile.agency-manager-support.com",
-      "domain_defanged": "meta-profile[.]agency-manager-support[.]com",
-      "case_id": "PD-20260729-598148",
-      "analyzed_at": "2026-07-29T12:53:23.247Z",
+      "domain": "client028.business-agency-partners.com",
+      "domain_defanged": "client028[.]business-agency-partners[.]com",
+      "case_id": "PD-20260730-4E7EE6",
+      "analyzed_at": "2026-07-30T17:20:29.133Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb40a-b3bb-732b-9cd7-673ce3989540/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,12 +93,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "104.21.78.2",
+        "ipinfo": {
+          "ip": "104.21.78.2",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "104.21.78.2",
+            "172.67.214.64"
+          ],
+          "AAAA": [
+            "2606:4700:3031::6815:4e02",
+            "2606:4700:3037::ac43:d640"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -193,16 +245,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-profile .agency-manager-support .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"meta-profile.agency-manager-support.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000077; classtype:social-engineering; sid:6000077; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T12:53:19.342666+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (client028 .business-agency-partners .com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host;  content:\"client028.business-agency-partners.com\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000077; classtype:social-engineering; sid:6000077; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T02:02:08.457079+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "172.67.214.64",
+    "whois": null,
+    "status": "active"
+  }
 }

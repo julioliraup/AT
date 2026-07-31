@@ -1,8 +1,8 @@
 {
   "sid": 6003981,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.opkqvs.top",
-  "msg": "AT related malicious URL (t-mobile.opkqvs.top/pay/)",
+  "url_path": "/",
+  "url_base": "ca-app-940.info",
+  "msg": "AT related malicious URL (ca-app-940.info/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6003981"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.opkqvs.top/pay/",
-      "domain": "t-mobile.opkqvs.top",
-      "url_count": 1,
+      "url": "http://ca-app-940.info/",
+      "domain": "ca-app-940.info",
+      "url_count": 2,
       "city_data": false,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "104.21.4.117",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "9ff1b2c80a9ec8da-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (503), with CRLF, LF line terminators",
+      "sha256": "aa9dc55c015136323b8d9485fb023d5630aa9e6df71688db6b5818f2cfb15159",
+      "md5": "1769079d879562784471dcb406889b0b",
+      "cert": {
+        "subject_cn": "ca-app-940.info",
+        "subject_alt_names": [
+          "*.ca-app-940.info",
+          "ca-app-940.info"
+        ],
+        "issuer_cn": "E8",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-19T22:36:16+00:00",
+        "not_valid_after": "2026-08-17T22:36:15+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "603160958000593341273036017718687073343450",
+        "fingerprint_sha1": "6D 63 78 28 36 C2 20 F2 5F FD 0F EB DE BF E0 FB 10 55 AD 67",
+        "fingerprint_sha256": "EB F2 C7 CD EC D1 69 41 33 4B 1F 51 28 89 18 73 52 04 8B 64 C1 1A 02 D5 14 41 C0 10 29 C8 82 72"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-05-20T12:37:55",
-      "first_seen_secs": null
+      "first_seen": "2026-05-21T06:51:48",
+      "first_seen_secs": 1779346308.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.opkqvs.top",
-      "domain_defanged": "t-mobile[.]opkqvs[.]top",
-      "case_id": "PD-20260729-48DB27",
-      "analyzed_at": "2026-07-29T18:42:18.373Z",
+      "domain": "ca-app-940.info",
+      "domain_defanged": "ca-app-940[.]info",
+      "case_id": "PD-20260730-74FBC1",
+      "analyzed_at": "2026-07-30T20:26:57.881Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -192,13 +216,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.opkqvs.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.opkqvs.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003981; classtype:social-engineering; sid:6003981; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T18:42:16.402258+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ca-app-940.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ca-app-940.info\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003981; classtype:social-engineering; sid:6003981; rev:1; metadata: signature_severity Major, created_et 2026_05_21, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:47:39.588646+00:00",
   "probe": {
-    "dns": null,
+    "dns": "104.21.4.117",
     "whois": true,
     "status": "active"
   }

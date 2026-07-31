@@ -1,8 +1,8 @@
 {
   "sid": 6002576,
-  "url_path": "/fingerprint.php",
-  "url_base": "paypay-card.vrsbska.cn",
-  "msg": "AT related malicious URL (paypay-card.vrsbska.cn/fingerprint.php)",
+  "url_path": "/l/mysavings-php//card.php",
+  "url_base": "iperplano.pt",
+  "msg": "AT related malicious URL (iperplano.pt/l/mysavings-php//card.php)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "phishstats.info",
+    "openphish.com",
     "julioliraup.github.io/AT/signature.html?sid=6002576"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://paypay-card.vrsbska.cn/fingerprint.php",
-      "domain": "paypay-card.vrsbska.cn",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://iperplano.pt/l/mysavings-php/card.php",
+      "domain": "iperplano.pt",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "130.185.87.66",
+      "http_code": 200,
+      "http_response": {
+        "server": "openresty/1.29.2.3",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (4721)",
+      "sha256": "9dbb4856dd50521b49c1951946cb82b81b8780580cebfddb0fe3e6083abaeddf",
+      "md5": "ce57efd650d5089ee51cb836e75cbfa1",
+      "cert": {
+        "subject_cn": "www.iperplano.pt",
+        "subject_alt_names": [
+          "iperplano.pt",
+          "www.iperplano.pt"
+        ],
+        "issuer_cn": "R13",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-04-05T21:55:37+00:00",
+        "not_valid_after": "2026-07-04T21:55:36+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "05 4E D8 B9 2E 95 A7 53 CC CF F9 F7 8E C3 A8 A7 22 B6",
+        "fingerprint_sha1": "8F C4 22 A9 6F 0D 6C A8 5E A1 D8 32 83 5E 8B 89 F5 2E F5 90",
+        "fingerprint_sha256": "A2 46 35 79 06 8B 58 26 BC FB 14 B0 15 92 9D C0 61 57 4A 7C CA 9B 28 68 8C 97 C9 D6 DE C6 2D 75"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-05-19T04:53:09",
+      "first_seen_secs": 1779166389.0
     },
     "phishdestroy": {
-      "domain": "paypay-card.vrsbska.cn",
-      "domain_defanged": "paypay-card[.]vrsbska[.]cn",
-      "case_id": "PD-20260729-4A729F",
-      "analyzed_at": "2026-07-29T16:22:06.248Z",
+      "domain": "iperplano.pt",
+      "domain_defanged": "iperplano[.]pt",
+      "case_id": "PD-20260730-22CA16",
+      "analyzed_at": "2026-07-30T18:38:23.685Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb452-0a27-7453-adc3-966ff6ffd080/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +92,20 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "130.185.87.66",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "NS": [
+            "ns1.amenworld.com.",
+            "ns2.amenworld.com."
+          ],
+          "A": [
+            "130.185.87.66"
+          ],
+          "MX": [
+            "10 mx.iperplano.pt."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,14 +232,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (paypay-card.vrsbska.cn/fingerprint.php)\"; flow:established,to_server; http.uri; content:\"/fingerprint.php\"; startswith; fast_pattern; http.host; content:\"paypay-card.vrsbska.cn\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6002576; classtype:social-engineering; sid:6002576; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T16:22:02.006525+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (iperplano.pt/l/mysavings-php//card.php)\"; flow:established,to_server; http.uri; content:\"/l/mysavings-php//card.php\"; startswith; fast_pattern; http.host; content:\"iperplano.pt\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002576; classtype:social-engineering; sid:6002576; rev:1; metadata: signature_severity Major, created_et 2026_05_18, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T02:45:38.320409+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "130.185.87.66",
+    "whois": null,
     "status": "active"
   }
 }

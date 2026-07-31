@@ -1,8 +1,8 @@
 {
   "sid": 6004168,
-  "url_path": "/recoveryidprofile?rid=pmWV64y",
-  "url_base": "account.remote-otp.com",
-  "msg": "AT related malicious URL (account.remote-otp.com/recoveryidprofile?rid=pmWV64y)",
+  "url_path": "/pay/",
+  "url_base": "t-mobile.bagqcn.top",
+  "msg": "AT related malicious URL (t-mobile.bagqcn.top/pay/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,15 +19,15 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://account.remote-otp.com/recoveryidprofile?rid=pmWV64y",
-      "domain": "account.remote-otp.com",
-      "url_count": 0,
-      "city_data": true,
+      "url": "http://t-mobile.bagqcn.top/pay/",
+      "domain": "t-mobile.bagqcn.top",
+      "url_count": 1,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
-      "tlp": null,
+      "tlp": "WHITE",
       "ip": null,
-      "http_code": null,
+      "http_code": 0,
       "http_response": null,
       "city": null,
       "region": null,
@@ -43,53 +43,60 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
+      "first_seen": "2026-06-01T09:09:11",
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "account.remote-otp.com",
-      "domain_defanged": "account[.]remote-otp[.]com",
-      "case_id": "PD-20260729-269D0F",
-      "analyzed_at": "2026-07-29T18:56:10.736Z",
+      "domain": "t-mobile.bagqcn.top",
+      "domain_defanged": "t-mobile[.]bagqcn[.]top",
+      "case_id": "PD-20260731-20CFA4",
+      "analyzed_at": "2026-07-31T03:57:50.168Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e7f16-62eb-715a-b396-8db7aaef6b15.png",
+          "url": "https://urlscan.io/result/019e7f16-62eb-715a-b396-8db7aaef6b15/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
-        "ipinfo": null,
-        "dns": {
-          "MX": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
-          ],
-          "A": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
-            "63.33.230.194",
-            "63.32.49.111",
-            "34.251.62.161"
-          ],
-          "AAAA": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
-          ],
-          "CNAME": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
-          ],
-          "NS": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
-          ]
-        }
+        "ip": "172.67.142.64",
+        "ipinfo": {
+          "ip": "172.67.142.64",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -215,11 +222,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (account.remote-otp.com/recoveryidprofile?rid=pmWV64y)\"; flow:established,to_server; http.uri; content:\"/recoveryidprofile?rid=pmWV64y\"; startswith; fast_pattern; http.host; content:\"account.remote-otp.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004168; classtype:social-engineering; sid:6004168; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T18:56:07.067186+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.bagqcn.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.bagqcn.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004168; classtype:social-engineering; sid:6004168; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T03:57:46.448935+00:00",
   "probe": {
-    "dns": "34.251.62.161",
-    "whois": null,
+    "dns": null,
+    "whois": true,
     "status": "active"
   }
 }
