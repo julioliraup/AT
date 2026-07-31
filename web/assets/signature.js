@@ -50,7 +50,7 @@ const httpCodeColour = (code) => {
     if (!code) return 'var(--text-muted)';
     if (code >= 200 && code < 300) return 'var(--cyan)';
     if (code >= 300 && code < 400) return '#ffaa00';
-    if (code >= 400)               return 'var(--neon-pink)';
+    if (code >= 400) return 'var(--neon-pink)';
     return 'var(--text-muted)';
 };
 
@@ -106,8 +106,8 @@ const buildGlobalMapHtml = (d) => {
     let src = '';
     if (lat !== null && lon !== null && !isNaN(lat) && !isNaN(lon)) {
         const bbox = `${lon - 0.05},${lat - 0.05},${lon + 0.05},${lat + 0.05}`;
-        src  = `https://www.openstreetmap.org/export/embed.html`
-             + `?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lon}`;
+        src = `https://www.openstreetmap.org/export/embed.html`
+            + `?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lon}`;
     } else if (query) {
         src = `https://maps.google.com/maps?q=${encodeURIComponent(query)}&t=&z=10&ie=UTF8&iwloc=&output=embed`;
     } else {
@@ -140,16 +140,16 @@ const buildSafeBrowsingHtml = (hits) => {
     if (!hits || hits.length === 0) return '';
 
     const THREAT_COLOUR = {
-        MALWARE:             'var(--neon-pink)',
-        SOCIAL_ENGINEERING:  '#ffaa00',
-        UNWANTED_SOFTWARE:   '#ff6600',
+        MALWARE: 'var(--neon-pink)',
+        SOCIAL_ENGINEERING: '#ffaa00',
+        UNWANTED_SOFTWARE: '#ff6600',
         POTENTIALLY_HARMFUL: '#ff6600',
     };
 
     const rows = hits.map(h => {
-        const threat  = val(h.threat_type, 'UNKNOWN');
-        const colour  = THREAT_COLOUR[threat] || 'var(--neon-pink)';
-        const ttl     = h.cache_duration ? ` · TTL: ${h.cache_duration}` : '';
+        const threat = val(h.threat_type, 'UNKNOWN');
+        const colour = THREAT_COLOUR[threat] || 'var(--neon-pink)';
+        const ttl = h.cache_duration ? ` · TTL: ${h.cache_duration}` : '';
         return `
         <div style="background:rgba(255,0,85,0.07);border:1px solid ${colour};
                     border-radius:6px;padding:10px 14px;margin-bottom:8px;">
@@ -185,10 +185,10 @@ const buildSafeBrowsingHtml = (hits) => {
 const buildCertHtml = (cert) => {
     if (!cert) return '';
 
-    const selfSigned  = (cert.is_self_signed || 'no') !== 'no';
-    const expired     = cert.is_expired === true;
-    const certColour  = (selfSigned || expired) ? 'var(--neon-pink)' : 'var(--cyan)';
-    const sanList     = (cert.subject_alt_names || []).join(', ') || 'N/A';
+    const selfSigned = (cert.is_self_signed || 'no') !== 'no';
+    const expired = cert.is_expired === true;
+    const certColour = (selfSigned || expired) ? 'var(--neon-pink)' : 'var(--cyan)';
+    const sanList = (cert.subject_alt_names || []).join(', ') || 'N/A';
     const hasWildcard = (cert.subject_alt_names || []).some(s => s.startsWith('*.'));
 
     const fp256 = cert.fingerprint_sha256
@@ -203,8 +203,8 @@ const buildCertHtml = (cert) => {
         <span class="data-label" style="color:${certColour};display:block;margin-bottom:12px;">
             TLS Certificate Analysis
             ${selfSigned ? '<span class="badge high" style="font-size:0.65em;margin-left:8px;">SELF-SIGNED</span>' : ''}
-            ${expired    ? '<span class="badge high" style="font-size:0.65em;margin-left:8px;">EXPIRED</span>'     : ''}
-            ${hasWildcard? '<span class="badge" style="font-size:0.65em;margin-left:8px;border-color:#ffaa00;color:#ffaa00;">WILDCARD SAN</span>' : ''}
+            ${expired ? '<span class="badge high" style="font-size:0.65em;margin-left:8px;">EXPIRED</span>' : ''}
+            ${hasWildcard ? '<span class="badge" style="font-size:0.65em;margin-left:8px;border-color:#ffaa00;color:#ffaa00;">WILDCARD SAN</span>' : ''}
         </span>
         <div class="grid-2">
             <div class="data-group">
@@ -352,13 +352,13 @@ const buildOtxHtml = (otx, ipinfo) => {
         </div>`;
     }
 
-    const geoStr    = [otx.city, otx.country_name].filter(Boolean).join(', ') || null;
-    const geoLine   = geoStr
+    const geoStr = [otx.city, otx.country_name].filter(Boolean).join(', ') || null;
+    const geoLine = geoStr
         ? `${geoStr}${otx.flag ? ' ' + otx.flag : ''}${otx.continent_code ? ' [' + otx.continent_code + ']' : ''}`
         : null;
 
-    const tlpStr    = (otx.tlp || '').toUpperCase();
-    const tlpBadge  = tlpStr
+    const tlpStr = (otx.tlp || '').toUpperCase();
+    const tlpBadge = tlpStr
         ? `<span class="badge" style="border-color:${tlpColour(tlpStr)};color:${tlpColour(tlpStr)};
                                       background:rgba(0,0,0,0.2);font-size:0.7em;">
                TLP:${tlpStr}
@@ -372,8 +372,8 @@ const buildOtxHtml = (otx, ipinfo) => {
            </span>`
         : '';
 
-    const sbCount   = (otx.safebrowsing || []).length;
-    const sbBadge   = sbCount
+    const sbCount = (otx.safebrowsing || []).length;
+    const sbBadge = sbCount
         ? `<span class="badge high" style="font-size:0.7em;">
                &#x26A0; ${sbCount} GSB HIT${sbCount !== 1 ? 'S' : ''}
            </span>`
@@ -474,7 +474,7 @@ const buildPhishDestroyHtml = (pd) => {
     const ipinfo = infra.ipinfo || {};
 
     const geoLine = [ipinfo.city, ipinfo.region, ipinfo.country].filter(Boolean).join(', ') || null;
-    
+
     const vtBadge = vt.total
         ? `<span class="badge ${vt.malicious > 0 ? 'high' : ''}" style="font-size:0.7em;">
                VT: ${vt.malicious}/${vt.total}
@@ -578,10 +578,10 @@ const buildPhishDestroyHtml = (pd) => {
 // ---------------------------------------------------------------------------
 
 const PROTO_STYLE = {
-    dns:   { label: 'DNS',   color: 'var(--neon-pink)', bg: 'rgba(255,0,85,0.12)' },
-    tls:   { label: 'TLS',   color: '#00ff80',           bg: 'rgba(0,255,128,0.08)' },
-    http:  { label: 'HTTP',  color: 'var(--cyan)',        bg: 'rgba(0,229,255,0.1)' },
-    https: { label: 'HTTPS', color: 'var(--cyan)',        bg: 'rgba(0,229,255,0.1)' },
+    dns: { label: 'DNS', color: 'var(--neon-pink)', bg: 'rgba(255,0,85,0.12)' },
+    tls: { label: 'TLS', color: '#00ff80', bg: 'rgba(0,255,128,0.08)' },
+    http: { label: 'HTTP', color: 'var(--cyan)', bg: 'rgba(0,229,255,0.1)' },
+    https: { label: 'HTTPS', color: 'var(--cyan)', bg: 'rgba(0,229,255,0.1)' },
 };
 
 function protocolBadge(proto) {
@@ -676,9 +676,9 @@ function renderDomainView(el, d, domain) {
 
 async function load() {
     const params = new URLSearchParams(location.search);
-    const sid    = params.get('sid');
+    const sid = params.get('sid');
     const domain = params.get('domain');
-    const el     = document.getElementById('detail');
+    const el = document.getElementById('detail');
 
     if (!sid) {
         el.innerHTML = `<h1 style="color:var(--neon-pink);">[ ERROR: SID NOT SPECIFIED ]</h1>`;
@@ -693,13 +693,41 @@ async function load() {
         if (domain) {
             document.title = `${domain} - SID ${d.sid} - Antiphishing`;
             renderDomainView(el, d, domain);
+            
+            // DYNAMICALLY FETCH THREAT INTEL FOR SPECIFIC DOMAIN VECTORS
+            const loaderId = 'pd-loader-' + Date.now();
+            el.insertAdjacentHTML('beforeend', `<div id="${loaderId}" style="text-align:center; margin-top:40px; color:var(--cyan); font-family:'Orbitron', sans-serif;">[ FETCHING DYNAMIC THREAT INTEL... ]</div>`);
+            
+            fetch(`https://analyze.destroy.tools/v1/analyze?domain=${domain}`)
+                .then(r => {
+                    if (!r.ok) throw new Error('API Error');
+                    return r.json();
+                })
+                .then(pdData => {
+                    document.getElementById(loaderId)?.remove();
+                    // Reuse existing components without altering the API
+                    const pdHtml = buildPhishDestroyHtml(pdData);
+                    const mapHtml = buildGlobalMapHtml({ intel: { phishdestroy: pdData } });
+                    
+                    if (pdHtml || mapHtml) {
+                        const wrapper = document.createElement('div');
+                        wrapper.innerHTML = pdHtml + mapHtml;
+                        el.appendChild(wrapper);
+                    }
+                })
+                .catch(err => {
+                    console.error('[phishdestroy] dynamic fetch error:', err);
+                    const loader = document.getElementById(loaderId);
+                    if (loader) loader.innerHTML = `<span style="color:var(--text-muted); font-size:0.85em;">[ LIVE INTEL UNAVAILABLE ]</span>`;
+                });
+
             return;
         }
 
         document.title = `SID ${d.sid} - Antiphishing`;
 
         const severityClass = d.severity?.toLowerCase() === 'high' ? 'high' : '';
-        const actionClass   = d.action?.toLowerCase()   === 'alert' ? 'alert' : '';
+        const actionClass = d.action?.toLowerCase() === 'alert' ? 'alert' : '';
 
         const refs = Array.isArray(d.references) && d.references.length > 0;
         const refsHtml = refs
@@ -806,7 +834,7 @@ load();
 setTimeout(() => {
     if (localStorage.getItem('donateBannerShown')) return;
     localStorage.setItem('donateBannerShown', 'true');
-    
+
     const banner = document.createElement('div');
     banner.innerHTML = `
         <div style="position:fixed; bottom:20px; right:20px; background:rgba(20,20,20,0.95); border:1px solid var(--cyan); border-radius:8px; padding:20px; box-shadow:0 0 20px rgba(0,229,255,0.2); z-index:9999; max-width:350px; color:var(--text); font-family:'Orbitron', sans-serif;">
