@@ -1,8 +1,8 @@
 {
   "sid": 6011733,
-  "url_path": "/wp/docusign/me/Windows/utility.php/download/download/index.php",
-  "url_base": "sundancecabinetdesign.com",
-  "msg": "AT related malicious URL (sundancecabinetdesign.com/wp/docusign/me/Windows/utility.php/download/download/index.php)",
+  "url_path": "/",
+  "url_base": "ntfclon.netlify.app",
+  "msg": "AT related malicious URL (ntfclon.netlify.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,8 +19,8 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://sundancecabinetdesign.com/wp/docusign/me/Windows/utility.php/download/download/index.php",
-      "domain": "sundancecabinetdesign.com",
+      "url": "http://ntfclon.netlify.app/",
+      "domain": "ntfclon.netlify.app",
       "url_count": 0,
       "city_data": true,
       "deep_analysis": false,
@@ -47,59 +47,65 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "sundancecabinetdesign.com",
-      "domain_defanged": "sundancecabinetdesign[.]com",
-      "case_id": "PD-20260729-F043BA",
-      "analyzed_at": "2026-07-29T22:42:13.745Z",
+      "domain": "ntfclon.netlify.app",
+      "domain_defanged": "ntfclon[.]netlify[.]app",
+      "case_id": "PD-20260801-4AD741",
+      "analyzed_at": "2026-08-01T05:01:30.454Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb32c-60e5-7264-b712-f18fd67d6659.png",
+          "url": "https://urlscan.io/result/019fb32c-60e5-7264-b712-f18fd67d6659/",
+          "title": "netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
-        "registrar": "eNom, LLC",
-        "created": "2014-04-29T19:12:29Z",
-        "expires": "2027-04-29T19:12:29Z",
-        "age_days": 4474,
-        "nameservers": [
-          "NS1.SUPERCP.COM",
-          "NS2.SUPERCP.COM",
-          "NS3.SUPERCP.COM",
-          "NS4.SUPERCP.COM"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ip": "68.66.226.105",
-        "ipinfo": null,
+        "ip": "54.232.119.62",
+        "ipinfo": {
+          "ip": "54.232.119.62",
+          "hostname": "ec2-54-232-119-62.sa-east-1.compute.amazonaws.com",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
-          "MX": [
-            "0 mail.sundancecabinetdesign.com."
+          "AAAA": [
+            "2600:1f1e:7c1:c300::258"
           ],
           "A": [
-            "68.66.226.105"
-          ],
-          "NS": [
-            "ns4.supercp.com.",
-            "ns1.supercp.com.",
-            "ns2.supercp.com.",
-            "ns3.supercp.com."
+            "54.232.119.62"
           ]
         }
       },
       "report_to": {
-        "registrar": {
-          "name": "Enom",
-          "abuse": "abuse@enom.com",
-          "url": "https://phish.report/contacts/Enom",
-          "logo": "https://i.ibb.co/99gW1yLs/pr-Enom.png",
+        "registrar": null,
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
           "method": "form",
-          "iana_ids": "48"
-        },
-        "hosting": null
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -222,14 +228,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sundancecabinetdesign.com/wp/docusign/me/Windows/utility.php/download/download/index.php)\"; flow:established,to_server; http.uri; content:\"/wp/docusign/me/Windows/utility.php/download/download/index.php\"; startswith; fast_pattern; http.host; content:\"sundancecabinetdesign.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011733; classtype:social-engineering; sid:6011733; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T22:42:08.379721+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ntfclon.netlify.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ntfclon.netlify.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011733; classtype:social-engineering; sid:6011733; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
+  "updated_at": "2026-08-01T08:57:55.284072+00:00",
   "probe": {
-    "dns": "68.66.226.105",
-    "whois": true,
+    "dns": "54.232.119.62",
+    "whois": null,
     "status": "active"
   }
 }

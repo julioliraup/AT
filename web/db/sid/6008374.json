@@ -1,8 +1,8 @@
 {
   "sid": 6008374,
   "url_path": "/",
-  "url_base": "started-trezrio.framer.ai",
-  "msg": "AT related malicious URL (started-trezrio.framer.ai/)",
+  "url_base": "api.allegrostatus.pl",
+  "msg": "AT related malicious URL (api.allegrostatus.pl/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,22 +19,16 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://started-trezrio.framer.ai/",
-      "domain": "started-trezrio.framer.ai",
-      "url_count": 8,
+      "url": "http://api.allegrostatus.pl/",
+      "domain": "api.allegrostatus.pl",
+      "url_count": 0,
       "city_data": true,
-      "deep_analysis": true,
+      "deep_analysis": false,
       "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "31.43.161.6",
-      "http_code": 404,
-      "http_response": {
-        "server": "Framer/5d364ee",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": "h3=\":443\"; ma=2592000"
-      },
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
       "city": null,
       "region": null,
       "country_name": null,
@@ -43,49 +37,88 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text",
-      "sha256": "a19d8ba6e0113132f05883c09a3646afc494025abba70ed647b0fd8cbaaee0ea",
-      "md5": "78f285f211fced6e3505d0a00ff2bbf8",
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-30T04:05:22",
-      "first_seen_secs": 1785384322.0
+      "first_seen": null,
+      "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "started-trezrio.framer.ai",
-      "domain_defanged": "started-trezrio[.]framer[.]ai",
-      "case_id": "PD-20260731-629812",
-      "analyzed_at": "2026-07-31T08:36:20.333Z",
+      "domain": "api.allegrostatus.pl",
+      "domain_defanged": "api[.]allegrostatus[.]pl",
+      "case_id": "PD-20260801-7814E3",
+      "analyzed_at": "2026-08-01T05:05:55.311Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fb751-33c8-77bc-9e54-e1991d67d56d/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Allegro"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb76b-871a-72da-92f8-5704e6d7e4d2.png",
+          "url": "https://urlscan.io/result/019fb76b-871a-72da-92f8-5704e6d7e4d2/",
+          "title": "Allegro Rest API Status Page"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Allegro",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "31.43.161.6",
+        "ip": "ff5f6a7f.sorryapp.com.",
         "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "ff5f6a7f.sorryapp.com.",
+            "dualstack.n.sni.global.fastly.net.",
+            "2a04:4e42::347",
+            "2a04:4e42:200::347",
+            "2a04:4e42:400::347",
+            "2a04:4e42:600::347"
+          ],
           "A": [
-            "31.43.161.6",
-            "31.43.160.6"
+            "ff5f6a7f.sorryapp.com.",
+            "dualstack.n.sni.global.fastly.net.",
+            "151.101.1.91",
+            "151.101.65.91",
+            "151.101.129.91",
+            "151.101.193.91"
+          ],
+          "CNAME": [
+            "ff5f6a7f.sorryapp.com."
+          ],
+          "MX": [
+            "ff5f6a7f.sorryapp.com.",
+            "dualstack.n.sni.global.fastly.net."
+          ],
+          "NS": [
+            "ff5f6a7f.sorryapp.com.",
+            "dualstack.n.sni.global.fastly.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -211,10 +244,10 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (started-trezrio.framer.ai/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"started-trezrio.framer.ai\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008374; classtype:social-engineering; sid:6008374; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T08:36:17.313598+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (api.allegrostatus.pl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"api.allegrostatus.pl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008374; classtype:social-engineering; sid:6008374; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
+  "updated_at": "2026-08-01T05:05:50.707431+00:00",
   "probe": {
-    "dns": "31.43.161.6",
+    "dns": "146.75.5.91",
     "whois": true,
     "status": "active"
   }

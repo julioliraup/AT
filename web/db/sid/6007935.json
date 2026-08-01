@@ -1,8 +1,8 @@
 {
   "sid": 6007935,
-  "url_path": "/supprtdocs-remitstatementpdf/office/",
-  "url_base": "sx.xmugrg.net",
-  "msg": "AT related malicious URL (sx.xmugrg.net/supprtdocs-remitstatementpdf/office/)",
+  "url_path": "/ac/",
+  "url_base": "www.acti.cc",
+  "msg": "AT related malicious URL (www.acti.cc/ac/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6007935"
   ],
   "intel": {
@@ -19,21 +19,21 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://sx.xmugrg.net/supprtdocs-remitstatementpdf/office/",
-      "domain": "sx.xmugrg.net",
+      "url": "http://www.acti.cc/ac/",
+      "domain": "www.acti.cc",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "82.165.104.102",
+      "ip": "104.21.41.223",
       "http_code": 200,
       "http_response": {
-        "server": "Apache",
+        "server": "cloudflare",
         "content_type": "text/html",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
+        "cf_ray": "a2303640f93dc146-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
       },
       "city": null,
       "region": null,
@@ -43,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "application/javascript",
-      "filemagic": "JavaScript source, Unicode text, UTF-8 text, with CRLF line terminators",
-      "sha256": "4b0e1693d62f7cf1d97a312f4624176fca4a3989a5ff778eddf59842e9fc9064",
-      "md5": "d18d2196c80c7112acd9426665ef372a",
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (358), with CRLF, LF line terminators",
+      "sha256": "abbeaf7fee825aed2446e041f3dc0339be2e1dbd77017d6d71605a9b07a694b4",
+      "md5": "a889ace17e2759e419a13901e3bbe09b",
+      "cert": {
+        "subject_cn": "acti.cc",
+        "subject_alt_names": [
+          "acti.cc",
+          "*.acti.cc"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-26T15:10:47+00:00",
+        "not_valid_after": "2026-10-24T16:09:21+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "36349642530214197909342048199936109494",
+        "fingerprint_sha1": "E4 97 66 51 B0 48 CD 8F 2B 4B DE E7 D8 EC BF F7 5C 87 29 E7",
+        "fingerprint_sha256": "D5 63 9A 67 21 15 73 EA F0 80 06 E2 6F 18 4F 56 9E 90 42 AE 9A 34 9B 4C 1A 33 97 4E 8A C8 47 FA"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-18T15:41:31",
-      "first_seen_secs": 1781797291.0
+      "first_seen": "2026-07-30T00:21:44",
+      "first_seen_secs": 1785370904.0
     },
     "phishdestroy": {
-      "domain": "sx.xmugrg.net",
-      "domain_defanged": "sx[.]xmugrg[.]net",
-      "case_id": "PD-20260731-50604F",
-      "analyzed_at": "2026-07-31T08:09:46.995Z",
+      "domain": "acti.cc",
+      "domain_defanged": "acti[.]cc",
+      "case_id": "PD-20260731-4540AC",
+      "analyzed_at": "2026-07-31T23:42:47.421Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fba8f-1452-704f-9d0a-e9add66cd4ec/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,8 +92,18 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "172.67.152.217",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "172.67.152.217",
+            "104.21.41.223"
+          ],
+          "NS": [
+            "rajeev.ns.cloudflare.com.",
+            "zariyah.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -198,13 +230,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sx.xmugrg.net/supprtdocs-remitstatementpdf/office/)\"; flow:established,to_server; http.uri; content:\"/supprtdocs-remitstatementpdf/office/\"; startswith; fast_pattern; http.host; content:\"sx.xmugrg.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007935; classtype:social-engineering; sid:6007935; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T08:09:45.501306+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.acti.cc/ac/)\"; flow:established,to_server; http.uri; content:\"/ac/\"; startswith; fast_pattern; http.host; content:\"www.acti.cc\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007935; classtype:social-engineering; sid:6007935; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T04:33:11.408551+00:00",
   "probe": {
-    "dns": "82.165.104.102",
+    "dns": "104.21.41.223",
     "whois": null,
     "status": "active"
   }

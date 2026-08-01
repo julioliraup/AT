@@ -1,8 +1,8 @@
 {
   "sid": 6011258,
   "url_path": "/",
-  "url_base": "f240y.xyz",
-  "msg": "AT related malicious URL (f240y.xyz/)",
+  "url_base": "cpmmemberfastalert.weebly.com",
+  "msg": "AT related malicious URL (cpmmemberfastalert.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6011258"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://f240y.xyz/",
-      "domain": "f240y.xyz",
-      "url_count": 9,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://cpmmemberfastalert.weebly.com/",
+      "domain": "cpmmemberfastalert.weebly.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "74.115.51.8",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a2319fd788974afe-PDX",
+        "cf_cache_status": "EXPIRED",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (887), with CRLF, LF line terminators",
+      "sha256": "6743a6eb46f4231f6213048a4e195f1441604c4c19b6eb81782893372fdc94e7",
+      "md5": "5fd2bf687408f1f3fe4484f5b4a08914",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-23T02:47:37",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:11:16",
+      "first_seen_secs": 1785384676.0
     },
     "phishdestroy": {
-      "domain": "f240y.xyz",
-      "domain_defanged": "f240y[.]xyz",
-      "case_id": "PD-20260729-74AB7B",
-      "analyzed_at": "2026-07-29T21:58:26.076Z",
+      "domain": "cpmmemberfastalert.weebly.com",
+      "domain_defanged": "cpmmemberfastalert[.]weebly[.]com",
+      "case_id": "PD-20260731-1BF3A4",
+      "analyzed_at": "2026-07-31T23:38:44.807Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fba8b-61a5-7215-842e-a9a89b8b33ba/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +74,14 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "74.115.51.9",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "74.115.51.9",
+            "74.115.51.8"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,14 +208,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (f240y.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"f240y.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011258; classtype:social-engineering; sid:6011258; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T21:58:22.324159+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cpmmemberfastalert.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cpmmemberfastalert.weebly.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6011258; classtype:social-engineering; sid:6011258; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T08:28:12.774493+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.8",
+    "whois": null,
     "status": "active"
   }
 }

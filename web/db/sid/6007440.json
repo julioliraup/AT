@@ -1,8 +1,8 @@
 {
   "sid": 6007440,
-  "url_path": "/Streamflix",
-  "url_base": "avijeet1912.github.io",
-  "msg": "AT related malicious URL (avijeet1912.github.io/Streamflix)",
+  "url_path": "/",
+  "url_base": "faq-trezr-public-en.typedream.app",
+  "msg": "AT related malicious URL (faq-trezr-public-en.typedream.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://avijeet1912.github.io/Streamflix",
-      "domain": "avijeet1912.github.io",
-      "url_count": 0,
+      "url": "http://faq-trezr-public-en.typedream.app/",
+      "domain": "faq-trezr-public-en.typedream.app",
+      "url_count": 8,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.37.85",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a23193f9c8fdef1c-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,57 +43,72 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "a3970ec0442e09c698335c273fb70634d1c7da7a370164d753966f181332a892",
+      "md5": "ebc9be7a39c7db5d659045ba3b323a5b",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:04:58",
+      "first_seen_secs": 1785384298.0
     },
     "phishdestroy": {
-      "domain": "avijeet1912.github.io",
-      "domain_defanged": "avijeet1912[.]github[.]io",
-      "case_id": "PD-20260731-70604E",
-      "analyzed_at": "2026-07-31T07:30:06.223Z",
+      "domain": "faq-trezr-public-en.typedream.app",
+      "domain_defanged": "faq-trezr-public-en[.]typedream[.]app",
+      "case_id": "PD-20260801-1EBBFF",
+      "analyzed_at": "2026-08-01T04:01:39.608Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fb714-8fed-772e-8ca2-b69f8f5df595/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbac5-2c6f-759c-bbd0-bf7f72dc0681.png",
+          "url": "https://urlscan.io/result/019fbac5-2c6f-759c-bbd0-bf7f72dc0681/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.111.153",
-        "ipinfo": null,
+        "ip": "172.67.206.36",
+        "ipinfo": {
+          "ip": "172.67.206.36",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153",
-            "2606:50c0:8000::153"
-          ],
           "A": [
-            "185.199.111.153",
-            "185.199.109.153",
-            "185.199.110.153",
-            "185.199.108.153"
+            "172.67.206.36",
+            "104.21.37.85"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -213,11 +234,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (avijeet1912.github.io/Streamflix)\"; flow:established,to_server; http.uri; content:\"/Streamflix\"; startswith; fast_pattern; http.host; content:\"avijeet1912.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007440; classtype:social-engineering; sid:6007440; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T07:30:03.567861+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (faq-trezr-public-en.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"faq-trezr-public-en.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007440; classtype:social-engineering; sid:6007440; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-01T04:01:37.146023+00:00",
   "probe": {
-    "dns": "185.199.110.153",
-    "whois": true,
+    "dns": "104.21.37.85",
+    "whois": null,
     "status": "active"
   }
 }

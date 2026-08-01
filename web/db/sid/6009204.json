@@ -1,8 +1,8 @@
 {
   "sid": 6009204,
-  "url_path": "/ph",
-  "url_base": "bdo-ip.com",
-  "msg": "AT related malicious URL (bdo-ip.com/ph)",
+  "url_path": "/",
+  "url_base": "youngs147.courvillemayarde-wj-r-c4072.workers.dev",
+  "msg": "AT related malicious URL (youngs147.courvillemayarde-wj-r-c4072.workers.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -18,51 +18,101 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://youngs147.courvillemayarde-wj-r-c4072.workers.dev/",
+      "domain": "youngs147.courvillemayarde-wj-r-c4072.workers.dev",
+      "url_count": 9,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.67.160.12",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2318e0c0af4ccd1-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "e69dc8c096662d9c7cf44508333950084406ef6b07bf500bc3b3df7510b89768",
+      "md5": "c8e9efc5813b72b1f65e974f5ec24c74",
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-07-30T03:57:56",
+      "first_seen_secs": 1785383876.0
+    },
     "phishdestroy": {
-      "domain": "bdo-ip.com",
-      "domain_defanged": "bdo-ip[.]com",
-      "case_id": "PD-20260731-7F6115",
-      "analyzed_at": "2026-07-31T08:50:09.865Z",
+      "domain": "youngs147.courvillemayarde-wj-r-c4072.workers.dev",
+      "domain_defanged": "youngs147[.]courvillemayarde-wj-r-c4072[.]workers[.]dev",
+      "case_id": "PD-20260801-340FA5",
+      "analyzed_at": "2026-08-01T06:05:23.001Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fb75d-dc2b-71fd-a448-68e6708e5451/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb6cf-e77a-74b4-a6f1-ab11aec1e072.png",
+          "url": "https://urlscan.io/result/019fb6cf-e77a-74b4-a6f1-ab11aec1e072/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
-        "registrar": "Dominet (HK) Limited",
-        "created": "2026-07-28T13:44:53Z",
-        "expires": "2027-07-28T13:44:53Z",
-        "age_days": 2,
-        "nameservers": [
-          "NS7.ALIDNS.COM",
-          "NS8.ALIDNS.COM"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ip": "47.80.65.107",
-        "ipinfo": null,
+        "ip": "172.67.160.12",
+        "ipinfo": {
+          "ip": "172.67.160.12",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "NS": [
-            "ns8.alidns.com.",
-            "ns7.alidns.com."
-          ],
           "A": [
-            "47.80.65.107"
+            "172.67.160.12",
+            "104.21.9.132"
+          ],
+          "AAAA": [
+            "2606:4700:3035::ac43:a00c",
+            "2606:4700:3031::6815:984"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -185,15 +235,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bdo-ip.com/ph)\"; flow:established,to_server; http.uri; content:\"/ph\"; startswith; fast_pattern; http.host; content:\"bdo-ip.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009204; classtype:social-engineering; sid:6009204; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-07-31T09:29:14.900686+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (youngs147.courvillemayarde-wj-r-c4072.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"youngs147.courvillemayarde-wj-r-c4072.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009204; classtype:social-engineering; sid:6009204; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-01T06:05:15.026590+00:00",
   "probe": {
-    "dns": "47.80.65.107",
-    "whois": true,
+    "dns": "172.67.160.12",
+    "whois": null,
     "status": "active"
   }
 }

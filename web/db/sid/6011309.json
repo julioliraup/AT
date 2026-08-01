@@ -1,8 +1,8 @@
 {
   "sid": 6011309,
-  "url_path": "/pay",
-  "url_base": "t-mobile.ahjykr.top",
-  "msg": "AT related malicious URL (t-mobile.ahjykr.top/pay)",
+  "url_path": "/ac/",
+  "url_base": "www.acti.cc",
+  "msg": "AT related malicious URL (www.acti.cc/ac/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6011309"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.ahjykr.top/pay",
-      "domain": "t-mobile.ahjykr.top",
+      "url": "http://www.acti.cc/ac/",
+      "domain": "www.acti.cc",
       "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "104.21.41.223",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html",
+        "cf_ray": "a2303640f93dc146-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (358), with CRLF, LF line terminators",
+      "sha256": "abbeaf7fee825aed2446e041f3dc0339be2e1dbd77017d6d71605a9b07a694b4",
+      "md5": "a889ace17e2759e419a13901e3bbe09b",
+      "cert": {
+        "subject_cn": "acti.cc",
+        "subject_alt_names": [
+          "acti.cc",
+          "*.acti.cc"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-26T15:10:47+00:00",
+        "not_valid_after": "2026-10-24T16:09:21+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "36349642530214197909342048199936109494",
+        "fingerprint_sha1": "E4 97 66 51 B0 48 CD 8F 2B 4B DE E7 D8 EC BF F7 5C 87 29 E7",
+        "fingerprint_sha256": "D5 63 9A 67 21 15 73 EA F0 80 06 E2 6F 18 4F 56 9E 90 42 AE 9A 34 9B 4C 1A 33 97 4E 8A C8 47 FA"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-06T20:43:19",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T00:21:44",
+      "first_seen_secs": 1785370904.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.ahjykr.top",
-      "domain_defanged": "t-mobile[.]ahjykr[.]top",
-      "case_id": "PD-20260729-1A8588",
-      "analyzed_at": "2026-07-29T22:02:56.703Z",
+      "domain": "acti.cc",
+      "domain_defanged": "acti[.]cc",
+      "case_id": "PD-20260731-4540AC",
+      "analyzed_at": "2026-07-31T23:42:47.421Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fba8f-1452-704f-9d0a-e9add66cd4ec/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +92,18 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "172.67.152.217",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "172.67.152.217",
+            "104.21.41.223"
+          ],
+          "NS": [
+            "rajeev.ns.cloudflare.com.",
+            "zariyah.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,14 +230,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.ahjykr.top/pay)\"; flow:established,to_server; http.uri; content:\"/pay\"; startswith; fast_pattern; http.host; content:\"t-mobile.ahjykr.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011309; classtype:social-engineering; sid:6011309; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T22:02:48.464042+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.acti.cc/ac/)\"; flow:established,to_server; http.uri; content:\"/ac/\"; startswith; fast_pattern; http.host; content:\"www.acti.cc\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6011309; classtype:social-engineering; sid:6011309; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T08:30:26.670597+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "104.21.41.223",
+    "whois": null,
     "status": "active"
   }
 }

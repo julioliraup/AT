@@ -1,8 +1,8 @@
 {
   "sid": 6011315,
   "url_path": "/",
-  "url_base": "aktifkaans-payllterdnax.dipsea.biz.id",
-  "msg": "AT related malicious URL (aktifkaans-payllterdnax.dipsea.biz.id/)",
+  "url_base": "desktopledgerlive.pages.dev",
+  "msg": "AT related malicious URL (desktopledgerlive.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6011315"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://aktifkaans-payllterdnax.dipsea.biz.id/",
-      "domain": "aktifkaans-payllterdnax.dipsea.biz.id",
-      "url_count": 9,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://desktopledgerlive.pages.dev/",
+      "domain": "desktopledgerlive.pages.dev",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.66.47.172",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a23195277f64a509-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "6fdb4ffe92dbab7821c38f573b9698dd6e40f2b61d898c96d9848a36cd20fd7a",
+      "md5": "f8c1b3b7db99c77d971df9108e4fe5c2",
+      "cert": {
+        "subject_cn": "desktopledgerlive.pages.dev",
+        "subject_alt_names": [
+          "desktopledgerlive.pages.dev",
+          "*.desktopledgerlive.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-20T18:05:00+00:00",
+        "not_valid_after": "2026-09-18T19:03:25+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "79707764867447985350078252579405140101",
+        "fingerprint_sha1": "60 87 5C 37 D3 B1 B3 5B DD 21 28 18 56 B0 2A 79 6E 4D 5B 22",
+        "fingerprint_sha256": "27 4D FF F5 2F 25 E9 71 5B 08 8B D2 86 C3 65 87 74 EC CA FB D5 F5 F0 B6 DB BF 9C C1 C1 DA 64 27"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-07-23T04:03:40",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:07:43",
+      "first_seen_secs": 1785384463.0
     },
     "phishdestroy": {
-      "domain": "aktifkaans-payllterdnax.dipsea.biz.id",
-      "domain_defanged": "aktifkaans-payllterdnax[.]dipsea[.]biz[.]id",
-      "case_id": "PD-20260729-710FCD",
-      "analyzed_at": "2026-07-29T22:03:25.085Z",
+      "domain": "desktopledgerlive.pages.dev",
+      "domain_defanged": "desktopledgerlive[.]pages[.]dev",
+      "case_id": "PD-20260731-17816B",
+      "analyzed_at": "2026-07-31T23:43:17.082Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fba8f-8932-7312-86af-e1b68e3334d7/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +92,22 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "172.66.44.84",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2c54",
+            "2606:4700:310c::ac42:2fac"
+          ],
+          "A": [
+            "172.66.44.84",
+            "172.66.47.172"
+          ],
+          "NS": [
+            "cartman.ns.cloudflare.com.",
+            "maya.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,14 +234,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aktifkaans-payllterdnax.dipsea.biz.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aktifkaans-payllterdnax.dipsea.biz.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011315; classtype:social-engineering; sid:6011315; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T22:03:16.521735+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (desktopledgerlive.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"desktopledgerlive.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6011315; classtype:social-engineering; sid:6011315; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T08:30:39.794641+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.66.47.172",
+    "whois": null,
     "status": "active"
   }
 }

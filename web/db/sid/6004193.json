@@ -1,8 +1,8 @@
 {
   "sid": 6004193,
   "url_path": "/",
-  "url_base": "coinmarketcaa.com",
-  "msg": "AT related malicious URL (coinmarketcaa.com/)",
+  "url_base": "login.hmvegn.ie",
+  "msg": "AT related malicious URL (login.hmvegn.ie/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://coinmarketcaa.com/",
-      "domain": "coinmarketcaa.com",
-      "url_count": 11,
+      "url": "http://login.hmvegn.ie/",
+      "domain": "login.hmvegn.ie",
+      "url_count": 8,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "20.82.96.115",
+      "http_code": 200,
+      "http_response": {
+        "server": "Apache/2.4.66 (Ubuntu)",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,20 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text",
+      "sha256": "1429023e50b349631f2a995c2a1c0bd7d017258718f81c894613e662ff59241b",
+      "md5": "4cf1f04dedd082488d48353e5689d09d",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-30T03:11:03",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T03:55:54",
+      "first_seen_secs": 1785383754.0
     },
     "phishdestroy": {
-      "domain": "coinmarketcaa.com",
-      "domain_defanged": "coinmarketcaa[.]com",
-      "case_id": "PD-20260731-79E306",
-      "analyzed_at": "2026-07-31T03:59:30.509Z",
+      "domain": "login.hmvegn.ie",
+      "domain_defanged": "login[.]hmvegn[.]ie",
+      "case_id": "PD-20260731-60CAFD",
+      "analyzed_at": "2026-07-31T06:38:15.345Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,52 +65,40 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fac73-9f0e-76d8-98cc-e32c27e78e6b.png",
-          "url": "https://urlscan.io/result/019fac73-9f0e-76d8-98cc-e32c27e78e6b/",
-          "title": "Account Suspended"
+          "url": "https://urlscan.io/result/019fb6e5-1808-7756-8296-98f6b192976b/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "registrar": "Ultahost, Inc.",
-        "created": "2026-05-21T13:59:47Z",
-        "expires": "2027-05-21T13:59:47Z",
-        "age_days": 70,
-        "nameservers": [
-          "NS1.ULTAHOST.COM",
-          "NS2.ULTAHOST.COM",
-          "NS3.ULTAHOST.COM",
-          "NS4.ULTAHOST.COM"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ip": "159.100.6.19",
+        "ip": "20.82.96.115",
         "ipinfo": {
-          "ip": "159.100.6.19",
-          "city": "Frankfurt am Main",
-          "region": "Hesse",
-          "country": "DE",
-          "org": "AS214036 Ultahost, Inc.",
-          "asn": "AS214036"
+          "ip": "20.82.96.115",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
         },
         "dns": {
-          "MX": [
-            "0 coinmarketcaa.com."
-          ],
           "A": [
-            "159.100.6.19"
-          ],
-          "NS": [
-            "ns1.ultahost.com.",
-            "ns3.ultahost.com.",
-            "ns4.ultahost.com.",
-            "ns2.ultahost.com."
+            "20.82.96.115"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -227,13 +221,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (coinmarketcaa.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"coinmarketcaa.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004193; classtype:social-engineering; sid:6004193; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T03:59:25.521952+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (login.hmvegn.ie/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"login.hmvegn.ie\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004193; classtype:social-engineering; sid:6004193; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T21:32:04.682457+00:00",
   "probe": {
-    "dns": "159.100.6.19",
+    "dns": "20.82.96.115",
     "whois": true,
     "status": "active"
   }

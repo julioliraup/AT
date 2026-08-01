@@ -1,8 +1,8 @@
 {
   "sid": 6010310,
-  "url_path": "/unicredit/",
-  "url_base": "unicredit-login.one",
-  "msg": "AT related malicious URL (unicredit-login.one/unicredit/)",
+  "url_path": "/pay/",
+  "url_base": "leboncoin.vdhd.fr",
+  "msg": "AT related malicious URL (leboncoin.vdhd.fr/pay/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://unicredit-login.one/unicredit/",
-      "domain": "unicredit-login.one",
+      "url": "http://leboncoin.vdhd.fr/pay/",
+      "domain": "leboncoin.vdhd.fr",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "unicredit-login.one",
-      "domain_defanged": "unicredit-login[.]one",
-      "case_id": "PD-20260729-3BE279",
-      "analyzed_at": "2026-07-29T20:24:55.038Z",
+      "domain": "leboncoin.vdhd.fr",
+      "domain_defanged": "leboncoin[.]vdhd[.]fr",
+      "case_id": "PD-20260731-5315C5",
+      "analyzed_at": "2026-07-31T07:36:40.916Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb71a-95aa-7302-bd32-ec44c1805fd6/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,20 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "217.160.0.128",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "AAAA": [
+            "2001:8d8:100f:f000::200"
+          ],
+          "A": [
+            "217.160.0.128"
+          ],
+          "MX": [
+            "10 mx01.ionos.fr.",
+            "10 mx00.ionos.fr."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -196,10 +212,10 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (unicredit-login.one/unicredit/)\"; flow:established,to_server; http.uri; content:\"/unicredit/\"; startswith; fast_pattern; http.host; content:\"unicredit-login.one\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010310; classtype:social-engineering; sid:6010310; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T20:30:15.406377+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (leboncoin.vdhd.fr/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"leboncoin.vdhd.fr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010310; classtype:social-engineering; sid:6010310; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-01T07:26:03.484137+00:00",
   "probe": {
-    "dns": null,
+    "dns": "217.160.0.128",
     "whois": true,
     "status": "active"
   }

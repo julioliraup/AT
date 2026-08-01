@@ -1,8 +1,8 @@
 {
   "sid": 6008025,
-  "url_path": "/sales",
-  "url_base": "sicpac.com",
-  "msg": "AT related malicious URL (sicpac.com/sales)",
+  "url_path": "/",
+  "url_base": "ledgecom-start-en-io.pages.dev",
+  "msg": "AT related malicious URL (ledgecom-start-en-io.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6008025"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://sicpac.com/sales",
-      "domain": "sicpac.com",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://ledgecom-start-en-io.pages.dev/",
+      "domain": "ledgecom-start-en-io.pages.dev",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.66.47.81",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2319825cf1b1561-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,53 +43,80 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "b1c2c2b5fecf8821ddae457e55de8d47c3d2ef15c4efc901638ad0a372a8a309",
+      "md5": "aba82530810d332a78b75721ad308254",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:07:38",
+      "first_seen_secs": 1785384458.0
     },
     "phishdestroy": {
-      "domain": "sicpac.com",
-      "domain_defanged": "sicpac[.]com",
-      "case_id": "PD-20260731-7712CB",
-      "analyzed_at": "2026-07-31T08:14:47.228Z",
+      "domain": "ledgecom-start-en-io.pages.dev",
+      "domain_defanged": "ledgecom-start-en-io[.]pages[.]dev",
+      "case_id": "PD-20260801-66B047",
+      "analyzed_at": "2026-08-01T04:38:04.747Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fba97-7f6a-739c-98b0-11706926496d.png",
+          "url": "https://urlscan.io/result/019fba97-7f6a-739c-98b0-11706926496d/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
-        "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
-        "created": "2026-06-19T01:59:15Z",
-        "expires": "2027-06-19T01:59:15Z",
-        "age_days": 42,
-        "nameservers": [
-          "NS1.SUSPENDED-DOMAIN.COM",
-          "NS2.SUSPENDED-DOMAIN.COM"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.66.44.175",
+        "ipinfo": {
+          "ip": "172.66.44.175",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "172.66.44.175",
+            "172.66.47.81"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2caf",
+            "2606:4700:310c::ac42:2f51"
+          ],
+          "NS": [
+            "kareem.ns.cloudflare.com.",
+            "melany.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
-        "registrar": {
-          "name": "MainReg INC.",
-          "abuse": "complain@mainreg.com",
-          "url": "https://phish.report/contacts/MainReg-INC-dot-",
+        "registrar": null,
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
           "logo": "",
           "method": "form",
-          "iana_ids": "1917"
-        },
-        "hosting": null
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -209,11 +242,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sicpac.com/sales)\"; flow:established,to_server; http.uri; content:\"/sales\"; startswith; fast_pattern; http.host; content:\"sicpac.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008025; classtype:social-engineering; sid:6008025; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T08:14:45.226060+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledgecom-start-en-io.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledgecom-start-en-io.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6008025; classtype:social-engineering; sid:6008025; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T04:38:02.680239+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.66.47.81",
+    "whois": null,
     "status": "active"
   }
 }

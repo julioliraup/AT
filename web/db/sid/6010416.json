@@ -1,8 +1,8 @@
 {
   "sid": 6010416,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.lpqgrd.top",
-  "msg": "AT related malicious URL (t-mobile.lpqgrd.top/pay/)",
+  "url_path": "/",
+  "url_base": "kucoinlogn.webflow.io",
+  "msg": "AT related malicious URL (kucoinlogn.webflow.io/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.lpqgrd.top/pay/",
-      "domain": "t-mobile.lpqgrd.top",
+      "url": "http://kucoinlogn.webflow.io/",
+      "domain": "kucoinlogn.webflow.io",
       "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "104.18.36.248",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a0d3483f4cf4fef4-PDX",
+        "cf_cache_status": "HIT",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (2782), with no line terminators",
+      "sha256": "137c696ab68b175fded8ebfc6cc5e79a89e441383077cba5804fd63b67f40adb",
+      "md5": "167f1b3f82722ee93eb4c16cac73cde2",
+      "cert": {
+        "subject_cn": "webflow.io",
+        "subject_alt_names": [
+          "webflow.io",
+          "*.webflow.io"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-27T02:06:09+00:00",
+        "not_valid_after": "2026-08-25T03:06:04+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "309390251340298304878118828562193709672",
+        "fingerprint_sha1": "99 04 0C 53 9B A3 9A C9 44 71 A9 BA 48 FD 03 2B A7 20 0E 93",
+        "fingerprint_sha256": "0D C0 BE 3D 83 7E 60 B4 43 3D 84 C6 73 85 BD C3 54 BB 83 30 7D 80 C7 1F B6 7D 87 F1 BE EC 53 C6"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-04T11:09:31",
-      "first_seen_secs": null
+      "first_seen": "2026-06-17T16:02:42",
+      "first_seen_secs": 1781712162.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.lpqgrd.top",
-      "domain_defanged": "t-mobile[.]lpqgrd[.]top",
-      "case_id": "PD-20260729-30EA7E",
-      "analyzed_at": "2026-07-29T20:37:32.989Z",
+      "domain": "kucoinlogn.webflow.io",
+      "domain_defanged": "kucoinlogn[.]webflow[.]io",
+      "case_id": "PD-20260801-68F46E",
+      "analyzed_at": "2026-08-01T07:34:58.150Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fbc3f-5fb7-72ea-a525-1c4a71c579bd/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "104.18.36.248",
+        "ipinfo": {
+          "ip": "104.18.36.248",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "104.18.36.248",
+            "172.64.151.8"
+          ],
+          "AAAA": [
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -195,13 +247,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.lpqgrd.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.lpqgrd.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010416; classtype:social-engineering; sid:6010416; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T20:37:24.876719+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kucoinlogn.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kucoinlogn.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010416; classtype:social-engineering; sid:6010416; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-01T07:34:55.989048+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "104.18.36.248",
+    "whois": true,
+    "status": "active"
+  }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6010765,
-  "url_path": "/com/",
-  "url_base": "www.gov-parkingeg.top",
-  "msg": "AT related malicious URL (www.gov-parkingeg.top/com/)",
+  "url_path": "/",
+  "url_base": "hga372.com",
+  "msg": "AT related malicious URL (hga372.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,21 +19,21 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.gov-parkingeg.top/com/",
-      "domain": "www.gov-parkingeg.top",
-      "url_count": 1,
-      "city_data": false,
+      "url": "http://hga372.com/",
+      "domain": "hga372.com",
+      "url_count": 7,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "129.226.204.78",
+      "ip": "177.4.41.17",
       "http_code": 200,
       "http_response": {
-        "server": null,
+        "server": "nginx",
         "content_type": "text/html; charset=utf-8",
         "cf_ray": null,
         "cf_cache_status": null,
-        "alt_svc": "h3=\":443\"; ma=2592000"
+        "alt_svc": null
       },
       "city": null,
       "region": null,
@@ -44,37 +44,79 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text",
-      "sha256": "b06ccbb7eeae7558ae2340f0c62635de138f82329ea858a64d8b84b01ecfc1a3",
-      "md5": "997526c0aa347697f2aac2a9caad4d23",
-      "cert": null,
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (1923), with CRLF, LF line terminators",
+      "sha256": "58b376884877881905c6a9e5f3eac7fcf41d97848b5d57d761481f559369c23b",
+      "md5": "0c55596b3f7f726d09c4c3b4108d4487",
+      "cert": {
+        "subject_cn": null,
+        "subject_alt_names": [],
+        "issuer_cn": null,
+        "issuer_org": null,
+        "issuer_country": null,
+        "not_valid_before": "2026-06-21T16:50:05+00:00",
+        "not_valid_after": "2036-06-18T16:50:05+00:00",
+        "is_expired": false,
+        "is_self_signed": "maybe",
+        "signature_algorithm": "md5_rsa",
+        "x509_version": "v1",
+        "serial_number": "00",
+        "fingerprint_sha1": "D0 53 3D DA B9 E5 99 21 F4 24 13 59 88 F2 75 E0 EC A0 60 EC",
+        "fingerprint_sha256": "EA C1 5B F9 AA A4 7F 18 F9 AA EB DA 84 03 2A AF A8 5B 54 9A CD 64 73 C1 B5 F9 B2 BD 8E 09 FE 69"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-04T16:49:00",
-      "first_seen_secs": 1780591740.0
+      "first_seen": "2026-07-30T03:12:21",
+      "first_seen_secs": 1785381141.0
     },
     "phishdestroy": {
-      "domain": "gov-parkingeg.top",
-      "domain_defanged": "gov-parkingeg[.]top",
-      "case_id": "PD-20260729-7B7390",
-      "analyzed_at": "2026-07-29T21:10:40.176Z",
+      "domain": "hga372.com",
+      "domain_defanged": "hga372[.]com",
+      "case_id": "PD-20260731-2C3FF8",
+      "analyzed_at": "2026-07-31T08:14:33.269Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb73d-4218-75cd-a9cd-503ae1d056ed/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "Gname.com Pte. Ltd.",
+        "created": "2025-09-25T09:41:56Z",
+        "expires": "2026-09-25T09:41:56Z",
+        "age_days": 308,
+        "nameservers": [
+          "A12.SHARE-DNS.COM",
+          "B12.SHARE-DNS.NET"
+        ]
       },
       "infrastructure": {
+        "ip": "177.4.41.17",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "177.4.41.17"
+          ],
+          "NS": [
+            "a.share-dns.com.",
+            "b.share-dns.net."
+          ]
+        }
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "GNAME",
+          "abuse": "",
+          "url": "https://phish.report/contacts/GNAME",
+          "logo": "https://i.ibb.co/qL2jSPPY/pr-GNAME.png",
+          "method": "form",
+          "iana_ids": "1923"
+        },
         "hosting": null
       },
       "report_services": [
@@ -198,13 +240,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingeg.top/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingeg.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010765; classtype:social-engineering; sid:6010765; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T21:10:36.991726+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hga372.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"hga372.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010765; classtype:social-engineering; sid:6010765; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-01T07:57:55.852912+00:00",
   "probe": {
-    "dns": "129.226.204.78",
+    "dns": "177.4.41.17",
     "whois": true,
     "status": "active"
   }

@@ -1,8 +1,8 @@
 {
   "sid": 6007974,
-  "url_path": "/montinigro/",
-  "url_base": "edward95.neocities.org",
-  "msg": "AT related malicious URL (edward95.neocities.org/montinigro/)",
+  "url_path": "/",
+  "url_base": "eng-bridge-trezo-guide.pages.dev",
+  "msg": "AT related malicious URL (eng-bridge-trezo-guide.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6007974"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://edward95.neocities.org/montinigro/",
-      "domain": "edward95.neocities.org",
-      "url_count": 0,
+      "url": "http://eng-bridge-trezo-guide.pages.dev/",
+      "domain": "eng-bridge-trezo-guide.pages.dev",
+      "url_count": 2,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.66.44.135",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a23195875fefc153-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "d7b16c334ac91732c6af1f09284044089ad233b03b8ed7ed91a6937e0003dd98",
+      "md5": "9f3b62f6fd61ab012053f793fc5a5262",
+      "cert": {
+        "subject_cn": "eng-bridge-trezo-guide.pages.dev",
+        "subject_alt_names": [
+          "eng-bridge-trezo-guide.pages.dev",
+          "*.eng-bridge-trezo-guide.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-25T17:00:34+00:00",
+        "not_valid_after": "2026-09-23T17:57:10+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "83112151553041037905489131724093332551",
+        "fingerprint_sha1": "EC BF 1D 42 A9 6E 50 65 EC F6 48 47 51 93 4C FA C6 C4 EE 76",
+        "fingerprint_sha256": "26 62 D1 9C 22 CF C8 E5 8D 3A 91 F6 82 FD 6D 94 4A 7D 6A 5F 4A 8B 43 68 2D 67 99 B2 B5 ED 4C 05"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:07:43",
+      "first_seen_secs": 1785384463.0
     },
     "phishdestroy": {
-      "domain": "edward95.neocities.org",
-      "domain_defanged": "edward95[.]neocities[.]org",
-      "case_id": "PD-20260731-1E60AB",
-      "analyzed_at": "2026-07-31T08:02:30.420Z",
+      "domain": "eng-bridge-trezo-guide.pages.dev",
+      "domain_defanged": "eng-bridge-trezo-guide[.]pages[.]dev",
+      "case_id": "PD-20260731-7ADD51",
+      "analyzed_at": "2026-07-31T23:46:29.570Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +83,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fb732-3a77-708f-b51f-54e2d543cd1a/",
+          "url": "https://urlscan.io/result/019fba92-791f-74ac-a4dc-d992605ce685/",
           "pending": true
         }
       },
@@ -68,14 +92,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "23.143.32.9",
+        "ip": "172.66.47.121",
         "ipinfo": null,
         "dns": {
-          "A": [
-            "23.143.32.9"
-          ],
           "AAAA": [
-            "2620:2:6000::a:1"
+            "2606:4700:310c::ac42:2f79",
+            "2606:4700:310c::ac42:2c87"
+          ],
+          "A": [
+            "172.66.47.121",
+            "172.66.44.135"
+          ],
+          "NS": [
+            "lara.ns.cloudflare.com.",
+            "tony.ns.cloudflare.com."
           ]
         }
       },
@@ -208,11 +238,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (edward95.neocities.org/montinigro/)\"; flow:established,to_server; http.uri; content:\"/montinigro/\"; startswith; fast_pattern; http.host; content:\"edward95.neocities.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007974; classtype:social-engineering; sid:6007974; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T08:12:04.904088+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (eng-bridge-trezo-guide.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"eng-bridge-trezo-guide.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007974; classtype:social-engineering; sid:6007974; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T04:34:49.711441+00:00",
   "probe": {
-    "dns": "23.143.32.9",
-    "whois": true,
+    "dns": "172.66.44.135",
+    "whois": null,
     "status": "active"
   }
 }

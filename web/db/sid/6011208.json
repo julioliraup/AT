@@ -1,8 +1,8 @@
 {
   "sid": 6011208,
-  "url_path": "/PL-1466-160526/?e=xxx&s3=Tadeusz&s4",
-  "url_base": "coachingdevie.info",
-  "msg": "AT related malicious URL (coachingdevie.info/PL-1466-160526/?e=xxx&s3=Tadeusz&s4)",
+  "url_path": "/",
+  "url_base": "23.95.173.128",
+  "msg": "AT related malicious URL (23.95.173.128/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6011208"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://coachingdevie.info/PL-1466-160526/?e=xxx&s3=Tadeusz&s4",
-      "domain": "coachingdevie.info",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://23.95.173.128/",
+      "domain": "23.95.173.128",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "23.95.173.128",
+      "http_code": 404,
+      "http_response": {
+        "server": "openresty/1.29.2.3",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,47 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with CRLF line terminators",
+      "sha256": "fc49e36c4be7b6ee1dd204884d7a355eac87f3fbded1b7354fc2be5aa87b3078",
+      "md5": "fe2501b5f4587e0e8437b3f5cb202c42",
+      "cert": {
+        "subject_cn": "aemoe.com",
+        "subject_alt_names": [
+          "aemoe.com"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-21T10:32:06+00:00",
+        "not_valid_after": "2026-09-19T10:32:05+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "447587810533239862693242765059997986659514",
+        "fingerprint_sha1": "DD 2E D0 29 F8 2D 1D 9A 58 A0 9F 47 19 0A E5 1E D5 4E FB E8",
+        "fingerprint_sha256": "E1 58 7D B7 7F C5 7A F4 04 68 FE BC B7 AD 4D 3B 49 D9 FB A3 65 2A 82 1F 90 BE BD 83 32 D8 DE 73"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-06-22T16:31:20",
+      "first_seen_secs": 1782145880.0
     },
     "phishdestroy": {
-      "domain": "coachingdevie.info",
-      "domain_defanged": "coachingdevie[.]info",
-      "case_id": "PD-20260729-315D77",
-      "analyzed_at": "2026-07-29T21:50:57.103Z",
+      "domain": "23.95.173.128",
+      "domain_defanged": "23[.]95[.]173[.]128",
+      "case_id": "PD-20260731-20DEC8",
+      "analyzed_at": "2026-07-31T23:35:19.388Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fba88-3fd5-7668-bcd9-6f48c2919990/",
+          "pending": true
         }
       },
       "detections": [],
@@ -192,13 +219,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (coachingdevie.info/PL-1466-160526/?e=xxx&s3=Tadeusz&s4)\"; flow:established,to_server; http.uri; content:\"/PL-1466-160526/?e=xxx&s3=Tadeusz&s4\"; startswith; fast_pattern; http.host; content:\"coachingdevie.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011208; classtype:social-engineering; sid:6011208; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T21:50:49.407073+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (23.95.173.128/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"23.95.173.128\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6011208; classtype:social-engineering; sid:6011208; rev:1; metadata: signature_severity Major, created_et 2026_06_23, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-01T08:24:46.820135+00:00",
   "probe": {
-    "dns": null,
+    "dns": "23.95.173.128",
     "whois": true,
     "status": "active"
   }

@@ -1,8 +1,8 @@
 {
   "sid": 6007989,
-  "url_path": "/ase/saveenergy_09343.html",
-  "url_base": "kopaturismo.com.br",
-  "msg": "AT related malicious URL (kopaturismo.com.br/ase/saveenergy_09343.html)",
+  "url_path": "/",
+  "url_base": "onedrive1.vtcyntrax.org",
+  "msg": "AT related malicious URL (onedrive1.vtcyntrax.org/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,15 +19,15 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://kopaturismo.com.br/ase/saveenergy_09343.html",
-      "domain": "kopaturismo.com.br",
-      "url_count": 0,
-      "city_data": true,
+      "url": "http://onedrive1.vtcyntrax.org/",
+      "domain": "onedrive1.vtcyntrax.org",
+      "url_count": 1,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
-      "tlp": null,
+      "tlp": "WHITE",
       "ip": null,
-      "http_code": null,
+      "http_code": 0,
       "http_response": null,
       "city": null,
       "region": null,
@@ -43,49 +43,63 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
+      "first_seen": "2026-07-30T04:07:44",
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "kopaturismo.com.br",
-      "domain_defanged": "kopaturismo[.]com[.]br",
-      "case_id": "PD-20260731-2EC031",
-      "analyzed_at": "2026-07-31T08:12:57.605Z",
+      "domain": "onedrive1.vtcyntrax.org",
+      "domain_defanged": "onedrive1[.]vtcyntrax[.]org",
+      "case_id": "PD-20260801-122993",
+      "analyzed_at": "2026-08-01T04:36:03.416Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fb73b-cc64-70af-84de-dc7ee6ab7a24/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft",
+            "Generic Email",
+            "Sharepoint"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fae89-e81c-74ac-8e18-bbf9ff6743f8.png",
+          "url": "https://urlscan.io/result/019fae89-e81c-74ac-8e18-bbf9ff6743f8/",
+          "title": "Sharing Link Validation"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft, Generic Email, Sharepoint",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "151.106.100.114",
-        "ipinfo": null,
-        "dns": {
-          "A": [
-            "151.106.100.114"
-          ],
-          "MX": [
-            "0 kopaturismo.com.br."
-          ],
-          "NS": [
-            "ns1.metasdigitais.com.br.",
-            "ns2.metasdigitais.com.br."
-          ]
-        }
+        "ip": "2a02:4780:84:71b0:a94e:bb1e:f895:8888",
+        "ipinfo": {
+          "ip": "2a02:4780:84:71b0:a94e:bb1e:f895:8888",
+          "city": "Boston",
+          "region": "Massachusetts",
+          "country": "US",
+          "org": "AS47583 Hostinger International Limited",
+          "asn": "AS47583"
+        },
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Hostinger",
+          "abuse": "abuse@hostinger.com",
+          "url": "https://www.hostinger.com/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS47583"
+        }
       },
       "report_services": [
         {
@@ -211,11 +225,13 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kopaturismo.com.br/ase/saveenergy_09343.html)\"; flow:established,to_server; http.uri; content:\"/ase/saveenergy_09343.html\"; startswith; fast_pattern; http.host; content:\"kopaturismo.com.br\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007989; classtype:social-engineering; sid:6007989; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T08:12:55.019985+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (onedrive1.vtcyntrax.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"onedrive1.vtcyntrax.org\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007989; classtype:social-engineering; sid:6007989; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T04:35:53.906134+00:00",
   "probe": {
-    "dns": "151.106.100.114",
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

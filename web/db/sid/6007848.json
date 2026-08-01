@@ -1,8 +1,8 @@
 {
   "sid": 6007848,
-  "url_path": "/com/",
-  "url_base": "www.gov-parkingtp.shop",
-  "msg": "AT related malicious URL (www.gov-parkingtp.shop/com/)",
+  "url_path": "/",
+  "url_base": "172.67.137.188",
+  "msg": "AT related malicious URL (172.67.137.188/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6007848"
   ],
   "intel": {
@@ -19,21 +19,21 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.gov-parkingtp.shop/com/",
-      "domain": "www.gov-parkingtp.shop",
+      "url": "http://172.67.137.188/",
+      "domain": "172.67.137.188",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "170.106.199.15",
-      "http_code": 200,
+      "ip": "172.67.137.188",
+      "http_code": 403,
       "http_response": {
-        "server": null,
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": null,
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a122f3f92dda8736-PDX",
         "cf_cache_status": null,
-        "alt_svc": "h3=\":443\"; ma=2592000"
+        "alt_svc": null
       },
       "city": null,
       "region": null,
@@ -44,25 +44,29 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text",
-      "sha256": "da4a6d3cfee65af41ab4797e6efa6208cd37193178c5500e63188be2967e5519",
-      "md5": "f823e4c0a0f1fb7e5a6f3f3dbc331096",
+      "filemagic": "HTML document, ASCII text, with very long lines (501)",
+      "sha256": "dbda8de8abf26f05dafa60e18d736627df7c673be2e7a73ffb48001e087d3035",
+      "md5": "3e2d591a549deddad277d70321cf12dc",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-18T17:09:13",
-      "first_seen_secs": 1781802553.0
+      "first_seen": "2026-06-23T13:29:07",
+      "first_seen_secs": 1782221347.0
     },
     "phishdestroy": {
-      "domain": "gov-parkingtp.shop",
-      "domain_defanged": "gov-parkingtp[.]shop",
-      "case_id": "PD-20260731-1BD70F",
-      "analyzed_at": "2026-07-31T08:04:24.586Z",
+      "domain": "172.67.137.188",
+      "domain_defanged": "172[.]67[.]137[.]188",
+      "case_id": "PD-20260731-424162",
+      "analyzed_at": "2026-07-31T08:42:48.174Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb757-1f91-714a-9322-9880f68c4981/",
+          "pending": true
         }
       },
       "detections": [],
@@ -198,13 +202,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingtp.shop/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingtp.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007848; classtype:social-engineering; sid:6007848; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T08:04:21.609776+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (172.67.137.188/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"172.67.137.188\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007848; classtype:social-engineering; sid:6007848; rev:1; metadata: signature_severity Major, created_et 2026_06_23, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-01T04:29:34.329835+00:00",
   "probe": {
-    "dns": "170.106.199.15",
+    "dns": "172.67.137.188",
     "whois": true,
     "status": "active"
   }

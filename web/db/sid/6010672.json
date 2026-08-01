@@ -1,8 +1,8 @@
 {
   "sid": 6010672,
-  "url_path": "/com",
-  "url_base": "www.gov-parkingee.shop",
-  "msg": "AT related malicious URL (www.gov-parkingee.shop/com)",
+  "url_path": "/",
+  "url_base": "css-ch.blogspot.com",
+  "msg": "AT related malicious URL (css-ch.blogspot.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "phishstats.info",
+    "openphish.com",
     "julioliraup.github.io/AT/signature.html?sid=6010672"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.gov-parkingee.shop/com",
-      "domain": "www.gov-parkingee.shop",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://css-ch.blogspot.com/",
+      "domain": "css-ch.blogspot.com",
+      "url_count": 15,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "142.251.155.119",
+      "http_code": 429,
+      "http_response": {
+        "server": "scaffolding on HTTPServer2",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (833)",
+      "sha256": "4bfe2e501006abc53c69281b3dc5a39aa252156627535f4e081dd9f5e5dfcaf3",
+      "md5": "a131e12c9d176a47b377003a023cd4db",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:04:59",
+      "first_seen_secs": 1785384299.0
     },
     "phishdestroy": {
-      "domain": "gov-parkingee.shop",
-      "domain_defanged": "gov-parkingee[.]shop",
-      "case_id": "PD-20260729-106BB8",
-      "analyzed_at": "2026-07-29T21:02:10.212Z",
+      "domain": "css-ch.blogspot.com",
+      "domain_defanged": "css-ch[.]blogspot[.]com",
+      "case_id": "PD-20260731-8038AA",
+      "analyzed_at": "2026-07-31T08:09:17.668Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb738-6f93-7139-aee9-62196d61fc0a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +74,27 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "blogspot.l.googleusercontent.com.",
+            "142.251.132.33"
+          ],
+          "AAAA": [
+            "blogspot.l.googleusercontent.com.",
+            "2800:3f0:4004:813::2001"
+          ],
+          "MX": [
+            "blogspot.l.googleusercontent.com."
+          ],
+          "CNAME": [
+            "blogspot.l.googleusercontent.com."
+          ],
+          "NS": [
+            "blogspot.l.googleusercontent.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,14 +221,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingee.shop/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingee.shop\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6010672; classtype:social-engineering; sid:6010672; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T21:02:02.225302+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (css-ch.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"css-ch.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010672; classtype:social-engineering; sid:6010672; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-01T07:52:00.463757+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "142.251.155.119",
+    "whois": null,
     "status": "active"
   }
 }

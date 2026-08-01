@@ -1,8 +1,8 @@
 {
   "sid": 6007361,
-  "url_path": "/a.php",
-  "url_base": "find-account.help",
-  "msg": "AT related malicious URL (find-account.help/a.php)",
+  "url_path": "/",
+  "url_base": "eco17.onrender.com",
+  "msg": "AT related malicious URL (eco17.onrender.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://find-account.help/a.php",
-      "domain": "find-account.help",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://eco17.onrender.com/",
+      "domain": "eco17.onrender.com",
+      "url_count": 7,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "216.24.57.15",
+      "http_code": 503,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a231903fcb29efd6-PDX",
+        "cf_cache_status": "BYPASS",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "edac3af0989730bc91bcaf03e3fb27bc8606f72cea98756b1df8dbdb217984f0",
+      "md5": "66b5f8ff848c43d9be291ca8e9d0500f",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-16T11:00:18",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:03:50",
+      "first_seen_secs": 1785384230.0
     },
     "phishdestroy": {
-      "domain": "find-account.help",
-      "domain_defanged": "find-account[.]help",
-      "case_id": "PD-20260731-55352A",
-      "analyzed_at": "2026-07-31T07:21:58.088Z",
+      "domain": "eco17.onrender.com",
+      "domain_defanged": "eco17[.]onrender[.]com",
+      "case_id": "PD-20260731-45EA74",
+      "analyzed_at": "2026-07-31T08:10:08.626Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb739-3852-73aa-b7ed-e31075fea520/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +74,31 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "gcp-us-west1-1.origin.onrender.com.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "AAAA": [
+            "gcp-us-west1-1.origin.onrender.com.",
+            "gcp-us-west1-1.origin.onrender.com.cdn.cloudflare.net."
+          ],
+          "A": [
+            "gcp-us-west1-1.origin.onrender.com.",
+            "gcp-us-west1-1.origin.onrender.com.cdn.cloudflare.net.",
+            "216.24.57.7",
+            "216.24.57.15"
+          ],
+          "MX": [
+            "gcp-us-west1-1.origin.onrender.com.",
+            "gcp-us-west1-1.origin.onrender.com.cdn.cloudflare.net."
+          ],
+          "CNAME": [
+            "gcp-us-west1-1.origin.onrender.com."
+          ],
+          "NS": [
+            "gcp-us-west1-1.origin.onrender.com.",
+            "gcp-us-west1-1.origin.onrender.com.cdn.cloudflare.net."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,14 +225,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (find-account.help/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"find-account.help\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007361; classtype:social-engineering; sid:6007361; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T07:21:50.097537+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (eco17.onrender.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"eco17.onrender.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007361; classtype:social-engineering; sid:6007361; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-01T03:55:10.726245+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "216.24.57.15",
+    "whois": null,
     "status": "active"
   }
 }

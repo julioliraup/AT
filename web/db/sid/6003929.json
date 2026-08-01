@@ -1,8 +1,8 @@
 {
   "sid": 6003929,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.kpvcgw.top",
-  "msg": "AT related malicious URL (t-mobile.kpvcgw.top/pay/)",
+  "url_path": "/QPP",
+  "url_base": "map-iphone.com",
+  "msg": "AT related malicious URL (map-iphone.com/QPP)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.kpvcgw.top/pay/",
-      "domain": "t-mobile.kpvcgw.top",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://map-iphone.com/QPP",
+      "domain": "map-iphone.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.48.148",
+      "http_code": 404,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a0a4303bb8791d89-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -39,36 +45,86 @@
       "flag": null,
       "filetype": null,
       "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "cert": {
+        "subject_cn": "map-iphone.com",
+        "subject_alt_names": [
+          "map-iphone.com",
+          "*.map-iphone.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-08T14:03:00+00:00",
+        "not_valid_after": "2026-09-06T15:00:16+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "25284164108880368924510532485581566238",
+        "fingerprint_sha1": "4E F8 CA A2 D4 A2 F6 F9 03 A3 9A 65 47 37 68 5F 24 F3 D0 CA",
+        "fingerprint_sha256": "42 83 C2 E3 C0 C2 67 FF EF 79 92 B7 84 B6 1F 6E BC 4E EA A2 87 AD A8 63 18 7F 8E 61 C8 F4 B9 16"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-06-11T22:52:49",
+      "first_seen_secs": 1781218369.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.kpvcgw.top",
-      "domain_defanged": "t-mobile[.]kpvcgw[.]top",
-      "case_id": "PD-20260730-5EB470",
-      "analyzed_at": "2026-07-30T20:24:08.854Z",
+      "domain": "map-iphone.com",
+      "domain_defanged": "map-iphone[.]com",
+      "case_id": "PD-20260731-9B8BBC",
+      "analyzed_at": "2026-07-31T06:19:01.185Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fb6d3-7ba6-726d-9c20-cb86f177df4f/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "OnlineNIC, Inc.",
+        "created": "2024-01-03T15:33:06Z",
+        "expires": "2027-01-03T15:33:06Z",
+        "age_days": 939,
+        "nameservers": [
+          "MIKE.NS.CLOUDFLARE.COM",
+          "SREENI.NS.CLOUDFLARE.COM"
+        ]
       },
       "infrastructure": {
+        "ip": "104.21.48.148",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "104.21.48.148",
+            "172.67.153.6"
+          ],
+          "AAAA": [
+            "2606:4700:3037::6815:3094",
+            "2606:4700:3035::ac43:9906"
+          ],
+          "NS": [
+            "mike.ns.cloudflare.com.",
+            "sreeni.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "BB Online UK Limited",
+          "abuse": "abuse@bb-online.com",
+          "url": "https://phish.report/contacts/BB-Online-UK-Limited",
+          "logo": "https://i.ibb.co/spKWr1dB/pr-BB-Online-UK-Limited.jpg",
+          "method": "form",
+          "iana_ids": "134"
+        },
         "hosting": null
       },
       "report_services": [
@@ -196,11 +252,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.kpvcgw.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.kpvcgw.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003929; classtype:social-engineering; sid:6003929; rev:1; metadata: signature_severity Major, created_et 2026_05_20, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T03:45:59.274947+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (map-iphone.com/QPP)\"; flow:established,to_server; http.uri; content:\"/QPP\"; startswith; fast_pattern; http.host; content:\"map-iphone.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003929; classtype:social-engineering; sid:6003929; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T20:50:02.377418+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "104.21.48.148",
+    "whois": null,
     "status": "active"
   }
 }

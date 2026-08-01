@@ -1,8 +1,8 @@
 {
   "sid": 6004740,
-  "url_path": "/pages/ban.php",
-  "url_base": "postch-swisspost.com",
-  "msg": "AT related malicious URL (postch-swisspost.com/pages/ban.php)",
+  "url_path": "/",
+  "url_base": "suite-trezear.typedream.app",
+  "msg": "AT related malicious URL (suite-trezear.typedream.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://postch-swisspost.com/pages/ban.php",
-      "domain": "postch-swisspost.com",
-      "url_count": 0,
+      "url": "http://suite-trezear.typedream.app/",
+      "domain": "suite-trezear.typedream.app",
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.206.36",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a0e466c80bf8fef4-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,20 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "100c65ae3a9c55908129964727f73e1788eec7330510844a0338bc3ca88a8ae9",
+      "md5": "a56ea4654d908293c08357832731efd8",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-06-19T17:40:47",
+      "first_seen_secs": 1781890847.0
     },
     "phishdestroy": {
-      "domain": "postch-swisspost.com",
-      "domain_defanged": "postch-swisspost[.]com",
-      "case_id": "PD-20260731-1DBE3F",
-      "analyzed_at": "2026-07-31T04:36:45.844Z",
+      "domain": "suite-trezear.typedream.app",
+      "domain_defanged": "suite-trezear[.]typedream[.]app",
+      "case_id": "PD-20260731-701E7A",
+      "analyzed_at": "2026-07-31T22:54:21.222Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,60 +65,27 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fb675-dd0c-7050-bf72-f09455f466d1/",
+          "url": "https://urlscan.io/result/019fba62-bc56-73fd-8846-9a430fbf3f40/",
           "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
-        "created": "2026-06-03T22:35:09Z",
-        "expires": "2027-06-03T22:35:09Z",
-        "age_days": 57,
-        "nameservers": [
-          "INA1.REGISTRAR.EU",
-          "INA2.REGISTRAR.EU",
-          "INA3.REGISTRAR.EU"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ip": "185.53.179.136",
-        "ipinfo": {
-          "ip": "185.53.179.136",
-          "city": "Toronto",
-          "region": "Ontario",
-          "country": "CA",
-          "org": "AS206834 Team Internet AG",
-          "asn": "AS206834"
-        },
+        "ip": "104.21.37.85",
+        "ipinfo": null,
         "dns": {
           "A": [
-            "185.53.179.136"
-          ],
-          "NS": [
-            "ina1.registrar.eu.",
-            "ina2.registrar.eu.",
-            "ina3.registrar.eu."
+            "104.21.37.85",
+            "172.67.206.36"
           ]
         }
       },
       "report_to": {
-        "registrar": {
-          "name": "HOST-AS-AP Host Universal Pty Ltd, AU",
-          "abuse": "abuse@hostuniversal.com.au",
-          "url": "https://phish.report/contacts/HOST-AS-AP-Host-Universal-Pty-Ltd-AU",
-          "logo": "https://i.ibb.co/TqBqZFgH/pr-HOST-AS-AP-Host-Universal-Pty-Ltd-AU.png",
-          "method": "form",
-          "iana_ids": ""
-        },
-        "hosting": {
-          "name": "TEAMINTERNET-CA-AS, DE",
-          "abuse": "abuse@teaminternet.com",
-          "url": "mailto:abuse@teaminternet.com",
-          "logo": "https://i.ibb.co/0yZnxXcx/pr-TEAMINTERNET-AS-DE.png",
-          "method": "email",
-          "asn": "AS206834"
-        }
+        "registrar": null,
+        "hosting": null
       },
       "report_services": [
         {
@@ -235,15 +208,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (postch-swisspost.com/pages/ban.php)\"; flow:established,to_server; http.uri; content:\"/pages/ban.php\"; startswith; fast_pattern; http.host; content:\"postch-swisspost.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004740; classtype:social-engineering; sid:6004740; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T04:40:11.640180+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (suite-trezear.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"suite-trezear.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004740; classtype:social-engineering; sid:6004740; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T22:54:17.369027+00:00",
   "probe": {
-    "dns": "185.53.179.136",
-    "whois": true,
+    "dns": "172.67.206.36",
+    "whois": null,
     "status": "active"
   }
 }

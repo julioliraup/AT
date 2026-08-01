@@ -1,8 +1,8 @@
 {
   "sid": 6004683,
   "url_path": "/",
-  "url_base": "postch-swisspost.com",
-  "msg": "AT related malicious URL (postch-swisspost.com/)",
+  "url_base": "www.jhrerth.weebly.com",
+  "msg": "AT related malicious URL (www.jhrerth.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://postch-swisspost.com/",
-      "domain": "postch-swisspost.com",
-      "url_count": 11,
+      "url": "http://www.jhrerth.weebly.com/",
+      "domain": "www.jhrerth.weebly.com",
+      "url_count": 15,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "74.115.51.9",
+      "http_code": 404,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a2318fb59ea0ef24-PDX",
+        "cf_cache_status": "BYPASS",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,20 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (368)",
+      "sha256": "da784cdaa070ac2c4bfdb2376ee28a3037c6656c9a8cabef1077684b58d7c8c7",
+      "md5": "82d26543a9ff2bf63d73d93be5d5b1ef",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-30T03:20:05",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:04:43",
+      "first_seen_secs": 1785384283.0
     },
     "phishdestroy": {
-      "domain": "postch-swisspost.com",
-      "domain_defanged": "postch-swisspost[.]com",
-      "case_id": "PD-20260731-1DBE3F",
-      "analyzed_at": "2026-07-31T04:36:45.844Z",
+      "domain": "jhrerth.weebly.com",
+      "domain_defanged": "jhrerth[.]weebly[.]com",
+      "case_id": "PD-20260731-5E82BF",
+      "analyzed_at": "2026-07-31T07:57:15.284Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,60 +65,27 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fb675-dd0c-7050-bf72-f09455f466d1/",
+          "url": "https://urlscan.io/result/019fb72d-6b70-75b4-b763-5488543a56a7/",
           "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
-        "created": "2026-06-03T22:35:09Z",
-        "expires": "2027-06-03T22:35:09Z",
-        "age_days": 57,
-        "nameservers": [
-          "INA1.REGISTRAR.EU",
-          "INA2.REGISTRAR.EU",
-          "INA3.REGISTRAR.EU"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ip": "185.53.179.136",
-        "ipinfo": {
-          "ip": "185.53.179.136",
-          "city": "Toronto",
-          "region": "Ontario",
-          "country": "CA",
-          "org": "AS206834 Team Internet AG",
-          "asn": "AS206834"
-        },
+        "ip": "74.115.51.9",
+        "ipinfo": null,
         "dns": {
           "A": [
-            "185.53.179.136"
-          ],
-          "NS": [
-            "ina1.registrar.eu.",
-            "ina2.registrar.eu.",
-            "ina3.registrar.eu."
+            "74.115.51.9",
+            "74.115.51.8"
           ]
         }
       },
       "report_to": {
-        "registrar": {
-          "name": "HOST-AS-AP Host Universal Pty Ltd, AU",
-          "abuse": "abuse@hostuniversal.com.au",
-          "url": "https://phish.report/contacts/HOST-AS-AP-Host-Universal-Pty-Ltd-AU",
-          "logo": "https://i.ibb.co/TqBqZFgH/pr-HOST-AS-AP-Host-Universal-Pty-Ltd-AU.png",
-          "method": "form",
-          "iana_ids": ""
-        },
-        "hosting": {
-          "name": "TEAMINTERNET-CA-AS, DE",
-          "abuse": "abuse@teaminternet.com",
-          "url": "mailto:abuse@teaminternet.com",
-          "logo": "https://i.ibb.co/0yZnxXcx/pr-TEAMINTERNET-AS-DE.png",
-          "method": "email",
-          "asn": "AS206834"
-        }
+        "registrar": null,
+        "hosting": null
       },
       "report_services": [
         {
@@ -235,14 +208,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (postch-swisspost.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"postch-swisspost.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004683; classtype:social-engineering; sid:6004683; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T04:36:38.240071+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.jhrerth.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.jhrerth.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004683; classtype:social-engineering; sid:6004683; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-07-31T22:50:02.604127+00:00",
   "probe": {
-    "dns": "185.53.179.136",
-    "whois": true,
+    "dns": "74.115.51.9",
+    "whois": null,
     "status": "active"
   }
 }

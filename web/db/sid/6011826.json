@@ -1,8 +1,8 @@
 {
   "sid": 6011826,
-  "url_path": "/en/",
-  "url_base": "app.phanpay.io",
-  "msg": "AT related malicious URL (app.phanpay.io/en/)",
+  "url_path": "/sign/",
+  "url_base": "adobe-review.github.io",
+  "msg": "AT related malicious URL (adobe-review.github.io/sign/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,8 +19,8 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://app.phanpay.io/en/",
-      "domain": "app.phanpay.io",
+      "url": "http://adobe-review.github.io/sign/",
+      "domain": "adobe-review.github.io",
       "url_count": 0,
       "city_data": true,
       "deep_analysis": false,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "app.phanpay.io",
-      "domain_defanged": "app[.]phanpay[.]io",
-      "case_id": "PD-20260729-5082A7",
-      "analyzed_at": "2026-07-29T22:47:23.860Z",
+      "domain": "adobe-review.github.io",
+      "domain_defanged": "adobe-review[.]github[.]io",
+      "case_id": "PD-20260801-4761DB",
+      "analyzed_at": "2026-08-01T09:05:17.580Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fbc92-11e5-7699-a604-c0a33d06e17b/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,17 +68,41 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "94.183.168.68",
-        "ipinfo": null,
+        "ip": "185.199.108.153",
+        "ipinfo": {
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
+          "AAAA": [
+            "2606:50c0:8001::153",
+            "2606:50c0:8000::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
+          ],
           "A": [
-            "94.183.168.68"
+            "185.199.108.153",
+            "185.199.111.153",
+            "185.199.110.153",
+            "185.199.109.153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -197,14 +225,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app.phanpay.io/en/)\"; flow:established,to_server; http.uri; content:\"/en/\"; startswith; fast_pattern; http.host; content:\"app.phanpay.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011826; classtype:social-engineering; sid:6011826; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T22:51:16.427224+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (adobe-review.github.io/sign/)\"; flow:established,to_server; http.uri; content:\"/sign/\"; startswith; fast_pattern; http.host; content:\"adobe-review.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011826; classtype:social-engineering; sid:6011826; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T09:05:09.003295+00:00",
   "probe": {
-    "dns": "94.183.168.68",
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }

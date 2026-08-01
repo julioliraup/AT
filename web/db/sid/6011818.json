@@ -1,8 +1,8 @@
 {
   "sid": 6011818,
-  "url_path": "/jsdisabled",
-  "url_base": "login-stage.iws-action.com",
-  "msg": "AT related malicious URL (login-stage.iws-action.com/jsdisabled)",
+  "url_path": "/",
+  "url_base": "office365.statichost.page",
+  "msg": "AT related malicious URL (office365.statichost.page/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://login-stage.iws-action.com/jsdisabled",
-      "domain": "login-stage.iws-action.com",
+      "url": "http://office365.statichost.page/",
+      "domain": "office365.statichost.page",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "login-stage.iws-action.com",
-      "domain_defanged": "login-stage[.]iws-action[.]com",
-      "case_id": "PD-20260729-2B5D57",
-      "analyzed_at": "2026-07-29T22:50:24.952Z",
+      "domain": "office365.statichost.page",
+      "domain_defanged": "office365[.]statichost[.]page",
+      "case_id": "PD-20260801-5238EC",
+      "analyzed_at": "2026-08-01T09:04:35.192Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fbc91-6c5c-71d7-9076-812ded8915e4/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,27 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "sites.statichost.eu.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "AAAA": [
+            "sites.statichost.eu.",
+            "2a01:4f8:1c19:d92e::1"
+          ],
+          "MX": [
+            "sites.statichost.eu."
+          ],
+          "A": [
+            "sites.statichost.eu.",
+            "46.225.58.80"
+          ],
+          "CNAME": [
+            "sites.statichost.eu."
+          ],
+          "NS": [
+            "sites.statichost.eu."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -195,13 +218,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (login-stage.iws-action.com/jsdisabled)\"; flow:established,to_server; http.uri; content:\"/jsdisabled\"; startswith; fast_pattern; http.host; content:\"login-stage.iws-action.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011818; classtype:social-engineering; sid:6011818; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T22:50:23.084024+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (office365.statichost.page/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"office365.statichost.page\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011818; classtype:social-engineering; sid:6011818; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T09:04:31.066262+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "46.225.58.80",
+    "whois": null,
+    "status": "active"
+  }
 }

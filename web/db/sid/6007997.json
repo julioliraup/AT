@@ -1,8 +1,8 @@
 {
   "sid": 6007997,
-  "url_path": "/ecard/",
-  "url_base": "charminviteco.de",
-  "msg": "AT related malicious URL (charminviteco.de/ecard/)",
+  "url_path": "/users/1950487385/profile",
+  "url_base": "vvvvw-roblox.com",
+  "msg": "AT related malicious URL (vvvvw-roblox.com/users/1950487385/profile)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6007997"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://charminviteco.de/ecard/",
-      "domain": "charminviteco.de",
-      "url_count": 0,
+      "url": "http://vvvvw-roblox.com/users/1950487385/profile",
+      "domain": "vvvvw-roblox.com",
+      "url_count": 1,
       "city_data": false,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "79.133.42.30",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx/1.30.3",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,37 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (4809)",
+      "sha256": "286c08506d898508bc7e81b2252749ac93434ab82486508309041af60f3f311c",
+      "md5": "842d243baff06219c0907978774e9e94",
+      "cert": {
+        "subject_cn": "vvvvw-roblox.com",
+        "subject_alt_names": [
+          "vvvvw-roblox.com"
+        ],
+        "issuer_cn": "YR2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-25T10:58:08+00:00",
+        "not_valid_after": "2026-10-23T10:58:07+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "05 2B 01 E9 66 93 DA A7 A8 39 F4 2E 96 66 8F 73 8F F2",
+        "fingerprint_sha1": "18 F5 37 90 CD E5 ED C2 F5 87 3B 18 8C DE C1 F3 6F B7 60 E4",
+        "fingerprint_sha256": "2C B5 BD EE A6 9C CE 17 21 04 40 1B 18 16 97 D1 8A 2E 89 87 20 56 A2 BA 79 1E A2 D0 91 44 C2 B6"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T00:21:43",
+      "first_seen_secs": 1785370903.0
     },
     "phishdestroy": {
-      "domain": "charminviteco.de",
-      "domain_defanged": "charminviteco[.]de",
-      "case_id": "PD-20260731-7526BF",
-      "analyzed_at": "2026-07-31T08:13:31.473Z",
+      "domain": "vvvvw-roblox.com",
+      "domain_defanged": "vvvvw-roblox[.]com",
+      "case_id": "PD-20260731-1C9682",
+      "analyzed_at": "2026-07-31T09:42:30.377Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -61,14 +84,28 @@
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "Web Commerce Communications Limited dba WebNic.cc",
+        "created": "2026-07-25T04:52:54Z",
+        "expires": "2027-07-25T04:52:54Z",
+        "age_days": 6,
+        "nameservers": [
+          "BLAIR.NS.CLOUDFLARE.COM",
+          "JAZIEL.NS.CLOUDFLARE.COM"
+        ]
       },
       "infrastructure": {
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "WebNIC",
+          "abuse": "compliance_abuse@webnic.cc",
+          "url": "https://phish.report/contacts/WebNIC",
+          "logo": "https://i.ibb.co/x81yc33s/pr-Web-NIC.png",
+          "method": "form",
+          "iana_ids": "460"
+        },
         "hosting": null
       },
       "report_services": [
@@ -192,14 +229,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (charminviteco.de/ecard/)\"; flow:established,to_server; http.uri; content:\"/ecard/\"; startswith; fast_pattern; http.host; content:\"charminviteco.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007997; classtype:social-engineering; sid:6007997; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T08:13:29.143427+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (vvvvw-roblox.com/users/1950487385/profile)\"; flow:established,to_server; http.uri; content:\"/users/1950487385/profile\"; startswith; fast_pattern; http.host; content:\"vvvvw-roblox.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007997; classtype:social-engineering; sid:6007997; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-01T04:36:26.691825+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "79.133.42.30",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6008131,
   "url_path": "/",
-  "url_base": "whatsapp-app-hub.com.cn",
-  "msg": "AT related malicious URL (whatsapp-app-hub.com.cn/)",
+  "url_base": "www.facebook-source.blogspot.com",
+  "msg": "AT related malicious URL (www.facebook-source.blogspot.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://whatsapp-app-hub.com.cn/",
-      "domain": "whatsapp-app-hub.com.cn",
-      "url_count": 8,
+      "url": "http://www.facebook-source.blogspot.com/",
+      "domain": "www.facebook-source.blogspot.com",
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "142.251.151.119",
+      "http_code": 429,
+      "http_response": {
+        "server": "scaffolding on HTTPServer2",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,20 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (833)",
+      "sha256": "0a6891d486988e6625352ddc562327b647fd3d433c70b7fabba3352fa5b72ef6",
+      "md5": "cfb12b1aae7928da1930c63d777dc151",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-30T04:04:52",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T12:44:44",
+      "first_seen_secs": 1785415484.0
     },
     "phishdestroy": {
-      "domain": "whatsapp-app-hub.com.cn",
-      "domain_defanged": "whatsapp-app-hub[.]com[.]cn",
-      "case_id": "PD-20260731-E9A902",
-      "analyzed_at": "2026-07-31T08:21:50.988Z",
+      "domain": "facebook-source.blogspot.com",
+      "domain_defanged": "facebook-source[.]blogspot[.]com",
+      "case_id": "PD-20260731-C7AB1A",
+      "analyzed_at": "2026-07-31T09:04:41.106Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +65,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fb743-efeb-7694-bb29-c3778a69aa35/",
+          "url": "https://urlscan.io/result/019fb76b-2752-71e9-812d-20ca28fdd51d/",
           "pending": true
         }
       },
@@ -68,28 +74,25 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "kxn4vet7.cdn-bc.com.",
+        "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
         "dns": {
-          "CNAME": [
-            "kxn4vet7.cdn-bc.com."
-          ],
-          "NS": [
-            "ns1.dyna-ns.net.",
-            "ns2.dyna-ns.net."
+          "AAAA": [
+            "blogspot.l.googleusercontent.com.",
+            "2800:3f0:4004:813::2001"
           ],
           "MX": [
-            "kxn4vet7.cdn-bc.com.",
-            "8etq7yzm.cdn-bc.com."
-          ],
-          "AAAA": [
-            "kxn4vet7.cdn-bc.com.",
-            "8etq7yzm.cdn-bc.com."
+            "blogspot.l.googleusercontent.com."
           ],
           "A": [
-            "kxn4vet7.cdn-bc.com.",
-            "8etq7yzm.cdn-bc.com.",
-            "154.13.7.198"
+            "blogspot.l.googleusercontent.com.",
+            "142.251.132.33"
+          ],
+          "CNAME": [
+            "blogspot.l.googleusercontent.com."
+          ],
+          "NS": [
+            "blogspot.l.googleusercontent.com."
           ]
         }
       },
@@ -218,14 +221,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (whatsapp-app-hub.com.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"whatsapp-app-hub.com.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008131; classtype:social-engineering; sid:6008131; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T08:21:43.325182+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.facebook-source.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.facebook-source.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008131; classtype:social-engineering; sid:6008131; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
+  "updated_at": "2026-08-01T04:46:01.198581+00:00",
   "probe": {
-    "dns": "154.13.7.198",
-    "whois": true,
+    "dns": "142.251.151.119",
+    "whois": null,
     "status": "active"
   }
 }
