@@ -1,8 +1,8 @@
 {
   "sid": 6012471,
-  "url_path": "/82F67135F75D00A/index.html",
-  "url_base": "www.enjscaffolding.co.uk",
-  "msg": "AT related malicious URL (www.enjscaffolding.co.uk/82F67135F75D00A/index.html)",
+  "url_path": "/",
+  "url_base": "usa-phantom--auth.webflow.io",
+  "msg": "AT related malicious URL (usa-phantom--auth.webflow.io/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.enjscaffolding.co.uk/82F67135F75D00A/index.html",
-      "domain": "www.enjscaffolding.co.uk",
-      "url_count": 0,
+      "url": "http://usa-phantom--auth.webflow.io/",
+      "domain": "usa-phantom--auth.webflow.io",
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.64.151.8",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a249e72cb9c88bee-PDX",
+        "cf_cache_status": "HIT",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (2430), with no line terminators",
+      "sha256": "fcdf9251204fe113821e45fff8877bb79597611b4b52ab024cb24f05e10a4bea",
+      "md5": "feb3645a3d49bfc7791246ca5d557d7b",
+      "cert": {
+        "subject_cn": "webflow.io",
+        "subject_alt_names": [
+          "webflow.io",
+          "*.webflow.io"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-25T02:21:21+00:00",
+        "not_valid_after": "2026-10-23T03:21:05+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "167953018469729408943791194274013479740",
+        "fingerprint_sha1": "AB 9A 63 D7 5B 41 E9 76 FF 98 03 C0 D6 4B C7 BA DC C4 15 F9",
+        "fingerprint_sha256": "A4 FF DE FA 8D 99 68 98 93 E2 AA FD F9 58 8B 6F 8F 2F 8E C4 76 98 EA 53 4D BF A4 09 DB BD E1 9D"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-02T02:47:51",
+      "first_seen_secs": 1785638871.0
     },
     "phishdestroy": {
-      "domain": "enjscaffolding.co.uk",
-      "domain_defanged": "enjscaffolding[.]co[.]uk",
-      "case_id": "PD-20260729-53B114",
-      "analyzed_at": "2026-07-29T23:51:22.826Z",
+      "domain": "usa-phantom--auth.webflow.io",
+      "domain_defanged": "usa-phantom--auth[.]webflow[.]io",
+      "case_id": "PD-20260802-DA8F01",
+      "analyzed_at": "2026-08-02T15:47:55.416Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fc329-0c75-746f-ae76-92ffe4f6f190/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,22 +92,16 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "192.124.249.120",
+        "ip": "172.64.151.8",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "30 mx3.mtaroutes.com.",
-            "10 mx1.mtaroutes.com.",
-            "20 mx2.mtaroutes.com.",
-            "40 mx4.mtaroutes.com."
+          "AAAA": [
+            "2a06:98c1:3102::ac40:9708",
+            "2a06:98c1:3105::6812:24f8"
           ],
           "A": [
-            "192.124.249.120"
-          ],
-          "NS": [
-            "ns0.ip6net.net.",
-            "ns.ip6net.net.",
-            "ns1.ip6net.net."
+            "172.64.151.8",
+            "104.18.36.248"
           ]
         }
       },
@@ -211,10 +233,10 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.enjscaffolding.co.uk/82F67135F75D00A/index.html)\"; flow:established,to_server; http.uri; content:\"/82F67135F75D00A/index.html\"; startswith; fast_pattern; http.host; content:\"www.enjscaffolding.co.uk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012471; classtype:social-engineering; sid:6012471; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T23:51:14.366245+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (usa-phantom--auth.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"usa-phantom--auth.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012471; classtype:social-engineering; sid:6012471; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
+  "updated_at": "2026-08-02T15:47:52.874461+00:00",
   "probe": {
-    "dns": "192.124.249.120",
+    "dns": "172.64.151.8",
     "whois": true,
     "status": "active"
   }

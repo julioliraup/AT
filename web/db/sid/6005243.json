@@ -73,22 +73,98 @@
     "phishdestroy": {
       "domain": "dechricganoc.it.com",
       "domain_defanged": "dechricganoc[.]it[.]com",
-      "case_id": "PD-20260731-37232B",
-      "analyzed_at": "2026-07-31T23:41:44.537Z",
+      "case_id": "PD-20260802-37232B",
+      "analyzed_at": "2026-08-02T01:01:00.664Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb089-3e17-76ea-afe8-0cc6de367cfd.png",
+          "url": "https://urlscan.io/result/019fb089-3e17-76ea-afe8-0cc6de367cfd/",
+          "title": "PDF Viewer"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "31.76.57.92",
+        "ipinfo": {
+          "ip": "31.76.57.92",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS210546 CHSL ONE LTD",
+          "asn": "AS210546"
+        },
         "dns": null
       },
       "report_to": {
@@ -221,7 +297,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dechricganoc.it.com/pdfreader/dir/)\"; flow:established,to_server; http.uri; content:\"/pdfreader/dir/\"; startswith; fast_pattern; http.host; content:\"dechricganoc.it.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6005243; classtype:social-engineering; sid:6005243; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T18:08:25.755293+00:00",
+  "updated_at": "2026-08-02T09:25:41.128056+00:00",
   "probe": {
     "dns": "31.76.57.92",
     "whois": null,

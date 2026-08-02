@@ -1,8 +1,8 @@
 {
   "sid": 6012290,
-  "url_path": "/chs/",
-  "url_base": "m.365365q.app:443",
-  "msg": "AT related malicious URL (m.365365q.app:443/chs/)",
+  "url_path": "/",
+  "url_base": "www.monaccmonthly.com",
+  "msg": "AT related malicious URL (www.monaccmonthly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6012290"
   ],
   "intel": {
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://m.365365q.app:443/chs/",
-      "domain": "m.365365q.app:443",
+      "url": "http://www.monaccmonthly.com/",
+      "domain": "www.monaccmonthly.com",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,28 +47,55 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "m.365365q.app:443",
-      "domain_defanged": "m[.]365365q[.]app:443",
-      "case_id": "PD-20260729-3E4A3A",
-      "analyzed_at": "2026-07-29T23:37:03.574Z",
+      "domain": "monaccmonthly.com",
+      "domain_defanged": "monaccmonthly[.]com",
+      "case_id": "PD-20260802-1C8294",
+      "analyzed_at": "2026-08-02T15:28:30.752Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fc317-4706-75a1-bba1-1a9141cc0127/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "Global Domain Group LLC",
+        "created": "2026-07-31T23:07:41Z",
+        "expires": "2027-07-31T23:07:41Z",
+        "age_days": 1,
+        "nameservers": [
+          "NS1.69HOST.CC",
+          "NS2.69HOST.CC"
+        ]
       },
       "infrastructure": {
+        "ip": "45.74.61.9",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "45.74.61.9"
+          ],
+          "NS": [
+            "ns2.69host.cc.",
+            "ns1.69host.cc."
+          ]
+        }
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "GLOBALCOLOCATION",
+          "abuse": "",
+          "url": "https://phish.report/contacts/GLOBALCOLOCATION",
+          "logo": "https://i.ibb.co/KcDRR9xD/pr-GLOBALCOLOCATION.png",
+          "method": "form",
+          "iana_ids": ""
+        },
         "hosting": null
       },
       "report_services": [
@@ -195,13 +222,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.365365q.app:443/chs/)\"; flow:established,to_server; http.uri; content:\"/chs/\"; startswith; fast_pattern; http.host; content:\"m.365365q.app:443\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012290; classtype:social-engineering; sid:6012290; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T23:37:02.369943+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.monaccmonthly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.monaccmonthly.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6012290; classtype:social-engineering; sid:6012290; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
+  "updated_at": "2026-08-02T15:28:26.038024+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "45.74.61.9",
+    "whois": null,
+    "status": "active"
+  }
 }

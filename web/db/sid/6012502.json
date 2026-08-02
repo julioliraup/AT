@@ -1,8 +1,8 @@
 {
   "sid": 6012502,
-  "url_path": "/facebook.com/",
-  "url_base": "bdlimon063-creator.github.io",
-  "msg": "AT related malicious URL (bdlimon063-creator.github.io/facebook.com/)",
+  "url_path": "/",
+  "url_base": "ing-ledgerx.pages.dev",
+  "msg": "AT related malicious URL (ing-ledgerx.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://bdlimon063-creator.github.io/facebook.com/",
-      "domain": "bdlimon063-creator.github.io",
-      "url_count": 0,
+      "url": "http://ing-ledgerx.pages.dev/",
+      "domain": "ing-ledgerx.pages.dev",
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.66.44.148",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a245657cd8f9fb74-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "d8fbcd61b4267dcfb61bd82518a0d2b1bb623aa3c0407f2a667a28be08875294",
+      "md5": "ec0c6f2e721bab42fcdf88d796578ff3",
+      "cert": {
+        "subject_cn": "ing-ledgerx.pages.dev",
+        "subject_alt_names": [
+          "ing-ledgerx.pages.dev",
+          "*.ing-ledgerx.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-14T12:34:55+00:00",
+        "not_valid_after": "2026-10-12T13:32:22+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "333933480639176172806362878064012386451",
+        "fingerprint_sha1": "FF E0 A6 EB 5D F5 F2 CA DF CD 2A 1D A7 05 AF 19 4E 07 86 FF",
+        "fingerprint_sha256": "41 11 8E 3F 86 0C FC CC 34 5C EE A3 5A CA 9C 0B F3 5C 28 94 AA 37 0F C5 0C B0 5C 74 1F AF B9 DB"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-01T14:02:14",
+      "first_seen_secs": 1785592934.0
     },
     "phishdestroy": {
-      "domain": "bdlimon063-creator.github.io",
-      "domain_defanged": "bdlimon063-creator[.]github[.]io",
-      "case_id": "PD-20260729-2ACC8E",
-      "analyzed_at": "2026-07-29T23:55:26.641Z",
+      "domain": "ing-ledgerx.pages.dev",
+      "domain_defanged": "ing-ledgerx[.]pages[.]dev",
+      "case_id": "PD-20260802-6C7CE2",
+      "analyzed_at": "2026-08-02T15:51:51.066Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fc32c-a4fa-767d-b96b-04002c02de82/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,20 +92,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "172.66.47.108",
         "ipinfo": null,
         "dns": {
-          "A": [
-            "185.199.108.153",
-            "185.199.111.153",
-            "185.199.109.153",
-            "185.199.110.153"
-          ],
           "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8003::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8001::153"
+            "2606:4700:310c::ac42:2c94",
+            "2606:4700:310c::ac42:2f6c"
+          ],
+          "A": [
+            "172.66.47.108",
+            "172.66.44.148"
+          ],
+          "NS": [
+            "alexia.ns.cloudflare.com.",
+            "maciej.ns.cloudflare.com."
           ]
         }
       },
@@ -209,11 +237,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bdlimon063-creator.github.io/facebook.com/)\"; flow:established,to_server; http.uri; content:\"/facebook.com/\"; startswith; fast_pattern; http.host; content:\"bdlimon063-creator.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012502; classtype:social-engineering; sid:6012502; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T23:55:23.786699+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ing-ledgerx.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ing-ledgerx.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012502; classtype:social-engineering; sid:6012502; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
+  "updated_at": "2026-08-02T15:51:43.605637+00:00",
   "probe": {
-    "dns": "185.199.110.153",
-    "whois": true,
+    "dns": "172.66.44.148",
+    "whois": null,
     "status": "active"
   }
 }
