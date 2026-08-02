@@ -49,26 +49,163 @@
     "phishdestroy": {
       "domain": "nooruz.net",
       "domain_defanged": "nooruz[.]net",
-      "case_id": "PD-20260731-5727A4",
-      "analyzed_at": "2026-07-31T08:53:30.913Z",
+      "case_id": "PD-20260801-5727A4",
+      "analyzed_at": "2026-08-01T00:15:10.358Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 12,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Abusix",
+              "category": "suspicious",
+              "result": "spam"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Google Safe Browsing",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019fb760-ed81-7270-8720-e8a9e845b52c.png",
           "url": "https://urlscan.io/result/019fb760-ed81-7270-8720-e8a9e845b52c/",
-          "pending": true
+          "title": "Briefly unavailable for scheduled maintenance"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Abusix",
+          "type": "spam",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Google Safe Browsing",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameSilo, LLC",
         "created": "2024-12-23T09:17:50Z",
         "expires": "2026-12-23T09:17:50Z",
-        "age_days": 584,
+        "age_days": 585,
         "nameservers": [
           "ALEXIA.NS.CLOUDFLARE.COM",
           "RYAN.NS.CLOUDFLARE.COM"
@@ -76,7 +213,14 @@
       },
       "infrastructure": {
         "ip": "141.147.151.127",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "141.147.151.127",
+          "city": "Osaka",
+          "region": "Osaka",
+          "country": "JP",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": {
           "A": [
             "141.147.151.127"
@@ -100,7 +244,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -228,7 +379,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nooruz.net/808/)\"; flow:established,to_server; http.uri; content:\"/808/\"; startswith; fast_pattern; http.host; content:\"nooruz.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001213; classtype:social-engineering; sid:6001213; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-07-31T17:36:50.817032+00:00",
+  "updated_at": "2026-08-01T11:05:09.545912+00:00",
   "probe": {
     "dns": "141.147.151.127",
     "whois": true,

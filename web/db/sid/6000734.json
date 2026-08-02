@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "docs-io-bridge-doc-pagee.pages.dev",
       "domain_defanged": "docs-io-bridge-doc-pagee[.]pages[.]dev",
-      "case_id": "PD-20260731-F70733",
-      "analyzed_at": "2026-07-31T08:57:33.691Z",
+      "case_id": "PD-20260801-F70733",
+      "analyzed_at": "2026-08-01T09:00:46.514Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fbc8d-eedb-76d4-9d02-ca896e3d43c9/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,16 +74,23 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.253",
-        "ipinfo": null,
+        "ip": "172.66.45.3",
+        "ipinfo": {
+          "ip": "172.66.45.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.66.46.253",
-            "172.66.45.3"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2efd",
             "2606:4700:310c::ac42:2d03"
+          ],
+          "A": [
+            "172.66.45.3",
+            "172.66.46.253"
           ],
           "NS": [
             "elliot.ns.cloudflare.com.",
@@ -89,7 +100,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -217,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (docs-io-bridge-doc-pagee.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"docs-io-bridge-doc-pagee.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000734; classtype:social-engineering; sid:6000734; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-07-31T17:20:16.501276+00:00",
+  "updated_at": "2026-08-01T10:36:39.459082+00:00",
   "probe": {
     "dns": "172.66.45.3",
     "whois": null,

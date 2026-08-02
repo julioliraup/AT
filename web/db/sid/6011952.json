@@ -18,25 +18,67 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://login.livecricketupdate.com/",
+      "domain": "login.livecricketupdate.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "104.21.3.235",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a23d002008674518-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "baf38748cf0ea82c4b70813a5c341eb0c4e662931397497aa47036a1e3e9b19a",
+      "md5": "0513aa3cfc1cbf7529ca625acaa6bd34",
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-07-31T13:37:40",
+      "first_seen_secs": 1785505060.0
+    },
     "phishdestroy": {
       "domain": "login.livecricketupdate.com",
       "domain_defanged": "login[.]livecricketupdate[.]com",
-      "case_id": "PD-20260801-390719",
-      "analyzed_at": "2026-08-01T09:20:45.463Z",
+      "case_id": "PD-20260802-390719",
+      "analyzed_at": "2026-08-02T01:51:01.930Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbca0-3a6f-70b9-a22a-0a24016064fc.png",
           "url": "https://urlscan.io/result/019fbca0-3a6f-70b9-a22a-0a24016064fc/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -51,13 +93,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.67.131.83",
-            "104.21.3.235"
-          ],
           "AAAA": [
             "2606:4700:3037::6815:3eb",
             "2606:4700:3032::ac43:8353"
+          ],
+          "A": [
+            "172.67.131.83",
+            "104.21.3.235"
           ]
         }
       },
@@ -197,9 +239,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (login.livecricketupdate.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"login.livecricketupdate.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011952; classtype:social-engineering; sid:6011952; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:20:33.315433+00:00",
+  "updated_at": "2026-08-02T01:50:59.704233+00:00",
   "probe": {
-    "dns": "172.67.131.83",
+    "dns": "104.21.3.235",
     "whois": null,
     "status": "active"
   }

@@ -49,26 +49,95 @@
     "phishdestroy": {
       "domain": "studyseed.net",
       "domain_defanged": "studyseed[.]net",
-      "case_id": "PD-20260731-69D6F5",
-      "analyzed_at": "2026-07-31T23:39:50.243Z",
+      "case_id": "PD-20260802-69D6F5",
+      "analyzed_at": "2026-08-02T00:59:10.270Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Bfore.Ai PreCrime",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019fba8c-6144-7443-8fd9-e563e155e971.png",
           "url": "https://urlscan.io/result/019fba8c-6144-7443-8fd9-e563e155e971/",
-          "pending": true
+          "title": "Briefly unavailable for scheduled maintenance"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Bfore.Ai PreCrime",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2025-08-22T12:52:16Z",
         "expires": "2026-08-22T12:52:16Z",
-        "age_days": 343,
+        "age_days": 344,
         "nameservers": [
           "DIANA.NS.CLOUDFLARE.COM",
           "JAZIEL.NS.CLOUDFLARE.COM"
@@ -76,11 +145,18 @@
       },
       "infrastructure": {
         "ip": "104.21.60.108",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.60.108",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3033::6815:3c6c",
-            "2606:4700:3033::ac43:c3e2"
+            "2606:4700:3033::ac43:c3e2",
+            "2606:4700:3033::6815:3c6c"
           ],
           "A": [
             "104.21.60.108",
@@ -101,7 +177,14 @@
           "method": "form",
           "iana_ids": "1509"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -224,14 +307,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.studyseed.net/wp-content/uploads/grok)\"; flow:established,to_server; http.uri; content:\"/wp-content/uploads/grok\"; startswith; fast_pattern; http.host; content:\"www.studyseed.net\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6011277; classtype:social-engineering; sid:6011277; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T08:28:54.206777+00:00",
+  "updated_at": "2026-08-02T00:59:04.055737+00:00",
   "probe": {
-    "dns": "172.67.195.226",
+    "dns": "104.21.60.108",
     "whois": null,
     "status": "active"
   }

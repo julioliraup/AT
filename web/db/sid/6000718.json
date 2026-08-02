@@ -77,41 +77,69 @@
     "phishdestroy": {
       "domain": "nupurchoudhary21.github.io",
       "domain_defanged": "nupurchoudhary21[.]github[.]io",
-      "case_id": "PD-20260731-61C7EE",
-      "analyzed_at": "2026-07-31T08:56:06.713Z",
+      "case_id": "PD-20260801-61C7EE",
+      "analyzed_at": "2026-08-01T04:54:04.569Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb3fa-2cb8-7467-a18c-db2e8b87fe73.png",
+          "url": "https://urlscan.io/result/019fb3fa-2cb8-7467-a18c-db2e8b87fe73/",
+          "title": "Netflix India- Watch TV Shows Online,Watch Movies Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ip": "185.199.111.153",
+        "ipinfo": {
+          "ip": "185.199.111.153",
+          "hostname": "cdn-185-199-111-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
+          "AAAA": [
+            "2606:50c0:8003::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8000::153"
+          ],
           "A": [
-            "185.199.108.153",
+            "185.199.111.153",
             "185.199.110.153",
             "185.199.109.153",
-            "185.199.111.153"
-          ],
-          "AAAA": [
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8000::153",
-            "2606:50c0:8003::153"
+            "185.199.108.153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -239,7 +267,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nupurchoudhary21.github.io/netflix-website-clone/)\"; flow:established,to_server; http.uri; content:\"/netflix-website-clone/\"; startswith; fast_pattern; http.host; content:\"nupurchoudhary21.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000718; classtype:social-engineering; sid:6000718; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-07-31T17:19:45.335694+00:00",
+  "updated_at": "2026-08-01T10:35:42.938836+00:00",
   "probe": {
     "dns": "185.199.109.153",
     "whois": true,

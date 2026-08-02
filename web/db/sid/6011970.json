@@ -49,21 +49,31 @@
     "phishdestroy": {
       "domain": "alldbgdhhdhhdhhhchhchdhdm-dp9hzij3r3mr.edgeone.dev",
       "domain_defanged": "alldbgdhhdhhdhhhchhchdhdm-dp9hzij3r3mr[.]edgeone[.]dev",
-      "case_id": "PD-20260801-41D65A",
-      "analyzed_at": "2026-08-01T09:23:43.420Z",
+      "case_id": "PD-20260802-41D65A",
+      "analyzed_at": "2026-08-02T01:52:20.126Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbca2-f196-72f9-bff2-918c77116565.png",
           "url": "https://urlscan.io/result/019fbca2-f196-72f9-bff2-918c77116565/",
-          "pending": true
+          "title": "Account Verification"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,13 +81,13 @@
         "ip": "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
         "ipinfo": null,
         "dns": {
-          "A": [
-            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
-            "43.174.246.29",
-            "43.174.247.29"
-          ],
           "AAAA": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
+          ],
+          "A": [
+            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
+            "43.174.247.29",
+            "43.174.246.29"
           ],
           "CNAME": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
@@ -86,7 +96,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -213,9 +230,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (alldbgdhhdhhdhhhchhchdhdm-dp9hzij3r3mr.edgeone.dev/ALL-DOMAIN-PAGE007.html)\"; flow:established,to_server; http.uri; content:\"/ALL-DOMAIN-PAGE007.html\"; startswith; fast_pattern; http.host; content:\"alldbgdhhdhhdhhhchhchdhdm-dp9hzij3r3mr.edgeone.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011970; classtype:social-engineering; sid:6011970; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:23:40.198172+00:00",
+  "updated_at": "2026-08-02T01:52:16.776159+00:00",
   "probe": {
-    "dns": "43.174.247.29",
+    "dns": "43.174.246.29",
     "whois": null,
     "status": "active"
   }

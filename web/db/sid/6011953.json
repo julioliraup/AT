@@ -18,32 +18,74 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://green-awx.pages.dev/",
+      "domain": "green-awx.pages.dev",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.66.47.18",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a23d001e6ae01319-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "bf528d5bd3621d9242fd63656da5d6e7de7883f7f14879fa6d8f41d86dc3303b",
+      "md5": "616828c91a21c439ae11873aa2f67d0b",
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-07-31T13:37:40",
+      "first_seen_secs": 1785505060.0
+    },
     "phishdestroy": {
       "domain": "green-awx.pages.dev",
       "domain_defanged": "green-awx[.]pages[.]dev",
-      "case_id": "PD-20260801-43A18D",
-      "analyzed_at": "2026-08-01T09:20:53.164Z",
+      "case_id": "PD-20260802-43A18D",
+      "analyzed_at": "2026-08-02T01:51:04.818Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbca0-587b-711f-ac44-ccbee704b8f5.png",
           "url": "https://urlscan.io/result/019fbca0-587b-711f-ac44-ccbee704b8f5/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.18",
+        "ip": "172.66.44.238",
         "ipinfo": {
-          "ip": "172.66.47.18",
+          "ip": "172.66.44.238",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -52,12 +94,12 @@
         },
         "dns": {
           "A": [
-            "172.66.47.18",
-            "172.66.44.238"
+            "172.66.44.238",
+            "172.66.47.18"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f12",
-            "2606:4700:310c::ac42:2cee"
+            "2606:4700:310c::ac42:2cee",
+            "2606:4700:310c::ac42:2f12"
           ],
           "NS": [
             "leonard.ns.cloudflare.com.",
@@ -201,7 +243,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (green-awx.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"green-awx.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011953; classtype:social-engineering; sid:6011953; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:20:45.505050+00:00",
+  "updated_at": "2026-08-02T01:51:02.058381+00:00",
   "probe": {
     "dns": "172.66.47.18",
     "whois": null,

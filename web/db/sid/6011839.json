@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "flixorbit-login.netlify.app",
       "domain_defanged": "flixorbit-login[.]netlify[.]app",
-      "case_id": "PD-20260801-1FC69A",
-      "analyzed_at": "2026-08-01T09:06:03.013Z",
+      "case_id": "PD-20260802-1FC69A",
+      "analyzed_at": "2026-08-02T01:42:10.389Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbc92-c366-770e-90b9-ab319a13a79b.png",
           "url": "https://urlscan.io/result/019fbc92-c366-770e-90b9-ab319a13a79b/",
-          "pending": true
+          "title": "Netflix"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -229,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (flixorbit-login.netlify.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"flixorbit-login.netlify.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011839; classtype:social-engineering; sid:6011839; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:06:01.068777+00:00",
+  "updated_at": "2026-08-02T01:42:08.347744+00:00",
   "probe": {
     "dns": "13.52.188.95",
     "whois": null,

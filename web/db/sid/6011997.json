@@ -1,8 +1,8 @@
 {
   "sid": 6011997,
-  "url_path": "/den.html",
-  "url_base": "hearingassociates.s3.nl-ams.scw.cloud",
-  "msg": "AT related malicious URL (hearingassociates.s3.nl-ams.scw.cloud/den.html)",
+  "url_path": "/",
+  "url_base": "www.whaia.webcindario.com",
+  "msg": "AT related malicious URL (www.whaia.webcindario.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,15 +19,15 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://hearingassociates.s3.nl-ams.scw.cloud/den.html",
-      "domain": "hearingassociates.s3.nl-ams.scw.cloud",
-      "url_count": 0,
+      "url": "http://www.whaia.webcindario.com/",
+      "domain": "www.whaia.webcindario.com",
+      "url_count": 1,
       "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
-      "tlp": null,
+      "tlp": "WHITE",
       "ip": null,
-      "http_code": null,
+      "http_code": 0,
       "http_response": null,
       "city": null,
       "region": null,
@@ -43,60 +43,71 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
+      "first_seen": "2026-08-01T02:00:15",
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "hearingassociates.s3.nl-ams.scw.cloud",
-      "domain_defanged": "hearingassociates[.]s3[.]nl-ams[.]scw[.]cloud",
-      "case_id": "PD-20260729-795637",
-      "analyzed_at": "2026-07-29T23:10:29.290Z",
+      "domain": "whaia.webcindario.com",
+      "domain_defanged": "whaia[.]webcindario[.]com",
+      "case_id": "PD-20260802-5C7A7C",
+      "analyzed_at": "2026-08-02T01:53:40.904Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbd0a-7330-72bc-bd5a-76586228f9fd.png",
+          "url": "https://urlscan.io/result/019fbd0a-7330-72bc-bd5a-76586228f9fd/",
+          "title": "Iniciar sesión en tu cuenta Microsoft"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "s3.nl-ams.scw.cloud.",
+        "ip": "server.webcindario.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "s3.nl-ams.scw.cloud."
-          ],
-          "CNAME": [
-            "s3.nl-ams.scw.cloud."
-          ],
           "AAAA": [
-            "s3.nl-ams.scw.cloud.",
-            "2001:bc8:1410::2",
-            "2001:bc8:1410::",
-            "2001:bc8:1410::1"
-          ],
-          "NS": [
-            "s3.nl-ams.scw.cloud.",
-            "nsele2.online.net.",
-            "ns0.online.net.",
-            "ns1.online.net.",
-            "nsele1.online.net."
+            "server.webcindario.com."
           ],
           "A": [
-            "s3.nl-ams.scw.cloud.",
-            "51.158.211.1",
-            "51.158.211.0",
-            "51.158.211.2"
+            "server.webcindario.com.",
+            "5.57.226.202"
+          ],
+          "MX": [
+            "server.webcindario.com."
+          ],
+          "CNAME": [
+            "server.webcindario.com."
+          ],
+          "NS": [
+            "server.webcindario.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ABANSYS_AND_HOSTYTEC-AS",
+          "abuse": "abuse@abansysandhostytec.com",
+          "url": "mailto:abuse@abansysandhostytec.com",
+          "logo": "https://i.ibb.co/Nn7t7bhZ/pr-ABANSYS-AND-HOSTYTEC-AS.png",
+          "method": "email",
+          "asn": "AS29119"
+        }
       },
       "report_services": [
         {
@@ -222,11 +233,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hearingassociates.s3.nl-ams.scw.cloud/den.html)\"; flow:established,to_server; http.uri; content:\"/den.html\"; startswith; fast_pattern; http.host; content:\"hearingassociates.s3.nl-ams.scw.cloud\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011997; classtype:social-engineering; sid:6011997; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-29T23:10:20.646471+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.whaia.webcindario.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.whaia.webcindario.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011997; classtype:social-engineering; sid:6011997; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
+  "updated_at": "2026-08-02T01:53:37.298521+00:00",
   "probe": {
-    "dns": "51.158.211.0",
-    "whois": true,
+    "dns": "5.57.226.202",
+    "whois": null,
     "status": "active"
   }
 }

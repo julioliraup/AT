@@ -55,11 +55,11 @@
     "phishdestroy": {
       "domain": "ghotkshop.com",
       "domain_defanged": "ghotkshop[.]com",
-      "case_id": "PD-20260731-3B47D0",
-      "analyzed_at": "2026-07-31T01:37:45.895Z",
+      "case_id": "PD-20260801-3B47D0",
+      "analyzed_at": "2026-08-01T03:51:56.050Z",
       "intel": {
         "virustotal": {
-          "malicious": 20,
+          "malicious": 21,
           "suspicious": 2,
           "total": 91,
           "detections": [
@@ -154,6 +154,11 @@
               "result": "malicious"
             },
             {
+              "engine": "Seclookup",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
               "engine": "SOCRadar",
               "category": "malicious",
               "result": "phishing"
@@ -174,7 +179,12 @@
               "result": "malicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "Forcepoint ThreatSeeker": "phishing and other frauds",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "alphaMountain.ai": "Phishing, Spam (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": true,
@@ -278,6 +288,11 @@
           "severity": "high"
         },
         {
+          "source": "VT: Seclookup",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
           "source": "VT: SOCRadar",
           "type": "phishing",
           "severity": "high"
@@ -307,16 +322,16 @@
         "registrar": "Web Commerce Communications Limited dba WebNic.cc",
         "created": "2026-03-27T07:49:17Z",
         "expires": "2027-03-27T07:49:17Z",
-        "age_days": 125,
+        "age_days": 126,
         "nameservers": [
           "AMANDA.NS.CLOUDFLARE.COM",
           "MICAH.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.180.92",
+        "ip": "104.21.18.41",
         "ipinfo": {
-          "ip": "172.67.180.92",
+          "ip": "104.21.18.41",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -325,12 +340,12 @@
         },
         "dns": {
           "A": [
-            "172.67.180.92",
-            "104.21.18.41"
+            "104.21.18.41",
+            "172.67.180.92"
           ],
           "AAAA": [
-            "2606:4700:3031::6815:1229",
-            "2606:4700:3036::ac43:b45c"
+            "2606:4700:3036::ac43:b45c",
+            "2606:4700:3031::6815:1229"
           ],
           "NS": [
             "amanda.ns.cloudflare.com.",
@@ -482,7 +497,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ghotkshop.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ghotkshop.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6001637; classtype:social-engineering; sid:6001637; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-07-31T17:53:26.841932+00:00",
+  "updated_at": "2026-08-01T11:38:54.126365+00:00",
   "probe": {
     "dns": "104.21.18.41",
     "whois": null,

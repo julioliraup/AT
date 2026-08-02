@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "docu-signtrust-fd9xk.ondigitalocean.app",
       "domain_defanged": "docu-signtrust-fd9xk[.]ondigitalocean[.]app",
-      "case_id": "PD-20260801-7EACCB",
-      "analyzed_at": "2026-08-01T09:07:57.244Z",
+      "case_id": "PD-20260802-7EACCB",
+      "analyzed_at": "2026-08-02T01:44:17.493Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DocuSign"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbc94-819c-73e7-8eba-fba750dc71c5.png",
           "url": "https://urlscan.io/result/019fbc94-819c-73e7-8eba-fba750dc71c5/",
-          "pending": true
+          "title": "Document - IOF"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DocuSign",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "162.159.140.98",
+        "ip": "172.66.0.96",
         "ipinfo": {
-          "ip": "162.159.140.98",
+          "ip": "172.66.0.96",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,12 +88,12 @@
         },
         "dns": {
           "A": [
-            "162.159.140.98",
-            "172.66.0.96"
+            "172.66.0.96",
+            "162.159.140.98"
           ],
           "AAAA": [
-            "2a06:98c1:58::60",
-            "2606:4700:7::60"
+            "2606:4700:7::60",
+            "2a06:98c1:58::60"
           ]
         }
       },
@@ -224,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (docu-signtrust-fd9xk.ondigitalocean.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"docu-signtrust-fd9xk.ondigitalocean.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011867; classtype:social-engineering; sid:6011867; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:07:54.833981+00:00",
+  "updated_at": "2026-08-02T01:44:15.013725+00:00",
   "probe": {
     "dns": "162.159.140.98",
     "whois": null,

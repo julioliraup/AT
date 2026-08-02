@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "eu-facebook.blogspot.com",
       "domain_defanged": "eu-facebook[.]blogspot[.]com",
-      "case_id": "PD-20260801-543686",
-      "analyzed_at": "2026-08-01T09:13:51.228Z",
+      "case_id": "PD-20260802-543686",
+      "analyzed_at": "2026-08-02T01:48:04.190Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fbc99-e844-71af-83ff-cf04ee6b200f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbd19-6601-737e-9c45-82bfc06bf3f5.png",
+          "url": "https://urlscan.io/result/019fbd19-6601-737e-9c45-82bfc06bf3f5/",
+          "title": "Facebook"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -77,16 +86,16 @@
         "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4004:813::2001"
-          ],
           "A": [
             "blogspot.l.googleusercontent.com.",
-            "142.251.132.33"
+            "142.250.219.33"
           ],
           "MX": [
             "blogspot.l.googleusercontent.com."
+          ],
+          "AAAA": [
+            "blogspot.l.googleusercontent.com.",
+            "2800:3f0:4004:813::2001"
           ],
           "CNAME": [
             "blogspot.l.googleusercontent.com."
@@ -98,7 +107,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -225,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (eu-facebook.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"eu-facebook.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011913; classtype:social-engineering; sid:6011913; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:13:48.934350+00:00",
+  "updated_at": "2026-08-02T01:48:00.943794+00:00",
   "probe": {
     "dns": "142.250.69.161",
     "whois": null,

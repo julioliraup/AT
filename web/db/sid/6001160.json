@@ -55,33 +55,50 @@
     "phishdestroy": {
       "domain": "com-legr-desktop.wasmer.app",
       "domain_defanged": "com-legr-desktop[.]wasmer[.]app",
-      "case_id": "PD-20260731-4AFD1E",
-      "analyzed_at": "2026-07-31T09:02:50.801Z",
+      "case_id": "PD-20260801-4AFD1E",
+      "analyzed_at": "2026-08-01T04:55:34.817Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fb769-7888-7532-996e-d4274d5b6c7b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb925-da50-730e-8414-733315aa7001.png",
+          "url": "https://urlscan.io/result/019fb925-da50-730e-8414-733315aa7001/",
+          "title": "Ledger® Live: Desktop® — Getting Started | Secure Crypto Management"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "5.161.22.175",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "5.161.22.175",
+          "hostname": "static.175.22.161.5.clients.your-server.de",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS213230 Hetzner Online GmbH",
+          "asn": "AS213230"
+        },
         "dns": {
-          "A": [
-            "5.161.22.175"
-          ],
           "AAAA": [
             "2a01:4ff:f2:2004::1"
+          ],
+          "A": [
+            "5.161.22.175"
           ],
           "NS": [
             "alpha.ns.wasmernet.com.",
@@ -219,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (com-legr-desktop.wasmer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"com-legr-desktop.wasmer.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001160; classtype:social-engineering; sid:6001160; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-07-31T17:35:21.392611+00:00",
+  "updated_at": "2026-08-01T11:02:08.521076+00:00",
   "probe": {
     "dns": "5.78.28.109",
     "whois": null,

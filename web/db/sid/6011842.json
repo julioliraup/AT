@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "csca-cmdhe6e9atfjd5ah.z03.azurefd.net",
       "domain_defanged": "csca-cmdhe6e9atfjd5ah[.]z03[.]azurefd[.]net",
-      "case_id": "PD-20260801-45A647",
-      "analyzed_at": "2026-08-01T09:06:12.787Z",
+      "case_id": "PD-20260802-45A647",
+      "analyzed_at": "2026-08-02T01:42:32.531Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Tech Support Scam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbc92-e995-7089-ac9e-a65c3514ac68.png",
           "url": "https://urlscan.io/result/019fbc92-e995-7089-ac9e-a65c3514ac68/",
-          "pending": true
+          "title": "In-Service Apps"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Tech Support Scam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,14 +88,14 @@
         "dns": {
           "A": [
             "mr-z03.tm-azurefd.net.",
-            "150.171.110.41"
+            "150.171.110.38"
           ],
           "MX": [
             "mr-z03.tm-azurefd.net."
           ],
           "AAAA": [
             "mr-z03.tm-azurefd.net.",
-            "2603:1061:14:128::1"
+            "2603:1061:14:125::1"
           ],
           "CNAME": [
             "mr-z03.tm-azurefd.net."
@@ -98,7 +107,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -225,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (csca-cmdhe6e9atfjd5ah.z03.azurefd.net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"csca-cmdhe6e9atfjd5ah.z03.azurefd.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011842; classtype:social-engineering; sid:6011842; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:06:09.974279+00:00",
+  "updated_at": "2026-08-02T01:42:29.849122+00:00",
   "probe": {
     "dns": "13.107.226.70",
     "whois": null,

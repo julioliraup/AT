@@ -18,25 +18,61 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://sp5ct-fureq-biz8-vamek-horin.pages.dev/",
+      "domain": "sp5ct-fureq-biz8-vamek-horin.pages.dev",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "sp5ct-fureq-biz8-vamek-horin.pages.dev",
       "domain_defanged": "sp5ct-fureq-biz8-vamek-horin[.]pages[.]dev",
-      "case_id": "PD-20260801-62637D",
-      "analyzed_at": "2026-08-01T09:21:15.337Z",
+      "case_id": "PD-20260802-62637D",
+      "analyzed_at": "2026-08-02T01:51:21.879Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbca0-af23-72ba-b7c8-4a5db30a73ad.png",
           "url": "https://urlscan.io/result/019fbca0-af23-72ba-b7c8-4a5db30a73ad/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -51,13 +87,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2f1a",
-            "2606:4700:310c::ac42:2ce6"
-          ],
           "A": [
             "172.66.44.230",
             "172.66.47.26"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2ce6",
+            "2606:4700:310c::ac42:2f1a"
           ],
           "NS": [
             "kai.ns.cloudflare.com.",
@@ -201,9 +237,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct-fureq-biz8-vamek-horin.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct-fureq-biz8-vamek-horin.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011956; classtype:social-engineering; sid:6011956; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:21:11.623948+00:00",
+  "updated_at": "2026-08-02T01:51:18.135106+00:00",
   "probe": {
-    "dns": "172.66.44.230",
+    "dns": "172.66.47.26",
     "whois": null,
     "status": "active"
   }

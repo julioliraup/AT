@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "team-task-hub--kinnyb.replit.app",
       "domain_defanged": "team-task-hub--kinnyb[.]replit[.]app",
-      "case_id": "PD-20260801-723F2D",
-      "analyzed_at": "2026-08-01T09:06:50.909Z",
+      "case_id": "PD-20260802-723F2D",
+      "analyzed_at": "2026-08-02T01:43:07.724Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbc93-7e81-73f6-828b-6e37984195c7.png",
           "url": "https://urlscan.io/result/019fbc93-7e81-73f6-828b-6e37984195c7/",
-          "pending": true
+          "title": "Email Update"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -220,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (team-task-hub--kinnyb.replit.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"team-task-hub--kinnyb.replit.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011853; classtype:social-engineering; sid:6011853; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:06:48.375450+00:00",
+  "updated_at": "2026-08-02T01:43:05.588102+00:00",
   "probe": {
     "dns": "34.117.33.233",
     "whois": null,

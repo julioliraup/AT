@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "wjnhf16m-blpqr82zfnr-3e9a-lxp51k.pages.dev",
       "domain_defanged": "wjnhf16m-blpqr82zfnr-3e9a-lxp51k[.]pages[.]dev",
-      "case_id": "PD-20260731-258789",
-      "analyzed_at": "2026-07-31T08:57:27.507Z",
+      "case_id": "PD-20260801-258789",
+      "analyzed_at": "2026-08-01T08:59:28.488Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fbc8c-be48-77f9-8a85-6916dd232e99/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,15 +75,22 @@
       },
       "infrastructure": {
         "ip": "172.66.44.250",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.44.250",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2f06",
+            "2606:4700:310c::ac42:2cfa"
+          ],
           "A": [
             "172.66.44.250",
             "172.66.47.6"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2cfa",
-            "2606:4700:310c::ac42:2f06"
           ],
           "NS": [
             "paul.ns.cloudflare.com.",
@@ -89,7 +100,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -217,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wjnhf16m-blpqr82zfnr-3e9a-lxp51k.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"wjnhf16m-blpqr82zfnr-3e9a-lxp51k.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005670; classtype:social-engineering; sid:6005670; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-01T00:17:00.934881+00:00",
+  "updated_at": "2026-08-01T18:24:12.366680+00:00",
   "probe": {
     "dns": "172.66.44.250",
     "whois": null,

@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "postnlpakketten.beepleapp.eu",
       "domain_defanged": "postnlpakketten[.]beepleapp[.]eu",
-      "case_id": "PD-20260731-1912B5",
-      "analyzed_at": "2026-07-31T05:52:17.753Z",
+      "case_id": "PD-20260801-1912B5",
+      "analyzed_at": "2026-08-01T16:25:33.217Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fbe25-23fb-7779-bebb-cba8af9f533c/",
+          "pending": true
         }
       },
       "detections": [],
@@ -90,20 +94,20 @@
         "ip": "eu-west-3.beepleapp.eu.",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "eu-west-3.beepleapp.eu.",
+            "52.212.36.67"
+          ],
           "AAAA": [
             "eu-west-3.beepleapp.eu."
           ],
           "MX": [
             "eu-west-3.beepleapp.eu."
           ],
-          "NS": [
+          "CNAME": [
             "eu-west-3.beepleapp.eu."
           ],
-          "A": [
-            "eu-west-3.beepleapp.eu.",
-            "52.212.36.67"
-          ],
-          "CNAME": [
+          "NS": [
             "eu-west-3.beepleapp.eu."
           ]
         }
@@ -233,12 +237,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (postnlpakketten.beepleapp.eu/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"postnlpakketten.beepleapp.eu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003407; classtype:social-engineering; sid:6003407; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T20:00:39.712630+00:00",
+  "updated_at": "2026-08-01T16:25:30.601347+00:00",
   "probe": {
     "dns": "52.212.36.67",
     "whois": true,

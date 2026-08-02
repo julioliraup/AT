@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "api.allegrostatus.pl",
       "domain_defanged": "api[.]allegrostatus[.]pl",
-      "case_id": "PD-20260731-7814E3",
-      "analyzed_at": "2026-07-31T09:05:05.597Z",
+      "case_id": "PD-20260801-7814E3",
+      "analyzed_at": "2026-08-01T05:05:55.311Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Allegro"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb76b-871a-72da-92f8-5704e6d7e4d2.png",
           "url": "https://urlscan.io/result/019fb76b-871a-72da-92f8-5704e6d7e4d2/",
-          "pending": true
+          "title": "Allegro Rest API Status Page"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Allegro",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,9 +80,13 @@
         "ip": "ff5f6a7f.sorryapp.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
+          "AAAA": [
             "ff5f6a7f.sorryapp.com.",
-            "dualstack.n.sni.global.fastly.net."
+            "dualstack.n.sni.global.fastly.net.",
+            "2a04:4e42::347",
+            "2a04:4e42:200::347",
+            "2a04:4e42:400::347",
+            "2a04:4e42:600::347"
           ],
           "A": [
             "ff5f6a7f.sorryapp.com.",
@@ -83,16 +96,12 @@
             "151.101.129.91",
             "151.101.193.91"
           ],
-          "AAAA": [
-            "ff5f6a7f.sorryapp.com.",
-            "dualstack.n.sni.global.fastly.net.",
-            "2a04:4e42::347",
-            "2a04:4e42:200::347",
-            "2a04:4e42:400::347",
-            "2a04:4e42:600::347"
-          ],
           "CNAME": [
             "ff5f6a7f.sorryapp.com."
+          ],
+          "MX": [
+            "ff5f6a7f.sorryapp.com.",
+            "dualstack.n.sni.global.fastly.net."
           ],
           "NS": [
             "ff5f6a7f.sorryapp.com.",
@@ -102,7 +111,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -230,7 +246,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (api.allegrostatus.pl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"api.allegrostatus.pl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001264; classtype:social-engineering; sid:6001264; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-07-31T17:38:14.191697+00:00",
+  "updated_at": "2026-08-01T11:07:28.547375+00:00",
   "probe": {
     "dns": "146.75.5.91",
     "whois": true,

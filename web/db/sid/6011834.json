@@ -18,64 +18,60 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.hinet.antoinesrestaurants.com/",
-      "domain": "www.hinet.antoinesrestaurants.com",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "89.127.235.159",
-      "http_code": 200,
-      "http_response": {
-        "server": "LiteSpeed",
-        "content_type": "text/html",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (57304), with CRLF line terminators",
-      "sha256": "7c1280d55bd27b0ebfd92dcdac024f5b01157f5baa17fcb34c4e2b33b82bc255",
-      "md5": "b18ced33900519bd9bcf16faa43858d3",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-07-31T13:37:40",
-      "first_seen_secs": 1785505060.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "hinet.antoinesrestaurants.com",
       "domain_defanged": "hinet[.]antoinesrestaurants[.]com",
-      "case_id": "PD-20260801-245973",
-      "analyzed_at": "2026-08-01T09:05:47.930Z",
+      "case_id": "PD-20260802-245973",
+      "analyzed_at": "2026-08-02T01:41:47.518Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Chunghwa Telecom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb844-0696-7369-b526-55226d3f2531.png",
+          "url": "https://urlscan.io/result/019fb844-0696-7369-b526-55226d3f2531/",
+          "title": "HiNet 網頁郵件服務"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Chunghwa Telecom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "89.127.235.159",
+        "ipinfo": {
+          "ip": "89.127.235.159",
+          "hostname": "89.127.235.159.1984.is",
+          "city": "Reykjavík",
+          "region": "Capital Region",
+          "country": "IS",
+          "org": "AS44925 1984 ehf",
+          "asn": "AS44925"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "THE-1984-AS",
+          "abuse": "abuse@1984.is",
+          "url": "mailto:abuse@1984.is",
+          "logo": "https://i.ibb.co/zTqfRnB5/pr-THE-1984-AS.png",
+          "method": "email",
+          "asn": "AS44925"
+        }
       },
       "report_services": [
         {
@@ -202,10 +198,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.hinet.antoinesrestaurants.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.hinet.antoinesrestaurants.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011834; classtype:social-engineering; sid:6011834; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:05:46.423845+00:00",
+  "updated_at": "2026-08-02T01:41:44.792109+00:00",
   "probe": {
-    "dns": "89.127.235.159",
-    "whois": null,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

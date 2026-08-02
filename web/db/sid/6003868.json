@@ -73,27 +73,43 @@
     "phishdestroy": {
       "domain": "metameaslogiz.gitbook.io",
       "domain_defanged": "metameaslogiz[.]gitbook[.]io",
-      "case_id": "PD-20260731-37670F",
-      "analyzed_at": "2026-07-31T06:16:19.223Z",
+      "case_id": "PD-20260801-37670F",
+      "analyzed_at": "2026-08-01T06:09:16.555Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Metamask"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb6d1-027d-71f4-8419-06face182da7.png",
           "url": "https://urlscan.io/result/019fb6d1-027d-71f4-8419-06face182da7/",
-          "pending": true
+          "title": "𝗠𝗲𝘁å𝗺å𝘀𝗸 𝗟𝗼𝗴𝗶𝗻 - Sign In - us - us"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Metamask",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.18.40.47",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.40.47",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.18.40.47",
@@ -107,7 +123,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -235,7 +258,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (metameaslogiz.gitbook.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"metameaslogiz.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003868; classtype:social-engineering; sid:6003868; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-31T20:46:27.728951+00:00",
+  "updated_at": "2026-08-01T16:54:07.920204+00:00",
   "probe": {
     "dns": "104.18.40.47",
     "whois": true,

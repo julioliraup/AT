@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "ing-gray.vercel.app",
       "domain_defanged": "ing-gray[.]vercel[.]app",
-      "case_id": "PD-20260801-11278A",
-      "analyzed_at": "2026-08-01T09:08:20.610Z",
+      "case_id": "PD-20260802-11278A",
+      "analyzed_at": "2026-08-02T01:45:00.880Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fbc94-dce2-75e3-85c9-517523b8f59d/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "ING Group"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbf91-9c1f-75df-b12c-094ecd9d60a6.png",
+          "url": "https://urlscan.io/result/019fbf91-9c1f-75df-b12c-094ecd9d60a6/",
+          "title": "ING - Acceso clientes"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: ING Group",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.194",
+        "ip": "216.198.79.66",
         "ipinfo": {
-          "ip": "216.198.79.194",
+          "ip": "216.198.79.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -79,8 +88,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.194",
-            "64.29.17.194"
+            "216.198.79.66",
+            "64.29.17.66"
           ]
         }
       },
@@ -220,9 +229,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ing-gray.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ing-gray.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011873; classtype:social-engineering; sid:6011873; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:08:18.694991+00:00",
+  "updated_at": "2026-08-02T01:44:57.921131+00:00",
   "probe": {
-    "dns": "216.198.79.194",
+    "dns": "64.29.17.130",
     "whois": null,
     "status": "active"
   }

@@ -49,34 +49,62 @@
     "phishdestroy": {
       "domain": "steamcommunnitu.com",
       "domain_defanged": "steamcommunnitu[.]com",
-      "case_id": "PD-20260801-106C1E",
-      "analyzed_at": "2026-08-01T09:08:46.663Z",
+      "case_id": "PD-20260802-106C1E",
+      "analyzed_at": "2026-08-02T01:45:13.350Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb5b3-3687-714b-b0c5-e03db6a42849.png",
+          "url": "https://urlscan.io/result/019fb5b3-3687-714b-b0c5-e03db6a42849/",
+          "title": "12 лет mirage! Получи своего агента"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Hello Internet Corp",
         "created": "2026-02-19T18:32:31Z",
         "expires": "2027-02-19T18:32:31Z",
-        "age_days": 162,
+        "age_days": 163,
         "nameservers": [
           "DORA.NS.CLOUDFLARE.COM",
           "LEE.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -203,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (steamcommunnitu.com/agent/mirage)\"; flow:established,to_server; http.uri; content:\"/agent/mirage\"; startswith; fast_pattern; http.host; content:\"steamcommunnitu.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011875; classtype:social-engineering; sid:6011875; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-01T09:08:33.444933+00:00",
+  "updated_at": "2026-08-02T01:45:03.860866+00:00",
   "probe": {
     "dns": false,
     "whois": false,
