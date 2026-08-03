@@ -55,43 +55,92 @@
     "phishdestroy": {
       "domain": "u.to",
       "domain_defanged": "u[.]to",
-      "case_id": "PD-20260801-35EA94",
-      "analyzed_at": "2026-08-01T21:37:35.861Z",
+      "case_id": "PD-20260803-35EA94",
+      "analyzed_at": "2026-08-03T01:59:22.203Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fbf42-d1c3-742b-99d2-6b5c10a86a07/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc535-4c47-7045-92d3-73d07188beb7.png",
+          "url": "https://urlscan.io/result/019fc535-4c47-7045-92d3-73d07188beb7/",
+          "title": "pluxxxxxxsyy - Roblox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "186.2.165.57",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "186.2.165.57",
+          "hostname": "ddos-guard.net",
+          "city": "Dubai",
+          "region": "Dubai",
+          "country": "AE",
+          "org": "AS59692 IQWeb FZ-LLC",
+          "asn": "AS59692"
+        },
         "dns": {
           "A": [
             "186.2.165.57"
           ],
-          "NS": [
-            "ns2.ucoz.net.",
-            "ns3.ucoz.net."
-          ],
           "MX": [
             "1 mx100.ucozmail.com."
+          ],
+          "NS": [
+            "ns3.ucoz.net.",
+            "ns2.ucoz.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "IQWEB",
+          "abuse": "abuse@iqweb.io",
+          "url": "mailto:abuse@iqweb.io",
+          "logo": "https://i.ibb.co/Dg1znLQw/pr-IQWEB.png",
+          "method": "email",
+          "asn": "AS59692"
+        }
       },
       "report_services": [
         {
@@ -214,12 +263,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (u.to/roblox-com-users-350357745-profile/oc_YIg)\"; flow:established,to_server; http.uri; content:\"/roblox-com-users-350357745-profile/oc_YIg\"; startswith; fast_pattern; http.host; content:\"u.to\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6008326; classtype:social-engineering; sid:6008326; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T11:46:36.817760+00:00",
+  "updated_at": "2026-08-03T01:59:13.543897+00:00",
   "probe": {
     "dns": "179.43.150.242",
     "whois": null,

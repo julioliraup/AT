@@ -18,78 +18,68 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://kucouinlogie.webflow.io/",
-      "domain": "kucouinlogie.webflow.io",
-      "url_count": 9,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "104.18.36.248",
-      "http_code": 200,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a2319276fa059935-PDX",
-        "cf_cache_status": "HIT",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (2690), with no line terminators",
-      "sha256": "33398ec84d678e77d0500047b0103b8f9e2af42c84548240368c9093ddb7322e",
-      "md5": "4066f2d20002539b00788b0422e3ac81",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-07-30T03:59:33",
-      "first_seen_secs": 1785383973.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "kucouinlogie.webflow.io",
       "domain_defanged": "kucouinlogie[.]webflow[.]io",
-      "case_id": "PD-20260802-556370",
-      "analyzed_at": "2026-08-02T12:58:23.725Z",
+      "case_id": "PD-20260803-556370",
+      "analyzed_at": "2026-08-03T03:53:23.517Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc28d-d74b-7760-8870-231f3bb8d97b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc555-1af2-76ce-bf6f-51bc727db1f0.png",
+          "url": "https://urlscan.io/result/019fc555-1af2-76ce-bf6f-51bc727db1f0/",
+          "title": "Kucoin Login: Accessing Your Kucoin Account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.18.36.248",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.18.36.248",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.18.36.248",
             "172.64.151.8"
           ],
           "AAAA": [
-            "2a06:98c1:3102::ac40:9708",
-            "2a06:98c1:3105::6812:24f8"
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +206,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kucouinlogie.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kucouinlogie.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009848; classtype:social-engineering; sid:6009848; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T12:58:21.331248+00:00",
+  "updated_at": "2026-08-03T03:53:11.338229+00:00",
   "probe": {
     "dns": "104.18.36.248",
     "whois": true,

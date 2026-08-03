@@ -73,27 +73,43 @@
     "phishdestroy": {
       "domain": "uphold-login----apps.typedream.app",
       "domain_defanged": "uphold-login----apps[.]typedream[.]app",
-      "case_id": "PD-20260802-5D840A",
-      "analyzed_at": "2026-08-02T13:33:07.290Z",
+      "case_id": "PD-20260803-5D840A",
+      "analyzed_at": "2026-08-03T04:54:53.774Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc2ad-a238-773a-9ad3-1ae13907922b.png",
           "url": "https://urlscan.io/result/019fc2ad-a238-773a-9ad3-1ae13907922b/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.37.85",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.37.85",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.21.37.85",
@@ -103,7 +119,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (uphold-login----apps.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"uphold-login----apps.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010604; classtype:social-engineering; sid:6010604; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T13:33:03.294452+00:00",
+  "updated_at": "2026-08-03T04:54:51.055647+00:00",
   "probe": {
     "dns": "104.21.37.85",
     "whois": null,

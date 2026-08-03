@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "friendly-indigo-f946zusu.edgeone.app",
       "domain_defanged": "friendly-indigo-f946zusu[.]edgeone[.]app",
-      "case_id": "PD-20260802-4D69D6",
-      "analyzed_at": "2026-08-02T12:55:52.064Z",
+      "case_id": "PD-20260803-4D69D6",
+      "analyzed_at": "2026-08-03T03:47:55.756Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc28b-86db-72da-904e-7243272c6362.png",
           "url": "https://urlscan.io/result/019fc28b-86db-72da-904e-7243272c6362/",
-          "pending": true
+          "title": "Webmail Sign-in"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -82,17 +91,24 @@
           "AAAA": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ],
-          "NS": [
+          "CNAME": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ],
-          "CNAME": [
+          "NS": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -219,9 +235,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (friendly-indigo-f946zusu.edgeone.app/?eta=veren8@86d9ac664f32b3117fef6b80c85afdd31edd.net)\"; flow:established,to_server; http.uri; content:\"/?eta=veren8@86d9ac664f32b3117fef6b80c85afdd31edd.net\"; startswith; fast_pattern; http.host; content:\"friendly-indigo-f946zusu.edgeone.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009809; classtype:social-engineering; sid:6009809; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T12:55:49.462007+00:00",
+  "updated_at": "2026-08-03T03:47:48.037174+00:00",
   "probe": {
-    "dns": "43.174.247.29",
+    "dns": "43.174.246.29",
     "whois": null,
     "status": "active"
   }

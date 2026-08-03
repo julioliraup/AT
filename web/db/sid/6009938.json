@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "pedagiofreeflow-brasil.shop",
       "domain_defanged": "pedagiofreeflow-brasil[.]shop",
-      "case_id": "PD-20260802-557DBB",
-      "analyzed_at": "2026-08-02T13:02:58.835Z",
+      "case_id": "PD-20260803-557DBB",
+      "analyzed_at": "2026-08-03T04:05:53.887Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Pedágio Digital"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed694-5595-7613-970b-6d99428e1362.png",
+          "url": "https://urlscan.io/result/019ed694-5595-7613-970b-6d99428e1362/",
+          "title": "Pedágio Digital - Consulte e Pague Débitos Online | Pedagio Digital"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Pedágio Digital",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "88.80.17.203",
+        "ipinfo": {
+          "ip": "88.80.17.203",
+          "city": "Stockholm",
+          "region": "Stockholm",
+          "country": "SE",
+          "org": "AS33837 Fredrik Holmqvist",
+          "asn": "AS33837"
+        },
         "dns": null
       },
       "report_to": {
@@ -196,7 +217,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pedagiofreeflow-brasil.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"pedagiofreeflow-brasil.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009938; classtype:social-engineering; sid:6009938; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T13:02:56.445605+00:00",
+  "updated_at": "2026-08-03T04:05:45.104964+00:00",
   "probe": {
     "dns": null,
     "whois": true,

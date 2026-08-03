@@ -55,27 +55,43 @@
     "phishdestroy": {
       "domain": "info-trezoor-suite-cdn.typedream.app",
       "domain_defanged": "info-trezoor-suite-cdn[.]typedream[.]app",
-      "case_id": "PD-20260802-775DC5",
-      "analyzed_at": "2026-08-02T13:31:31.875Z",
+      "case_id": "PD-20260803-775DC5",
+      "analyzed_at": "2026-08-03T04:53:07.892Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc2ac-2d0b-70ee-85c1-c47ab70cfee3.png",
           "url": "https://urlscan.io/result/019fc2ac-2d0b-70ee-85c1-c47ab70cfee3/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "104.21.37.85",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.37.85",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "104.21.37.85",
@@ -85,7 +101,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (info-trezoor-suite-cdn.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"info-trezoor-suite-cdn.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010571; classtype:social-engineering; sid:6010571; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T13:31:29.375472+00:00",
+  "updated_at": "2026-08-03T04:53:04.689847+00:00",
   "probe": {
     "dns": "104.21.37.85",
     "whois": null,

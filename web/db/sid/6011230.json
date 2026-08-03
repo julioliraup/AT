@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "wrio021.pro",
       "domain_defanged": "wrio021[.]pro",
-      "case_id": "PD-20260802-1CFDFA",
-      "analyzed_at": "2026-08-02T02:50:52.880Z",
+      "case_id": "PD-20260803-1CFDFA",
+      "analyzed_at": "2026-08-03T05:33:53.457Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Credit Agricole"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef107-0791-70b3-9ac4-fb7b6b052ffe.png",
+          "url": "https://urlscan.io/result/019ef107-0791-70b3-9ac4-fb7b6b052ffe/",
+          "title": "Crédit Agricole - Mon espace"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Credit Agricole",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.26.12.118",
+        "ipinfo": {
+          "ip": "104.26.12.118",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wrio021.pro/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"wrio021.pro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011230; classtype:social-engineering; sid:6011230; rev:1; metadata: signature_severity Major, created_et 2026_06_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T14:07:48.986699+00:00",
+  "updated_at": "2026-08-03T05:33:49.003577+00:00",
   "probe": {
     "dns": null,
     "whois": true,

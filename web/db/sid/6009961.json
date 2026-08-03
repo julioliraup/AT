@@ -49,14 +49,19 @@
     "phishdestroy": {
       "domain": "ubs.cx",
       "domain_defanged": "ubs[.]cx",
-      "case_id": "PD-20260802-32BF00",
-      "analyzed_at": "2026-08-02T13:03:54.481Z",
+      "case_id": "PD-20260803-32BF00",
+      "analyzed_at": "2026-08-03T04:08:29.136Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ecf76-968b-71d3-9d0e-7d312cb6db6a.png",
+          "url": "https://urlscan.io/result/019ecf76-968b-71d3-9d0e-7d312cb6db6a/",
+          "title": "Sign In | UBS"
         }
       },
       "detections": [],
@@ -64,12 +69,27 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "20.43.132.134",
+        "ipinfo": {
+          "ip": "20.43.132.134",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -196,7 +216,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ubs.cx/customers/signin)\"; flow:established,to_server; http.uri; content:\"/customers/signin\"; startswith; fast_pattern; http.host; content:\"ubs.cx\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009961; classtype:social-engineering; sid:6009961; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T13:03:51.798707+00:00",
+  "updated_at": "2026-08-03T04:08:25.049036+00:00",
   "probe": {
     "dns": null,
     "whois": true,

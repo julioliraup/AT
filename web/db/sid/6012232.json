@@ -73,35 +73,26 @@
     "phishdestroy": {
       "domain": "cytheraonline.com",
       "domain_defanged": "cytheraonline[.]com",
-      "case_id": "PD-20260802-22A576",
-      "analyzed_at": "2026-08-02T02:11:05.779Z",
+      "case_id": "PD-20260803-22A576",
+      "analyzed_at": "2026-08-03T06:54:46.994Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Microsoft"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019fbd25-e791-764d-a92e-02a417056c67.png",
-          "url": "https://urlscan.io/result/019fbd25-e791-764d-a92e-02a417056c67/",
-          "title": "Microsoft - Cythera Device Management"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fc667-4db4-74aa-99e1-42c48d91f4ee/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Microsoft",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2026-07-29T06:07:24Z",
         "expires": "2027-07-29T06:07:24Z",
-        "age_days": 3,
+        "age_days": 5,
         "nameservers": [
           "NS73.DOMAINCONTROL.COM",
           "NS74.DOMAINCONTROL.COM"
@@ -120,6 +111,10 @@
         "dns": {
           "A": [
             "20.70.177.118"
+          ],
+          "MX": [
+            "0 smtp.secureserver.net.",
+            "10 mailstore1.secureserver.net."
           ],
           "NS": [
             "ns73.domaincontrol.com.",
@@ -266,12 +261,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cytheraonline.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cytheraonline.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012232; classtype:social-engineering; sid:6012232; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-02T15:21:11.765771+00:00",
+  "updated_at": "2026-08-03T06:54:43.975948+00:00",
   "probe": {
     "dns": "20.70.177.118",
     "whois": true,

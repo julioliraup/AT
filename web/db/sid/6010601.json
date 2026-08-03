@@ -72,27 +72,55 @@
     "phishdestroy": {
       "domain": "gov-parkingtk.top",
       "domain_defanged": "gov-parkingtk[.]top",
-      "case_id": "PD-20260802-6ABB5F",
-      "analyzed_at": "2026-08-02T13:32:59.729Z",
+      "case_id": "PD-20260803-6ABB5F",
+      "analyzed_at": "2026-08-03T04:54:47.527Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee737-a2fe-7589-a94b-59016f1baf83.png",
+          "url": "https://urlscan.io/result/019ee737-a2fe-7589-a94b-59016f1baf83/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "43.153.78.56",
+        "ipinfo": {
+          "ip": "43.153.78.56",
+          "city": "Santa Clara",
+          "region": "California",
+          "country": "US",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -219,7 +247,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingtk.top/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingtk.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010601; classtype:social-engineering; sid:6010601; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T13:32:56.949991+00:00",
+  "updated_at": "2026-08-03T04:54:43.888623+00:00",
   "probe": {
     "dns": "43.153.78.56",
     "whois": true,

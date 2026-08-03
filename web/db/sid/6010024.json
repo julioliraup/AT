@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "e03e0b58f0508f4c70296c7a04bec13d81dd03edb3f819f2b2e0c01ae4.pages.dev",
       "domain_defanged": "e03e0b58f0508f4c70296c7a04bec13d81dd03edb3f819f2b2e0c01ae4[.]pages[.]dev",
-      "case_id": "PD-20260802-31C41B",
-      "analyzed_at": "2026-08-02T13:08:21.835Z",
+      "case_id": "PD-20260803-31C41B",
+      "analyzed_at": "2026-08-03T04:15:14.041Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f99fd-ee46-7788-8bbb-d1a163bad27d.png",
+          "url": "https://urlscan.io/result/019f99fd-ee46-7788-8bbb-d1a163bad27d/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.66.44.79",
+        "ipinfo": {
+          "ip": "172.66.44.79",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (e03e0b58f0508f4c70296c7a04bec13d81dd03edb3f819f2b2e0c01ae4.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"e03e0b58f0508f4c70296c7a04bec13d81dd03edb3f819f2b2e0c01ae4.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010024; classtype:social-engineering; sid:6010024; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T13:08:15.070096+00:00",
+  "updated_at": "2026-08-03T04:15:08.687649+00:00",
   "probe": {
     "dns": false,
     "whois": false,

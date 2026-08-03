@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "on-pedagiofreeflow.shop",
       "domain_defanged": "on-pedagiofreeflow[.]shop",
-      "case_id": "PD-20260801-37821F",
-      "analyzed_at": "2026-08-01T23:58:46.719Z",
+      "case_id": "PD-20260803-37821F",
+      "analyzed_at": "2026-08-03T04:39:47.518Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Pedágio Digital"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eddcc-23a4-7689-81ef-afed2713ce17.png",
+          "url": "https://urlscan.io/result/019eddcc-23a4-7689-81ef-afed2713ce17/",
+          "title": "Pedágio Digital - Consulte e Pague Débitos Online | Pedagio Digital"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Pedágio Digital",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "88.80.17.203",
+        "ipinfo": {
+          "ip": "88.80.17.203",
+          "city": "Stockholm",
+          "region": "Stockholm",
+          "country": "SE",
+          "org": "AS33837 Fredrik Holmqvist",
+          "asn": "AS33837"
+        },
         "dns": null
       },
       "report_to": {
@@ -192,12 +213,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (on-pedagiofreeflow.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"on-pedagiofreeflow.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010436; classtype:social-engineering; sid:6010436; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T13:25:14.481417+00:00",
+  "updated_at": "2026-08-03T04:39:26.429644+00:00",
   "probe": {
     "dns": null,
     "whois": true,

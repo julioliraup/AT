@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "mcaavoli.com",
       "domain_defanged": "mcaavoli[.]com",
-      "case_id": "PD-20260802-289E47",
-      "analyzed_at": "2026-08-02T12:56:16.883Z",
+      "case_id": "PD-20260803-289E47",
+      "analyzed_at": "2026-08-03T03:48:43.300Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc28b-e7d4-742b-a532-55dbbbe50154.png",
           "url": "https://urlscan.io/result/019fc28b-e7d4-742b-a532-55dbbbe50154/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
         "created": "2026-06-11T09:49:50Z",
@@ -81,16 +90,23 @@
         ]
       },
       "infrastructure": {
-        "ip": "172.67.155.164",
-        "ipinfo": null,
+        "ip": "104.21.80.245",
+        "ipinfo": {
+          "ip": "104.21.80.245",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
             "2606:4700:3037::ac43:9ba4",
             "2606:4700:3031::6815:50f5"
           ],
           "A": [
-            "172.67.155.164",
-            "104.21.80.245"
+            "104.21.80.245",
+            "172.67.155.164"
           ],
           "NS": [
             "alaric.ns.cloudflare.com.",
@@ -107,7 +123,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mcaavoli.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mcaavoli.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6009817; classtype:social-engineering; sid:6009817; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T12:56:13.547095+00:00",
+  "updated_at": "2026-08-03T03:48:30.381818+00:00",
   "probe": {
     "dns": "104.21.80.245",
     "whois": true,
