@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://test2.c3rberus.at/",
       "domain": "test2.c3rberus.at",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -44,9 +44,9 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (30666)",
-      "sha256": "bc6ec29214ad179b287c4293d5ff4031ab7a858656bdcb776d1645e58b355e7a",
-      "md5": "71e6fd15dc10b900c3776d8922244efb",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (34042)",
+      "sha256": "b33e73a9e9a21657c7823bb64e16565198729cbbc0ff45d370835a8985a4a9ed",
+      "md5": "160131a38a9fa08c7a479ff9a04d842b",
       "cert": {
         "subject_cn": "test2.c3rberus.at",
         "subject_alt_names": [
@@ -66,27 +66,36 @@
         "fingerprint_sha256": "A0 81 5D 97 EF 4C 51 9E FB 06 AE 08 22 B4 9E 1B 10 C2 34 D9 9A 20 72 A1 C7 1F 8A 9C 66 3A AD 5F"
       },
       "safebrowsing": [],
-      "first_seen": "2026-08-02T06:40:36",
-      "first_seen_secs": 1785652836.0
+      "first_seen": "2026-08-03T02:45:04",
+      "first_seen_secs": 1785725104.0
     },
     "phishdestroy": {
       "domain": "test2.c3rberus.at",
       "domain_defanged": "test2[.]c3rberus[.]at",
-      "case_id": "PD-20260802-1524F0",
-      "analyzed_at": "2026-08-02T04:06:49.124Z",
+      "case_id": "PD-20260805-1524F0",
+      "analyzed_at": "2026-08-05T03:02:50.531Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc0a7-2a9f-72eb-a75d-3b012377d2bd/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9f2-c404-731c-b107-60df397ba58c.png",
+          "url": "https://urlscan.io/result/019fc9f2-c404-731c-b107-60df397ba58c/",
+          "title": "Anmelden"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -238,12 +247,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (test2.c3rberus.at/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"test2.c3rberus.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001308; classtype:social-engineering; sid:6001308; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T17:05:41.813456+00:00",
+  "updated_at": "2026-08-05T03:02:45.761720+00:00",
   "probe": {
     "dns": "192.162.199.140",
     "whois": true,

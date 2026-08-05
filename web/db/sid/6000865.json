@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "desktop-eng-ledgre.pages.dev",
       "domain_defanged": "desktop-eng-ledgre[.]pages[.]dev",
-      "case_id": "PD-20260802-4C51D4",
-      "analyzed_at": "2026-08-02T03:19:34.436Z",
+      "case_id": "PD-20260805-4C51D4",
+      "analyzed_at": "2026-08-05T02:18:28.463Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc07b-ea07-72a9-a7de-e2f0da291359/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9da-f915-7128-b04d-d53d770adb18.png",
+          "url": "https://urlscan.io/result/019fc9da-f915-7128-b04d-d53d770adb18/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2d26",
-            "2606:4700:310c::ac42:2eda"
-          ],
           "A": [
             "172.66.46.218",
             "172.66.45.38"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2d26",
+            "2606:4700:310c::ac42:2eda"
           ],
           "NS": [
             "damon.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (desktop-eng-ledgre.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"desktop-eng-ledgre.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000865; classtype:social-engineering; sid:6000865; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T16:28:13.764427+00:00",
+  "updated_at": "2026-08-05T02:18:23.959768+00:00",
   "probe": {
     "dns": "172.66.45.38",
     "whois": null,

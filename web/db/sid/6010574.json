@@ -49,27 +49,71 @@
     "phishdestroy": {
       "domain": "aumentoja94.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "aumentoja94[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260802-662A2A",
-      "analyzed_at": "2026-08-02T10:58:55.057Z",
+      "case_id": "PD-20260805-662A2A",
+      "analyzed_at": "2026-08-05T01:02:00.841Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fc220-740f-75cd-adcb-39bdab85d0a4/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fc9a7-d5fb-75e7-88ea-f7cbfdb98b13.png",
+          "url": "https://urlscan.io/result/019fc9a7-d5fb-75e7-88ea-f7cbfdb98b13/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "149.137.136.9",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "149.137.136.9",
+          "hostname": "s3.us-east-005.backblazeb2.com",
+          "city": "Leesburg",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS40401 Backblaze Inc",
+          "asn": "AS40401"
+        },
         "dns": {
           "A": [
             "149.137.136.9",
@@ -87,7 +131,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Backblaze",
+          "abuse": "abuse@backblaze.com",
+          "url": "mailto:abuse@backblaze.com",
+          "logo": "https://i.ibb.co/PvjyjPDm/pr-Backblaze.png",
+          "method": "email",
+          "asn": "AS40401"
+        }
       },
       "report_services": [
         {
@@ -215,9 +266,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aumentoja94.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"aumentoja94.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010574; classtype:social-engineering; sid:6010574; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-03T04:53:18.476386+00:00",
+  "updated_at": "2026-08-05T15:16:12.824254+00:00",
   "probe": {
-    "dns": "149.137.136.9",
+    "dns": "149.137.141.9",
     "whois": null,
     "status": "active"
   }

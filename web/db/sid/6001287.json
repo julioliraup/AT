@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "54b2-6khp-mzv4.hbarraza-arrowseniorliving-com-s-account.workers.dev",
       "domain_defanged": "54b2-6khp-mzv4[.]hbarraza-arrowseniorliving-com-s-account[.]workers[.]dev",
-      "case_id": "PD-20260802-42E86D",
-      "analyzed_at": "2026-08-02T04:04:38.492Z",
+      "case_id": "PD-20260805-42E86D",
+      "analyzed_at": "2026-08-05T03:00:29.861Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc0a5-2c2a-7018-8bb8-55d25d0dc51f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9f1-84f5-7079-a3b3-83c2a6575065.png",
+          "url": "https://urlscan.io/result/019fc9f1-84f5-7079-a3b3-83c2a6575065/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.138.106",
+        "ip": "104.21.78.234",
         "ipinfo": {
-          "ip": "172.67.138.106",
+          "ip": "104.21.78.234",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -78,13 +87,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.67.138.106",
-            "104.21.78.234"
-          ],
           "AAAA": [
-            "2606:4700:3033::6815:4eea",
-            "2606:4700:3037::ac43:8a6a"
+            "2606:4700:3037::ac43:8a6a",
+            "2606:4700:3033::6815:4eea"
+          ],
+          "A": [
+            "104.21.78.234",
+            "172.67.138.106"
           ]
         }
       },
@@ -220,12 +229,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (54b2-6khp-mzv4.hbarraza-arrowseniorliving-com-s-account.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"54b2-6khp-mzv4.hbarraza-arrowseniorliving-com-s-account.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001287; classtype:social-engineering; sid:6001287; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T17:04:36.343866+00:00",
+  "updated_at": "2026-08-05T03:00:23.220512+00:00",
   "probe": {
     "dns": "104.21.78.234",
     "whois": null,

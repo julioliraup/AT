@@ -55,27 +55,44 @@
     "phishdestroy": {
       "domain": "secure-page-builder--stevedentltds.replit.app",
       "domain_defanged": "secure-page-builder--stevedentltds[.]replit[.]app",
-      "case_id": "PD-20260802-635439",
-      "analyzed_at": "2026-08-02T09:45:29.305Z",
+      "case_id": "PD-20260805-635439",
+      "analyzed_at": "2026-08-05T01:54:47.785Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc1dd-3abc-70fb-b75a-21aca85cf09a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcc02-fd32-762f-88df-b31b2607956b.png",
+          "url": "https://urlscan.io/result/019fcc02-fd32-762f-88df-b31b2607956b/",
+          "title": "Security verification - Microsoft account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "34.117.33.233",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "34.117.33.233",
+          "hostname": "233.33.117.34.bc.googleusercontent.com",
+          "city": "Kansas City",
+          "region": "Missouri",
+          "country": "US",
+          "org": "AS396982 Google LLC",
+          "asn": "AS396982"
+        },
         "dns": {
           "A": [
             "34.117.33.233"
@@ -84,7 +101,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -212,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (secure-page-builder--stevedentltds.replit.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"secure-page-builder--stevedentltds.replit.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005596; classtype:social-engineering; sid:6005596; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T22:19:43.929624+00:00",
+  "updated_at": "2026-08-05T08:45:17.150842+00:00",
   "probe": {
     "dns": "34.117.33.233",
     "whois": null,

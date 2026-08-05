@@ -49,21 +49,105 @@
     "phishdestroy": {
       "domain": "linkedin.comunicazioni-sicure.it",
       "domain_defanged": "linkedin[.]comunicazioni-sicure[.]it",
-      "case_id": "PD-20260802-679EB3",
-      "analyzed_at": "2026-08-02T05:53:19.716Z",
+      "case_id": "PD-20260805-679EB3",
+      "analyzed_at": "2026-08-05T00:57:28.136Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Certego",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc108-ae41-764d-bd04-6b713a3f5f10/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcec8-3428-74e9-8cac-f5c8a508b124.png",
+          "url": "https://urlscan.io/result/019fcec8-3428-74e9-8cac-f5c8a508b124/",
+          "title": "Simulazione attacco reale"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Certego",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,29 +155,36 @@
         "ip": "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
+          "A": [
+            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
+            "3.250.245.225",
+            "54.229.93.133",
+            "54.170.215.150"
           ],
           "MX": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ],
-          "A": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
-            "63.33.230.194",
-            "34.251.62.161",
-            "63.32.49.111"
-          ],
-          "CNAME": [
+          "AAAA": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ],
           "NS": [
+            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
+          ],
+          "CNAME": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -221,9 +312,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (linkedin.comunicazioni-sicure.it/actionrequired?rid=RwQSixi)\"; flow:established,to_server; http.uri; content:\"/actionrequired?rid=RwQSixi\"; startswith; fast_pattern; http.host; content:\"linkedin.comunicazioni-sicure.it\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002551; classtype:social-engineering; sid:6002551; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T18:16:58.350491+00:00",
+  "updated_at": "2026-08-05T05:19:43.276904+00:00",
   "probe": {
-    "dns": "34.251.62.161",
+    "dns": "54.170.215.150",
     "whois": true,
     "status": "active"
   }

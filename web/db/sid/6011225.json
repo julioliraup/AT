@@ -18,58 +18,34 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.mall.fadostore.id/",
-      "domain": "www.mall.fadostore.id",
-      "url_count": 15,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "104.21.4.38",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html",
-        "cf_ray": "a231910c7bcafef8-PDX",
-        "cf_cache_status": "DYNAMIC",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (358), with CRLF, LF line terminators",
-      "sha256": "53cb36846dd10453cabb42e0e6986144b02a4ea4637e075d2a5687fb6b72a1d7",
-      "md5": "2b753a93be781f446d2ab968bd74dc9f",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-07-30T04:05:41",
-      "first_seen_secs": 1785384341.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "mall.fadostore.id",
       "domain_defanged": "mall[.]fadostore[.]id",
-      "case_id": "PD-20260802-766A9F",
-      "analyzed_at": "2026-08-02T11:28:17.743Z",
+      "case_id": "PD-20260805-766A9F",
+      "analyzed_at": "2026-08-05T01:37:53.361Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc23b-5a29-76b9-9ce6-e0c680a93ce3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcb91-c0e9-7294-821e-06e32ac5b0f8.png",
+          "url": "https://urlscan.io/result/019fcb91-c0e9-7294-821e-06e32ac5b0f8/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,13 +60,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:3037::6815:426",
+            "2606:4700:3031::ac43:839f"
+          ],
           "A": [
             "104.21.4.38",
             "172.67.131.159"
-          ],
-          "AAAA": [
-            "2606:4700:3031::ac43:839f",
-            "2606:4700:3037::6815:426"
           ]
         }
       },
@@ -231,9 +207,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.mall.fadostore.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.mall.fadostore.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011225; classtype:social-engineering; sid:6011225; rev:1; metadata: signature_severity Major, created_et 2026_06_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-03T05:33:24.291745+00:00",
+  "updated_at": "2026-08-05T16:03:37.263535+00:00",
   "probe": {
-    "dns": "104.21.4.38",
+    "dns": "172.67.131.159",
     "whois": true,
     "status": "active"
   }

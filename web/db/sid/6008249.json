@@ -55,27 +55,55 @@
     "phishdestroy": {
       "domain": "website-info.biz.id",
       "domain_defanged": "website-info[.]biz[.]id",
-      "case_id": "PD-20260802-5A94E2",
-      "analyzed_at": "2026-08-02T09:44:06.635Z",
+      "case_id": "PD-20260805-5A94E2",
+      "analyzed_at": "2026-08-05T01:47:44.299Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb3eb-a42a-76fe-8b0b-5dc0a422e22e.png",
+          "url": "https://urlscan.io/result/019fb3eb-a42a-76fe-8b0b-5dc0a422e22e/",
+          "title": "𝗗𝗔𝗡𝗔 | #𝗦𝗮𝘁𝘂 𝗗𝗼𝗺𝗽𝗲𝘁 𝗨𝗻𝘁𝘂𝗸 𝗦𝗲𝗺𝘂𝗮 𝗧𝗿𝗮𝗻𝘀𝗮𝗸𝘀𝗶"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.223.180",
+        "ipinfo": {
+          "ip": "172.67.223.180",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -203,7 +231,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (website-info.biz.id/4a.lol/Formulir-pembatalan-dan-pengajuan-paylater)\"; flow:established,to_server; http.uri; content:\"/4a.lol/Formulir-pembatalan-dan-pengajuan-paylater\"; startswith; fast_pattern; http.host; content:\"website-info.biz.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008249; classtype:social-engineering; sid:6008249; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T01:49:54.076731+00:00",
+  "updated_at": "2026-08-05T12:27:18.781008+00:00",
   "probe": {
     "dns": "104.21.80.145",
     "whois": true,

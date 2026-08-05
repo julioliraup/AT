@@ -49,31 +49,55 @@
     "phishdestroy": {
       "domain": "49.51.43.12",
       "domain_defanged": "49[.]51[.]43[.]12",
-      "case_id": "PD-20260802-3A3DA7",
-      "analyzed_at": "2026-08-02T11:36:21.349Z",
+      "case_id": "PD-20260805-3A3DA7",
+      "analyzed_at": "2026-08-05T00:55:42.753Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "error": "http_400"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc242-bbfc-77d8-89d7-f26a16f64f31/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Google"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcef9-0f6d-7389-8667-63994f2a2dbb.png",
+          "url": "https://urlscan.io/result/019fcef9-0f6d-7389-8667-63994f2a2dbb/",
+          "title": "Innskráning – Google reikningar"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Google",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "49.51.43.12",
+        "ipinfo": {
+          "ip": "49.51.43.12",
+          "city": "Santa Clara",
+          "region": "California",
+          "country": "US",
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
+          "method": "email",
+          "asn": "AS132203"
+        }
       },
       "report_services": [
         {
@@ -201,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (49.51.43.12/v3/signin/identifier?amp%3Bfollowup=https%3A%2F%2Faccounts.google.com%2F&amp%3Bifkv=ASKXGp36_CB8HzfrpuLLHTVjXxiUGDwO6Tj8yz4QrsaGyc3I4H4G7NxTTQJtpw0j07g9O5T5Tx4uyQ&amp%3Bpassive=1209600&continue=https%3A%2F%2Faccounts.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsNG2Re46ce8ruKNRRtvpULIjdaiWezib0CeC7yEBLZT5cso6Zo94XYzN5P2bHtgelX7mR19w&dsh=S1981722052%3A1785391344441517)\"; flow:established,to_server; http.uri; content:\"/v3/signin/identifier?amp%3Bfollowup=https%3A%2F%2Faccounts.google.com%2F&amp%3Bifkv=ASKXGp36_CB8HzfrpuLLHTVjXxiUGDwO6Tj8yz4QrsaGyc3I4H4G7NxTTQJtpw0j07g9O5T5Tx4uyQ&amp%3Bpassive=1209600&continue=https%3A%2F%2Faccounts.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsNG2Re46ce8ruKNRRtvpULIjdaiWezib0CeC7yEBLZT5cso6Zo94XYzN5P2bHtgelX7mR19w&dsh=S1981722052%3A1785391344441517\"; startswith; fast_pattern; http.host; content:\"49.51.43.12\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6011464; classtype:social-engineering; sid:6011464; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T05:51:56.760980+00:00",
+  "updated_at": "2026-08-05T16:19:12.869722+00:00",
   "probe": {
     "dns": "49.51.43.12",
     "whois": true,

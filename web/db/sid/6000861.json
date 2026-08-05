@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "twxpl2fdranxl-zjstr87olpw-8a9b6c-vro3a.pages.dev",
       "domain_defanged": "twxpl2fdranxl-zjstr87olpw-8a9b6c-vro3a[.]pages[.]dev",
-      "case_id": "PD-20260802-4781A2",
-      "analyzed_at": "2026-08-02T03:18:55.318Z",
+      "case_id": "PD-20260805-4781A2",
+      "analyzed_at": "2026-08-05T02:18:13.721Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc07b-506e-75db-8d81-e4bebf64fc21/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9da-d2a2-75e9-afb6-bf9f0303517b.png",
+          "url": "https://urlscan.io/result/019fc9da-d2a2-75e9-afb6-bf9f0303517b/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,8 +112,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2ed3",
-            "2606:4700:310c::ac42:2d2d"
+            "2606:4700:310c::ac42:2d2d",
+            "2606:4700:310c::ac42:2ed3"
           ],
           "A": [
             "172.66.46.211",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (twxpl2fdranxl-zjstr87olpw-8a9b6c-vro3a.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"twxpl2fdranxl-zjstr87olpw-8a9b6c-vro3a.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000861; classtype:social-engineering; sid:6000861; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T16:28:04.550823+00:00",
+  "updated_at": "2026-08-05T02:18:10.139052+00:00",
   "probe": {
     "dns": "172.66.46.211",
     "whois": null,

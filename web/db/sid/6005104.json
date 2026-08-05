@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "patrickmortensen986-star.github.io",
       "domain_defanged": "patrickmortensen986-star[.]github[.]io",
-      "case_id": "PD-20260802-7FA525",
-      "analyzed_at": "2026-08-02T00:50:03.064Z",
+      "case_id": "PD-20260805-7FA525",
+      "analyzed_at": "2026-08-05T01:27:35.774Z",
       "intel": {
         "virustotal": {
           "malicious": 13,
@@ -126,12 +126,14 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fba85-7051-711a-8ec1-e4399f5742b3.png",
-          "url": "https://urlscan.io/result/019fba85-7051-711a-8ec1-e4399f5742b3/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcb4d-38c6-73eb-ae0f-8338ffdff8c1.png",
+          "url": "https://urlscan.io/result/019fcb4d-38c6-73eb-ae0f-8338ffdff8c1/",
+          "title": "Roblox"
         }
       },
       "detections": [
@@ -199,16 +201,21 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
         }
       ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.109.153",
+        "ip": "185.199.108.153",
         "ipinfo": {
-          "ip": "185.199.109.153",
-          "hostname": "cdn-185-199-109-153.github.com",
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -216,17 +223,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8003::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8000::153"
-          ],
           "A": [
+            "185.199.108.153",
             "185.199.109.153",
             "185.199.110.153",
-            "185.199.108.153",
             "185.199.111.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
@@ -367,9 +374,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (patrickmortensen986-star.github.io/roblox)\"; flow:established,to_server; http.uri; content:\"/roblox\"; startswith; fast_pattern; http.host; content:\"patrickmortensen986-star.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005104; classtype:social-engineering; sid:6005104; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T21:53:12.023117+00:00",
+  "updated_at": "2026-08-05T08:24:30.084742+00:00",
   "probe": {
-    "dns": "185.199.108.153",
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }

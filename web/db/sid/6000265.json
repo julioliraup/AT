@@ -49,45 +49,117 @@
     "phishdestroy": {
       "domain": "shalusinghal4563-ops.github.io",
       "domain_defanged": "shalusinghal4563-ops[.]github[.]io",
-      "case_id": "PD-20260802-159323",
-      "analyzed_at": "2026-08-02T13:32:55.530Z",
+      "case_id": "PD-20260805-159323",
+      "analyzed_at": "2026-08-05T01:04:48.247Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fc2ad-7311-7440-9425-4b032949199c/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fc9a9-723f-73da-bb49-99a61a7f1a54.png",
+          "url": "https://urlscan.io/result/019fc9a9-723f-73da-bb49-99a61a7f1a54/",
+          "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "185.199.109.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
             "185.199.109.153",
-            "185.199.111.153",
             "185.199.110.153",
-            "185.199.108.153"
+            "185.199.108.153",
+            "185.199.111.153"
           ],
           "AAAA": [
             "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
             "2606:50c0:8002::153",
+            "2606:50c0:8001::153",
             "2606:50c0:8003::153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -210,14 +282,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shalusinghal4563-ops.github.io/project_amazon_clone/)\"; flow:established,to_server; http.uri; content:\"/project_amazon_clone/\"; startswith; fast_pattern; http.host; content:\"shalusinghal4563-ops.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000265; classtype:social-engineering; sid:6000265; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T16:01:17.691326+00:00",
+  "updated_at": "2026-08-05T01:04:44.876151+00:00",
   "probe": {
-    "dns": "185.199.111.153",
+    "dns": "185.199.110.153",
     "whois": true,
     "status": "active"
   }

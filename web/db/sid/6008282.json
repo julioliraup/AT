@@ -22,7 +22,7 @@
       "url": "http://mail.mydevicesfind.site/FL26/",
       "domain": "mail.mydevicesfind.site",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -114,21 +114,30 @@
     "phishdestroy": {
       "domain": "mail.mydevicesfind.site",
       "domain_defanged": "mail[.]mydevicesfind[.]site",
-      "case_id": "PD-20260802-463129",
-      "analyzed_at": "2026-08-02T11:44:46.984Z",
+      "case_id": "PD-20260805-463129",
+      "analyzed_at": "2026-08-05T02:14:23.169Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc24a-7267-714f-afee-d8b5ad39184b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fca70-a255-7034-a249-ecb56b38cc70.png",
+          "url": "https://urlscan.io/result/019fca70-a255-7034-a249-ecb56b38cc70/",
+          "title": "Geräte suchen — Apple iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -137,8 +146,8 @@
         "ipinfo": {
           "ip": "96.125.163.17",
           "hostname": "96-125-163-17.unifiedlayer.com",
-          "city": "Atlanta",
-          "region": "Georgia",
+          "city": "Phoenix",
+          "region": "Arizona",
           "country": "US",
           "org": "AS31898 Oracle Corporation",
           "asn": "AS31898"
@@ -286,7 +295,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail.mydevicesfind.site/FL26/)\"; flow:established,to_server; http.uri; content:\"/FL26/\"; startswith; fast_pattern; http.host; content:\"mail.mydevicesfind.site\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008282; classtype:social-engineering; sid:6008282; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T01:53:49.927642+00:00",
+  "updated_at": "2026-08-05T12:29:31.860406+00:00",
   "probe": {
     "dns": "96.125.163.17",
     "whois": true,

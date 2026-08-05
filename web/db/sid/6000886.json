@@ -49,29 +49,37 @@
     "phishdestroy": {
       "domain": "away.vk.ru",
       "domain_defanged": "away[.]vk[.]ru",
-      "case_id": "PD-20260802-2DF699",
-      "analyzed_at": "2026-08-02T03:22:13.344Z",
+      "case_id": "PD-20260805-2DF699",
+      "analyzed_at": "2026-08-05T02:20:33.792Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc07e-557b-70f6-a276-cfcf439728dd/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcbd8-3769-737b-946d-f710cd19a40c.png",
+          "url": "https://urlscan.io/result/019fcbd8-3769-737b-946d-f710cd19a40c/",
+          "title": "Verified badge"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "87.240.132.67",
+        "ip": "93.186.225.194",
         "ipinfo": {
-          "ip": "87.240.132.67",
-          "hostname": "srv67-132-240-87.vk.com",
+          "ip": "93.186.225.194",
           "city": "Saint Petersburg",
           "region": "St.-Petersburg",
           "country": "RU",
@@ -80,10 +88,10 @@
         },
         "dns": {
           "A": [
-            "87.240.132.67",
-            "87.240.137.164",
-            "87.240.129.133",
             "93.186.225.194",
+            "87.240.137.164",
+            "87.240.132.67",
+            "87.240.129.133",
             "87.240.132.78"
           ]
         }
@@ -213,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (away.vk.ru/away.php?rh=3b4edde9-a371-4a86-a53d-d7cf4a8a8046)\"; flow:established,to_server; http.uri; content:\"/away.php?rh=3b4edde9-a371-4a86-a53d-d7cf4a8a8046\"; startswith; fast_pattern; http.host; content:\"away.vk.ru\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000886; classtype:social-engineering; sid:6000886; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T16:29:22.948253+00:00",
+  "updated_at": "2026-08-05T02:20:21.723806+00:00",
   "probe": {
     "dns": "87.240.132.67",
     "whois": true,

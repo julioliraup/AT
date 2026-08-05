@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "sawanpanchal.github.io",
       "domain_defanged": "sawanpanchal[.]github[.]io",
-      "case_id": "PD-20260803-74A880",
-      "analyzed_at": "2026-08-03T01:12:53.557Z",
+      "case_id": "PD-20260805-74A880",
+      "analyzed_at": "2026-08-05T01:20:12.345Z",
       "intel": {
         "virustotal": {
           "malicious": 13,
@@ -132,12 +132,14 @@
           }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fc235-39b3-7708-8526-25a431bd933b.png",
-          "url": "https://urlscan.io/result/019fc235-39b3-7708-8526-25a431bd933b/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcb00-f196-7434-b522-fe43018fa193.png",
+          "url": "https://urlscan.io/result/019fcb00-f196-7434-b522-fe43018fa193/",
+          "title": "Netflix India Watch TV Shows Online, Watch Movies Online"
         }
       },
       "detections": [
@@ -205,16 +207,21 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
         }
       ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.110.153",
+        "ip": "185.199.108.153",
         "ipinfo": {
-          "ip": "185.199.110.153",
-          "hostname": "cdn-185-199-110-153.github.com",
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -222,17 +229,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "A": [
-            "185.199.110.153",
-            "185.199.109.153",
-            "185.199.111.153",
-            "185.199.108.153"
-          ],
           "AAAA": [
-            "2606:50c0:8003::153",
             "2606:50c0:8000::153",
             "2606:50c0:8001::153",
-            "2606:50c0:8002::153"
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
+          ],
+          "A": [
+            "185.199.108.153",
+            "185.199.109.153",
+            "185.199.110.153",
+            "185.199.111.153"
           ]
         }
       },
@@ -368,11 +375,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sawanpanchal.github.io/NETFLIX.htps/)\"; flow:established,to_server; http.uri; content:\"/NETFLIX.htps/\"; startswith; fast_pattern; http.host; content:\"sawanpanchal.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007759; classtype:social-engineering; sid:6007759; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-03T01:12:48.177678+00:00",
+  "updated_at": "2026-08-05T11:44:04.395096+00:00",
   "probe": {
     "dns": "185.199.108.153",
     "whois": true,

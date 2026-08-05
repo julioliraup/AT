@@ -1,8 +1,8 @@
 {
   "sid": 6012658,
   "url_path": "/",
-  "url_base": "daniel-stingl.de:3456",
-  "msg": "AT related malicious URL (daniel-stingl.de:3456/)",
+  "url_base": "www.spcetmwemail.weebly.com",
+  "msg": "AT related malicious URL (www.spcetmwemail.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://daniel-stingl.de:3456/",
-      "domain": "daniel-stingl.de:3456",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://www.spcetmwemail.weebly.com/",
+      "domain": "www.spcetmwemail.weebly.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "74.115.51.8",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a2525a6a3ac9ff02-PDX",
+        "cf_cache_status": "EXPIRED",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,29 +43,29 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (861), with CRLF, LF line terminators",
+      "sha256": "93c92cc1d637092cbac26f04bae84f31fbe86030da729fdcb8bb75ec5721cb35",
+      "md5": "4dff0ef8a4aabf174a0405d02bdc009a",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-03T03:43:03",
+      "first_seen_secs": 1785728583.0
     },
     "phishdestroy": {
-      "domain": "daniel-stingl.de:3456",
-      "domain_defanged": "daniel-stingl[.]de:3456",
-      "case_id": "PD-20260730-22CCA3",
-      "analyzed_at": "2026-07-30T00:15:12.788Z",
+      "domain": "spcetmwemail.weebly.com",
+      "domain_defanged": "spcetmwemail[.]weebly[.]com",
+      "case_id": "PD-20260804-7AFCD1",
+      "analyzed_at": "2026-08-04T19:41:58.487Z",
       "intel": {
         "virustotal": {
-          "error": "http_400"
+          "error": "http_429"
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fb060-0d3b-7179-9e90-e1123318ef9c/",
+          "url": "https://urlscan.io/result/019fce4c-0c5a-71a1-a7e0-6095fd34b94b/",
           "pending": true
         }
       },
@@ -68,12 +74,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.9",
+        "ipinfo": {
+          "ip": "74.115.51.9",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.9",
+            "74.115.51.8"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -196,16 +223,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (daniel-stingl.de:3456/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"daniel-stingl.de:3456\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012658; classtype:social-engineering; sid:6012658; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-30T00:15:11.471313+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.spcetmwemail.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.spcetmwemail.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012658; classtype:social-engineering; sid:6012658; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
+  "updated_at": "2026-08-05T17:15:52.616219+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "74.115.51.8",
+    "whois": null,
+    "status": "active"
+  }
 }

@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "live-led-ger-sso-auth.typedream.app",
       "domain_defanged": "live-led-ger-sso-auth[.]typedream[.]app",
-      "case_id": "PD-20260802-7C29F1",
-      "analyzed_at": "2026-08-02T04:07:48.084Z",
+      "case_id": "PD-20260805-7C29F1",
+      "analyzed_at": "2026-08-05T03:04:33.417Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc0a8-1147-7758-8cbd-174d1d18c8e3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9f3-ae93-74b8-a49f-d0e4d11d5ff1.png",
+          "url": "https://urlscan.io/result/019fc9f3-ae93-74b8-a49f-d0e4d11d5ff1/",
+          "title": "Ledger Live App® | Starting Up Your Device - Ledger Live App®"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.206.36",
+        "ip": "104.21.37.85",
         "ipinfo": {
-          "ip": "172.67.206.36",
+          "ip": "104.21.37.85",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "172.67.206.36",
-            "104.21.37.85"
+            "104.21.37.85",
+            "172.67.206.36"
           ]
         }
       },
@@ -240,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (live-led-ger-sso-auth.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"live-led-ger-sso-auth.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001324; classtype:social-engineering; sid:6001324; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T17:06:38.733417+00:00",
+  "updated_at": "2026-08-05T03:04:29.902992+00:00",
   "probe": {
     "dns": "172.67.206.36",
     "whois": null,

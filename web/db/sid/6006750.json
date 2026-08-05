@@ -55,18 +55,23 @@
     "phishdestroy": {
       "domain": "sim-app.info",
       "domain_defanged": "sim-app[.]info",
-      "case_id": "PD-20260802-233467",
-      "analyzed_at": "2026-08-02T07:34:10.356Z",
+      "case_id": "PD-20260805-233467",
+      "analyzed_at": "2026-08-05T00:57:49.553Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fc165-012c-72df-97ea-356ae6e6067e/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fc9a5-d1c0-70fa-bf4f-219f39a28de2.png",
+          "url": "https://urlscan.io/result/019fc9a5-d1c0-70fa-bf4f-219f39a28de2/",
+          "title": "Default Web Site Page"
         }
       },
       "detections": [],
@@ -84,10 +89,6 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.21.91.79",
-            "172.67.212.196"
-          ],
           "AAAA": [
             "2606:4700:3031::ac43:d4c4",
             "2606:4700:3032::6815:5b4f"
@@ -95,6 +96,10 @@
           "NS": [
             "chan.ns.cloudflare.com.",
             "hasslo.ns.cloudflare.com."
+          ],
+          "A": [
+            "104.21.91.79",
+            "172.67.212.196"
           ]
         }
       },
@@ -235,7 +240,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sim-app.info/WhS)\"; flow:established,to_server; http.uri; content:\"/WhS\"; startswith; fast_pattern; http.host; content:\"sim-app.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006750; classtype:social-engineering; sid:6006750; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T23:55:46.859135+00:00",
+  "updated_at": "2026-08-05T10:02:48.750105+00:00",
   "probe": {
     "dns": "104.21.91.79",
     "whois": true,

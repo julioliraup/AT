@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "7c7-dpjx2x-mij8-cp3-aqsbny.pages.dev",
       "domain_defanged": "7c7-dpjx2x-mij8-cp3-aqsbny[.]pages[.]dev",
-      "case_id": "PD-20260802-310F97",
-      "analyzed_at": "2026-08-02T03:17:19.177Z",
+      "case_id": "PD-20260805-310F97",
+      "analyzed_at": "2026-08-05T02:17:34.442Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc079-d8e1-73d9-8b2d-8640f8d2a872/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9da-5f32-7012-8152-98b464fe31a1.png",
+          "url": "https://urlscan.io/result/019fc9da-5f32-7012-8152-98b464fe31a1/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (7c7-dpjx2x-mij8-cp3-aqsbny.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"7c7-dpjx2x-mij8-cp3-aqsbny.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000852; classtype:social-engineering; sid:6000852; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T16:27:38.508653+00:00",
+  "updated_at": "2026-08-05T02:17:30.509923+00:00",
   "probe": {
     "dns": "172.66.47.126",
     "whois": null,

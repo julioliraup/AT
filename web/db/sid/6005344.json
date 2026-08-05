@@ -49,54 +49,28 @@
     "phishdestroy": {
       "domain": "s3.us-east-005.backblazeb2.com",
       "domain_defanged": "s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260802-2E3F29",
-      "analyzed_at": "2026-08-02T01:12:18.095Z",
+      "case_id": "PD-20260804-2E3F29",
+      "analyzed_at": "2026-08-04T09:23:38.647Z",
       "intel": {
         "virustotal": {
-          "malicious": 1,
-          "suspicious": 1,
-          "total": 91,
-          "detections": [
-            {
-              "engine": "alphaMountain.ai",
-              "category": "suspicious",
-              "result": "suspicious"
-            },
-            {
-              "engine": "Gridinsoft",
-              "category": "malicious",
-              "result": "malicious"
-            }
-          ],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fbffe-adfe-750d-b54d-67ba5e2cd4b1.png",
-          "url": "https://urlscan.io/result/019fbffe-adfe-750d-b54d-67ba5e2cd4b1/"
+          "url": "https://urlscan.io/result/019fcc15-f31a-7279-890f-f6f9ecac67b1/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "VT: alphaMountain.ai",
-          "type": "suspicious",
-          "severity": "medium"
-        },
-        {
-          "source": "VT: Gridinsoft",
-          "type": "malicious",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "149.137.140.9",
+        "ip": "149.137.141.9",
         "ipinfo": {
-          "ip": "149.137.140.9",
+          "ip": "149.137.141.9",
           "hostname": "s3.us-east-005.backblazeb2.com",
           "city": "Leesburg",
           "region": "Virginia",
@@ -105,17 +79,17 @@
           "asn": "AS40401"
         },
         "dns": {
-          "AAAA": [
-            "2605:72c0:6fc:b3::b005:1",
-            "2605:72c0:6fd:b3::b005:1",
-            "2605:72c0:6fe:b3::b005:1",
-            "2605:72c0:6ff:b3::b005:1"
-          ],
           "A": [
-            "149.137.140.9",
             "149.137.141.9",
             "149.137.136.9",
-            "149.137.137.254"
+            "149.137.137.254",
+            "149.137.140.9"
+          ],
+          "AAAA": [
+            "2605:72c0:6fd:b3::b005:1",
+            "2605:72c0:6fe:b3::b005:1",
+            "2605:72c0:6ff:b3::b005:1",
+            "2605:72c0:6fc:b3::b005:1"
           ]
         }
       },
@@ -256,9 +230,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s3.us-east-005.backblazeb2.com/FundoCheckoutG.L.N.Meta2027/aumento.html)\"; flow:established,to_server; http.uri; content:\"/FundoCheckoutG.L.N.Meta2027/aumento.html\"; startswith; fast_pattern; http.host; content:\"s3.us-east-005.backblazeb2.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6005344; classtype:social-engineering; sid:6005344; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-02T22:05:47.289207+00:00",
+  "updated_at": "2026-08-05T08:34:29.080644+00:00",
   "probe": {
-    "dns": "149.137.136.9",
+    "dns": "149.137.140.9",
     "whois": null,
     "status": "active"
   }

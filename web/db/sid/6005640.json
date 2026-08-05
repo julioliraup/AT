@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "php-web-server--franz1095.replit.app",
       "domain_defanged": "php-web-server--franz1095[.]replit[.]app",
-      "case_id": "PD-20260802-4346A4",
-      "analyzed_at": "2026-08-02T11:46:29.617Z",
+      "case_id": "PD-20260805-4346A4",
+      "analyzed_at": "2026-08-05T02:15:54.888Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc24c-0354-77e4-8305-99fbe1ba9342/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9d8-bfb8-7725-8d95-5d2e32c2ed44.png",
+          "url": "https://urlscan.io/result/019fc9d8-bfb8-7725-8d95-5d2e32c2ed44/",
+          "title": "Iniciar sesión en tu cuenta Microsoft"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -245,7 +254,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (php-web-server--franz1095.replit.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"php-web-server--franz1095.replit.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005640; classtype:social-engineering; sid:6005640; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T22:22:03.866749+00:00",
+  "updated_at": "2026-08-05T08:46:45.259842+00:00",
   "probe": {
     "dns": "34.117.33.233",
     "whois": null,

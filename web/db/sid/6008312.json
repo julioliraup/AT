@@ -55,37 +55,60 @@
     "phishdestroy": {
       "domain": "fbmeta6ewb-fbcasefb392979.vercel.app",
       "domain_defanged": "fbmeta6ewb-fbcasefb392979[.]vercel[.]app",
-      "case_id": "PD-20260802-B181A3",
-      "analyzed_at": "2026-08-02T09:48:55.008Z",
+      "case_id": "PD-20260805-B181A3",
+      "analyzed_at": "2026-08-05T01:59:19.102Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc1e0-5e42-72e9-a0cd-17e55b1fce33/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fca1b-1ce6-7239-b290-652c691a5318.png",
+          "url": "https://urlscan.io/result/019fca1b-1ce6-7239-b290-652c691a5318/",
+          "title": "Security Check - Meta"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
-        "ipinfo": null,
+        "ip": "64.29.17.130",
+        "ipinfo": {
+          "ip": "64.29.17.130",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "64.29.17.130",
+            "216.198.79.130"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -213,7 +236,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.fbmeta6ewb-fbcasefb392979.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.fbmeta6ewb-fbcasefb392979.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008312; classtype:social-engineering; sid:6008312; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T01:57:33.515350+00:00",
+  "updated_at": "2026-08-05T12:31:31.653998+00:00",
   "probe": {
     "dns": "216.198.79.195",
     "whois": null,

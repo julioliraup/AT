@@ -18,52 +18,72 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://talaria.eu.com/~netcentrixco/intesasanpaolo/login-page.html",
-      "domain": "talaria.eu.com",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-07-30T10:39:39",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "talaria.eu.com",
       "domain_defanged": "talaria[.]eu[.]com",
-      "case_id": "PD-20260802-74EA81",
-      "analyzed_at": "2026-08-02T11:48:28.364Z",
+      "case_id": "PD-20260805-74EA81",
+      "analyzed_at": "2026-08-05T02:05:12.767Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fc24d-d32d-7690-826b-2d4df56289fc/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fcabe-f701-732c-9463-28ac4b9979fb.png",
+          "url": "https://urlscan.io/result/019fcabe-f701-732c-9463-28ac4b9979fb/",
+          "title": "Page not found - Talaria"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,13 +99,13 @@
           "asn": "AS53667"
         },
         "dns": {
+          "A": [
+            "198.251.84.200"
+          ],
           "MX": [
             "50 mx3.zoho.com.",
             "10 mx.zoho.com.",
             "20 mx2.zoho.com."
-          ],
-          "A": [
-            "198.251.84.200"
           ],
           "NS": [
             "ns6.my-control-panel.com.",
@@ -225,12 +245,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (talaria.eu.com/~netcentrixco/intesasanpaolo/login-page.html)\"; flow:established,to_server; http.uri; content:\"/~netcentrixco/intesasanpaolo/login-page.html\"; startswith; fast_pattern; http.host; content:\"talaria.eu.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000726; classtype:social-engineering; sid:6000726; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T16:21:04.868606+00:00",
+  "updated_at": "2026-08-05T02:04:58.793754+00:00",
   "probe": {
     "dns": "198.251.84.200",
     "whois": true,

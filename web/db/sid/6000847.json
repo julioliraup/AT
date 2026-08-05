@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "server-index-page--lezzuzh.replit.app",
       "domain_defanged": "server-index-page--lezzuzh[.]replit[.]app",
-      "case_id": "PD-20260802-64E465",
-      "analyzed_at": "2026-08-02T03:16:06.087Z",
+      "case_id": "PD-20260805-64E465",
+      "analyzed_at": "2026-08-05T02:17:07.992Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc078-bc26-70aa-9447-5ea4e9188f79/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9da-0cfe-722a-bd57-f84f48ef7974.png",
+          "url": "https://urlscan.io/result/019fc9da-0cfe-722a-bd57-f84f48ef7974/",
+          "title": "Enter your password"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -216,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (server-index-page--lezzuzh.replit.app/?email=delix8@3550ff480be5732be6c37155b12166014e72.com)\"; flow:established,to_server; http.uri; content:\"/?email=delix8@3550ff480be5732be6c37155b12166014e72.com\"; startswith; fast_pattern; http.host; content:\"server-index-page--lezzuzh.replit.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000847; classtype:social-engineering; sid:6000847; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T16:27:19.084546+00:00",
+  "updated_at": "2026-08-05T02:17:02.043941+00:00",
   "probe": {
     "dns": "34.117.33.233",
     "whois": null,

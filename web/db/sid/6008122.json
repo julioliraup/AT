@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "robiox.com.ps",
       "domain_defanged": "robiox[.]com[.]ps",
-      "case_id": "PD-20260802-161E85",
-      "analyzed_at": "2026-08-02T11:34:55.152Z",
+      "case_id": "PD-20260805-161E85",
+      "analyzed_at": "2026-08-05T02:36:53.333Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc241-68c8-73c4-83cb-2cce3e3c75ca/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcf71-697f-7059-9499-69ba68f6f737.png",
+          "url": "https://urlscan.io/result/019fcf71-697f-7059-9499-69ba68f6f737/",
+          "title": "nerazaamure - Roblox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -85,12 +94,12 @@
           "asn": "AS51852"
         },
         "dns": {
-          "A": [
-            "179.43.150.242"
-          ],
           "NS": [
             "raphaela.ns.cloudflare.com.",
             "rory.ns.cloudflare.com."
+          ],
+          "A": [
+            "179.43.150.242"
           ]
         }
       },
@@ -231,7 +240,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (robiox.com.ps/users/6640398912/profile)\"; flow:established,to_server; http.uri; content:\"/users/6640398912/profile\"; startswith; fast_pattern; http.host; content:\"robiox.com.ps\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6008122; classtype:social-engineering; sid:6008122; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T01:32:48.531653+00:00",
+  "updated_at": "2026-08-05T12:17:33.537059+00:00",
   "probe": {
     "dns": "179.43.150.242",
     "whois": null,

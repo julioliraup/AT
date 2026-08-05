@@ -18,58 +18,34 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://verify-user.surge.sh/",
-      "domain": "verify-user.surge.sh",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "138.197.235.123",
-      "http_code": 200,
-      "http_response": {
-        "server": "Surge",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (37619)",
-      "sha256": "57aee008ae221ec1ad879bd7f4fc96ec36ac1a76c437ff89e64419374c4dd6bd",
-      "md5": "830964f941e4a2ff449945c5e1ef7f6c",
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-07-30T12:44:45",
-      "first_seen_secs": 1785415485.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "verify-user.surge.sh",
       "domain_defanged": "verify-user[.]surge[.]sh",
-      "case_id": "PD-20260802-2A0EE6",
-      "analyzed_at": "2026-08-02T11:41:27.890Z",
+      "case_id": "PD-20260805-2A0EE6",
+      "analyzed_at": "2026-08-05T02:14:26.823Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc247-67e1-710d-9715-65734728bfa8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Sharepoint"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9d7-8685-71f3-b92b-d015ec918712.png",
+          "url": "https://urlscan.io/result/019fc9d7-8685-71f3-b92b-d015ec918712/",
+          "title": "Share"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Sharepoint",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -226,7 +202,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (verify-user.surge.sh/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"verify-user.surge.sh\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011576; classtype:social-engineering; sid:6011576; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T05:57:39.691557+00:00",
+  "updated_at": "2026-08-05T16:25:08.081004+00:00",
   "probe": {
     "dns": "138.197.235.123",
     "whois": true,

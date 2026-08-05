@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "ledgrlive-app-learn.pages.dev",
       "domain_defanged": "ledgrlive-app-learn[.]pages[.]dev",
-      "case_id": "PD-20260802-5A7D28",
-      "analyzed_at": "2026-08-02T04:05:03.504Z",
+      "case_id": "PD-20260805-5A7D28",
+      "analyzed_at": "2026-08-05T03:00:55.495Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc0a5-8e73-7322-aa5a-6218f1e50bd3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9f1-e7b7-70c9-a0a7-a0ead298c123.png",
+          "url": "https://urlscan.io/result/019fc9f1-e7b7-70c9-a0a7-a0ead298c123/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.52",
+        "ip": "172.66.47.204",
         "ipinfo": {
-          "ip": "172.66.44.52",
+          "ip": "172.66.47.204",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2fcc",
-            "2606:4700:310c::ac42:2c34"
+            "2606:4700:310c::ac42:2c34",
+            "2606:4700:310c::ac42:2fcc"
           ],
           "A": [
-            "172.66.44.52",
-            "172.66.47.204"
+            "172.66.47.204",
+            "172.66.44.52"
           ],
           "NS": [
             "houston.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledgrlive-app-learn.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledgrlive-app-learn.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001294; classtype:social-engineering; sid:6001294; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T17:05:01.147207+00:00",
+  "updated_at": "2026-08-05T03:00:51.690274+00:00",
   "probe": {
     "dns": "172.66.47.204",
     "whois": null,

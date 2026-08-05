@@ -22,28 +22,36 @@
     "phishdestroy": {
       "domain": "3658992.cc",
       "domain_defanged": "3658992[.]cc",
-      "case_id": "PD-20260802-698B1E",
-      "analyzed_at": "2026-08-02T04:09:31.620Z",
+      "case_id": "PD-20260805-698B1E",
+      "analyzed_at": "2026-08-05T03:07:48.536Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc0a9-a5c1-73fe-8108-a8b177acdbb5/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9f5-44e7-778a-a29f-9af4984d0d24.png",
+          "url": "https://urlscan.io/result/019fc9f5-44e7-778a-a29f-9af4984d0d24/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "40.81.18.27",
+        "ip": "104.214.176.120",
         "ipinfo": {
-          "ip": "40.81.18.27",
+          "ip": "104.214.176.120",
           "city": "Hong Kong",
           "region": "Hong Kong",
           "country": "HK",
@@ -52,9 +60,9 @@
         },
         "dns": {
           "A": [
+            "104.214.176.120",
             "40.81.18.27",
-            "52.184.80.75",
-            "104.214.176.120"
+            "52.184.80.75"
           ],
           "NS": [
             "dalary.ns.cloudflare.com.",
@@ -194,15 +202,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (3658992.cc/3658.html?shareName=3658992.cc&proxyAccount=)\"; flow:established,to_server; http.uri; content:\"/3658.html?shareName=3658992.cc&proxyAccount=\"; startswith; fast_pattern; http.host; content:\"3658992.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001346; classtype:social-engineering; sid:6001346; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T17:08:20.488137+00:00",
+  "updated_at": "2026-08-05T03:07:34.427813+00:00",
   "probe": {
     "dns": "52.184.80.75",
-    "whois": null,
+    "whois": true,
     "status": "active"
   }
 }

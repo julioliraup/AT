@@ -22,7 +22,7 @@
       "url": "http://dsdsgtrtt.eu.cc/es",
       "domain": "dsdsgtrtt.eu.cc",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "dsdsgtrtt.eu.cc",
       "domain_defanged": "dsdsgtrtt[.]eu[.]cc",
-      "case_id": "PD-20260802-2EB6CD",
-      "analyzed_at": "2026-08-02T01:27:37.701Z",
+      "case_id": "PD-20260805-2EB6CD",
+      "analyzed_at": "2026-08-05T02:04:21.053Z",
       "intel": {
         "virustotal": {
           "malicious": 9,
@@ -111,11 +111,14 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fbce5-048e-77f5-89e8-cfbb6ee3f0ab.png",
-          "url": "https://urlscan.io/result/019fbce5-048e-77f5-89e8-cfbb6ee3f0ab/"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Spanish Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc4fd-909e-776d-a049-2097c5cbb6ac.png",
+          "url": "https://urlscan.io/result/019fc4fd-909e-776d-a049-2097c5cbb6ac/",
+          "title": "Notificación de la Agencia Tributaria"
         }
       },
       "detections": [
@@ -168,6 +171,11 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Spanish Government",
+          "severity": "high"
         }
       ],
       "domain_info": {
@@ -183,15 +191,7 @@
           "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
           "asn": "AS132203"
         },
-        "dns": {
-          "A": [
-            "162.62.57.68"
-          ],
-          "NS": [
-            "a.share-dns.com.",
-            "b.share-dns.net."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -330,10 +330,12 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dsdsgtrtt.eu.cc/es)\"; flow:established,to_server; http.uri; content:\"/es\"; startswith; fast_pattern; http.host; content:\"dsdsgtrtt.eu.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001089; classtype:social-engineering; sid:6001089; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T16:45:51.332127+00:00",
+  "updated_at": "2026-08-05T02:46:37.004989+00:00",
   "probe": {
-    "dns": "162.62.57.68",
-    "whois": null,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

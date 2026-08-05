@@ -55,28 +55,38 @@
     "phishdestroy": {
       "domain": "ledagrrwwltte.webflow.io",
       "domain_defanged": "ledagrrwwltte[.]webflow[.]io",
-      "case_id": "PD-20260802-557186",
-      "analyzed_at": "2026-08-02T11:39:08.741Z",
+      "case_id": "PD-20260805-557186",
+      "analyzed_at": "2026-08-05T01:52:47.447Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc245-4929-717f-b2e2-e283f9393209/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger",
+            "Generic Crypto"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcdfa-b63d-777f-9b68-2c9722657454.png",
+          "url": "https://urlscan.io/result/019fcdfa-b63d-777f-9b68-2c9722657454/",
+          "title": "Solving Ledger Wallet Problems: Troubleshooting Guide"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger, Generic Crypto",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
+        "ip": "172.64.151.8",
         "ipinfo": {
-          "ip": "104.18.36.248",
+          "ip": "172.64.151.8",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,12 +95,12 @@
         },
         "dns": {
           "A": [
-            "104.18.36.248",
-            "172.64.151.8"
+            "172.64.151.8",
+            "104.18.36.248"
           ],
           "AAAA": [
-            "2a06:98c1:3102::ac40:9708",
-            "2a06:98c1:3105::6812:24f8"
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
           ]
         }
       },
@@ -231,7 +241,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledagrrwwltte.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledagrrwwltte.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005450; classtype:social-engineering; sid:6005450; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T22:12:23.151086+00:00",
+  "updated_at": "2026-08-05T08:40:11.666159+00:00",
   "probe": {
     "dns": "104.18.36.248",
     "whois": true,

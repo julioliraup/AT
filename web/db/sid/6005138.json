@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "location-iclouds.us",
       "domain_defanged": "location-iclouds[.]us",
-      "case_id": "PD-20260802-29A7C7",
-      "analyzed_at": "2026-08-02T11:26:24.895Z",
+      "case_id": "PD-20260805-29A7C7",
+      "analyzed_at": "2026-08-05T01:33:17.273Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019efd6d-ea27-772b-88d6-7d69eccd48cf.png",
+          "url": "https://urlscan.io/result/019efd6d-ea27-772b-88d6-7d69eccd48cf/",
+          "title": "iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "108.179.246.100",
+        "ipinfo": {
+          "ip": "108.179.246.100",
+          "hostname": "108-179-246-100.unifiedlayer.com",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -197,7 +226,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (location-iclouds.us/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"location-iclouds.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005138; classtype:social-engineering; sid:6005138; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-02T21:55:08.074510+00:00",
+  "updated_at": "2026-08-05T08:27:01.964432+00:00",
   "probe": {
     "dns": null,
     "whois": true,

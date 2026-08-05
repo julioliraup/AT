@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "exxodas-wallet.pages.dev",
       "domain_defanged": "exxodas-wallet[.]pages[.]dev",
-      "case_id": "PD-20260802-866227",
-      "analyzed_at": "2026-08-02T04:07:45.072Z",
+      "case_id": "PD-20260805-866227",
+      "analyzed_at": "2026-08-05T03:04:29.754Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc0a8-058d-73cd-902b-1108d1abea14/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Exodus Wallet"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcc25-2eae-715e-8e67-61d8e6c3f7ac.png",
+          "url": "https://urlscan.io/result/019fcc25-2eae-715e-8e67-61d8e6c3f7ac/",
+          "title": "Exodus Wallet | Secure Cryptocurrency Wallet for Desktop & Mobile"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Exodus Wallet",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.45.9",
+        "ip": "172.66.46.247",
         "ipinfo": {
-          "ip": "172.66.45.9",
+          "ip": "172.66.46.247",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -78,13 +87,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.45.9",
-            "172.66.46.247"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2ef7",
             "2606:4700:310c::ac42:2d09"
+          ],
+          "A": [
+            "172.66.46.247",
+            "172.66.45.9"
           ],
           "NS": [
             "alexis.ns.cloudflare.com.",
@@ -224,14 +233,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (exxodas-wallet.pages.dev/favicon.ico)\"; flow:established,to_server; http.uri; content:\"/favicon.ico\"; startswith; fast_pattern; http.host; content:\"exxodas-wallet.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001323; classtype:social-engineering; sid:6001323; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T17:06:33.909001+00:00",
+  "updated_at": "2026-08-05T03:04:27.138098+00:00",
   "probe": {
-    "dns": "172.66.46.247",
+    "dns": "172.66.45.9",
     "whois": null,
     "status": "active"
   }

@@ -49,33 +49,62 @@
     "phishdestroy": {
       "domain": "personasenlinea.eu",
       "domain_defanged": "personasenlinea[.]eu",
-      "case_id": "PD-20260802-391FF4",
-      "analyzed_at": "2026-08-02T09:50:48.725Z",
+      "case_id": "PD-20260805-391FF4",
+      "analyzed_at": "2026-08-05T01:45:11.396Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Banco Galicia"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb32d-b386-71ea-9a49-893de3e0f9d3.png",
+          "url": "https://urlscan.io/result/019fb32d-b386-71ea-9a49-893de3e0f9d3/",
+          "title": "Gal"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Banco Galicia",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "80.78.30.21",
+        "ipinfo": {
+          "ip": "80.78.30.21",
+          "hostname": "504e1e15.host.njalla.net",
+          "city": "Malmö",
+          "region": "Skåne",
+          "country": "SE",
+          "org": "AS39287 Materialism s.r.l.",
+          "asn": "AS39287"
+        },
         "dns": {
           "NS": [
-            "2-nest.pipe.ma.",
+            "3-pas.njalla.in.",
             "1-ceci.njalla.do.",
-            "3-pas.njalla.in."
+            "2-nest.pipe.ma."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "abstract",
+          "abuse": "abuse@cyberdyne.is",
+          "url": "mailto:abuse@cyberdyne.is",
+          "logo": "",
+          "method": "email",
+          "asn": "AS39287"
+        }
       },
       "report_services": [
         {
@@ -203,7 +232,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (personasenlinea.eu/logon/)\"; flow:established,to_server; http.uri; content:\"/logon/\"; startswith; fast_pattern; http.host; content:\"personasenlinea.eu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011738; classtype:social-engineering; sid:6011738; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T06:04:06.549041+00:00",
+  "updated_at": "2026-08-05T16:33:17.765008+00:00",
   "probe": {
     "dns": null,
     "whois": true,

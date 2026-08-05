@@ -22,7 +22,7 @@
       "url": "http://mydevicesfind.site/FL26",
       "domain": "mydevicesfind.site",
       "url_count": 1,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -114,43 +114,71 @@
     "phishdestroy": {
       "domain": "mydevicesfind.site",
       "domain_defanged": "mydevicesfind[.]site",
-      "case_id": "PD-20260802-213980",
-      "analyzed_at": "2026-08-02T22:15:32.043Z",
+      "case_id": "PD-20260805-213980",
+      "analyzed_at": "2026-08-05T02:07:16.578Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc48b-e92d-753c-b143-65fb4a03c85e/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcd81-66c1-755a-8b79-1cac3d5d64d2.png",
+          "url": "https://urlscan.io/result/019fcd81-66c1-755a-8b79-1cac3d5d64d2/",
+          "title": "Geräte suchen — Apple iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "96.125.163.17",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "96.125.163.17",
+          "hostname": "96-125-163-17.unifiedlayer.com",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": {
-          "A": [
-            "96.125.163.17"
-          ],
           "MX": [
             "0 mail.mydevicesfind.site."
           ],
+          "A": [
+            "96.125.163.17"
+          ],
           "NS": [
-            "cns59.webhostbox.net.",
-            "cns60.webhostbox.net."
+            "cns60.webhostbox.net.",
+            "cns59.webhostbox.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -278,7 +306,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mydevicesfind.site/FL26)\"; flow:established,to_server; http.uri; content:\"/FL26\"; startswith; fast_pattern; http.host; content:\"mydevicesfind.site\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011569; classtype:social-engineering; sid:6011569; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T05:57:20.889192+00:00",
+  "updated_at": "2026-08-05T16:24:58.777530+00:00",
   "probe": {
     "dns": "96.125.163.17",
     "whois": true,

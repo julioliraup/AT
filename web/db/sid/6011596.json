@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "ledglive-m-auth.typedream.app",
       "domain_defanged": "ledglive-m-auth[.]typedream[.]app",
-      "case_id": "PD-20260802-708686",
-      "analyzed_at": "2026-08-02T11:42:25.606Z",
+      "case_id": "PD-20260805-708686",
+      "analyzed_at": "2026-08-05T02:16:34.946Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc248-495a-728c-aaa4-02682780481a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9d9-60f2-7799-a7bd-b0abb26524fc.png",
+          "url": "https://urlscan.io/result/019fc9d9-60f2-7799-a7bd-b0abb26524fc/",
+          "title": "Ledger Live: Download | Getting started"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -221,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledglive-m-auth.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledglive-m-auth.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011596; classtype:social-engineering; sid:6011596; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T05:58:13.069704+00:00",
+  "updated_at": "2026-08-05T16:25:59.068370+00:00",
   "probe": {
     "dns": "172.67.206.36",
     "whois": null,

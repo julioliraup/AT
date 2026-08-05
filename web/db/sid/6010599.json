@@ -49,30 +49,86 @@
     "phishdestroy": {
       "domain": "shalusinghal4563-ops.github.io",
       "domain_defanged": "shalusinghal4563-ops[.]github[.]io",
-      "case_id": "PD-20260803-159323",
-      "analyzed_at": "2026-08-03T04:48:35.599Z",
+      "case_id": "PD-20260805-159323",
+      "analyzed_at": "2026-08-05T01:04:48.247Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fc2ad-7311-7440-9425-4b032949199c.png",
-          "url": "https://urlscan.io/result/019fc2ad-7311-7440-9425-4b032949199c/",
+          "screenshot": "https://urlscan.io/screenshots/019fc9a9-723f-73da-bb49-99a61a7f1a54.png",
+          "url": "https://urlscan.io/result/019fc9a9-723f-73da-bb49-99a61a7f1a54/",
           "title": "Site not found · GitHub Pages"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.111.153",
+        "ip": "185.199.109.153",
         "ipinfo": {
-          "ip": "185.199.111.153",
-          "hostname": "cdn-185-199-111-153.github.com",
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,17 +136,17 @@
           "asn": "AS54113"
         },
         "dns": {
+          "A": [
+            "185.199.109.153",
+            "185.199.110.153",
+            "185.199.108.153",
+            "185.199.111.153"
+          ],
           "AAAA": [
-            "2606:50c0:8002::153",
             "2606:50c0:8000::153",
+            "2606:50c0:8002::153",
             "2606:50c0:8001::153",
             "2606:50c0:8003::153"
-          ],
-          "A": [
-            "185.199.111.153",
-            "185.199.110.153",
-            "185.199.109.153",
-            "185.199.108.153"
           ]
         }
       },
@@ -231,9 +287,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shalusinghal4563-ops.github.io/project_amazon_clone/)\"; flow:established,to_server; http.uri; content:\"/project_amazon_clone/\"; startswith; fast_pattern; http.host; content:\"shalusinghal4563-ops.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010599; classtype:social-engineering; sid:6010599; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-03T04:54:36.391827+00:00",
+  "updated_at": "2026-08-05T15:18:50.463754+00:00",
   "probe": {
-    "dns": "185.199.110.153",
+    "dns": "185.199.108.153",
     "whois": true,
     "status": "active"
   }

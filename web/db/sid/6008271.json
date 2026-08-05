@@ -72,37 +72,60 @@
     "phishdestroy": {
       "domain": "meta8a31-noticefb344166.vercel.app",
       "domain_defanged": "meta8a31-noticefb344166[.]vercel[.]app",
-      "case_id": "PD-20260802-43D566",
-      "analyzed_at": "2026-08-02T09:45:06.256Z",
+      "case_id": "PD-20260805-43D566",
+      "analyzed_at": "2026-08-05T01:50:36.214Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc1dc-e0b0-715e-b020-9859df6d5346/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9c9-ae32-77c1-9c06-ecbdbd7c2bf1.png",
+          "url": "https://urlscan.io/result/019fc9c9-ae32-77c1-9c06-ecbdbd7c2bf1/",
+          "title": "Security Check - Meta"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
-        "ipinfo": null,
+        "ip": "216.198.79.194",
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -230,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.meta8a31-noticefb344166.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.meta8a31-noticefb344166.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008271; classtype:social-engineering; sid:6008271; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-03T01:52:47.611683+00:00",
+  "updated_at": "2026-08-05T12:28:52.227875+00:00",
   "probe": {
     "dns": "216.198.79.67",
     "whois": null,

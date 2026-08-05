@@ -18,66 +18,55 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://sp4ct-palmurex-biz8-korel-dafix.pages.dev/",
-      "domain": "sp4ct-palmurex-biz8-korel-dafix.pages.dev",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "sp4ct-palmurex-biz8-korel-dafix.pages.dev",
       "domain_defanged": "sp4ct-palmurex-biz8-korel-dafix[.]pages[.]dev",
-      "case_id": "PD-20260802-606179",
-      "analyzed_at": "2026-08-02T09:40:02.488Z",
+      "case_id": "PD-20260805-606179",
+      "analyzed_at": "2026-08-05T01:47:28.875Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fc1d8-3c7f-752d-a237-c9d97c8e08f8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc9c6-f0bd-7146-8d25-ba81beea1acd.png",
+          "url": "https://urlscan.io/result/019fc9c6-f0bd-7146-8d25-ba81beea1acd/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.47.197",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.197",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2fc5",
+            "2606:4700:310c::ac42:2c3b"
+          ],
           "A": [
             "172.66.47.197",
             "172.66.44.59"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c3b",
-            "2606:4700:310c::ac42:2fc5"
           ],
           "NS": [
             "rosa.ns.cloudflare.com.",
@@ -87,7 +76,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,14 +206,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp4ct-palmurex-biz8-korel-dafix.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp4ct-palmurex-biz8-korel-dafix.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000606; classtype:social-engineering; sid:6000606; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-02T16:16:31.763609+00:00",
+  "updated_at": "2026-08-05T01:47:12.389803+00:00",
   "probe": {
-    "dns": "172.66.44.59",
+    "dns": "172.66.47.197",
     "whois": null,
     "status": "active"
   }
