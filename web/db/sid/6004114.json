@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "auth--app--kucoin--sso--cdnn.webflow.io",
       "domain_defanged": "auth--app--kucoin--sso--cdnn[.]webflow[.]io",
-      "case_id": "PD-20260804-A45A88",
-      "analyzed_at": "2026-08-04T07:48:01.821Z",
+      "case_id": "PD-20260806-A45A88",
+      "analyzed_at": "2026-08-06T05:22:35.886Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fcbbe-69a5-7549-a0ff-8f084c7b691e/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd162-693e-717f-a413-9bc3d3ee5ac7.png",
+          "url": "https://urlscan.io/result/019fd162-693e-717f-a413-9bc3d3ee5ac7/",
+          "title": "KuCoin: Sign-in | Access Your Crypto Portfolio*"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2a06:98c1:3102::ac40:9708",
+            "2a06:98c1:3105::6812:24f8"
+          ],
           "A": [
             "104.18.36.248",
             "172.64.151.8"
-          ],
-          "AAAA": [
-            "2a06:98c1:3105::6812:24f8",
-            "2a06:98c1:3102::ac40:9708"
           ]
         }
       },
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (auth--app--kucoin--sso--cdnn.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"auth--app--kucoin--sso--cdnn.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004114; classtype:social-engineering; sid:6004114; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-05T07:24:23.633337+00:00",
+  "updated_at": "2026-08-06T05:22:32.102027+00:00",
   "probe": {
     "dns": "172.64.151.8",
     "whois": true,

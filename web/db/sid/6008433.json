@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "esl-claim-alert.xyz",
       "domain_defanged": "esl-claim-alert[.]xyz",
-      "case_id": "PD-20260805-4FF68C",
-      "analyzed_at": "2026-08-05T06:00:23.437Z",
+      "case_id": "PD-20260806-4FF68C",
+      "analyzed_at": "2026-08-06T06:29:33.450Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "ESL Federal Credit Union"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea2a7-d16d-7228-83c3-d10ed95eeed8.png",
+          "url": "https://urlscan.io/result/019ea2a7-d16d-7228-83c3-d10ed95eeed8/",
+          "title": "ESL Federal Credit Union - Log in"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: ESL Federal Credit Union",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "103.240.147.251",
+        "ipinfo": {
+          "ip": "103.240.147.251",
+          "city": "Milan",
+          "region": "Lombardy",
+          "country": "IT",
+          "org": "AS36007 Kamatera, Inc.",
+          "asn": "AS36007"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "KAMATERA",
+          "abuse": "abuse@cloudwm.com",
+          "url": "mailto:abuse@cloudwm.com",
+          "logo": "https://i.ibb.co/9kbMYYDW/pr-CLOUDWEBMANAGE-CANADA.png",
+          "method": "email",
+          "asn": "AS36007"
+        }
       },
       "report_services": [
         {
@@ -197,7 +225,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (esl-claim-alert.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"esl-claim-alert.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008433; classtype:social-engineering; sid:6008433; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-05T12:43:48.898895+00:00",
+  "updated_at": "2026-08-06T08:20:55.721844+00:00",
   "probe": {
     "dns": null,
     "whois": true,

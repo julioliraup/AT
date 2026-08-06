@@ -50,8 +50,8 @@
     "phishdestroy": {
       "domain": "c.4qw.nl",
       "domain_defanged": "c[.]4qw[.]nl",
-      "case_id": "PD-20260805-C9E32B",
-      "analyzed_at": "2026-08-05T00:53:44.102Z",
+      "case_id": "PD-20260806-C9E32B",
+      "analyzed_at": "2026-08-06T01:11:51.221Z",
       "intel": {
         "virustotal": {
           "malicious": 8,
@@ -107,12 +107,15 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fc9a2-5095-76fb-9e4e-597b56939eca.png",
-          "url": "https://urlscan.io/result/019fc9a2-5095-76fb-9e4e-597b56939eca/",
-          "title": "Simulated phishing – README"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft",
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd04f-0386-71ae-8c0b-5d4181689b2a.png",
+          "url": "https://urlscan.io/result/019fd04f-0386-71ae-8c0b-5d4181689b2a/",
+          "title": "Sign in to your account"
         }
       },
       "detections": [
@@ -160,6 +163,11 @@
           "source": "VT: Sophos",
           "type": "malware",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft, Phishing Simulation",
+          "severity": "high"
         }
       ],
       "domain_info": {
@@ -169,19 +177,19 @@
         "ip": "4qw.nl.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "4qw.nl."
-          ],
           "MX": [
             "4qw.nl.",
             "1 smtp.sendfiend.com."
           ],
+          "CNAME": [
+            "4qw.nl."
+          ],
+          "AAAA": [
+            "4qw.nl."
+          ],
           "A": [
             "4qw.nl.",
             "45.154.232.28"
-          ],
-          "CNAME": [
-            "4qw.nl."
           ],
           "NS": [
             "4qw.nl.",
@@ -326,7 +334,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (c .4qw .nl/hy9zL99KGLitGx1U2x85mtKDNsPgf7HV/)\"; flow:established,to_server; http.uri; content:\"/hy9zL99KGLitGx1U2x85mtKDNsPgf7HV/\"; startswith; fast_pattern; http.host;  content:\"c.4qw.nl\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000167; classtype:social-engineering; sid:6000167; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-05T00:53:39.525203+00:00",
+  "updated_at": "2026-08-06T01:11:45.692411+00:00",
   "probe": {
     "dns": "45.154.232.28",
     "whois": true,

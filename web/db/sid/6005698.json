@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp10ct6-vorlan-biz-plortem-qurnex.pages.dev",
       "domain_defanged": "sp10ct6-vorlan-biz-plortem-qurnex[.]pages[.]dev",
-      "case_id": "PD-20260805-52C114",
-      "analyzed_at": "2026-08-05T05:56:53.759Z",
+      "case_id": "PD-20260806-52C114",
+      "analyzed_at": "2026-08-06T06:26:20.394Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd07f-0682-744d-93c3-821046cfc7c8.png",
           "url": "https://urlscan.io/result/019fd07f-0682-744d-93c3-821046cfc7c8/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -107,8 +116,8 @@
             "172.66.47.65"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f41",
-            "2606:4700:310c::ac42:2cbf"
+            "2606:4700:310c::ac42:2cbf",
+            "2606:4700:310c::ac42:2f41"
           ],
           "NS": [
             "olof.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-vorlan-biz-plortem-qurnex.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-vorlan-biz-plortem-qurnex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005698; classtype:social-engineering; sid:6005698; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-05T08:48:36.495374+00:00",
+  "updated_at": "2026-08-06T06:26:17.280470+00:00",
   "probe": {
     "dns": "172.66.47.65",
     "whois": null,

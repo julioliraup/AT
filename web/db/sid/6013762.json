@@ -1,8 +1,8 @@
 {
   "sid": 6013762,
-  "url_path": "/a.php",
-  "url_base": "www-appid-buscar-phone.us",
-  "msg": "AT related malicious URL (www-appid-buscar-phone.us/a.php)",
+  "url_path": "/",
+  "url_base": "cpcontacts.20-244-0-63.cprapid.com",
+  "msg": "AT related malicious URL (cpcontacts.20-244-0-63.cprapid.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www-appid-buscar-phone.us/a.php",
-      "domain": "www-appid-buscar-phone.us",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://cpcontacts.20-244-0-63.cprapid.com/",
+      "domain": "cpcontacts.20-244-0-63.cprapid.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "20.244.0.63",
+      "http_code": 200,
+      "http_response": {
+        "server": "Apache",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,47 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "e159518903dbaf1bb9122040c52934076001fbb61af9b5b3a0fef5d26e43fe55",
+      "md5": "933b2bd3682831ec0508b898704237fd",
+      "cert": {
+        "subject_cn": "cpcontacts.20-244-0-63.cprapid.com",
+        "subject_alt_names": [
+          "cpcontacts.20-244-0-63.cprapid.com"
+        ],
+        "issuer_cn": "YR1",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-01T06:51:32+00:00",
+        "not_valid_after": "2026-09-29T06:51:31+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "05 03 36 20 9E 0F 94 E2 D6 58 9A A1 DF 66 8F F1 A2 03",
+        "fingerprint_sha1": "85 4F 0D 52 85 92 F0 A6 F5 F0 97 28 BF 79 4D 7A 51 88 C4 22",
+        "fingerprint_sha256": "DD D5 73 55 96 FC DE B8 B9 EA 39 14 08 52 1E 01 69 2D 25 78 D4 71 BE 80 49 EF 59 6D 99 07 DA C0"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:32:54",
+      "first_seen_secs": 1785983574.0
     },
     "phishdestroy": {
-      "domain": "www-appid-buscar-phone.us",
-      "domain_defanged": "www-appid-buscar-phone[.]us",
-      "case_id": "PD-20260730-4FDFFA",
-      "analyzed_at": "2026-07-30T02:20:09.232Z",
+      "domain": "cpcontacts.20-244-0-63.cprapid.com",
+      "domain_defanged": "cpcontacts[.]20-244-0-63[.]cprapid[.]com",
+      "case_id": "PD-20260806-4264E4",
+      "analyzed_at": "2026-08-06T12:21:29.852Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fd705-7d2d-732e-8d7f-bad1c34ee528/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +91,31 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "20.244.0.63",
+        "ipinfo": {
+          "ip": "20.244.0.63",
+          "city": "Pune",
+          "region": "Maharashtra",
+          "country": "IN",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
+        "dns": {
+          "A": [
+            "20.244.0.63"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -192,14 +238,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www-appid-buscar-phone.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"www-appid-buscar-phone.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013762; classtype:social-engineering; sid:6013762; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-30T02:20:06.242943+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cpcontacts.20-244-0-63.cprapid.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cpcontacts.20-244-0-63.cprapid.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013762; classtype:social-engineering; sid:6013762; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
+  "updated_at": "2026-08-06T12:26:39.544134+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "20.244.0.63",
+    "whois": null,
     "status": "active"
   }
 }

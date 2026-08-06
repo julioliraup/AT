@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp10ct6-tranik-biz-fraltem-qurnex.pages.dev",
       "domain_defanged": "sp10ct6-tranik-biz-fraltem-qurnex[.]pages[.]dev",
-      "case_id": "PD-20260805-2F6E07",
-      "analyzed_at": "2026-08-05T05:59:06.216Z",
+      "case_id": "PD-20260806-2F6E07",
+      "analyzed_at": "2026-08-06T06:28:25.254Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd081-0be1-7699-9e31-47d4ae44e465.png",
           "url": "https://urlscan.io/result/019fd081-0be1-7699-9e31-47d4ae44e465/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-tranik-biz-fraltem-qurnex.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-tranik-biz-fraltem-qurnex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005732; classtype:social-engineering; sid:6005732; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-05T08:49:46.571121+00:00",
+  "updated_at": "2026-08-06T06:28:23.130552+00:00",
   "probe": {
     "dns": "172.66.47.71",
     "whois": null,

@@ -1,8 +1,8 @@
 {
   "sid": 6013798,
-  "url_path": "/a.php",
-  "url_base": "buscami-dispenlinea.us",
-  "msg": "AT related malicious URL (buscami-dispenlinea.us/a.php)",
+  "url_path": "/",
+  "url_base": "portal.motiva-rodoviadigital.com",
+  "msg": "AT related malicious URL (portal.motiva-rodoviadigital.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://buscami-dispenlinea.us/a.php",
-      "domain": "buscami-dispenlinea.us",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://portal.motiva-rodoviadigital.com/",
+      "domain": "portal.motiva-rodoviadigital.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "191.235.33.221",
+      "http_code": 200,
+      "http_response": {
+        "server": "Apache/2.4.58 (Ubuntu)",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (354)",
+      "sha256": "03310e62f2a5e1d933c326b95a3cd254ebb4e8ed81e06c79d4dbb2fbce801e78",
+      "md5": "36172546d5d9714b9c798c6b057959a9",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:32:53",
+      "first_seen_secs": 1785983573.0
     },
     "phishdestroy": {
-      "domain": "buscami-dispenlinea.us",
-      "domain_defanged": "buscami-dispenlinea[.]us",
-      "case_id": "PD-20260730-2C493D",
-      "analyzed_at": "2026-07-30T02:23:17.730Z",
+      "domain": "portal.motiva-rodoviadigital.com",
+      "domain_defanged": "portal[.]motiva-rodoviadigital[.]com",
+      "case_id": "PD-20260806-322C55",
+      "analyzed_at": "2026-08-06T12:28:47.946Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fd70c-2d7c-76bb-9d33-85847120ef15/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +74,31 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "191.235.33.221",
+        "ipinfo": {
+          "ip": "191.235.33.221",
+          "city": "Campinas",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
+        "dns": {
+          "A": [
+            "191.235.33.221"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -195,11 +224,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (buscami-dispenlinea.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"buscami-dispenlinea.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013798; classtype:social-engineering; sid:6013798; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-30T02:23:14.945657+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (portal.motiva-rodoviadigital.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"portal.motiva-rodoviadigital.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013798; classtype:social-engineering; sid:6013798; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
+  "updated_at": "2026-08-06T12:28:45.083642+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "191.235.33.221",
+    "whois": null,
     "status": "active"
   }
 }

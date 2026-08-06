@@ -73,8 +73,8 @@
     "phishdestroy": {
       "domain": "lootcentral.com.br",
       "domain_defanged": "lootcentral[.]com[.]br",
-      "case_id": "PD-20260805-607728",
-      "analyzed_at": "2026-08-05T00:59:07.097Z",
+      "case_id": "PD-20260806-607728",
+      "analyzed_at": "2026-08-06T01:17:50.700Z",
       "intel": {
         "virustotal": {
           "malicious": 6,
@@ -115,12 +115,14 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fc9a6-7d26-7348-9bc9-7f07bdc79155.png",
-          "url": "https://urlscan.io/result/019fc9a6-7d26-7348-9bc9-7f07bdc79155/",
-          "title": "Loot Central – Sua dose semanal de Cultura Pop."
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Orange"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fcfb6-ac83-7113-b738-f0d1bfbc9cf5.png",
+          "url": "https://urlscan.io/result/019fcfb6-ac83-7113-b738-f0d1bfbc9cf5/",
+          "title": "Connexion - Orange"
         }
       },
       "detections": [
@@ -153,6 +155,11 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Orange",
+          "severity": "high"
         }
       ],
       "domain_info": {
@@ -170,15 +177,15 @@
           "asn": "AS53107"
         },
         "dns": {
-          "A": [
-            "186.209.113.105"
-          ],
           "MX": [
             "0 lootcentral.com.br."
           ],
           "NS": [
-            "ns2.ynk.rocks.",
-            "ns1.ynk.rocks."
+            "ns1.ynk.rocks.",
+            "ns2.ynk.rocks."
+          ],
+          "A": [
+            "186.209.113.105"
           ]
         }
       },
@@ -312,7 +319,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.lootcentral.com.br/voice/)\"; flow:established,to_server; http.uri; content:\"/voice/\"; startswith; fast_pattern; http.host; content:\"www.lootcentral.com.br\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009850; classtype:social-engineering; sid:6009850; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-05T14:35:22.001183+00:00",
+  "updated_at": "2026-08-06T09:13:51.161705+00:00",
   "probe": {
     "dns": "186.209.113.105",
     "whois": true,

@@ -1,8 +1,8 @@
 {
   "sid": 6013758,
-  "url_path": "/a.php",
-  "url_base": "findldmaps-asistenmxn.us",
-  "msg": "AT related malicious URL (findldmaps-asistenmxn.us/a.php)",
+  "url_path": "/",
+  "url_base": "opulentbagjournal-e5d0c5555fae.herokuapp.com",
+  "msg": "AT related malicious URL (opulentbagjournal-e5d0c5555fae.herokuapp.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://findldmaps-asistenmxn.us/a.php",
-      "domain": "findldmaps-asistenmxn.us",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://opulentbagjournal-e5d0c5555fae.herokuapp.com/",
+      "domain": "opulentbagjournal-e5d0c5555fae.herokuapp.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "34.201.81.34",
+      "http_code": 404,
+      "http_response": {
+        "server": "heroku-router",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,47 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "4636bad12ce8e4f16cbdb5ef910a0f90a4672a1d98aae610286fea80de471fc0",
+      "md5": "2b33d4bc42d7acab19ff388c047a2e23",
+      "cert": {
+        "subject_cn": "*.herokuapp.com",
+        "subject_alt_names": [
+          "*.herokuapp.com"
+        ],
+        "issuer_cn": "Amazon RSA 2048 M01",
+        "issuer_org": "Amazon",
+        "issuer_country": "US",
+        "not_valid_before": "2025-12-31T00:00:00+00:00",
+        "not_valid_after": "2027-01-28T23:59:59+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "03 6E 89 D3 AE 96 B1 21 6E A8 04 2F 33 77 7E 7D",
+        "fingerprint_sha1": "CF 30 A6 B6 F2 EC 85 1F 88 2B 05 20 4F 5B 77 A4 B0 67 F1 92",
+        "fingerprint_sha256": "93 D1 EA 28 7A 7B 08 B9 38 D7 47 07 5B 14 AE 20 1E AA D6 C6 EF 45 0D EB 8E 04 99 D8 DC 33 92 F0"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:32:53",
+      "first_seen_secs": 1785983573.0
     },
     "phishdestroy": {
-      "domain": "findldmaps-asistenmxn.us",
-      "domain_defanged": "findldmaps-asistenmxn[.]us",
-      "case_id": "PD-20260730-135388",
-      "analyzed_at": "2026-07-30T02:19:32.089Z",
+      "domain": "opulentbagjournal-e5d0c5555fae.herokuapp.com",
+      "domain_defanged": "opulentbagjournal-e5d0c5555fae[.]herokuapp[.]com",
+      "case_id": "PD-20260806-462780",
+      "analyzed_at": "2026-08-06T12:26:32.186Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fd70a-1c80-7144-a265-0acaed88beaa/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +91,29 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "va06.ingress.herokuapp.com.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "MX": [
+            "va06.ingress.herokuapp.com."
+          ],
+          "AAAA": [
+            "ie01.ingress.herokuapp.com."
+          ],
+          "A": [
+            "va06.ingress.herokuapp.com.",
+            "3.216.88.24",
+            "3.219.96.23",
+            "23.22.52.7",
+            "23.22.144.165"
+          ],
+          "CNAME": [
+            "va02.ingress.herokuapp.com."
+          ],
+          "NS": [
+            "ie01.ingress.herokuapp.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -195,11 +243,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (findldmaps-asistenmxn.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"findldmaps-asistenmxn.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013758; classtype:social-engineering; sid:6013758; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-07-30T02:19:29.401541+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (opulentbagjournal-e5d0c5555fae.herokuapp.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"opulentbagjournal-e5d0c5555fae.herokuapp.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013758; classtype:social-engineering; sid:6013758; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
+  "updated_at": "2026-08-06T12:26:29.508819+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "34.201.81.34",
+    "whois": null,
     "status": "active"
   }
 }

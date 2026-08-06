@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "navyfederall.us",
       "domain_defanged": "navyfederall[.]us",
-      "case_id": "PD-20260805-6677A9",
-      "analyzed_at": "2026-08-05T05:58:42.908Z",
+      "case_id": "PD-20260806-6677A9",
+      "analyzed_at": "2026-08-06T06:28:08.031Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Navy Federal Credit Union"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea46c-7067-77cd-a5d7-44f29db2ba13.png",
+          "url": "https://urlscan.io/result/019ea46c-7067-77cd-a5d7-44f29db2ba13/",
+          "title": "Navy Federal Credit Union | Banking, Loans, Mortgages & Credit Cards | Navy Federal Credit Union"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Navy Federal Credit Union",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "5.182.208.201",
+        "ipinfo": {
+          "ip": "5.182.208.201",
+          "hostname": "hosted-by.dotshift.net",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS62068 SpectraIP B.V.",
+          "asn": "AS62068"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AS49870-BV",
+          "abuse": "abuse@as49870.net",
+          "url": "mailto:abuse@as49870.net",
+          "logo": "https://i.ibb.co/7tfb45YB/pr-AS49870-BV.png",
+          "method": "email",
+          "asn": "AS62068"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (navyfederall.us/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"navyfederall.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005726; classtype:social-engineering; sid:6005726; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-05T08:49:34.042130+00:00",
+  "updated_at": "2026-08-06T06:28:04.593172+00:00",
   "probe": {
     "dns": null,
     "whois": true,
