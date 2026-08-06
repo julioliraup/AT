@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "qantasmoney-support.ns01.info",
       "domain_defanged": "qantasmoney-support[.]ns01[.]info",
-      "case_id": "PD-20260805-370B86",
-      "analyzed_at": "2026-08-05T04:23:17.895Z",
+      "case_id": "PD-20260806-370B86",
+      "analyzed_at": "2026-08-06T14:14:18.360Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fd76c-c6fb-77fe-bc03-ae3b19797060/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,8 +74,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "204.16.169.54",
+        "ipinfo": {
+          "ip": "204.16.169.54",
+          "hostname": "abuse-sinkhole.changeip.com",
+          "city": "Chicago",
+          "region": "Illinois",
+          "country": "US",
+          "org": "AS19557 CHANGEIP COM",
+          "asn": "AS19557"
+        },
         "dns": {
+          "A": [
+            "204.16.169.54"
+          ],
           "NS": [
             "ns2.changeip.com.",
             "ns1.changeip.com."
@@ -80,7 +96,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CHANGEIP-01",
+          "abuse": "networking@changeip.cc",
+          "url": "mailto:networking@changeip.cc",
+          "logo": "",
+          "method": "email",
+          "asn": "AS19557"
+        }
       },
       "report_services": [
         {
@@ -208,10 +231,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.qantasmoney-support.ns01.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.qantasmoney-support.ns01.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001985; classtype:social-engineering; sid:6001985; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T03:15:06.775522+00:00",
+  "updated_at": "2026-08-06T14:21:32.210154+00:00",
   "probe": {
     "dns": "204.16.169.54",
-    "whois": true,
+    "whois": null,
     "status": "active"
   }
 }

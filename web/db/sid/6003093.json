@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp10ct6-plurnik-biz-frurnex-glatem.pages.dev",
       "domain_defanged": "sp10ct6-plurnik-biz-frurnex-glatem[.]pages[.]dev",
-      "case_id": "PD-20260805-76891D",
-      "analyzed_at": "2026-08-05T06:01:35.209Z",
+      "case_id": "PD-20260806-76891D",
+      "analyzed_at": "2026-08-06T06:30:23.731Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd083-51e6-7231-a504-3f8049e4bf3b.png",
           "url": "https://urlscan.io/result/019fd083-51e6-7231-a504-3f8049e4bf3b/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,16 +112,16 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2c3d",
-            "2606:4700:310c::ac42:2fc3"
-          ],
-          "A": [
-            "172.66.47.195",
-            "172.66.44.61"
+            "2606:4700:310c::ac42:2fc3",
+            "2606:4700:310c::ac42:2c3d"
           ],
           "NS": [
             "damian.ns.cloudflare.com.",
             "hera.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.47.195",
+            "172.66.44.61"
           ]
         }
       },
@@ -253,7 +262,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-plurnik-biz-frurnex-glatem.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-plurnik-biz-frurnex-glatem.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003093; classtype:social-engineering; sid:6003093; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T04:18:38.980823+00:00",
+  "updated_at": "2026-08-06T15:49:26.163314+00:00",
   "probe": {
     "dns": "172.66.47.195",
     "whois": null,

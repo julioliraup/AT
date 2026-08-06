@@ -50,10 +50,30 @@
       "domain": "bid-fri2d-diner.s3.us-east-2.amazonaws.com",
       "domain_defanged": "bid-fri2d-diner[.]s3[.]us-east-2[.]amazonaws[.]com",
       "case_id": "PD-20260806-4ABDD2",
-      "analyzed_at": "2026-08-06T06:18:01.930Z",
+      "analyzed_at": "2026-08-06T02:14:23.879Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
@@ -63,7 +83,23 @@
           "url": "https://urlscan.io/result/019fc9d4-06e0-774e-8c59-ea1bc170444a/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,25 +107,25 @@
         "ip": "s3-r-w.us-east-2.amazonaws.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "s3-r-w.us-east-2.amazonaws.com."
-          ],
           "AAAA": [
             "s3-r-w.us-east-2.amazonaws.com."
           ],
-          "CNAME": [
+          "MX": [
             "s3-r-w.us-east-2.amazonaws.com."
           ],
           "A": [
             "s3-r-w.us-east-2.amazonaws.com.",
-            "3.5.92.106",
-            "52.219.179.170",
-            "3.5.129.67",
-            "3.5.128.199",
-            "3.5.129.36",
-            "52.219.93.186",
-            "3.5.133.198",
-            "3.5.92.81"
+            "3.5.90.112",
+            "3.5.128.195",
+            "3.5.128.71",
+            "3.5.130.75",
+            "3.5.88.127",
+            "3.5.129.32",
+            "52.219.232.66",
+            "3.5.128.251"
+          ],
+          "CNAME": [
+            "s3-r-w.us-east-2.amazonaws.com."
           ],
           "NS": [
             "s3-r-w.us-east-2.amazonaws.com.",
@@ -232,13 +268,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bid-fri2d-diner.s3.us-east-2.amazonaws.com/vopps0-tr_014.70/en/index.html)\"; flow:established,to_server; http.uri; content:\"/vopps0-tr_014.70/en/index.html\"; startswith; fast_pattern; http.host; content:\"bid-fri2d-diner.s3.us-east-2.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005473; classtype:social-engineering; sid:6005473; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-06T06:17:57.741152+00:00",
+  "updated_at": "2026-08-06T17:51:43.972378+00:00",
   "probe": {
-    "dns": "3.5.133.75",
+    "dns": "3.5.131.106",
     "whois": null,
     "status": "active"
   }

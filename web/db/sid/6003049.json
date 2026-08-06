@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp10ct6-dranvik-biz-qoltex-frunax.pages.dev",
       "domain_defanged": "sp10ct6-dranvik-biz-qoltex-frunax[.]pages[.]dev",
-      "case_id": "PD-20260805-375562",
-      "analyzed_at": "2026-08-05T05:57:47.757Z",
+      "case_id": "PD-20260806-375562",
+      "analyzed_at": "2026-08-06T06:27:27.694Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd07f-d963-7761-b4a6-d23711886edb.png",
           "url": "https://urlscan.io/result/019fd07f-d963-7761-b4a6-d23711886edb/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.160",
+        "ip": "172.66.44.96",
         "ipinfo": {
-          "ip": "172.66.47.160",
+          "ip": "172.66.44.96",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +116,8 @@
             "2606:4700:310c::ac42:2c60"
           ],
           "A": [
-            "172.66.47.160",
-            "172.66.44.96"
+            "172.66.44.96",
+            "172.66.47.160"
           ],
           "NS": [
             "daphne.ns.cloudflare.com.",
@@ -253,7 +262,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct6-dranvik-biz-qoltex-frunax.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct6-dranvik-biz-qoltex-frunax.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003049; classtype:social-engineering; sid:6003049; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T04:16:28.505565+00:00",
+  "updated_at": "2026-08-06T15:46:59.282536+00:00",
   "probe": {
     "dns": "172.66.44.96",
     "whois": null,

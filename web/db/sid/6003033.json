@@ -18,32 +18,68 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://web-bugfix.pages.dev/js/web3.js/",
+      "domain": "web-bugfix.pages.dev",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "web-bugfix.pages.dev",
       "domain_defanged": "web-bugfix[.]pages[.]dev",
-      "case_id": "PD-20260805-605D30",
-      "analyzed_at": "2026-08-05T05:57:01.338Z",
+      "case_id": "PD-20260806-605D30",
+      "analyzed_at": "2026-08-06T06:26:30.742Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd07f-241c-75a6-aaa4-51bb808c67ba.png",
           "url": "https://urlscan.io/result/019fd07f-241c-75a6-aaa4-51bb808c67ba/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.159",
+        "ip": "172.66.44.97",
         "ipinfo": {
-          "ip": "172.66.47.159",
+          "ip": "172.66.44.97",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -52,16 +88,16 @@
         },
         "dns": {
           "A": [
-            "172.66.47.159",
-            "172.66.44.97"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c61",
-            "2606:4700:310c::ac42:2f9f"
+            "172.66.44.97",
+            "172.66.47.159"
           ],
           "NS": [
             "tricia.ns.cloudflare.com.",
             "zac.ns.cloudflare.com."
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2f9f",
+            "2606:4700:310c::ac42:2c61"
           ]
         }
       },
@@ -202,7 +238,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (web-bugfix.pages.dev/js/web3.js/)\"; flow:established,to_server; http.uri; content:\"/js/web3.js/\"; startswith; fast_pattern; http.host; content:\"web-bugfix.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003033; classtype:social-engineering; sid:6003033; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T04:14:24.299679+00:00",
+  "updated_at": "2026-08-06T15:46:04.314788+00:00",
   "probe": {
     "dns": "172.66.47.159",
     "whois": null,

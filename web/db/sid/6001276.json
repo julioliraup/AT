@@ -23,12 +23,18 @@
       "domain": "mkrjb93p-pldwf51zfnr-2e8a-ltp73k.pages.dev",
       "url_count": 2,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.66.45.26",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a26aae61ea42f896-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,49 +43,58 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "31c6e9cb8df58319d4b65edf749426a58488a851482720330d025a2856a20108",
+      "md5": "57700544d4406519fcf883c1a6c99eac",
+      "cert": {
+        "subject_cn": "mkrjb93p-pldwf51zfnr-2e8a-ltp73k.pages.dev",
+        "subject_alt_names": [
+          "mkrjb93p-pldwf51zfnr-2e8a-ltp73k.pages.dev",
+          "*.mkrjb93p-pldwf51zfnr-2e8a-ltp73k.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-22T00:16:45+00:00",
+        "not_valid_after": "2026-10-20T01:15:33+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "203317003059825770913936022493186668190",
+        "fingerprint_sha1": "1D E5 56 90 11 B9 57 BB 53 8C 6E 4A 9C D0 50 07 20 7C 26 3A",
+        "fingerprint_sha256": "D8 1E FD D9 41 3E 71 71 F2 AE DC 66 33 90 36 DD F0 0C EA 76 82 ED 71 57 C7 3F C3 AD 30 CD BF 82"
+      },
       "safebrowsing": [],
       "first_seen": "2026-08-06T02:33:00",
-      "first_seen_secs": null
+      "first_seen_secs": 1785983580.0
     },
     "phishdestroy": {
       "domain": "mkrjb93p-pldwf51zfnr-2e8a-ltp73k.pages.dev",
       "domain_defanged": "mkrjb93p-pldwf51zfnr-2e8a-ltp73k[.]pages[.]dev",
-      "case_id": "PD-20260805-6A7C9A",
-      "analyzed_at": "2026-08-05T02:59:32.890Z",
+      "case_id": "PD-20260806-6A7C9A",
+      "analyzed_at": "2026-08-06T13:27:30.386Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Generic Cloudflare"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019fc9f0-cc24-74ce-89b1-fb90352b1d8f.png",
-          "url": "https://urlscan.io/result/019fc9f0-cc24-74ce-89b1-fb90352b1d8f/",
-          "title": "Suspected Malware | Cloudflare"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fd741-ee58-7631-817d-4520c74ab9cc/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Generic Cloudflare",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.230",
+        "ip": "172.66.45.26",
         "ipinfo": {
-          "ip": "172.66.46.230",
+          "ip": "172.66.45.26",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -88,12 +103,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2ee6",
-            "2606:4700:310c::ac42:2d1a"
+            "2606:4700:310c::ac42:2d1a",
+            "2606:4700:310c::ac42:2ee6"
           ],
           "A": [
-            "172.66.46.230",
-            "172.66.45.26"
+            "172.66.45.26",
+            "172.66.46.230"
           ],
           "NS": [
             "jeremy.ns.cloudflare.com.",
@@ -233,14 +248,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mkrjb93p-pldwf51zfnr-2e8a-ltp73k.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mkrjb93p-pldwf51zfnr-2e8a-ltp73k.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001276; classtype:social-engineering; sid:6001276; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-06T02:35:40.875175+00:00",
+  "updated_at": "2026-08-06T13:27:28.476639+00:00",
   "probe": {
-    "dns": "172.66.46.230",
+    "dns": "172.66.45.26",
     "whois": null,
     "status": "active"
   }

@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp5ct6-qolnix-biz-glortor-fraltek.pages.dev",
       "domain_defanged": "sp5ct6-qolnix-biz-glortor-fraltek[.]pages[.]dev",
-      "case_id": "PD-20260805-16901E",
-      "analyzed_at": "2026-08-05T05:58:46.194Z",
+      "case_id": "PD-20260806-16901E",
+      "analyzed_at": "2026-08-06T06:28:10.684Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd080-bdb0-724a-a3f0-4892263507de.png",
           "url": "https://urlscan.io/result/019fd080-bdb0-724a-a3f0-4892263507de/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -253,7 +262,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct6-qolnix-biz-glortor-fraltek.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct6-qolnix-biz-glortor-fraltek.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003060; classtype:social-engineering; sid:6003060; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T04:17:22.652422+00:00",
+  "updated_at": "2026-08-06T15:47:37.929222+00:00",
   "probe": {
     "dns": "172.66.47.100",
     "whois": null,
