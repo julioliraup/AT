@@ -18,52 +18,86 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://www.perchemicals.com.tr/images/index.html",
-      "domain": "www.perchemicals.com.tr",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "perchemicals.com.tr",
       "domain_defanged": "perchemicals[.]com[.]tr",
-      "case_id": "PD-20260806-71A72E",
-      "analyzed_at": "2026-08-06T09:47:57.589Z",
+      "case_id": "PD-20260807-71A72E",
+      "analyzed_at": "2026-08-07T04:47:59.416Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Business/Economy, Phishing (alphaMountain.ai)",
+            "Forcepoint ThreatSeeker": "business and economy",
+            "Google": "chemicals_and_materials"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019fd678-ee1a-71ec-858d-c707b06303f6.png",
           "url": "https://urlscan.io/result/019fd678-ee1a-71ec-858d-c707b06303f6/",
-          "pending": true
+          "title": "Perchemicals Kimya Ergene Kimyasal Ürün Satışı | Ana Sayfa"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -80,18 +114,18 @@
         },
         "dns": {
           "MX": [
-            "10 ALT3.ASPMX.L.GOOGLE.COM.",
-            "1 ASPMX.L.GOOGLE.COM.",
-            "5 ALT1.ASPMX.L.GOOGLE.COM.",
-            "5 ALT2.ASPMX.L.GOOGLE.COM.",
-            "10 alt4.ASPMX.L.GOOGLE.COM."
+            "10 alt4.aspmx.l.google.com.",
+            "10 ALT3.aspmx.l.google.com.",
+            "5 ALT1.aspmx.l.google.com.",
+            "1 aspmx.l.google.com.",
+            "5 ALT2.aspmx.l.google.com."
+          ],
+          "NS": [
+            "ns1.natrohost.com.",
+            "ns2.natrohost.com."
           ],
           "A": [
             "94.199.205.76"
-          ],
-          "NS": [
-            "ns2.natrohost.com.",
-            "ns1.natrohost.com."
           ]
         }
       },
@@ -227,11 +261,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.perchemicals.com.tr/images/index.html)\"; flow:established,to_server; http.uri; content:\"/images/index.html\"; startswith; fast_pattern; http.host; content:\"www.perchemicals.com.tr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010307; classtype:social-engineering; sid:6010307; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T09:47:50.470567+00:00",
+  "updated_at": "2026-08-07T08:34:02.827132+00:00",
   "probe": {
     "dns": "94.199.205.76",
     "whois": true,

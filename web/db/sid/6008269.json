@@ -73,12 +73,12 @@
     "phishdestroy": {
       "domain": "transporteslakes.cl",
       "domain_defanged": "transporteslakes[.]cl",
-      "case_id": "PD-20260806-4BA888",
-      "analyzed_at": "2026-08-06T02:19:31.321Z",
+      "case_id": "PD-20260807-4BA888",
+      "analyzed_at": "2026-08-07T02:29:39.485Z",
       "intel": {
         "virustotal": {
-          "malicious": 9,
-          "suspicious": 0,
+          "malicious": 11,
+          "suspicious": 1,
           "total": 91,
           "detections": [
             {
@@ -97,12 +97,12 @@
               "result": "malicious"
             },
             {
-              "engine": "Fortinet",
+              "engine": "Forcepoint ThreatSeeker",
               "category": "malicious",
               "result": "phishing"
             },
             {
-              "engine": "G-Data",
+              "engine": "Fortinet",
               "category": "malicious",
               "result": "phishing"
             },
@@ -125,9 +125,29 @@
               "engine": "Sophos",
               "category": "malicious",
               "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "Forcepoint ThreatSeeker": "phishing and other frauds",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
@@ -155,12 +175,12 @@
           "severity": "high"
         },
         {
-          "source": "VT: Fortinet",
+          "source": "VT: Forcepoint ThreatSeeker",
           "type": "phishing",
           "severity": "high"
         },
         {
-          "source": "VT: G-Data",
+          "source": "VT: Fortinet",
           "type": "phishing",
           "severity": "high"
         },
@@ -183,6 +203,21 @@
           "source": "VT: Sophos",
           "type": "phishing",
           "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
         }
       ],
       "domain_info": {
@@ -200,15 +235,15 @@
           "asn": "AS263702"
         },
         "dns": {
-          "A": [
-            "207.210.83.100"
-          ],
           "MX": [
             "0 transporteslakes-cl.mail.protection.outlook.com."
           ],
+          "A": [
+            "207.210.83.100"
+          ],
           "NS": [
-            "ns1.v2nets.com.",
-            "ns2.v2nets.com."
+            "ns2.v2nets.com.",
+            "ns1.v2nets.com."
           ]
         }
       },
@@ -349,7 +384,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (transporteslakes.cl/desktop/)\"; flow:established,to_server; http.uri; content:\"/desktop/\"; startswith; fast_pattern; http.host; content:\"transporteslakes.cl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008269; classtype:social-engineering; sid:6008269; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-06T08:15:23.500749+00:00",
+  "updated_at": "2026-08-07T06:09:33.590243+00:00",
   "probe": {
     "dns": "207.210.83.100",
     "whois": null,

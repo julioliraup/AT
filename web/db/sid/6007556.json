@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "waocreativacompany.com",
       "domain_defanged": "waocreativacompany[.]com",
-      "case_id": "PD-20260805-322881",
-      "analyzed_at": "2026-08-05T11:18:13.851Z",
+      "case_id": "PD-20260807-322881",
+      "analyzed_at": "2026-08-07T05:18:46.539Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee28c-04aa-75b1-8ad2-bc28601a0109.png",
+          "url": "https://urlscan.io/result/019ee28c-04aa-75b1-8ad2-bc28601a0109/",
+          "title": "Authentication"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2026-06-19T09:27:09Z",
         "expires": "2027-06-19T09:27:09Z",
-        "age_days": 47,
+        "age_days": 48,
         "nameservers": [
           "NS1.SUSPENDED-DOMAIN.COM",
           "NS2.SUSPENDED-DOMAIN.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "91.92.41.55",
+        "ipinfo": {
+          "ip": "91.92.41.55",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS211443 SINO WORLDWIDE TRADING LIMITED",
+          "asn": "AS211443"
+        },
         "dns": null
       },
       "report_to": {
@@ -206,12 +227,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (waocreativacompany.com/kdn)\"; flow:established,to_server; http.uri; content:\"/kdn\"; startswith; fast_pattern; http.host; content:\"waocreativacompany.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007556; classtype:social-engineering; sid:6007556; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T07:47:00.005700+00:00",
+  "updated_at": "2026-08-07T05:18:40.590994+00:00",
   "probe": {
     "dns": null,
     "whois": true,

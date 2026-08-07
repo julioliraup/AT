@@ -72,21 +72,30 @@
     "phishdestroy": {
       "domain": "qrsu.io",
       "domain_defanged": "qrsu[.]io",
-      "case_id": "PD-20260805-22B316",
-      "analyzed_at": "2026-08-05T15:12:43.503Z",
+      "case_id": "PD-20260807-22B316",
+      "analyzed_at": "2026-08-07T04:58:43.428Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fd27b-e6f1-753c-9cda-37e0df312b82/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DHL"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd7e9-7f71-75f4-ae51-2d28919a488a.png",
+          "url": "https://urlscan.io/result/019fd7e9-7f71-75f4-ae51-2d28919a488a/",
+          "title": "DHL"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DHL",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -242,12 +251,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (qrsu.io/n2J7D)\"; flow:established,to_server; http.uri; content:\"/n2J7D\"; startswith; fast_pattern; http.host; content:\"qrsu.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007275; classtype:social-engineering; sid:6007275; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T07:37:06.172692+00:00",
+  "updated_at": "2026-08-07T04:58:33.142253+00:00",
   "probe": {
     "dns": "23.143.32.13",
     "whois": true,

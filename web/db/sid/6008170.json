@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "uaeuptodate.com",
       "domain_defanged": "uaeuptodate[.]com",
-      "case_id": "PD-20260806-32017A",
-      "analyzed_at": "2026-08-06T02:09:32.708Z",
+      "case_id": "PD-20260807-32017A",
+      "analyzed_at": "2026-08-07T02:18:31.147Z",
       "intel": {
         "virustotal": {
           "malicious": 10,
@@ -121,12 +121,15 @@
           "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fc9ce-71ef-7058-a795-70c1d8c07b75.png",
-          "url": "https://urlscan.io/result/019fc9ce-71ef-7058-a795-70c1d8c07b75/",
-          "title": "Home - UAE UP TO Date"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd714-3ac9-7151-86ca-1fc6da21a98c.png",
+          "url": "https://urlscan.io/result/019fd714-3ac9-7151-86ca-1fc6da21a98c/",
+          "title": "계정 인증"
         }
       },
       "detections": [
@@ -189,13 +192,18 @@
           "source": "VT: VIPRE",
           "type": "phishing",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, Generic Email",
+          "severity": "high"
         }
       ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2017-12-01T13:09:19Z",
         "expires": "2026-12-01T13:09:19Z",
-        "age_days": 3169,
+        "age_days": 3170,
         "nameservers": [
           "NS1.GRUBHOSTING.COM",
           "NS2.GRUBHOSTING.COM"
@@ -217,14 +225,14 @@
             "68.66.226.94"
           ],
           "MX": [
-            "0 uaeuptodate.com.",
-            "10 mxdm-ap-southeast-1.aliyun.com."
+            "10 mxdm-ap-southeast-1.aliyun.com.",
+            "0 uaeuptodate.com."
           ],
           "NS": [
-            "ns4.supercp.com.",
-            "ns2.supercp.com.",
             "ns1.supercp.com.",
-            "ns3.supercp.com."
+            "ns2.supercp.com.",
+            "ns3.supercp.com.",
+            "ns4.supercp.com."
           ]
         }
       },
@@ -372,7 +380,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (uaeuptodate.com/wp/domain.html)\"; flow:established,to_server; http.uri; content:\"/wp/domain.html\"; startswith; fast_pattern; http.host; content:\"uaeuptodate.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008170; classtype:social-engineering; sid:6008170; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-06T08:11:21.511530+00:00",
+  "updated_at": "2026-08-07T06:02:28.408402+00:00",
   "probe": {
     "dns": "68.66.226.94",
     "whois": true,

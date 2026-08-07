@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "started-ledger.wasmer.app",
       "domain_defanged": "started-ledger[.]wasmer[.]app",
-      "case_id": "PD-20260805-7A1EC0",
-      "analyzed_at": "2026-08-05T11:30:42.705Z",
+      "case_id": "PD-20260807-7A1EC0",
+      "analyzed_at": "2026-08-07T05:23:18.334Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fd1b0-a495-75ae-9324-74eb3f3539c8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd8fb-0897-76e9-92ba-a9be1446f804.png",
+          "url": "https://urlscan.io/result/019fd8fb-0897-76e9-92ba-a9be1446f804/",
+          "title": "Ledger.com/Start – Complete Guide to Setting Up Your Ledger Wallet"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -85,11 +94,11 @@
           "asn": "AS213230"
         },
         "dns": {
-          "AAAA": [
-            "2a01:4ff:f2:2004::1"
-          ],
           "A": [
             "5.161.22.175"
+          ],
+          "AAAA": [
+            "2a01:4ff:f2:2004::1"
           ],
           "NS": [
             "alpha.ns.wasmernet.com.",
@@ -222,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (started-ledger.wasmer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"started-ledger.wasmer.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007643; classtype:social-engineering; sid:6007643; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T07:50:37.076314+00:00",
+  "updated_at": "2026-08-07T05:23:14.520261+00:00",
   "probe": {
     "dns": "5.78.28.109",
     "whois": null,

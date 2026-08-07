@@ -55,31 +55,57 @@
     "phishdestroy": {
       "domain": "grihinie.org",
       "domain_defanged": "grihinie[.]org",
-      "case_id": "PD-20260805-1CA6CA",
-      "analyzed_at": "2026-08-05T11:05:29.020Z",
+      "case_id": "PD-20260807-1CA6CA",
+      "analyzed_at": "2026-08-07T05:10:36.970Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fd199-7f4e-717b-8343-ba5625925e9c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd9ae-f0d4-7288-96f0-4856deb9bdb5.png",
+          "url": "https://urlscan.io/result/019fd9ae-f0d4-7288-96f0-4856deb9bdb5/",
+          "title": "계정 인증"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "91.98.186.91",
+        "ipinfo": {
+          "ip": "91.98.186.91",
+          "hostname": "nvme.hostarchives.com",
+          "city": "Falkenstein",
+          "region": "Saxony",
+          "country": "DE",
+          "org": "AS24940 Hetzner Online GmbH",
+          "asn": "AS24940"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Hetzner",
+          "abuse": "abuse@hetzner.com",
+          "url": "https://www.hetzner.com/legal/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS24940"
+        }
       },
       "report_services": [
         {
@@ -202,12 +228,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (grihinie.org/gk/index.html)\"; flow:established,to_server; http.uri; content:\"/gk/index.html\"; startswith; fast_pattern; http.host; content:\"grihinie.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007456; classtype:social-engineering; sid:6007456; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T07:43:17.500105+00:00",
+  "updated_at": "2026-08-07T05:10:30.348176+00:00",
   "probe": {
     "dns": "91.98.186.91",
     "whois": true,

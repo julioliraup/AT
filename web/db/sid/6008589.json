@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "twilightbrand.xyz",
       "domain_defanged": "twilightbrand[.]xyz",
-      "case_id": "PD-20260805-77BF5E",
-      "analyzed_at": "2026-08-05T12:58:36.283Z",
+      "case_id": "PD-20260807-77BF5E",
+      "analyzed_at": "2026-08-07T02:52:58.344Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Booking"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea765-407f-7778-ae29-a128bd6a2455.png",
+          "url": "https://urlscan.io/result/019ea765-407f-7778-ae29-a128bd6a2455/",
+          "title": "Reservation messages · Booking.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Booking",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "5.252.153.45",
+        "ipinfo": {
+          "ip": "5.252.153.45",
+          "city": "Rotterdam",
+          "region": "South Holland",
+          "country": "NL",
+          "org": "AS205775 NEON CORE NETWORK LLC",
+          "asn": "AS205775"
+        },
         "dns": null
       },
       "report_to": {
@@ -197,7 +218,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (twilightbrand.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"twilightbrand.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008589; classtype:social-engineering; sid:6008589; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T08:27:17.765483+00:00",
+  "updated_at": "2026-08-07T06:29:10.828829+00:00",
   "probe": {
     "dns": null,
     "whois": true,

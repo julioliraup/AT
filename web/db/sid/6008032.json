@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sttart-ledgr-en.pages.dev",
       "domain_defanged": "sttart-ledgr-en[.]pages[.]dev",
-      "case_id": "PD-20260805-79394E",
-      "analyzed_at": "2026-08-05T16:16:40.411Z",
+      "case_id": "PD-20260807-79394E",
+      "analyzed_at": "2026-08-07T05:51:22.935Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd2b6-72d5-72db-a50e-1d5c9ae79364.png",
           "url": "https://urlscan.io/result/019fd2b6-72d5-72db-a50e-1d5c9ae79364/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,8 +112,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2fa6",
-            "2606:4700:310c::ac42:2c5a"
+            "2606:4700:310c::ac42:2c5a",
+            "2606:4700:310c::ac42:2fa6"
           ],
           "A": [
             "172.66.44.90",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sttart-ledgr-en.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sttart-ledgr-en.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6008032; classtype:social-engineering; sid:6008032; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-06T08:06:07.796329+00:00",
+  "updated_at": "2026-08-07T05:51:19.866530+00:00",
   "probe": {
     "dns": "172.66.44.90",
     "whois": null,

@@ -73,11 +73,11 @@
     "phishdestroy": {
       "domain": "kconnlogoc.webflow.io",
       "domain_defanged": "kconnlogoc[.]webflow[.]io",
-      "case_id": "PD-20260806-12BA4C",
-      "analyzed_at": "2026-08-06T02:08:04.458Z",
+      "case_id": "PD-20260807-12BA4C",
+      "analyzed_at": "2026-08-07T02:35:50.819Z",
       "intel": {
         "virustotal": {
-          "malicious": 16,
+          "malicious": 17,
           "suspicious": 0,
           "total": 91,
           "detections": [
@@ -98,6 +98,11 @@
             },
             {
               "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
               "category": "malicious",
               "result": "phishing"
             },
@@ -162,7 +167,12 @@
               "result": "malicious"
             }
           ],
-          "categories": {}
+          "categories": {
+            "Forcepoint ThreatSeeker": "phishing and other frauds",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": true,
@@ -194,6 +204,11 @@
         },
         {
           "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
           "type": "phishing",
           "severity": "high"
         },
@@ -277,13 +292,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.18.36.248",
-            "172.64.151.8"
-          ],
           "AAAA": [
             "2a06:98c1:3105::6812:24f8",
             "2a06:98c1:3102::ac40:9708"
+          ],
+          "A": [
+            "104.18.36.248",
+            "172.64.151.8"
           ]
         }
       },
@@ -424,7 +439,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kconnlogoc.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kconnlogoc.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008320; classtype:social-engineering; sid:6008320; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-06T08:17:07.658770+00:00",
+  "updated_at": "2026-08-07T06:12:27.642807+00:00",
   "probe": {
     "dns": "172.64.151.8",
     "whois": true,

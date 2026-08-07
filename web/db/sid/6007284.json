@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "m.105655222.com",
       "domain_defanged": "m[.]105655222[.]com",
-      "case_id": "PD-20260805-2C6AC0",
-      "analyzed_at": "2026-08-05T15:13:34.827Z",
+      "case_id": "PD-20260807-2C6AC0",
+      "analyzed_at": "2026-08-07T04:59:33.345Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f8d24-d514-744a-94fa-aacb77597e67.png",
+          "url": "https://urlscan.io/result/019f8d24-d514-744a-94fa-aacb77597e67/",
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.136.237",
+        "ipinfo": {
+          "ip": "172.67.136.237",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.105655222.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"m.105655222.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007284; classtype:social-engineering; sid:6007284; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T07:37:31.148206+00:00",
+  "updated_at": "2026-08-07T04:59:25.245653+00:00",
   "probe": {
     "dns": false,
     "whois": false,

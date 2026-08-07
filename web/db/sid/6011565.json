@@ -55,29 +55,52 @@
     "phishdestroy": {
       "domain": "mercadolibre.com.uy",
       "domain_defanged": "mercadolibre[.]com[.]uy",
-      "case_id": "PD-20260806-7940D6",
-      "analyzed_at": "2026-08-06T10:47:53.004Z",
+      "case_id": "PD-20260807-7940D6",
+      "analyzed_at": "2026-08-07T02:15:13.696Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "BitDefender": "business",
+            "Sophos": "online shopping",
+            "Forcepoint ThreatSeeker": "internet auctions",
+            "Xcitium Verdict Cloud": "shopping",
+            "Google": "shopping"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fd6af-cab6-7152-80e7-2f417699e889/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fd8e8-f934-772d-a5db-0d116a43678b.png",
+          "url": "https://urlscan.io/result/019fd8e8-f934-772d-a5db-0d116a43678b/",
+          "title": "Mercado Libre"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "13.32.16.127",
+        "ip": "13.32.16.101",
         "ipinfo": {
-          "ip": "13.32.16.127",
-          "hostname": "server-13-32-16-127.gru1.r.cloudfront.net",
+          "ip": "13.32.16.101",
+          "hostname": "server-13-32-16-101.gru1.r.cloudfront.net",
           "city": "São Paulo",
           "region": "São Paulo",
           "country": "BR",
@@ -85,9 +108,16 @@
           "asn": "AS16509"
         },
         "dns": {
+          "MX": [
+            "1 aspmx.l.google.com.",
+            "10 aspmx2.googlemail.com.",
+            "10 aspmx3.googlemail.com.",
+            "5 alt1.aspmx.l.google.com.",
+            "5 alt2.aspmx.l.google.com."
+          ],
           "A": [
-            "13.32.16.127",
             "13.32.16.101",
+            "13.32.16.127",
             "13.32.16.27",
             "13.32.16.35"
           ],
@@ -96,13 +126,6 @@
             "ns-124.awsdns-15.com.",
             "ns-1923.awsdns-48.co.uk.",
             "ns-775.awsdns-32.net."
-          ],
-          "MX": [
-            "1 aspmx.l.google.com.",
-            "10 aspmx2.googlemail.com.",
-            "10 aspmx3.googlemail.com.",
-            "5 alt1.aspmx.l.google.com.",
-            "5 alt2.aspmx.l.google.com."
           ]
         }
       },
@@ -243,7 +266,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.mercadolibre.com.uy/p/MLU36443739/)\"; flow:established,to_server; http.uri; content:\"/p/MLU36443739/\"; startswith; fast_pattern; http.host; content:\"www.mercadolibre.com.uy\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011565; classtype:social-engineering; sid:6011565; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-06T10:48:45.955958+00:00",
+  "updated_at": "2026-08-07T10:09:16.692710+00:00",
   "probe": {
     "dns": "3.175.34.100",
     "whois": null,
