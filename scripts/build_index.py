@@ -38,6 +38,8 @@ for sid_file in SID_DIR.glob('*.json'):
     }
     if 'dns_feed' in data:
         item['domains_count'] = data['dns_feed']['domains_count']
+        if 'ati_count' in data['dns_feed']:
+            item['ati_count'] = data['dns_feed']['ati_count']
     if data.get('rule_status') == 'stale':
         item['rule_status'] = 'stale'
     else:
