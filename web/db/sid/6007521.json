@@ -1,8 +1,8 @@
 {
   "sid": 6007521,
-  "url_path": "/com/",
-  "url_base": "www.gov-parkingyi.cyou",
-  "msg": "AT related malicious URL (www.gov-parkingyi.cyou/com/)",
+  "url_path": "/",
+  "url_base": "3.therewardinglocker.com",
+  "msg": "AT related malicious URL (3.therewardinglocker.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.gov-parkingyi.cyou/com/",
-      "domain": "www.gov-parkingyi.cyou",
+      "url": "http://3.therewardinglocker.com/",
+      "domain": "3.therewardinglocker.com",
       "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.67.156.70",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "9cb1318e7ea84b48-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "3d0b6f5e309df8fce8815f908dd6821b0496cf43cd9fb4ff7ea9c0ce74770826",
+      "md5": "9e2da248d38431ac1c7955ac7ffe975d",
+      "cert": {
+        "subject_cn": "therewardinglocker.com",
+        "subject_alt_names": [
+          "therewardinglocker.com",
+          "*.therewardinglocker.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-02-01T15:51:46+00:00",
+        "not_valid_after": "2026-05-02T16:50:17+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "258220026031662795186901500771110349955",
+        "fingerprint_sha1": "5B E8 74 FC 00 76 EE 43 94 DE 22 9C F2 CF 05 43 E6 1F 29 AE",
+        "fingerprint_sha256": "CA 64 19 44 21 B9 66 91 C8 26 08 0C 91 8F C4 B8 11 B5 C1 ED 36 D8 76 1D E9 21 AE 07 95 72 F2 EB"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-20T05:47:28",
-      "first_seen_secs": null
+      "first_seen": "2026-02-04T03:25:28",
+      "first_seen_secs": 1770175528.0
     },
     "phishdestroy": {
-      "domain": "gov-parkingyi.cyou",
-      "domain_defanged": "gov-parkingyi[.]cyou",
-      "case_id": "PD-20260806-185D45",
-      "analyzed_at": "2026-08-06T17:11:38.255Z",
+      "domain": "3.therewardinglocker.com",
+      "domain_defanged": "3[.]therewardinglocker[.]com",
+      "case_id": "PD-20260808-4A6C13",
+      "analyzed_at": "2026-08-08T11:45:53.873Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fe131-9e45-72ee-af85-8763c6ed3fae/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.67.156.70",
+        "ipinfo": {
+          "ip": "172.67.156.70",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "172.67.156.70",
+            "104.21.7.200"
+          ],
+          "AAAA": [
+            "2606:4700:3037::6815:7c8",
+            "2606:4700:3035::ac43:9c46"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,15 +244,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingyi.cyou/com/)\"; flow:established,to_server; http.uri; content:\"/com/\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingyi.cyou\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007521; classtype:social-engineering; sid:6007521; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T05:15:26.434634+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (3.therewardinglocker.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"3.therewardinglocker.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007521; classtype:social-engineering; sid:6007521; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
+  "updated_at": "2026-08-08T11:45:50.222650+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.67.156.70",
+    "whois": null,
     "status": "active"
   }
 }

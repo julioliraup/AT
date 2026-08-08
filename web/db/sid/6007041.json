@@ -1,8 +1,8 @@
 {
   "sid": 6007041,
-  "url_path": "/users/6541002943/profile",
-  "url_base": "www.roblox.com.mu",
-  "msg": "AT related malicious URL (www.roblox.com.mu/users/6541002943/profile)",
+  "url_path": "/",
+  "url_base": "alphazoneshop.com",
+  "msg": "AT related malicious URL (alphazoneshop.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6007041"
   ],
   "intel": {
@@ -19,8 +19,8 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.roblox.com.mu/users/6541002943/profile",
-      "domain": "www.roblox.com.mu",
+      "url": "http://alphazoneshop.com/",
+      "domain": "alphazoneshop.com",
       "url_count": 0,
       "city_data": true,
       "deep_analysis": false,
@@ -47,80 +47,69 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "roblox.com.mu",
-      "domain_defanged": "roblox[.]com[.]mu",
-      "case_id": "PD-20260807-394232",
-      "analyzed_at": "2026-08-07T04:34:58.021Z",
+      "domain": "alphazoneshop.com",
+      "domain_defanged": "alphazoneshop[.]com",
+      "case_id": "PD-20260808-38A0D9",
+      "analyzed_at": "2026-08-08T11:10:44.818Z",
       "intel": {
         "virustotal": {
-          "malicious": 0,
-          "suspicious": 1,
-          "total": 91,
-          "detections": [
-            {
-              "engine": "Gridinsoft",
-              "category": "suspicious",
-              "result": "suspicious"
-            }
-          ],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Roblox"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019fda3e-9c43-71dc-9cf4-0b32dea55cc5.png",
-          "url": "https://urlscan.io/result/019fda3e-9c43-71dc-9cf4-0b32dea55cc5/",
-          "title": "Defaultio - Roblox"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fe111-7153-76d4-af6c-b225399b2ab9/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "VT: Gridinsoft",
-          "type": "suspicious",
-          "severity": "medium"
-        },
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Roblox",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "Gname.com Pte. Ltd.",
+        "created": "2025-08-24T07:55:07Z",
+        "expires": "2026-08-24T07:55:07Z",
+        "age_days": 349,
+        "nameservers": [
+          "A12.SHARE-DNS.COM",
+          "B12.SHARE-DNS.NET"
+        ]
       },
       "infrastructure": {
-        "ip": "179.43.135.10",
+        "ip": "151.245.121.140",
         "ipinfo": {
-          "ip": "179.43.135.10",
-          "hostname": "hostedby.privatelayer.com",
-          "city": "Manno",
-          "region": "Ticino",
-          "country": "CH",
-          "org": "AS43440 Digitale Suisse AG",
-          "asn": "AS43440"
+          "ip": "151.245.121.140",
+          "city": "Montréal",
+          "region": "Quebec",
+          "country": "CA",
+          "org": "AS399486 12651980 CANADA INC.",
+          "asn": "AS399486"
         },
         "dns": {
-          "A": [
-            "179.43.135.10"
-          ],
           "NS": [
-            "raphaela.ns.cloudflare.com.",
-            "rory.ns.cloudflare.com."
+            "a.share-dns.com.",
+            "b.share-dns.net."
+          ],
+          "A": [
+            "151.245.121.140"
           ]
         }
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "GNAME",
+          "abuse": "",
+          "url": "https://phish.report/contacts/GNAME",
+          "logo": "https://i.ibb.co/qL2jSPPY/pr-GNAME.png",
+          "method": "form",
+          "iana_ids": "1923"
+        },
         "hosting": {
-          "name": "GIR-AS",
-          "abuse": "abuse@gir.network",
-          "url": "mailto:abuse@gir.network",
-          "logo": "https://i.ibb.co/JX3qLqD/pr-GIR-AS.png",
+          "name": "VIRTUO",
+          "abuse": "abuses@virtuo.host",
+          "url": "mailto:abuses@virtuo.host",
+          "logo": "https://i.ibb.co/5XTLy35t/pr-VIRTUO.png",
           "method": "email",
-          "asn": "AS43440"
+          "asn": "AS399486"
         }
       },
       "report_services": [
@@ -244,15 +233,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.roblox.com.mu/users/6541002943/profile)\"; flow:established,to_server; http.uri; content:\"/users/6541002943/profile\"; startswith; fast_pattern; http.host; content:\"www.roblox.com.mu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007041; classtype:social-engineering; sid:6007041; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T04:41:07.428077+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (alphazoneshop.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"alphazoneshop.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007041; classtype:social-engineering; sid:6007041; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
+  "updated_at": "2026-08-08T11:10:40.172635+00:00",
   "probe": {
-    "dns": "179.43.135.10",
-    "whois": null,
+    "dns": "151.245.121.140",
+    "whois": true,
     "status": "active"
   }
 }

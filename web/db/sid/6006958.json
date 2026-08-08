@@ -1,8 +1,8 @@
 {
   "sid": 6006958,
-  "url_path": "/a.php",
-  "url_base": "logginapp-lcloudmx.us",
-  "msg": "AT related malicious URL (logginapp-lcloudmx.us/a.php)",
+  "url_path": "/",
+  "url_base": "signinxfinity.weebly.com",
+  "msg": "AT related malicious URL (signinxfinity.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://logginapp-lcloudmx.us/a.php",
-      "domain": "logginapp-lcloudmx.us",
+      "url": "http://signinxfinity.weebly.com/",
+      "domain": "signinxfinity.weebly.com",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "logginapp-lcloudmx.us",
-      "domain_defanged": "logginapp-lcloudmx[.]us",
-      "case_id": "PD-20260806-1882F6",
-      "analyzed_at": "2026-08-06T16:27:41.767Z",
+      "domain": "signinxfinity.weebly.com",
+      "domain_defanged": "signinxfinity[.]weebly[.]com",
+      "case_id": "PD-20260807-19E341",
+      "analyzed_at": "2026-08-07T13:08:59.771Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fdc57-574e-7100-bf84-36b495a2aba1/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.9",
+        "ipinfo": {
+          "ip": "74.115.51.9",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.9",
+            "74.115.51.8"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -196,11 +221,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (logginapp-lcloudmx.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"logginapp-lcloudmx.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006958; classtype:social-engineering; sid:6006958; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T04:35:29.216145+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (signinxfinity.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"signinxfinity.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006958; classtype:social-engineering; sid:6006958; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
+  "updated_at": "2026-08-08T11:04:19.485033+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.9",
+    "whois": null,
     "status": "active"
   }
 }

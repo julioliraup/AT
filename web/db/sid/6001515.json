@@ -1,8 +1,8 @@
 {
   "sid": 6001515,
-  "url_path": "/com",
-  "url_base": "dpd.zqtrvmplnx.icu",
-  "msg": "AT related malicious URL (dpd.zqtrvmplnx.icu/com)",
+  "url_path": "/dropboxess.html?email=a.b@c",
+  "url_base": "myownm.s3.us-east-1.amazonaws.com",
+  "msg": "AT related malicious URL (myownm.s3.us-east-1.amazonaws.com/dropboxess.html?email=a.b@c)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "phishstats.info",
+    "openphish.com",
     "julioliraup.github.io/AT/signature.html?sid=6001515"
   ],
   "intel": {
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://dpd.zqtrvmplnx.icu/com",
-      "domain": "dpd.zqtrvmplnx.icu",
+      "url": "http://myownm.s3.us-east-1.amazonaws.com/dropboxess.html?email=a.b@c",
+      "domain": "myownm.s3.us-east-1.amazonaws.com",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "dpd.zqtrvmplnx.icu",
-      "domain_defanged": "dpd[.]zqtrvmplnx[.]icu",
-      "case_id": "PD-20260806-4C9C56",
-      "analyzed_at": "2026-08-06T19:29:22.512Z",
+      "domain": "myownm.s3.us-east-1.amazonaws.com",
+      "domain_defanged": "myownm[.]s3[.]us-east-1[.]amazonaws[.]com",
+      "case_id": "PD-20260807-359908",
+      "analyzed_at": "2026-08-07T17:02:55.846Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fdd2d-8382-71fb-a3f2-f7fb28e4ffc2/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,37 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "s3-r-w.us-east-1.amazonaws.com.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "s3-r-w.us-east-1.amazonaws.com.",
+            "16.15.247.128",
+            "16.15.213.76",
+            "52.216.42.154",
+            "52.217.139.42",
+            "16.15.253.29",
+            "54.231.167.90",
+            "16.15.255.123",
+            "54.231.169.2"
+          ],
+          "MX": [
+            "s3-r-w.us-east-1.amazonaws.com."
+          ],
+          "AAAA": [
+            "s3-r-w.us-east-1.amazonaws.com."
+          ],
+          "CNAME": [
+            "s3-r-w.us-east-1.amazonaws.com."
+          ],
+          "NS": [
+            "s3-r-w.us-east-1.amazonaws.com.",
+            "ns-1106.awsdns-10.org.",
+            "ns-1567.awsdns-03.co.uk.",
+            "ns-479.awsdns-59.com.",
+            "ns-537.awsdns-03.net."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,14 +225,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.zqtrvmplnx.icu/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"dpd.zqtrvmplnx.icu\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6001515; classtype:social-engineering; sid:6001515; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-06T19:29:19.153142+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (myownm.s3.us-east-1.amazonaws.com/dropboxess.html?email=a.b@c)\"; flow:established,to_server; http.uri; content:\"/dropboxess.html?email=a.b@c\"; startswith; fast_pattern; http.host; content:\"myownm.s3.us-east-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001515; classtype:social-engineering; sid:6001515; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T03:45:07.678220+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "52.217.172.66",
+    "whois": null,
     "status": "active"
   }
 }

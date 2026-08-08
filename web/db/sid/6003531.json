@@ -1,8 +1,8 @@
 {
   "sid": 6003531,
-  "url_path": "/gh",
-  "url_base": "ghtrack.help",
-  "msg": "AT related malicious URL (ghtrack.help/gh)",
+  "url_path": "/",
+  "url_base": "login.hmvegn.ie",
+  "msg": "AT related malicious URL (login.hmvegn.ie/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,21 +19,21 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://ghtrack.help/gh",
-      "domain": "ghtrack.help",
-      "url_count": 1,
-      "city_data": false,
+      "url": "http://login.hmvegn.ie/",
+      "domain": "login.hmvegn.ie",
+      "url_count": 8,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "43.166.1.156",
+      "ip": "20.82.96.115",
       "http_code": 200,
       "http_response": {
-        "server": null,
-        "content_type": "text/html; charset=utf-8",
+        "server": "Apache/2.4.66 (Ubuntu)",
+        "content_type": "text/html",
         "cf_ray": null,
         "cf_cache_status": null,
-        "alt_svc": "h3=\":443\"; ma=2592000"
+        "alt_svc": null
       },
       "city": null,
       "region": null,
@@ -44,42 +44,29 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text",
-      "sha256": "e23920c86d1d4f69f4774097399b5fd3a6a40ef405be841d7e394da5de11c31f",
-      "md5": "6f23926dee53b6b5fe5a2b81e2a9f656",
-      "cert": {
-        "subject_cn": "ghtrack.help",
-        "subject_alt_names": [
-          "ghtrack.help"
-        ],
-        "issuer_cn": "YE2",
-        "issuer_org": "Let's Encrypt",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-09T07:00:34+00:00",
-        "not_valid_after": "2026-09-07T07:00:33+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha384_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "500417113800449856232705050404978893558390",
-        "fingerprint_sha1": "4D 1A 53 E5 74 26 3D EE 69 C4 BD 52 16 38 0E 10 32 AC 21 BA",
-        "fingerprint_sha256": "EB 0F 89 88 C7 19 04 64 CB 97 D2 CA 62 28 16 99 94 87 7C 73 EC 55 A8 E0 D6 8D B2 A5 6F 78 01 3D"
-      },
+      "filemagic": "HTML document, Unicode text, UTF-8 text",
+      "sha256": "1429023e50b349631f2a995c2a1c0bd7d017258718f81c894613e662ff59241b",
+      "md5": "4cf1f04dedd082488d48353e5689d09d",
+      "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-09T14:00:25",
-      "first_seen_secs": 1781013625.0
+      "first_seen": "2026-07-30T03:55:54",
+      "first_seen_secs": 1785383754.0
     },
     "phishdestroy": {
-      "domain": "ghtrack.help",
-      "domain_defanged": "ghtrack[.]help",
-      "case_id": "PD-20260806-2832AA",
-      "analyzed_at": "2026-08-06T22:13:21.575Z",
+      "domain": "login.hmvegn.ie",
+      "domain_defanged": "login[.]hmvegn[.]ie",
+      "case_id": "PD-20260807-60CAFD",
+      "analyzed_at": "2026-08-07T20:08:12.266Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fddd7-2365-729e-b8a9-914b0e4803ed/",
+          "pending": true
         }
       },
       "detections": [],
@@ -87,12 +74,31 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "20.82.96.115",
+        "ipinfo": {
+          "ip": "20.82.96.115",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
+        "dns": {
+          "A": [
+            "20.82.96.115"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -215,13 +221,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ghtrack.help/gh)\"; flow:established,to_server; http.uri; content:\"/gh\"; startswith; fast_pattern; http.host; content:\"ghtrack.help\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003531; classtype:social-engineering; sid:6003531; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T22:13:18.955242+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (login.hmvegn.ie/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"login.hmvegn.ie\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003531; classtype:social-engineering; sid:6003531; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T06:56:35.034571+00:00",
   "probe": {
-    "dns": "43.166.1.156",
+    "dns": "20.82.96.115",
     "whois": true,
     "status": "active"
   }

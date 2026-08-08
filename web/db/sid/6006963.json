@@ -1,8 +1,8 @@
 {
   "sid": 6006963,
-  "url_path": "/a.php",
-  "url_base": "lflind-lcloud.us",
-  "msg": "AT related malicious URL (lflind-lcloud.us/a.php)",
+  "url_path": "/",
+  "url_base": "www.comcastupdatelogin.weebly.com",
+  "msg": "AT related malicious URL (www.comcastupdatelogin.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://lflind-lcloud.us/a.php",
-      "domain": "lflind-lcloud.us",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://www.comcastupdatelogin.weebly.com/",
+      "domain": "www.comcastupdatelogin.weebly.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "74.115.51.9",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a26aac8f6c67fff0-PDX",
+        "cf_cache_status": "EXPIRED",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (887), with CRLF, LF line terminators",
+      "sha256": "bd2b7b7059f7363483e46c5ee2d1370843df67f454b659781a570216871fcc8d",
+      "md5": "3d948bb265377b8f9aafcd0e2350873b",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:32:55",
+      "first_seen_secs": 1785983575.0
     },
     "phishdestroy": {
-      "domain": "lflind-lcloud.us",
-      "domain_defanged": "lflind-lcloud[.]us",
-      "case_id": "PD-20260806-4AF578",
-      "analyzed_at": "2026-08-06T16:28:41.192Z",
+      "domain": "comcastupdatelogin.weebly.com",
+      "domain_defanged": "comcastupdatelogin[.]weebly[.]com",
+      "case_id": "PD-20260807-5C4484",
+      "analyzed_at": "2026-08-07T12:57:33.030Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fdc4c-dc0d-768a-9e25-29e808747aa3/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +74,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.8",
+        "ipinfo": {
+          "ip": "74.115.51.8",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.8",
+            "74.115.51.9"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -196,11 +227,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lflind-lcloud.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"lflind-lcloud.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006963; classtype:social-engineering; sid:6006963; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T04:36:10.591735+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.comcastupdatelogin.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.comcastupdatelogin.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006963; classtype:social-engineering; sid:6006963; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
+  "updated_at": "2026-08-08T11:04:31.667746+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.9",
+    "whois": null,
     "status": "active"
   }
 }

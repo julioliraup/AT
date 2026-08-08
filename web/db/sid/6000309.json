@@ -1,8 +1,8 @@
 {
   "sid": 6000309,
-  "url_path": "/",
-  "url_base": "www.fly-the-skies.com",
-  "msg": "AT related malicious URL (www.fly-the-skies.com/)",
+  "url_path": "/com",
+  "url_base": "www.gov-parkingrd.shop",
+  "msg": "AT related malicious URL (www.gov-parkingrd.shop/com)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -18,72 +18,85 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://www.gov-parkingrd.shop/com",
+      "domain": "www.gov-parkingrd.shop",
+      "url_count": 0,
+      "city_data": false,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
-      "domain": "fly-the-skies.com",
-      "domain_defanged": "fly-the-skies[.]com",
-      "case_id": "PD-20260806-385A61",
-      "analyzed_at": "2026-08-06T07:39:02.436Z",
+      "domain": "gov-parkingrd.shop",
+      "domain_defanged": "gov-parkingrd[.]shop",
+      "case_id": "PD-20260807-626F8E",
+      "analyzed_at": "2026-08-07T05:03:56.651Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fd602-e624-7409-a963-d5c767fced2c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "UK Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ee3a3-b9f5-77bf-bde1-61b0cf3f14ee.png",
+          "url": "https://urlscan.io/result/019ee3a3-b9f5-77bf-bde1-61b0cf3f14ee/",
+          "title": "Pay a parking fine"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: UK Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
-        "registrar": "Gname.com Pte. Ltd.",
-        "created": "2025-09-17T18:31:53Z",
-        "expires": "2026-09-17T18:31:53Z",
-        "age_days": 322,
-        "nameservers": [
-          "CARTER.NS.CLOUDFLARE.COM",
-          "SARA.NS.CLOUDFLARE.COM"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ip": "104.206.23.73",
+        "ip": "43.153.78.56",
         "ipinfo": {
-          "ip": "104.206.23.73",
-          "hostname": "bedfordprecisions.com",
-          "city": "Seattle",
-          "region": "Washington",
+          "ip": "43.153.78.56",
+          "city": "Santa Clara",
+          "region": "California",
           "country": "US",
-          "org": "AS62904 Eonix Corporation",
-          "asn": "AS62904"
+          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+          "asn": "AS132203"
         },
-        "dns": {
-          "A": [
-            "104.206.23.73"
-          ],
-          "NS": [
-            "carter.ns.cloudflare.com.",
-            "sara.ns.cloudflare.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
-        "registrar": {
-          "name": "GNAME",
-          "abuse": "",
-          "url": "https://phish.report/contacts/GNAME",
-          "logo": "https://i.ibb.co/qL2jSPPY/pr-GNAME.png",
-          "method": "form",
-          "iana_ids": "1923"
-        },
+        "registrar": null,
         "hosting": {
-          "name": "AS62904, US",
-          "abuse": "net-abuse@eonix.net",
-          "url": "mailto:net-abuse@eonix.net",
-          "logo": "https://i.ibb.co/Zp2jk6gL/pr-AS62904-US.png",
+          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
+          "abuse": "abuse@tencent.com",
+          "url": "mailto:abuse@tencent.com",
+          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
           "method": "email",
-          "asn": "AS62904"
+          "asn": "AS132203"
         }
       },
       "report_services": [
@@ -211,11 +224,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.fly-the-skies.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.fly-the-skies.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000309; classtype:social-engineering; sid:6000309; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T18:24:33.116669+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingrd.shop/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingrd.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000309; classtype:social-engineering; sid:6000309; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T01:28:30.808142+00:00",
   "probe": {
-    "dns": "104.206.23.73",
-    "whois": null,
+    "dns": null,
+    "whois": true,
     "status": "active"
   }
 }

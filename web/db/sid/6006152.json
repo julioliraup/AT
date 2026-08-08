@@ -1,8 +1,8 @@
 {
   "sid": 6006152,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.gqhbcl.top",
-  "msg": "AT related malicious URL (t-mobile.gqhbcl.top/pay/)",
+  "url_path": "/id/76561198219634441",
+  "url_base": "help.valverestore.com",
+  "msg": "AT related malicious URL (help.valverestore.com/id/76561198219634441)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.gqhbcl.top/pay/",
-      "domain": "t-mobile.gqhbcl.top",
+      "url": "http://help.valverestore.com/id/76561198219634441",
+      "domain": "help.valverestore.com",
       "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "104.21.33.179",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a25f5bde1f949b19-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (550)",
+      "sha256": "0b593dce0ec978bcc9a91fd93a813e812b95a6bee4d8fbc292f5e3638559d62d",
+      "md5": "9d68bb49bbfdfc2296d30be74addd941",
+      "cert": {
+        "subject_cn": "valverestore.com",
+        "subject_alt_names": [
+          "*.valverestore.com",
+          "valverestore.com"
+        ],
+        "issuer_cn": "YE1",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-21T14:37:03+00:00",
+        "not_valid_after": "2026-10-19T14:37:02+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "480398136252752692206311457672964637677931",
+        "fingerprint_sha1": "63 AC 0E F0 D3 AA 24 94 8A 22 C6 28 83 74 62 CB 2E 5C 94 39",
+        "fingerprint_sha256": "A6 53 AE D2 BE D2 18 78 2A 6D 8C A6 90 06 27 52 67 C0 6D 89 A5 ED 66 62 10 B7 A5 30 03 45 99 33"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-06-10T07:56:50",
-      "first_seen_secs": null
+      "first_seen": "2026-08-04T17:23:35",
+      "first_seen_secs": 1785864215.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.gqhbcl.top",
-      "domain_defanged": "t-mobile[.]gqhbcl[.]top",
-      "case_id": "PD-20260806-372E06",
-      "analyzed_at": "2026-08-06T22:09:19.845Z",
+      "domain": "help.valverestore.com",
+      "domain_defanged": "help[.]valverestore[.]com",
+      "case_id": "PD-20260807-1F3C79",
+      "analyzed_at": "2026-08-07T11:38:34.050Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fdc04-8d92-71e8-827a-5ec8b710832f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "104.21.33.179",
+        "ipinfo": {
+          "ip": "104.21.33.179",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:3037::6815:21b3",
+            "2606:4700:3033::ac43:93ae"
+          ],
+          "A": [
+            "104.21.33.179",
+            "172.67.147.174"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,11 +248,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.gqhbcl.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.gqhbcl.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006152; classtype:social-engineering; sid:6006152; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T03:13:57.192836+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (help.valverestore.com/id/76561198219634441)\"; flow:established,to_server; http.uri; content:\"/id/76561198219634441\"; startswith; fast_pattern; http.host; content:\"help.valverestore.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006152; classtype:social-engineering; sid:6006152; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
+  "updated_at": "2026-08-08T10:12:54.929951+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "104.21.33.179",
+    "whois": null,
     "status": "active"
   }
 }

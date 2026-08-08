@@ -1,8 +1,8 @@
 {
   "sid": 6001490,
-  "url_path": "/v/3afd0f6190540ae44622e14d6e0a25a7",
-  "url_base": "rbcode.net",
-  "msg": "AT related malicious URL (rbcode.net/v/3afd0f6190540ae44622e14d6e0a25a7)",
+  "url_path": "/",
+  "url_base": "qantasmoney.ns02.info",
+  "msg": "AT related malicious URL (qantasmoney.ns02.info/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://rbcode.net/v/3afd0f6190540ae44622e14d6e0a25a7",
-      "domain": "rbcode.net",
-      "url_count": 0,
+      "url": "http://qantasmoney.ns02.info/",
+      "domain": "qantasmoney.ns02.info",
+      "url_count": 11,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "204.16.169.54",
+      "http_code": 404,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,20 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "0521d11937d55b5e9549a0474209b77e6cd0df2e5da4c6b98f518065c56b50bb",
+      "md5": "bfd986155d142e8d9b7c9abe96fee0ad",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T03:55:38",
+      "first_seen_secs": 1785383738.0
     },
     "phishdestroy": {
-      "domain": "rbcode.net",
-      "domain_defanged": "rbcode[.]net",
-      "case_id": "PD-20260806-571960",
-      "analyzed_at": "2026-08-06T12:08:01.415Z",
+      "domain": "qantasmoney.ns02.info",
+      "domain_defanged": "qantasmoney[.]ns02[.]info",
+      "case_id": "PD-20260807-491540",
+      "analyzed_at": "2026-08-07T16:57:41.950Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,51 +65,45 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fd6f9-298c-765b-b654-0a142407afe1/",
+          "url": "https://urlscan.io/result/019fdd28-ba44-74b5-beed-e0357ce94241/",
           "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "registrar": "GoDaddy.com, LLC",
-        "created": "2026-06-23T21:24:39Z",
-        "expires": "2027-06-23T21:24:39Z",
-        "age_days": 43,
-        "nameservers": [
-          "DAMIEN.NS.CLOUDFLARE.COM",
-          "DAVINA.NS.CLOUDFLARE.COM"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ip": "72.56.17.209",
+        "ip": "204.16.169.54",
         "ipinfo": {
-          "ip": "72.56.17.209",
-          "city": "Amsterdam",
-          "region": "North Holland",
-          "country": "NL",
-          "org": "AS210976 Timeweb, LLP",
-          "asn": "AS210976"
+          "ip": "204.16.169.54",
+          "hostname": "abuse-sinkhole.changeip.com",
+          "city": "Chicago",
+          "region": "Illinois",
+          "country": "US",
+          "org": "AS19557 CHANGEIP COM",
+          "asn": "AS19557"
         },
         "dns": {
-          "A": [
-            "72.56.17.209"
-          ],
           "NS": [
-            "damien.ns.cloudflare.com.",
-            "davina.ns.cloudflare.com."
+            "ns2.changeip.com.",
+            "ns1.changeip.com."
+          ],
+          "A": [
+            "204.16.169.54"
           ]
         }
       },
       "report_to": {
-        "registrar": {
-          "name": "GoDaddy Corporate Domains, LLC",
-          "abuse": "abuse@gcd.com",
-          "url": "https://phish.report/contacts/GoDaddy-Corporate-Domains-LLC",
-          "logo": "https://i.ibb.co/cKbfD77x/pr-Go-Daddy-Corporate-Domains-LLC.png",
-          "method": "form",
-          "iana_ids": "3786"
-        },
-        "hosting": null
+        "registrar": null,
+        "hosting": {
+          "name": "CHANGEIP-01",
+          "abuse": "networking@changeip.cc",
+          "url": "mailto:networking@changeip.cc",
+          "logo": "",
+          "method": "email",
+          "asn": "AS19557"
+        }
       },
       "report_services": [
         {
@@ -230,10 +230,10 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rbcode.net/v/3afd0f6190540ae44622e14d6e0a25a7)\"; flow:established,to_server; http.uri; content:\"/v/3afd0f6190540ae44622e14d6e0a25a7\"; startswith; fast_pattern; http.host; content:\"rbcode.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001490; classtype:social-engineering; sid:6001490; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-06T19:28:00.653025+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (qantasmoney.ns02.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"qantasmoney.ns02.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001490; classtype:social-engineering; sid:6001490; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T03:43:11.943923+00:00",
   "probe": {
-    "dns": "72.56.17.209",
+    "dns": "204.16.169.54",
     "whois": true,
     "status": "active"
   }

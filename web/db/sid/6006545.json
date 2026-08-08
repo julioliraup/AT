@@ -1,8 +1,8 @@
 {
   "sid": 6006545,
-  "url_path": "/?m=1",
-  "url_base": "www.shopee1929.blogspot.com",
-  "msg": "AT related malicious URL (www.shopee1929.blogspot.com/?m=1)",
+  "url_path": "/",
+  "url_base": "staging.d1jfc2cts0zds2.amplifyapp.com",
+  "msg": "AT related malicious URL (staging.d1jfc2cts0zds2.amplifyapp.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.shopee1929.blogspot.com/?m=1",
-      "domain": "www.shopee1929.blogspot.com",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
+      "url": "http://staging.d1jfc2cts0zds2.amplifyapp.com/",
+      "domain": "staging.d1jfc2cts0zds2.amplifyapp.com",
+      "url_count": 2,
+      "city_data": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "18.161.6.9",
+      "http_code": 200,
+      "http_response": {
+        "server": "AmazonS3",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,30 +43,44 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (784)",
+      "sha256": "3d1032c7b3f8083ddc1fba725672163f506c28204d656d872840a54da805545d",
+      "md5": "8206ed50813042e44664412c546a8bfc",
+      "cert": {
+        "subject_cn": "*.d1jfc2cts0zds2.amplifyapp.com",
+        "subject_alt_names": [
+          "*.d1jfc2cts0zds2.amplifyapp.com",
+          "d1jfc2cts0zds2.amplifyapp.com"
+        ],
+        "issuer_cn": "Amazon RSA 2048 M01",
+        "issuer_org": "Amazon",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-31T00:00:00+00:00",
+        "not_valid_after": "2027-02-13T23:59:59+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "06 04 BD 18 2E 25 E0 6A 25 40 88 74 44 99 A9 6F",
+        "fingerprint_sha1": "80 B8 F1 16 F8 82 AF 0D 70 9D 4A 00 08 0B 55 E6 AB C6 F0 79",
+        "fingerprint_sha256": "81 03 D2 4E CC FC 8F D1 4B E4 B8 5B 03 56 E9 8A 93 FE DC 7D E6 1E BA 41 4E 13 83 0D FA 9C 22 2B"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:32:54",
+      "first_seen_secs": 1785983574.0
     },
     "phishdestroy": {
-      "domain": "shopee1929.blogspot.com",
-      "domain_defanged": "shopee1929[.]blogspot[.]com",
-      "case_id": "PD-20260806-41161E",
-      "analyzed_at": "2026-08-06T22:42:48.018Z",
+      "domain": "staging.d1jfc2cts0zds2.amplifyapp.com",
+      "domain_defanged": "staging[.]d1jfc2cts0zds2[.]amplifyapp[.]com",
+      "case_id": "PD-20260807-3FE68D",
+      "analyzed_at": "2026-08-07T12:20:00.050Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fd93e-5028-76ed-bb39-63ce151a59af/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,27 +88,8 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
-        "dns": {
-          "A": [
-            "blogspot.l.googleusercontent.com.",
-            "172.217.29.225"
-          ],
-          "MX": [
-            "blogspot.l.googleusercontent.com."
-          ],
-          "AAAA": [
-            "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4001:839::2001"
-          ],
-          "NS": [
-            "blogspot.l.googleusercontent.com."
-          ],
-          "CNAME": [
-            "blogspot.l.googleusercontent.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -219,10 +220,10 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.shopee1929.blogspot.com/?m=1)\"; flow:established,to_server; http.uri; content:\"/?m=1\"; startswith; fast_pattern; http.host; content:\"www.shopee1929.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006545; classtype:social-engineering; sid:6006545; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T03:57:46.640131+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (staging.d1jfc2cts0zds2.amplifyapp.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"staging.d1jfc2cts0zds2.amplifyapp.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006545; classtype:social-engineering; sid:6006545; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
+  "updated_at": "2026-08-08T10:30:11.661756+00:00",
   "probe": {
-    "dns": "142.250.78.193",
+    "dns": "18.161.6.9",
     "whois": null,
     "status": "active"
   }

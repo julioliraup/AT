@@ -1,8 +1,8 @@
 {
   "sid": 6004965,
-  "url_path": "/ICL264/",
-  "url_base": "mail.icloud-myfind.us",
-  "msg": "AT related malicious URL (mail.icloud-myfind.us/ICL264/)",
+  "url_path": "/",
+  "url_base": "www.boafiles.weebly.com",
+  "msg": "AT related malicious URL (www.boafiles.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://mail.icloud-myfind.us/ICL264/",
-      "domain": "mail.icloud-myfind.us",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://www.boafiles.weebly.com/",
+      "domain": "www.boafiles.weebly.com",
+      "url_count": 15,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "74.115.51.8",
+      "http_code": 404,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a231910d1ae3ef5f-PDX",
+        "cf_cache_status": "BYPASS",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (368)",
+      "sha256": "da784cdaa070ac2c4bfdb2376ee28a3037c6656c9a8cabef1077684b58d7c8c7",
+      "md5": "82d26543a9ff2bf63d73d93be5d5b1ef",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-21T14:48:12",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:04:40",
+      "first_seen_secs": 1785384280.0
     },
     "phishdestroy": {
-      "domain": "mail.icloud-myfind.us",
-      "domain_defanged": "mail[.]icloud-myfind[.]us",
-      "case_id": "PD-20260806-786562",
-      "analyzed_at": "2026-08-06T17:24:27.354Z",
+      "domain": "boafiles.weebly.com",
+      "domain_defanged": "boafiles[.]weebly[.]com",
+      "case_id": "PD-20260808-1CBBB9",
+      "analyzed_at": "2026-08-08T08:56:49.057Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fe096-d39d-771b-879a-3c95601b873b/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +74,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.9",
+        "ipinfo": {
+          "ip": "74.115.51.9",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.9",
+            "74.115.51.8"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -192,15 +223,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail.icloud-myfind.us/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"mail.icloud-myfind.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004965; classtype:social-engineering; sid:6004965; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T01:17:45.941923+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.boafiles.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.boafiles.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004965; classtype:social-engineering; sid:6004965; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T08:56:45.076938+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.8",
+    "whois": null,
     "status": "active"
   }
 }

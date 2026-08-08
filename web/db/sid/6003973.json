@@ -1,8 +1,8 @@
 {
   "sid": 6003973,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.dcgqka.shop",
-  "msg": "AT related malicious URL (t-mobile.dcgqka.shop/pay/)",
+  "url_path": "/",
+  "url_base": "fq.relink-tech.cn",
+  "msg": "AT related malicious URL (fq.relink-tech.cn/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.dcgqka.shop/pay/",
-      "domain": "t-mobile.dcgqka.shop",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://fq.relink-tech.cn/",
+      "domain": "fq.relink-tech.cn",
+      "url_count": 8,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.80.26",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html",
+        "cf_ray": "a231900cde7babbf-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (648)",
+      "sha256": "39b973cf2ef1530347c3a19c430dbc36deb205090826accd7537036f0f5cf734",
+      "md5": "f3838f6702a2fa97057c75c7ecaebf33",
+      "cert": {
+        "subject_cn": "relink-tech.cn",
+        "subject_alt_names": [
+          "relink-tech.cn",
+          "fq.relink-tech.cn"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-08T23:13:30+00:00",
+        "not_valid_after": "2026-09-07T00:13:15+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "339537436243786902885555856441616277806",
+        "fingerprint_sha1": "7D 71 6B 9B B3 D1 D7 49 FA 84 C3 E4 56 E0 3F 0A 46 1F 60 50",
+        "fingerprint_sha256": "18 9F B5 9C A0 BF EB 62 F7 AD DB 8F FF 82 CD FB C0 40 48 D2 27 EE 45 EB 7F A2 5A DE 6A 15 55 CF"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:02:38",
+      "first_seen_secs": 1785384158.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.dcgqka.shop",
-      "domain_defanged": "t-mobile[.]dcgqka[.]shop",
-      "case_id": "PD-20260806-55C652",
-      "analyzed_at": "2026-08-06T23:03:17.216Z",
+      "domain": "fq.relink-tech.cn",
+      "domain_defanged": "fq[.]relink-tech[.]cn",
+      "case_id": "PD-20260807-493FCA",
+      "analyzed_at": "2026-08-07T20:49:15.857Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fddfc-bb59-7598-ac11-3ae376a3c874/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "104.21.80.26",
+        "ipinfo": {
+          "ip": "104.21.80.26",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "104.21.80.26",
+            "172.67.173.88"
+          ],
+          "AAAA": [
+            "2606:4700:3034::ac43:ad58",
+            "2606:4700:3037::6815:501a"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,13 +244,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.dcgqka.shop/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.dcgqka.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003973; classtype:social-engineering; sid:6003973; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T23:03:13.861373+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fq.relink-tech.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fq.relink-tech.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003973; classtype:social-engineering; sid:6003973; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T07:34:00.456705+00:00",
   "probe": {
-    "dns": null,
+    "dns": "104.21.80.26",
     "whois": true,
     "status": "active"
   }

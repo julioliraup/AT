@@ -1,8 +1,8 @@
 {
   "sid": 6005127,
-  "url_path": "/ICL264/",
-  "url_base": "mail.find-phone-location.us",
-  "msg": "AT related malicious URL (mail.find-phone-location.us/ICL264/)",
+  "url_path": "/",
+  "url_base": "green-awx.pages.dev",
+  "msg": "AT related malicious URL (green-awx.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://mail.find-phone-location.us/ICL264/",
-      "domain": "mail.find-phone-location.us",
+      "url": "http://green-awx.pages.dev/",
+      "domain": "green-awx.pages.dev",
       "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.66.47.18",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a23d001e6ae01319-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,67 +43,70 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "bf528d5bd3621d9242fd63656da5d6e7de7883f7f14879fa6d8f41d86dc3303b",
+      "md5": "616828c91a21c439ae11873aa2f67d0b",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-21T15:47:14",
-      "first_seen_secs": null
+      "first_seen": "2026-07-31T13:37:40",
+      "first_seen_secs": 1785505060.0
     },
     "phishdestroy": {
-      "domain": "mail.find-phone-location.us",
-      "domain_defanged": "mail[.]find-phone-location[.]us",
-      "case_id": "PD-20260806-522643",
-      "analyzed_at": "2026-08-06T01:50:05.134Z",
+      "domain": "green-awx.pages.dev",
+      "domain_defanged": "green-awx[.]pages[.]dev",
+      "case_id": "PD-20260807-43A18D",
+      "analyzed_at": "2026-08-07T22:32:08.331Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Apple"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019eea29-70fe-722f-a67e-2d3b5ba7de2a.png",
-          "url": "https://urlscan.io/result/019eea29-70fe-722f-a67e-2d3b5ba7de2a/",
-          "title": "iCloud"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fde5a-ea57-724c-9b8c-4fe7df3ed24e/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Apple",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "207.174.215.249",
+        "ip": "172.66.47.18",
         "ipinfo": {
-          "ip": "207.174.215.249",
-          "hostname": "207-174-215-249.unifiedlayer.com",
-          "city": "Provo",
-          "region": "Utah",
+          "ip": "172.66.47.18",
+          "city": "San Francisco",
+          "region": "California",
           "country": "US",
-          "org": "AS46606 Unified Layer",
-          "asn": "AS46606"
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
         },
-        "dns": null
+        "dns": {
+          "A": [
+            "172.66.47.18",
+            "172.66.44.238"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2f12",
+            "2606:4700:310c::ac42:2cee"
+          ],
+          "NS": [
+            "leonard.ns.cloudflare.com.",
+            "raphaela.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
         "hosting": {
-          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
-          "abuse": "abuse@hostopia.com.au",
-          "url": "mailto:abuse@hostopia.com.au",
-          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
-          "method": "email",
-          "asn": "AS46606"
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
         }
       },
       "report_services": [
@@ -225,11 +234,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail.find-phone-location.us/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"mail.find-phone-location.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005127; classtype:social-engineering; sid:6005127; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T01:34:32.083559+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (green-awx.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"green-awx.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005127; classtype:social-engineering; sid:6005127; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-08T09:05:58.011343+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.66.47.18",
+    "whois": null,
     "status": "active"
   }
 }

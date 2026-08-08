@@ -1,8 +1,8 @@
 {
   "sid": 6003810,
-  "url_path": "/wp-content/upgrade/home/login.html",
-  "url_base": "srv1540807.hstgr.cloud",
-  "msg": "AT related malicious URL (srv1540807.hstgr.cloud/wp-content/upgrade/home/login.html)",
+  "url_path": "/anodur",
+  "url_base": "alexgalho.com.br",
+  "msg": "AT related malicious URL (alexgalho.com.br/anodur)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://srv1540807.hstgr.cloud/wp-content/upgrade/home/login.html",
-      "domain": "srv1540807.hstgr.cloud",
+      "url": "http://alexgalho.com.br/anodur",
+      "domain": "alexgalho.com.br",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "srv1540807.hstgr.cloud",
-      "domain_defanged": "srv1540807[.]hstgr[.]cloud",
-      "case_id": "PD-20260806-454851",
-      "analyzed_at": "2026-08-06T22:41:24.675Z",
+      "domain": "alexgalho.com.br",
+      "domain_defanged": "alexgalho[.]com[.]br",
+      "case_id": "PD-20260807-53EAE9",
+      "analyzed_at": "2026-08-07T20:34:10.948Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fddee-ec76-7609-9658-3d2357b2af1c/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,39 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "162.241.3.19",
+        "ipinfo": {
+          "ip": "162.241.3.19",
+          "hostname": "162-241-3-19.unifiedlayer.com",
+          "city": "Vinhedo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
+        "dns": {
+          "MX": [
+            "0 mail.alexgalho.com.br."
+          ],
+          "A": [
+            "162.241.3.19"
+          ],
+          "NS": [
+            "ns246.prodns.com.br.",
+            "ns247.prodns.com.br."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -192,13 +223,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (srv1540807.hstgr.cloud/wp-content/upgrade/home/login.html)\"; flow:established,to_server; http.uri; content:\"/wp-content/upgrade/home/login.html\"; startswith; fast_pattern; http.host; content:\"srv1540807.hstgr.cloud\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003810; classtype:social-engineering; sid:6003810; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T22:41:19.124369+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (alexgalho.com.br/anodur)\"; flow:established,to_server; http.uri; content:\"/anodur\"; startswith; fast_pattern; http.host; content:\"alexgalho.com.br\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003810; classtype:social-engineering; sid:6003810; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T07:21:43.137943+00:00",
   "probe": {
-    "dns": null,
+    "dns": "162.241.3.19",
     "whois": true,
     "status": "active"
   }

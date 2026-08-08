@@ -1,8 +1,8 @@
 {
   "sid": 6007078,
-  "url_path": "/a.php",
-  "url_base": "aplle-activa-find.us",
-  "msg": "AT related malicious URL (aplle-activa-find.us/a.php)",
+  "url_path": "/",
+  "url_base": "trazoreio-help.wasmer.app",
+  "msg": "AT related malicious URL (trazoreio-help.wasmer.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://aplle-activa-find.us/a.php",
-      "domain": "aplle-activa-find.us",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://trazoreio-help.wasmer.app/",
+      "domain": "trazoreio-help.wasmer.app",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "5.78.28.109",
+      "http_code": 200,
+      "http_response": {
+        "server": null,
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,47 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with CRLF line terminators",
+      "sha256": "1c244e9902fb937059e871aeaf844ced70736a32fba012e1421909f9732900c9",
+      "md5": "d5cb9a5c1d8fa439d672bcc1a916c5c2",
+      "cert": {
+        "subject_cn": "*.wasmer.app",
+        "subject_alt_names": [
+          "*.wasmer.app"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-15T14:06:07+00:00",
+        "not_valid_after": "2026-09-13T14:06:06+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "487738653178255618318994101611448333669157",
+        "fingerprint_sha1": "8B BD 8F CC 1E 76 7E 9C C5 BC 79 F4 B6 04 88 E6 13 B8 A4 F6",
+        "fingerprint_sha256": "70 74 22 12 F4 2B 37 8A 77 CB 11 E7 BD AE E7 46 7D FF 8B F3 89 15 EA 70 46 E7 24 1C 7C 4F 3B 4D"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-07T19:04:56",
+      "first_seen_secs": 1786129496.0
     },
     "phishdestroy": {
-      "domain": "aplle-activa-find.us",
-      "domain_defanged": "aplle-activa-find[.]us",
-      "case_id": "PD-20260806-4A4CBE",
-      "analyzed_at": "2026-08-06T16:24:31.384Z",
+      "domain": "trazoreio-help.wasmer.app",
+      "domain_defanged": "trazoreio-help[.]wasmer[.]app",
+      "case_id": "PD-20260808-528946",
+      "analyzed_at": "2026-08-08T11:12:58.681Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fe113-7c3d-7064-81ae-775e3034c4c2/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +91,28 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "5.161.23.223",
+        "ipinfo": {
+          "ip": "5.161.23.223",
+          "hostname": "static.223.23.161.5.clients.your-server.de",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS213230 Hetzner Online GmbH",
+          "asn": "AS213230"
+        },
+        "dns": {
+          "AAAA": [
+            "2a01:4ff:f2:dc2e::1"
+          ],
+          "A": [
+            "5.161.23.223"
+          ],
+          "NS": [
+            "alpha.ns.wasmernet.com.",
+            "beta.ns.wasmernet.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,15 +239,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aplle-activa-find.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"aplle-activa-find.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007078; classtype:social-engineering; sid:6007078; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T04:44:11.634102+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (trazoreio-help.wasmer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"trazoreio-help.wasmer.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007078; classtype:social-engineering; sid:6007078; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
+  "updated_at": "2026-08-08T11:12:56.665619+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "5.78.28.109",
+    "whois": null,
     "status": "active"
   }
 }

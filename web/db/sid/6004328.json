@@ -1,8 +1,8 @@
 {
   "sid": 6004328,
-  "url_path": "/a.php",
-  "url_base": "cloud-icl-fml.us",
-  "msg": "AT related malicious URL (cloud-icl-fml.us/a.php)",
+  "url_path": "/netflix/",
+  "url_base": "shaimalpp.github.io",
+  "msg": "AT related malicious URL (shaimalpp.github.io/netflix/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6004328"
   ],
   "intel": {
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://cloud-icl-fml.us/a.php",
-      "domain": "cloud-icl-fml.us",
+      "url": "http://shaimalpp.github.io/netflix/",
+      "domain": "shaimalpp.github.io",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "cloud-icl-fml.us",
-      "domain_defanged": "cloud-icl-fml[.]us",
-      "case_id": "PD-20260806-611425",
-      "analyzed_at": "2026-08-06T16:32:26.255Z",
+      "domain": "shaimalpp.github.io",
+      "domain_defanged": "shaimalpp[.]github[.]io",
+      "case_id": "PD-20260807-250117",
+      "analyzed_at": "2026-08-07T21:16:14.945Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fde15-6f1f-7707-87d2-882353ac1a47/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,41 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "185.199.110.153",
+        "ipinfo": {
+          "ip": "185.199.110.153",
+          "hostname": "cdn-185-199-110-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:50c0:8001::153",
+            "2606:50c0:8000::153",
+            "2606:50c0:8003::153",
+            "2606:50c0:8002::153"
+          ],
+          "A": [
+            "185.199.110.153",
+            "185.199.111.153",
+            "185.199.109.153",
+            "185.199.108.153"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -196,10 +229,10 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cloud-icl-fml.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"cloud-icl-fml.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004328; classtype:social-engineering; sid:6004328; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T23:53:41.462957+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shaimalpp.github.io/netflix/)\"; flow:established,to_server; http.uri; content:\"/netflix/\"; startswith; fast_pattern; http.host; content:\"shaimalpp.github.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004328; classtype:social-engineering; sid:6004328; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-08T08:04:27.860732+00:00",
   "probe": {
-    "dns": null,
+    "dns": "185.199.108.153",
     "whois": true,
     "status": "active"
   }

@@ -1,8 +1,8 @@
 {
   "sid": 6007050,
-  "url_path": "/a.php",
-  "url_base": "buscami-dispenlinea.us",
-  "msg": "AT related malicious URL (buscami-dispenlinea.us/a.php)",
+  "url_path": "/",
+  "url_base": "www.maxis.com.my",
+  "msg": "AT related malicious URL (www.maxis.com.my/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6007050"
   ],
   "intel": {
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://buscami-dispenlinea.us/a.php",
-      "domain": "buscami-dispenlinea.us",
+      "url": "http://www.maxis.com.my/",
+      "domain": "www.maxis.com.my",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "buscami-dispenlinea.us",
-      "domain_defanged": "buscami-dispenlinea[.]us",
-      "case_id": "PD-20260806-2C493D",
-      "analyzed_at": "2026-08-06T16:37:03.581Z",
+      "domain": "maxis.com.my",
+      "domain_defanged": "maxis[.]com[.]my",
+      "case_id": "PD-20260808-217242",
+      "analyzed_at": "2026-08-08T11:11:31.045Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fe112-2178-71e4-bd9c-e3dea227d4fc/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,46 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "45.223.41.14",
+        "ipinfo": {
+          "ip": "45.223.41.14",
+          "city": "San Mateo",
+          "region": "California",
+          "country": "US",
+          "org": "AS19551 Incapsula Inc",
+          "asn": "AS19551"
+        },
+        "dns": {
+          "MX": [
+            "20 cluster9a.us.messagelabs.com.",
+            "10 cluster9.us.messagelabs.com."
+          ],
+          "A": [
+            "45.223.41.14",
+            "45.223.47.14"
+          ],
+          "NS": [
+            "ns9.maxis.com.my.",
+            "ns8.maxis.com.my.",
+            "isgbns3.",
+            "ns3.maxis.com.my.",
+            "ns4.maxis.com.my."
+          ],
+          "AAAA": [
+            "2a02:e980:170::e"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "INCAPSULA, US",
+          "abuse": "abuse@incapsula.com",
+          "url": "mailto:abuse@incapsula.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS19551"
+        }
       },
       "report_services": [
         {
@@ -192,14 +230,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (buscami-dispenlinea.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"buscami-dispenlinea.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007050; classtype:social-engineering; sid:6007050; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T04:41:32.944981+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.maxis.com.my/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.maxis.com.my\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007050; classtype:social-engineering; sid:6007050; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
+  "updated_at": "2026-08-08T11:11:25.015135+00:00",
   "probe": {
-    "dns": null,
+    "dns": "45.223.45.14",
     "whois": true,
     "status": "active"
   }

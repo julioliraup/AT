@@ -1,8 +1,8 @@
 {
   "sid": 6005038,
-  "url_path": "/ICL264/",
-  "url_base": "mail.1-lcloud-l-com.us",
-  "msg": "AT related malicious URL (mail.1-lcloud-l-com.us/ICL264/)",
+  "url_path": "/",
+  "url_base": "amazon-eight-taupe.vercel.app",
+  "msg": "AT related malicious URL (amazon-eight-taupe.vercel.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://mail.1-lcloud-l-com.us/ICL264/",
-      "domain": "mail.1-lcloud-l-com.us",
+      "url": "http://amazon-eight-taupe.vercel.app/",
+      "domain": "amazon-eight-taupe.vercel.app",
       "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "64.29.17.131",
+      "http_code": 200,
+      "http_response": {
+        "server": "Vercel",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,67 +43,62 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (641), with no line terminators",
+      "sha256": "aa4f90e76a6d818948c926034ae8115186194571c0629f7cd580370f809f2d19",
+      "md5": "a071ae063193aea41abdd82269603cb0",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-21T18:19:50",
-      "first_seen_secs": null
+      "first_seen": "2026-07-31T13:37:40",
+      "first_seen_secs": 1785505060.0
     },
     "phishdestroy": {
-      "domain": "mail.1-lcloud-l-com.us",
-      "domain_defanged": "mail[.]1-lcloud-l-com[.]us",
-      "case_id": "PD-20260806-35E3FF",
-      "analyzed_at": "2026-08-06T01:39:42.078Z",
+      "domain": "amazon-eight-taupe.vercel.app",
+      "domain_defanged": "amazon-eight-taupe[.]vercel[.]app",
+      "case_id": "PD-20260808-32AD14",
+      "analyzed_at": "2026-08-08T09:01:07.053Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Apple"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019eecd8-8966-762a-9ecb-e1d8e627cfa1.png",
-          "url": "https://urlscan.io/result/019eecd8-8966-762a-9ecb-e1d8e627cfa1/",
-          "title": "iCloud"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fe09a-c366-70dd-af09-1eb07e942f4e/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Apple",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "162.251.80.247",
+        "ip": "64.29.17.66",
         "ipinfo": {
-          "ip": "162.251.80.247",
-          "hostname": "162-251-80-247.unifiedlayer.com",
-          "city": "Provo",
-          "region": "Utah",
+          "ip": "64.29.17.66",
+          "city": "Walnut",
+          "region": "California",
           "country": "US",
-          "org": "AS46606 Unified Layer",
-          "asn": "AS46606"
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
         },
-        "dns": null
+        "dns": {
+          "A": [
+            "64.29.17.66",
+            "216.198.79.66"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
         "hosting": {
-          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
-          "abuse": "abuse@hostopia.com.au",
-          "url": "mailto:abuse@hostopia.com.au",
-          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
-          "method": "email",
-          "asn": "AS46606"
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
         }
       },
       "report_services": [
@@ -221,15 +222,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail.1-lcloud-l-com.us/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"mail.1-lcloud-l-com.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005038; classtype:social-engineering; sid:6005038; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T01:24:48.212313+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazon-eight-taupe.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"amazon-eight-taupe.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005038; classtype:social-engineering; sid:6005038; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-08T09:01:04.716279+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "64.29.17.131",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6005530,
-  "url_path": "/?email=hello@moburst.com",
-  "url_base": "l18inq1c8d4a6e23f9c5d1a7b0e4c8f6291.manukalena.com",
-  "msg": "AT related malicious URL (l18inq1c8d4a6e23f9c5d1a7b0e4c8f6291.manukalena.com/?email=hello@moburst.com)",
+  "url_path": "/a",
+  "url_base": "purolator.com-ftpb.life",
+  "msg": "AT related malicious URL (purolator.com-ftpb.life/a)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://l18inq1c8d4a6e23f9c5d1a7b0e4c8f6291.manukalena.com/?email=hello@moburst.com",
-      "domain": "l18inq1c8d4a6e23f9c5d1a7b0e4c8f6291.manukalena.com",
+      "url": "http://purolator.com-ftpb.life/a",
+      "domain": "purolator.com-ftpb.life",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,10 +47,10 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "l18inq1c8d4a6e23f9c5d1a7b0e4c8f6291.manukalena.com",
-      "domain_defanged": "l18inq1c8d4a6e23f9c5d1a7b0e4c8f6291[.]manukalena[.]com",
-      "case_id": "PD-20260806-552A5A",
-      "analyzed_at": "2026-08-06T17:53:21.730Z",
+      "domain": "purolator.com-ftpb.life",
+      "domain_defanged": "purolator[.]com-ftpb[.]life",
+      "case_id": "PD-20260807-D01683",
+      "analyzed_at": "2026-08-07T22:56:26.302Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -64,12 +64,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "104.21.12.130",
+        "ipinfo": {
+          "ip": "104.21.12.130",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:3034::6815:c82",
+            "2606:4700:3031::ac43:8427"
+          ],
+          "A": [
+            "104.21.12.130",
+            "172.67.132.39"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,13 +220,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (l18inq1c8d4a6e23f9c5d1a7b0e4c8f6291.manukalena.com/?email=hello@moburst.com)\"; flow:established,to_server; http.uri; content:\"/?email=hello@moburst.com\"; startswith; fast_pattern; http.host; content:\"l18inq1c8d4a6e23f9c5d1a7b0e4c8f6291.manukalena.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005530; classtype:social-engineering; sid:6005530; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-07T02:22:49.503262+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (purolator.com-ftpb.life/a)\"; flow:established,to_server; http.uri; content:\"/a\"; startswith; fast_pattern; http.host; content:\"purolator.com-ftpb.life\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005530; classtype:social-engineering; sid:6005530; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
+  "updated_at": "2026-08-08T09:30:54.954986+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "104.21.12.130",
+    "whois": true,
+    "status": "active"
+  }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6002108,
   "url_path": "/",
-  "url_base": "www.d666f999.shop",
-  "msg": "AT related malicious URL (www.d666f999.shop/)",
+  "url_base": "www.dospablosca.com",
+  "msg": "AT related malicious URL (www.dospablosca.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.d666f999.shop/",
-      "domain": "www.d666f999.shop",
-      "url_count": 10,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://www.dospablosca.com/",
+      "domain": "www.dospablosca.com",
+      "url_count": 9,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.67.155.221",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html",
+        "cf_ray": "a23199569d82b57f-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,39 +43,85 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (4017)",
+      "sha256": "0290e5d833101efd37f10b834f539be362c1e45f555162e1f61130d4fefa7c6a",
+      "md5": "14b55ad1178307b12fc1d1c12cf6a1c9",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-30T04:08:23",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:08:42",
+      "first_seen_secs": 1785384522.0
     },
     "phishdestroy": {
-      "domain": "d666f999.shop",
-      "domain_defanged": "d666f999[.]shop",
-      "case_id": "PD-20260806-1A0FB6",
-      "analyzed_at": "2026-08-06T14:31:15.110Z",
+      "domain": "dospablosca.com",
+      "domain_defanged": "dospablosca[.]com",
+      "case_id": "PD-20260807-7C7BC4",
+      "analyzed_at": "2026-08-07T18:14:50.555Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fdd6f-5a81-72f9-bc1e-95bcb817e454/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "NameCheap, Inc.",
+        "created": "2026-03-29T19:11:33Z",
+        "expires": "2027-03-29T19:11:33Z",
+        "age_days": 130,
+        "nameservers": [
+          "RACHEL.NS.CLOUDFLARE.COM",
+          "SALVADOR.NS.CLOUDFLARE.COM"
+        ]
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "104.21.34.73",
+        "ipinfo": {
+          "ip": "104.21.34.73",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:3033::ac43:9bdd",
+            "2606:4700:3033::6815:2249"
+          ],
+          "A": [
+            "104.21.34.73",
+            "172.67.155.221"
+          ],
+          "NS": [
+            "rachel.ns.cloudflare.com.",
+            "salvador.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
-        "registrar": null,
-        "hosting": null
+        "registrar": {
+          "name": "Name SRS AB",
+          "abuse": "abuse@namesrs.com",
+          "url": "https://phish.report/contacts/Name-SRS-AB",
+          "logo": "https://i.ibb.co/kgH8Frhf/pr-Name-SRS-AB.png",
+          "method": "form",
+          "iana_ids": "638"
+        },
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,11 +248,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.d666f999.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.d666f999.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002108; classtype:social-engineering; sid:6002108; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T20:15:36.717024+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.dospablosca.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.dospablosca.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002108; classtype:social-engineering; sid:6002108; rev:1; metadata: signature_severity Major, created_et 2026_06_06, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T04:36:00.221110+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.67.155.221",
+    "whois": null,
     "status": "active"
   }
 }

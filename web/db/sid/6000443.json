@@ -1,8 +1,8 @@
 {
   "sid": 6000443,
-  "url_path": "/",
-  "url_base": "started-trezrio.framer.ai",
-  "msg": "AT related malicious URL (started-trezrio.framer.ai/)",
+  "url_path": "/ICL264/",
+  "url_base": "mail.id-mycloud.us",
+  "msg": "AT related malicious URL (mail.id-mycloud.us/ICL264/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,22 +19,16 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://started-trezrio.framer.ai/",
-      "domain": "started-trezrio.framer.ai",
-      "url_count": 8,
-      "city_data": true,
-      "deep_analysis": true,
+      "url": "http://mail.id-mycloud.us/ICL264/",
+      "domain": "mail.id-mycloud.us",
+      "url_count": 1,
+      "city_data": false,
+      "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "31.43.161.6",
-      "http_code": 404,
-      "http_response": {
-        "server": "Framer/5d364ee",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": "h3=\":443\"; ma=2592000"
-      },
+      "ip": null,
+      "http_code": 0,
+      "http_response": null,
       "city": null,
       "region": null,
       "country_name": null,
@@ -43,64 +37,67 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text",
-      "sha256": "a19d8ba6e0113132f05883c09a3646afc494025abba70ed647b0fd8cbaaee0ea",
-      "md5": "78f285f211fced6e3505d0a00ff2bbf8",
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-30T04:05:22",
-      "first_seen_secs": 1785384322.0
+      "first_seen": "2026-06-21T18:38:31",
+      "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "started-trezrio.framer.ai",
-      "domain_defanged": "started-trezrio[.]framer[.]ai",
-      "case_id": "PD-20260806-629812",
-      "analyzed_at": "2026-08-06T01:44:03.458Z",
+      "domain": "mail.id-mycloud.us",
+      "domain_defanged": "mail[.]id-mycloud[.]us",
+      "case_id": "PD-20260807-601505",
+      "analyzed_at": "2026-08-07T05:33:40.437Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fcb91-a81d-74d8-b75d-e3f26f2f2607.png",
-          "url": "https://urlscan.io/result/019fcb91-a81d-74d8-b75d-e3f26f2f2607/",
-          "title": "Site Not Found | Framer"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eecd8-356d-7312-b097-097482c0f0cc.png",
+          "url": "https://urlscan.io/result/019eecd8-356d-7312-b097-097482c0f0cc/",
+          "title": "iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "31.43.161.6",
+        "ip": "162.251.80.247",
         "ipinfo": {
-          "ip": "31.43.161.6",
-          "hostname": "sites.framer.app",
-          "city": "Amsterdam",
-          "region": "North Holland",
-          "country": "NL",
-          "org": "AS16509 Amazon.com, Inc.",
-          "asn": "AS16509"
+          "ip": "162.251.80.247",
+          "hostname": "162-251-80-247.unifiedlayer.com",
+          "city": "Provo",
+          "region": "Utah",
+          "country": "US",
+          "org": "AS46606 Unified Layer",
+          "asn": "AS46606"
         },
-        "dns": {
-          "A": [
-            "31.43.161.6",
-            "31.43.160.6"
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
         "hosting": {
-          "name": "Amazon AWS",
-          "abuse": "abuse@amazonaws.com",
-          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
-          "logo": "",
-          "method": "form",
-          "asn": "AS16509"
+          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
+          "abuse": "abuse@hostopia.com.au",
+          "url": "mailto:abuse@hostopia.com.au",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS46606"
         }
       },
       "report_services": [
@@ -228,10 +225,10 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (started-trezrio.framer.ai/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"started-trezrio.framer.ai\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000443; classtype:social-engineering; sid:6000443; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T18:40:18.689318+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail.id-mycloud.us/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"mail.id-mycloud.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000443; classtype:social-engineering; sid:6000443; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T01:41:43.136985+00:00",
   "probe": {
-    "dns": "31.43.161.6",
+    "dns": null,
     "whois": true,
     "status": "active"
   }

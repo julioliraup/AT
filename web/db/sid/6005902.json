@@ -1,8 +1,8 @@
 {
   "sid": 6005902,
   "url_path": "/",
-  "url_base": "twilightbrand.xyz",
-  "msg": "AT related malicious URL (twilightbrand.xyz/)",
+  "url_base": "www.xefinity.weebly.com",
+  "msg": "AT related malicious URL (www.xefinity.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://twilightbrand.xyz/",
-      "domain": "twilightbrand.xyz",
-      "url_count": 10,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://www.xefinity.weebly.com/",
+      "domain": "www.xefinity.weebly.com",
+      "url_count": 3,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "74.115.51.9",
+      "http_code": 404,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a26aaee01a56f3b4-PDX",
+        "cf_cache_status": "BYPASS",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,60 +43,64 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (368)",
+      "sha256": "2b478bf9f1ea95a25da53453b15d49f9a4f0d9bb1d95410ca68f5a1592598e26",
+      "md5": "caec28637b72810df8a943ed4ef20075",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-30T03:20:18",
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:33:13",
+      "first_seen_secs": 1785983593.0
     },
     "phishdestroy": {
-      "domain": "twilightbrand.xyz",
-      "domain_defanged": "twilightbrand[.]xyz",
-      "case_id": "PD-20260807-77BF5E",
-      "analyzed_at": "2026-08-07T02:52:58.344Z",
+      "domain": "xefinity.weebly.com",
+      "domain_defanged": "xefinity[.]weebly[.]com",
+      "case_id": "PD-20260807-5DC3C0",
+      "analyzed_at": "2026-08-07T23:22:17.153Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Booking"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019ea765-407f-7778-ae29-a128bd6a2455.png",
-          "url": "https://urlscan.io/result/019ea765-407f-7778-ae29-a128bd6a2455/",
-          "title": "Reservation messages · Booking.com"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fde88-d3c7-7079-a2ff-b1a23e41b091/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Booking",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "5.252.153.45",
+        "ip": "74.115.51.8",
         "ipinfo": {
-          "ip": "5.252.153.45",
-          "city": "Rotterdam",
-          "region": "South Holland",
-          "country": "NL",
-          "org": "AS205775 NEON CORE NETWORK LLC",
-          "asn": "AS205775"
+          "ip": "74.115.51.8",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
         },
-        "dns": null
+        "dns": {
+          "A": [
+            "74.115.51.8",
+            "74.115.51.9"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -213,14 +223,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (twilightbrand.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"twilightbrand.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005902; classtype:social-engineering; sid:6005902; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T02:52:52.928017+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.xefinity.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.xefinity.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005902; classtype:social-engineering; sid:6005902; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
+  "updated_at": "2026-08-08T09:56:29.318767+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.9",
+    "whois": null,
     "status": "active"
   }
 }

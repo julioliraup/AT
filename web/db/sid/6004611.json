@@ -1,8 +1,8 @@
 {
   "sid": 6004611,
   "url_path": "/",
-  "url_base": "sabadellherrero.sbs",
-  "msg": "AT related malicious URL (sabadellherrero.sbs/)",
+  "url_base": "ndaxlogn.webflow.io",
+  "msg": "AT related malicious URL (ndaxlogn.webflow.io/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://sabadellherrero.sbs/",
-      "domain": "sabadellherrero.sbs",
-      "url_count": 8,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://ndaxlogn.webflow.io/",
+      "domain": "ndaxlogn.webflow.io",
+      "url_count": 6,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.64.151.8",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2318cc12f808e6c-PDX",
+        "cf_cache_status": "HIT",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (2685), with no line terminators",
+      "sha256": "d0bebdd10ebbb757ced171aff60a56167bfa8fed1950c59cd7a80ede84f26a52",
+      "md5": "dd2442027ddd9d8bc502325c87e67e41",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-30T03:12:18",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T03:58:14",
+      "first_seen_secs": 1785383894.0
     },
     "phishdestroy": {
-      "domain": "sabadellherrero.sbs",
-      "domain_defanged": "sabadellherrero[.]sbs",
-      "case_id": "PD-20260806-1ABD8B",
-      "analyzed_at": "2026-08-06T16:54:36.903Z",
+      "domain": "ndaxlogn.webflow.io",
+      "domain_defanged": "ndaxlogn[.]webflow[.]io",
+      "case_id": "PD-20260808-97FF13",
+      "analyzed_at": "2026-08-08T08:31:40.879Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fe07f-d048-75fe-b32b-47a84207fe16/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +74,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.64.151.8",
+        "ipinfo": {
+          "ip": "172.64.151.8",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "172.64.151.8",
+            "104.18.36.248"
+          ],
+          "AAAA": [
+            "2a06:98c1:3102::ac40:9708",
+            "2a06:98c1:3105::6812:24f8"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,14 +226,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sabadellherrero.sbs/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sabadellherrero.sbs\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004611; classtype:social-engineering; sid:6004611; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T00:37:46.697371+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ndaxlogn.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ndaxlogn.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004611; classtype:social-engineering; sid:6004611; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T08:31:37.139051+00:00",
   "probe": {
-    "dns": null,
+    "dns": "172.64.151.8",
     "whois": true,
     "status": "active"
   }

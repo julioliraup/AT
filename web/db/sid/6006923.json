@@ -1,8 +1,8 @@
 {
   "sid": 6006923,
-  "url_path": "/a.php",
-  "url_base": "dispositivo-i-cloud.us",
-  "msg": "AT related malicious URL (dispositivo-i-cloud.us/a.php)",
+  "url_path": "/",
+  "url_base": "mailxfinty.weebly.com",
+  "msg": "AT related malicious URL (mailxfinty.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://dispositivo-i-cloud.us/a.php",
-      "domain": "dispositivo-i-cloud.us",
+      "url": "http://mailxfinty.weebly.com/",
+      "domain": "mailxfinty.weebly.com",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "dispositivo-i-cloud.us",
-      "domain_defanged": "dispositivo-i-cloud[.]us",
-      "case_id": "PD-20260806-D03849",
-      "analyzed_at": "2026-08-06T16:24:44.655Z",
+      "domain": "mailxfinty.weebly.com",
+      "domain_defanged": "mailxfinty[.]weebly[.]com",
+      "case_id": "PD-20260807-7E802A",
+      "analyzed_at": "2026-08-07T13:06:25.039Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fdc54-fb25-704d-b149-3e4e60a57028/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.8",
+        "ipinfo": {
+          "ip": "74.115.51.8",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.8",
+            "74.115.51.9"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -196,11 +221,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dispositivo-i-cloud.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"dispositivo-i-cloud.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006923; classtype:social-engineering; sid:6006923; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T04:32:05.268729+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mailxfinty.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mailxfinty.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006923; classtype:social-engineering; sid:6006923; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
+  "updated_at": "2026-08-08T11:01:41.118469+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.8",
+    "whois": null,
     "status": "active"
   }
 }

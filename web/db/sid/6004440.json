@@ -1,8 +1,8 @@
 {
   "sid": 6004440,
   "url_path": "/",
-  "url_base": "www.cpcodm.top",
-  "msg": "AT related malicious URL (www.cpcodm.top/)",
+  "url_base": "bridge--a-public-trezor.typedream.app",
+  "msg": "AT related malicious URL (bridge--a-public-trezor.typedream.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.cpcodm.top/",
-      "domain": "www.cpcodm.top",
-      "url_count": 8,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://bridge--a-public-trezor.typedream.app/",
+      "domain": "bridge--a-public-trezor.typedream.app",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.67.206.36",
+      "http_code": 404,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a11b07026cbc8636-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (6559)",
+      "sha256": "29f94bb98b90e9e8c977a545005cc1fcf8ce6476a889f506bb5a0396fc7a5743",
+      "md5": "f72f075f03e02214cc755e0d3b1a42c7",
+      "cert": {
+        "subject_cn": "typedream.app",
+        "subject_alt_names": [
+          "typedream.app",
+          "*.typedream.app"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-28T07:58:59+00:00",
+        "not_valid_after": "2026-08-26T08:58:49+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "152547785420128694191552324140763227231",
+        "fingerprint_sha1": "48 7A C1 DD 01 61 A9 AE CB 25 AD 2C 0F 1B 21 93 1B 66 26 CF",
+        "fingerprint_sha256": "7C BC 9D 5A CA FF 55 0E F5 D2 9C 76 A7 1B DF 4A AC 8F D4 2E FA 82 07 71 9F 76 B6 0F F6 ED 4B 81"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-07-30T03:59:53",
-      "first_seen_secs": null
+      "first_seen": "2026-06-21T09:01:09",
+      "first_seen_secs": 1782032469.0
     },
     "phishdestroy": {
-      "domain": "cpcodm.top",
-      "domain_defanged": "cpcodm[.]top",
-      "case_id": "PD-20260806-22FAA5",
-      "analyzed_at": "2026-08-06T16:42:13.313Z",
+      "domain": "bridge--a-public-trezor.typedream.app",
+      "domain_defanged": "bridge--a-public-trezor[.]typedream[.]app",
+      "case_id": "PD-20260808-1BF2C4",
+      "analyzed_at": "2026-08-08T08:13:44.768Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fe06f-62a4-775c-ab4a-769d1234c4c2/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.67.206.36",
+        "ipinfo": {
+          "ip": "172.67.206.36",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "172.67.206.36",
+            "104.21.37.85"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,15 +240,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.cpcodm.top/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.cpcodm.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004440; classtype:social-engineering; sid:6004440; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T00:14:04.300655+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bridge--a-public-trezor.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bridge--a-public-trezor.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004440; classtype:social-engineering; sid:6004440; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T08:13:41.683235+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.67.206.36",
+    "whois": null,
     "status": "active"
   }
 }

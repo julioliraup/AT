@@ -1,8 +1,8 @@
 {
   "sid": 6007262,
-  "url_path": "/a/",
-  "url_base": "dkserver.sviluppo.host",
-  "msg": "AT related malicious URL (dkserver.sviluppo.host/a/)",
+  "url_path": "/",
+  "url_base": "www.comcastlive.weebly.com",
+  "msg": "AT related malicious URL (www.comcastlive.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "phishstats.info",
+    "openphish.com",
     "julioliraup.github.io/AT/signature.html?sid=6007262"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://dkserver.sviluppo.host/a/",
-      "domain": "dkserver.sviluppo.host",
-      "url_count": 0,
+      "url": "http://www.comcastlive.weebly.com/",
+      "domain": "www.comcastlive.weebly.com",
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "74.115.51.8",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a27896cbfa574b48-PDX",
+        "cf_cache_status": "EXPIRED",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,20 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (2260), with CRLF, LF line terminators",
+      "sha256": "b2f1a709b1bb7b3ad93a863b5c72c70af25b38e59ab655087731d740f070ad72",
+      "md5": "b043d6898c5ea91425b062e1ab480e06",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-07T19:04:56",
+      "first_seen_secs": 1786129496.0
     },
     "phishdestroy": {
-      "domain": "dkserver.sviluppo.host",
-      "domain_defanged": "dkserver[.]sviluppo[.]host",
-      "case_id": "PD-20260807-3DA510",
-      "analyzed_at": "2026-08-07T04:57:44.020Z",
+      "domain": "comcastlive.weebly.com",
+      "domain_defanged": "comcastlive[.]weebly[.]com",
+      "case_id": "PD-20260807-1E38CC",
+      "analyzed_at": "2026-08-07T13:12:45.258Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,9 +65,8 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019fd27a-eef8-72a7-89ae-289f597f2542.png",
-          "url": "https://urlscan.io/result/019fd27a-eef8-72a7-89ae-289f597f2542/",
-          "title": "Host - Hosting sicuro e professionale dedicato alle imprese"
+          "url": "https://urlscan.io/result/019fdc5a-c8a3-75d9-aeb6-4dae2e5514ae/",
+          "pending": true
         }
       },
       "detections": [],
@@ -69,35 +74,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "81.31.158.73",
+        "ip": "74.115.51.8",
         "ipinfo": {
-          "ip": "81.31.158.73",
-          "hostname": "w3030.shared.host.it",
-          "city": "Turin",
-          "region": "Piedmont",
-          "country": "IT",
-          "org": "AS47242 Host SpA",
-          "asn": "AS47242"
+          "ip": "74.115.51.8",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
         },
         "dns": {
           "A": [
-            "81.31.158.73"
-          ],
-          "NS": [
-            "ns1.host-anycast.it.",
-            "ns2.host-anycast.com."
+            "74.115.51.8",
+            "74.115.51.9"
           ]
         }
       },
       "report_to": {
         "registrar": null,
         "hosting": {
-          "name": "COLTENGINE",
-          "abuse": "ripe@host.it",
-          "url": "mailto:ripe@host.it",
-          "logo": "https://i.ibb.co/mFrcXtZb/pr-COLTENGINE.png",
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
           "method": "email",
-          "asn": "AS47242"
+          "asn": "AS27647"
         }
       },
       "report_services": [
@@ -221,14 +223,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dkserver.sviluppo.host/a/)\"; flow:established,to_server; http.uri; content:\"/a/\"; startswith; fast_pattern; http.host; content:\"dkserver.sviluppo.host\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007262; classtype:social-engineering; sid:6007262; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T04:57:39.261507+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.comcastlive.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.comcastlive.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007262; classtype:social-engineering; sid:6007262; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
+  "updated_at": "2026-08-08T11:23:23.997223+00:00",
   "probe": {
-    "dns": "81.31.158.73",
-    "whois": true,
+    "dns": "74.115.51.8",
+    "whois": null,
     "status": "active"
   }
 }

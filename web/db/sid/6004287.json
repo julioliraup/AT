@@ -1,8 +1,8 @@
 {
   "sid": 6004287,
-  "url_path": "/a.php",
-  "url_base": "sign-pple-maps.us",
-  "msg": "AT related malicious URL (sign-pple-maps.us/a.php)",
+  "url_path": "/",
+  "url_base": "adflow-browser-usage.vercel.app",
+  "msg": "AT related malicious URL (adflow-browser-usage.vercel.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6004287"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://sign-pple-maps.us/a.php",
-      "domain": "sign-pple-maps.us",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://adflow-browser-usage.vercel.app/",
+      "domain": "adflow-browser-usage.vercel.app",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "64.29.17.131",
+      "http_code": 404,
+      "http_response": {
+        "server": "Vercel",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (3412)",
+      "sha256": "427eb6567548d9f3c3325f278448e65220187818d511141b2ef7874524040457",
+      "md5": "3cd5f0b06d6b5a261252941954db9767",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:32:56",
+      "first_seen_secs": 1785983576.0
     },
     "phishdestroy": {
-      "domain": "sign-pple-maps.us",
-      "domain_defanged": "sign-pple-maps[.]us",
-      "case_id": "PD-20260806-6702D1",
-      "analyzed_at": "2026-08-06T16:28:04.845Z",
+      "domain": "adflow-browser-usage.vercel.app",
+      "domain_defanged": "adflow-browser-usage[.]vercel[.]app",
+      "case_id": "PD-20260807-188D2E",
+      "analyzed_at": "2026-08-07T21:13:04.941Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fde12-89b2-74a9-ad51-07fc2037c369/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +74,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "64.29.17.66",
+        "ipinfo": {
+          "ip": "64.29.17.66",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
+        "dns": {
+          "A": [
+            "64.29.17.66",
+            "216.198.79.66"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -196,11 +226,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sign-pple-maps.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"sign-pple-maps.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004287; classtype:social-engineering; sid:6004287; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T23:45:18.243849+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (adflow-browser-usage.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"adflow-browser-usage.vercel.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004287; classtype:social-engineering; sid:6004287; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-08T08:01:15.786607+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "64.29.17.131",
+    "whois": null,
     "status": "active"
   }
 }

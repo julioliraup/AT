@@ -1,8 +1,8 @@
 {
   "sid": 6003560,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.hwspuy.top",
-  "msg": "AT related malicious URL (t-mobile.hwspuy.top/pay/)",
+  "url_path": "/",
+  "url_base": "www.us.usps-stampstore.com",
+  "msg": "AT related malicious URL (www.us.usps-stampstore.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.hwspuy.top/pay/",
-      "domain": "t-mobile.hwspuy.top",
-      "url_count": 1,
-      "city_data": false,
+      "url": "http://www.us.usps-stampstore.com/",
+      "domain": "www.us.usps-stampstore.com",
+      "url_count": 9,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -43,20 +43,24 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-14T05:17:29",
+      "first_seen": "2026-07-30T03:58:44",
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "t-mobile.hwspuy.top",
-      "domain_defanged": "t-mobile[.]hwspuy[.]top",
-      "case_id": "PD-20260806-1FC4A9",
-      "analyzed_at": "2026-08-06T22:15:36.597Z",
+      "domain": "us.usps-stampstore.com",
+      "domain_defanged": "us[.]usps-stampstore[.]com",
+      "case_id": "PD-20260807-67AC5A",
+      "analyzed_at": "2026-08-07T20:11:55.981Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fddda-8dc9-76fc-b2a5-74af2a28dd39/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,39 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "103.224.182.242",
+        "ipinfo": {
+          "ip": "103.224.182.242",
+          "hostname": "lb-182-242.above.com",
+          "city": "San Diego",
+          "region": "California",
+          "country": "US",
+          "org": "AS133618 Trellian Pty. Limited",
+          "asn": "AS133618"
+        },
+        "dns": {
+          "A": [
+            "103.224.182.242"
+          ],
+          "MX": [
+            "10 park-mx.above.com."
+          ],
+          "NS": [
+            "ns11.abovedomains.com.",
+            "ns12.abovedomains.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TRELLIAN-AS-AP",
+          "abuse": "abuse@trellian.com",
+          "url": "mailto:abuse@trellian.com",
+          "logo": "https://i.ibb.co/tPsnzw0R/pr-TRELLIAN-AS-AP.png",
+          "method": "email",
+          "asn": "AS133618"
+        }
       },
       "report_services": [
         {
@@ -192,14 +223,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.hwspuy.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.hwspuy.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003560; classtype:social-engineering; sid:6003560; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T22:15:33.828670+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.us.usps-stampstore.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.us.usps-stampstore.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003560; classtype:social-engineering; sid:6003560; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T06:58:51.353147+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "103.224.182.242",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6003505,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.bnmhgy.top",
-  "msg": "AT related malicious URL (t-mobile.bnmhgy.top/pay/)",
+  "url_path": "/dashboard/login.php",
+  "url_base": "titanprint.co.in",
+  "msg": "AT related malicious URL (titanprint.co.in/dashboard/login.php)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6003505"
   ],
   "intel": {
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.bnmhgy.top/pay/",
-      "domain": "t-mobile.bnmhgy.top",
+      "url": "http://titanprint.co.in/dashboard/login.php",
+      "domain": "titanprint.co.in",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "t-mobile.bnmhgy.top",
-      "domain_defanged": "t-mobile[.]bnmhgy[.]top",
-      "case_id": "PD-20260806-1475BB",
-      "analyzed_at": "2026-08-06T22:10:56.281Z",
+      "domain": "titanprint.co.in",
+      "domain_defanged": "titanprint[.]co[.]in",
+      "case_id": "PD-20260807-3C6191",
+      "analyzed_at": "2026-08-07T20:06:15.186Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fddd5-5a98-73bc-9013-bfe5a13a199f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,39 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "54.39.160.85",
+        "ipinfo": {
+          "ip": "54.39.160.85",
+          "hostname": "ip85.ip-54-39-160.net",
+          "city": "Montréal",
+          "region": "Quebec",
+          "country": "CA",
+          "org": "AS16276 OVH SAS",
+          "asn": "AS16276"
+        },
+        "dns": {
+          "A": [
+            "54.39.160.85"
+          ],
+          "MX": [
+            "0 titanprint.co.in."
+          ],
+          "NS": [
+            "ns1.nethost.in.",
+            "ns2.nethost.in."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "OVH",
+          "abuse": "abuse@ovh.net",
+          "url": "https://www.ovh.com/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16276"
+        }
       },
       "report_services": [
         {
@@ -192,14 +223,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.bnmhgy.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.bnmhgy.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003505; classtype:social-engineering; sid:6003505; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T22:10:53.716514+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (titanprint.co.in/dashboard/login.php)\"; flow:established,to_server; http.uri; content:\"/dashboard/login.php\"; startswith; fast_pattern; http.host; content:\"titanprint.co.in\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003505; classtype:social-engineering; sid:6003505; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T06:55:03.258485+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "54.39.160.85",
+    "whois": null,
     "status": "active"
   }
 }

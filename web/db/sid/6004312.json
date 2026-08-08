@@ -1,8 +1,8 @@
 {
   "sid": 6004312,
-  "url_path": "/a.php",
-  "url_base": "tech-liren.run",
-  "msg": "AT related malicious URL (tech-liren.run/a.php)",
+  "url_path": "/",
+  "url_base": "it.m.sonicmenusprices.com",
+  "msg": "AT related malicious URL (it.m.sonicmenusprices.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6004312"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://tech-liren.run/a.php",
-      "domain": "tech-liren.run",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://it.m.sonicmenusprices.com/",
+      "domain": "it.m.sonicmenusprices.com",
+      "url_count": 3,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.206.0.154",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html;charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (734), with CRLF, LF line terminators",
+      "sha256": "0008929b61844935d6594df51ed26d17185813b9c587c479070d88094a9e56e6",
+      "md5": "091b1be278c8cf65fdf0990745995390",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:32:56",
+      "first_seen_secs": 1785983576.0
     },
     "phishdestroy": {
-      "domain": "tech-liren.run",
-      "domain_defanged": "tech-liren[.]run",
-      "case_id": "PD-20260806-42F434",
-      "analyzed_at": "2026-08-06T16:30:58.559Z",
+      "domain": "it.m.sonicmenusprices.com",
+      "domain_defanged": "it[.]m[.]sonicmenusprices[.]com",
+      "case_id": "PD-20260807-361C47",
+      "analyzed_at": "2026-08-07T21:14:54.885Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fde14-3678-75bc-bc62-b6e9707c395d/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +74,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "104.206.0.154",
+        "ipinfo": {
+          "ip": "104.206.0.154",
+          "hostname": "154-0-206-104.static.rdns.serverhub.com",
+          "city": "Seattle",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS62904 Eonix Corporation",
+          "asn": "AS62904"
+        },
+        "dns": {
+          "A": [
+            "104.206.0.154"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AS62904, US",
+          "abuse": "net-abuse@eonix.net",
+          "url": "mailto:net-abuse@eonix.net",
+          "logo": "https://i.ibb.co/Zp2jk6gL/pr-AS62904-US.png",
+          "method": "email",
+          "asn": "AS62904"
+        }
       },
       "report_services": [
         {
@@ -196,11 +226,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tech-liren.run/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"tech-liren.run\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004312; classtype:social-engineering; sid:6004312; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-06T23:50:08.459798+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (it.m.sonicmenusprices.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"it.m.sonicmenusprices.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004312; classtype:social-engineering; sid:6004312; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-08T08:02:43.402642+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "104.206.0.154",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6007012,
-  "url_path": "/a.php",
-  "url_base": "app-1cloud-find-1.com",
-  "msg": "AT related malicious URL (app-1cloud-find-1.com/a.php)",
+  "url_path": "/",
+  "url_base": "comcast-webmail-service.weeblysite.com",
+  "msg": "AT related malicious URL (comcast-webmail-service.weeblysite.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://app-1cloud-find-1.com/a.php",
-      "domain": "app-1cloud-find-1.com",
+      "url": "http://comcast-webmail-service.weeblysite.com/",
+      "domain": "comcast-webmail-service.weeblysite.com",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,43 +47,54 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "app-1cloud-find-1.com",
-      "domain_defanged": "app-1cloud-find-1[.]com",
-      "case_id": "PD-20260806-19ABE1",
-      "analyzed_at": "2026-08-06T16:33:27.822Z",
+      "domain": "comcast-webmail-service.weeblysite.com",
+      "domain_defanged": "comcast-webmail-service[.]weeblysite[.]com",
+      "case_id": "PD-20260808-498196",
+      "analyzed_at": "2026-08-08T11:09:19.159Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fe110-22b7-7136-bdb3-9b55e7a96606/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "registrar": "NameSilo, LLC",
-        "created": "2026-04-27T14:05:09Z",
-        "expires": "2027-04-27T14:05:09Z",
-        "age_days": 101,
-        "nameservers": [
-          "NS1.REGISTRO3.STORE",
-          "NS2.REGISTRO3.STORE"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.55",
+        "ipinfo": {
+          "ip": "74.115.51.55",
+          "hostname": "weeblysite.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.55",
+            "74.115.51.54"
+          ]
+        }
       },
       "report_to": {
-        "registrar": {
-          "name": "Name SRS AB",
-          "abuse": "abuse@namesrs.com",
-          "url": "https://phish.report/contacts/Name-SRS-AB",
-          "logo": "https://i.ibb.co/kgH8Frhf/pr-Name-SRS-AB.png",
-          "method": "form",
-          "iana_ids": "638"
-        },
-        "hosting": null
+        "registrar": null,
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -206,15 +217,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app-1cloud-find-1.com/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"app-1cloud-find-1.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007012; classtype:social-engineering; sid:6007012; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T04:39:25.991929+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (comcast-webmail-service.weeblysite.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"comcast-webmail-service.weeblysite.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007012; classtype:social-engineering; sid:6007012; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
+  "updated_at": "2026-08-08T11:09:15.170837+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.54",
+    "whois": null,
     "status": "active"
   }
 }

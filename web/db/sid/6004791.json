@@ -1,8 +1,8 @@
 {
   "sid": 6004791,
   "url_path": "/",
-  "url_base": "aktiffkan-paylater.djj.my.id",
-  "msg": "AT related malicious URL (aktiffkan-paylater.djj.my.id/)",
+  "url_base": "dg.mntbell.com",
+  "msg": "AT related malicious URL (dg.mntbell.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://aktiffkan-paylater.djj.my.id/",
-      "domain": "aktiffkan-paylater.djj.my.id",
-      "url_count": 7,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://dg.mntbell.com/",
+      "domain": "dg.mntbell.com",
+      "url_count": 9,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "104.21.26.234",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a231907b89941509-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,47 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "830d7e50e42af73ae3eea1ffc26901fbc0e8dc66b6fb23bce89e391dc514ff84",
+      "md5": "f8ca9bca08188042a4680abfec794569",
+      "cert": {
+        "subject_cn": "dg.mntbell.com",
+        "subject_alt_names": [
+          "dg.mntbell.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-12T11:49:43+00:00",
+        "not_valid_after": "2026-09-10T12:49:30+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "230199251960314608915220029761214260005",
+        "fingerprint_sha1": "4E 20 FE 96 9B 4A 05 B7 ED 24 3F EB 34 6E 84 EE BA 5A FA 9B",
+        "fingerprint_sha256": "19 7F 96 80 BF 38 F1 CA 99 31 74 E3 F3 FF D7 DB CF 48 78 B7 D1 EC 6A 53 E0 01 8E 6E 13 B1 8D 62"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-07-30T04:09:48",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T03:59:33",
+      "first_seen_secs": 1785383973.0
     },
     "phishdestroy": {
-      "domain": "aktiffkan-paylater.djj.my.id",
-      "domain_defanged": "aktiffkan-paylater[.]djj[.]my[.]id",
-      "case_id": "PD-20260806-E56BE3",
-      "analyzed_at": "2026-08-06T17:07:41.243Z",
+      "domain": "dg.mntbell.com",
+      "domain_defanged": "dg[.]mntbell[.]com",
+      "case_id": "PD-20260807-7F6C9E",
+      "analyzed_at": "2026-08-07T22:01:53.420Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fde3f-387e-7595-94de-92f595484299/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +91,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.67.168.150",
+        "ipinfo": {
+          "ip": "172.67.168.150",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:3035::ac43:a896",
+            "2606:4700:3031::6815:1aea"
+          ],
+          "A": [
+            "172.67.168.150",
+            "104.21.26.234"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,11 +247,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aktiffkan-paylater.djj.my.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aktiffkan-paylater.djj.my.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004791; classtype:social-engineering; sid:6004791; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T00:57:41.064325+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dg.mntbell.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"dg.mntbell.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004791; classtype:social-engineering; sid:6004791; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-08T08:44:46.374323+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "104.21.26.234",
+    "whois": null,
     "status": "active"
   }
 }

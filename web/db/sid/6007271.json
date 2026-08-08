@@ -1,8 +1,8 @@
 {
   "sid": 6007271,
-  "url_path": "/com",
-  "url_base": "www.gov-parkingrf.shop",
-  "msg": "AT related malicious URL (www.gov-parkingrf.shop/com)",
+  "url_path": "/",
+  "url_base": "www.mailcomcst.weebly.com",
+  "msg": "AT related malicious URL (www.mailcomcst.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.gov-parkingrf.shop/com",
-      "domain": "www.gov-parkingrf.shop",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://www.mailcomcst.weebly.com/",
+      "domain": "www.mailcomcst.weebly.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "74.115.51.8",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a27895f50f922d7c-PDX",
+        "cf_cache_status": "EXPIRED",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (1350), with CRLF, LF line terminators",
+      "sha256": "70b58fb38e61bf8685ce75f6d8f0732e7157d47a3b87b537abfc1c1bb1b548db",
+      "md5": "90cdb4b51a1b484cd3232fa9bf42dc8e",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-07T19:04:54",
+      "first_seen_secs": 1786129494.0
     },
     "phishdestroy": {
-      "domain": "gov-parkingrf.shop",
-      "domain_defanged": "gov-parkingrf[.]shop",
-      "case_id": "PD-20260806-5F05DD",
-      "analyzed_at": "2026-08-06T16:53:48.583Z",
+      "domain": "mailcomcst.weebly.com",
+      "domain_defanged": "mailcomcst[.]weebly[.]com",
+      "case_id": "PD-20260807-6F9C2A",
+      "analyzed_at": "2026-08-07T13:14:24.410Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019fdc5c-4a59-744c-a390-9582afa433e7/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +74,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.8",
+        "ipinfo": {
+          "ip": "74.115.51.8",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.8",
+            "74.115.51.9"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -196,11 +227,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingrf.shop/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingrf.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007271; classtype:social-engineering; sid:6007271; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-07T04:58:22.412411+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.mailcomcst.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.mailcomcst.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007271; classtype:social-engineering; sid:6007271; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
+  "updated_at": "2026-08-08T11:24:00.225766+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.8",
+    "whois": null,
     "status": "active"
   }
 }
