@@ -49,26 +49,83 @@
     "phishdestroy": {
       "domain": "sample-painting.com",
       "domain_defanged": "sample-painting[.]com",
-      "case_id": "PD-20260807-EE3769",
-      "analyzed_at": "2026-08-07T21:01:56.199Z",
+      "case_id": "PD-20260809-EE3769",
+      "analyzed_at": "2026-08-09T04:19:05.935Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fde08-5530-72dd-a77a-c2cac2d8f629/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fe05a-a2cd-7224-9db1-7aa8490bc3c1.png",
+          "url": "https://urlscan.io/result/019fe05a-a2cd-7224-9db1-7aa8490bc3c1/",
+          "title": "503 - SERVICE UNAVAILABLE"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "eNom, LLC",
         "created": "2019-09-11T20:31:25Z",
         "expires": "2026-09-11T20:31:25Z",
-        "age_days": 2522,
+        "age_days": 2523,
         "nameservers": [
           "NS307.WEBSITEWELCOME.COM",
           "NS308.WEBSITEWELCOME.COM"
@@ -86,15 +143,15 @@
           "asn": "AS31898"
         },
         "dns": {
-          "MX": [
-            "0 mail.sample-painting.com."
-          ],
           "A": [
             "192.185.103.89"
           ],
+          "MX": [
+            "0 mail.sample-painting.com."
+          ],
           "NS": [
-            "ns307.websitewelcome.com.",
-            "ns308.websitewelcome.com."
+            "ns308.websitewelcome.com.",
+            "ns307.websitewelcome.com."
           ]
         }
       },
@@ -237,12 +294,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sample-painting.com/two.html)\"; flow:established,to_server; http.uri; content:\"/two.html\"; startswith; fast_pattern; http.host; content:\"sample-painting.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004126; classtype:social-engineering; sid:6004126; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T15:58:58.024539+00:00",
+  "updated_at": "2026-08-09T04:18:59.414757+00:00",
   "probe": {
     "dns": "192.185.103.89",
     "whois": true,

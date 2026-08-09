@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "epicinfo.top",
       "domain_defanged": "epicinfo[.]top",
-      "case_id": "PD-20260807-3FBB31",
-      "analyzed_at": "2026-08-07T21:05:35.994Z",
+      "case_id": "PD-20260809-3FBB31",
+      "analyzed_at": "2026-08-09T04:26:22.042Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Epic Games"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef16e-101e-7155-bef9-59368023e972.png",
+          "url": "https://urlscan.io/result/019ef16e-101e-7155-bef9-59368023e972/",
+          "title": "Inventory Check | Fortnite"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Epic Games",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.189.35",
+        "ipinfo": {
+          "ip": "172.67.189.35",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (epicinfo.top/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"epicinfo.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004180; classtype:social-engineering; sid:6004180; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T16:02:49.284622+00:00",
+  "updated_at": "2026-08-09T04:26:17.052003+00:00",
   "probe": {
     "dns": null,
     "whois": true,

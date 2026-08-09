@@ -49,21 +49,79 @@
     "phishdestroy": {
       "domain": "beneficioexclusivo.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "beneficioexclusivo[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260807-CCD5AC",
-      "analyzed_at": "2026-08-07T20:05:52.836Z",
+      "case_id": "PD-20260809-CCD5AC",
+      "analyzed_at": "2026-08-09T03:01:56.532Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "File Sharing/Storage, Information Technology, Media Sharing, Suspicious (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fddd5-02da-73b1-90e9-e419c80ce745/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fddd5-02da-73b1-90e9-e419c80ce745.png",
+          "url": "https://urlscan.io/result/019fddd5-02da-73b1-90e9-e419c80ce745/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +137,17 @@
           "asn": "AS40401"
         },
         "dns": {
-          "AAAA": [
-            "2605:72c0:6fc:b3::b005:1",
-            "2605:72c0:6fd:b3::b005:1",
-            "2605:72c0:6fe:b3::b005:1",
-            "2605:72c0:6ff:b3::b005:1"
-          ],
           "A": [
             "149.137.136.9",
             "149.137.137.254",
             "149.137.140.9",
             "149.137.141.9"
+          ],
+          "AAAA": [
+            "2605:72c0:6fc:b3::b005:1",
+            "2605:72c0:6fd:b3::b005:1",
+            "2605:72c0:6fe:b3::b005:1",
+            "2605:72c0:6ff:b3::b005:1"
           ]
         }
       },
@@ -225,12 +283,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (beneficioexclusivo.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"beneficioexclusivo.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003499; classtype:social-engineering; sid:6003499; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T15:17:33.730612+00:00",
+  "updated_at": "2026-08-09T03:01:52.441724+00:00",
   "probe": {
     "dns": "149.137.136.9",
     "whois": null,

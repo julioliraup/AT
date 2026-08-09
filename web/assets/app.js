@@ -3,6 +3,7 @@
 let DATA = [];
 let DNS_DOMAINS = [];
 let TLS_DOMAINS = [];
+let ATI_DOMAINS = new Set();
 
 const DNS_SID = 6000000;
 const TLS_SID = 6000001;
@@ -14,10 +15,12 @@ async function load() {
   const total = DATA.length;
   const urls = DATA.filter(x => x.protocol === 'http' || x.protocol === 'https').length;
   let domains_count = 0;
+  let ati_count = 0;
 
   const dnsEntry = DATA.find(x => x.sid === DNS_SID);
-  if (dnsEntry && dnsEntry.domains_count) {
-    domains_count = dnsEntry.domains_count;
+  if (dnsEntry) {
+    if (dnsEntry.domains_count) domains_count = dnsEntry.domains_count;
+    if (dnsEntry.ati_count) ati_count = dnsEntry.ati_count;
   }
 
   if (domains_count === 0) {
@@ -26,8 +29,9 @@ async function load() {
       try {
         const res = await fetch(`./db/sid/${dnsRule.sid}.json`);
         const detail = await res.json();
-        if (detail.dns_feed && detail.dns_feed.domains_count) {
-          domains_count = detail.dns_feed.domains_count;
+        if (detail.dns_feed) {
+          if (detail.dns_feed.domains_count) domains_count = detail.dns_feed.domains_count;
+          if (detail.dns_feed.ati_count) ati_count = detail.dns_feed.ati_count;
         }
       } catch(_) {}
     }
@@ -37,6 +41,13 @@ async function load() {
 
   const statsEl = document.getElementById('stats-widget');
   if (statsEl) {
+    const atiOrbHtml = ati_count > 0 ? `
+      <div class="visualizer-orb" style="border-color: rgba(0, 229, 255, 0.4);">
+        <span class="v-value" style="color: #00f0ff; text-shadow: 0 0 15px #00f0ff;">${ati_count}</span>
+        <span class="v-label">ATI NRD Intel</span>
+      </div>
+    ` : '';
+
     statsEl.innerHTML = `
       <div class="visualizer-orb">
         <span class="v-value">${total}</span>
@@ -54,6 +65,7 @@ async function load() {
         <span class="v-value" style="color: #00ff80; text-shadow: 0 0 15px #00ff80;">${domains_count}</span>
         <span class="v-label">TLS SNI</span>
       </div>
+      ${atiOrbHtml}
       <div class="visualizer-orb" style="border-color: rgba(138, 43, 226, 0.5);">
         <span class="v-value" style="color: #b050ff; text-shadow: 0 0 15px #b050ff;">${malicious_vectors}</span>
         <span class="v-label">Malicious Vectors</span>
@@ -72,6 +84,10 @@ async function loadFeedDomains() {
     const tData = await tRes.json();
     DNS_DOMAINS = (dData.dns_feed && dData.dns_feed.domains) || [];
     TLS_DOMAINS = (tData.dns_feed && tData.dns_feed.domains) || [];
+
+    const dAti = (dData.dns_feed && dData.dns_feed.ati_domains) || [];
+    const tAti = (tData.dns_feed && tData.dns_feed.ati_domains) || [];
+    ATI_DOMAINS = new Set([...dAti, ...tAti].map(x => String(x).toLowerCase()));
   } catch(_) {}
 }
 
@@ -94,6 +110,7 @@ function renderCards(rows) {
   }
   el.innerHTML = rows.map(x => {
     const staleTag = x.is_stale ? '<span class="badge stale" style="margin-left: 8px;">STALE</span>' : '';
+    const atiTag = x.is_ati ? '<span class="badge ati" style="margin-left: 8px;" title="Antiphishing Threat Intelligence">ATI</span>' : '';
     const severityClass = (x.severity || '').toLowerCase() === 'high' ? 'high' : '';
     const proto = protocolBadge(x.protocol);
     const label = x.domain ? x.domain : x.name;
@@ -106,6 +123,7 @@ function renderCards(rows) {
            <h3 style="margin: 0; color: var(--cyan); font-size: 1.1em;">SID ${x.sid}</h3>
            <div>
              ${proto}
+             ${atiTag}
              ${staleTag}
            </div>
         </div>
@@ -146,13 +164,18 @@ document.getElementById('search').oninput = async (e) => {
 
   const dnsDomains = DNS_DOMAINS.filter(d => d.toLowerCase().includes(q));
   for (const d of dnsDomains.slice(0, 25)) {
-    results.push({ sid: DNS_SID, name: 'DNS feed', protocol: 'dns', severity: 'high', domain: d });
+    const isAti = ATI_DOMAINS.has(d.toLowerCase());
+    results.push({ sid: DNS_SID, name: 'DNS feed', protocol: 'dns', severity: 'high', domain: d, is_ati: isAti });
   }
 
   const tlsDomains = TLS_DOMAINS.filter(d => d.toLowerCase().includes(q));
   for (const d of tlsDomains.slice(0, 25)) {
-    results.push({ sid: TLS_SID, name: 'TLS feed', protocol: 'tls', severity: 'high', domain: d });
+    const isAti = ATI_DOMAINS.has(d.toLowerCase());
+    results.push({ sid: TLS_SID, name: 'TLS feed', protocol: 'tls', severity: 'high', domain: d, is_ati: isAti });
   }
+
+  renderCards(results.slice(0, 50));
+};
 
   renderCards(results.slice(0, 50));
 };

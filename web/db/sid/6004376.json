@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "suite-trezur-el.pages.dev",
       "domain_defanged": "suite-trezur-el[.]pages[.]dev",
-      "case_id": "PD-20260807-35587D",
-      "analyzed_at": "2026-08-07T21:22:41.819Z",
+      "case_id": "PD-20260809-35587D",
+      "analyzed_at": "2026-08-09T04:46:15.833Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fde1b-571a-73fe-9ef9-d9c4b6103bc0.png",
           "url": "https://urlscan.io/result/019fde1b-571a-73fe-9ef9-d9c4b6103bc0/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.203",
+        "ip": "172.66.44.53",
         "ipinfo": {
-          "ip": "172.66.47.203",
+          "ip": "172.66.44.53",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +116,8 @@
             "2606:4700:310c::ac42:2fcb"
           ],
           "A": [
-            "172.66.47.203",
-            "172.66.44.53"
+            "172.66.44.53",
+            "172.66.47.203"
           ],
           "NS": [
             "fay.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (suite-trezur-el.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"suite-trezur-el.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004376; classtype:social-engineering; sid:6004376; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-08T16:12:01.438796+00:00",
+  "updated_at": "2026-08-09T04:46:10.584043+00:00",
   "probe": {
     "dns": "172.66.47.203",
     "whois": null,

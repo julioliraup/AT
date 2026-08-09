@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "fq.relink-tech.cn",
       "domain_defanged": "fq[.]relink-tech[.]cn",
-      "case_id": "PD-20260807-493FCA",
-      "analyzed_at": "2026-08-07T20:49:15.857Z",
+      "case_id": "PD-20260809-493FCA",
+      "analyzed_at": "2026-08-09T03:59:35.116Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fddfc-bb59-7598-ac11-3ae376a3c874/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "China Central Television"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe2d0-c70a-725c-bcdf-229ea672affe.png",
+          "url": "https://urlscan.io/result/019fe2d0-c70a-725c-bcdf-229ea672affe/",
+          "title": "海外频道_央视网(cctv.com)"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: China Central Television",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fq.relink-tech.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fq.relink-tech.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003973; classtype:social-engineering; sid:6003973; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T15:48:57.696562+00:00",
+  "updated_at": "2026-08-09T03:59:30.007026+00:00",
   "probe": {
     "dns": "104.21.80.26",
     "whois": true,

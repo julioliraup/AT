@@ -49,22 +49,35 @@
     "phishdestroy": {
       "domain": "fedxscan.com",
       "domain_defanged": "fedxscan[.]com",
-      "case_id": "PD-20260807-795EB2",
-      "analyzed_at": "2026-08-07T20:33:42.414Z",
+      "case_id": "PD-20260809-795EB2",
+      "analyzed_at": "2026-08-09T03:39:56.185Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fedex"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed306-a7a3-717c-9395-bfa9863a9b8e.png",
+          "url": "https://urlscan.io/result/019ed306-a7a3-717c-9395-bfa9863a9b8e/",
+          "title": "FedEx Express"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fedex",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameSilo, LLC",
         "created": "2026-06-13T08:54:43Z",
         "expires": "2027-06-13T08:54:43Z",
-        "age_days": 55,
+        "age_days": 56,
         "nameservers": [
           "NS111.ASURAHOSTING.COM",
           "NS111.MY-CONTROL-PANEL.COM",
@@ -73,7 +86,16 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "198.251.89.229",
+        "ipinfo": {
+          "ip": "198.251.89.229",
+          "hostname": "d6-229.my-control-panel.com",
+          "city": "Cheyenne",
+          "region": "Wyoming",
+          "country": "US",
+          "org": "AS53667 FranTech Solutions",
+          "asn": "AS53667"
+        },
         "dns": null
       },
       "report_to": {
@@ -85,7 +107,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "PONYNET, US",
+          "abuse": "",
+          "url": "",
+          "logo": "",
+          "method": "email",
+          "asn": "AS53667"
+        }
       },
       "report_services": [
         {
@@ -208,15 +237,16 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fedxscan.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fedxscan.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003803; classtype:social-engineering; sid:6003803; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T15:40:14.806486+00:00",
+  "updated_at": "2026-08-09T03:39:37.736258+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

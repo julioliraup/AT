@@ -49,26 +49,110 @@
     "phishdestroy": {
       "domain": "xfinityrefunds.com",
       "domain_defanged": "xfinityrefunds[.]com",
-      "case_id": "PD-20260807-6B75EE",
-      "analyzed_at": "2026-08-07T19:59:14.732Z",
+      "case_id": "PD-20260809-6B75EE",
+      "analyzed_at": "2026-08-09T02:54:34.806Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Seclookup",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fddce-f027-7014-bc9d-c96c5e185f16/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe065-4c8e-7775-a5b6-34386cd7ad2c.png",
+          "url": "https://urlscan.io/result/019fe065-4c8e-7775-a5b6-34386cd7ad2c/",
+          "title": "Xfinity Refunds"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Seclookup",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "CSC Corporate Domains, Inc.",
         "created": "2022-09-13T14:06:53Z",
         "expires": "2026-09-13T14:06:53Z",
-        "age_days": 1424,
+        "age_days": 1425,
         "nameservers": [
           "DNS101.COMCAST.NET",
           "DNS102.COMCAST.NET",
@@ -92,11 +176,11 @@
             "52.183.82.125"
           ],
           "NS": [
-            "dns101.comcast.net.",
             "dns102.comcast.net.",
             "dns103.comcast.net.",
             "dns104.comcast.net.",
-            "dns105.comcast.net."
+            "dns105.comcast.net.",
+            "dns101.comcast.net."
           ]
         }
       },
@@ -244,7 +328,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xfinityrefunds.com/MyWallet)\"; flow:established,to_server; http.uri; content:\"/MyWallet\"; startswith; fast_pattern; http.host; content:\"xfinityrefunds.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006289; classtype:social-engineering; sid:6006289; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-08T17:50:25.642289+00:00",
+  "updated_at": "2026-08-09T07:14:30.450217+00:00",
   "probe": {
     "dns": "52.183.82.125",
     "whois": null,

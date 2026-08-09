@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "dc.crsorgi.gov.in.verifycertificate.info",
       "domain_defanged": "dc[.]crsorgi[.]gov[.]in[.]verifycertificate[.]info",
-      "case_id": "PD-20260807-3A9028",
-      "analyzed_at": "2026-08-07T20:40:39.792Z",
+      "case_id": "PD-20260809-3A9028",
+      "analyzed_at": "2026-08-09T03:50:09.805Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Indian Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd49d-6185-7200-937b-f6d0295cd42a.png",
+          "url": "https://urlscan.io/result/019fd49d-6185-7200-937b-f6d0295cd42a/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Indian Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "23.88.73.139",
+        "ipinfo": {
+          "ip": "23.88.73.139",
+          "hostname": "server.asmahost.com",
+          "city": "Falkenstein",
+          "region": "Saxony",
+          "country": "DE",
+          "org": "AS24940 Hetzner Online GmbH",
+          "asn": "AS24940"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Hetzner",
+          "abuse": "abuse@hetzner.com",
+          "url": "https://www.hetzner.com/legal/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS24940"
+        }
       },
       "report_services": [
         {
@@ -216,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dc.crsorgi.gov.in.verifycertificate.info/general-public)\"; flow:established,to_server; http.uri; content:\"/general-public\"; startswith; fast_pattern; http.host; content:\"dc.crsorgi.gov.in.verifycertificate.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003873; classtype:social-engineering; sid:6003873; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T15:43:14.398914+00:00",
+  "updated_at": "2026-08-09T03:49:57.767314+00:00",
   "probe": {
     "dns": "185.194.218.75",
     "whois": true,

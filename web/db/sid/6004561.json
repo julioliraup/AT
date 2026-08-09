@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "dubai-bookingcomdubai.webflow.io",
       "domain_defanged": "dubai-bookingcomdubai[.]webflow[.]io",
-      "case_id": "PD-20260807-47BFFA",
-      "analyzed_at": "2026-08-07T21:39:37.535Z",
+      "case_id": "PD-20260809-47BFFA",
+      "analyzed_at": "2026-08-09T05:01:18.497Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fde2a-d683-707e-9a27-2b7e16c6639e.png",
           "url": "https://urlscan.io/result/019fde2a-d683-707e-9a27-2b7e16c6639e/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2a06:98c1:3105::6812:24f8",
-            "2a06:98c1:3102::ac40:9708"
-          ],
           "A": [
             "172.64.151.8",
             "104.18.36.248"
+          ],
+          "AAAA": [
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
           ]
         }
       },
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dubai-bookingcomdubai.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"dubai-bookingcomdubai.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004561; classtype:social-engineering; sid:6004561; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T16:22:42.456570+00:00",
+  "updated_at": "2026-08-09T05:01:04.704060+00:00",
   "probe": {
     "dns": "172.64.151.8",
     "whois": true,

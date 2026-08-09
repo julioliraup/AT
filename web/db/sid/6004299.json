@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "dist-tan-ten-93.vercel.app",
       "domain_defanged": "dist-tan-ten-93[.]vercel[.]app",
-      "case_id": "PD-20260807-6D24F4",
-      "analyzed_at": "2026-08-07T21:13:45.101Z",
+      "case_id": "PD-20260809-6D24F4",
+      "analyzed_at": "2026-08-09T04:39:10.974Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "PayPal"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fde13-267e-73e9-aea5-c260a36223fe.png",
           "url": "https://urlscan.io/result/019fde13-267e-73e9-aea5-c260a36223fe/",
-          "pending": true
+          "title": "Log in to your PayPal account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: PayPal",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.66",
+        "ip": "64.29.17.194",
         "ipinfo": {
-          "ip": "216.198.79.66",
+          "ip": "64.29.17.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -79,8 +88,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.66",
-            "64.29.17.66"
+            "64.29.17.194",
+            "216.198.79.194"
           ]
         }
       },
@@ -216,14 +225,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dist-tan-ten-93.vercel.app/signin.html)\"; flow:established,to_server; http.uri; content:\"/signin.html\"; startswith; fast_pattern; http.host; content:\"dist-tan-ten-93.vercel.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004299; classtype:social-engineering; sid:6004299; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-08T16:07:38.127769+00:00",
+  "updated_at": "2026-08-09T04:39:07.046735+00:00",
   "probe": {
-    "dns": "216.198.79.66",
+    "dns": "64.29.17.2",
     "whois": null,
     "status": "active"
   }

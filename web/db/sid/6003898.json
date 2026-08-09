@@ -55,27 +55,54 @@
     "phishdestroy": {
       "domain": "t-mobile.onmilz.top",
       "domain_defanged": "t-mobile[.]onmilz[.]top",
-      "case_id": "PD-20260807-598157",
-      "analyzed_at": "2026-08-07T20:42:31.910Z",
+      "case_id": "PD-20260809-598157",
+      "analyzed_at": "2026-08-09T03:52:56.593Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Telekom"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edc27-7940-709c-8be5-890cbcb46a17.png",
+          "url": "https://urlscan.io/result/019edc27-7940-709c-8be5-890cbcb46a17/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Telekom",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.172.6",
+        "ipinfo": {
+          "ip": "172.67.172.6",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -198,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.onmilz.top/pay)\"; flow:established,to_server; http.uri; content:\"/pay\"; startswith; fast_pattern; http.host; content:\"t-mobile.onmilz.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003898; classtype:social-engineering; sid:6003898; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T15:44:19.494720+00:00",
+  "updated_at": "2026-08-09T03:52:52.113153+00:00",
   "probe": {
     "dns": "104.21.79.242",
     "whois": true,

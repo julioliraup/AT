@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "x-fy.weebly.com",
       "domain_defanged": "x-fy[.]weebly[.]com",
-      "case_id": "PD-20260807-4741CC",
-      "analyzed_at": "2026-08-07T21:21:43.701Z",
+      "case_id": "PD-20260809-4741CC",
+      "analyzed_at": "2026-08-09T04:45:19.429Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fde1a-734d-7337-8e2a-201b70ff3ea0.png",
           "url": "https://urlscan.io/result/019fde1a-734d-7337-8e2a-201b70ff3ea0/",
-          "pending": true
+          "title": "Home"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (x-fy.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"x-fy.weebly.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004366; classtype:social-engineering; sid:6004366; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-08T16:11:06.509488+00:00",
+  "updated_at": "2026-08-09T04:45:11.128628+00:00",
   "probe": {
     "dns": "74.115.51.8",
     "whois": null,

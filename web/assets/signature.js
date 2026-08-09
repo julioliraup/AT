@@ -595,6 +595,8 @@ function renderDomainView(el, d, domain) {
     const tld = domain.includes('.') ? domain.split('.').pop().toLowerCase() : 'unknown';
     const feed = d.dns_feed || {};
     const topTlds = feed.top_tlds || [];
+    const atiDomains = (feed.ati_domains || []).map(x => String(x).toLowerCase());
+    const isAti = atiDomains.includes(domain.toLowerCase());
 
     const refs = Array.isArray(d.references) && d.references.length > 0;
     const refsHtml = refs
@@ -619,6 +621,7 @@ function renderDomainView(el, d, domain) {
             </h1>
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
                 ${protocolBadge(proto)}
+                ${isAti ? '<span class="badge ati" style="font-size:0.7em;" title="Antiphishing Threat Intelligence">ATI // NRD EXTRACT</span>' : ''}
                 <span class="badge high" style="font-size:0.7em;">${val(d.severity, 'high')} severity</span>
             </div>
         </div>
@@ -630,6 +633,10 @@ function renderDomainView(el, d, domain) {
             <div class="data-group">
                 <span class="data-label">Detection Protocol</span>
                 <span class="data-value" style="color:${ps.color};text-transform:uppercase;">${proto}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Threat Intel Source</span>
+                <span class="data-value">${isAti ? '<span class="badge ati" style="font-size:0.75em;">ATI // NRD EXTRACT</span>' : 'Standard Feed Vector'}</span>
             </div>
             <div class="data-group">
                 <span class="data-label">SID</span>
@@ -665,6 +672,54 @@ function renderDomainView(el, d, domain) {
             <span class="data-label">References</span>
             ${refsHtml}
         </div>
+
+        ${isAti ? `
+        <h2 class="section-title" style="margin-top:40px;">
+            🛡️ AUTOMATED NRD THREAT DETECTION & VERIFICATION PIPELINE
+        </h2>
+        <div class="card" style="border-left: 4px solid var(--cyan); background: rgba(10, 20, 35, 0.85);">
+            <p style="color: var(--text); font-size: 0.95em; line-height: 1.6; margin-top: 0;">
+                All incoming domains undergo real-time analysis through our automated
+                <strong style="color: var(--cyan);">Newly Registered Domains (NRD) Ingestion &amp; Heuristic Verification Pipeline</strong>:
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 15px 0 20px 0; display: flex; flex-direction: column; gap: 12px;">
+                <li style="padding-left: 20px; position: relative; font-size: 0.9em; line-height: 1.5; color: var(--text);">
+                    <span style="position: absolute; left: 0; color: var(--cyan); font-weight: bold;">▪</span>
+                    <strong style="color: var(--cyan);">Ingestion &amp; Active Traffic Validation:</strong>
+                    Ingests daily Newly Registered Domains (NRDs) filtered against active DNS telemetry to eliminate unresolvable noise.
+                </li>
+                <li style="padding-left: 20px; position: relative; font-size: 0.9em; line-height: 1.5; color: var(--text);">
+                    <span style="position: absolute; left: 0; color: var(--cyan); font-weight: bold;">▪</span>
+                    <strong style="color: var(--cyan);">Lexical &amp; Structural Analysis:</strong>
+                    Uses <code style="color: var(--neon-pink); background: rgba(0,0,0,0.4); padding: 2px 5px; border-radius: 3px;">tldextract</code> for accurate Public Suffix / Apex Domain isolation across complex international TLDs (<code style="color: var(--text-muted); font-size: 0.85em;">.co.uk</code>, <code style="color: var(--text-muted); font-size: 0.85em;">.com.br</code>, <code style="color: var(--text-muted); font-size: 0.85em;">.gov.br</code>).
+                </li>
+                <li style="padding-left: 20px; position: relative; font-size: 0.9em; line-height: 1.5; color: var(--text);">
+                    <span style="position: absolute; left: 0; color: var(--cyan); font-weight: bold;">▪</span>
+                    <strong style="color: var(--cyan);">Algorithmic Permutation Fuzzing (<code style="color: var(--neon-pink); background: rgba(0,0,0,0.4); padding: 2px 5px; border-radius: 3px;">dnstwist</code>):</strong>
+                    Cross-references domain structures against <strong style="color: #ffaa00;">&gt;130,000 algorithmic permutations</strong> (Homoglyphs, Bitquatting, Transposition, Omission, Insertion) derived from protected global brand targets (Banking, Crypto, E-commerce, SaaS).
+                </li>
+                <li style="padding-left: 20px; position: relative; font-size: 0.9em; line-height: 1.5; color: var(--text);">
+                    <span style="position: absolute; left: 0; color: var(--cyan); font-weight: bold;">▪</span>
+                    <strong style="color: var(--cyan);">Multi-Language Social Engineering Heuristics:</strong>
+                    Evaluates lexical patterns against multi-language credential harvesting and phishing indicators across English, Portuguese, Spanish, German, and French.
+                </li>
+                <li style="padding-left: 20px; position: relative; font-size: 0.9em; line-height: 1.5; color: var(--text);">
+                    <span style="position: absolute; left: 0; color: var(--cyan); font-weight: bold;">▪</span>
+                    <strong style="color: var(--cyan);">Deduplication &amp; False-Positive Controls:</strong>
+                    Employs an in-memory deduplication index (<code style="color: var(--neon-pink); background: rgba(0,0,0,0.4); padding: 2px 5px; border-radius: 3px;">nrd_suspicious_domains.txt</code>) to audit detections, prevent redundant rule injection, and enable rapid false-positive suppression before Base64 dataset serialization for Suricata IDS/IPS rulesets (<code style="color: var(--text-muted); font-size: 0.85em;">sid:6000000</code>/<code style="color: var(--text-muted); font-size: 0.85em;">sid:6000001</code>).
+                </li>
+            </ul>
+            <div style="margin-top: 25px; padding-top: 15px; border-top: 1px dashed rgba(0, 229, 255, 0.2); display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <span style="font-size: 0.85em; color: var(--text-muted);">
+                    Legitimate domain or false positive? Report it directly to our threat response team:
+                </span>
+                <a href="https://github.com/julioliraup/Antiphishing/issues/new"
+                   target="_blank"
+                   class="fp-btn">
+                    [ 🚩 REPORT FALSE POSITIVE ]
+                </a>
+            </div>
+        </div>` : ''}
 
         ${topTlds.length > 0 ? `
         <h2 class="section-title" style="margin-top:40px;">TOP TLDs IN FEED</h2>

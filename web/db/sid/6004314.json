@@ -72,21 +72,30 @@
     "phishdestroy": {
       "domain": "chimex.com.mx",
       "domain_defanged": "chimex[.]com[.]mx",
-      "case_id": "PD-20260807-2CED1B",
-      "analyzed_at": "2026-08-07T21:15:01.336Z",
+      "case_id": "PD-20260809-2CED1B",
+      "analyzed_at": "2026-08-09T04:40:34.362Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fde14-505f-76ed-8e84-b1ba879343a7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Government of France"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe07f-052e-73fe-95a6-23dfd77e8206.png",
+          "url": "https://urlscan.io/result/019fe07f-052e-73fe-95a6-23dfd77e8206/",
+          "title": "Site officiel unique de télépaiement | Amendes.gouv.fr"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Government of France",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -101,11 +110,11 @@
           "asn": "AS23393"
         },
         "dns": {
-          "MX": [
-            "0 mail.chimex.com.mx."
-          ],
           "A": [
             "104.37.183.1"
+          ],
+          "MX": [
+            "0 mail.chimex.com.mx."
           ],
           "NS": [
             "ns2.hostpapa.com.",
@@ -245,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (chimex.com.mx/wp-admin/admin/am/infospage.php)\"; flow:established,to_server; http.uri; content:\"/wp-admin/admin/am/infospage.php\"; startswith; fast_pattern; http.host; content:\"chimex.com.mx\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004314; classtype:social-engineering; sid:6004314; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T16:08:09.358669+00:00",
+  "updated_at": "2026-08-09T04:40:29.733061+00:00",
   "probe": {
     "dns": "104.37.183.1",
     "whois": true,

@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "9cmw-idx4-47fs.george-vandevorde-smithinsurancellc-com-s-account.workers.dev",
       "domain_defanged": "9cmw-idx4-47fs[.]george-vandevorde-smithinsurancellc-com-s-account[.]workers[.]dev",
-      "case_id": "PD-20260807-568247",
-      "analyzed_at": "2026-08-07T20:44:45.129Z",
+      "case_id": "PD-20260809-568247",
+      "analyzed_at": "2026-08-09T03:55:34.462Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fddf8-99d3-77db-9750-953b1a656ead.png",
           "url": "https://urlscan.io/result/019fddf8-99d3-77db-9750-953b1a656ead/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,13 +87,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.21.43.132",
-            "172.67.179.140"
-          ],
           "AAAA": [
             "2606:4700:3033::6815:2b84",
             "2606:4700:3030::ac43:b38c"
+          ],
+          "A": [
+            "104.21.43.132",
+            "172.67.179.140"
           ]
         }
       },
@@ -220,12 +229,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (9cmw-idx4-47fs.george-vandevorde-smithinsurancellc-com-s-account.workers.dev/12...)\"; flow:established,to_server; http.uri; content:\"/12...\"; startswith; fast_pattern; http.host; content:\"9cmw-idx4-47fs.george-vandevorde-smithinsurancellc-com-s-account.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003926; classtype:social-engineering; sid:6003926; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T15:45:48.363703+00:00",
+  "updated_at": "2026-08-09T03:55:31.079068+00:00",
   "probe": {
     "dns": "104.21.43.132",
     "whois": null,

@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp5ct-samex-biz8-hurel-koniv.pages.dev",
       "domain_defanged": "sp5ct-samex-biz8-hurel-koniv[.]pages[.]dev",
-      "case_id": "PD-20260807-3028C9",
-      "analyzed_at": "2026-08-07T21:22:21.651Z",
+      "case_id": "PD-20260809-3028C9",
+      "analyzed_at": "2026-08-09T04:45:55.092Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fde1b-0853-7639-b8d0-201a1d04d34e.png",
           "url": "https://urlscan.io/result/019fde1b-0853-7639-b8d0-201a1d04d34e/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2c53",
-            "2606:4700:310c::ac42:2fad"
-          ],
           "A": [
             "172.66.44.83",
             "172.66.47.173"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2c53",
+            "2606:4700:310c::ac42:2fad"
           ],
           "NS": [
             "addilyn.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct-samex-biz8-hurel-koniv.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct-samex-biz8-hurel-koniv.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004373; classtype:social-engineering; sid:6004373; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-08T16:11:39.275273+00:00",
+  "updated_at": "2026-08-09T04:45:52.189496+00:00",
   "probe": {
     "dns": "172.66.47.173",
     "whois": null,

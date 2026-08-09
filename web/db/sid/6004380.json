@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "23x23x23x.pages.dev",
       "domain_defanged": "23x23x23x[.]pages[.]dev",
-      "case_id": "PD-20260807-2D4988",
-      "analyzed_at": "2026-08-07T21:22:57.130Z",
+      "case_id": "PD-20260809-2D4988",
+      "analyzed_at": "2026-08-09T04:46:41.018Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fde1b-9225-70b9-ada4-4594e688cb03/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe06a-1a8a-71f5-9c07-d0aa2b867365.png",
+          "url": "https://urlscan.io/result/019fe06a-1a8a-71f5-9c07-d0aa2b867365/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2c86",
+            "2606:4700:310c::ac42:2f7a"
+          ],
           "A": [
             "172.66.44.134",
             "172.66.47.122"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2f7a",
-            "2606:4700:310c::ac42:2c86"
           ],
           "NS": [
             "dorthy.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (23x23x23x.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"23x23x23x.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004380; classtype:social-engineering; sid:6004380; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-08T16:12:10.244102+00:00",
+  "updated_at": "2026-08-09T04:46:29.464416+00:00",
   "probe": {
     "dns": "172.66.44.134",
     "whois": null,

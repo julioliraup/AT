@@ -74,21 +74,34 @@
     "phishdestroy": {
       "domain": "down-token.cn",
       "domain_defanged": "down-token[.]cn",
-      "case_id": "PD-20260807-7D4F05",
-      "analyzed_at": "2026-08-07T20:08:15.674Z",
+      "case_id": "PD-20260809-7D4F05",
+      "analyzed_at": "2026-08-09T03:05:32.319Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "imToken"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fddd7-3145-7457-8da7-ad33e10ac598.png",
           "url": "https://urlscan.io/result/019fddd7-3145-7457-8da7-ad33e10ac598/",
-          "pending": true
+          "title": "imToken 官网｜以太坊和比特币区块链钱包"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: imToken",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,12 +116,12 @@
           "asn": "AS132203"
         },
         "dns": {
+          "A": [
+            "170.106.66.158"
+          ],
           "NS": [
             "hazel.ns.cloudflare.com.",
             "vin.ns.cloudflare.com."
-          ],
-          "A": [
-            "170.106.66.158"
           ]
         }
       },
@@ -244,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (down-token.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"down-token.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003532; classtype:social-engineering; sid:6003532; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T15:19:19.975188+00:00",
+  "updated_at": "2026-08-09T03:05:26.901045+00:00",
   "probe": {
     "dns": "170.106.66.158",
     "whois": true,

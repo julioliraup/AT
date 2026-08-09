@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "83352.xyz",
       "domain_defanged": "83352[.]xyz",
-      "case_id": "PD-20260807-7FA316",
-      "analyzed_at": "2026-08-07T21:22:07.163Z",
+      "case_id": "PD-20260809-7FA316",
+      "analyzed_at": "2026-08-09T04:45:39.861Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb089-b417-701a-a0d0-99b6e1f4409b.png",
+          "url": "https://urlscan.io/result/019fb089-b417-701a-a0d0-99b6e1f4409b/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "206.119.9.44",
+        "ipinfo": {
+          "ip": "206.119.9.44",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS18186 Nebula Global LLC",
+          "asn": "AS18186"
+        },
         "dns": null
       },
       "report_to": {
@@ -192,12 +213,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.83352.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.83352.xyz\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004370; classtype:social-engineering; sid:6004370; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-08T16:11:24.091749+00:00",
+  "updated_at": "2026-08-09T04:45:35.509417+00:00",
   "probe": {
     "dns": null,
     "whois": true,

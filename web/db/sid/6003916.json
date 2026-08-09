@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "helphome-trezer-wallt.typedream.app",
       "domain_defanged": "helphome-trezer-wallt[.]typedream[.]app",
-      "case_id": "PD-20260807-713555",
-      "analyzed_at": "2026-08-07T20:44:06.801Z",
+      "case_id": "PD-20260809-713555",
+      "analyzed_at": "2026-08-09T03:54:54.233Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fddf8-041c-77bd-af03-532b191f1913/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe047-aa02-722f-80ae-71e0e6dd4d1b.png",
+          "url": "https://urlscan.io/result/019fe047-aa02-722f-80ae-71e0e6dd4d1b/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.37.85",
+        "ip": "172.67.206.36",
         "ipinfo": {
-          "ip": "104.21.37.85",
+          "ip": "172.67.206.36",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,8 +94,8 @@
         },
         "dns": {
           "A": [
-            "104.21.37.85",
-            "172.67.206.36"
+            "172.67.206.36",
+            "104.21.37.85"
           ]
         }
       },
@@ -222,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (helphome-trezer-wallt.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"helphome-trezer-wallt.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003916; classtype:social-engineering; sid:6003916; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-08T15:45:07.496351+00:00",
+  "updated_at": "2026-08-09T03:54:50.552866+00:00",
   "probe": {
     "dns": "104.21.37.85",
     "whois": null,
