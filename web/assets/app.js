@@ -33,7 +33,7 @@ async function load() {
           if (detail.dns_feed.domains_count) domains_count = detail.dns_feed.domains_count;
           if (detail.dns_feed.ati_count) ati_count = detail.dns_feed.ati_count;
         }
-      } catch(_) {}
+      } catch (_) { }
     }
   }
 
@@ -88,15 +88,15 @@ async function loadFeedDomains() {
     const dAti = (dData.dns_feed && dData.dns_feed.ati_domains) || [];
     const tAti = (tData.dns_feed && tData.dns_feed.ati_domains) || [];
     ATI_DOMAINS = new Set([...dAti, ...tAti].map(x => String(x).toLowerCase()));
-  } catch(_) {}
+  } catch (_) { }
 }
 
 function protocolBadge(protocol) {
   const MAP = {
-    dns: { label: 'DNS',  color: 'var(--neon-pink)', bg: 'rgba(255,0,85,0.1)' },
-    tls: { label: 'TLS',  color: '#00ff80',           bg: 'rgba(0,255,128,0.07)' },
-    http:  { label: 'HTTP',  color: 'var(--cyan)',      bg: 'rgba(0,229,255,0.1)' },
-    https: { label: 'HTTPS', color: 'var(--cyan)',      bg: 'rgba(0,229,255,0.1)' },
+    dns: { label: 'DNS', color: 'var(--neon-pink)', bg: 'rgba(255,0,85,0.1)' },
+    tls: { label: 'TLS', color: '#00ff80', bg: 'rgba(0,255,128,0.07)' },
+    http: { label: 'HTTP', color: 'var(--cyan)', bg: 'rgba(0,229,255,0.1)' },
+    https: { label: 'HTTPS', color: 'var(--cyan)', bg: 'rgba(0,229,255,0.1)' },
   };
   const s = MAP[protocol] || { label: (protocol || '').toUpperCase(), color: 'var(--cyan)', bg: 'rgba(0,229,255,0.1)' };
   return `<span class="badge" style="border-color:${s.color};color:${s.color};background:${s.bg};font-size:0.7em;">${s.label}</span>`;
@@ -177,17 +177,14 @@ document.getElementById('search').oninput = async (e) => {
   renderCards(results.slice(0, 50));
 };
 
-  renderCards(results.slice(0, 50));
-};
-
 load();
 
 setTimeout(() => {
-    if (document.cookie.split('; ').some(row => row.startsWith('donateBannerShown='))) return;
-    document.cookie = 'donateBannerShown=true; max-age=28800; path=/';
+  if (document.cookie.split('; ').some(row => row.startsWith('donateBannerShown='))) return;
+  document.cookie = 'donateBannerShown=true; max-age=28800; path=/';
 
-    const banner = document.createElement('div');
-    banner.innerHTML = `
+  const banner = document.createElement('div');
+  banner.innerHTML = `
         <div style="position:fixed; bottom:20px; right:20px; background:rgba(20,20,20,0.95); border:1px solid var(--cyan); border-radius:8px; padding:20px; box-shadow:0 0 20px rgba(0,229,255,0.2); z-index:9999; max-width:350px; color:var(--text); font-family:'Orbitron', sans-serif;">
             <button onclick="this.parentElement.remove()" style="position:absolute; top:10px; right:10px; background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:20px; padding:0; line-height:1;">&times;</button>
             <h3 style="margin-top:0; color:var(--neon-pink); font-size:1.1em; display:flex; align-items:center; gap:8px;">
@@ -201,5 +198,5 @@ setTimeout(() => {
             </a>
         </div>
     `;
-    document.body.appendChild(banner.firstElementChild);
+  document.body.appendChild(banner.firstElementChild);
 }, 5000);
