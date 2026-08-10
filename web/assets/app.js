@@ -171,7 +171,7 @@ document.getElementById('search').oninput = async (e) => {
   }
 
   renderCards(results.slice(0, 50));
-}; g
+};
 
 load();
 
