@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "mkrjb7dplix-pldwf104uhy-5c0d3e-vzk28a.pages.dev",
       "domain_defanged": "mkrjb7dplix-pldwf104uhy-5c0d3e-vzk28a[.]pages[.]dev",
-      "case_id": "PD-20260808-1EB418",
-      "analyzed_at": "2026-08-08T18:24:40.695Z",
+      "case_id": "PD-20260810-1EB418",
+      "analyzed_at": "2026-08-10T03:59:17.179Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe29e-b7f9-7794-b677-73d4e6277606.png",
           "url": "https://urlscan.io/result/019fe29e-b7f9-7794-b677-73d4e6277606/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.104",
+        "ip": "172.66.47.152",
         "ipinfo": {
-          "ip": "172.66.44.104",
+          "ip": "172.66.47.152",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -84,13 +93,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.44.104",
-            "172.66.47.152"
-          ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f98",
-            "2606:4700:310c::ac42:2c68"
+            "2606:4700:310c::ac42:2c68",
+            "2606:4700:310c::ac42:2f98"
+          ],
+          "A": [
+            "172.66.47.152",
+            "172.66.44.104"
           ],
           "NS": [
             "irena.ns.cloudflare.com.",
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mkrjb7dplix-pldwf104uhy-5c0d3e-vzk28a.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mkrjb7dplix-pldwf104uhy-5c0d3e-vzk28a.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006638; classtype:social-engineering; sid:6006638; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:50:01.653642+00:00",
+  "updated_at": "2026-08-10T03:59:13.234885+00:00",
   "probe": {
     "dns": "172.66.47.152",
     "whois": null,

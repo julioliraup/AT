@@ -49,29 +49,38 @@
     "phishdestroy": {
       "domain": "jedi-crypyo.github.io",
       "domain_defanged": "jedi-crypyo[.]github[.]io",
-      "case_id": "PD-20260808-235460",
-      "analyzed_at": "2026-08-08T18:12:11.923Z",
+      "case_id": "PD-20260810-235460",
+      "analyzed_at": "2026-08-10T03:44:24.782Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe293-4b13-701e-845c-fdc62b26f698/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Instagram"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe9a4-7e2a-769f-a4e3-a0142b481306.png",
+          "url": "https://urlscan.io/result/019fe9a4-7e2a-769f-a4e3-a0142b481306/",
+          "title": "Instagram"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Instagram",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "185.199.109.153",
         "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,17 +88,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "A": [
-            "185.199.108.153",
-            "185.199.109.153",
-            "185.199.110.153",
-            "185.199.111.153"
-          ],
           "AAAA": [
+            "2606:50c0:8003::153",
             "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
             "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
+            "2606:50c0:8001::153"
+          ],
+          "A": [
+            "185.199.109.153",
+            "185.199.111.153",
+            "185.199.108.153",
+            "185.199.110.153"
           ]
         }
       },
@@ -225,14 +234,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (jedi-crypyo.github.io/ig/)\"; flow:established,to_server; http.uri; content:\"/ig/\"; startswith; fast_pattern; http.host; content:\"jedi-crypyo.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006489; classtype:social-engineering; sid:6006489; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:41:58.875296+00:00",
+  "updated_at": "2026-08-10T03:44:21.535574+00:00",
   "probe": {
-    "dns": "185.199.109.153",
+    "dns": "185.199.110.153",
     "whois": true,
     "status": "active"
   }

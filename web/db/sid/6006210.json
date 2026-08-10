@@ -49,21 +49,105 @@
     "phishdestroy": {
       "domain": "dhl8466478o.s3.us-east-2.amazonaws.com",
       "domain_defanged": "dhl8466478o[.]s3[.]us-east-2[.]amazonaws[.]com",
-      "case_id": "PD-20260808-66C442",
-      "analyzed_at": "2026-08-08T17:41:52.296Z",
+      "case_id": "PD-20260810-66C442",
+      "analyzed_at": "2026-08-10T03:07:12.094Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe277-864f-774e-ac83-35b3c1e99817/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DHL"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe29b-72f3-73ea-a7ba-d8440abe4130.png",
+          "url": "https://urlscan.io/result/019fe29b-72f3-73ea-a7ba-d8440abe4130/",
+          "title": "DHL"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DHL",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,22 +155,25 @@
         "ip": "s3-r-w.us-east-2.amazonaws.com.",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "s3-r-w.us-east-2.amazonaws.com.",
+            "3.5.92.6",
+            "3.5.90.63",
+            "3.5.89.24",
+            "3.5.93.57",
+            "52.219.178.146",
+            "3.5.128.80",
+            "3.5.88.50",
+            "3.5.91.31"
+          ],
           "MX": [
             "s3-r-w.us-east-2.amazonaws.com."
           ],
           "AAAA": [
             "s3-r-w.us-east-2.amazonaws.com."
           ],
-          "A": [
-            "s3-r-w.us-east-2.amazonaws.com.",
-            "3.5.91.10",
-            "3.5.133.203",
-            "52.219.228.50",
-            "52.219.110.66",
-            "3.5.89.104",
-            "3.5.90.73",
-            "3.5.129.58",
-            "3.5.92.92"
+          "CNAME": [
+            "s3-r-w.us-east-2.amazonaws.com."
           ],
           "NS": [
             "s3-r-w.us-east-2.amazonaws.com.",
@@ -94,15 +181,19 @@
             "ns-1428.awsdns-50.org.",
             "ns-1974.awsdns-54.co.uk.",
             "ns-90.awsdns-11.com."
-          ],
-          "CNAME": [
-            "s3-r-w.us-east-2.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -225,14 +316,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dhl8466478o.s3.us-east-2.amazonaws.com/dhl%20(2)%20(2).html)\"; flow:established,to_server; http.uri; content:\"/dhl%20(2)%20(2).html\"; startswith; fast_pattern; http.host; content:\"dhl8466478o.s3.us-east-2.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006210; classtype:social-engineering; sid:6006210; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-09T16:24:48.249411+00:00",
+  "updated_at": "2026-08-10T03:07:08.085819+00:00",
   "probe": {
-    "dns": "3.5.93.90",
+    "dns": "3.5.88.85",
     "whois": null,
     "status": "active"
   }

@@ -49,21 +49,31 @@
     "phishdestroy": {
       "domain": "asdap.com.br",
       "domain_defanged": "asdap[.]com[.]br",
-      "case_id": "PD-20260808-ACAB84",
-      "analyzed_at": "2026-08-08T18:16:41.061Z",
+      "case_id": "PD-20260810-ACAB84",
+      "analyzed_at": "2026-08-10T03:49:35.041Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe297-6667-744b-a305-95091b4eb88b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe667-c62a-75c5-b676-7c2a2ec2e358.png",
+          "url": "https://urlscan.io/result/019fe667-c62a-75c5-b676-7c2a2ec2e358/",
+          "title": "계정 인증"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -86,8 +96,8 @@
             "192.185.215.107"
           ],
           "NS": [
-            "ns1.opiniaopp.com.br.",
-            "ns2.opiniaopp.com.br."
+            "ns2.opiniaopp.com.br.",
+            "ns1.opiniaopp.com.br."
           ]
         }
       },
@@ -223,12 +233,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (asdap.com.br/.well-known/acme-challenge/adsa/dmlkorea.html)\"; flow:established,to_server; http.uri; content:\"/.well-known/acme-challenge/adsa/dmlkorea.html\"; startswith; fast_pattern; http.host; content:\"asdap.com.br\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006554; classtype:social-engineering; sid:6006554; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:45:42.103618+00:00",
+  "updated_at": "2026-08-10T03:49:30.985911+00:00",
   "probe": {
     "dns": "192.185.215.107",
     "whois": true,

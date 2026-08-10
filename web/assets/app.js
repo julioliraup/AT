@@ -57,13 +57,9 @@ async function load() {
         <span class="v-value" style="color: #ffaa00; text-shadow: 0 0 15px #ffaa00;">${urls}</span>
         <span class="v-label">Malicious URLs</span>
       </div>
-      <div class="visualizer-orb" style="border-color: rgba(255, 0, 85, 0.3);">
-        <span class="v-value" style="color: var(--neon-pink); text-shadow: 0 0 15px var(--neon-pink);">${domains_count}</span>
-        <span class="v-label">DNS Domains</span>
-      </div>
       <div class="visualizer-orb" style="border-color: rgba(0, 255, 128, 0.3);">
         <span class="v-value" style="color: #00ff80; text-shadow: 0 0 15px #00ff80;">${domains_count}</span>
-        <span class="v-label">TLS SNI</span>
+        <span class="v-label">TLS SNI / DNS domanins</span>
       </div>
       ${atiOrbHtml}
       <div class="visualizer-orb" style="border-color: rgba(138, 43, 226, 0.5);">
@@ -175,7 +171,7 @@ document.getElementById('search').oninput = async (e) => {
   }
 
   renderCards(results.slice(0, 50));
-};
+}; g
 
 load();
 

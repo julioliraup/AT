@@ -49,21 +49,54 @@
     "phishdestroy": {
       "domain": "mydpd.at",
       "domain_defanged": "mydpd[.]at",
-      "case_id": "PD-20260808-1350CE",
-      "analyzed_at": "2026-08-08T17:37:40.165Z",
+      "case_id": "PD-20260810-1350CE",
+      "analyzed_at": "2026-08-10T02:56:31.492Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "BitDefender": "business",
+            "Sophos": "general business",
+            "Forcepoint ThreatSeeker": "business and economy",
+            "Xcitium Verdict Cloud": "business",
+            "Google": "transportation"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fe273-ae3f-754c-bcb8-fa1df1472f1e/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fe2b5-78ea-7112-830f-43285502d8d2.png",
+          "url": "https://urlscan.io/result/019fe2b5-78ea-7112-830f-43285502d8d2/",
+          "title": "myDPD"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -82,9 +115,9 @@
             "167.86.50.212"
           ],
           "NS": [
-            "dns1.a1.net.",
+            "dns3.a1.net.",
             "dns2.a1.net.",
-            "dns3.a1.net."
+            "dns1.a1.net."
           ]
         }
       },
@@ -213,15 +246,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.mydpd.at/meine-pakete)\"; flow:established,to_server; http.uri; content:\"/meine-pakete\"; startswith; fast_pattern; http.host; content:\"www.mydpd.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006146; classtype:social-engineering; sid:6006146; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-09T16:21:30.510229+00:00",
+  "updated_at": "2026-08-10T02:56:24.985615+00:00",
   "probe": {
     "dns": "167.86.50.212",
-    "whois": null,
+    "whois": true,
     "status": "active"
   }
 }

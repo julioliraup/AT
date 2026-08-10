@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "phrasing0870.github.io",
       "domain_defanged": "phrasing0870[.]github[.]io",
-      "case_id": "PD-20260808-743A22",
-      "analyzed_at": "2026-08-08T18:19:52.056Z",
+      "case_id": "PD-20260810-743A22",
+      "analyzed_at": "2026-08-10T03:54:51.645Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe29a-507e-71cc-bcc8-cea60c58119d/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe99b-b57a-77fa-8ec4-cf83f601c017.png",
+          "url": "https://urlscan.io/result/019fe99b-b57a-77fa-8ec4-cf83f601c017/",
+          "title": "ledger"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -225,14 +234,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (phrasing0870.github.io/ledger)\"; flow:established,to_server; http.uri; content:\"/ledger\"; startswith; fast_pattern; http.host; content:\"phrasing0870.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006591; classtype:social-engineering; sid:6006591; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:47:41.405152+00:00",
+  "updated_at": "2026-08-10T03:54:46.787309+00:00",
   "probe": {
-    "dns": "185.199.111.153",
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }

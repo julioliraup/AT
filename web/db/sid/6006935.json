@@ -18,33 +18,87 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://andy-weiders.com/updatego1",
+      "domain": "andy-weiders.com",
+      "url_count": 1,
+      "city_data": false,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "50.3.10.58",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html;charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Non-ISO extended-ASCII text, with very long lines (571), with LF, NEL line terminators",
+      "sha256": "5bac0bba744577663bd4a99eaed23b6d3515bf079853812b87c1f6fec17780c2",
+      "md5": "ee8c0ef85280b4086d6fade4bfd15fa6",
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": "2026-08-06T18:28:19",
+      "first_seen_secs": 1786040899.0
+    },
     "phishdestroy": {
       "domain": "andy-weiders.com",
       "domain_defanged": "andy-weiders[.]com",
-      "case_id": "PD-20260808-87038A",
-      "analyzed_at": "2026-08-08T18:54:10.835Z",
+      "case_id": "PD-20260810-87038A",
+      "analyzed_at": "2026-08-10T04:32:15.095Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f0453-0125-70b3-9405-47a8eda70c81.png",
+          "url": "https://urlscan.io/result/019f0453-0125-70b3-9405-47a8eda70c81/",
+          "title": "365英国上市公司(集团)官方网站-Global Platform"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Metaregistrar BV",
         "created": "2026-01-24T01:23:38Z",
         "expires": "2027-01-24T01:23:38Z",
-        "age_days": 196,
+        "age_days": 198,
         "nameservers": [
           "CARTER.NS.CLOUDFLARE.COM",
           "SARA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "50.3.10.58",
+        "ipinfo": {
+          "ip": "50.3.10.58",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS62904 Eonix Corporation",
+          "asn": "AS62904"
+        },
         "dns": null
       },
       "report_to": {
@@ -56,7 +110,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "AS62904, US",
+          "abuse": "net-abuse@eonix.net",
+          "url": "mailto:net-abuse@eonix.net",
+          "logo": "https://i.ibb.co/Zp2jk6gL/pr-AS62904-US.png",
+          "method": "email",
+          "asn": "AS62904"
+        }
       },
       "report_services": [
         {
@@ -179,17 +240,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (andy-weiders.com/updatego1)\"; flow:established,to_server; http.uri; content:\"/updatego1\"; startswith; fast_pattern; http.host; content:\"andy-weiders.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006935; classtype:social-engineering; sid:6006935; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-09T17:09:35.189018+00:00",
+  "updated_at": "2026-08-10T04:32:03.832594+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "50.3.10.58",
+    "whois": null,
+    "status": "active"
+  }
 }

@@ -49,21 +49,58 @@
     "phishdestroy": {
       "domain": "assistance.leboncoin.info",
       "domain_defanged": "assistance[.]leboncoin[.]info",
-      "case_id": "PD-20260808-2DF7B9",
-      "analyzed_at": "2026-08-08T17:10:16.507Z",
+      "case_id": "PD-20260810-2DF7B9",
+      "analyzed_at": "2026-08-10T02:09:34.420Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fe25a-99bb-73ff-bae1-3e56feaf6fed/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fe777-5ba8-7629-82ee-746ae358047c.png",
+          "url": "https://urlscan.io/result/019fe777-5ba8-7629-82ee-746ae358047c/",
+          "title": "assistance.leboncoin.info"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,23 +108,23 @@
         "ip": "lbc.zendesk.com.",
         "ipinfo": null,
         "dns": {
-          "A": [
+          "MX": [
             "lbc.zendesk.com.",
-            "216.198.54.11",
-            "216.198.53.11"
-          ],
-          "AAAA": [
-            "lbc.zendesk.com."
+            "10 mail-pod-18.int.zendesk.com."
           ],
           "NS": [
             "lbc.zendesk.com."
           ],
+          "A": [
+            "lbc.zendesk.com.",
+            "216.198.53.11",
+            "216.198.54.11"
+          ],
           "CNAME": [
             "lbc.zendesk.com."
           ],
-          "MX": [
-            "lbc.zendesk.com.",
-            "10 mail-pod-18.int.zendesk.com."
+          "AAAA": [
+            "lbc.zendesk.com."
           ]
         }
       },
@@ -216,14 +253,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (assistance.leboncoin.info/hc/fr/categories/8477442763410-Mon-c)\"; flow:established,to_server; http.uri; content:\"/hc/fr/categories/8477442763410-Mon-c\"; startswith; fast_pattern; http.host; content:\"assistance.leboncoin.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005586; classtype:social-engineering; sid:6005586; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-09T15:53:11.682494+00:00",
+  "updated_at": "2026-08-10T02:09:29.205142+00:00",
   "probe": {
-    "dns": "216.198.54.11",
+    "dns": "216.198.53.11",
     "whois": true,
     "status": "active"
   }

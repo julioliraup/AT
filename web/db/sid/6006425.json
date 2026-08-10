@@ -49,35 +49,44 @@
     "phishdestroy": {
       "domain": "borderclick.com",
       "domain_defanged": "borderclick[.]com",
-      "case_id": "PD-20260808-615C56",
-      "analyzed_at": "2026-08-08T18:07:13.953Z",
+      "case_id": "PD-20260810-615C56",
+      "analyzed_at": "2026-08-10T03:37:05.591Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe28e-bd54-7142-be1d-789cdebb8eb8/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe67c-9830-7089-bd1d-af5f58c762a6.png",
+          "url": "https://urlscan.io/result/019fe67c-9830-7089-bd1d-af5f58c762a6/",
+          "title": "Suspected Misleading Website | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Cloudflare, Inc.",
         "created": "2016-12-31T09:56:35Z",
         "expires": "2026-12-31T09:56:35Z",
-        "age_days": 3507,
+        "age_days": 3508,
         "nameservers": [
           "ANUJ.NS.CLOUDFLARE.COM",
           "MEG.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.143.42",
+        "ip": "104.21.46.238",
         "ipinfo": {
-          "ip": "172.67.143.42",
+          "ip": "104.21.46.238",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -86,8 +95,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:3037::6815:2eee",
-            "2606:4700:3033::ac43:8f2a"
+            "2606:4700:3033::ac43:8f2a",
+            "2606:4700:3037::6815:2eee"
           ],
           "MX": [
             "10 mx.zoho.com.",
@@ -95,8 +104,8 @@
             "50 mx3.zoho.com."
           ],
           "A": [
-            "172.67.143.42",
-            "104.21.46.238"
+            "104.21.46.238",
+            "172.67.143.42"
           ],
           "NS": [
             "anuj.ns.cloudflare.com.",
@@ -243,14 +252,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.borderclick.com/BC/media/Borderclick/Files/rob.html)\"; flow:established,to_server; http.uri; content:\"/BC/media/Borderclick/Files/rob.html\"; startswith; fast_pattern; http.host; content:\"www.borderclick.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006425; classtype:social-engineering; sid:6006425; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-09T16:39:06.845468+00:00",
+  "updated_at": "2026-08-10T03:36:58.964843+00:00",
   "probe": {
-    "dns": "172.67.143.42",
+    "dns": "104.21.46.238",
     "whois": null,
     "status": "active"
   }

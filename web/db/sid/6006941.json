@@ -73,17 +73,30 @@
     "phishdestroy": {
       "domain": "comcast-mobile.webflow.io",
       "domain_defanged": "comcast-mobile[.]webflow[.]io",
-      "case_id": "PD-20260808-2F9FB7",
-      "analyzed_at": "2026-08-08T18:54:34.354Z",
+      "case_id": "PD-20260810-2F9FB7",
+      "analyzed_at": "2026-08-10T04:32:52.818Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe169-58a1-736b-9f13-be5be933c4e7.png",
+          "url": "https://urlscan.io/result/019fe169-58a1-736b-9f13-be5be933c4e7/",
+          "title": "Comcast mobile"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -98,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2a06:98c1:3105::6812:24f8",
-            "2a06:98c1:3102::ac40:9708"
-          ],
           "A": [
             "104.18.36.248",
             "172.64.151.8"
+          ],
+          "AAAA": [
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
           ]
         }
       },
@@ -240,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (comcast-mobile.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"comcast-mobile.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006941; classtype:social-engineering; sid:6006941; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-09T17:10:14.358763+00:00",
+  "updated_at": "2026-08-10T04:32:49.090748+00:00",
   "probe": {
     "dns": "104.18.36.248",
     "whois": true,

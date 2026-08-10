@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "seuacessonuvip.online",
       "domain_defanged": "seuacessonuvip[.]online",
-      "case_id": "PD-20260808-714824",
-      "analyzed_at": "2026-08-08T18:39:12.565Z",
+      "case_id": "PD-20260810-714824",
+      "analyzed_at": "2026-08-10T04:14:09.043Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Nubank"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd1fb-a366-719a-b93d-87461c5bb717.png",
+          "url": "https://urlscan.io/result/019fd1fb-a366-719a-b93d-87461c5bb717/",
+          "title": "Verificação de Conta"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Nubank",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "129.121.81.241",
+        "ipinfo": {
+          "ip": "129.121.81.241",
+          "hostname": "129-121-81-241.unifiedlayer.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (seuacessonuvip.online/presell/index.html)\"; flow:established,to_server; http.uri; content:\"/presell/index.html\"; startswith; fast_pattern; http.host; content:\"seuacessonuvip.online\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006784; classtype:social-engineering; sid:6006784; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:58:20.762633+00:00",
+  "updated_at": "2026-08-10T04:14:05.045641+00:00",
   "probe": {
     "dns": null,
     "whois": true,

@@ -55,21 +55,67 @@
     "phishdestroy": {
       "domain": "u.to",
       "domain_defanged": "u[.]to",
-      "case_id": "PD-20260808-35EA94",
-      "analyzed_at": "2026-08-08T16:22:39.087Z",
+      "case_id": "PD-20260810-35EA94",
+      "analyzed_at": "2026-08-10T00:50:28.792Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "SafeToOpen",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe22e-ffee-7730-b6cc-83541880874d/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Roblox"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe4d8-a87c-736b-afd7-1aa79da963e1.png",
+          "url": "https://urlscan.io/result/019fe4d8-a87c-736b-afd7-1aa79da963e1/",
+          "title": "Ayinn_Butterfly - Roblox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SafeToOpen",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Roblox",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -89,8 +135,8 @@
             "186.2.165.57"
           ],
           "NS": [
-            "ns3.ucoz.net.",
-            "ns2.ucoz.net."
+            "ns2.ucoz.net.",
+            "ns3.ucoz.net."
           ],
           "MX": [
             "1 mx100.ucozmail.com."
@@ -229,12 +275,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (u.to/roblox-com-users-350357745-profile/oc_YIg)\"; flow:established,to_server; http.uri; content:\"/roblox-com-users-350357745-profile/oc_YIg\"; startswith; fast_pattern; http.host; content:\"u.to\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004558; classtype:social-engineering; sid:6004558; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-09T14:45:37.232510+00:00",
+  "updated_at": "2026-08-10T00:50:21.452969+00:00",
   "probe": {
     "dns": "179.43.150.242",
     "whois": null,

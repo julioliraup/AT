@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "pldwf553jnh-qtzxvolpw-9b7a1d-ltp30c.pages.dev",
       "domain_defanged": "pldwf553jnh-qtzxvolpw-9b7a1d-ltp30c[.]pages[.]dev",
-      "case_id": "PD-20260808-72A5E9",
-      "analyzed_at": "2026-08-08T18:12:31.082Z",
+      "case_id": "PD-20260810-72A5E9",
+      "analyzed_at": "2026-08-10T03:44:45.802Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe293-95b5-74cf-b93f-54e850f1f1cb/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe36d-7c4b-70c9-a00a-b6bf5bf66d7d.png",
+          "url": "https://urlscan.io/result/019fe36d-7c4b-70c9-a00a-b6bf5bf66d7d/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -106,13 +115,13 @@
             "172.66.47.111",
             "172.66.44.145"
           ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2f6f",
+            "2606:4700:310c::ac42:2c91"
+          ],
           "NS": [
             "brodie.ns.cloudflare.com.",
             "veda.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c91",
-            "2606:4700:310c::ac42:2f6f"
           ]
         }
       },
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pldwf553jnh-qtzxvolpw-9b7a1d-ltp30c.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"pldwf553jnh-qtzxvolpw-9b7a1d-ltp30c.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006495; classtype:social-engineering; sid:6006495; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:42:13.625547+00:00",
+  "updated_at": "2026-08-10T03:44:42.627656+00:00",
   "probe": {
     "dns": "172.66.44.145",
     "whois": null,

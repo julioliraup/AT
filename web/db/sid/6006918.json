@@ -81,22 +81,43 @@
     "phishdestroy": {
       "domain": "esl-org-message.cfd",
       "domain_defanged": "esl-org-message[.]cfd",
-      "case_id": "PD-20260808-383499",
-      "analyzed_at": "2026-08-08T18:53:00.945Z",
+      "case_id": "PD-20260810-383499",
+      "analyzed_at": "2026-08-10T04:29:46.734Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "ESL Federal Credit Union"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fdc54-bdd3-71e8-97f5-d7891f4ff3c5.png",
+          "url": "https://urlscan.io/result/019fdc54-bdd3-71e8-97f5-d7891f4ff3c5/",
+          "title": "ESL Federal Credit Union - Log in"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: ESL Federal Credit Union",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "109.207.78.85",
+        "ipinfo": {
+          "ip": "109.207.78.85",
+          "city": "Rosh Ha‘Ayin",
+          "region": "Central District",
+          "country": "IL",
+          "org": "AS25052 O.M.C. COMPUTERS & COMMUNICATIONS LTD",
+          "asn": "AS25052"
+        },
         "dns": null
       },
       "report_to": {
@@ -224,12 +245,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (esl-org-message.cfd/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"esl-org-message.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006918; classtype:social-engineering; sid:6006918; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-09T17:08:39.130431+00:00",
+  "updated_at": "2026-08-10T04:29:38.213330+00:00",
   "probe": {
     "dns": "23.41.4.91",
     "whois": true,

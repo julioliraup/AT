@@ -49,29 +49,115 @@
     "phishdestroy": {
       "domain": "myareaplans.com",
       "domain_defanged": "myareaplans[.]com",
-      "case_id": "PD-20260808-62A3F8",
-      "analyzed_at": "2026-08-08T17:36:31.332Z",
+      "case_id": "PD-20260810-62A3F8",
+      "analyzed_at": "2026-08-10T02:54:02.183Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "AT&T"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbc82-33f9-76f0-9f0a-144d1229f7b2.png",
+          "url": "https://urlscan.io/result/019fbc82-33f9-76f0-9f0a-144d1229f7b2/",
+          "title": "AT&T — Plans & Pricing | MyAreaPlans"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: AT&T",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "HOSTINGER operations, UAB",
         "created": "2026-07-31T18:13:14Z",
         "expires": "2027-07-31T18:13:14Z",
-        "age_days": 7,
+        "age_days": 9,
         "nameservers": [
           "LUNAR.DNS-PARKING.COM",
           "SOLAR.DNS-PARKING.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2a02:4780:43:dcc7:94ec:d7b9:26d8:73f1",
+        "ipinfo": {
+          "ip": "2a02:4780:43:dcc7:94ec:d7b9:26d8:73f1",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS47583 Hostinger International Limited",
+          "asn": "AS47583"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +169,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Hostinger",
+          "abuse": "abuse@hostinger.com",
+          "url": "https://www.hostinger.com/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS47583"
+        }
       },
       "report_services": [
         {
@@ -206,12 +299,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (myareaplans.com/providers/att)\"; flow:established,to_server; http.uri; content:\"/providers/att\"; startswith; fast_pattern; http.host; content:\"myareaplans.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006127; classtype:social-engineering; sid:6006127; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-09T16:20:36.964709+00:00",
+  "updated_at": "2026-08-10T02:53:56.219081+00:00",
   "probe": {
     "dns": null,
     "whois": true,

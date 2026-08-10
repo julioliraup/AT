@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "booklng-prearrlivalrewiedate.com",
       "domain_defanged": "booklng-prearrlivalrewiedate[.]com",
-      "case_id": "PD-20260808-4626D3",
-      "analyzed_at": "2026-08-08T18:16:48.513Z",
+      "case_id": "PD-20260810-4626D3",
+      "analyzed_at": "2026-08-10T03:49:40.586Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe297-8126-71de-9794-530c1f8ecdf2/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe988-846a-744d-9545-1c97f7e8b3e9.png",
+          "url": "https://urlscan.io/result/019fe988-846a-744d-9545-1c97f7e8b3e9/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dynadot Inc",
         "created": "2026-07-31T10:35:46Z",
         "expires": "2027-07-31T10:35:46Z",
-        "age_days": 8,
+        "age_days": 9,
         "nameservers": [
           "COLEMAN.NS.CLOUDFLARE.COM",
           "EMILY.NS.CLOUDFLARE.COM"
@@ -89,13 +98,13 @@
             "2606:4700:3033::ac43:cf01",
             "2606:4700:3030::6815:3290"
           ],
-          "A": [
-            "172.67.207.1",
-            "104.21.50.144"
-          ],
           "NS": [
             "coleman.ns.cloudflare.com.",
             "emily.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.67.207.1",
+            "104.21.50.144"
           ]
         }
       },
@@ -238,12 +247,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (booklng-prearrlivalrewiedate.com/983797037)\"; flow:established,to_server; http.uri; content:\"/983797037\"; startswith; fast_pattern; http.host; content:\"booklng-prearrlivalrewiedate.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006555; classtype:social-engineering; sid:6006555; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:45:44.428792+00:00",
+  "updated_at": "2026-08-10T03:49:35.086884+00:00",
   "probe": {
     "dns": "172.67.207.1",
     "whois": true,

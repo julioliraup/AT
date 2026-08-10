@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "ledger-invoices-realworld-fi.pages.dev",
       "domain_defanged": "ledger-invoices-realworld-fi[.]pages[.]dev",
-      "case_id": "PD-20260808-2724A6",
-      "analyzed_at": "2026-08-08T18:41:07.706Z",
+      "case_id": "PD-20260810-2724A6",
+      "analyzed_at": "2026-08-10T04:15:55.288Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe2ad-c77a-712b-9fdc-f6bb9f9bae8b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe2d4-ec1a-7329-8b44-145b0e926b5e.png",
+          "url": "https://urlscan.io/result/019fe2d4-ec1a-7329-8b44-145b0e926b5e/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.112",
+        "ip": "172.66.44.144",
         "ipinfo": {
-          "ip": "172.66.47.112",
+          "ip": "172.66.44.144",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.47.112",
-            "172.66.44.144"
-          ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f70",
-            "2606:4700:310c::ac42:2c90"
+            "2606:4700:310c::ac42:2c90",
+            "2606:4700:310c::ac42:2f70"
+          ],
+          "A": [
+            "172.66.44.144",
+            "172.66.47.112"
           ],
           "NS": [
             "clara.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledger-invoices-realworld-fi.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledger-invoices-realworld-fi.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006800; classtype:social-engineering; sid:6006800; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:59:26.114168+00:00",
+  "updated_at": "2026-08-10T04:15:51.955023+00:00",
   "probe": {
     "dns": "172.66.47.112",
     "whois": null,

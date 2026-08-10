@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "educator-10805187654567899087656.square.site",
       "domain_defanged": "educator-10805187654567899087656[.]square[.]site",
-      "case_id": "PD-20260808-3D6320",
-      "analyzed_at": "2026-08-08T18:23:36.494Z",
+      "case_id": "PD-20260810-3D6320",
+      "analyzed_at": "2026-08-10T03:58:00.539Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe29d-bd1c-719f-a8cf-abe3366b6cbc.png",
           "url": "https://urlscan.io/result/019fe29d-bd1c-719f-a8cf-abe3366b6cbc/",
-          "pending": true
+          "title": "Home | EDUCATOR"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "74.115.51.4",
+        "ip": "74.115.51.5",
         "ipinfo": {
-          "ip": "74.115.51.4",
+          "ip": "74.115.51.5",
           "hostname": "wildcard.square.site",
           "city": "Oakland",
           "region": "California",
@@ -104,8 +113,8 @@
         },
         "dns": {
           "A": [
-            "74.115.51.4",
-            "74.115.51.5"
+            "74.115.51.5",
+            "74.115.51.4"
           ]
         }
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (educator-10805187654567899087656.square.site/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"educator-10805187654567899087656.square.site\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006623; classtype:social-engineering; sid:6006623; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:49:17.616840+00:00",
+  "updated_at": "2026-08-10T03:57:55.309218+00:00",
   "probe": {
     "dns": "74.115.51.4",
     "whois": true,

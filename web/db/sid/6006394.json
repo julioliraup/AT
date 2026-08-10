@@ -49,21 +49,57 @@
     "phishdestroy": {
       "domain": "application-limitsnubank-withdrawal-limits.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "application-limitsnubank-withdrawal-limits[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260808-6A077A",
-      "analyzed_at": "2026-08-08T18:03:38.010Z",
+      "case_id": "PD-20260810-6A077A",
+      "analyzed_at": "2026-08-10T03:32:49.273Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fe28b-7315-75cf-9408-57050bc76ba0/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fe6c6-71fd-75a8-bca7-af85b4a96a87.png",
+          "url": "https://urlscan.io/result/019fe6c6-71fd-75a8-bca7-af85b4a96a87/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +115,17 @@
           "asn": "AS40401"
         },
         "dns": {
-          "AAAA": [
-            "2605:72c0:6fc:b3::b005:1",
-            "2605:72c0:6fd:b3::b005:1",
-            "2605:72c0:6fe:b3::b005:1",
-            "2605:72c0:6ff:b3::b005:1"
-          ],
           "A": [
             "149.137.136.9",
             "149.137.137.254",
             "149.137.140.9",
             "149.137.141.9"
+          ],
+          "AAAA": [
+            "2605:72c0:6fc:b3::b005:1",
+            "2605:72c0:6fd:b3::b005:1",
+            "2605:72c0:6fe:b3::b005:1",
+            "2605:72c0:6ff:b3::b005:1"
           ]
         }
       },
@@ -225,14 +261,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (application-limitsnubank-withdrawal-limits.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"application-limitsnubank-withdrawal-limits.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006394; classtype:social-engineering; sid:6006394; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-09T16:37:01.944264+00:00",
+  "updated_at": "2026-08-10T03:32:43.458365+00:00",
   "probe": {
-    "dns": "149.137.141.9",
+    "dns": "149.137.137.254",
     "whois": null,
     "status": "active"
   }

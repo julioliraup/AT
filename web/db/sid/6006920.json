@@ -49,17 +49,30 @@
     "phishdestroy": {
       "domain": "comcastcableservice.weeblysite.com",
       "domain_defanged": "comcastcableservice[.]weeblysite[.]com",
-      "case_id": "PD-20260808-1B5E65",
-      "analyzed_at": "2026-08-08T18:53:18.127Z",
+      "case_id": "PD-20260810-1B5E65",
+      "analyzed_at": "2026-08-10T04:30:08.816Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fdc54-dac5-7417-af0f-7581181e2c93.png",
+          "url": "https://urlscan.io/result/019fdc54-dac5-7417-af0f-7581181e2c93/",
+          "title": "Home | Comcastcableservice"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -213,12 +226,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (comcastcableservice.weeblysite.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"comcastcableservice.weeblysite.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006920; classtype:social-engineering; sid:6006920; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-09T17:08:48.609497+00:00",
+  "updated_at": "2026-08-10T04:29:58.185135+00:00",
   "probe": {
     "dns": "74.115.51.54",
     "whois": null,

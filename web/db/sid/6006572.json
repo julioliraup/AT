@@ -55,26 +55,35 @@
     "phishdestroy": {
       "domain": "geckotristate.com",
       "domain_defanged": "geckotristate[.]com",
-      "case_id": "PD-20260808-7AAD88",
-      "analyzed_at": "2026-08-08T18:18:03.083Z",
+      "case_id": "PD-20260810-7AAD88",
+      "analyzed_at": "2026-08-10T03:51:46.111Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe298-a5cd-770b-ae09-5aed520c0abb/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe931-4263-7787-a630-ad7e04597111.png",
+          "url": "https://urlscan.io/result/019fe931-4263-7787-a630-ad7e04597111/",
+          "title": "Webmail - Login."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2021-10-06T14:25:07Z",
         "expires": "2029-10-06T14:25:07Z",
-        "age_days": 1767,
+        "age_days": 1768,
         "nameservers": [
           "NS1.AXIOM9.COM",
           "NS2.AXIOM9.COM"
@@ -92,11 +101,11 @@
           "asn": "AS55293"
         },
         "dns": {
-          "A": [
-            "68.66.226.89"
-          ],
           "MX": [
             "0 mail.geckotristate.com."
+          ],
+          "A": [
+            "68.66.226.89"
           ],
           "NS": [
             "ns1.axiom9.com.",
@@ -243,12 +252,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (geckotristate.com/wed)\"; flow:established,to_server; http.uri; content:\"/wed\"; startswith; fast_pattern; http.host; content:\"geckotristate.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006572; classtype:social-engineering; sid:6006572; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:46:35.534324+00:00",
+  "updated_at": "2026-08-10T03:51:34.937060+00:00",
   "probe": {
     "dns": "68.66.226.89",
     "whois": true,

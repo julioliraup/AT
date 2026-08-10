@@ -73,17 +73,30 @@
     "phishdestroy": {
       "domain": "en-us-desktop-ledgere.pages.dev",
       "domain_defanged": "en-us-desktop-ledgere[.]pages[.]dev",
-      "case_id": "PD-20260808-6667D7",
-      "analyzed_at": "2026-08-08T18:54:30.902Z",
+      "case_id": "PD-20260810-6667D7",
+      "analyzed_at": "2026-08-10T04:32:48.943Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe584-a703-7722-8e85-a885823301dc.png",
+          "url": "https://urlscan.io/result/019fe584-a703-7722-8e85-a885823301dc/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -244,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (en-us-desktop-ledgere.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"en-us-desktop-ledgere.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006940; classtype:social-engineering; sid:6006940; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-09T17:10:11.944707+00:00",
+  "updated_at": "2026-08-10T04:32:40.690773+00:00",
   "probe": {
     "dns": "172.66.47.149",
     "whois": null,

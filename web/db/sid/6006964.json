@@ -73,17 +73,30 @@
     "phishdestroy": {
       "domain": "xfinityupdatemailer.weebly.com",
       "domain_defanged": "xfinityupdatemailer[.]weebly[.]com",
-      "case_id": "PD-20260808-694FC9",
-      "analyzed_at": "2026-08-08T18:55:46.948Z",
+      "case_id": "PD-20260810-694FC9",
+      "analyzed_at": "2026-08-10T04:35:16.834Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fdf45-04c0-75f7-8f87-5b104491e261.png",
+          "url": "https://urlscan.io/result/019fdf45-04c0-75f7-8f87-5b104491e261/",
+          "title": "Just a moment..."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -237,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xfinityupdatemailer.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"xfinityupdatemailer.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006964; classtype:social-engineering; sid:6006964; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-09T17:11:24.083937+00:00",
+  "updated_at": "2026-08-10T04:35:12.794292+00:00",
   "probe": {
     "dns": "74.115.51.8",
     "whois": null,

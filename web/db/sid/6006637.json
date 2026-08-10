@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "snhgj4a38vs-pldwfkmja-3d2e9f-snq65c.pages.dev",
       "domain_defanged": "snhgj4a38vs-pldwfkmja-3d2e9f-snq65c[.]pages[.]dev",
-      "case_id": "PD-20260808-379402",
-      "analyzed_at": "2026-08-08T18:24:37.694Z",
+      "case_id": "PD-20260810-379402",
+      "analyzed_at": "2026-08-10T03:59:13.123Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe29e-ac06-7105-8ce3-ee8b75783903.png",
           "url": "https://urlscan.io/result/019fe29e-ac06-7105-8ce3-ee8b75783903/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -89,8 +98,8 @@
             "172.66.44.134"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f7a",
-            "2606:4700:310c::ac42:2c86"
+            "2606:4700:310c::ac42:2c86",
+            "2606:4700:310c::ac42:2f7a"
           ],
           "NS": [
             "grace.ns.cloudflare.com.",
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (snhgj4a38vs-pldwfkmja-3d2e9f-snq65c.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"snhgj4a38vs-pldwfkmja-3d2e9f-snq65c.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006637; classtype:social-engineering; sid:6006637; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:49:59.389998+00:00",
+  "updated_at": "2026-08-10T03:59:05.251407+00:00",
   "probe": {
     "dns": "172.66.44.134",
     "whois": null,

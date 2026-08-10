@@ -55,27 +55,55 @@
     "phishdestroy": {
       "domain": "545564655.lat",
       "domain_defanged": "545564655[.]lat",
-      "case_id": "PD-20260808-3DF2A5",
-      "analyzed_at": "2026-08-08T18:18:11.779Z",
+      "case_id": "PD-20260810-3DF2A5",
+      "analyzed_at": "2026-08-10T03:52:22.401Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd2c3-3db3-777e-b94d-1eee4861728d.png",
+          "url": "https://urlscan.io/result/019fd2c3-3db3-777e-b94d-1eee4861728d/",
+          "title": "bet365 -No.1 体育投注，世界锦标赛斯诺克赔率，百家乐娱乐场，扑克牌，电子游戏"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "20.187.146.25",
+        "ipinfo": {
+          "ip": "20.187.146.25",
+          "city": "Hong Kong",
+          "region": "Hong Kong",
+          "country": "HK",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -198,12 +226,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (545564655.lat/register.html)\"; flow:established,to_server; http.uri; content:\"/register.html\"; startswith; fast_pattern; http.host; content:\"545564655.lat\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006575; classtype:social-engineering; sid:6006575; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:46:49.183045+00:00",
+  "updated_at": "2026-08-10T03:52:16.043935+00:00",
   "probe": {
     "dns": "20.187.146.25",
     "whois": true,

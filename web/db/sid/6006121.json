@@ -49,21 +49,80 @@
     "phishdestroy": {
       "domain": "stationnement-antai-gouv-infractiion.pumpa.sk",
       "domain_defanged": "stationnement-antai-gouv-infractiion[.]pumpa[.]sk",
-      "case_id": "PD-20260808-58289D",
-      "analyzed_at": "2026-08-08T17:36:03.982Z",
+      "case_id": "PD-20260810-58289D",
+      "analyzed_at": "2026-08-10T02:53:21.243Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Business/Economy, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fe272-3694-76b3-8428-94e6594e51ed/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fe378-985a-762e-be3f-50f5b67a1f0f.png",
+          "url": "https://urlscan.io/result/019fe378-985a-762e-be3f-50f5b67a1f0f/",
+          "title": "404 Not Found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,11 +138,11 @@
           "asn": "AS51013"
         },
         "dns": {
-          "AAAA": [
-            "2a00:4b40:aaaa:2001::6"
-          ],
           "A": [
             "37.9.175.131"
+          ],
+          "AAAA": [
+            "2a00:4b40:aaaa:2001::6"
           ]
         }
       },
@@ -219,12 +278,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (stationnement-antai-gouv-infractiion.pumpa.sk/fr/redirect)\"; flow:established,to_server; http.uri; content:\"/fr/redirect\"; startswith; fast_pattern; http.host; content:\"stationnement-antai-gouv-infractiion.pumpa.sk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006121; classtype:social-engineering; sid:6006121; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-09T16:20:21.700180+00:00",
+  "updated_at": "2026-08-10T02:53:14.977563+00:00",
   "probe": {
     "dns": "37.9.175.131",
     "whois": true,

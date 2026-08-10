@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "teams-nx.com",
       "domain_defanged": "teams-nx[.]com",
-      "case_id": "PD-20260808-5B4954",
-      "analyzed_at": "2026-08-08T18:17:29.066Z",
+      "case_id": "PD-20260810-5B4954",
+      "analyzed_at": "2026-08-10T03:50:58.356Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Steam"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd203-035f-7233-8c7c-c5f970340130.png",
+          "url": "https://urlscan.io/result/019fd203-035f-7233-8c7c-c5f970340130/",
+          "title": "Sign In"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Steam",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Registrar of Domain Names REG.RU LLC",
         "created": "2026-06-20T14:30:41Z",
         "expires": "2027-06-20T14:30:41Z",
-        "age_days": 49,
+        "age_days": 50,
         "nameservers": [
           "AMY.NS.CLOUDFLARE.COM",
           "CARTMAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": "450"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (teams-nx.com/p/fjbd-cbcr/xlxwgqxa)\"; flow:established,to_server; http.uri; content:\"/p/fjbd-cbcr/xlxwgqxa\"; startswith; fast_pattern; http.host; content:\"teams-nx.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006564; classtype:social-engineering; sid:6006564; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:46:09.324457+00:00",
+  "updated_at": "2026-08-10T03:50:52.088397+00:00",
   "probe": {
     "dns": null,
     "whois": true,

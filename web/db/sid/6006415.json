@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "xelzora-gld-belquro-c9x7dw68.pages.dev",
       "domain_defanged": "xelzora-gld-belquro-c9x7dw68[.]pages[.]dev",
-      "case_id": "PD-20260808-1CD4FC",
-      "analyzed_at": "2026-08-08T18:05:57.421Z",
+      "case_id": "PD-20260810-1CD4FC",
+      "analyzed_at": "2026-08-10T03:36:04.744Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe28d-93ba-74a8-a784-3bc970e0d15c/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe996-1cab-756b-94eb-9d459e2526b3.png",
+          "url": "https://urlscan.io/result/019fe996-1cab-756b-94eb-9d459e2526b3/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.107",
+        "ip": "172.66.44.149",
         "ipinfo": {
-          "ip": "172.66.47.107",
+          "ip": "172.66.44.149",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -78,13 +87,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "A": [
+            "172.66.44.149",
+            "172.66.47.107"
+          ],
           "AAAA": [
             "2606:4700:310c::ac42:2f6b",
             "2606:4700:310c::ac42:2c95"
-          ],
-          "A": [
-            "172.66.47.107",
-            "172.66.44.149"
           ],
           "NS": [
             "jule.ns.cloudflare.com.",
@@ -224,12 +233,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xelzora-gld-belquro-c9x7dw68.pages.dev/thn-yjm-uio-lkh)\"; flow:established,to_server; http.uri; content:\"/thn-yjm-uio-lkh\"; startswith; fast_pattern; http.host; content:\"xelzora-gld-belquro-c9x7dw68.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006415; classtype:social-engineering; sid:6006415; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-09T16:38:21.348477+00:00",
+  "updated_at": "2026-08-10T03:36:00.987075+00:00",
   "probe": {
     "dns": "172.66.47.107",
     "whois": null,

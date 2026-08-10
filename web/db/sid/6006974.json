@@ -49,17 +49,31 @@
     "phishdestroy": {
       "domain": "secure-page-builder--bigpride007.replit.app",
       "domain_defanged": "secure-page-builder--bigpride007[.]replit[.]app",
-      "case_id": "PD-20260808-154D68",
-      "analyzed_at": "2026-08-08T18:56:32.441Z",
+      "case_id": "PD-20260810-154D68",
+      "analyzed_at": "2026-08-10T04:36:13.196Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email",
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe29d-0fe6-702b-ad2b-b40762d2ee6b.png",
+          "url": "https://urlscan.io/result/019fe29d-0fe6-702b-ad2b-b40762d2ee6b/",
+          "title": "PORTAL - Mail Authentication"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email, Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -212,12 +226,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (secure-page-builder--bigpride007.replit.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"secure-page-builder--bigpride007.replit.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006974; classtype:social-engineering; sid:6006974; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-09T17:12:15.237026+00:00",
+  "updated_at": "2026-08-10T04:36:04.088240+00:00",
   "probe": {
     "dns": "34.117.33.233",
     "whois": null,

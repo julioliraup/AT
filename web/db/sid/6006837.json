@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "netflix-clone-gilt-phi.vercel.app",
       "domain_defanged": "netflix-clone-gilt-phi[.]vercel[.]app",
-      "case_id": "PD-20260808-6CC66E",
-      "analyzed_at": "2026-08-08T18:44:31.754Z",
+      "case_id": "PD-20260810-6CC66E",
+      "analyzed_at": "2026-08-10T04:20:04.325Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe2b0-e488-76a2-94d6-f6f70ac239b3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe5d4-9b3f-77b9-b6f1-dbd313feddb9.png",
+          "url": "https://urlscan.io/result/019fe5d4-9b3f-77b9-b6f1-dbd313feddb9/",
+          "title": "Netflix clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -222,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netflix-clone-gilt-phi.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"netflix-clone-gilt-phi.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006837; classtype:social-engineering; sid:6006837; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-09T17:03:14.365760+00:00",
+  "updated_at": "2026-08-10T04:20:00.374792+00:00",
   "probe": {
     "dns": "64.29.17.3",
     "whois": null,

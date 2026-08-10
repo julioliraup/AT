@@ -49,21 +49,31 @@
     "phishdestroy": {
       "domain": "wefiletransfer0562026.edgeone.dev",
       "domain_defanged": "wefiletransfer0562026[.]edgeone[.]dev",
-      "case_id": "PD-20260808-784FB4",
-      "analyzed_at": "2026-08-08T18:51:00.861Z",
+      "case_id": "PD-20260810-784FB4",
+      "analyzed_at": "2026-08-10T04:27:27.173Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WeTransfer",
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe2b6-d46e-717a-aa63-8bb6e9e2dad7.png",
           "url": "https://urlscan.io/result/019fe2b6-d46e-717a-aa63-8bb6e9e2dad7/",
-          "pending": true
+          "title": "WeTransfer"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WeTransfer, Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,9 +81,6 @@
         "ip": "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
-          ],
           "A": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
             "43.174.246.29",
@@ -81,12 +88,22 @@
           ],
           "CNAME": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
+          ],
+          "AAAA": [
+            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -209,14 +226,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wefiletransfer0562026.edgeone.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"wefiletransfer0562026.edgeone.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006894; classtype:social-engineering; sid:6006894; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-09T17:07:32.512741+00:00",
+  "updated_at": "2026-08-10T04:27:18.439104+00:00",
   "probe": {
-    "dns": "43.174.247.29",
+    "dns": "43.174.246.29",
     "whois": null,
     "status": "active"
   }

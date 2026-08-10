@@ -49,35 +49,44 @@
     "phishdestroy": {
       "domain": "mediacentersform.com",
       "domain_defanged": "mediacentersform[.]com",
-      "case_id": "PD-20260808-2E0BE1",
-      "analyzed_at": "2026-08-08T18:13:20.496Z",
+      "case_id": "PD-20260810-2E0BE1",
+      "analyzed_at": "2026-08-10T03:45:43.442Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe294-56af-76a9-b77d-35a7648cd2ab/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "TikTok"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe2fc-39ee-70d3-993d-20aafd323216.png",
+          "url": "https://urlscan.io/result/019fe2fc-39ee-70d3-993d-20aafd323216/",
+          "title": "TikTok Verification Center | Get Your Official Verified Badge"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: TikTok",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Tucows Domains Inc.",
         "created": "2026-06-19T00:49:53Z",
         "expires": "2027-06-19T00:49:53Z",
-        "age_days": 50,
+        "age_days": 52,
         "nameservers": [
           "ARON.NS.CLOUDFLARE.COM",
           "ROMAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.140.119",
+        "ip": "104.21.87.37",
         "ipinfo": {
-          "ip": "172.67.140.119",
+          "ip": "104.21.87.37",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,17 +94,17 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:3036::ac43:8c77",
+            "2606:4700:3032::6815:5725"
+          ],
           "A": [
-            "172.67.140.119",
-            "104.21.87.37"
+            "104.21.87.37",
+            "172.67.140.119"
           ],
           "NS": [
             "aron.ns.cloudflare.com.",
             "roman.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:3036::ac43:8c77",
-            "2606:4700:3032::6815:5725"
           ]
         }
       },
@@ -238,14 +247,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mediacentersform.com/8703042988/5193415454/index.php)\"; flow:established,to_server; http.uri; content:\"/8703042988/5193415454/index.php\"; startswith; fast_pattern; http.host; content:\"mediacentersform.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006506; classtype:social-engineering; sid:6006506; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:42:48.623710+00:00",
+  "updated_at": "2026-08-10T03:45:36.898281+00:00",
   "probe": {
-    "dns": "104.21.87.37",
+    "dns": "172.67.140.119",
     "whois": true,
     "status": "active"
   }

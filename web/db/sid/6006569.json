@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "amazon-project-theta.vercel.app",
       "domain_defanged": "amazon-project-theta[.]vercel[.]app",
-      "case_id": "PD-20260808-6686AD",
-      "analyzed_at": "2026-08-08T18:17:49.689Z",
+      "case_id": "PD-20260810-6686AD",
+      "analyzed_at": "2026-08-10T03:51:25.495Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe298-727b-753b-ac7b-050223835f62/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe835-3ba2-707d-b483-40232bb44c96.png",
+          "url": "https://urlscan.io/result/019fe835-3ba2-707d-b483-40232bb44c96/",
+          "title": "Amazon Project"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.66",
+        "ip": "216.198.79.194",
         "ipinfo": {
-          "ip": "64.29.17.66",
+          "ip": "216.198.79.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -85,8 +94,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.66",
-            "216.198.79.66"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
@@ -222,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazon-project-theta.vercel.app/orders.html)\"; flow:established,to_server; http.uri; content:\"/orders.html\"; startswith; fast_pattern; http.host; content:\"amazon-project-theta.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006569; classtype:social-engineering; sid:6006569; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-09T16:46:23.360558+00:00",
+  "updated_at": "2026-08-10T03:51:22.181929+00:00",
   "probe": {
     "dns": "216.198.79.195",
     "whois": null,
