@@ -44,7 +44,7 @@ async function load() {
     const atiOrbHtml = ati_count > 0 ? `
       <div class="visualizer-orb" style="border-color: rgba(0, 229, 255, 0.4);">
         <span class="v-value" style="color: #00f0ff; text-shadow: 0 0 15px #00f0ff;">${ati_count}</span>
-        <span class="v-label">ATI NRD Intel</span>
+        <span class="v-label">NRD Intel - ATI (Antiphishing Threat Intel)</span>
       </div>
     ` : '';
 
