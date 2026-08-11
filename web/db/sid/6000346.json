@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "cccm.jsdaweb.my.id",
       "domain_defanged": "cccm[.]jsdaweb[.]my[.]id",
-      "case_id": "PD-20260809-497E1D",
-      "analyzed_at": "2026-08-09T19:31:41.708Z",
+      "case_id": "PD-20260811-497E1D",
+      "analyzed_at": "2026-08-11T04:54:27.879Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eecd8-db11-776c-8922-b18057702f1c.png",
+          "url": "https://urlscan.io/result/019eecd8-db11-776c-8922-b18057702f1c/",
+          "title": "𝗣𝗧.𝗘𝘀𝗽𝗮𝘆 𝗗𝗮𝗻𝗮 𝗜𝗻𝗱𝗼𝗻𝗲𝘀𝗶𝗮"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.215.176",
+        "ipinfo": {
+          "ip": "172.67.215.176",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cccm.jsdaweb.my.id/dana/)\"; flow:established,to_server; http.uri; content:\"/dana/\"; startswith; fast_pattern; http.host; content:\"cccm.jsdaweb.my.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000346; classtype:social-engineering; sid:6000346; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-10T17:58:29.881825+00:00",
+  "updated_at": "2026-08-11T04:54:05.461599+00:00",
   "probe": {
     "dns": null,
     "whois": true,

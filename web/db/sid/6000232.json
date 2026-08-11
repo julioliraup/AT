@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "netfilx.co",
       "domain_defanged": "netfilx[.]co",
-      "case_id": "PD-20260809-55A860",
-      "analyzed_at": "2026-08-09T19:21:38.133Z",
+      "case_id": "PD-20260811-55A860",
+      "analyzed_at": "2026-08-11T04:40:30.833Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7f9-3948-7055-b177-83dd7b6d2a50/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fede3-c8d3-71b9-a877-88d35f09e694.png",
+          "url": "https://urlscan.io/result/019fede3-c8d3-71b9-a877-88d35f09e694/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.143.211",
+        "ip": "104.21.27.253",
         "ipinfo": {
-          "ip": "172.67.143.211",
+          "ip": "104.21.27.253",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -84,13 +93,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3033::ac43:8fd3",
-            "2606:4700:3037::6815:1bfd"
-          ],
           "A": [
-            "172.67.143.211",
-            "104.21.27.253"
+            "104.21.27.253",
+            "172.67.143.211"
+          ],
+          "AAAA": [
+            "2606:4700:3037::6815:1bfd",
+            "2606:4700:3033::ac43:8fd3"
           ],
           "NS": [
             "eugene.ns.cloudflare.com.",
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (netfilx.co/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"netfilx.co\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000232; classtype:social-engineering; sid:6000232; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-10T17:51:24.127571+00:00",
+  "updated_at": "2026-08-11T04:40:19.091873+00:00",
   "probe": {
     "dns": "104.21.27.253",
     "whois": null,

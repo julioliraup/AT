@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "updatesnotified.com",
       "domain_defanged": "updatesnotified[.]com",
-      "case_id": "PD-20260809-190899",
-      "analyzed_at": "2026-08-09T19:26:59.950Z",
+      "case_id": "PD-20260811-190899",
+      "analyzed_at": "2026-08-11T04:47:30.284Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7fe-20c5-7485-ac75-f25b6b6b23b5.png",
           "url": "https://urlscan.io/result/019fe7fe-20c5-7485-ac75-f25b6b6b23b5/",
-          "pending": true
+          "title": "Phishing Simulation Landing Page"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameCheap, Inc.",
         "created": "2023-04-26T17:05:32Z",
         "expires": "2027-04-26T17:05:32Z",
-        "age_days": 1201,
+        "age_days": 1202,
         "nameservers": [
           "NS1.INTELLIWIRE.NET",
           "NS2.INTELLIWIRE.NET",
@@ -86,11 +95,11 @@
           "asn": "AS29802"
         },
         "dns": {
-          "MX": [
-            "10 mail.updatesnotified.com."
-          ],
           "A": [
             "64.238.34.20"
+          ],
+          "MX": [
+            "10 mail.updatesnotified.com."
           ],
           "NS": [
             "ns2.intelliwire.net.",
@@ -237,15 +246,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (updatesnotified.com/concluded.php?k=4885483ce5ec713cba5cb60376f5c757f2bce4aa)\"; flow:established,to_server; http.uri; content:\"/concluded.php?k=4885483ce5ec713cba5cb60376f5c757f2bce4aa\"; startswith; fast_pattern; http.host; content:\"updatesnotified.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000292; classtype:social-engineering; sid:6000292; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-10T17:55:21.050626+00:00",
+  "updated_at": "2026-08-11T04:47:24.047727+00:00",
   "probe": {
     "dns": "64.238.34.20",
-    "whois": null,
+    "whois": true,
     "status": "active"
   }
 }

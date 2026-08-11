@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "m.5157111.com",
       "domain_defanged": "m[.]5157111[.]com",
-      "case_id": "PD-20260809-DF83DB",
-      "analyzed_at": "2026-08-09T19:26:46.752Z",
+      "case_id": "PD-20260811-DF83DB",
+      "analyzed_at": "2026-08-11T04:47:15.068Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7fd-ec2f-744f-93ce-106d9dbf3956.png",
           "url": "https://urlscan.io/result/019fe7fd-ec2f-744f-93ce-106d9dbf3956/",
-          "pending": true
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,13 +93,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.67.138.209",
-            "104.21.94.172"
-          ],
           "AAAA": [
             "2606:4700:3034::6815:5eac",
             "2606:4700:3032::ac43:8ad1"
+          ],
+          "A": [
+            "172.67.138.209",
+            "104.21.94.172"
           ]
         }
       },
@@ -226,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.5157111.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"m.5157111.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000290; classtype:social-engineering; sid:6000290; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-10T17:55:16.197480+00:00",
+  "updated_at": "2026-08-11T04:47:01.722804+00:00",
   "probe": {
     "dns": "104.21.94.172",
     "whois": null,

@@ -55,26 +55,34 @@
     "phishdestroy": {
       "domain": "ghotkshop.com",
       "domain_defanged": "ghotkshop[.]com",
-      "case_id": "PD-20260809-3B47D0",
-      "analyzed_at": "2026-08-09T19:22:44.646Z",
+      "case_id": "PD-20260811-3B47D0",
+      "analyzed_at": "2026-08-11T04:42:24.579Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7fa-3bb8-75ab-b9fe-c59c32e93956/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fed07-c2a5-77df-a17d-44d187e8e910.png",
+          "url": "https://urlscan.io/result/019fed07-c2a5-77df-a17d-44d187e8e910/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Web Commerce Communications Limited dba WebNic.cc",
         "created": "2026-03-27T07:49:17Z",
         "expires": "2027-03-27T07:49:17Z",
-        "age_days": 135,
+        "age_days": 136,
         "nameservers": [
           "AMANDA.NS.CLOUDFLARE.COM",
           "MICAH.NS.CLOUDFLARE.COM"
@@ -91,13 +99,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:3036::ac43:b45c",
+            "2606:4700:3031::6815:1229"
+          ],
           "A": [
             "104.21.18.41",
             "172.67.180.92"
-          ],
-          "AAAA": [
-            "2606:4700:3031::6815:1229",
-            "2606:4700:3036::ac43:b45c"
           ],
           "NS": [
             "amanda.ns.cloudflare.com.",
@@ -244,12 +252,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ghotkshop.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ghotkshop.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000247; classtype:social-engineering; sid:6000247; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-10T17:52:11.276394+00:00",
+  "updated_at": "2026-08-11T04:42:12.031944+00:00",
   "probe": {
     "dns": "172.67.180.92",
     "whois": null,

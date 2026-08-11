@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "kucouinlogie.webflow.io",
       "domain_defanged": "kucouinlogie[.]webflow[.]io",
-      "case_id": "PD-20260809-556370",
-      "analyzed_at": "2026-08-09T19:20:19.728Z",
+      "case_id": "PD-20260811-556370",
+      "analyzed_at": "2026-08-11T04:39:00.013Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7f8-0713-707c-90ad-a4819dcf4a0f.png",
           "url": "https://urlscan.io/result/019fe7f8-0713-707c-90ad-a4819dcf4a0f/",
-          "pending": true
+          "title": "Kucoin Login: Accessing Your Kucoin Account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.151.8",
+        "ip": "104.18.36.248",
         "ipinfo": {
-          "ip": "172.64.151.8",
+          "ip": "104.18.36.248",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,12 +94,12 @@
         },
         "dns": {
           "AAAA": [
-            "2a06:98c1:3102::ac40:9708",
-            "2a06:98c1:3105::6812:24f8"
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
           ],
           "A": [
-            "172.64.151.8",
-            "104.18.36.248"
+            "104.18.36.248",
+            "172.64.151.8"
           ]
         }
       },
@@ -226,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kucouinlogie.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kucouinlogie.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000218; classtype:social-engineering; sid:6000218; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-10T17:50:20.918910+00:00",
+  "updated_at": "2026-08-11T04:38:55.045202+00:00",
   "probe": {
     "dns": "104.18.36.248",
     "whois": true,

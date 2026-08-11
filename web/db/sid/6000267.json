@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "uphold-login----apps.typedream.app",
       "domain_defanged": "uphold-login----apps[.]typedream[.]app",
-      "case_id": "PD-20260809-5D840A",
-      "analyzed_at": "2026-08-09T19:24:46.967Z",
+      "case_id": "PD-20260811-5D840A",
+      "analyzed_at": "2026-08-11T04:44:58.815Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7fc-1af9-747e-a13b-484cfdc4c133.png",
           "url": "https://urlscan.io/result/019fe7fc-1af9-747e-a13b-484cfdc4c133/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.206.36",
+        "ip": "104.21.37.85",
         "ipinfo": {
-          "ip": "172.67.206.36",
+          "ip": "104.21.37.85",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "172.67.206.36",
-            "104.21.37.85"
+            "104.21.37.85",
+            "172.67.206.36"
           ]
         }
       },
@@ -240,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (uphold-login----apps.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"uphold-login----apps.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000267; classtype:social-engineering; sid:6000267; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-10T17:53:52.398988+00:00",
+  "updated_at": "2026-08-11T04:44:54.855807+00:00",
   "probe": {
     "dns": "104.21.37.85",
     "whois": null,

@@ -49,37 +49,28 @@
     "phishdestroy": {
       "domain": "trezorlogin-start.pages.dev",
       "domain_defanged": "trezorlogin-start[.]pages[.]dev",
-      "case_id": "PD-20260810-5D9D01",
-      "analyzed_at": "2026-08-10T04:23:20.094Z",
+      "case_id": "PD-20260811-5D9D01",
+      "analyzed_at": "2026-08-11T13:11:14.123Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Generic Cloudflare"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/019fe2b3-db8e-77fb-af6d-38b0055dc2e0.png",
-          "url": "https://urlscan.io/result/019fe2b3-db8e-77fb-af6d-38b0055dc2e0/",
-          "title": "Suspected Phishing | Cloudflare"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/019ff0f2-d4d0-772f-897b-02fee617a72c/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Generic Cloudflare",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.203",
+        "ip": "172.66.47.53",
         "ipinfo": {
-          "ip": "172.66.44.203",
+          "ip": "172.66.47.53",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -87,13 +78,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "A": [
+            "172.66.47.53",
+            "172.66.44.203"
+          ],
           "AAAA": [
             "2606:4700:310c::ac42:2ccb",
             "2606:4700:310c::ac42:2f35"
-          ],
-          "A": [
-            "172.66.44.203",
-            "172.66.47.53"
           ],
           "NS": [
             "lindsey.ns.cloudflare.com.",
@@ -233,12 +224,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (trezorlogin-start.pages.dev/.well-known/security.txt)\"; flow:established,to_server; http.uri; content:\"/.well-known/security.txt\"; startswith; fast_pattern; http.host; content:\"trezorlogin-start.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006865; classtype:social-engineering; sid:6006865; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-11T02:15:51.388876+00:00",
+  "updated_at": "2026-08-11T13:11:11.611667+00:00",
   "probe": {
     "dns": "172.66.44.203",
     "whois": null,
