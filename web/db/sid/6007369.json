@@ -49,26 +49,35 @@
     "phishdestroy": {
       "domain": "thinkaxion.com",
       "domain_defanged": "thinkaxion[.]com",
-      "case_id": "PD-20260809-2FFA3E",
-      "analyzed_at": "2026-08-09T18:12:58.298Z",
+      "case_id": "PD-20260811-2FFA3E",
+      "analyzed_at": "2026-08-11T02:55:54.049Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7ba-5c42-7050-9a7f-45f23f469e8b.png",
           "url": "https://urlscan.io/result/019fe7ba-5c42-7050-9a7f-45f23f469e8b/",
-          "pending": true
+          "title": "Adobe Acrobat Sign"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2010-04-12T04:26:11Z",
         "expires": "2027-04-12T04:26:11Z",
-        "age_days": 5963,
+        "age_days": 5964,
         "nameservers": [
           "NS09.DOMAINCONTROL.COM",
           "NS10.DOMAINCONTROL.COM"
@@ -232,12 +241,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (thinkaxion.com/project\\;1\\;PhishEdu)\"; flow:established,to_server; http.uri; content:\"/project|3b|1|3b|PhishEdu\"; startswith; fast_pattern; http.host; content:\"thinkaxion.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007369; classtype:social-engineering; sid:6007369; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:51:03.063485+00:00",
+  "updated_at": "2026-08-11T02:55:43.849461+00:00",
   "probe": {
     "dns": "192.169.231.23",
     "whois": true,

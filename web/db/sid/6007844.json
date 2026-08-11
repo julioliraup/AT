@@ -18,25 +18,61 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://certnfcu.wasmer.app/",
+      "domain": "certnfcu.wasmer.app",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "certnfcu.wasmer.app",
       "domain_defanged": "certnfcu[.]wasmer[.]app",
-      "case_id": "PD-20260809-C40095",
-      "analyzed_at": "2026-08-09T18:55:10.271Z",
+      "case_id": "PD-20260811-C40095",
+      "analyzed_at": "2026-08-11T03:39:58.259Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Navy Federal Credit Union"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7e0-febe-7493-8d6c-170cbd35ea59.png",
           "url": "https://urlscan.io/result/019fe7e0-febe-7493-8d6c-170cbd35ea59/",
-          "pending": true
+          "title": "Navy Federal Credit Union - Our Members are the Mission®"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Navy Federal Credit Union",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -52,15 +88,15 @@
           "asn": "AS213230"
         },
         "dns": {
-          "NS": [
-            "alpha.ns.wasmernet.com.",
-            "beta.ns.wasmernet.com."
-          ],
           "AAAA": [
             "2a01:4ff:f2:2007::1"
           ],
           "A": [
             "5.161.17.219"
+          ],
+          "NS": [
+            "alpha.ns.wasmernet.com.",
+            "beta.ns.wasmernet.com."
           ]
         }
       },
@@ -189,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (certnfcu.wasmer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"certnfcu.wasmer.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007844; classtype:social-engineering; sid:6007844; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-10T16:52:31.003485+00:00",
+  "updated_at": "2026-08-11T03:39:50.841549+00:00",
   "probe": {
     "dns": "5.161.17.219",
     "whois": null,

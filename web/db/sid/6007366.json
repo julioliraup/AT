@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "89584.xyz",
       "domain_defanged": "89584[.]xyz",
-      "case_id": "PD-20260809-19B792",
-      "analyzed_at": "2026-08-09T18:12:47.526Z",
+      "case_id": "PD-20260811-19B792",
+      "analyzed_at": "2026-08-11T02:55:35.122Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7ba-31c3-7278-a517-ce3fa453ced9.png",
           "url": "https://urlscan.io/result/019fe7ba-31c3-7278-a517-ce3fa453ced9/",
-          "pending": true
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -77,22 +86,22 @@
         "ip": "huayang.302.gn301.xyz.",
         "ipinfo": null,
         "dns": {
-          "NS": [
-            "a.share-dns.com.",
-            "b.share-dns.net."
-          ],
           "A": [
             "huayang.302.gn301.xyz.",
             "103.244.148.114",
             "103.244.148.113"
           ],
-          "MX": [
+          "NS": [
+            "a.share-dns.com.",
+            "b.share-dns.net."
+          ],
+          "AAAA": [
             "huayang.302.gn301.xyz."
           ],
           "CNAME": [
             "huayang.302.gn301.xyz."
           ],
-          "AAAA": [
+          "MX": [
             "huayang.302.gn301.xyz."
           ]
         }
@@ -222,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.89584.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.89584.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007366; classtype:social-engineering; sid:6007366; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:50:57.994067+00:00",
+  "updated_at": "2026-08-11T02:55:31.185804+00:00",
   "probe": {
     "dns": "103.244.148.113",
     "whois": true,

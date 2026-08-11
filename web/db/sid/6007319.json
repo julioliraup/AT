@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "help-us-public-trezzr-io-com-cdn.typedream.app",
       "domain_defanged": "help-us-public-trezzr-io-com-cdn[.]typedream[.]app",
-      "case_id": "PD-20260809-5195E5",
-      "analyzed_at": "2026-08-09T18:07:59.966Z",
+      "case_id": "PD-20260811-5195E5",
+      "analyzed_at": "2026-08-11T02:51:47.454Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7b5-cee8-7029-b2e0-f76858e893e7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fee05-135c-726e-b8e0-fd578c20eb2a.png",
+          "url": "https://urlscan.io/result/019fee05-135c-726e-b8e0-fd578c20eb2a/",
+          "title": "Trezor.io/Start® | Starting Up Your Device - Trezor®"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -240,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (help-us-public-trezzr-io-com-cdn.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"help-us-public-trezzr-io-com-cdn.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007319; classtype:social-engineering; sid:6007319; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:47:24.838536+00:00",
+  "updated_at": "2026-08-11T02:51:39.146407+00:00",
   "probe": {
     "dns": "104.21.37.85",
     "whois": null,

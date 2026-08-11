@@ -49,29 +49,139 @@
     "phishdestroy": {
       "domain": "maheer466.github.io",
       "domain_defanged": "maheer466[.]github[.]io",
-      "case_id": "PD-20260809-2B88E6",
-      "analyzed_at": "2026-08-09T18:19:09.125Z",
+      "case_id": "PD-20260811-2B88E6",
+      "analyzed_at": "2026-08-11T03:03:41.911Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 9,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Phishing (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "information technology",
+            "Google": "technology"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7c0-00f8-7579-91aa-b1de729c2490/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fec3b-3e99-76ef-9586-4525ebd58f9c.png",
+          "url": "https://urlscan.io/result/019fec3b-3e99-76ef-9586-4525ebd58f9c/",
+          "title": "Netflix Clone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.109.153",
+        "ip": "185.199.108.153",
         "ipinfo": {
-          "ip": "185.199.109.153",
-          "hostname": "cdn-185-199-109-153.github.com",
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,17 +189,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
-            "185.199.109.153",
             "185.199.108.153",
             "185.199.111.153",
+            "185.199.109.153",
             "185.199.110.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8001::153",
+            "2606:50c0:8003::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8000::153"
           ]
         }
       },
@@ -225,12 +335,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (maheer466.github.io/Netflix-clone/)\"; flow:established,to_server; http.uri; content:\"/Netflix-clone/\"; startswith; fast_pattern; http.host; content:\"maheer466.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007443; classtype:social-engineering; sid:6007443; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:56:11.456951+00:00",
+  "updated_at": "2026-08-11T03:03:37.487500+00:00",
   "probe": {
     "dns": "185.199.109.153",
     "whois": true,

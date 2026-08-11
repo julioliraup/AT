@@ -49,21 +49,77 @@
     "phishdestroy": {
       "domain": "engenhariaviolet.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "engenhariaviolet[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260809-1FB1B0",
-      "analyzed_at": "2026-08-09T15:09:29.370Z",
+      "case_id": "PD-20260811-1FB1B0",
+      "analyzed_at": "2026-08-11T00:05:14.747Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fe712-5f13-723a-85d9-c3723f236d7e/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fec85-77cb-7326-9eae-cdb013a21602.png",
+          "url": "https://urlscan.io/result/019fec85-77cb-7326-9eae-cdb013a21602/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -225,14 +281,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (engenhariaviolet.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"engenhariaviolet.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004894; classtype:social-engineering; sid:6004894; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-10T13:23:14.420149+00:00",
+  "updated_at": "2026-08-11T00:05:08.489702+00:00",
   "probe": {
-    "dns": "149.137.141.9",
+    "dns": "149.137.136.9",
     "whois": null,
     "status": "active"
   }

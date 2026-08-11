@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "portal-io-start-docs.typedream.app",
       "domain_defanged": "portal-io-start-docs[.]typedream[.]app",
-      "case_id": "PD-20260809-65C625",
-      "analyzed_at": "2026-08-09T18:13:31.157Z",
+      "case_id": "PD-20260811-65C625",
+      "analyzed_at": "2026-08-11T02:56:25.529Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7ba-dca2-754f-99dc-6b74bf8e07d4.png",
           "url": "https://urlscan.io/result/019fe7ba-dca2-754f-99dc-6b74bf8e07d4/",
-          "pending": true
+          "title": "Trezor.io/Start®® | Starting Up Your Device | Trézór®"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.206.36",
+        "ip": "104.21.37.85",
         "ipinfo": {
-          "ip": "172.67.206.36",
+          "ip": "104.21.37.85",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,8 +88,8 @@
         },
         "dns": {
           "A": [
-            "172.67.206.36",
-            "104.21.37.85"
+            "104.21.37.85",
+            "172.67.206.36"
           ]
         }
       },
@@ -216,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (portal-io-start-docs.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"portal-io-start-docs.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007376; classtype:social-engineering; sid:6007376; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:51:19.276483+00:00",
+  "updated_at": "2026-08-11T02:56:21.817034+00:00",
   "probe": {
     "dns": "104.21.37.85",
     "whois": null,

@@ -73,28 +73,172 @@
     "phishdestroy": {
       "domain": "sp13ct-lersik-biz-prandel-hazkor.pages.dev",
       "domain_defanged": "sp13ct-lersik-biz-prandel-hazkor[.]pages[.]dev",
-      "case_id": "PD-20260809-5CE447",
-      "analyzed_at": "2026-08-09T17:57:56.395Z",
+      "case_id": "PD-20260811-5CE447",
+      "analyzed_at": "2026-08-11T02:43:48.026Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 12,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Ermes",
+              "category": "suspicious",
+              "result": "not recommended"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7ac-98bd-7767-b3ba-7111617c1d50.png",
           "url": "https://urlscan.io/result/019fe7ac-98bd-7767-b3ba-7111617c1d50/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Ermes",
+          "type": "not recommended",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.213",
+        "ip": "172.66.47.43",
         "ipinfo": {
-          "ip": "172.66.44.213",
+          "ip": "172.66.47.43",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +246,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.44.213",
-            "172.66.47.43"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2cd5",
             "2606:4700:310c::ac42:2f2b"
+          ],
+          "A": [
+            "172.66.47.43",
+            "172.66.44.213"
           ],
           "NS": [
             "tom.ns.cloudflare.com.",
@@ -248,12 +392,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp13ct-lersik-biz-prandel-hazkor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp13ct-lersik-biz-prandel-hazkor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007251; classtype:social-engineering; sid:6007251; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:42:59.122301+00:00",
+  "updated_at": "2026-08-11T02:43:44.839493+00:00",
   "probe": {
     "dns": "172.66.47.43",
     "whois": null,

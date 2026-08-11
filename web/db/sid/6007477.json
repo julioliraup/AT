@@ -49,21 +49,111 @@
     "phishdestroy": {
       "domain": "v0r-sp.global.ssl.fastly.net",
       "domain_defanged": "v0r-sp[.]global[.]ssl[.]fastly[.]net",
-      "case_id": "PD-20260809-3B5A6A",
-      "analyzed_at": "2026-08-09T18:21:47.532Z",
+      "case_id": "PD-20260811-3B5A6A",
+      "analyzed_at": "2026-08-11T03:07:20.451Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Content Servers, Phishing (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "phishing and other frauds"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7c2-6efb-70ba-8ad7-7fac877d8e57/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft",
+            "Sharepoint"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fec3b-9bf7-706e-ade5-248638e624d0.png",
+          "url": "https://urlscan.io/result/019fec3b-9bf7-706e-ade5-248638e624d0/",
+          "title": "SharePoint Online"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft, Sharepoint",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -218,12 +308,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (v0r-sp.global.ssl.fastly.net/gtl/veri/sp.html)\"; flow:established,to_server; http.uri; content:\"/gtl/veri/sp.html\"; startswith; fast_pattern; http.host; content:\"v0r-sp.global.ssl.fastly.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007477; classtype:social-engineering; sid:6007477; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:58:36.770684+00:00",
+  "updated_at": "2026-08-11T03:07:15.909584+00:00",
   "probe": {
     "dns": "146.75.5.194",
     "whois": null,

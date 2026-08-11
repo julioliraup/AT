@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "webpages-trzor-suite.typedream.app",
       "domain_defanged": "webpages-trzor-suite[.]typedream[.]app",
-      "case_id": "PD-20260809-E2BF98",
-      "analyzed_at": "2026-08-09T18:16:24.887Z",
+      "case_id": "PD-20260811-E2BF98",
+      "analyzed_at": "2026-08-11T02:59:17.092Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7bd-8346-7249-9a2b-ee8188699983/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febe6-3f52-77dd-ba67-1db40aedb8f4.png",
+          "url": "https://urlscan.io/result/019febe6-3f52-77dd-ba67-1db40aedb8f4/",
+          "title": "Trezor Suite (Official) | Desktop & Web Crypto® Management"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -222,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (webpages-trzor-suite.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"webpages-trzor-suite.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007409; classtype:social-engineering; sid:6007409; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:52:57.399078+00:00",
+  "updated_at": "2026-08-11T02:59:08.276363+00:00",
   "probe": {
     "dns": "172.67.206.36",
     "whois": null,

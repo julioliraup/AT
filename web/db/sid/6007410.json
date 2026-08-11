@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "ghaminnilagnx.webflow.io",
       "domain_defanged": "ghaminnilagnx[.]webflow[.]io",
-      "case_id": "PD-20260809-5DC91C",
-      "analyzed_at": "2026-08-09T18:16:29.653Z",
+      "case_id": "PD-20260811-5DC91C",
+      "analyzed_at": "2026-08-11T02:59:20.264Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7bd-95db-7306-b81d-7a3229a6d5b3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Crypto"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febf6-4d28-7298-bbb8-79fc770eb78f.png",
+          "url": "https://urlscan.io/result/019febf6-4d28-7298-bbb8-79fc770eb78f/",
+          "title": "Gemini® Login: Empowering Digital Investors with Trusted"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Crypto",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,13 +87,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2a06:98c1:3105::6812:24f8",
-            "2a06:98c1:3102::ac40:9708"
-          ],
           "A": [
             "104.18.36.248",
             "172.64.151.8"
+          ],
+          "AAAA": [
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
           ]
         }
       },
@@ -220,12 +229,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ghaminnilagnx.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ghaminnilagnx.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007410; classtype:social-engineering; sid:6007410; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:53:09.745031+00:00",
+  "updated_at": "2026-08-11T02:59:17.182623+00:00",
   "probe": {
     "dns": "172.64.151.8",
     "whois": true,

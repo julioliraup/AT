@@ -18,25 +18,151 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://codedbyafzalari.github.io/netflix-ui-clone/",
+      "domain": "codedbyafzalari.github.io",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "codedbyafzalari.github.io",
       "domain_defanged": "codedbyafzalari[.]github[.]io",
-      "case_id": "PD-20260809-69F442",
-      "analyzed_at": "2026-08-09T18:24:13.818Z",
+      "case_id": "PD-20260811-69F442",
+      "analyzed_at": "2026-08-11T03:09:39.008Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 8,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Phishing (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Forcepoint ThreatSeeker": "information technology",
+            "Google": "technology"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7c4-aac3-7795-807f-10eacadc23af/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Netflix"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fec02-4f7a-773c-96f4-e5a95e57e8b0.png",
+          "url": "https://urlscan.io/result/019fec02-4f7a-773c-96f4-e5a95e57e8b0/",
+          "title": "Netflix Inspired UI | Afza Lari"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Netflix",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -52,17 +178,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
             "185.199.108.153",
             "185.199.109.153",
             "185.199.110.153",
             "185.199.111.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
@@ -198,14 +324,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (codedbyafzalari.github.io/netflix-ui-clone/)\"; flow:established,to_server; http.uri; content:\"/netflix-ui-clone/\"; startswith; fast_pattern; http.host; content:\"codedbyafzalari.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007504; classtype:social-engineering; sid:6007504; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T16:00:36.099234+00:00",
+  "updated_at": "2026-08-11T03:09:35.273040+00:00",
   "probe": {
-    "dns": "185.199.108.153",
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }

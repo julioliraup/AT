@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "xbtp8-u5x-xalce-hlao-97e.pages.dev",
       "domain_defanged": "xbtp8-u5x-xalce-hlao-97e[.]pages[.]dev",
-      "case_id": "PD-20260809-274FC0",
-      "analyzed_at": "2026-08-09T18:11:33.329Z",
+      "case_id": "PD-20260811-274FC0",
+      "analyzed_at": "2026-08-11T02:54:41.005Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7b9-1054-7518-97a2-a441bc2d75c4.png",
           "url": "https://urlscan.io/result/019fe7b9-1054-7518-97a2-a441bc2d75c4/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.99",
+        "ip": "172.66.47.157",
         "ipinfo": {
-          "ip": "172.66.44.99",
+          "ip": "172.66.47.157",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,12 +94,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f9d",
-            "2606:4700:310c::ac42:2c63"
+            "2606:4700:310c::ac42:2c63",
+            "2606:4700:310c::ac42:2f9d"
           ],
           "A": [
-            "172.66.44.99",
-            "172.66.47.157"
+            "172.66.47.157",
+            "172.66.44.99"
           ],
           "NS": [
             "aragorn.ns.cloudflare.com.",
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xbtp8-u5x-xalce-hlao-97e.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"xbtp8-u5x-xalce-hlao-97e.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007354; classtype:social-engineering; sid:6007354; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:50:09.350396+00:00",
+  "updated_at": "2026-08-11T02:54:34.919972+00:00",
   "probe": {
     "dns": "172.66.44.99",
     "whois": null,

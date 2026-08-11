@@ -18,30 +18,76 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://keep-icloud.com/login",
+      "domain": "keep-icloud.com",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "keep-icloud.com",
       "domain_defanged": "keep-icloud[.]com",
-      "case_id": "PD-20260809-677AD7",
-      "analyzed_at": "2026-08-09T18:45:31.098Z",
+      "case_id": "PD-20260811-677AD7",
+      "analyzed_at": "2026-08-11T03:32:30.371Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing, Newly Registered (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fe7d8-265b-70f5-95c5-d08dd43cd343/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fe938-bbd3-7225-9006-c1128bf5ea12.png",
+          "url": "https://urlscan.io/result/019fe938-bbd3-7225-9006-c1128bf5ea12/",
+          "title": "Attention Required! | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Realtime Register B.V.",
         "created": "2026-08-07T20:09:43Z",
         "expires": "2027-08-07T20:09:43Z",
-        "age_days": 1,
+        "age_days": 3,
         "nameservers": [
           "ETHAN.NS.CLOUDFLARE.COM",
           "SIERRA.NS.CLOUDFLARE.COM"
@@ -62,13 +108,13 @@
             "2606:4700:3034::ac43:d986",
             "2606:4700:3030::6815:5b76"
           ],
-          "NS": [
-            "ethan.ns.cloudflare.com.",
-            "sierra.ns.cloudflare.com."
-          ],
           "A": [
             "104.21.91.118",
             "172.67.217.134"
+          ],
+          "NS": [
+            "ethan.ns.cloudflare.com.",
+            "sierra.ns.cloudflare.com."
           ]
         }
       },
@@ -216,9 +262,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (keep-icloud.com/login)\"; flow:established,to_server; http.uri; content:\"/login\"; startswith; fast_pattern; http.host; content:\"keep-icloud.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007848; classtype:social-engineering; sid:6007848; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-10T16:53:09.477825+00:00",
+  "updated_at": "2026-08-11T03:40:13.768332+00:00",
   "probe": {
-    "dns": "172.67.217.134",
+    "dns": "104.21.91.118",
     "whois": null,
     "status": "active"
   }

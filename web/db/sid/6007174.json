@@ -49,21 +49,170 @@
     "phishdestroy": {
       "domain": "robinhodlogmxn.gitbook.io",
       "domain_defanged": "robinhodlogmxn[.]gitbook[.]io",
-      "case_id": "PD-20260809-6452F7",
-      "analyzed_at": "2026-08-09T17:44:48.268Z",
+      "case_id": "PD-20260811-6452F7",
+      "analyzed_at": "2026-08-11T02:36:35.728Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 13,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Google Safe Browsing",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Kaspersky",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "information technology"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Robinhood"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7a0-9296-725c-8f7a-d47fc7c93e10.png",
           "url": "https://urlscan.io/result/019fe7a0-9296-725c-8f7a-d47fc7c93e10/",
-          "pending": true
+          "title": "Róbinhood Login | Log in to My Account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Google Safe Browsing",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Kaspersky",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Robinhood",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,13 +227,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2a06:98c1:310d::6812:282f",
-            "2606:4700:4401::ac40:93d1"
-          ],
           "A": [
             "104.18.40.47",
             "172.64.147.209"
+          ],
+          "AAAA": [
+            "2606:4700:4401::ac40:93d1",
+            "2a06:98c1:310d::6812:282f"
           ]
         }
       },
@@ -220,12 +369,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (robinhodlogmxn.gitbook.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"robinhodlogmxn.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007174; classtype:social-engineering; sid:6007174; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:40:07.848602+00:00",
+  "updated_at": "2026-08-11T02:36:31.368598+00:00",
   "probe": {
     "dns": "172.64.147.209",
     "whois": true,

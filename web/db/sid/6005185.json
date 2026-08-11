@@ -55,28 +55,162 @@
     "phishdestroy": {
       "domain": "ctj-rr9-2e2ui0-3mcc-8we-akbg.pages.dev",
       "domain_defanged": "ctj-rr9-2e2ui0-3mcc-8we-akbg[.]pages[.]dev",
-      "case_id": "PD-20260809-50163E",
-      "analyzed_at": "2026-08-09T15:25:54.345Z",
+      "case_id": "PD-20260811-50163E",
+      "analyzed_at": "2026-08-11T00:27:00.893Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 12,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe721-6830-77ac-9219-bfdffe93580d.png",
           "url": "https://urlscan.io/result/019fe721-6830-77ac-9219-bfdffe93580d/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.69",
+        "ip": "172.66.44.187",
         "ipinfo": {
-          "ip": "172.66.47.69",
+          "ip": "172.66.44.187",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,12 +219,12 @@
         },
         "dns": {
           "A": [
-            "172.66.47.69",
-            "172.66.44.187"
+            "172.66.44.187",
+            "172.66.47.69"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f45",
-            "2606:4700:310c::ac42:2cbb"
+            "2606:4700:310c::ac42:2cbb",
+            "2606:4700:310c::ac42:2f45"
           ],
           "NS": [
             "adel.ns.cloudflare.com.",
@@ -230,12 +364,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ctj-rr9-2e2ui0-3mcc-8we-akbg.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ctj-rr9-2e2ui0-3mcc-8we-akbg.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005185; classtype:social-engineering; sid:6005185; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-10T13:45:10.475756+00:00",
+  "updated_at": "2026-08-11T00:26:50.655621+00:00",
   "probe": {
     "dns": "172.66.44.187",
     "whois": null,

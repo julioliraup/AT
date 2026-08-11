@@ -49,28 +49,44 @@
     "phishdestroy": {
       "domain": "auth.properties",
       "domain_defanged": "auth[.]properties",
-      "case_id": "PD-20260809-3F0353",
-      "analyzed_at": "2026-08-09T18:20:05.772Z",
+      "case_id": "PD-20260811-3F0353",
+      "analyzed_at": "2026-08-11T03:05:13.983Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fe7c0-e209-731f-8ad5-442a96400eae/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019fe7c0-e209-731f-8ad5-442a96400eae.png",
+          "url": "https://urlscan.io/result/019fe7c0-e209-731f-8ad5-442a96400eae/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "212.104.128.0",
+        "ip": "212.104.128.1",
         "ipinfo": {
-          "ip": "212.104.128.0",
+          "ip": "212.104.128.1",
           "city": "Helsinki",
           "region": "Uusimaa",
           "country": "FI",
@@ -78,15 +94,15 @@
           "asn": "AS13335"
         },
         "dns": {
+          "A": [
+            "212.104.128.1",
+            "212.104.128.3",
+            "212.104.128.2",
+            "212.104.128.0"
+          ],
           "NS": [
             "georgia.ns.cloudflare.com.",
             "salvador.ns.cloudflare.com."
-          ],
-          "A": [
-            "212.104.128.0",
-            "212.104.128.3",
-            "212.104.128.2",
-            "212.104.128.1"
           ]
         }
       },
@@ -222,15 +238,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (auth.properties/E.E9Xb8sCKXkI?/file.php?document=NzYxMG1pa2EuYWFsdG9AaG94aHVudC5jb20zNDA4)\"; flow:established,to_server; http.uri; content:\"/E.E9Xb8sCKXkI?/file.php?document=NzYxMG1pa2EuYWFsdG9AaG94aHVudC5jb20zNDA4\"; startswith; fast_pattern; http.host; content:\"auth.properties\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007456; classtype:social-engineering; sid:6007456; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:57:12.891888+00:00",
+  "updated_at": "2026-08-11T03:05:08.212645+00:00",
   "probe": {
-    "dns": "212.104.128.3",
-    "whois": null,
+    "dns": "212.104.128.2",
+    "whois": true,
     "status": "active"
   }
 }

@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "xlbdw72lowi-hbkpthb-8a1c4f-xlq13c.pages.dev",
       "domain_defanged": "xlbdw72lowi-hbkpthb-8a1c4f-xlq13c[.]pages[.]dev",
-      "case_id": "PD-20260809-1661A2",
-      "analyzed_at": "2026-08-09T18:13:23.084Z",
+      "case_id": "PD-20260811-1661A2",
+      "analyzed_at": "2026-08-11T02:56:14.057Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7ba-bcd1-74ff-958a-3646cc3ea0c3.png",
           "url": "https://urlscan.io/result/019fe7ba-bcd1-74ff-958a-3646cc3ea0c3/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -85,8 +94,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f91",
-            "2606:4700:310c::ac42:2c6f"
+            "2606:4700:310c::ac42:2c6f",
+            "2606:4700:310c::ac42:2f91"
           ],
           "A": [
             "172.66.47.145",
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xlbdw72lowi-hbkpthb-8a1c4f-xlq13c.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"xlbdw72lowi-hbkpthb-8a1c4f-xlq13c.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007373; classtype:social-engineering; sid:6007373; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:51:15.434609+00:00",
+  "updated_at": "2026-08-11T02:56:11.019337+00:00",
   "probe": {
     "dns": "172.66.47.145",
     "whois": null,

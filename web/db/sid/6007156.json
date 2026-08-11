@@ -49,21 +49,82 @@
     "phishdestroy": {
       "domain": "e.vg",
       "domain_defanged": "e[.]vg",
-      "case_id": "PD-20260809-2EA4DA",
-      "analyzed_at": "2026-08-09T17:42:07.745Z",
+      "case_id": "PD-20260811-2EA4DA",
+      "analyzed_at": "2026-08-11T02:34:43.601Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "BitDefender": "computersandsoftware",
+            "Forcepoint ThreatSeeker": "phishing and other frauds. information technology",
+            "alphaMountain.ai": "Information Technology, Suspicious (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019fe79e-1f8b-768f-abbf-4bbd6350a900.png",
           "url": "https://urlscan.io/result/019fe79e-1f8b-768f-abbf-4bbd6350a900/",
-          "pending": true
+          "title": "EVG - Free URL Shortener & Custom Free Link"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,20 +139,20 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:10::ac42:aa48",
-            "2606:4700:10::6814:1b93"
-          ],
-          "MX": [
-            "10 mail.e.vg."
-          ],
           "A": [
             "104.20.27.147",
             "172.66.170.72"
           ],
+          "AAAA": [
+            "2606:4700:10::ac42:aa48",
+            "2606:4700:10::6814:1b93"
+          ],
           "NS": [
             "elma.ns.cloudflare.com.",
             "uriah.ns.cloudflare.com."
+          ],
+          "MX": [
+            "10 mail.e.vg."
           ]
         }
       },
@@ -227,14 +288,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (e.vg/KHsxZGdzv)\"; flow:established,to_server; http.uri; content:\"/KHsxZGdzv\"; startswith; fast_pattern; http.host; content:\"e.vg\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007156; classtype:social-engineering; sid:6007156; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:39:11.918339+00:00",
+  "updated_at": "2026-08-11T02:34:39.139328+00:00",
   "probe": {
-    "dns": "104.20.27.147",
+    "dns": "172.66.170.72",
     "whois": true,
     "status": "active"
   }

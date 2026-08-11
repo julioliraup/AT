@@ -22,21 +22,31 @@
     "phishdestroy": {
       "domain": "cen4_open_mail_15.tatenengo.ru",
       "domain_defanged": "cen4_open_mail_15[.]tatenengo[.]ru",
-      "case_id": "PD-20260809-3B3602",
-      "analyzed_at": "2026-08-09T18:13:56.764Z",
+      "case_id": "PD-20260811-3B3602",
+      "analyzed_at": "2026-08-11T02:56:52.803Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft",
+            "Outlook Web Access"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe7bb-3fdf-77ee-a539-13f52a20267d.png",
           "url": "https://urlscan.io/result/019fe7bb-3fdf-77ee-a539-13f52a20267d/",
-          "pending": true
+          "title": "Outlook"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft, Outlook Web Access",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -187,7 +197,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.cen4_open_mail_15.tatenengo.ru/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.cen4_open_mail_15.tatenengo.ru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007420; classtype:social-engineering; sid:6007420; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:53:53.879201+00:00",
+  "updated_at": "2026-08-11T03:00:09.104733+00:00",
   "probe": {
     "dns": "159.194.237.112",
     "whois": true,

@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "nishthadangi.github.io",
       "domain_defanged": "nishthadangi[.]github[.]io",
-      "case_id": "PD-20260809-10516C",
-      "analyzed_at": "2026-08-09T18:12:26.924Z",
+      "case_id": "PD-20260811-10516C",
+      "analyzed_at": "2026-08-11T02:55:17.373Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7b9-e0c7-73fb-a348-d8390da24633/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febd3-389a-755f-815b-c737706c1346.png",
+          "url": "https://urlscan.io/result/019febd3-389a-755f-815b-c737706c1346/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +88,17 @@
           "asn": "AS54113"
         },
         "dns": {
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
+          ],
           "A": [
             "185.199.108.153",
             "185.199.109.153",
             "185.199.110.153",
             "185.199.111.153"
-          ],
-          "AAAA": [
-            "2606:50c0:8003::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8000::153"
           ]
         }
       },
@@ -225,14 +234,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nishthadangi.github.io/amazon-clone/)\"; flow:established,to_server; http.uri; content:\"/amazon-clone/\"; startswith; fast_pattern; http.host; content:\"nishthadangi.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007362; classtype:social-engineering; sid:6007362; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:50:34.278604+00:00",
+  "updated_at": "2026-08-11T02:55:12.550044+00:00",
   "probe": {
-    "dns": "185.199.111.153",
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }

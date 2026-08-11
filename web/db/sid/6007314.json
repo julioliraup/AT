@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "us-io-tzore-io.typedream.app",
       "domain_defanged": "us-io-tzore-io[.]typedream[.]app",
-      "case_id": "PD-20260809-62F0B2",
-      "analyzed_at": "2026-08-09T18:07:13.670Z",
+      "case_id": "PD-20260811-62F0B2",
+      "analyzed_at": "2026-08-11T02:51:22.536Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7b5-1a13-7572-b42b-053647e3931f/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febca-3b98-77cd-b367-06d1019c2fc8.png",
+          "url": "https://urlscan.io/result/019febca-3b98-77cd-b367-06d1019c2fc8/",
+          "title": "Trezor® Hardware® - Wallet | Starting Up Your Device — Trezor®"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.206.36",
+        "ip": "104.21.37.85",
         "ipinfo": {
-          "ip": "172.67.206.36",
+          "ip": "104.21.37.85",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "172.67.206.36",
-            "104.21.37.85"
+            "104.21.37.85",
+            "172.67.206.36"
           ]
         }
       },
@@ -240,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (us-io-tzore-io.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"us-io-tzore-io.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007314; classtype:social-engineering; sid:6007314; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:47:02.670890+00:00",
+  "updated_at": "2026-08-11T02:51:18.668060+00:00",
   "probe": {
     "dns": "104.21.37.85",
     "whois": null,

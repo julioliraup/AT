@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "mishdju.us.cc",
       "domain_defanged": "mishdju[.]us[.]cc",
-      "case_id": "PD-20260809-468E89",
-      "analyzed_at": "2026-08-09T18:59:16.673Z",
+      "case_id": "PD-20260811-468E89",
+      "analyzed_at": "2026-08-11T03:43:12.833Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7e4-c13f-7468-b642-0ea7e10981aa/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Maxis"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe914-f29d-757e-8e42-85f971444214.png",
+          "url": "https://urlscan.io/result/019fe914-f29d-757e-8e42-85f971444214/",
+          "title": "Maxis: Postpaid Plan, Home Internet and More | Telco Company"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Maxis",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -77,15 +86,7 @@
           "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
           "asn": "AS132203"
         },
-        "dns": {
-          "A": [
-            "43.133.41.74"
-          ],
-          "NS": [
-            "ns2.domainnamens.com.",
-            "ns1.domainnamens.com."
-          ]
-        }
+        "dns": null
       },
       "report_to": {
         "registrar": null,
@@ -219,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mishdju.us.cc/5g/home.html)\"; flow:established,to_server; http.uri; content:\"/5g/home.html\"; startswith; fast_pattern; http.host; content:\"mishdju.us.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007871; classtype:social-engineering; sid:6007871; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-10T16:56:02.442364+00:00",
+  "updated_at": "2026-08-11T03:43:06.622500+00:00",
   "probe": {
     "dns": false,
     "whois": false,

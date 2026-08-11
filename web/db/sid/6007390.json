@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "alarshsheikh.github.io",
       "domain_defanged": "alarshsheikh[.]github[.]io",
-      "case_id": "PD-20260809-87FDAE",
-      "analyzed_at": "2026-08-09T18:14:45.835Z",
+      "case_id": "PD-20260811-87FDAE",
+      "analyzed_at": "2026-08-11T02:57:27.605Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fe7bc-0054-7298-b1dd-d2a912fa4267/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fec3c-efc3-779a-9023-fbbe55024579.png",
+          "url": "https://urlscan.io/result/019fec3c-efc3-779a-9023-fbbe55024579/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -86,10 +95,10 @@
             "185.199.111.153"
           ],
           "AAAA": [
-            "2606:50c0:8003::153",
-            "2606:50c0:8002::153",
+            "2606:50c0:8000::153",
             "2606:50c0:8001::153",
-            "2606:50c0:8000::153"
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153"
           ]
         }
       },
@@ -225,14 +234,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (alarshsheikh.github.io/first_amazone/)\"; flow:established,to_server; http.uri; content:\"/first_amazone/\"; startswith; fast_pattern; http.host; content:\"alarshsheikh.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007390; classtype:social-engineering; sid:6007390; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-10T15:51:52.053021+00:00",
+  "updated_at": "2026-08-11T02:57:23.416918+00:00",
   "probe": {
-    "dns": "185.199.111.153",
+    "dns": "185.199.108.153",
     "whois": true,
     "status": "active"
   }
