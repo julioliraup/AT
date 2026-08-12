@@ -18,83 +18,41 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://sp10ct-curek-biz8-farem-lovin.pages.dev/",
-      "domain": "sp10ct-curek-biz8-farem-lovin.pages.dev",
-      "url_count": 2,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.66.45.16",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a26aaa8e68460d87-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (396)",
-      "sha256": "ddb6ed8641803dba23b98c344d8c3b2da0622c42c417d7b9f30d728e3cf7543a",
-      "md5": "da1b152e21cb0c832829347994510d02",
-      "cert": {
-        "subject_cn": "sp10ct-curek-biz8-farem-lovin.pages.dev",
-        "subject_alt_names": [
-          "sp10ct-curek-biz8-farem-lovin.pages.dev",
-          "*.sp10ct-curek-biz8-farem-lovin.pages.dev"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-07-27T02:04:18+00:00",
-        "not_valid_after": "2026-10-25T03:02:57+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "230639516129588357053089699063298978254",
-        "fingerprint_sha1": "80 7F ED F7 74 A9 03 71 93 DE 6C 6A 7B D4 E5 AC 19 65 75 24",
-        "fingerprint_sha256": "2E 14 49 BF B5 99 24 9B 72 98 92 FA D4 19 69 9C 35 4D CC AF DB 39 E8 14 B9 D3 5F CC 40 FB DE C3"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-08-06T02:32:40",
-      "first_seen_secs": 1785983560.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "sp10ct-curek-biz8-farem-lovin.pages.dev",
       "domain_defanged": "sp10ct-curek-biz8-farem-lovin[.]pages[.]dev",
-      "case_id": "PD-20260810-69A5BC",
-      "analyzed_at": "2026-08-10T13:56:06.038Z",
+      "case_id": "PD-20260812-69A5BC",
+      "analyzed_at": "2026-08-12T01:59:03.403Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febf5-8c17-711b-9144-30827aa78514.png",
           "url": "https://urlscan.io/result/019febf5-8c17-711b-9144-30827aa78514/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.240",
+        "ip": "172.66.45.16",
         "ipinfo": {
-          "ip": "172.66.46.240",
+          "ip": "172.66.45.16",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +60,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.46.240",
-            "172.66.45.16"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2ef0",
             "2606:4700:310c::ac42:2d10"
+          ],
+          "A": [
+            "172.66.45.16",
+            "172.66.46.240"
           ],
           "NS": [
             "aida.ns.cloudflare.com.",
@@ -248,14 +206,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct-curek-biz8-farem-lovin.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct-curek-biz8-farem-lovin.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005372; classtype:social-engineering; sid:6005372; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:20:00.779169+00:00",
+  "updated_at": "2026-08-12T01:58:50.487260+00:00",
   "probe": {
-    "dns": "172.66.45.16",
+    "dns": "172.66.46.240",
     "whois": null,
     "status": "active"
   }

@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "hkdo-eq8-snu-q2od2-cfz3-4seu6.pages.dev",
       "domain_defanged": "hkdo-eq8-snu-q2od2-cfz3-4seu6[.]pages[.]dev",
-      "case_id": "PD-20260810-C0604E",
-      "analyzed_at": "2026-08-10T13:50:40.195Z",
+      "case_id": "PD-20260812-C0604E",
+      "analyzed_at": "2026-08-12T01:45:12.497Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febf0-930c-7044-8faf-3ae1721f8355.png",
           "url": "https://urlscan.io/result/019febf0-930c-7044-8faf-3ae1721f8355/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.150",
+        "ip": "172.66.44.106",
         "ipinfo": {
-          "ip": "172.66.47.150",
+          "ip": "172.66.44.106",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,8 +112,8 @@
         },
         "dns": {
           "A": [
-            "172.66.47.150",
-            "172.66.44.106"
+            "172.66.44.106",
+            "172.66.47.150"
           ],
           "AAAA": [
             "2606:4700:310c::ac42:2c6a",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hkdo-eq8-snu-q2od2-cfz3-4seu6.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"hkdo-eq8-snu-q2od2-cfz3-4seu6.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005265; classtype:social-engineering; sid:6005265; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:13:29.428721+00:00",
+  "updated_at": "2026-08-12T01:45:08.749347+00:00",
   "probe": {
     "dns": "172.66.44.106",
     "whois": null,

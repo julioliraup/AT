@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp4ct-wardelon-biz8-lorex-kasok.pages.dev",
       "domain_defanged": "sp4ct-wardelon-biz8-lorex-kasok[.]pages[.]dev",
-      "case_id": "PD-20260810-7FF891",
-      "analyzed_at": "2026-08-10T13:46:04.875Z",
+      "case_id": "PD-20260812-7FF891",
+      "analyzed_at": "2026-08-12T01:39:22.371Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febec-5fd2-7146-abb5-59a8fa526b91.png",
           "url": "https://urlscan.io/result/019febec-5fd2-7146-abb5-59a8fa526b91/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.152",
+        "ip": "172.66.47.104",
         "ipinfo": {
-          "ip": "172.66.44.152",
+          "ip": "172.66.47.104",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f68",
-            "2606:4700:310c::ac42:2c98"
+            "2606:4700:310c::ac42:2c98",
+            "2606:4700:310c::ac42:2f68"
           ],
           "A": [
-            "172.66.44.152",
-            "172.66.47.104"
+            "172.66.47.104",
+            "172.66.44.152"
           ],
           "NS": [
             "gabriel.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp4ct-wardelon-biz8-lorex-kasok.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp4ct-wardelon-biz8-lorex-kasok.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005201; classtype:social-engineering; sid:6005201; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:09:58.265569+00:00",
+  "updated_at": "2026-08-12T01:39:11.390003+00:00",
   "probe": {
     "dns": "172.66.47.104",
     "whois": null,

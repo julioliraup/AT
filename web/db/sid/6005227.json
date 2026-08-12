@@ -139,27 +139,56 @@
     "phishdestroy": {
       "domain": "mail.my-info-irecover.com",
       "domain_defanged": "mail[.]my-info-irecover[.]com",
-      "case_id": "PD-20260810-6CEEC1",
-      "analyzed_at": "2026-08-10T13:48:33.302Z",
+      "case_id": "PD-20260812-6CEEC1",
+      "analyzed_at": "2026-08-12T01:42:29.241Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbad6-ee91-7428-8f5b-ac1f1f1983ae.png",
+          "url": "https://urlscan.io/result/019fbad6-ee91-7428-8f5b-ac1f1f1983ae/",
+          "title": "Geräte suchen — Apple iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "108.167.146.200",
+        "ipinfo": {
+          "ip": "108.167.146.200",
+          "hostname": "108-167-146-200.unifiedlayer.com",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -282,12 +311,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail.my-info-irecover.com/FL26/)\"; flow:established,to_server; http.uri; content:\"/FL26/\"; startswith; fast_pattern; http.host; content:\"mail.my-info-irecover.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005227; classtype:social-engineering; sid:6005227; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:11:12.635842+00:00",
+  "updated_at": "2026-08-12T01:42:24.606049+00:00",
   "probe": {
     "dns": "108.167.146.200",
     "whois": null,

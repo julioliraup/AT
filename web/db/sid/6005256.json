@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp3ct-brenas-biz8-falqor-litem.pages.dev",
       "domain_defanged": "sp3ct-brenas-biz8-falqor-litem[.]pages[.]dev",
-      "case_id": "PD-20260810-2EF116",
-      "analyzed_at": "2026-08-10T13:50:19.978Z",
+      "case_id": "PD-20260812-2EF116",
+      "analyzed_at": "2026-08-12T01:44:29.300Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febf0-444c-7295-9ca4-930be552d673.png",
           "url": "https://urlscan.io/result/019febf0-444c-7295-9ca4-930be552d673/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.49",
+        "ip": "172.66.44.207",
         "ipinfo": {
-          "ip": "172.66.47.49",
+          "ip": "172.66.44.207",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +116,8 @@
             "2606:4700:310c::ac42:2f31"
           ],
           "A": [
-            "172.66.47.49",
-            "172.66.44.207"
+            "172.66.44.207",
+            "172.66.47.49"
           ],
           "NS": [
             "eoin.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp3ct-brenas-biz8-falqor-litem.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp3ct-brenas-biz8-falqor-litem.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005256; classtype:social-engineering; sid:6005256; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:12:48.826132+00:00",
+  "updated_at": "2026-08-12T01:44:25.975968+00:00",
   "probe": {
     "dns": "172.66.44.207",
     "whois": null,

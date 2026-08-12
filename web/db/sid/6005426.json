@@ -73,24 +73,37 @@
     "phishdestroy": {
       "domain": "live-leedgers-un-en.pages.dev",
       "domain_defanged": "live-leedgers-un-en[.]pages[.]dev",
-      "case_id": "PD-20260810-16D78E",
-      "analyzed_at": "2026-08-10T13:59:51.469Z",
+      "case_id": "PD-20260812-16D78E",
+      "analyzed_at": "2026-08-12T02:08:27.565Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe527-8f12-7091-aa13-a156040e844b.png",
+          "url": "https://urlscan.io/result/019fe527-8f12-7091-aa13-a156040e844b/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.45.6",
+        "ip": "172.66.46.250",
         "ipinfo": {
-          "ip": "172.66.45.6",
+          "ip": "172.66.46.250",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -98,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.45.6",
-            "172.66.46.250"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2efa",
             "2606:4700:310c::ac42:2d06"
+          ],
+          "A": [
+            "172.66.46.250",
+            "172.66.45.6"
           ],
           "NS": [
             "mack.ns.cloudflare.com.",
@@ -244,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (live-leedgers-un-en.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"live-leedgers-un-en.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005426; classtype:social-engineering; sid:6005426; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:23:23.840983+00:00",
+  "updated_at": "2026-08-12T02:08:23.775824+00:00",
   "probe": {
     "dns": "172.66.46.250",
     "whois": null,

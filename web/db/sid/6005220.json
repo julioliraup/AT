@@ -217,21 +217,30 @@
     "phishdestroy": {
       "domain": "bankofamericamailcompte.blogspot.com",
       "domain_defanged": "bankofamericamailcompte[.]blogspot[.]com",
-      "case_id": "PD-20260811-4C6C2A",
-      "analyzed_at": "2026-08-11T11:11:01.601Z",
+      "case_id": "PD-20260812-4C6C2A",
+      "analyzed_at": "2026-08-12T01:41:38.052Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bank of America"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff084-c679-7489-b45d-38a681676284.png",
           "url": "https://urlscan.io/result/019ff084-c679-7489-b45d-38a681676284/",
-          "pending": true
+          "title": "Bank Of America"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bank of America",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -241,14 +250,14 @@
         "dns": {
           "A": [
             "blogspot.l.googleusercontent.com.",
-            "142.251.134.33"
-          ],
-          "MX": [
-            "blogspot.l.googleusercontent.com."
+            "172.217.28.129"
           ],
           "AAAA": [
             "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4001:83b::2001"
+            "2800:3f0:4001:80e::2001"
+          ],
+          "MX": [
+            "blogspot.l.googleusercontent.com."
           ],
           "CNAME": [
             "blogspot.l.googleusercontent.com."
@@ -260,7 +269,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -387,7 +403,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.bankofamericamailcompte.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.bankofamericamailcompte.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005220; classtype:social-engineering; sid:6005220; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:10:53.448173+00:00",
+  "updated_at": "2026-08-12T01:41:34.051347+00:00",
   "probe": {
     "dns": "142.251.156.119",
     "whois": null,

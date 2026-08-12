@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "m.105633222.com",
       "domain_defanged": "m[.]105633222[.]com",
-      "case_id": "PD-20260810-341F88",
-      "analyzed_at": "2026-08-10T13:18:07.586Z",
+      "case_id": "PD-20260812-341F88",
+      "analyzed_at": "2026-08-12T00:48:52.086Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febd2-c703-73ea-a21c-bcdfa9fcc05d.png",
           "url": "https://urlscan.io/result/019febd2-c703-73ea-a21c-bcdfa9fcc05d/",
-          "pending": true
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -85,8 +94,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:3034::6815:28b",
-            "2606:4700:3031::ac43:8148"
+            "2606:4700:3031::ac43:8148",
+            "2606:4700:3034::6815:28b"
           ],
           "A": [
             "172.67.129.72",
@@ -226,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.105633222.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"m.105633222.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004845; classtype:social-engineering; sid:6004845; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-11T10:48:46.779947+00:00",
+  "updated_at": "2026-08-12T00:48:42.869042+00:00",
   "probe": {
     "dns": "104.21.2.139",
     "whois": null,

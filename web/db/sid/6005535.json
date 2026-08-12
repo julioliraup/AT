@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "aktifkaanpaylattersx.iux.my.id",
       "domain_defanged": "aktifkaanpaylattersx[.]iux[.]my[.]id",
-      "case_id": "PD-20260810-5545CC",
-      "analyzed_at": "2026-08-10T14:08:13.076Z",
+      "case_id": "PD-20260812-5545CC",
+      "analyzed_at": "2026-08-12T02:26:05.041Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc11d-cc51-75ff-9c18-4badf13d48ee.png",
+          "url": "https://urlscan.io/result/019fc11d-cc51-75ff-9c18-4badf13d48ee/",
+          "title": "DANA - Apa pun transaksinya selalu ada DANA"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.58.50",
+        "ipinfo": {
+          "ip": "104.21.58.50",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,17 +220,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aktifkaanpaylattersx.iux.my.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aktifkaanpaylattersx.iux.my.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005535; classtype:social-engineering; sid:6005535; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:30:22.271797+00:00",
+  "updated_at": "2026-08-12T02:25:51.545888+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": null,
+    "whois": true,
+    "status": "active"
+  }
 }

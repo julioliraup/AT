@@ -18,79 +18,41 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://ggee-har6b-ty1p6s-539xis.pages.dev/",
-      "domain": "ggee-har6b-ty1p6s-539xis.pages.dev",
-      "url_count": 2,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.66.47.88",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a26aaa49af5d28b9-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (396)",
-      "sha256": "810b70e5ba0304d78ec00b83d954fc4a4baeb5a112af03943340de93f49e507e",
-      "md5": "4293f5af046a3778230d43f19ec0b8f9",
-      "cert": {
-        "subject_cn": "ggee-har6b-ty1p6s-539xis.pages.dev",
-        "subject_alt_names": [
-          "ggee-har6b-ty1p6s-539xis.pages.dev",
-          "*.ggee-har6b-ty1p6s-539xis.pages.dev"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-07-20T05:30:31+00:00",
-        "not_valid_after": "2026-10-18T06:28:58+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "330015362967867646247132304454207275884",
-        "fingerprint_sha1": "51 16 87 BF 39 A8 EF 33 DC 8D FD 34 D7 5E 59 1E 0B FC 0B EB",
-        "fingerprint_sha256": "14 6B 8A 7F 20 CD 84 02 D2 C9 93 20 45 3D DA 28 1A 3C 20 3D 73 6E C0 37 B8 E2 24 D1 DF 39 54 76"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-08-06T02:32:40",
-      "first_seen_secs": 1785983560.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "ggee-har6b-ty1p6s-539xis.pages.dev",
       "domain_defanged": "ggee-har6b-ty1p6s-539xis[.]pages[.]dev",
-      "case_id": "PD-20260810-2C90DD",
-      "analyzed_at": "2026-08-10T13:58:06.960Z",
+      "case_id": "PD-20260812-2C90DD",
+      "analyzed_at": "2026-08-12T02:05:29.994Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe526-4f00-770a-8475-e11ee0142000.png",
+          "url": "https://urlscan.io/result/019fe526-4f00-770a-8475-e11ee0142000/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.88",
+        "ip": "172.66.44.168",
         "ipinfo": {
-          "ip": "172.66.47.88",
+          "ip": "172.66.44.168",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -98,13 +60,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.47.88",
-            "172.66.44.168"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2ca8",
             "2606:4700:310c::ac42:2f58"
+          ],
+          "A": [
+            "172.66.44.168",
+            "172.66.47.88"
           ],
           "NS": [
             "elle.ns.cloudflare.com.",
@@ -244,14 +206,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ggee-har6b-ty1p6s-539xis.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ggee-har6b-ty1p6s-539xis.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005407; classtype:social-engineering; sid:6005407; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:21:56.772677+00:00",
+  "updated_at": "2026-08-12T02:05:14.645792+00:00",
   "probe": {
-    "dns": "172.66.47.88",
+    "dns": "172.66.44.168",
     "whois": null,
     "status": "active"
   }

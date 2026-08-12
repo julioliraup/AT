@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "vronz-vlypx-zclod-7e26cf-urkt-zorgon.pages.dev",
       "domain_defanged": "vronz-vlypx-zclod-7e26cf-urkt-zorgon[.]pages[.]dev",
-      "case_id": "PD-20260810-614CEC",
-      "analyzed_at": "2026-08-10T13:50:23.797Z",
+      "case_id": "PD-20260812-614CEC",
+      "analyzed_at": "2026-08-12T01:44:37.041Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febf0-532c-7017-b854-c0a3aef09e97.png",
           "url": "https://urlscan.io/result/019febf0-532c-7017-b854-c0a3aef09e97/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.111",
+        "ip": "172.66.47.145",
         "ipinfo": {
-          "ip": "172.66.44.111",
+          "ip": "172.66.47.145",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f91",
-            "2606:4700:310c::ac42:2c6f"
+            "2606:4700:310c::ac42:2c6f",
+            "2606:4700:310c::ac42:2f91"
           ],
           "A": [
-            "172.66.44.111",
-            "172.66.47.145"
+            "172.66.47.145",
+            "172.66.44.111"
           ],
           "NS": [
             "dom.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (vronz-vlypx-zclod-7e26cf-urkt-zorgon.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"vronz-vlypx-zclod-7e26cf-urkt-zorgon.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005258; classtype:social-engineering; sid:6005258; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:12:56.623626+00:00",
+  "updated_at": "2026-08-12T01:44:33.345820+00:00",
   "probe": {
     "dns": "172.66.44.111",
     "whois": null,

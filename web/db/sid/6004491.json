@@ -49,21 +49,47 @@
     "phishdestroy": {
       "domain": "cr-bind-fenix.s3.us-east-1.amazonaws.com",
       "domain_defanged": "cr-bind-fenix[.]s3[.]us-east-1[.]amazonaws[.]com",
-      "case_id": "PD-20260811-7F9AE6",
-      "analyzed_at": "2026-08-11T10:21:17.226Z",
+      "case_id": "PD-20260812-7F9AE6",
+      "analyzed_at": "2026-08-12T00:07:55.235Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ff057-3b59-7683-ba64-13e84f0995ae/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ff057-3b59-7683-ba64-13e84f0995ae.png",
+          "url": "https://urlscan.io/result/019ff057-3b59-7683-ba64-13e84f0995ae/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,22 +97,22 @@
         "ip": "s3-r-w.us-east-1.amazonaws.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
+          "AAAA": [
             "s3-r-w.us-east-1.amazonaws.com."
           ],
-          "AAAA": [
+          "MX": [
             "s3-r-w.us-east-1.amazonaws.com."
           ],
           "A": [
             "s3-r-w.us-east-1.amazonaws.com.",
-            "54.231.233.74",
-            "16.15.244.38",
-            "54.231.194.2",
-            "16.15.229.93",
-            "16.15.253.15",
-            "16.15.212.248",
-            "52.217.82.64",
-            "16.15.214.152"
+            "52.216.43.114",
+            "54.231.198.162",
+            "52.217.170.250",
+            "54.231.130.26",
+            "16.182.37.202",
+            "16.15.223.0",
+            "52.217.235.98",
+            "16.15.212.12"
           ],
           "CNAME": [
             "s3-r-w.us-east-1.amazonaws.com."
@@ -102,7 +128,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -229,9 +262,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cr-bind-fenix.s3.us-east-1.amazonaws.com/XAc6geBVOhc?email=redacted@abuse.ionos.com)\"; flow:established,to_server; http.uri; content:\"/XAc6geBVOhc?email=redacted@abuse.ionos.com\"; startswith; fast_pattern; http.host; content:\"cr-bind-fenix.s3.us-east-1.amazonaws.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004491; classtype:social-engineering; sid:6004491; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-11T10:21:13.749935+00:00",
+  "updated_at": "2026-08-12T00:07:51.562912+00:00",
   "probe": {
-    "dns": "16.15.254.179",
+    "dns": "16.15.228.19",
     "whois": null,
     "status": "active"
   }

@@ -18,25 +18,100 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://aumentoja80.s3.us-east-005.backblazeb2.com/aumento.html",
+      "domain": "aumentoja80.s3.us-east-005.backblazeb2.com",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "aumentoja80.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "aumentoja80[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260810-4C2E64",
-      "analyzed_at": "2026-08-10T23:21:47.518Z",
+      "case_id": "PD-20260812-4C2E64",
+      "analyzed_at": "2026-08-12T00:06:03.110Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "File Sharing/Storage, Information Technology, Media Sharing, Suspicious (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fedfb-736e-74bd-9716-59404ed53300/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ff320-a540-714c-8b1f-17fb00f7350f.png",
+          "url": "https://urlscan.io/result/019ff320-a540-714c-8b1f-17fb00f7350f/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -52,17 +127,17 @@
           "asn": "AS40401"
         },
         "dns": {
-          "A": [
-            "149.137.136.9",
-            "149.137.137.254",
-            "149.137.140.9",
-            "149.137.141.9"
-          ],
           "AAAA": [
             "2605:72c0:6fc:b3::b005:1",
             "2605:72c0:6fd:b3::b005:1",
             "2605:72c0:6fe:b3::b005:1",
             "2605:72c0:6ff:b3::b005:1"
+          ],
+          "A": [
+            "149.137.136.9",
+            "149.137.137.254",
+            "149.137.140.9",
+            "149.137.141.9"
           ]
         }
       },
@@ -198,14 +273,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aumentoja80.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"aumentoja80.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004475; classtype:social-engineering; sid:6004475; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-11T10:20:04.676409+00:00",
+  "updated_at": "2026-08-12T00:05:57.586077+00:00",
   "probe": {
-    "dns": "149.137.137.254",
+    "dns": "149.137.141.9",
     "whois": null,
     "status": "active"
   }

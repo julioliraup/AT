@@ -49,21 +49,168 @@
     "phishdestroy": {
       "domain": "im.nbpublic.com",
       "domain_defanged": "im[.]nbpublic[.]com",
-      "case_id": "PD-20260810-5EB32A",
-      "analyzed_at": "2026-08-10T13:26:56.607Z",
+      "case_id": "PD-20260812-5EB32A",
+      "analyzed_at": "2026-08-12T01:02:48.411Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 14,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SafeToOpen",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Yandex Safebrowsing",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019febda-da65-73cb-9e98-dc4c514347cc/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ff37d-6260-759e-a7ee-bed29971cf98.png",
+          "url": "https://urlscan.io/result/019ff37d-6260-759e-a7ee-bed29971cf98/",
+          "title": "Walmart $45,000,000 Class Action Lawsuit - $1,000 Gift Card Settlement."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SafeToOpen",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Yandex Safebrowsing",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -78,13 +225,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:3032::6815:2a21",
+            "2606:4700:3033::ac43:c7bb"
+          ],
           "A": [
             "104.21.42.33",
             "172.67.199.187"
-          ],
-          "AAAA": [
-            "2606:4700:3033::ac43:c7bb",
-            "2606:4700:3032::6815:2a21"
           ]
         }
       },
@@ -220,12 +367,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (im.nbpublic.com/loading_page/paypal/paypal_cf_11/index.html?lptoken=17046900585411739193)\"; flow:established,to_server; http.uri; content:\"/loading_page/paypal/paypal_cf_11/index.html?lptoken=17046900585411739193\"; startswith; fast_pattern; http.host; content:\"im.nbpublic.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004935; classtype:social-engineering; sid:6004935; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-11T10:54:05.048431+00:00",
+  "updated_at": "2026-08-12T01:02:43.629573+00:00",
   "probe": {
     "dns": "172.67.199.187",
     "whois": null,

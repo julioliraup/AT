@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp10ct-valem-biz8-lurek-fodin.pages.dev",
       "domain_defanged": "sp10ct-valem-biz8-lurek-fodin[.]pages[.]dev",
-      "case_id": "PD-20260810-5CD350",
-      "analyzed_at": "2026-08-10T13:49:18.334Z",
+      "case_id": "PD-20260812-5CD350",
+      "analyzed_at": "2026-08-12T01:43:30.704Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febef-537d-76e1-bffe-b51382a87cfc.png",
           "url": "https://urlscan.io/result/019febef-537d-76e1-bffe-b51382a87cfc/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.210",
+        "ip": "172.66.47.46",
         "ipinfo": {
-          "ip": "172.66.44.210",
+          "ip": "172.66.47.46",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.44.210",
-            "172.66.47.46"
-          ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f2e",
-            "2606:4700:310c::ac42:2cd2"
+            "2606:4700:310c::ac42:2cd2",
+            "2606:4700:310c::ac42:2f2e"
+          ],
+          "A": [
+            "172.66.47.46",
+            "172.66.44.210"
           ],
           "NS": [
             "aida.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct-valem-biz8-lurek-fodin.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct-valem-biz8-lurek-fodin.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005242; classtype:social-engineering; sid:6005242; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:12:11.923894+00:00",
+  "updated_at": "2026-08-12T01:43:26.384083+00:00",
   "probe": {
     "dns": "172.66.47.46",
     "whois": null,

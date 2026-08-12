@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "quas7-qfv9-q26ep-h8p8h-vd2y7.pages.dev",
       "domain_defanged": "quas7-qfv9-q26ep-h8p8h-vd2y7[.]pages[.]dev",
-      "case_id": "PD-20260810-C645C5",
-      "analyzed_at": "2026-08-10T13:49:35.807Z",
+      "case_id": "PD-20260812-C645C5",
+      "analyzed_at": "2026-08-12T01:43:53.589Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febef-97c5-72d4-81bb-5318c2c76ff6.png",
           "url": "https://urlscan.io/result/019febef-97c5-72d4-81bb-5318c2c76ff6/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (quas7-qfv9-q26ep-h8p8h-vd2y7.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"quas7-qfv9-q26ep-h8p8h-vd2y7.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005246; classtype:social-engineering; sid:6005246; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:12:25.480057+00:00",
+  "updated_at": "2026-08-12T01:43:50.679306+00:00",
   "probe": {
     "dns": "172.66.47.176",
     "whois": null,

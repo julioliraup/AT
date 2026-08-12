@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "paperlesspost-partymonica.velnora.vu",
       "domain_defanged": "paperlesspost-partymonica[.]velnora[.]vu",
-      "case_id": "PD-20260810-378E3F",
-      "analyzed_at": "2026-08-10T13:56:19.899Z",
+      "case_id": "PD-20260812-378E3F",
+      "analyzed_at": "2026-08-12T01:59:30.203Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Google"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc665-ffd7-7438-b4ac-6a8ee6ed9410.png",
+          "url": "https://urlscan.io/result/019fc665-ffd7-7438-b4ac-6a8ee6ed9410/",
+          "title": "Sign in - Google Accounts"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Google",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (paperlesspost-partymonica.velnora.vu/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"paperlesspost-partymonica.velnora.vu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005377; classtype:social-engineering; sid:6005377; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:20:08.017278+00:00",
+  "updated_at": "2026-08-12T01:59:20.024911+00:00",
   "probe": {
     "dns": null,
     "whois": true,

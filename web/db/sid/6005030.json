@@ -73,35 +73,112 @@
     "phishdestroy": {
       "domain": "viewpackagetracking.com",
       "domain_defanged": "viewpackagetracking[.]com",
-      "case_id": "PD-20260810-7686FD",
-      "analyzed_at": "2026-08-10T13:34:45.837Z",
+      "case_id": "PD-20260812-7686FD",
+      "analyzed_at": "2026-08-12T01:18:43.635Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 2,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "AILabs (MONITORAPP)",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SafeToOpen",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Seclookup",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019febe2-003a-70b1-9e76-08314990bf42.png",
           "url": "https://urlscan.io/result/019febe2-003a-70b1-9e76-08314990bf42/",
-          "pending": true
+          "title": "USPS Package Tracking"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: AILabs (MONITORAPP)",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SafeToOpen",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Seclookup",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "malware",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2025-11-16T20:44:37Z",
         "expires": "2026-11-16T20:44:37Z",
-        "age_days": 266,
+        "age_days": 268,
         "nameservers": [
           "GWEN.NS.CLOUDFLARE.COM",
           "MARTIN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.66.164.220",
+        "ip": "104.20.24.209",
         "ipinfo": {
-          "ip": "172.66.164.220",
+          "ip": "104.20.24.209",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -114,15 +191,15 @@
             "2606:4700:10::6814:18d1"
           ],
           "A": [
-            "172.66.164.220",
-            "104.20.24.209"
-          ],
-          "MX": [
-            "10 _dc-mx.2657b8569548.viewpackagetracking.com."
+            "104.20.24.209",
+            "172.66.164.220"
           ],
           "NS": [
             "gwen.ns.cloudflare.com.",
             "martin.ns.cloudflare.com."
+          ],
+          "MX": [
+            "10 _dc-mx.2657b8569548.viewpackagetracking.com."
           ]
         }
       },
@@ -265,15 +342,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (viewpackagetracking.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"viewpackagetracking.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005030; classtype:social-engineering; sid:6005030; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-11T11:00:16.026686+00:00",
+  "updated_at": "2026-08-12T01:18:34.306442+00:00",
   "probe": {
     "dns": "104.20.24.209",
-    "whois": null,
+    "whois": true,
     "status": "active"
   }
 }

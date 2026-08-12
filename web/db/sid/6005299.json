@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "sp3ct-helvok-biz8-prasik-dunor.pages.dev",
       "domain_defanged": "sp3ct-helvok-biz8-prasik-dunor[.]pages[.]dev",
-      "case_id": "PD-20260810-4FF4EA",
-      "analyzed_at": "2026-08-10T13:52:30.427Z",
+      "case_id": "PD-20260812-4FF4EA",
+      "analyzed_at": "2026-08-12T01:48:56.279Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febf2-41e1-776d-95ea-7910b9ad27ec.png",
           "url": "https://urlscan.io/result/019febf2-41e1-776d-95ea-7910b9ad27ec/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp3ct-helvok-biz8-prasik-dunor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp3ct-helvok-biz8-prasik-dunor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005299; classtype:social-engineering; sid:6005299; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:15:16.432273+00:00",
+  "updated_at": "2026-08-12T01:48:44.823687+00:00",
   "probe": {
     "dns": "172.66.47.173",
     "whois": null,

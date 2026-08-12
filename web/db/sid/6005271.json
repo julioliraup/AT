@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "owxc2v-vb5u2-yupgq-zmft0g.pages.dev",
       "domain_defanged": "owxc2v-vb5u2-yupgq-zmft0g[.]pages[.]dev",
-      "case_id": "PD-20260810-650B11",
-      "analyzed_at": "2026-08-10T13:51:02.885Z",
+      "case_id": "PD-20260812-650B11",
+      "analyzed_at": "2026-08-12T01:45:35.025Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febf0-ebea-707d-9c88-7414a2105db1.png",
           "url": "https://urlscan.io/result/019febf0-ebea-707d-9c88-7414a2105db1/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.253",
+        "ip": "172.66.47.3",
         "ipinfo": {
-          "ip": "172.66.44.253",
+          "ip": "172.66.47.3",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "A": [
-            "172.66.44.253",
-            "172.66.47.3"
+            "172.66.47.3",
+            "172.66.44.253"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f03",
-            "2606:4700:310c::ac42:2cfd"
+            "2606:4700:310c::ac42:2cfd",
+            "2606:4700:310c::ac42:2f03"
           ],
           "NS": [
             "jerry.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (owxc2v-vb5u2-yupgq-zmft0g.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"owxc2v-vb5u2-yupgq-zmft0g.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005271; classtype:social-engineering; sid:6005271; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:13:50.161156+00:00",
+  "updated_at": "2026-08-12T01:45:30.187068+00:00",
   "probe": {
     "dns": "172.66.47.3",
     "whois": null,

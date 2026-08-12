@@ -72,28 +72,37 @@
     "phishdestroy": {
       "domain": "baseservices.vercel.app",
       "domain_defanged": "baseservices[.]vercel[.]app",
-      "case_id": "PD-20260810-47169E",
-      "analyzed_at": "2026-08-10T14:10:42.716Z",
+      "case_id": "PD-20260812-47169E",
+      "analyzed_at": "2026-08-12T02:30:45.321Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fec02-ec90-74b5-947f-a90fbbcd0e3b.png",
           "url": "https://urlscan.io/result/019fec02-ec90-74b5-947f-a90fbbcd0e3b/",
-          "pending": true
+          "title": "Coinbase - Buy and Sell Bitcoin, Ethereum, and more with trust"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.194",
+        "ip": "64.29.17.66",
         "ipinfo": {
-          "ip": "216.198.79.194",
+          "ip": "64.29.17.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -102,8 +111,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.194",
-            "64.29.17.194"
+            "64.29.17.66",
+            "216.198.79.66"
           ]
         }
       },
@@ -239,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.baseservices.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.baseservices.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005570; classtype:social-engineering; sid:6005570; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:32:17.394491+00:00",
+  "updated_at": "2026-08-12T02:30:39.595404+00:00",
   "probe": {
     "dns": "216.198.79.3",
     "whois": null,

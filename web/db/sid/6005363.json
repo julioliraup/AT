@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "heliusonbaording.pages.dev",
       "domain_defanged": "heliusonbaording[.]pages[.]dev",
-      "case_id": "PD-20260810-65B267",
-      "analyzed_at": "2026-08-10T13:55:43.389Z",
+      "case_id": "PD-20260812-65B267",
+      "analyzed_at": "2026-08-12T01:57:38.215Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019febf5-3323-778e-bac9-d75f18559029.png",
           "url": "https://urlscan.io/result/019febf5-3323-778e-bac9-d75f18559029/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (heliusonbaording.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"heliusonbaording.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005363; classtype:social-engineering; sid:6005363; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:19:15.906246+00:00",
+  "updated_at": "2026-08-12T01:57:34.539835+00:00",
   "probe": {
     "dns": "172.66.45.4",
     "whois": null,

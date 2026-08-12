@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "uphuld-walet-eng.pages.dev",
       "domain_defanged": "uphuld-walet-eng[.]pages[.]dev",
-      "case_id": "PD-20260811-4C5DB3",
-      "analyzed_at": "2026-08-11T11:17:29.324Z",
+      "case_id": "PD-20260812-4C5DB3",
+      "analyzed_at": "2026-08-12T01:52:24.667Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff08a-b15c-71c1-bede-5126613079e3.png",
           "url": "https://urlscan.io/result/019ff08a-b15c-71c1-bede-5126613079e3/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2c63",
-            "2606:4700:310c::ac42:2f9d"
-          ],
           "A": [
             "172.66.47.157",
             "172.66.44.99"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2c63",
+            "2606:4700:310c::ac42:2f9d"
           ],
           "NS": [
             "alexia.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (uphuld-walet-eng.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"uphuld-walet-eng.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005331; classtype:social-engineering; sid:6005331; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:17:26.428556+00:00",
+  "updated_at": "2026-08-12T01:52:13.949562+00:00",
   "probe": {
     "dns": "172.66.44.99",
     "whois": null,

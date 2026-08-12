@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "fifththirdohio.live",
       "domain_defanged": "fifththirdohio[.]live",
-      "case_id": "PD-20260810-7C7AF8",
-      "analyzed_at": "2026-08-10T14:09:18.715Z",
+      "case_id": "PD-20260812-7C7AF8",
+      "analyzed_at": "2026-08-12T02:28:02.432Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fifth Third Bank"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc0cb-faf2-73d6-82f8-083e91a3a3ae.png",
+          "url": "https://urlscan.io/result/019fc0cb-faf2-73d6-82f8-083e91a3a3ae/",
+          "title": "Personal Banking | Fifth Third Bank"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fifth Third Bank",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "94.183.184.129",
+        "ipinfo": {
+          "ip": "94.183.184.129",
+          "city": "Fremont",
+          "region": "California",
+          "country": "US",
+          "org": "AS56971 AS56971 Cloud",
+          "asn": "AS56971"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CloudBackbone",
+          "abuse": "abuse@cloudbackbone.net",
+          "url": "mailto:abuse@cloudbackbone.net",
+          "logo": "https://i.ibb.co/rKHxvDbX/pr-Cloud-Backbone.png",
+          "method": "email",
+          "asn": "AS56971"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fifththirdohio.live/promo/newmarket/tem.php)\"; flow:established,to_server; http.uri; content:\"/promo/newmarket/tem.php\"; startswith; fast_pattern; http.host; content:\"fifththirdohio.live\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005548; classtype:social-engineering; sid:6005548; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:31:16.620197+00:00",
+  "updated_at": "2026-08-12T02:27:54.980875+00:00",
   "probe": {
     "dns": null,
     "whois": true,

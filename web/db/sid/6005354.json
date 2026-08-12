@@ -18,82 +18,69 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://hammerhead-app-ub55h.ondigitalocean.app/",
-      "domain": "hammerhead-app-ub55h.ondigitalocean.app",
-      "url_count": 2,
-      "city_data": false,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "162.159.140.98",
-      "http_code": 200,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a26aab577e6aa11a-PDX",
-        "cf_cache_status": "HIT",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (31637), with CRLF line terminators",
-      "sha256": "aafbfb646037985dfde4d3e264896ebac00b60c47d906b64f76a872dd06bf812",
-      "md5": "d6bf04163832d6e216f00dd591605f27",
-      "cert": {
-        "subject_cn": "ondigitalocean.app",
-        "subject_alt_names": [
-          "ondigitalocean.app",
-          "*.ondigitalocean.app"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-07-26T03:33:14+00:00",
-        "not_valid_after": "2026-10-24T04:32:58+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "44327231003036587074752520095577857983",
-        "fingerprint_sha1": "9E 8A D3 4E 2A 56 B4 CC A6 B6 7C 7A 16 C4 81 91 5B 7E 86 A8",
-        "fingerprint_sha256": "9B 74 8E 40 7F EC 86 10 B8 79 0C BD E1 84 E5 25 92 60 AE E6 0A B0 4E 9A 2A F5 95 CE B0 76 CB AA"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-08-06T02:32:42",
-      "first_seen_secs": 1785983562.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "hammerhead-app-ub55h.ondigitalocean.app",
       "domain_defanged": "hammerhead-app-ub55h[.]ondigitalocean[.]app",
-      "case_id": "PD-20260810-7B55E3",
-      "analyzed_at": "2026-08-10T13:55:14.595Z",
+      "case_id": "PD-20260812-7B55E3",
+      "analyzed_at": "2026-08-12T01:56:20.849Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Tech Support Scam",
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fde66-8dbb-737d-8263-3d695a4517ea.png",
+          "url": "https://urlscan.io/result/019fde66-8dbb-737d-8263-3d695a4517ea/",
+          "title": "ヘルプデスクを入手-01U2E1"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Tech Support Scam, Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.66.0.96",
+        "ipinfo": {
+          "ip": "172.66.0.96",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "172.66.0.96",
+            "162.159.140.98"
+          ],
+          "AAAA": [
+            "2606:4700:7::60",
+            "2a06:98c1:58::60"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,14 +203,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hammerhead-app-ub55h.ondigitalocean.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"hammerhead-app-ub55h.ondigitalocean.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005354; classtype:social-engineering; sid:6005354; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:18:52.096501+00:00",
+  "updated_at": "2026-08-12T01:56:00.161217+00:00",
   "probe": {
-    "dns": "162.159.140.98",
+    "dns": "172.66.0.96",
     "whois": null,
     "status": "active"
   }

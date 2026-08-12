@@ -22,7 +22,7 @@
       "url": "http://lobster-app-97o5r.ondigitalocean.app/",
       "domain": "lobster-app-97o5r.ondigitalocean.app",
       "url_count": 2,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -73,27 +73,65 @@
     "phishdestroy": {
       "domain": "lobster-app-97o5r.ondigitalocean.app",
       "domain_defanged": "lobster-app-97o5r[.]ondigitalocean[.]app",
-      "case_id": "PD-20260810-1284D1",
-      "analyzed_at": "2026-08-10T13:43:41.659Z",
+      "case_id": "PD-20260812-1284D1",
+      "analyzed_at": "2026-08-12T01:34:21.385Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Tech Support Scam",
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fde5e-05bf-73ac-81ae-a97f1b34bf6b.png",
+          "url": "https://urlscan.io/result/019fde5e-05bf-73ac-81ae-a97f1b34bf6b/",
+          "title": "ヘルプデスクを入手-01U2E1"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Tech Support Scam, Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "162.159.140.98",
+        "ipinfo": {
+          "ip": "162.159.140.98",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "162.159.140.98",
+            "172.66.0.96"
+          ],
+          "AAAA": [
+            "2606:4700:7::60",
+            "2a06:98c1:58::60"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (lobster-app-97o5r.ondigitalocean.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"lobster-app-97o5r.ondigitalocean.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005170; classtype:social-engineering; sid:6005170; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-11T11:08:19.952697+00:00",
+  "updated_at": "2026-08-12T01:34:17.758056+00:00",
   "probe": {
     "dns": "162.159.140.98",
     "whois": null,
