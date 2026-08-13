@@ -73,26 +73,35 @@
     "phishdestroy": {
       "domain": "creditunion-authority.com",
       "domain_defanged": "creditunion-authority[.]com",
-      "case_id": "PD-20260811-68A41D",
-      "analyzed_at": "2026-08-11T15:15:13.035Z",
+      "case_id": "PD-20260813-68A41D",
+      "analyzed_at": "2026-08-13T00:35:01.190Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff164-54a0-741c-af63-d391420f8372/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff662-7216-701d-a2cc-3654a03652bd.png",
+          "url": "https://urlscan.io/result/019ff662-7216-701d-a2cc-3654a03652bd/",
+          "title": "404 - Quick Tip | Cofense"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "MarkMonitor Inc.",
         "created": "2008-01-30T23:17:52Z",
         "expires": "2027-01-30T23:17:52Z",
-        "age_days": 6767,
+        "age_days": 6769,
         "nameservers": [
           "NS-1427.AWSDNS-50.ORG",
           "NS-1594.AWSDNS-07.CO.UK",
@@ -101,10 +110,10 @@
         ]
       },
       "infrastructure": {
-        "ip": "52.204.246.179",
+        "ip": "34.194.247.17",
         "ipinfo": {
-          "ip": "52.204.246.179",
-          "hostname": "ec2-52-204-246-179.compute-1.amazonaws.com",
+          "ip": "34.194.247.17",
+          "hostname": "ec2-34-194-247-17.compute-1.amazonaws.com",
           "city": "Ashburn",
           "region": "Virginia",
           "country": "US",
@@ -112,8 +121,9 @@
           "asn": "AS14618"
         },
         "dns": {
-          "MX": [
-            "10 mx0.us.cf-ops.net."
+          "A": [
+            "34.194.247.17",
+            "52.204.246.179"
           ],
           "NS": [
             "ns-1427.awsdns-50.org.",
@@ -121,9 +131,8 @@
             "ns-372.awsdns-46.com.",
             "ns-858.awsdns-43.net."
           ],
-          "A": [
-            "52.204.246.179",
-            "34.194.247.17"
+          "MX": [
+            "10 mx0.us.cf-ops.net."
           ]
         }
       },
@@ -266,15 +275,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (creditunion-authority.com/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/)\"; flow:established,to_server; http.uri; content:\"/s/63BZGFSVBWSFCDX7Y9/584dd8/90eab167-7429-489f-99f6-ce86e8d0d81a/\"; startswith; fast_pattern; http.host; content:\"creditunion-authority.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008168; classtype:social-engineering; sid:6008168; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-12T05:42:32.419973+00:00",
+  "updated_at": "2026-08-13T00:34:56.476403+00:00",
   "probe": {
     "dns": "52.204.246.179",
-    "whois": null,
+    "whois": true,
     "status": "active"
   }
 }

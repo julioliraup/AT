@@ -143,21 +143,34 @@
     "phishdestroy": {
       "domain": "flnd-location.us",
       "domain_defanged": "flnd-location[.]us",
-      "case_id": "PD-20260811-7C4F7C",
-      "analyzed_at": "2026-08-11T15:50:07.763Z",
+      "case_id": "PD-20260813-7C4F7C",
+      "analyzed_at": "2026-08-13T01:03:25.197Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff184-4d97-7009-831b-db7f2489f8ff/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff875-0cce-7030-8d10-341e71ea1e90.png",
+          "url": "https://urlscan.io/result/019ff875-0cce-7030-8d10-341e71ea1e90/",
+          "title": "Find Devices — Apple iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -173,15 +186,15 @@
           "asn": "AS31898"
         },
         "dns": {
-          "A": [
-            "108.167.146.200"
-          ],
           "MX": [
             "0 mail.flnd-location.us."
           ],
+          "A": [
+            "108.167.146.200"
+          ],
           "NS": [
-            "cns44.webhostbox.net.",
-            "cns43.webhostbox.net."
+            "cns43.webhostbox.net.",
+            "cns44.webhostbox.net."
           ]
         }
       },
@@ -317,12 +330,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (flnd-location.us/FL26/)\"; flow:established,to_server; http.uri; content:\"/FL26/\"; startswith; fast_pattern; http.host; content:\"flnd-location.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008500; classtype:social-engineering; sid:6008500; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-12T06:09:30.682875+00:00",
+  "updated_at": "2026-08-13T01:03:21.630423+00:00",
   "probe": {
     "dns": "108.167.146.200",
     "whois": true,

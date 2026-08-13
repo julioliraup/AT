@@ -49,21 +49,157 @@
     "phishdestroy": {
       "domain": "architayadav0707.github.io",
       "domain_defanged": "architayadav0707[.]github[.]io",
-      "case_id": "PD-20260811-3AAB2B",
-      "analyzed_at": "2026-08-11T16:08:13.680Z",
+      "case_id": "PD-20260813-3AAB2B",
+      "analyzed_at": "2026-08-13T01:30:41.340Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 12,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "PrecisionSec",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff194-df72-736e-a88c-e91161a3d7f6/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Spotify"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff860-0f0a-73a8-8218-00265986624d.png",
+          "url": "https://urlscan.io/result/019ff860-0f0a-73a8-8218-00265986624d/",
+          "title": "Spotify - Web Player: Music for everyone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: PrecisionSec",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Spotify",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +215,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
             "185.199.108.153",
             "185.199.109.153",
             "185.199.110.153",
             "185.199.111.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8003::153",
+            "2606:50c0:8001::153",
+            "2606:50c0:8000::153",
+            "2606:50c0:8002::153"
           ]
         }
       },
@@ -225,14 +361,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (architayadav0707.github.io/spotify-clone)\"; flow:established,to_server; http.uri; content:\"/spotify-clone\"; startswith; fast_pattern; http.host; content:\"architayadav0707.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008677; classtype:social-engineering; sid:6008677; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-12T06:16:58.595951+00:00",
+  "updated_at": "2026-08-13T01:30:32.400903+00:00",
   "probe": {
-    "dns": "185.199.110.153",
+    "dns": "185.199.111.153",
     "whois": true,
     "status": "active"
   }

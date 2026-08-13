@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "13950.xyz",
       "domain_defanged": "13950[.]xyz",
-      "case_id": "PD-20260811-37645C",
-      "analyzed_at": "2026-08-11T15:14:30.245Z",
+      "case_id": "PD-20260813-37645C",
+      "analyzed_at": "2026-08-13T00:34:05.523Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fe69c-af92-703e-abb2-b6f49b242034.png",
+          "url": "https://urlscan.io/result/019fe69c-af92-703e-abb2-b6f49b242034/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "45.196.247.229",
+        "ipinfo": {
+          "ip": "45.196.247.229",
+          "city": "Tung Chung",
+          "region": "Islands",
+          "country": "HK",
+          "org": "AS18186 Nebula Global LLC",
+          "asn": "AS18186"
+        },
         "dns": null
       },
       "report_to": {
@@ -192,17 +213,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.13950.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.13950.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008160; classtype:social-engineering; sid:6008160; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-12T05:40:26.808177+00:00",
+  "updated_at": "2026-08-13T00:34:00.809788+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": null,
+    "whois": true,
+    "status": "active"
+  }
 }

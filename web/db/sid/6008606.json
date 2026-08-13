@@ -18,52 +18,71 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://ajustedeperfil.s3.us-east-005.backblazeb2.com/aumento.html",
-      "domain": "ajustedeperfil.s3.us-east-005.backblazeb2.com",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "ajustedeperfil.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "ajustedeperfil[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260812-55811D",
-      "analyzed_at": "2026-08-12T06:13:45.337Z",
+      "case_id": "PD-20260813-55811D",
+      "analyzed_at": "2026-08-13T01:19:08.247Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ff49a-f9cc-7656-be6f-31a4f59f5c0d/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ff879-1da2-773a-b07e-092343d95a6c.png",
+          "url": "https://urlscan.io/result/019ff879-1da2-773a-b07e-092343d95a6c/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +98,17 @@
           "asn": "AS40401"
         },
         "dns": {
-          "AAAA": [
-            "2605:72c0:6fc:b3::b005:1",
-            "2605:72c0:6fd:b3::b005:1",
-            "2605:72c0:6fe:b3::b005:1",
-            "2605:72c0:6ff:b3::b005:1"
-          ],
           "A": [
             "149.137.136.9",
             "149.137.137.254",
             "149.137.140.9",
             "149.137.141.9"
+          ],
+          "AAAA": [
+            "2605:72c0:6fc:b3::b005:1",
+            "2605:72c0:6fd:b3::b005:1",
+            "2605:72c0:6fe:b3::b005:1",
+            "2605:72c0:6ff:b3::b005:1"
           ]
         }
       },
@@ -229,9 +248,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ajustedeperfil.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"ajustedeperfil.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008606; classtype:social-engineering; sid:6008606; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-12T06:13:42.102187+00:00",
+  "updated_at": "2026-08-13T01:18:54.223040+00:00",
   "probe": {
-    "dns": "149.137.137.254",
+    "dns": "149.137.141.9",
     "whois": null,
     "status": "active"
   }

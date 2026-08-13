@@ -49,21 +49,87 @@
     "phishdestroy": {
       "domain": "rivere.s3-website-us-west-1.amazonaws.com",
       "domain_defanged": "rivere[.]s3-website-us-west-1[.]amazonaws[.]com",
-      "case_id": "PD-20260811-54F8FB",
-      "analyzed_at": "2026-08-11T15:54:32.249Z",
+      "case_id": "PD-20260813-54F8FB",
+      "analyzed_at": "2026-08-13T01:09:43.065Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ff188-5570-7369-bea0-6869f9e9c748/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ff188-5570-7369-bea0-6869f9e9c748.png",
+          "url": "https://urlscan.io/result/019ff188-5570-7369-bea0-6869f9e9c748/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -74,18 +140,21 @@
           "AAAA": [
             "s3-website-us-west-1.amazonaws.com."
           ],
+          "MX": [
+            "s3-website-us-west-1.amazonaws.com."
+          ],
           "A": [
             "s3-website-us-west-1.amazonaws.com.",
-            "16.15.1.0",
-            "52.219.220.99",
-            "16.15.0.223",
-            "52.219.216.11",
-            "16.15.0.112",
-            "52.219.194.163",
-            "52.219.193.107",
-            "16.15.4.199"
+            "16.15.0.104",
+            "52.219.216.171",
+            "16.15.0.199",
+            "52.219.120.107",
+            "52.219.121.107",
+            "16.15.4.20",
+            "16.15.4.129",
+            "16.15.4.203"
           ],
-          "MX": [
+          "CNAME": [
             "s3-website-us-west-1.amazonaws.com."
           ],
           "NS": [
@@ -94,9 +163,6 @@
             "ns-1604.awsdns-08.co.uk.",
             "ns-414.awsdns-51.com.",
             "ns-687.awsdns-21.net."
-          ],
-          "CNAME": [
-            "s3-website-us-west-1.amazonaws.com."
           ]
         }
       },
@@ -225,14 +291,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rivere.s3-website-us-west-1.amazonaws.com/?uid=abuse@namecheap.com)\"; flow:established,to_server; http.uri; content:\"/?uid=abuse@namecheap.com\"; startswith; fast_pattern; http.host; content:\"rivere.s3-website-us-west-1.amazonaws.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008551; classtype:social-engineering; sid:6008551; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-12T06:11:29.178246+00:00",
+  "updated_at": "2026-08-13T01:09:33.485933+00:00",
   "probe": {
-    "dns": "16.15.4.236",
+    "dns": "16.15.4.66",
     "whois": null,
     "status": "active"
   }

@@ -49,21 +49,145 @@
     "phishdestroy": {
       "domain": "approved-doc.sharpbranding.de",
       "domain_defanged": "approved-doc[.]sharpbranding[.]de",
-      "case_id": "PD-20260811-6E975E",
-      "analyzed_at": "2026-08-11T15:49:02.613Z",
+      "case_id": "PD-20260813-6E975E",
+      "analyzed_at": "2026-08-13T01:02:19.454Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 8,
+          "suspicious": 3,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "BitDefender",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "suspicious",
+              "result": "spam"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff183-4ee7-741e-8f51-6bed4413d811/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff85f-8b0d-7369-81b2-d3dc85b463f8.png",
+          "url": "https://urlscan.io/result/019ff85f-8b0d-7369-81b2-d3dc85b463f8/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: BitDefender",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "spam",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -83,8 +207,8 @@
             "104.21.13.211"
           ],
           "AAAA": [
-            "2606:4700:3036::ac43:851e",
-            "2606:4700:3035::6815:dd3"
+            "2606:4700:3035::6815:dd3",
+            "2606:4700:3036::ac43:851e"
           ]
         }
       },
@@ -220,14 +344,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (approved-doc.sharpbranding.de/SxS9T/index.php)\"; flow:established,to_server; http.uri; content:\"/SxS9T/index.php\"; startswith; fast_pattern; http.host; content:\"approved-doc.sharpbranding.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008491; classtype:social-engineering; sid:6008491; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-12T06:09:08.494141+00:00",
+  "updated_at": "2026-08-13T01:02:15.513537+00:00",
   "probe": {
-    "dns": "172.67.133.30",
+    "dns": "104.21.13.211",
     "whois": true,
     "status": "active"
   }
