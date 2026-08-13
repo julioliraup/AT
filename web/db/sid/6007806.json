@@ -21,7 +21,7 @@
     "alienvault": {
       "url": "http://imap.frogrocket.org/",
       "domain": "imap.frogrocket.org",
-      "url_count": 1,
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
@@ -45,28 +45,42 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, ASCII text, with very long lines (730)",
-      "sha256": "154d8ed0053b4444787f33661e5e3ad1784a9432033ee1354743780af08e3a4c",
-      "md5": "44a120d1f57d919562b18b730ca92ff3",
-      "cert": null,
+      "sha256": "15094d18aacd136e65d977c5f6ef173b3c1d79bce038495eebc831e74b4d7483",
+      "md5": "b3380872e64808f1a82e61563d7f6dca",
+      "cert": {
+        "subject_cn": "*.hostedemail.com",
+        "subject_alt_names": [
+          "*.hostedemail.com",
+          "hostedemail.com"
+        ],
+        "issuer_cn": "GeoTrust TLS RSA CA G1",
+        "issuer_org": "DigiCert Inc",
+        "issuer_country": "US",
+        "not_valid_before": "2026-03-16T00:00:00+00:00",
+        "not_valid_after": "2026-09-30T23:59:59+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "0D 8D 2C FE CE F7 EC 0B 12 66 0F 04 5C 17 ED 1E",
+        "fingerprint_sha1": "F3 EF BA 94 CB E1 A1 BB A9 6C 14 7B 70 8C FA 80 D1 A5 B3 75",
+        "fingerprint_sha256": "34 AB 74 6A F5 0B 08 F2 A3 A6 DA C0 1A C0 7F 21 2D 70 CB 66 49 7B F0 D1 AC 1D 16 6E FA F8 9C 24"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-09T07:35:18",
-      "first_seen_secs": 1786260918.0
+      "first_seen": "2026-08-13T02:41:11",
+      "first_seen_secs": 1786588871.0
     },
     "phishdestroy": {
       "domain": "imap.frogrocket.org",
       "domain_defanged": "imap[.]frogrocket[.]org",
-      "case_id": "PD-20260812-D21299",
-      "analyzed_at": "2026-08-12T05:16:04.534Z",
+      "case_id": "PD-20260813-D21299",
+      "analyzed_at": "2026-08-13T11:52:29.711Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff466-2b35-75e5-9d15-f0ba147376c8/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -80,15 +94,15 @@
           "CNAME": [
             "mail.frogrocket.org.cust.a.hostedemail.com."
           ],
+          "AAAA": [
+            "mail.frogrocket.org.cust.a.hostedemail.com."
+          ],
           "MX": [
             "mail.frogrocket.org.cust.a.hostedemail.com."
           ],
           "A": [
             "mail.frogrocket.org.cust.a.hostedemail.com.",
             "216.40.42.5"
-          ],
-          "AAAA": [
-            "mail.frogrocket.org.cust.a.hostedemail.com."
           ],
           "NS": [
             "mail.frogrocket.org.cust.a.hostedemail.com."
@@ -220,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (imap.frogrocket.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"imap.frogrocket.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007806; classtype:social-engineering; sid:6007806; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-12T23:58:28.923125+00:00",
+  "updated_at": "2026-08-13T11:52:24.543566+00:00",
   "probe": {
     "dns": "216.40.42.5",
     "whois": true,
