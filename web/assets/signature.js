@@ -764,6 +764,16 @@ try {
     const d = await resp.json();
 
     if (domain) {
+        // Verify that the requested domain exists in the signature data
+        const domainExists = Array.isArray(d.dns_feed?.domains) && d.dns_feed.domains.some(dom => dom.toLowerCase() === (domain || '').toLowerCase());
+        if (!domainExists) {
+            el.innerHTML = `
+                <div class="card" style="border-color:var(--neon-pink);text-align:center;padding:40px;">
+                    <h1 style="color:var(--neon-pink);">[ ERROR: DOMAIN NOT FOUND ]</h1>
+                    <p style="color:var(--text-muted);font-size:0.9em;">The domain "${escapeHTML(domain)}" does not exist in this signature.</p>
+                </div>`;
+            return;
+        }
         document.title = `${escapeHTML(domain)} - SID ${d.sid} - Antiphishing`;
         renderDomainView(el, d, domain);
 
