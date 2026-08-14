@@ -750,6 +750,7 @@ function renderDomainView(el, d, domain) {
 const sid = params.get('sid');
 const domain = params.get('domain');
 const el = document.getElementById('detail');
+(async () => {
 
 if (!sid) {
     el.innerHTML = `<h1 style="color:var(--neon-pink);">[ ERROR: SID NOT SPECIFIED ]</h1>`;
@@ -898,6 +899,7 @@ try {
         </div>`;
 }
 
+})();
 // Banner logic: Show "Too many requests" after 5 seconds, only once.
 setTimeout(() => {
     if (localStorage.getItem('donateBannerShown')) return;
