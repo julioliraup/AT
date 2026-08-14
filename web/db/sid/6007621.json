@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "rebrand.ly",
       "domain_defanged": "rebrand[.]ly",
-      "case_id": "PD-20260813-463018",
-      "analyzed_at": "2026-08-13T09:32:46.582Z",
+      "case_id": "PD-20260814-463018",
+      "analyzed_at": "2026-08-14T14:30:27.173Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a000ae-6f6c-7532-83ae-5af6a2f54751/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,27 +75,20 @@
       },
       "infrastructure": {
         "ip": "104.26.0.193",
-        "ipinfo": {
-          "ip": "104.26.0.193",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "2606:4700:20::681a:c1",
-            "2606:4700:20::681a:1c1",
-            "2606:4700:20::ac43:492a"
+          "A": [
+            "104.26.0.193",
+            "104.26.1.193",
+            "172.67.73.42"
           ],
           "MX": [
             "10 inbound-smtp.us-east-1.amazonaws.com."
           ],
-          "A": [
-            "104.26.0.193",
-            "172.67.73.42",
-            "104.26.1.193"
+          "AAAA": [
+            "2606:4700:20::ac43:492a",
+            "2606:4700:20::681a:1c1",
+            "2606:4700:20::681a:c1"
           ],
           "NS": [
             "courtney.ns.cloudflare.com.",
@@ -101,14 +98,7 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -236,7 +226,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rebrand.ly/g59jl7z)\"; flow:established,to_server; http.uri; content:\"/g59jl7z\"; startswith; fast_pattern; http.host; content:\"rebrand.ly\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007621; classtype:social-engineering; sid:6007621; rev:1; metadata: signature_severity Major, created_et 2026_08_08;)",
-  "updated_at": "2026-08-14T06:57:57.530879+00:00",
+  "updated_at": "2026-08-14T16:09:02.445449+00:00",
   "probe": {
     "dns": "104.26.0.193",
     "whois": true,
