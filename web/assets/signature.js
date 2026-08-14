@@ -747,6 +747,7 @@ function renderDomainView(el, d, domain) {
     </div>`;
 }
 
+const params = new URLSearchParams(window.location.search);
 const sid = params.get('sid');
 const domain = params.get('domain');
 const el = document.getElementById('detail');
