@@ -72,28 +72,37 @@
     "phishdestroy": {
       "domain": "oauthcomcast.vercel.app",
       "domain_defanged": "oauthcomcast[.]vercel[.]app",
-      "case_id": "PD-20260812-544F8D",
-      "analyzed_at": "2026-08-12T13:27:31.891Z",
+      "case_id": "PD-20260814-544F8D",
+      "analyzed_at": "2026-08-14T05:54:48.296Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff628-1c35-7753-8f3f-921891b82287.png",
           "url": "https://urlscan.io/result/019ff628-1c35-7753-8f3f-921891b82287/",
-          "pending": true
+          "title": "Sign in to Xfinity"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.194",
+        "ip": "216.198.79.66",
         "ipinfo": {
-          "ip": "64.29.17.194",
+          "ip": "216.198.79.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -102,8 +111,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.194",
-            "216.198.79.194"
+            "216.198.79.66",
+            "64.29.17.66"
           ]
         }
       },
@@ -239,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (oauthcomcast.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"oauthcomcast.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006312; classtype:social-engineering; sid:6006312; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:05:42.205524+00:00",
+  "updated_at": "2026-08-14T05:54:44.438323+00:00",
   "probe": {
     "dns": "216.198.79.195",
     "whois": null,

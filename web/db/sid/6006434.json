@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "afrs-4c203-r02g-ft32-jz6.pages.dev",
       "domain_defanged": "afrs-4c203-r02g-ft32-jz6[.]pages[.]dev",
-      "case_id": "PD-20260812-390C76",
-      "analyzed_at": "2026-08-12T22:30:09.990Z",
+      "case_id": "PD-20260814-390C76",
+      "analyzed_at": "2026-08-14T06:01:49.987Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff818-e847-702e-87d8-73a246a96bcc/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffedb-383c-775e-bdac-a2fa6f5b2e74.png",
+          "url": "https://urlscan.io/result/019ffedb-383c-775e-bdac-a2fa6f5b2e74/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,10 +111,6 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.47.123",
-            "172.66.44.133"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2f7b",
             "2606:4700:310c::ac42:2c85"
@@ -113,6 +118,10 @@
           "NS": [
             "rob.ns.cloudflare.com.",
             "sharon.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.47.123",
+            "172.66.44.133"
           ]
         }
       },
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (afrs-4c203-r02g-ft32-jz6.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"afrs-4c203-r02g-ft32-jz6.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006434; classtype:social-engineering; sid:6006434; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:12:39.634980+00:00",
+  "updated_at": "2026-08-14T06:01:47.869588+00:00",
   "probe": {
     "dns": "172.66.44.133",
     "whois": null,

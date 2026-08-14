@@ -74,21 +74,82 @@
     "phishdestroy": {
       "domain": "imagorad.com.br",
       "domain_defanged": "imagorad[.]com[.]br",
-      "case_id": "PD-20260812-371539",
-      "analyzed_at": "2026-08-12T11:39:47.422Z",
+      "case_id": "PD-20260814-371539",
+      "analyzed_at": "2026-08-14T04:52:09.850Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "malware"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Business/Economy, Phishing (alphaMountain.ai)",
+            "Forcepoint ThreatSeeker": "health",
+            "Google": "gambling"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ff5c5-785c-72fc-8151-e0cce6425561.png",
           "url": "https://urlscan.io/result/019ff5c5-785c-72fc-8151-e0cce6425561/",
-          "pending": true
+          "title": "Imago Radiologia Odontológica | exames de imagem odontológica"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "malware",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -108,14 +169,14 @@
             "0 vade-in1.mail.dreamhost.com.",
             "0 vade-in2.mail.dreamhost.com."
           ],
-          "A": [
-            "18.231.32.178"
-          ],
           "NS": [
             "ns-1432.awsdns-51.org.",
             "ns-1987.awsdns-56.co.uk.",
             "ns-407.awsdns-50.com.",
             "ns-701.awsdns-23.net."
+          ],
+          "A": [
+            "18.231.32.178"
           ]
         }
       },
@@ -251,12 +312,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (imagorad.com.br/prot/)\"; flow:established,to_server; http.uri; content:\"/prot/\"; startswith; fast_pattern; http.host; content:\"imagorad.com.br\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004834; classtype:social-engineering; sid:6004834; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-13T08:42:14.481577+00:00",
+  "updated_at": "2026-08-14T04:52:05.859114+00:00",
   "probe": {
     "dns": "2.24.87.49",
     "whois": true,

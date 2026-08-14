@@ -73,21 +73,31 @@
     "phishdestroy": {
       "domain": "mailbox-dpkjr4w7vaw1.edgeone.dev",
       "domain_defanged": "mailbox-dpkjr4w7vaw1[.]edgeone[.]dev",
-      "case_id": "PD-20260812-4643D8",
-      "analyzed_at": "2026-08-12T22:33:03.909Z",
+      "case_id": "PD-20260814-4643D8",
+      "analyzed_at": "2026-08-14T06:04:50.724Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff81b-8fa8-71bb-8c6a-d04af6e9be99.png",
           "url": "https://urlscan.io/result/019ff81b-8fa8-71bb-8c6a-d04af6e9be99/",
-          "pending": true
+          "title": "Account Verification"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -97,8 +107,8 @@
         "dns": {
           "A": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
-            "43.174.247.29",
-            "43.174.246.29"
+            "43.174.246.29",
+            "43.174.247.29"
           ],
           "AAAA": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
@@ -110,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -233,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mailbox-dpkjr4w7vaw1.edgeone.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mailbox-dpkjr4w7vaw1.edgeone.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006477; classtype:social-engineering; sid:6006477; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:14:14.453701+00:00",
+  "updated_at": "2026-08-14T06:04:45.428618+00:00",
   "probe": {
     "dns": "43.174.246.29",
     "whois": null,

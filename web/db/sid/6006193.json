@@ -72,28 +72,36 @@
     "phishdestroy": {
       "domain": "doc-mkvelinb.vercel.app",
       "domain_defanged": "doc-mkvelinb[.]vercel[.]app",
-      "case_id": "PD-20260812-BCCBF1",
-      "analyzed_at": "2026-08-12T13:17:57.651Z",
+      "case_id": "PD-20260814-BCCBF1",
+      "analyzed_at": "2026-08-14T05:47:13.726Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff61f-5915-7502-b4c8-9e264321f86b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff61f-5915-7502-b4c8-9e264321f86b.png",
+          "url": "https://urlscan.io/result/019ff61f-5915-7502-b4c8-9e264321f86b/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.66",
+        "ip": "216.198.79.130",
         "ipinfo": {
-          "ip": "64.29.17.66",
+          "ip": "216.198.79.130",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -102,8 +110,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.66",
-            "216.198.79.66"
+            "216.198.79.130",
+            "64.29.17.130"
           ]
         }
       },
@@ -239,12 +247,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (doc-mkvelinb.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"doc-mkvelinb.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006193; classtype:social-engineering; sid:6006193; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T10:00:15.590049+00:00",
+  "updated_at": "2026-08-14T05:47:08.606934+00:00",
   "probe": {
     "dns": "64.29.17.195",
     "whois": null,

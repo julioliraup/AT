@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "factiliate.de",
       "domain_defanged": "factiliate[.]de",
-      "case_id": "PD-20260812-39D2C3",
-      "analyzed_at": "2026-08-12T13:22:12.525Z",
+      "case_id": "PD-20260814-39D2C3",
+      "analyzed_at": "2026-08-14T05:50:43.132Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "AT&T"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff623-3cab-76cb-ba07-9ff1f8f01919.png",
           "url": "https://urlscan.io/result/019ff623-3cab-76cb-ba07-9ff1f8f01919/",
-          "pending": true
+          "title": "Willkommen auf factiliate.de"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: AT&T",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,6 +112,9 @@
           "asn": "AS24940"
         },
         "dns": {
+          "MX": [
+            "10 ."
+          ],
           "A": [
             "116.202.9.166",
             "116.202.21.136",
@@ -113,13 +125,10 @@
             "2a01:4f8:c2c:abf5::1",
             "2a01:4f8:c010:3f9c::1"
           ],
-          "MX": [
-            "10 ."
-          ],
           "NS": [
-            "ns3.domainoffensive.net.",
             "ns1.domainoffensive.de.",
-            "ns2.domainoffensive.eu."
+            "ns2.domainoffensive.eu.",
+            "ns3.domainoffensive.net."
           ]
         }
       },
@@ -255,12 +264,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.factiliate.de/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.factiliate.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006247; classtype:social-engineering; sid:6006247; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T10:02:33.468199+00:00",
+  "updated_at": "2026-08-14T05:50:40.013244+00:00",
   "probe": {
     "dns": "116.202.21.136",
     "whois": true,

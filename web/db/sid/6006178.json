@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp12ct-kamvik-biz-prondor-hazsel.pages.dev",
       "domain_defanged": "sp12ct-kamvik-biz-prondor-hazsel[.]pages[.]dev",
-      "case_id": "PD-20260812-514744",
-      "analyzed_at": "2026-08-12T13:16:57.071Z",
+      "case_id": "PD-20260814-514744",
+      "analyzed_at": "2026-08-14T05:46:16.671Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff61e-6c6d-736a-825b-35fd4e6cd1ec.png",
           "url": "https://urlscan.io/result/019ff61e-6c6d-736a-825b-35fd4e6cd1ec/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.173",
+        "ip": "172.66.47.83",
         "ipinfo": {
-          "ip": "172.66.44.173",
+          "ip": "172.66.47.83",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +116,8 @@
             "2606:4700:310c::ac42:2f53"
           ],
           "A": [
-            "172.66.44.173",
-            "172.66.47.83"
+            "172.66.47.83",
+            "172.66.44.173"
           ],
           "NS": [
             "kobe.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp12ct-kamvik-biz-prondor-hazsel.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp12ct-kamvik-biz-prondor-hazsel.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006178; classtype:social-engineering; sid:6006178; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T09:59:47.847020+00:00",
+  "updated_at": "2026-08-14T05:46:13.391045+00:00",
   "probe": {
     "dns": "172.66.47.83",
     "whois": null,

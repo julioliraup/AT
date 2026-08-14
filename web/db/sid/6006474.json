@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "acessorapidonugoldvip.online",
       "domain_defanged": "acessorapidonugoldvip[.]online",
-      "case_id": "PD-20260812-253706",
-      "analyzed_at": "2026-08-12T22:32:53.332Z",
+      "case_id": "PD-20260814-253706",
+      "analyzed_at": "2026-08-14T06:04:36.774Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Nubank"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fce9e-aeb2-760d-8f22-d59fc53e55a0.png",
+          "url": "https://urlscan.io/result/019fce9e-aeb2-760d-8f22-d59fc53e55a0/",
+          "title": "Verificação de Conta"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Nubank",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "129.121.81.241",
+        "ipinfo": {
+          "ip": "129.121.81.241",
+          "hostname": "129-121-81-241.unifiedlayer.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (acessorapidonugoldvip.online/presell/index.html)\"; flow:established,to_server; http.uri; content:\"/presell/index.html\"; startswith; fast_pattern; http.host; content:\"acessorapidonugoldvip.online\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006474; classtype:social-engineering; sid:6006474; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:14:07.399142+00:00",
+  "updated_at": "2026-08-14T06:04:33.249640+00:00",
   "probe": {
     "dns": null,
     "whois": true,

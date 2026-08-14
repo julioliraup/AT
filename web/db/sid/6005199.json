@@ -139,29 +139,92 @@
     "phishdestroy": {
       "domain": "ifind-maps-recover.com",
       "domain_defanged": "ifind-maps-recover[.]com",
-      "case_id": "PD-20260812-1557D8",
-      "analyzed_at": "2026-08-12T12:04:54.043Z",
+      "case_id": "PD-20260814-1557D8",
+      "analyzed_at": "2026-08-14T05:09:26.254Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing, Newly Registered (alphaMountain.ai)",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "phishing and other frauds",
+            "Google": "technology"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fbad6-fab3-7018-a861-49a3843ee5b5.png",
+          "url": "https://urlscan.io/result/019fbad6-fab3-7018-a861-49a3843ee5b5/",
+          "title": "Geräte suchen — Apple iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Atak Domain Bilgi Teknolojileri A.S.",
         "created": "2026-07-14T00:53:13Z",
         "expires": "2027-07-14T00:53:13Z",
-        "age_days": 29,
+        "age_days": 31,
         "nameservers": [
           "CNS43.WEBHOSTBOX.NET",
           "CNS44.WEBHOSTBOX.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "108.167.146.200",
+        "ipinfo": {
+          "ip": "108.167.146.200",
+          "hostname": "108-167-146-200.unifiedlayer.com",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": null
       },
       "report_to": {
@@ -173,7 +236,14 @@
           "method": "form",
           "iana_ids": "1601"
         },
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -296,12 +366,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ifind-maps-recover.com/FL26/)\"; flow:established,to_server; http.uri; content:\"/FL26/\"; startswith; fast_pattern; http.host; content:\"ifind-maps-recover.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005199; classtype:social-engineering; sid:6005199; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-13T09:04:32.855871+00:00",
+  "updated_at": "2026-08-14T05:09:21.935267+00:00",
   "probe": {
     "dns": "108.167.146.200",
     "whois": true,

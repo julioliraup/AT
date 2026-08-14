@@ -49,21 +49,69 @@
     "phishdestroy": {
       "domain": "utensil-steep-dk.s3.ap-southeast-1.amazonaws.com",
       "domain_defanged": "utensil-steep-dk[.]s3[.]ap-southeast-1[.]amazonaws[.]com",
-      "case_id": "PD-20260812-B413BF",
-      "analyzed_at": "2026-08-12T11:29:38.528Z",
+      "case_id": "PD-20260814-B413BF",
+      "analyzed_at": "2026-08-14T04:44:38.253Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019ff5bc-2dd9-75e8-9039-5ee9f4210437/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/019ff5bc-2dd9-75e8-9039-5ee9f4210437.png",
+          "url": "https://urlscan.io/result/019ff5bc-2dd9-75e8-9039-5ee9f4210437/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,21 +119,24 @@
         "ip": "s3-r-w.ap-southeast-1.amazonaws.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
+          "AAAA": [
             "s3-r-w.ap-southeast-1.amazonaws.com."
           ],
           "A": [
             "s3-r-w.ap-southeast-1.amazonaws.com.",
-            "52.219.132.31",
-            "52.219.124.7",
-            "3.5.149.104",
-            "3.5.151.224",
-            "52.219.132.227",
+            "3.5.147.20",
+            "3.5.147.167",
+            "3.5.147.86",
+            "52.219.132.55",
+            "3.5.151.254",
+            "3.5.149.21",
             "3.5.147.100",
-            "52.219.164.122",
-            "3.5.149.6"
+            "52.219.129.71"
           ],
-          "AAAA": [
+          "CNAME": [
+            "s3-r-w.ap-southeast-1.amazonaws.com."
+          ],
+          "MX": [
             "s3-r-w.ap-southeast-1.amazonaws.com."
           ],
           "NS": [
@@ -94,15 +145,19 @@
             "ns-1039.awsdns-01.org.",
             "ns-1719.awsdns-22.co.uk.",
             "ns-275.awsdns-34.com."
-          ],
-          "CNAME": [
-            "s3-r-w.ap-southeast-1.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -225,14 +280,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (utensil-steep-dk.s3.ap-southeast-1.amazonaws.com/VSPt3S5ZdJKeeK?email=redacted@abuse.ionos.com)\"; flow:established,to_server; http.uri; content:\"/VSPt3S5ZdJKeeK?email=redacted@abuse.ionos.com\"; startswith; fast_pattern; http.host; content:\"utensil-steep-dk.s3.ap-southeast-1.amazonaws.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004733; classtype:social-engineering; sid:6004733; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-13T08:36:07.755665+00:00",
+  "updated_at": "2026-08-14T04:44:34.459661+00:00",
   "probe": {
-    "dns": "52.219.129.35",
+    "dns": "52.219.132.195",
     "whois": null,
     "status": "active"
   }

@@ -73,28 +73,38 @@
     "phishdestroy": {
       "domain": "kuaocainloin.webflow.io",
       "domain_defanged": "kuaocainloin[.]webflow[.]io",
-      "case_id": "PD-20260812-1814D9",
-      "analyzed_at": "2026-08-12T13:09:28.761Z",
+      "case_id": "PD-20260814-1814D9",
+      "analyzed_at": "2026-08-14T05:41:08.497Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff617-953d-71d9-948d-cede7c324985/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Crypto",
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffc0e-2a61-70ae-b590-20579d8cfd4d.png",
+          "url": "https://urlscan.io/result/019ffc0e-2a61-70ae-b590-20579d8cfd4d/",
+          "title": "Kucoin Login: Accessing Your Kucoin Account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Crypto, Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.64.151.8",
+        "ip": "104.18.36.248",
         "ipinfo": {
-          "ip": "172.64.151.8",
+          "ip": "104.18.36.248",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +113,12 @@
         },
         "dns": {
           "AAAA": [
-            "2a06:98c1:3105::6812:24f8",
-            "2a06:98c1:3102::ac40:9708"
+            "2a06:98c1:3102::ac40:9708",
+            "2a06:98c1:3105::6812:24f8"
           ],
           "A": [
-            "172.64.151.8",
-            "104.18.36.248"
+            "104.18.36.248",
+            "172.64.151.8"
           ]
         }
       },
@@ -244,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kuaocainloin.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kuaocainloin.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006093; classtype:social-engineering; sid:6006093; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T09:56:36.916566+00:00",
+  "updated_at": "2026-08-14T05:41:05.260793+00:00",
   "probe": {
     "dns": "172.64.151.8",
     "whois": true,

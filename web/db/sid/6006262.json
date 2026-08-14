@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp10ct-lafor-biz8-durem-zikel.pages.dev",
       "domain_defanged": "sp10ct-lafor-biz8-durem-zikel[.]pages[.]dev",
-      "case_id": "PD-20260812-2E0AEC",
-      "analyzed_at": "2026-08-12T13:23:32.045Z",
+      "case_id": "PD-20260814-2E0AEC",
+      "analyzed_at": "2026-08-14T05:51:43.401Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff624-7146-7077-8430-5d4d92d33fc5.png",
           "url": "https://urlscan.io/result/019ff624-7146-7077-8430-5d4d92d33fc5/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2f96",
+            "2606:4700:310c::ac42:2c6a"
+          ],
           "A": [
             "172.66.47.150",
             "172.66.44.106"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c6a",
-            "2606:4700:310c::ac42:2f96"
           ],
           "NS": [
             "dane.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct-lafor-biz8-durem-zikel.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct-lafor-biz8-durem-zikel.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006262; classtype:social-engineering; sid:6006262; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:03:31.300099+00:00",
+  "updated_at": "2026-08-14T05:51:40.018317+00:00",
   "probe": {
     "dns": "172.66.44.106",
     "whois": null,

@@ -49,22 +49,35 @@
     "phishdestroy": {
       "domain": "xfinitysupportdesk.com",
       "domain_defanged": "xfinitysupportdesk[.]com",
-      "case_id": "PD-20260812-51D424",
-      "analyzed_at": "2026-08-12T13:39:16.034Z",
+      "case_id": "PD-20260814-51D424",
+      "analyzed_at": "2026-08-14T05:57:11.238Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd056-cf88-70eb-b483-27672330da1d.png",
+          "url": "https://urlscan.io/result/019fd056-cf88-70eb-b483-27672330da1d/",
+          "title": "Xfinity"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "IONOS SE",
         "created": "2026-05-25T20:30:58Z",
         "expires": "2027-05-25T20:30:58Z",
-        "age_days": 78,
+        "age_days": 80,
         "nameservers": [
           "NS1030.UI-DNS.DE",
           "NS1037.UI-DNS.BIZ",
@@ -73,7 +86,15 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2001:8d8:100f:f000::212",
+        "ipinfo": {
+          "ip": "2001:8d8:100f:f000::212",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS8560 IONOS SE",
+          "asn": "AS8560"
+        },
         "dns": null
       },
       "report_to": {
@@ -85,7 +106,14 @@
           "method": "form",
           "iana_ids": "83"
         },
-        "hosting": null
+        "hosting": {
+          "name": "CRONON-AS",
+          "abuse": "abuse@vautron.de",
+          "url": "mailto:abuse@vautron.de",
+          "logo": "https://i.ibb.co/F4bxDB72/pr-CRONON-AS.png",
+          "method": "email",
+          "asn": "AS8560"
+        }
       },
       "report_services": [
         {
@@ -208,12 +236,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xfinitysupportdesk.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"xfinitysupportdesk.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006354; classtype:social-engineering; sid:6006354; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:08:01.205135+00:00",
+  "updated_at": "2026-08-14T05:57:07.019766+00:00",
   "probe": {
     "dns": null,
     "whois": true,

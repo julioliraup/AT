@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "myshoip-7-11-com-tw.eknyvgt9.xyz",
       "domain_defanged": "myshoip-7-11-com-tw[.]eknyvgt9[.]xyz",
-      "case_id": "PD-20260812-6B3B25",
-      "analyzed_at": "2026-08-12T13:17:48.404Z",
+      "case_id": "PD-20260814-6B3B25",
+      "analyzed_at": "2026-08-14T05:46:59.491Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "7-Eleven"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc72f-1bf2-76a0-a1db-fe6e88ce8594.png",
+          "url": "https://urlscan.io/result/019fc72f-1bf2-76a0-a1db-fe6e88ce8594/",
+          "title": "7-ELEVEN 賣貨便"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: 7-Eleven",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "108.165.20.136",
+        "ipinfo": {
+          "ip": "108.165.20.136",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS140869 Turing Group Limited",
+          "asn": "AS140869"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "TGL-AS-AP",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS140869"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (myshoip-7-11-com-tw.eknyvgt9.xyz/ht/kefu.php?ClickID=56&amount=0.00)\"; flow:established,to_server; http.uri; content:\"/ht/kefu.php?ClickID=56&amount=0.00\"; startswith; fast_pattern; http.host; content:\"myshoip-7-11-com-tw.eknyvgt9.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006190; classtype:social-engineering; sid:6006190; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T10:00:10.069686+00:00",
+  "updated_at": "2026-08-14T05:46:55.960557+00:00",
   "probe": {
     "dns": null,
     "whois": true,

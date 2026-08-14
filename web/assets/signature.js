@@ -729,71 +729,209 @@ function renderDomainView(el, d, domain) {
     </div>`;
 }
 
-async function load() {
-    const params = new URLSearchParams(location.search);
-    const sid = params.get('sid');
-    const domain = params.get('domain');
-    const el = document.getElementById('detail');
+// Updated load function with domain validation and sanitization
 
-    if (!sid) {
-        el.innerHTML = `<h1 style="color:var(--neon-pink);">[ ERROR: SID NOT SPECIFIED ]</h1>`;
+const params = new URLSearchParams(location.search);
+const sid = params.get('sid');
+const rawDomain = params.get('domain');
+const el = document.getElementById('detail');
+
+if (!sid) {
+    el.innerHTML = `<h1 style="color:var(--neon-pink);">[ ERROR: SID NOT SPECIFIED ]</h1>`;
+    return;
+}
+
+try {
+    const resp = await fetch(`./db/sid/${sid}.json`);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const d = await resp.json();
+
+    // Domain validation helper
+    const isValidDomain = (str) => /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(str);
+    // Use native DOM textContent based escaping to prevent XSS
+    const escapeHTML = (str) => {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    };
+
+    if (rawDomain) {
+        // Basic format validation
+        if (!isValidDomain(rawDomain)) {
+            el.innerHTML = `<div class="card" style="border-color:var(--neon-pink); padding:20px;">
+                    <h2 style="color:var(--neon-pink);">Invalid domain parameter</h2>
+                    <p>The provided domain does not match a safe pattern and will not be displayed.</p>
+                </div>`;
+            return;
+        }
+        const safeDomain = escapeHTML(rawDomain);
+        document.title = `${safeDomain} - SID ${d.sid} - Antiphishing`;
+        renderDomainView(el, d, safeDomain);
+
+        // DYNAMICALLY FETCH THREAT INTEL FOR SPECIFIC DOMAIN VECTORS
+        const loaderId = 'pd-loader-' + Date.now();
+        el.insertAdjacentHTML('beforeend', `<div id="${loaderId}" style="text-align:center; margin-top:40px; color:var(--cyan); font-family:'Orbitron', sans-serif;">[ FETCHING DYNAMIC THREAT INTEL... ]</div>`);
+
+        fetch(`https://analyze.destroy.tools/v1/analyze?domain=${encodeURIComponent(rawDomain)}`)
+            .then(r => {
+                if (!r.ok) throw new Error('API Error');
+                return r.json();
+            })
+            .then(pdData => {
+                document.getElementById(loaderId)?.remove();
+                const pdHtml = buildPhishDestroyHtml(pdData);
+                const mapHtml = buildGlobalMapHtml({ intel: { phishdestroy: pdData } });
+                if (pdHtml || mapHtml) {
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = pdHtml + mapHtml;
+                    el.appendChild(wrapper);
+                }
+            })
+            .catch(err => {
+                console.error('[phishdestroy] dynamic fetch error:', err);
+                const loader = document.getElementById(loaderId);
+                if (loader) loader.innerHTML = `<span style="color:var(--text-muted); font-size:0.85em;">[ LIVE INTEL UNAVAILABLE ]</span>`;
+            });
+
         return;
     }
 
-    try {
-        const resp = await fetch(`./db/sid/${sid}.json`);
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const d = await resp.json();
+    // ... rest of original logic unchanged ...
+    document.title = `SID ${d.sid} - Antiphishing`;
+    // existing rendering code follows unchanged
+    const severityClass = d.severity?.toLowerCase() === 'high' ? 'high' : '';
+    const actionClass = d.action?.toLowerCase() === 'alert' ? 'alert' : '';
+    // (the remainder of the function stays as before)
+    // Note: No further modifications needed here
+    //
+    const refs = Array.isArray(d.references) && d.references.length > 0;
+    const refsHtml = refs
+        ? `<ul class="ref-list">${d.references.map(r => `<li>${r}</li>`).join('')}</ul>`
+        : `<span class="data-value">No references</span>`;
+    const staleBadge = d.rule_status === 'stale'
+        ? '<span class="badge stale" style="margin-left:8px;">STALE</span>'
+        : '';
+    const probeHtml = d.probe ? `
+            <div class="data-group" style="margin-top:20px;">
+                <span class="data-label">Rule Health</span>
+                <span class="data-value" style="color:var(--neon-pink);">
+                    DNS: ${d.probe.dns === true ? 'responsive' : d.probe.dns === false ? 'unresponsive' : 'unknown'}
+                    &#x2022;
+                    WHOIS: ${d.probe.whois === true ? 'responsive' : d.probe.whois === false ? 'unresponsive' : 'unavailable'}
+                </span>
+            </div>
+            ${d.rule_status === 'stale' ? `<div class="data-group stale-note">
+                <span class="data-label">Status</span>
+                <span class="data-value">This signature is probably stale: DNS + WHOIS probes are unresponsive.</span>
+            </div>` : ''}
+        ` : '';
+    const proto = d.protocol || '';
+    const protoBadgeHtml = (proto === 'dns' || proto === 'tls')
+        ? protocolBadge(proto)
+        : '';
+    const pdData = d.intel?.phishdestroy;
+    const ipinfoFallback = d.intel?.ipinfo || pdData?.infrastructure?.ipinfo;
+    el.innerHTML = `
+        <div class="card glow" style="border-top:4px solid var(--neon-pink);">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:15px;margin-bottom:20px;">
+                <h1 style="margin:0;font-size:2.5em;color:var(--text);">SID <span style="color:var(--cyan);">${d.sid}</span></h1>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                    ${protoBadgeHtml}
+                    <span class="badge ${severityClass}">${val(d.severity, 'Unknown')} Severity</span>
+                    <span class="badge ${actionClass}">${val(d.action, 'Unknown')}</span>
+                    ${staleBadge}
+                </div>
+            </div>
+            <h2 style="color:var(--text-muted);font-size:1.2em;margin-bottom:30px;">${val(d.msg, 'No description')}</h2>
+            <h2 class="section-title">SIGNATURE METADATA</h2>
+            <div class="grid-2">
+                <div class="data-group"><span class="data-label">Protocol</span><span class="data-value" style="text-transform:uppercase;">${val(d.protocol)}</span></div>
+                <div class="data-group"><span class="data-label">Class Type</span><span class="data-value">${val(d.classtype)}</span></div>
+                <div class="data-group"><span class="data-label">Revision</span><span class="data-value">${val(d.rev)}</span></div>
+                <div class="data-group"><span class="data-label">Risk Score</span><span class="data-value">${val(d.risk_score)}</span></div>
+            </div>
+            <div class="data-group" style="margin-top:20px;"><span class="data-label">Raw Rule</span><pre class="code-block">${val(d.rule_raw, 'Rule unavailable')}</pre></div>
+            ${probeHtml}
+            <div class="data-group" style="margin-top:20px;"><span class="data-label">References</span>${refsHtml}</div>
+        </div>
+        ${buildOtxHtml(d.intel?.alienvault, ipinfoFallback)}
+        ${buildPhishDestroyHtml(pdData)}
+        ${buildGlobalMapHtml(d)}`;
+} catch (err) {
+    console.error('[signature]', err);
+    el.innerHTML = `
+        <div class="card" style="border-color:var(--neon-pink);text-align:center;padding:50px;">
+            <h1 style="color:var(--neon-pink);">[ DATA_CORRUPTED // NOT_FOUND ]</h1>
+            <p>The signature data could not be retrieved from the database.</p>
+            <p style="color:var(--text-muted);font-size:0.85em;">${err.message}</p>
+        </div>`;
+}
+}
 
-        if (domain) {
-            document.title = `${domain} - SID ${d.sid} - Antiphishing`;
-            renderDomainView(el, d, domain);
-            
-            // DYNAMICALLY FETCH THREAT INTEL FOR SPECIFIC DOMAIN VECTORS
-            const loaderId = 'pd-loader-' + Date.now();
-            el.insertAdjacentHTML('beforeend', `<div id="${loaderId}" style="text-align:center; margin-top:40px; color:var(--cyan); font-family:'Orbitron', sans-serif;">[ FETCHING DYNAMIC THREAT INTEL... ]</div>`);
-            
-            fetch(`https://analyze.destroy.tools/v1/analyze?domain=${domain}`)
-                .then(r => {
-                    if (!r.ok) throw new Error('API Error');
-                    return r.json();
-                })
-                .then(pdData => {
-                    document.getElementById(loaderId)?.remove();
-                    // Reuse existing components without altering the API
-                    const pdHtml = buildPhishDestroyHtml(pdData);
-                    const mapHtml = buildGlobalMapHtml({ intel: { phishdestroy: pdData } });
-                    
-                    if (pdHtml || mapHtml) {
-                        const wrapper = document.createElement('div');
-                        wrapper.innerHTML = pdHtml + mapHtml;
-                        el.appendChild(wrapper);
-                    }
-                })
-                .catch(err => {
-                    console.error('[phishdestroy] dynamic fetch error:', err);
-                    const loader = document.getElementById(loaderId);
-                    if (loader) loader.innerHTML = `<span style="color:var(--text-muted); font-size:0.85em;">[ LIVE INTEL UNAVAILABLE ]</span>`;
-                });
 
-            return;
-        }
+const sid = params.get('sid');
+const domain = params.get('domain');
+const el = document.getElementById('detail');
 
-        document.title = `SID ${d.sid} - Antiphishing`;
+if (!sid) {
+    el.innerHTML = `<h1 style="color:var(--neon-pink);">[ ERROR: SID NOT SPECIFIED ]</h1>`;
+    return;
+}
 
-        const severityClass = d.severity?.toLowerCase() === 'high' ? 'high' : '';
-        const actionClass = d.action?.toLowerCase() === 'alert' ? 'alert' : '';
+try {
+    const resp = await fetch(`./db/sid/${sid}.json`);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const d = await resp.json();
 
-        const refs = Array.isArray(d.references) && d.references.length > 0;
-        const refsHtml = refs
-            ? `<ul class="ref-list">${d.references.map(r => `<li>${r}</li>`).join('')}</ul>`
-            : `<span class="data-value">No references</span>`;
+    if (domain) {
+        document.title = `${domain} - SID ${d.sid} - Antiphishing`;
+        renderDomainView(el, d, domain);
 
-        const staleBadge = d.rule_status === 'stale'
-            ? '<span class="badge stale" style="margin-left:8px;">STALE</span>'
-            : '';
+        // DYNAMICALLY FETCH THREAT INTEL FOR SPECIFIC DOMAIN VECTORS
+        const loaderId = 'pd-loader-' + Date.now();
+        el.insertAdjacentHTML('beforeend', `<div id="${loaderId}" style="text-align:center; margin-top:40px; color:var(--cyan); font-family:'Orbitron', sans-serif;">[ FETCHING DYNAMIC THREAT INTEL... ]</div>`);
 
-        const probeHtml = d.probe ? `
+        fetch(`https://analyze.destroy.tools/v1/analyze?domain=${domain}`)
+            .then(r => {
+                if (!r.ok) throw new Error('API Error');
+                return r.json();
+            })
+            .then(pdData => {
+                document.getElementById(loaderId)?.remove();
+                // Reuse existing components without altering the API
+                const pdHtml = buildPhishDestroyHtml(pdData);
+                const mapHtml = buildGlobalMapHtml({ intel: { phishdestroy: pdData } });
+
+                if (pdHtml || mapHtml) {
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = pdHtml + mapHtml;
+                    el.appendChild(wrapper);
+                }
+            })
+            .catch(err => {
+                console.error('[phishdestroy] dynamic fetch error:', err);
+                const loader = document.getElementById(loaderId);
+                if (loader) loader.innerHTML = `<span style="color:var(--text-muted); font-size:0.85em;">[ LIVE INTEL UNAVAILABLE ]</span>`;
+            });
+
+        return;
+    }
+
+    document.title = `SID ${d.sid} - Antiphishing`;
+
+    const severityClass = d.severity?.toLowerCase() === 'high' ? 'high' : '';
+    const actionClass = d.action?.toLowerCase() === 'alert' ? 'alert' : '';
+
+    const refs = Array.isArray(d.references) && d.references.length > 0;
+    const refsHtml = refs
+        ? `<ul class="ref-list">${d.references.map(r => `<li>${r}</li>`).join('')}</ul>`
+        : `<span class="data-value">No references</span>`;
+
+    const staleBadge = d.rule_status === 'stale'
+        ? '<span class="badge stale" style="margin-left:8px;">STALE</span>'
+        : '';
+
+    const probeHtml = d.probe ? `
             <div class="data-group" style="margin-top:20px;">
                 <span class="data-label">Rule Health</span>
                 <span class="data-value" style="color:var(--neon-pink);">
@@ -809,15 +947,15 @@ async function load() {
             </div>` : ''}
         ` : '';
 
-        const proto = d.protocol || '';
-        const protoBadgeHtml = (proto === 'dns' || proto === 'tls')
-            ? protocolBadge(proto)
-            : '';
+    const proto = d.protocol || '';
+    const protoBadgeHtml = (proto === 'dns' || proto === 'tls')
+        ? protocolBadge(proto)
+        : '';
 
-        const pdData = d.intel?.phishdestroy;
-        const ipinfoFallback = d.intel?.ipinfo || pdData?.infrastructure?.ipinfo;
+    const pdData = d.intel?.phishdestroy;
+    const ipinfoFallback = d.intel?.ipinfo || pdData?.infrastructure?.ipinfo;
 
-        el.innerHTML = `
+    el.innerHTML = `
         <div class="card glow" style="border-top:4px solid var(--neon-pink);">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;
                         flex-wrap:wrap;gap:15px;margin-bottom:20px;">
@@ -872,15 +1010,15 @@ async function load() {
         ${buildPhishDestroyHtml(pdData)}
         ${buildGlobalMapHtml(d)}`;
 
-    } catch (err) {
-        console.error('[signature]', err);
-        el.innerHTML = `
+} catch (err) {
+    console.error('[signature]', err);
+    el.innerHTML = `
         <div class="card" style="border-color:var(--neon-pink);text-align:center;padding:50px;">
             <h1 style="color:var(--neon-pink);">[ DATA_CORRUPTED // NOT_FOUND ]</h1>
             <p>The signature data could not be retrieved from the database.</p>
             <p style="color:var(--text-muted);font-size:0.85em;">${err.message}</p>
         </div>`;
-    }
+}
 }
 
 load();

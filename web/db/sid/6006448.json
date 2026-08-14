@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "amazon-web-inspired.vercel.app",
       "domain_defanged": "amazon-web-inspired[.]vercel[.]app",
-      "case_id": "PD-20260812-B78D3A",
-      "analyzed_at": "2026-08-12T22:30:58.550Z",
+      "case_id": "PD-20260814-B78D3A",
+      "analyzed_at": "2026-08-14T06:02:51.945Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff819-a5f9-733a-8848-ce01cffeb76a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff918-fb19-75de-bdb0-72cb636d75b0.png",
+          "url": "https://urlscan.io/result/019ff918-fb19-75de-bdb0-72cb636d75b0/",
+          "title": "Orders"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.2",
+        "ip": "64.29.17.2",
         "ipinfo": {
-          "ip": "216.198.79.2",
+          "ip": "64.29.17.2",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -79,8 +88,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.2",
-            "64.29.17.2"
+            "64.29.17.2",
+            "216.198.79.2"
           ]
         }
       },
@@ -216,14 +225,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (amazon-web-inspired.vercel.app/orders.html)\"; flow:established,to_server; http.uri; content:\"/orders.html\"; startswith; fast_pattern; http.host; content:\"amazon-web-inspired.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006448; classtype:social-engineering; sid:6006448; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:13:10.484369+00:00",
+  "updated_at": "2026-08-14T06:02:49.202092+00:00",
   "probe": {
-    "dns": "64.29.17.66",
+    "dns": "216.198.79.130",
     "whois": null,
     "status": "active"
   }

@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp5ct-furel-biz8-zamek-roniv.pages.dev",
       "domain_defanged": "sp5ct-furel-biz8-zamek-roniv[.]pages[.]dev",
-      "case_id": "PD-20260812-746929",
-      "analyzed_at": "2026-08-12T13:19:27.763Z",
+      "case_id": "PD-20260814-746929",
+      "analyzed_at": "2026-08-14T05:48:32.235Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff620-b917-70bb-bc10-d2fdbb05d555/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff7ff-1bde-7541-b441-a6069c4a1aa6.png",
+          "url": "https://urlscan.io/result/019ff7ff-1bde-7541-b441-a6069c4a1aa6/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2c5e",
+            "2606:4700:310c::ac42:2fa2"
+          ],
           "A": [
             "172.66.44.94",
             "172.66.47.162"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2fa2",
-            "2606:4700:310c::ac42:2c5e"
           ],
           "NS": [
             "dell.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct-furel-biz8-zamek-roniv.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct-furel-biz8-zamek-roniv.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006216; classtype:social-engineering; sid:6006216; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T10:01:14.710633+00:00",
+  "updated_at": "2026-08-14T05:48:29.127703+00:00",
   "probe": {
     "dns": "172.66.44.94",
     "whois": null,

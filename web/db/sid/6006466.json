@@ -49,28 +49,37 @@
     "phishdestroy": {
       "domain": "access-form-82h6.p-srkphq9l.workers.dev",
       "domain_defanged": "access-form-82h6[.]p-srkphq9l[.]workers[.]dev",
-      "case_id": "PD-20260812-54F477",
-      "analyzed_at": "2026-08-12T22:32:23.289Z",
+      "case_id": "PD-20260814-54F477",
+      "analyzed_at": "2026-08-14T06:04:03.503Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff81a-f0f9-714b-9bb4-906896b25c62.png",
           "url": "https://urlscan.io/result/019ff81a-f0f9-714b-9bb4-906896b25c62/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.39.208",
+        "ip": "172.67.148.126",
         "ipinfo": {
-          "ip": "104.21.39.208",
+          "ip": "172.67.148.126",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -83,8 +92,8 @@
             "2606:4700:3031::ac43:947e"
           ],
           "A": [
-            "104.21.39.208",
-            "172.67.148.126"
+            "172.67.148.126",
+            "104.21.39.208"
           ]
         }
       },
@@ -220,12 +229,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (access-form-82h6.p-srkphq9l.workers.dev/l/F5Q29EcNdOo)\"; flow:established,to_server; http.uri; content:\"/l/F5Q29EcNdOo\"; startswith; fast_pattern; http.host; content:\"access-form-82h6.p-srkphq9l.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006466; classtype:social-engineering; sid:6006466; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:13:47.688995+00:00",
+  "updated_at": "2026-08-14T06:03:59.757852+00:00",
   "probe": {
     "dns": "172.67.148.126",
     "whois": null,

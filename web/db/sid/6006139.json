@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "ldgre-lives-wlt.pages.dev",
       "domain_defanged": "ldgre-lives-wlt[.]pages[.]dev",
-      "case_id": "PD-20260812-743683",
-      "analyzed_at": "2026-08-12T13:13:58.725Z",
+      "case_id": "PD-20260814-743683",
+      "analyzed_at": "2026-08-14T05:43:59.990Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff61b-b3c6-710e-8c23-b8a98d3364c5/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffd53-be84-70a5-922f-113657c38c14.png",
+          "url": "https://urlscan.io/result/019ffd53-be84-70a5-922f-113657c38c14/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.187",
+        "ip": "172.66.47.69",
         "ipinfo": {
-          "ip": "172.66.44.187",
+          "ip": "172.66.47.69",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +116,8 @@
             "2606:4700:310c::ac42:2f45"
           ],
           "A": [
-            "172.66.44.187",
-            "172.66.47.69"
+            "172.66.47.69",
+            "172.66.44.187"
           ],
           "NS": [
             "patryk.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ldgre-lives-wlt.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ldgre-lives-wlt.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006139; classtype:social-engineering; sid:6006139; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T09:58:24.311701+00:00",
+  "updated_at": "2026-08-14T05:43:57.425261+00:00",
   "probe": {
     "dns": "172.66.44.187",
     "whois": null,

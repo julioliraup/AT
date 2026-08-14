@@ -72,28 +72,37 @@
     "phishdestroy": {
       "domain": "logcoder-fawn.vercel.app",
       "domain_defanged": "logcoder-fawn[.]vercel[.]app",
-      "case_id": "PD-20260812-34057D",
-      "analyzed_at": "2026-08-12T13:21:46.690Z",
+      "case_id": "PD-20260814-34057D",
+      "analyzed_at": "2026-08-14T05:50:18.073Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff622-d7c8-7610-9a59-7424ee5b3125/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "PayPal"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff77f-8996-7753-8f75-001c58d6be8b.png",
+          "url": "https://urlscan.io/result/019ff77f-8996-7753-8f75-001c58d6be8b/",
+          "title": "PayPal"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: PayPal",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.130",
+        "ip": "64.29.17.2",
         "ipinfo": {
-          "ip": "216.198.79.130",
+          "ip": "64.29.17.2",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -102,8 +111,8 @@
         },
         "dns": {
           "A": [
-            "216.198.79.130",
-            "64.29.17.130"
+            "64.29.17.2",
+            "216.198.79.2"
           ]
         }
       },
@@ -239,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.logcoder-fawn.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.logcoder-fawn.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006240; classtype:social-engineering; sid:6006240; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T10:02:21.460057+00:00",
+  "updated_at": "2026-08-14T05:50:15.232264+00:00",
   "probe": {
     "dns": "216.198.79.131",
     "whois": null,

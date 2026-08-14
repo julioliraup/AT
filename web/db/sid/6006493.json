@@ -49,29 +49,38 @@
     "phishdestroy": {
       "domain": "nazruluxd.github.io",
       "domain_defanged": "nazruluxd[.]github[.]io",
-      "case_id": "PD-20260812-47C585",
-      "analyzed_at": "2026-08-12T22:33:56.186Z",
+      "case_id": "PD-20260814-47C585",
+      "analyzed_at": "2026-08-14T06:06:05.972Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff81c-5bcf-72c9-aaa9-c0168fbf36fa/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffd5c-a036-72f8-9724-44cea3d68ea3.png",
+          "url": "https://urlscan.io/result/019ffd5c-a036-72f8-9724-44cea3d68ea3/",
+          "title": "Ledger — Lead Tracker"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "185.199.109.153",
         "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,17 +88,17 @@
           "asn": "AS54113"
         },
         "dns": {
-          "A": [
-            "185.199.108.153",
-            "185.199.109.153",
-            "185.199.110.153",
-            "185.199.111.153"
-          ],
           "AAAA": [
             "2606:50c0:8000::153",
             "2606:50c0:8001::153",
             "2606:50c0:8002::153",
             "2606:50c0:8003::153"
+          ],
+          "A": [
+            "185.199.109.153",
+            "185.199.108.153",
+            "185.199.111.153",
+            "185.199.110.153"
           ]
         }
       },
@@ -225,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (nazruluxd.github.io/Lead-Tracker)\"; flow:established,to_server; http.uri; content:\"/Lead-Tracker\"; startswith; fast_pattern; http.host; content:\"nazruluxd.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006493; classtype:social-engineering; sid:6006493; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-13T10:15:03.273470+00:00",
+  "updated_at": "2026-08-14T06:06:02.843177+00:00",
   "probe": {
     "dns": "185.199.109.153",
     "whois": true,

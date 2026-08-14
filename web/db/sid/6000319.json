@@ -55,52 +55,117 @@
     "phishdestroy": {
       "domain": "desiaustralia.com",
       "domain_defanged": "desiaustralia[.]com",
-      "case_id": "PD-20260812-66CFE2",
-      "analyzed_at": "2026-08-12T06:52:23.959Z",
+      "case_id": "PD-20260814-66CFE2",
+      "analyzed_at": "2026-08-14T00:49:58.533Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "ADMINUSLabs",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "malware"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "BitDefender": "news",
+            "Forcepoint ThreatSeeker": "news and media",
+            "alphaMountain.ai": "News (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ff4be-58c2-714c-8c51-3812681e83dc.png",
           "url": "https://urlscan.io/result/019ff4be-58c2-714c-8c51-3812681e83dc/",
-          "pending": true
+          "title": "Home - Desi Australia"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: ADMINUSLabs",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "malware",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Dreamscape Networks International Pte Ltd",
         "created": "2015-01-28T19:42:36Z",
         "expires": "2027-01-28T19:42:36Z",
-        "age_days": 4213,
+        "age_days": 4215,
         "nameservers": [
           "ARYA.NS.CLOUDFLARE.COM",
           "KIP.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "43.243.119.241",
+        "ip": "104.21.23.195",
         "ipinfo": {
-          "ip": "43.243.119.241",
-          "hostname": "wc44-test.au.syrahost.com",
-          "city": "Singapore",
-          "region": "Singapore",
-          "country": "SG",
-          "org": "AS38719 Dreamscape Networks Limited",
-          "asn": "AS38719"
+          "ip": "104.21.23.195",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
         },
         "dns": {
           "A": [
-            "43.243.119.241"
+            "104.21.23.195",
+            "172.67.213.53"
+          ],
+          "AAAA": [
+            "2606:4700:3034::6815:17c3",
+            "2606:4700:3030::ac43:d535"
           ],
           "MX": [
             "0 mail.desiaustralia.com."
           ],
           "NS": [
-            "ns2.syrahost.com.",
-            "ns1.syrahost.com."
+            "arya.ns.cloudflare.com.",
+            "kip.ns.cloudflare.com."
           ]
         }
       },
@@ -114,12 +179,12 @@
           "iana_ids": ""
         },
         "hosting": {
-          "name": "DREAMSCAPE-AS-AP Dreamscape Networks Limited, AU",
-          "abuse": "abuse@dreamscapenetworks.com",
-          "url": "mailto:abuse@dreamscapenetworks.com",
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
           "logo": "",
-          "method": "email",
-          "asn": "AS38719"
+          "method": "form",
+          "asn": "AS13335"
         }
       },
       "report_services": [
@@ -243,12 +308,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.desiaustralia.com/news/)\"; flow:established,to_server; http.uri; content:\"/news/\"; startswith; fast_pattern; http.host; content:\"www.desiaustralia.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000319; classtype:social-engineering; sid:6000319; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-13T03:15:04.946121+00:00",
+  "updated_at": "2026-08-14T00:49:54.594827+00:00",
   "probe": {
     "dns": "43.243.119.241",
     "whois": null,

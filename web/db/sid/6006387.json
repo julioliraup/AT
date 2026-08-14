@@ -72,21 +72,30 @@
     "phishdestroy": {
       "domain": "xfinity2.vercel.app",
       "domain_defanged": "xfinity2[.]vercel[.]app",
-      "case_id": "PD-20260812-701857",
-      "analyzed_at": "2026-08-12T22:27:42.386Z",
+      "case_id": "PD-20260814-701857",
+      "analyzed_at": "2026-08-14T05:59:00.704Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff816-a7a8-7477-a0c7-da0e57905c2c.png",
           "url": "https://urlscan.io/result/019ff816-a7a8-7477-a0c7-da0e57905c2c/",
-          "pending": true
+          "title": "Xfinity"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -239,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (xfinity2.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"xfinity2.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006387; classtype:social-engineering; sid:6006387; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:10:45.172739+00:00",
+  "updated_at": "2026-08-14T05:58:56.872627+00:00",
   "probe": {
     "dns": "64.29.17.131",
     "whois": null,

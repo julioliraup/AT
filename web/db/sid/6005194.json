@@ -73,21 +73,34 @@
     "phishdestroy": {
       "domain": "morlita-kig-felquro-r4x8dw26.pages.dev",
       "domain_defanged": "morlita-kig-felquro-r4x8dw26[.]pages[.]dev",
-      "case_id": "PD-20260812-437609",
-      "analyzed_at": "2026-08-12T12:04:39.128Z",
+      "case_id": "PD-20260814-437609",
+      "analyzed_at": "2026-08-14T05:09:03.088Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff5dc-3b5c-719d-be89-ac8cc70129f7/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffd4a-9462-77a0-a02a-712a77845db6.png",
+          "url": "https://urlscan.io/result/019ffd4a-9462-77a0-a02a-712a77845db6/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +115,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.44.246",
-            "172.66.47.10"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2cf6",
             "2606:4700:310c::ac42:2f0a"
+          ],
+          "A": [
+            "172.66.44.246",
+            "172.66.47.10"
           ],
           "NS": [
             "nero.ns.cloudflare.com.",
@@ -248,12 +261,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (morlita-kig-felquro-r4x8dw26.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"morlita-kig-felquro-r4x8dw26.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005194; classtype:social-engineering; sid:6005194; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-13T09:04:19.332900+00:00",
+  "updated_at": "2026-08-14T05:09:00.844851+00:00",
   "probe": {
     "dns": "172.66.47.10",
     "whois": null,

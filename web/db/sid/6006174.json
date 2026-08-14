@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "landing-0100.brighttide.info",
       "domain_defanged": "landing-0100[.]brighttide[.]info",
-      "case_id": "PD-20260812-254CCA",
-      "analyzed_at": "2026-08-12T13:16:39.777Z",
+      "case_id": "PD-20260814-254CCA",
+      "analyzed_at": "2026-08-14T05:46:00.871Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fedex"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc81e-6f37-7538-9407-cd32615eda92.png",
+          "url": "https://urlscan.io/result/019fc81e-6f37-7538-9407-cd32615eda92/",
+          "title": "Sendung verfolgen | Schweiz"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fedex",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "104.21.92.242",
+        "ipinfo": {
+          "ip": "104.21.92.242",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (landing-0100.brighttide.info/Y2gtZmVkZXgtMjAyNg/?u=161C1666&e=example@domain.invalid&s3=example&s4=domain&s5=&s6=&s7=&s8=)\"; flow:established,to_server; http.uri; content:\"/Y2gtZmVkZXgtMjAyNg/?u=161C1666&e=example@domain.invalid&s3=example&s4=domain&s5=&s6=&s7=&s8=\"; startswith; fast_pattern; http.host; content:\"landing-0100.brighttide.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006174; classtype:social-engineering; sid:6006174; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T09:59:38.921815+00:00",
+  "updated_at": "2026-08-14T05:45:56.190764+00:00",
   "probe": {
     "dns": null,
     "whois": true,

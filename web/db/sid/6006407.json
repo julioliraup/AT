@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "paywalletsecure.netlify.app",
       "domain_defanged": "paywalletsecure[.]netlify[.]app",
-      "case_id": "PD-20260812-6A433F",
-      "analyzed_at": "2026-08-12T22:28:43.932Z",
+      "case_id": "PD-20260814-6A433F",
+      "analyzed_at": "2026-08-14T06:00:07.800Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff817-981b-73e2-b6eb-1c26eeb7d3fc/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "PayPal"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffd38-ec22-727d-a828-b3f9cfa671b7.png",
+          "url": "https://urlscan.io/result/019ffd38-ec22-727d-a828-b3f9cfa671b7/",
+          "title": "PayPal Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: PayPal",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -243,12 +252,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (paywalletsecure.netlify.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"paywalletsecure.netlify.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006407; classtype:social-engineering; sid:6006407; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:11:48.893615+00:00",
+  "updated_at": "2026-08-14T06:00:03.521439+00:00",
   "probe": {
     "dns": "13.52.188.95",
     "whois": null,

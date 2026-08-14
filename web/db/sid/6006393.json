@@ -55,28 +55,37 @@
     "phishdestroy": {
       "domain": "sp10ct-jurev-biz8-korem-lafik.pages.dev",
       "domain_defanged": "sp10ct-jurev-biz8-korem-lafik[.]pages[.]dev",
-      "case_id": "PD-20260812-64C9CA",
-      "analyzed_at": "2026-08-12T22:28:02.479Z",
+      "case_id": "PD-20260814-64C9CA",
+      "analyzed_at": "2026-08-14T05:59:23.496Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff816-f634-7440-8a1b-e2517028dfeb.png",
           "url": "https://urlscan.io/result/019ff816-f634-7440-8a1b-e2517028dfeb/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.125",
+        "ip": "172.66.47.131",
         "ipinfo": {
-          "ip": "172.66.44.125",
+          "ip": "172.66.47.131",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -85,12 +94,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2c7d",
-            "2606:4700:310c::ac42:2f83"
+            "2606:4700:310c::ac42:2f83",
+            "2606:4700:310c::ac42:2c7d"
           ],
           "A": [
-            "172.66.44.125",
-            "172.66.47.131"
+            "172.66.47.131",
+            "172.66.44.125"
           ],
           "NS": [
             "emerie.ns.cloudflare.com.",
@@ -230,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct-jurev-biz8-korem-lafik.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct-jurev-biz8-korem-lafik.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006393; classtype:social-engineering; sid:6006393; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:11:07.371246+00:00",
+  "updated_at": "2026-08-14T05:59:21.025941+00:00",
   "probe": {
     "dns": "172.66.47.131",
     "whois": null,

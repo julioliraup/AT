@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "validar3e.webcindario.com",
       "domain_defanged": "validar3e[.]webcindario[.]com",
-      "case_id": "PD-20260812-70867E",
-      "analyzed_at": "2026-08-12T12:48:37.755Z",
+      "case_id": "PD-20260814-70867E",
+      "analyzed_at": "2026-08-14T05:28:18.038Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "WhatsApp"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff604-7e7c-72dd-bb78-d7d0d3c5a7b1.png",
           "url": "https://urlscan.io/result/019ff604-7e7c-72dd-bb78-d7d0d3c5a7b1/",
-          "pending": true
+          "title": "WhatsApp - Verificación de número"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: WhatsApp",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -81,17 +90,24 @@
           "CNAME": [
             "server.webcindario.com."
           ],
-          "NS": [
+          "MX": [
             "server.webcindario.com."
           ],
-          "MX": [
+          "NS": [
             "server.webcindario.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ABANSYS_AND_HOSTYTEC-AS",
+          "abuse": "abuse@abansysandhostytec.com",
+          "url": "mailto:abuse@abansysandhostytec.com",
+          "logo": "https://i.ibb.co/Nn7t7bhZ/pr-ABANSYS-AND-HOSTYTEC-AS.png",
+          "method": "email",
+          "asn": "AS29119"
+        }
       },
       "report_services": [
         {
@@ -214,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (validar3e.webcindario.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"validar3e.webcindario.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005723; classtype:social-engineering; sid:6005723; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-13T09:35:46.975745+00:00",
+  "updated_at": "2026-08-14T05:28:13.467952+00:00",
   "probe": {
     "dns": "5.57.226.202",
     "whois": null,

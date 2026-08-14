@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "luggages.sbs",
       "domain_defanged": "luggages[.]sbs",
-      "case_id": "PD-20260812-6BBADA",
-      "analyzed_at": "2026-08-12T13:25:24.067Z",
+      "case_id": "PD-20260814-6BBADA",
+      "analyzed_at": "2026-08-14T05:53:08.016Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Indian Government"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd14f-f40d-778b-8e26-78abcb5ec1f9.png",
+          "url": "https://urlscan.io/result/019fd14f-f40d-778b-8e26-78abcb5ec1f9/",
+          "title": "कर दंड सूचना - भारत सरकार"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Indian Government",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "172.67.132.22",
+        "ipinfo": {
+          "ip": "172.67.132.22",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (luggages.sbs/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"luggages.sbs\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006287; classtype:social-engineering; sid:6006287; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:04:16.746393+00:00",
+  "updated_at": "2026-08-14T05:53:04.930451+00:00",
   "probe": {
     "dns": null,
     "whois": true,

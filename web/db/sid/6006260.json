@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "97ee6.catex.at",
       "domain_defanged": "97ee6[.]catex[.]at",
-      "case_id": "PD-20260812-7EAC5E",
-      "analyzed_at": "2026-08-12T13:23:25.336Z",
+      "case_id": "PD-20260814-7EAC5E",
+      "analyzed_at": "2026-08-14T05:51:36.410Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff624-590f-750c-b4be-910c92c1b7c3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Coinbase"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffdcb-d822-7228-87b1-d4256331e357.png",
+          "url": "https://urlscan.io/result/019ffdcb-d822-7228-87b1-d4256331e357/",
+          "title": "Coinbase Card"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Coinbase",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -215,12 +224,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.97ee6.catex.at/cnbcard/web_sms_activate.php)\"; flow:established,to_server; http.uri; content:\"/cnbcard/web_sms_activate.php\"; startswith; fast_pattern; http.host; content:\"www.97ee6.catex.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006260; classtype:social-engineering; sid:6006260; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:03:24.035568+00:00",
+  "updated_at": "2026-08-14T05:51:32.472759+00:00",
   "probe": {
     "dns": "31.59.121.53",
     "whois": true,

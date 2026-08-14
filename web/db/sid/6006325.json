@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "metauslkocxzgimens.gitbook.io",
       "domain_defanged": "metauslkocxzgimens[.]gitbook[.]io",
-      "case_id": "PD-20260812-3BBFE5",
-      "analyzed_at": "2026-08-12T13:28:36.452Z",
+      "case_id": "PD-20260814-3BBFE5",
+      "analyzed_at": "2026-08-14T05:55:32.153Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Metamask"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff629-1862-740a-a123-e1eae4d5854d.png",
           "url": "https://urlscan.io/result/019ff629-1862-740a-a123-e1eae4d5854d/",
-          "pending": true
+          "title": "MetaMask® Login | us"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Metamask",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.64.147.209",
-            "104.18.40.47"
-          ],
           "AAAA": [
             "2a06:98c1:310d::6812:282f",
             "2606:4700:4401::ac40:93d1"
+          ],
+          "A": [
+            "172.64.147.209",
+            "104.18.40.47"
           ]
         }
       },
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (metauslkocxzgimens.gitbook.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"metauslkocxzgimens.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006325; classtype:social-engineering; sid:6006325; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:06:19.827963+00:00",
+  "updated_at": "2026-08-14T05:55:28.371191+00:00",
   "probe": {
     "dns": "104.18.40.47",
     "whois": true,

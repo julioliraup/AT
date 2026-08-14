@@ -49,27 +49,115 @@
     "phishdestroy": {
       "domain": "ubs.cx",
       "domain_defanged": "ubs[.]cx",
-      "case_id": "PD-20260812-32BF00",
-      "analyzed_at": "2026-08-12T11:40:44.570Z",
+      "case_id": "PD-20260814-32BF00",
+      "analyzed_at": "2026-08-14T04:52:39.607Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Business/Economy, Finance, Suspicious (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ecf76-968b-71d3-9d0e-7d312cb6db6a.png",
+          "url": "https://urlscan.io/result/019ecf76-968b-71d3-9d0e-7d312cb6db6a/",
+          "title": "Sign In | UBS"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "20.43.132.134",
+        "ipinfo": {
+          "ip": "20.43.132.134",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -192,12 +280,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ubs.cx/customers/signin)\"; flow:established,to_server; http.uri; content:\"/customers/signin\"; startswith; fast_pattern; http.host; content:\"ubs.cx\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004846; classtype:social-engineering; sid:6004846; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-13T08:42:54.103782+00:00",
+  "updated_at": "2026-08-14T04:52:34.283684+00:00",
   "probe": {
     "dns": null,
     "whois": true,

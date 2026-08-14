@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp10ct-lurev-biz8-zafem-doril.pages.dev",
       "domain_defanged": "sp10ct-lurev-biz8-zafem-doril[.]pages[.]dev",
-      "case_id": "PD-20260812-319913",
-      "analyzed_at": "2026-08-12T22:30:56.026Z",
+      "case_id": "PD-20260814-319913",
+      "analyzed_at": "2026-08-14T06:02:49.082Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019ff819-9c19-76dd-b4dc-c55d97437568/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffd49-ec5d-742a-9ab5-5d6b9210c7d4.png",
+          "url": "https://urlscan.io/result/019ffd49-ec5d-742a-9ab5-5d6b9210c7d4/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.34",
+        "ip": "172.66.44.222",
         "ipinfo": {
-          "ip": "172.66.47.34",
+          "ip": "172.66.44.222",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f22",
-            "2606:4700:310c::ac42:2cde"
+            "2606:4700:310c::ac42:2cde",
+            "2606:4700:310c::ac42:2f22"
           ],
           "A": [
-            "172.66.47.34",
-            "172.66.44.222"
+            "172.66.44.222",
+            "172.66.47.34"
           ],
           "NS": [
             "anuj.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct-lurev-biz8-zafem-doril.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct-lurev-biz8-zafem-doril.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006447; classtype:social-engineering; sid:6006447; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-13T10:13:09.147476+00:00",
+  "updated_at": "2026-08-14T06:02:46.843364+00:00",
   "probe": {
     "dns": "172.66.47.34",
     "whois": null,
