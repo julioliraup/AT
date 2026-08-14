@@ -44,8 +44,16 @@ const escapeHTML = (str) => {
     };
     return String(str).replace(/[&<>"']/g, (c) => map[c]);
 };
-if (!iso) return fallback;
-try { return new Date(iso).toLocaleString(); } catch (_) { return fallback; }
+
+/**
+ * Format an ISO timestamp for locale display, or return fallback.
+ * @param {string|null|undefined} iso
+ * @param {string} [fallback='N/A']
+ * @returns {string}
+ */
+const fmtDate = (iso, fallback = 'N/A') => {
+    if (!iso) return fallback;
+    try { return new Date(iso).toLocaleString(); } catch (_) { return fallback; }
 };
 
 /**
