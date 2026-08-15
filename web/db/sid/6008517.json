@@ -1,8 +1,8 @@
 {
   "sid": 6008517,
-  "url_path": "/FL26/",
-  "url_base": "icloudfind.live",
-  "msg": "AT related malicious URL (icloudfind.live/FL26/)",
+  "url_path": "/",
+  "url_base": "qwxqw.pages.dev",
+  "msg": "AT related malicious URL (qwxqw.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,19 +19,19 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://icloudfind.live/FL26/",
-      "domain": "icloudfind.live",
+      "url": "http://qwxqw.pages.dev/",
+      "domain": "qwxqw.pages.dev",
       "url_count": 1,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "108.167.146.200",
-      "http_code": 200,
+      "ip": "172.66.44.136",
+      "http_code": 403,
       "http_response": {
-        "server": "Apache",
-        "content_type": "text/html; charset=UTF-8",
-        "cf_ray": null,
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2a468ce1c6b5939-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -44,29 +44,43 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (3552), with CRLF, LF line terminators",
-      "sha256": "1e54506e7c0494a6d3695664f16e7011b2ecbd172e19df5946b95dc779189db3",
-      "md5": "2828e19f9523e52b42397b7f1bb59d11",
-      "cert": null,
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "58e042344f6b277ac6507d838c3e735e50f2cd7523ac695a9a83cf062444e584",
+      "md5": "b14bd42325c06fbd111800649ce631c6",
+      "cert": {
+        "subject_cn": "qwxqw.pages.dev",
+        "subject_alt_names": [
+          "qwxqw.pages.dev",
+          "*.qwxqw.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-10T17:24:06+00:00",
+        "not_valid_after": "2026-11-08T18:22:41+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "261429120949730269735495196444754955718",
+        "fingerprint_sha1": "90 0C C0 7F 48 07 0D 77 74 21 87 AE 95 E2 EB 3B 72 09 1A 3F",
+        "fingerprint_sha256": "BC 4A B4 FD 65 79 47 AA 64 F0 E8 0B B7 95 69 40 12 0A A0 3D FA 38 5F 7C 97 97 30 A2 12 DE CA E6"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-11T08:29:17",
-      "first_seen_secs": 1786436957.0
+      "first_seen": "2026-08-13T02:41:15",
+      "first_seen_secs": 1786588875.0
     },
     "phishdestroy": {
-      "domain": "icloudfind.live",
-      "domain_defanged": "icloudfind[.]live",
-      "case_id": "PD-20260814-46CC7D",
-      "analyzed_at": "2026-08-14T07:43:18.898Z",
+      "domain": "qwxqw.pages.dev",
+      "domain_defanged": "qwxqw[.]pages[.]dev",
+      "case_id": "PD-20260814-2BF1F1",
+      "analyzed_at": "2026-08-14T17:13:01.385Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fff39-b074-7272-b2db-8c5a7c179ddb/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -74,19 +88,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "127.0.0.1",
-        "ipinfo": {
-          "ip": "127.0.0.1"
-        },
+        "ip": "172.66.44.136",
+        "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2f78",
+            "2606:4700:310c::ac42:2c88"
+          ],
           "A": [
-            "127.0.0.1"
+            "172.66.44.136",
+            "172.66.47.120"
           ],
           "NS": [
-            "ns1.eurodns.com.",
-            "ns2.eurodns.com.",
-            "ns3.eurodns.com.",
-            "ns4.eurodns.com."
+            "katja.ns.cloudflare.com.",
+            "leo.ns.cloudflare.com."
           ]
         }
       },
@@ -219,11 +234,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (icloudfind.live/FL26/)\"; flow:established,to_server; http.uri; content:\"/FL26/\"; startswith; fast_pattern; http.host; content:\"icloudfind.live\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008517; classtype:social-engineering; sid:6008517; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-14T17:06:20.960173+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (qwxqw.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"qwxqw.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008517; classtype:social-engineering; sid:6008517; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
+  "updated_at": "2026-08-15T10:04:26.685199+00:00",
   "probe": {
-    "dns": "108.167.146.200",
-    "whois": true,
+    "dns": "172.66.44.136",
+    "whois": null,
     "status": "active"
   }
 }

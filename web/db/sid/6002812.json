@@ -1,8 +1,8 @@
 {
   "sid": 6002812,
-  "url_path": "/authl/",
-  "url_base": "narrenschlag.de",
-  "msg": "AT related malicious URL (narrenschlag.de/authl/)",
+  "url_path": "/",
+  "url_base": "darioandreella.com",
+  "msg": "AT related malicious URL (darioandreella.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://narrenschlag.de/authl/",
-      "domain": "narrenschlag.de",
-      "url_count": 0,
+      "url": "http://darioandreella.com/",
+      "domain": "darioandreella.com",
+      "url_count": 10,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "185.36.72.161",
+      "http_code": 200,
+      "http_response": {
+        "server": "Apache",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "203e1b131840d5c82308c8d3697b737da54ad350f6a610d59aab6f14aa037640",
+      "md5": "a9ccb6d775c962e728573cfc589068e9",
+      "cert": {
+        "subject_cn": "darioandreella.com",
+        "subject_alt_names": [
+          "*.darioandreella.com",
+          "darioandreella.com"
+        ],
+        "issuer_cn": "YR2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-10T12:55:35+00:00",
+        "not_valid_after": "2026-10-08T12:55:34+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "05 1E CD 46 E0 79 14 FF 48 A0 B6 BE 07 1D D7 67 0A EC",
+        "fingerprint_sha1": "55 AB 89 40 37 0D 83 A7 30 31 FF 15 C7 25 5E 17 90 C1 C0 7C",
+        "fingerprint_sha256": "AC 52 1C 22 F8 81 82 9C F6 D2 BE 5A 0D 35 CA 34 9A FE 3D 17 37 2F C3 28 65 25 E0 02 88 4D 53 EA"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T03:20:22",
+      "first_seen_secs": 1785381622.0
     },
     "phishdestroy": {
-      "domain": "narrenschlag.de",
-      "domain_defanged": "narrenschlag[.]de",
-      "case_id": "PD-20260814-734527",
-      "analyzed_at": "2026-08-14T20:51:50.171Z",
+      "domain": "darioandreella.com",
+      "domain_defanged": "darioandreella[.]com",
+      "case_id": "PD-20260814-3FD3D2",
+      "analyzed_at": "2026-08-14T20:53:08.289Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -61,19 +85,40 @@
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "Tucows Domains Inc.",
+        "created": "2004-07-08T10:04:41Z",
+        "expires": "2030-07-08T10:04:41Z",
+        "age_days": 8072,
+        "nameservers": [
+          "NS1BEARGRAPHIC-V2.SERVERWL.IT",
+          "NS2BEARGRAPHIC-V2.SERVERWL.IT"
+        ]
       },
       "infrastructure": {
-        "ip": "52.213.114.86",
+        "ip": "185.36.72.161",
         "ipinfo": null,
         "dns": {
           "A": [
-            "52.213.114.86"
+            "185.36.72.161"
+          ],
+          "MX": [
+            "0 darioandreella.com."
+          ],
+          "NS": [
+            "ns1beargraphic-v2.serverwl.it.",
+            "ns2beargraphic-v2.serverwl.it."
           ]
         }
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "TUCOWS-3",
+          "abuse": "arin-abuse@tucows.com",
+          "url": "https://phish.report/contacts/TUCOWS-3",
+          "logo": "https://i.ibb.co/Wpgrf8jY/pr-TUCOWS-3.png",
+          "method": "form",
+          "iana_ids": ""
+        },
         "hosting": null
       },
       "report_services": [
@@ -197,13 +242,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (narrenschlag.de/authl/)\"; flow:established,to_server; http.uri; content:\"/authl/\"; startswith; fast_pattern; http.host; content:\"narrenschlag.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002812; classtype:social-engineering; sid:6002812; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T20:51:47.023746+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (darioandreella.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"darioandreella.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002812; classtype:social-engineering; sid:6002812; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-15T05:39:01.188142+00:00",
   "probe": {
-    "dns": "52.213.114.86",
+    "dns": "185.36.72.161",
     "whois": true,
     "status": "active"
   }

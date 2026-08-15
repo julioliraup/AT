@@ -1,8 +1,8 @@
 {
   "sid": 6004009,
-  "url_path": "/eng/",
-  "url_base": "360plus.net",
-  "msg": "AT related malicious URL (360plus.net/eng/)",
+  "url_path": "/",
+  "url_base": "tibexa.kesug.com",
+  "msg": "AT related malicious URL (tibexa.kesug.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://360plus.net/eng/",
-      "domain": "360plus.net",
-      "url_count": 0,
+      "url": "http://tibexa.kesug.com/",
+      "domain": "tibexa.kesug.com",
+      "url_count": 15,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "185.27.134.24",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx/1.28.0",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text",
+      "sha256": "e6295722f8a790a9df309940973a99c60f8e2242bc0fd53a96c1c5a07a247a0e",
+      "md5": "a58a667554e4ef3355553f042aa032d3",
+      "cert": {
+        "subject_cn": "kesug.com",
+        "subject_alt_names": [
+          "kesug.com",
+          "*.kesug.com"
+        ],
+        "issuer_cn": "ZeroSSL ECC Domain Secure Site CA",
+        "issuer_org": "ZeroSSL",
+        "issuer_country": "AT",
+        "not_valid_before": "2025-07-30T00:00:00+00:00",
+        "not_valid_after": "2025-10-28T23:59:59+00:00",
+        "is_expired": true,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "40646721994186681750597273908128964308",
+        "fingerprint_sha1": "3A 46 E5 42 6E 1C 55 A2 61 0E B2 E2 6C E7 D7 10 1C D0 B2 46",
+        "fingerprint_sha256": "0A 3B C3 B1 6B 6B 84 FB FB DD CB 74 0B 59 F8 DB 71 66 21 5A 1E 6E 4B 30 8F 9A 81 17 97 D9 6B 24"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:09:50",
+      "first_seen_secs": 1785384590.0
     },
     "phishdestroy": {
-      "domain": "360plus.net",
-      "domain_defanged": "360plus[.]net",
-      "case_id": "PD-20260814-7066F3",
-      "analyzed_at": "2026-08-14T21:56:02.736Z",
+      "domain": "tibexa.kesug.com",
+      "domain_defanged": "tibexa[.]kesug[.]com",
+      "case_id": "PD-20260814-121608",
+      "analyzed_at": "2026-08-14T12:51:41.221Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -61,40 +85,22 @@
       },
       "detections": [],
       "domain_info": {
-        "registrar": "NameSecure L.L.C.",
-        "created": "2005-01-21T04:10:05Z",
-        "expires": "2027-01-21T04:10:05Z",
-        "age_days": 7875,
-        "nameservers": [
-          "NS1.TECHARKNET.NET",
-          "NS2.TECHARKNET.NET"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ip": "181.214.142.116",
+        "ip": "185.27.134.24",
         "ipinfo": null,
         "dns": {
           "MX": [
-            "0 360plus.net."
+            "5 mx.kesug.com."
           ],
           "A": [
-            "181.214.142.116"
-          ],
-          "NS": [
-            "ns2.rawobjects.com.",
-            "ns1.rawobjects.com."
+            "185.27.134.24"
           ]
         }
       },
       "report_to": {
-        "registrar": {
-          "name": "Name SRS AB",
-          "abuse": "abuse@namesrs.com",
-          "url": "https://phish.report/contacts/Name-SRS-AB",
-          "logo": "https://i.ibb.co/kgH8Frhf/pr-Name-SRS-AB.png",
-          "method": "form",
-          "iana_ids": "638"
-        },
+        "registrar": null,
         "hosting": null
       },
       "report_services": [
@@ -218,14 +224,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (360plus.net/eng/)\"; flow:established,to_server; http.uri; content:\"/eng/\"; startswith; fast_pattern; http.host; content:\"360plus.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004009; classtype:social-engineering; sid:6004009; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T21:55:54.205070+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tibexa.kesug.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tibexa.kesug.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004009; classtype:social-engineering; sid:6004009; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-15T06:27:09.276719+00:00",
   "probe": {
-    "dns": "181.214.142.116",
-    "whois": true,
+    "dns": "185.27.134.24",
+    "whois": null,
     "status": "active"
   }
 }

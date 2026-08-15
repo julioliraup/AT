@@ -1,8 +1,8 @@
 {
   "sid": 6008436,
   "url_path": "/",
-  "url_base": "www.17564.xyz",
-  "msg": "AT related malicious URL (www.17564.xyz/)",
+  "url_base": "apps-us-desktop-ledgre.pages.dev",
+  "msg": "AT related malicious URL (apps-us-desktop-ledgre.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.17564.xyz/",
-      "domain": "www.17564.xyz",
+      "url": "http://apps-us-desktop-ledgre.pages.dev/",
+      "domain": "apps-us-desktop-ledgre.pages.dev",
       "url_count": 2,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.66.44.58",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2a468e11e0bc4ac-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "4a882522196b9ada92302e6fd4fec74d4473d83a37eb27d17f97148d24f51b5a",
+      "md5": "bbff8ababf41025ce7fc0aec8d9c7302",
+      "cert": {
+        "subject_cn": "apps-us-desktop-ledgre.pages.dev",
+        "subject_alt_names": [
+          "apps-us-desktop-ledgre.pages.dev",
+          "*.apps-us-desktop-ledgre.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-27T09:38:39+00:00",
+        "not_valid_after": "2026-09-25T10:38:34+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "28884144342939521993984462633797762025",
+        "fingerprint_sha1": "B1 22 2C 51 01 90 11 C4 F8 77 46 88 6D 19 AE 03 FF CB E2 D0",
+        "fingerprint_sha256": "BD EC 32 29 0F C1 6B C3 43 38 2E DE 9A D1 C6 BF 6A 29 4D C1 F6 B6 1A 7A F4 CD E5 44 0F 30 FE A1"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-13T02:41:24",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:15",
+      "first_seen_secs": 1786588875.0
     },
     "phishdestroy": {
-      "domain": "17564.xyz",
-      "domain_defanged": "17564[.]xyz",
-      "case_id": "PD-20260814-53D59F",
-      "analyzed_at": "2026-08-14T17:01:28.051Z",
+      "domain": "apps-us-desktop-ledgre.pages.dev",
+      "domain_defanged": "apps-us-desktop-ledgre[.]pages[.]dev",
+      "case_id": "PD-20260815-CF304F",
+      "analyzed_at": "2026-08-15T09:59:52.120Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a004dd-112e-766c-850e-e6f7138eb872/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,40 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.66.44.58",
+        "ipinfo": {
+          "ip": "172.66.44.58",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2fc6",
+            "2606:4700:310c::ac42:2c3a"
+          ],
+          "A": [
+            "172.66.44.58",
+            "172.66.47.198"
+          ],
+          "NS": [
+            "deborah.ns.cloudflare.com.",
+            "zac.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -195,11 +251,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.17564.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.17564.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008436; classtype:social-engineering; sid:6008436; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-14T17:01:24.836480+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (apps-us-desktop-ledgre.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"apps-us-desktop-ledgre.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008436; classtype:social-engineering; sid:6008436; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
+  "updated_at": "2026-08-15T09:59:49.689239+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.66.44.58",
+    "whois": null,
     "status": "active"
   }
 }

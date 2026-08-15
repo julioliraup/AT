@@ -1,8 +1,8 @@
 {
   "sid": 6007292,
-  "url_path": "/users-726594386-profile/",
-  "url_base": "wvww-robloxx.iconce.com",
-  "msg": "AT related malicious URL (wvww-robloxx.iconce.com/users-726594386-profile/)",
+  "url_path": "/",
+  "url_base": "main-ledgre-live.pages.dev",
+  "msg": "AT related malicious URL (main-ledgre-live.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://wvww-robloxx.iconce.com/users-726594386-profile/",
-      "domain": "wvww-robloxx.iconce.com",
-      "url_count": 1,
+      "url": "http://main-ledgre-live.pages.dev/",
+      "domain": "main-ledgre-live.pages.dev",
+      "url_count": 2,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.66.44.178",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2a467e87f24fefe-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "bf630eb2d4b608adb14915257d02a1da478ad44183db07f2e0c493bcb20b6c9d",
+      "md5": "8071861238d76adb0e1891514e24e45b",
+      "cert": {
+        "subject_cn": "main-ledgre-live.pages.dev",
+        "subject_alt_names": [
+          "main-ledgre-live.pages.dev",
+          "*.main-ledgre-live.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-22T17:32:03+00:00",
+        "not_valid_after": "2026-09-20T18:30:48+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "308039600055172968703870979769682522203",
+        "fingerprint_sha1": "0C D6 5A 02 2C E2 22 DD 17 71 32 F5 D9 53 BB 22 58 54 23 E5",
+        "fingerprint_sha256": "A9 6D BC 9C 50 FE 80 CC 6B BF BB F3 D1 1F A6 26 C4 BA CA 26 B5 69 58 95 50 B3 8B 22 C6 94 E5 21"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-07T19:04:56",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:11",
+      "first_seen_secs": 1786588871.0
     },
     "phishdestroy": {
-      "domain": "wvww-robloxx.iconce.com",
-      "domain_defanged": "wvww-robloxx[.]iconce[.]com",
-      "case_id": "PD-20260814-7AEBCE",
-      "analyzed_at": "2026-08-14T15:48:56.992Z",
+      "domain": "main-ledgre-live.pages.dev",
+      "domain_defanged": "main-ledgre-live[.]pages[.]dev",
+      "case_id": "PD-20260814-1BF5DD",
+      "analyzed_at": "2026-08-14T15:52:53.941Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +83,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/01a000f6-4d22-7258-8def-be27fba1bb38/",
+          "url": "https://urlscan.io/result/01a000f9-eab8-7553-87ac-a6cde5a356e3/",
           "pending": true
         }
       },
@@ -68,12 +92,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.1",
+        "ip": "172.66.47.78",
         "ipinfo": null,
         "dns": {
           "A": [
-            "216.198.79.1",
-            "64.29.17.65"
+            "172.66.47.78",
+            "172.66.44.178"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2cb2",
+            "2606:4700:310c::ac42:2f4e"
+          ],
+          "NS": [
+            "marge.ns.cloudflare.com.",
+            "syeef.ns.cloudflare.com."
           ]
         }
       },
@@ -202,13 +234,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wvww-robloxx.iconce.com/users-726594386-profile/)\"; flow:established,to_server; http.uri; content:\"/users-726594386-profile/\"; startswith; fast_pattern; http.host; content:\"wvww-robloxx.iconce.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007292; classtype:social-engineering; sid:6007292; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-14T15:48:53.914251+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (main-ledgre-live.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"main-ledgre-live.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007292; classtype:social-engineering; sid:6007292; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
+  "updated_at": "2026-08-15T09:04:50.383826+00:00",
   "probe": {
-    "dns": "216.198.79.65",
+    "dns": "172.66.44.178",
     "whois": null,
     "status": "active"
   }

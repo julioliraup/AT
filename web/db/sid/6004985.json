@@ -1,8 +1,8 @@
 {
   "sid": 6004985,
-  "url_path": "/?r=4a8140ac-c0c4-4d18-aaa3-92284417540a&rg=eu",
-  "url_base": "paysecureverify.fr",
-  "msg": "AT related malicious URL (paysecureverify.fr/?r=4a8140ac-c0c4-4d18-aaa3-92284417540a&rg=eu)",
+  "url_path": "/",
+  "url_base": "flixorbit-login.netlify.app",
+  "msg": "AT related malicious URL (flixorbit-login.netlify.app/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://paysecureverify.fr/?r=4a8140ac-c0c4-4d18-aaa3-92284417540a&rg=eu",
-      "domain": "paysecureverify.fr",
-      "url_count": 0,
+      "url": "http://flixorbit-login.netlify.app/",
+      "domain": "flixorbit-login.netlify.app",
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "13.52.188.95",
+      "http_code": 200,
+      "http_response": {
+        "server": "Netlify",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,30 +43,26 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with CRLF line terminators",
+      "sha256": "5e5dd8de68ed6413cf1f47733e4cd4ea100a268dafb3357b71dc376b500b994d",
+      "md5": "c043f6f41682c1138c273991829ef1a1",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-31T13:37:40",
+      "first_seen_secs": 1785505060.0
     },
     "phishdestroy": {
-      "domain": "paysecureverify.fr",
-      "domain_defanged": "paysecureverify[.]fr",
-      "case_id": "PD-20260814-4D3548",
-      "analyzed_at": "2026-08-14T13:46:03.989Z",
+      "domain": "flixorbit-login.netlify.app",
+      "domain_defanged": "flixorbit-login[.]netlify[.]app",
+      "case_id": "PD-20260814-1FC69A",
+      "analyzed_at": "2026-08-14T13:48:01.251Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a00085-cc4b-740f-ae4d-d09d9cd56ef5/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,23 +70,22 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "98.91.9.77",
+        "ip": "54.232.119.62",
         "ipinfo": {
-          "ip": "98.91.9.77",
-          "hostname": "ec2-98-91-9-77.compute-1.amazonaws.com",
-          "city": "Ashburn",
-          "region": "Virginia",
-          "country": "US",
-          "org": "AS14618 Amazon.com, Inc.",
-          "asn": "AS14618"
+          "ip": "54.232.119.62",
+          "hostname": "ec2-54-232-119-62.sa-east-1.compute.amazonaws.com",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
         },
         "dns": {
-          "A": [
-            "98.91.9.77"
+          "AAAA": [
+            "2600:1f1e:7c1:c300::258"
           ],
-          "NS": [
-            "lovisa.ns.cloudflare.com.",
-            "viddy.ns.cloudflare.com."
+          "A": [
+            "54.232.119.62"
           ]
         }
       },
@@ -96,7 +97,7 @@
           "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
           "logo": "",
           "method": "form",
-          "asn": "AS14618"
+          "asn": "AS16509"
         }
       },
       "report_services": [
@@ -224,11 +225,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (paysecureverify.fr/?r=4a8140ac-c0c4-4d18-aaa3-92284417540a&rg=eu)\"; flow:established,to_server; http.uri; content:\"/?r=4a8140ac-c0c4-4d18-aaa3-92284417540a&rg=eu\"; startswith; fast_pattern; http.host; content:\"paysecureverify.fr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004985; classtype:social-engineering; sid:6004985; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-14T22:47:43.065879+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (flixorbit-login.netlify.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"flixorbit-login.netlify.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004985; classtype:social-engineering; sid:6004985; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-15T07:14:57.292518+00:00",
   "probe": {
-    "dns": "98.91.9.77",
-    "whois": true,
+    "dns": "13.52.188.95",
+    "whois": null,
     "status": "active"
   }
 }

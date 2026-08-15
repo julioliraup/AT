@@ -1,8 +1,8 @@
 {
   "sid": 6006693,
-  "url_path": "/",
-  "url_base": "www.tkshop.vip",
-  "msg": "AT related malicious URL (www.tkshop.vip/)",
+  "url_path": "/login",
+  "url_base": "galabet1.org",
+  "msg": "AT related malicious URL (galabet1.org/login)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.tkshop.vip/",
-      "domain": "www.tkshop.vip",
-      "url_count": 2,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://galabet1.org/login",
+      "domain": "galabet1.org",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.67.149.1",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a26b9ca5ebdad0a0-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (358)",
+      "sha256": "2126c7bf38382d75e2e435a8875a6eb7558e9eaff8dc3efbb9597a0bdd3dcaf0",
+      "md5": "488786c6948b5d63a29899949725cee8",
+      "cert": {
+        "subject_cn": "galabet1.org",
+        "subject_alt_names": [
+          "galabet1.org",
+          "*.galabet1.org"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-03T19:52:41+00:00",
+        "not_valid_after": "2026-11-01T20:52:25+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "333081500446559988655762603947068069806",
+        "fingerprint_sha1": "3B AA 0D 98 AB 7B 53 2E DE 98 8E 09 2B 90 04 AD B5 A8 2F 8C",
+        "fingerprint_sha256": "7C F5 72 B9 C3 00 92 A8 37 81 39 9B 74 B4 1A AA 9A 8E ED A9 41 2A F7 A1 81 29 87 BE EC B7 F8 E9"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-10T03:43:37",
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T05:23:29",
+      "first_seen_secs": 1785993809.0
     },
     "phishdestroy": {
-      "domain": "tkshop.vip",
-      "domain_defanged": "tkshop[.]vip",
-      "case_id": "PD-20260814-6AC437",
-      "analyzed_at": "2026-08-14T15:21:42.027Z",
+      "domain": "galabet1.org",
+      "domain_defanged": "galabet1[.]org",
+      "case_id": "PD-20260815-2BCEDA",
+      "analyzed_at": "2026-08-15T08:39:54.867Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00493-ddf5-768d-9b8b-e5f6ecdfe389/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,40 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.67.149.1",
+        "ipinfo": {
+          "ip": "172.67.149.1",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:3030::ac43:9501",
+            "2606:4700:3030::6815:1d7d"
+          ],
+          "A": [
+            "172.67.149.1",
+            "104.21.29.125"
+          ],
+          "NS": [
+            "tia.ns.cloudflare.com.",
+            "zeus.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,14 +248,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.tkshop.vip/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.tkshop.vip\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006693; classtype:social-engineering; sid:6006693; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-14T23:47:36.514469+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (galabet1.org/login)\"; flow:established,to_server; http.uri; content:\"/login\"; startswith; fast_pattern; http.host; content:\"galabet1.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006693; classtype:social-engineering; sid:6006693; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
+  "updated_at": "2026-08-15T08:39:52.241125+00:00",
   "probe": {
-    "dns": null,
+    "dns": "172.67.149.1",
     "whois": true,
     "status": "active"
   }

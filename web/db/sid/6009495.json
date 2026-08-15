@@ -1,8 +1,8 @@
 {
   "sid": 6009495,
   "url_path": "/",
-  "url_base": "4b3183.icefactory.cl",
-  "msg": "AT related malicious URL (4b3183.icefactory.cl/)",
+  "url_base": "www.invited-company.pro",
+  "msg": "AT related malicious URL (www.invited-company.pro/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://4b3183.icefactory.cl/",
-      "domain": "4b3183.icefactory.cl",
+      "url": "http://www.invited-company.pro/",
+      "domain": "www.invited-company.pro",
       "url_count": 1,
-      "city_data": true,
-      "deep_analysis": false,
+      "city_data": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "104.21.13.216",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html",
+        "cf_ray": "a2a468803920fef9-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "application/javascript",
+      "filemagic": "JavaScript source, Unicode text, UTF-8 text, with very long lines (399), with CRLF, LF line terminators",
+      "sha256": "fec60721fd976410adaa96dc7371a9d79165c5fbe7dd24c591dfa4ec9b3d2b61",
+      "md5": "7b77e5a24a6121b639b52d3202a8d946",
+      "cert": {
+        "subject_cn": "invited-company.pro",
+        "subject_alt_names": [
+          "invited-company.pro",
+          "*.invited-company.pro"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-27T16:42:25+00:00",
+        "not_valid_after": "2026-10-25T17:40:03+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "209875427295796938857106701975019603808",
+        "fingerprint_sha1": "1D 57 83 EB 68 1E 7A 78 F9 61 AD C0 7F B8 10 83 6D 6D 81 DE",
+        "fingerprint_sha256": "FB 85 F6 CB 76 E6 5D 34 D1 FB 0C F2 DD 00 4A 76 E1 7F 09 46 AD 08 59 45 AD C0 F2 66 3D 51 91 DB"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-13T02:41:20",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:19",
+      "first_seen_secs": 1786588879.0
     },
     "phishdestroy": {
-      "domain": "4b3183.icefactory.cl",
-      "domain_defanged": "4b3183[.]icefactory[.]cl",
-      "case_id": "PD-20260814-2D5108",
-      "analyzed_at": "2026-08-14T17:52:49.702Z",
+      "domain": "invited-company.pro",
+      "domain_defanged": "invited-company[.]pro",
+      "case_id": "PD-20260814-4057CA",
+      "analyzed_at": "2026-08-14T18:06:48.177Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -64,11 +88,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "186.64.119.45",
+        "ip": "172.67.133.62",
         "ipinfo": null,
         "dns": {
           "A": [
-            "186.64.119.45"
+            "172.67.133.62",
+            "104.21.13.216"
+          ],
+          "AAAA": [
+            "2606:4700:3034::ac43:853e",
+            "2606:4700:3037::6815:dd8"
+          ],
+          "NS": [
+            "annabel.ns.cloudflare.com.",
+            "rudy.ns.cloudflare.com."
           ]
         }
       },
@@ -197,14 +230,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (4b3183.icefactory.cl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"4b3183.icefactory.cl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009495; classtype:social-engineering; sid:6009495; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-14T17:52:47.165472+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.invited-company.pro/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.invited-company.pro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009495; classtype:social-engineering; sid:6009495; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
+  "updated_at": "2026-08-15T10:50:55.798697+00:00",
   "probe": {
-    "dns": "186.64.119.45",
-    "whois": null,
+    "dns": "104.21.13.216",
+    "whois": true,
     "status": "active"
   }
 }

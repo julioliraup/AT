@@ -1,8 +1,8 @@
 {
   "sid": 6009386,
-  "url_path": "/",
-  "url_base": "26297e.arcadejafet.cl",
-  "msg": "AT related malicious URL (26297e.arcadejafet.cl/)",
+  "url_path": "/p/fjbd-cbcr/iefduejm/",
+  "url_base": "s.teams-ko.com",
+  "msg": "AT related malicious URL (s.teams-ko.com/p/fjbd-cbcr/iefduejm/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://26297e.arcadejafet.cl/",
-      "domain": "26297e.arcadejafet.cl",
+      "url": "http://s.teams-ko.com/p/fjbd-cbcr/iefduejm/",
+      "domain": "s.teams-ko.com",
       "url_count": 1,
-      "city_data": true,
-      "deep_analysis": false,
+      "city_data": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.67.216.66",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a2a443ffcf0e5135-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,30 +43,44 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (3293)",
+      "sha256": "c375a1d190d96ff721b36f90ac96881fe527199f4a35a7364db038ff7cb02f97",
+      "md5": "39aff28f3be2a09dc3663489d51d898e",
+      "cert": {
+        "subject_cn": "teams-ko.com",
+        "subject_alt_names": [
+          "teams-ko.com",
+          "*.teams-ko.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-27T12:23:12+00:00",
+        "not_valid_after": "2026-10-25T13:21:41+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "9942736070249345924768639091743033215",
+        "fingerprint_sha1": "91 A4 60 36 3F CF 7B 6C 98 E9 52 CA B2 89 3D 6A 12 49 77 2B",
+        "fingerprint_sha256": "C3 8B 8E A0 F2 93 2B CD F5 09 0A 95 2C 68 8F BD 28 09 68 5A 8D A0 27 AB 33 8D E6 2A FD 07 B9 9A"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-13T02:41:27",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:24:48",
+      "first_seen_secs": 1786587888.0
     },
     "phishdestroy": {
-      "domain": "26297e.arcadejafet.cl",
-      "domain_defanged": "26297e[.]arcadejafet[.]cl",
-      "case_id": "PD-20260814-68090A",
-      "analyzed_at": "2026-08-14T08:27:55.149Z",
+      "domain": "s.teams-ko.com",
+      "domain_defanged": "s[.]teams-ko[.]com",
+      "case_id": "PD-20260814-EB9F47",
+      "analyzed_at": "2026-08-14T17:59:19.135Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fff62-8696-70c8-adf5-d3e51246ec9c/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,32 +88,12 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "207.210.102.120",
-        "ipinfo": {
-          "ip": "207.210.102.120",
-          "hostname": "s500.v2nets.com",
-          "city": "Santiago",
-          "region": "Santiago Metropolitan",
-          "country": "CL",
-          "org": "AS263702 GRUPO ZGH SPA",
-          "asn": "AS263702"
-        },
-        "dns": {
-          "A": [
-            "207.210.102.120"
-          ]
-        }
+        "ipinfo": null,
+        "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "AS263702",
-          "abuse": "enzo@zgh.cl",
-          "url": "mailto:enzo@zgh.cl",
-          "logo": "https://i.ibb.co/ZpcH1gDJ/pr-AS263702.png",
-          "method": "email",
-          "asn": "AS263702"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -220,11 +220,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (26297e.arcadejafet.cl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"26297e.arcadejafet.cl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009386; classtype:social-engineering; sid:6009386; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-14T17:48:23.823538+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s.teams-ko.com/p/fjbd-cbcr/iefduejm/)\"; flow:established,to_server; http.uri; content:\"/p/fjbd-cbcr/iefduejm/\"; startswith; fast_pattern; http.host; content:\"s.teams-ko.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009386; classtype:social-engineering; sid:6009386; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
+  "updated_at": "2026-08-15T10:46:58.737290+00:00",
   "probe": {
-    "dns": "207.210.102.120",
-    "whois": true,
+    "dns": "172.67.216.66",
+    "whois": null,
     "status": "active"
   }
 }

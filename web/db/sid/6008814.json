@@ -1,8 +1,8 @@
 {
   "sid": 6008814,
-  "url_path": "/",
-  "url_base": "access-ledger-live-desktop.pages.dev",
-  "msg": "AT related malicious URL (access-ledger-live-desktop.pages.dev/)",
+  "url_path": "/admin/login",
+  "url_base": "blockwavewallet.com",
+  "msg": "AT related malicious URL (blockwavewallet.com/admin/login)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,22 +19,16 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://access-ledger-live-desktop.pages.dev/",
-      "domain": "access-ledger-live-desktop.pages.dev",
-      "url_count": 1,
+      "url": "http://blockwavewallet.com/admin/login",
+      "domain": "blockwavewallet.com",
+      "url_count": 0,
       "city_data": true,
-      "deep_analysis": true,
+      "deep_analysis": false,
       "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.66.44.241",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a29d3efabaa2b8b9-PDX",
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
       "city": null,
       "region": null,
       "country_name": null,
@@ -43,53 +37,85 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (396)",
-      "sha256": "065be98c47d72987fae8112fcaa92c67ba5ae424c2da8371d6edbccd46368341",
-      "md5": "9b89dca2a6dfa18cacba06858261b576",
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-08-12T05:51:13",
-      "first_seen_secs": 1786513873.0
+      "first_seen": null,
+      "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "access-ledger-live-desktop.pages.dev",
-      "domain_defanged": "access-ledger-live-desktop[.]pages[.]dev",
-      "case_id": "PD-20260814-189C6F",
-      "analyzed_at": "2026-08-14T17:22:04.027Z",
+      "domain": "blockwavewallet.com",
+      "domain_defanged": "blockwavewallet[.]com",
+      "case_id": "PD-20260815-5896AC",
+      "analyzed_at": "2026-08-15T10:15:25.907Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a004eb-4fbb-710a-89dd-29e81421c87f/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "Megazone Corp., dba HOSTING.KR",
+        "created": "2026-07-22T04:03:02Z",
+        "expires": "2027-07-22T04:03:02Z",
+        "age_days": 24,
+        "nameservers": [
+          "KAREEM.NS.CLOUDFLARE.COM",
+          "WANDA.NS.CLOUDFLARE.COM"
+        ]
       },
       "infrastructure": {
-        "ip": "172.66.44.241",
-        "ipinfo": null,
+        "ip": "172.67.200.123",
+        "ipinfo": {
+          "ip": "172.67.200.123",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2f0f",
-            "2606:4700:310c::ac42:2cf1"
-          ],
           "A": [
-            "172.66.44.241",
-            "172.66.47.15"
+            "172.67.200.123",
+            "104.21.58.50"
+          ],
+          "AAAA": [
+            "2606:4700:3037::ac43:c87b",
+            "2606:4700:3030::6815:3a32"
           ],
           "NS": [
-            "bowen.ns.cloudflare.com.",
-            "sandy.ns.cloudflare.com."
+            "kareem.ns.cloudflare.com.",
+            "wanda.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
-        "registrar": null,
-        "hosting": null
+        "registrar": {
+          "name": "AHOSTING",
+          "abuse": "abuse@ahosting.net",
+          "url": "https://phish.report/contacts/AHOSTING",
+          "logo": "https://i.ibb.co/m5VJsZdx/pr-AHOSTING.png",
+          "method": "form",
+          "iana_ids": ""
+        },
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -215,11 +241,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (access-ledger-live-desktop.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"access-ledger-live-desktop.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008814; classtype:social-engineering; sid:6008814; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-14T17:22:01.503039+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (blockwavewallet.com/admin/login)\"; flow:established,to_server; http.uri; content:\"/admin/login\"; startswith; fast_pattern; http.host; content:\"blockwavewallet.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008814; classtype:social-engineering; sid:6008814; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
+  "updated_at": "2026-08-15T10:15:21.042686+00:00",
   "probe": {
-    "dns": "172.66.44.241",
-    "whois": null,
+    "dns": "104.21.58.50",
+    "whois": true,
     "status": "active"
   }
 }

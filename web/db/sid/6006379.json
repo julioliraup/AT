@@ -1,8 +1,8 @@
 {
   "sid": 6006379,
-  "url_path": "/it/it/login.php",
-  "url_base": "www-aruba-it.castmex.com",
-  "msg": "AT related malicious URL (www-aruba-it.castmex.com/it/it/login.php)",
+  "url_path": "/ingresa-tus-datos",
+  "url_base": "www.seguroalz.com",
+  "msg": "AT related malicious URL (www.seguroalz.com/ingresa-tus-datos)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,8 +19,8 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www-aruba-it.castmex.com/it/it/login.php",
-      "domain": "www-aruba-it.castmex.com",
+      "url": "http://www.seguroalz.com/ingresa-tus-datos",
+      "domain": "www.seguroalz.com",
       "url_count": 0,
       "city_data": true,
       "deep_analysis": false,
@@ -47,51 +47,79 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "www-aruba-it.castmex.com",
-      "domain_defanged": "www-aruba-it[.]castmex[.]com",
-      "case_id": "PD-20260814-260FF0",
-      "analyzed_at": "2026-08-14T15:06:16.575Z",
+      "domain": "seguroalz.com",
+      "domain_defanged": "seguroalz[.]com",
+      "case_id": "PD-20260815-6907DE",
+      "analyzed_at": "2026-08-15T08:19:08.815Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a000cf-3b82-715d-bb94-e1c99f49974a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bancolombia"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff818-3b62-727d-bd51-a0a9faccc3b3.png",
+          "url": "https://urlscan.io/result/019ff818-3b62-727d-bd51-a0a9faccc3b3/",
+          "title": "Bancolombia Sucursal Virtual Personas"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bancolombia",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
-        "age_days": null
+        "registrar": "Name.com, Inc.",
+        "created": "2026-07-11T09:25:33Z",
+        "expires": "2027-07-11T09:25:33Z",
+        "age_days": 34,
+        "nameservers": [
+          "NS1.VERCEL-DNS.COM",
+          "NS2.VERCEL-DNS.COM"
+        ]
       },
       "infrastructure": {
-        "ip": "153.75.82.234",
+        "ip": "216.198.79.65",
         "ipinfo": {
-          "ip": "153.75.82.234",
-          "city": "Ogden",
-          "region": "Utah",
+          "ip": "216.198.79.65",
+          "city": "Walnut",
+          "region": "California",
           "country": "US",
-          "org": "AS14956 RouterHosting LLC",
-          "asn": "AS14956"
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
         },
         "dns": {
+          "NS": [
+            "ns1.vercel-dns.com.",
+            "ns2.vercel-dns.com."
+          ],
           "A": [
-            "153.75.82.234"
+            "216.198.79.65",
+            "216.198.79.1"
           ]
         }
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "NAMEHERO-KCDC",
+          "abuse": "abuse@namehero.com",
+          "url": "https://phish.report/contacts/NAMEHERO-KCDC",
+          "logo": "https://i.ibb.co/4RVHSVJf/pr-NAMEHERO-KCDC.png",
+          "method": "form",
+          "iana_ids": ""
+        },
         "hosting": {
-          "name": "ROUTERHOSTING",
-          "abuse": "abuse-reports@cloudzy.com",
-          "url": "mailto:abuse-reports@cloudzy.com",
-          "logo": "https://i.ibb.co/dsFkFMby/pr-ROUTERHOSTING.png",
-          "method": "email",
-          "asn": "AS14956"
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
         }
       },
       "report_services": [
@@ -215,14 +243,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www-aruba-it.castmex.com/it/it/login.php)\"; flow:established,to_server; http.uri; content:\"/it/it/login.php\"; startswith; fast_pattern; http.host; content:\"www-aruba-it.castmex.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006379; classtype:social-engineering; sid:6006379; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-08-14T23:35:51.153207+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.seguroalz.com/ingresa-tus-datos)\"; flow:established,to_server; http.uri; content:\"/ingresa-tus-datos\"; startswith; fast_pattern; http.host; content:\"www.seguroalz.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006379; classtype:social-engineering; sid:6006379; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
+  "updated_at": "2026-08-15T08:19:04.900716+00:00",
   "probe": {
-    "dns": "153.75.82.234",
+    "dns": "216.198.79.1",
     "whois": null,
     "status": "active"
   }

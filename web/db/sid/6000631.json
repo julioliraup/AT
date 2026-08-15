@@ -1,8 +1,8 @@
 {
   "sid": 6000631,
-  "url_path": "/5g/home.html",
-  "url_base": "macshix.us.cc",
-  "msg": "AT related malicious URL (macshix.us.cc/5g/home.html)",
+  "url_path": "/",
+  "url_base": "kconnlogoc.webflow.io",
+  "msg": "AT related malicious URL (kconnlogoc.webflow.io/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,21 +19,21 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://macshix.us.cc/5g/home.html",
-      "domain": "macshix.us.cc",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
-      "has_file_analysis": true,
+      "url": "http://kconnlogoc.webflow.io/",
+      "domain": "kconnlogoc.webflow.io",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "43.133.41.74",
-      "http_code": 502,
+      "ip": "172.64.151.8",
+      "http_code": 200,
       "http_response": {
-        "server": "Caddy",
-        "content_type": null,
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a26aaf224ac970b9-PDX",
+        "cf_cache_status": "HIT",
+        "alt_svc": "h3=\":443\"; ma=86400"
       },
       "city": null,
       "region": null,
@@ -43,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "md5": "d41d8cd98f00b204e9800998ecf8427e",
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (7961), with no line terminators",
+      "sha256": "96c1204eef66a5c08317b3bc5c3ac79256f38f12702c63a35d38ed617bcba972",
+      "md5": "c422045a197c9044fae8375c1f8cde5e",
+      "cert": {
+        "subject_cn": "webflow.io",
+        "subject_alt_names": [
+          "webflow.io",
+          "*.webflow.io"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-25T02:21:21+00:00",
+        "not_valid_after": "2026-10-23T03:21:05+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "167953018469729408943791194274013479740",
+        "fingerprint_sha1": "AB 9A 63 D7 5B 41 E9 76 FF 98 03 C0 D6 4B C7 BA DC C4 15 F9",
+        "fingerprint_sha256": "A4 FF DE FA 8D 99 68 98 93 E2 AA FD F9 58 8B 6F 8F 2F 8E C4 76 98 EA 53 4D BF A4 09 DB BD E1 9D"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-07-30T21:11:35",
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:33:18",
+      "first_seen_secs": 1785983598.0
     },
     "phishdestroy": {
-      "domain": "macshix.us.cc",
-      "domain_defanged": "macshix[.]us[.]cc",
-      "case_id": "PD-20260814-3E3EAF",
-      "analyzed_at": "2026-08-14T19:11:13.065Z",
+      "domain": "kconnlogoc.webflow.io",
+      "domain_defanged": "kconnlogoc[.]webflow[.]io",
+      "case_id": "PD-20260814-12BA4C",
+      "analyzed_at": "2026-08-14T19:11:16.010Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -70,8 +88,18 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "172.64.151.8",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "AAAA": [
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
+          ],
+          "A": [
+            "172.64.151.8",
+            "104.18.36.248"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -198,14 +226,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (macshix.us.cc/5g/home.html)\"; flow:established,to_server; http.uri; content:\"/5g/home.html\"; startswith; fast_pattern; http.host; content:\"macshix.us.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000631; classtype:social-engineering; sid:6000631; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-14T19:11:09.900651+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kconnlogoc.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kconnlogoc.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000631; classtype:social-engineering; sid:6000631; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
+  "updated_at": "2026-08-15T04:04:39.338575+00:00",
   "probe": {
-    "dns": "43.133.41.74",
-    "whois": null,
+    "dns": "172.64.151.8",
+    "whois": true,
     "status": "active"
   }
 }

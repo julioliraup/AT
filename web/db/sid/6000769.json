@@ -1,8 +1,8 @@
 {
   "sid": 6000769,
   "url_path": "/",
-  "url_base": "verify-user.surge.sh",
-  "msg": "AT related malicious URL (verify-user.surge.sh/)",
+  "url_base": "www.buzz-whatapp.hk.cn",
+  "msg": "AT related malicious URL (www.buzz-whatapp.hk.cn/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,17 +19,17 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://verify-user.surge.sh/",
-      "domain": "verify-user.surge.sh",
-      "url_count": 1,
+      "url": "http://www.buzz-whatapp.hk.cn/",
+      "domain": "www.buzz-whatapp.hk.cn",
+      "url_count": 2,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "138.197.235.123",
+      "ip": "192.197.113.111",
       "http_code": 200,
       "http_response": {
-        "server": "Surge",
+        "server": "nginx",
         "content_type": "text/html; charset=UTF-8",
         "cf_ray": null,
         "cf_cache_status": null,
@@ -44,19 +44,58 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (37619)",
-      "sha256": "57aee008ae221ec1ad879bd7f4fc96ec36ac1a76c437ff89e64419374c4dd6bd",
-      "md5": "830964f941e4a2ff449945c5e1ef7f6c",
-      "cert": null,
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (5021)",
+      "sha256": "af8dc4caf5f8e5826f831f4147d62e140eba76d25980aacb397cfbd119877d9c",
+      "md5": "52c22b23b806faacd694accd697c0338",
+      "cert": {
+        "subject_cn": "chans-whatapp.hl.cn",
+        "subject_alt_names": [
+          "audios-whatapp.hl.cn",
+          "buzz-whatapp.com.cn",
+          "call-whatapp.com.cn",
+          "chans-whatapp.hl.cn",
+          "chats-whatapp.com.cn",
+          "comm-whatapp.com.cn",
+          "connect-whatapp.com.cn",
+          "dial-whatapp.com.cn",
+          "flows-whatapp.hl.cn",
+          "links-whatapp.com.cn",
+          "message-whatapp.com.cn",
+          "msg-whatapp.com.cn",
+          "one-whatapp.com.cn",
+          "ping-whatapp.com.cn",
+          "pulse-whatapp.hl.cn",
+          "ring-whatapp.com.cn",
+          "speak-whatapp.com.cn",
+          "streams-whatapp.hl.cn",
+          "talks-whatapp.com.cn",
+          "text-whatapp.com.cn",
+          "utter-whatapp.hl.cn",
+          "vocal-whatapp.hl.cn",
+          "waves-whatapp.hl.cn"
+        ],
+        "issuer_cn": "YR2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-29T10:13:02+00:00",
+        "not_valid_after": "2026-10-27T10:13:01+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "05 B1 8B 09 F7 63 88 35 98 3B 20 90 4C 0B B7 DA 1C 7A",
+        "fingerprint_sha1": "FB 2E F6 68 A7 71 CE 48 CF 8C 22 24 E2 2E 27 77 C5 9C C6 39",
+        "fingerprint_sha256": "39 73 5E 70 EC 65 05 5E 8A D8 10 C3 00 20 E6 39 83 B0 8D B8 05 71 BC 0F B0 F5 5E E1 8B 9A 53 B5"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-07-30T12:44:45",
-      "first_seen_secs": 1785415485.0
+      "first_seen": "2026-08-06T02:33:11",
+      "first_seen_secs": 1785983591.0
     },
     "phishdestroy": {
-      "domain": "verify-user.surge.sh",
-      "domain_defanged": "verify-user[.]surge[.]sh",
-      "case_id": "PD-20260814-2A0EE6",
-      "analyzed_at": "2026-08-14T19:21:02.988Z",
+      "domain": "buzz-whatapp.hk.cn",
+      "domain_defanged": "buzz-whatapp[.]hk[.]cn",
+      "case_id": "PD-20260814-58237B",
+      "analyzed_at": "2026-08-14T19:21:14.021Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -70,11 +109,15 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "138.68.112.220",
+        "ip": "192.197.113.111",
         "ipinfo": null,
         "dns": {
           "A": [
-            "138.68.112.220"
+            "192.197.113.111"
+          ],
+          "NS": [
+            "ns1.kenpains.com.",
+            "ns2.kenpains.com."
           ]
         }
       },
@@ -203,13 +246,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (verify-user.surge.sh/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"verify-user.surge.sh\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000769; classtype:social-engineering; sid:6000769; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-14T19:20:59.521919+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.buzz-whatapp.hk.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.buzz-whatapp.hk.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000769; classtype:social-engineering; sid:6000769; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
+  "updated_at": "2026-08-15T04:09:05.882070+00:00",
   "probe": {
-    "dns": "138.197.235.123",
+    "dns": "192.197.113.111",
     "whois": true,
     "status": "active"
   }

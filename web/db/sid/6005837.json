@@ -1,8 +1,8 @@
 {
   "sid": 6005837,
-  "url_path": "/app/index.php?view=main&bk=bnp",
-  "url_base": "my-subscrition-prime.info",
-  "msg": "AT related malicious URL (my-subscrition-prime.info/app/index.php?view=main&bk=bnp)",
+  "url_path": "/",
+  "url_base": "sp11ct-dravon-biz8-kelsor-mazvik.pages.dev",
+  "msg": "AT related malicious URL (sp11ct-dravon-biz8-kelsor-mazvik.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://my-subscrition-prime.info/app/index.php?view=main&bk=bnp",
-      "domain": "my-subscrition-prime.info",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://sp11ct-dravon-biz8-kelsor-mazvik.pages.dev/",
+      "domain": "sp11ct-dravon-biz8-kelsor-mazvik.pages.dev",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.66.47.147",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a26aaaa91e19a509-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "763617a9ec2eab153abb6ff5c1eb4de0890f0745c692ef6f7813a980f788446b",
+      "md5": "338af3ea4c7c40ab65a4ac650188b4c1",
+      "cert": {
+        "subject_cn": "sp11ct-dravon-biz8-kelsor-mazvik.pages.dev",
+        "subject_alt_names": [
+          "sp11ct-dravon-biz8-kelsor-mazvik.pages.dev",
+          "*.sp11ct-dravon-biz8-kelsor-mazvik.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-28T09:27:23+00:00",
+        "not_valid_after": "2026-10-26T10:25:04+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "242739857352234023754237576775197209161",
+        "fingerprint_sha1": "D2 DD D1 4A 0B 44 FB 65 AD ED 91 A1 A7 D9 1C A9 16 F0 80 DE",
+        "fingerprint_sha256": "9B 31 93 41 33 6A 87 40 82 59 68 8A D6 AD E7 DC A4 74 50 DA 73 C9 24 F8 25 93 35 4D A2 03 91 B6"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-06T02:32:45",
+      "first_seen_secs": 1785983565.0
     },
     "phishdestroy": {
-      "domain": "my-subscrition-prime.info",
-      "domain_defanged": "my-subscrition-prime[.]info",
-      "case_id": "PD-20260814-1C2E5A",
-      "analyzed_at": "2026-08-14T14:38:31.995Z",
+      "domain": "sp11ct-dravon-biz8-kelsor-mazvik.pages.dev",
+      "domain_defanged": "sp11ct-dravon-biz8-kelsor-mazvik[.]pages[.]dev",
+      "case_id": "PD-20260814-43BB77",
+      "analyzed_at": "2026-08-14T14:40:37.351Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a000b7-bee9-7480-b4c5-41285bc55a80/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +92,22 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "172.66.44.109",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "172.66.44.109",
+            "172.66.47.147"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2c6d",
+            "2606:4700:310c::ac42:2f93"
+          ],
+          "NS": [
+            "jen.ns.cloudflare.com.",
+            "trey.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -196,11 +238,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (my-subscrition-prime.info/app/index.php?view=main&bk=bnp)\"; flow:established,to_server; http.uri; content:\"/app/index.php?view=main&bk=bnp\"; startswith; fast_pattern; http.host; content:\"my-subscrition-prime.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005837; classtype:social-engineering; sid:6005837; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-14T23:16:02.093961+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp11ct-dravon-biz8-kelsor-mazvik.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp11ct-dravon-biz8-kelsor-mazvik.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005837; classtype:social-engineering; sid:6005837; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
+  "updated_at": "2026-08-15T07:45:59.430624+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.66.47.147",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6007303,
-  "url_path": "/5g/home.html",
-  "url_base": "majdsuxi.us.cc",
-  "msg": "AT related malicious URL (majdsuxi.us.cc/5g/home.html)",
+  "url_path": "/",
+  "url_base": "gayan-ledger.pages.dev",
+  "msg": "AT related malicious URL (gayan-ledger.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "phishstats.info",
+    "openphish.com",
     "julioliraup.github.io/AT/signature.html?sid=6007303"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://majdsuxi.us.cc/5g/home.html",
-      "domain": "majdsuxi.us.cc",
+      "url": "http://gayan-ledger.pages.dev/",
+      "domain": "gayan-ledger.pages.dev",
       "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.66.44.135",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2a467dd4b7eefa4-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "4ad079c17c57a2e5b9fc8a3f8408d3bcb9f6f4dcab5516adc4b4b0f3f1223144",
+      "md5": "a96196a85303fd31c452115aff8c991b",
+      "cert": {
+        "subject_cn": "gayan-ledger.pages.dev",
+        "subject_alt_names": [
+          "*.gayan-ledger.pages.dev",
+          "gayan-ledger.pages.dev"
+        ],
+        "issuer_cn": "YE1",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-19T21:20:08+00:00",
+        "not_valid_after": "2026-09-17T21:20:07+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "476375083816710124040670441676690195662480",
+        "fingerprint_sha1": "CA 7D 7C 0A 99 65 67 87 01 43 EA 9D CE 7F 84 13 CD F5 4A 83",
+        "fingerprint_sha256": "83 A2 F3 76 52 57 1D 1A FB C3 06 2D 92 C1 D3 91 82 BF 76 AE 83 CA 1E F5 F8 B3 E3 69 83 28 29 DD"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-07-30T00:21:44",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:10",
+      "first_seen_secs": 1786588870.0
     },
     "phishdestroy": {
-      "domain": "majdsuxi.us.cc",
-      "domain_defanged": "majdsuxi[.]us[.]cc",
-      "case_id": "PD-20260814-1D5D29",
-      "analyzed_at": "2026-08-14T15:49:33.130Z",
+      "domain": "gayan-ledger.pages.dev",
+      "domain_defanged": "gayan-ledger[.]pages[.]dev",
+      "case_id": "PD-20260814-339995",
+      "analyzed_at": "2026-08-14T15:53:26.422Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a000fa-699c-77e6-8c57-35718f894b1f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +92,22 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "172.66.47.121",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2c87",
+            "2606:4700:310c::ac42:2f79"
+          ],
+          "A": [
+            "172.66.47.121",
+            "172.66.44.135"
+          ],
+          "NS": [
+            "jakub.ns.cloudflare.com.",
+            "venus.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,16 +234,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (majdsuxi.us.cc/5g/home.html)\"; flow:established,to_server; http.uri; content:\"/5g/home.html\"; startswith; fast_pattern; http.host; content:\"majdsuxi.us.cc\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6007303; classtype:social-engineering; sid:6007303; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-14T15:49:29.363953+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gayan-ledger.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"gayan-ledger.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007303; classtype:social-engineering; sid:6007303; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
+  "updated_at": "2026-08-15T09:05:10.135176+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "172.66.44.135",
+    "whois": null,
+    "status": "active"
+  }
 }

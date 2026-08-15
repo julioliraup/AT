@@ -1,8 +1,8 @@
 {
   "sid": 6003046,
-  "url_path": "/com",
-  "url_base": "dpd.lmvxtrpq.cfd",
-  "msg": "AT related malicious URL (dpd.lmvxtrpq.cfd/com)",
+  "url_path": "/",
+  "url_base": "www.facebook.mumbaiairlines.com",
+  "msg": "AT related malicious URL (www.facebook.mumbaiairlines.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://dpd.lmvxtrpq.cfd/com",
-      "domain": "dpd.lmvxtrpq.cfd",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://www.facebook.mumbaiairlines.com/",
+      "domain": "www.facebook.mumbaiairlines.com",
+      "url_count": 18,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "15.204.150.217",
+      "http_code": 200,
+      "http_response": {
+        "server": "openresty/1.31.1.1",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,42 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (4841)",
+      "sha256": "dd4f839561f503570a03ab3374377dd48a4117f2c457f839a86f211642f38152",
+      "md5": "039c8f9a3d575fce55eb37c980dc6bfd",
+      "cert": {
+        "subject_cn": "www.facebook.mumbaiairlines.com",
+        "subject_alt_names": [
+          "facebook.mumbaiairlines.com",
+          "mail.mumbaiairlines.com",
+          "mumbaiairlines.com",
+          "webmail.mumbaiairlines.com",
+          "www.facebook.mumbaiairlines.com",
+          "www.mumbaiairlines.com"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-09T10:23:25+00:00",
+        "not_valid_after": "2026-09-07T10:23:24+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "524600060938523973359631005072495421598879",
+        "fingerprint_sha1": "4B D3 D2 B0 30 02 51 1E 91 3A 83 DA 08 B9 C7 E9 14 3F A0 5A",
+        "fingerprint_sha256": "8A 73 83 06 84 C5 4A C0 84 DC 91 00 B7 70 3A 0E 2A 25 8B 62 F6 6B 86 45 D2 85 AA 1C 75 14 E1 42"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T04:09:11",
+      "first_seen_secs": 1785384551.0
     },
     "phishdestroy": {
-      "domain": "dpd.lmvxtrpq.cfd",
-      "domain_defanged": "dpd[.]lmvxtrpq[.]cfd",
-      "case_id": "PD-20260814-589C97",
-      "analyzed_at": "2026-08-14T11:54:17.904Z",
+      "domain": "facebook.mumbaiairlines.com",
+      "domain_defanged": "facebook[.]mumbaiairlines[.]com",
+      "case_id": "PD-20260814-30240D",
+      "analyzed_at": "2026-08-14T11:55:13.767Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -64,12 +92,35 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "15.204.150.217",
+        "ipinfo": {
+          "ip": "15.204.150.217",
+          "hostname": "ms.use4.jethosting.com",
+          "city": "Warrenton",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS16276 OVH SAS",
+          "asn": "AS16276"
+        },
+        "dns": {
+          "MX": [
+            "10 mumbaiairlines.com."
+          ],
+          "A": [
+            "15.204.150.217"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "OVH",
+          "abuse": "abuse@ovh.net",
+          "url": "https://www.ovh.com/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16276"
+        }
       },
       "report_services": [
         {
@@ -196,11 +247,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dpd.lmvxtrpq.cfd/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"dpd.lmvxtrpq.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003046; classtype:social-engineering; sid:6003046; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T21:02:05.007384+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.facebook.mumbaiairlines.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.facebook.mumbaiairlines.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003046; classtype:social-engineering; sid:6003046; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-15T05:48:41.793695+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "15.204.150.217",
+    "whois": null,
     "status": "active"
   }
 }

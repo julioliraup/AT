@@ -1,8 +1,8 @@
 {
   "sid": 6009348,
-  "url_path": "/",
-  "url_base": "68a262.icefactory.cl",
-  "msg": "AT related malicious URL (68a262.icefactory.cl/)",
+  "url_path": "/loginmobile/",
+  "url_base": "status-o2uk.spatialbuzz.net",
+  "msg": "AT related malicious URL (status-o2uk.spatialbuzz.net/loginmobile/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://68a262.icefactory.cl/",
-      "domain": "68a262.icefactory.cl",
+      "url": "http://status-o2uk.spatialbuzz.net/loginmobile/",
+      "domain": "status-o2uk.spatialbuzz.net",
       "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "3.169.173.32",
+      "http_code": 200,
+      "http_response": {
+        "server": "AmazonS3",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,30 +43,45 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (667)",
+      "sha256": "57be5f25f1fbfaef286824a709355205ca1e5786c41a0193c8775c9eb4c5fd78",
+      "md5": "c8ff7626a4ad0955bed6b6c7d89b6263",
+      "cert": {
+        "subject_cn": "status-o2uk.spatialbuzz.net",
+        "subject_alt_names": [
+          "status-o2uk.spatialbuzz.net",
+          "static-dev.o2alerts.com",
+          "status-dev.o2alerts.com"
+        ],
+        "issuer_cn": "Amazon RSA 2048 M04",
+        "issuer_org": "Amazon",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-16T00:00:00+00:00",
+        "not_valid_after": "2026-12-30T23:59:59+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "09 76 A5 7B 1F 1B 45 FA DC 3B AF D0 4B 63 66 84",
+        "fingerprint_sha1": "10 89 C7 23 1F FD 12 04 0B AF 14 7B 77 98 F0 06 48 68 01 6F",
+        "fingerprint_sha256": "0A 9F A7 CF 0B 32 FA F4 7D 83 48 3B 42 AE 4D F5 6D 7D 76 FC 25 FD 5C D7 C3 F5 F7 6E C5 88 78 5E"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-13T02:41:29",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T09:17:34",
+      "first_seen_secs": 1786612654.0
     },
     "phishdestroy": {
-      "domain": "68a262.icefactory.cl",
-      "domain_defanged": "68a262[.]icefactory[.]cl",
-      "case_id": "PD-20260814-3B7DFA",
-      "analyzed_at": "2026-08-14T08:25:53.165Z",
+      "domain": "status-o2uk.spatialbuzz.net",
+      "domain_defanged": "status-o2uk[.]spatialbuzz[.]net",
+      "case_id": "PD-20260814-1C82CB",
+      "analyzed_at": "2026-08-14T17:56:24.382Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/019fff60-aa13-7369-8706-238260f74b3d/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,32 +89,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "186.64.119.45",
-        "ipinfo": {
-          "ip": "186.64.119.45",
-          "hostname": "pyme68.pymedns.net",
-          "city": "Curicó",
-          "region": "Maule Region",
-          "country": "CL",
-          "org": "AS52368 ZAM LTDA.",
-          "asn": "AS52368"
-        },
+        "ip": "13.227.110.68",
+        "ipinfo": null,
         "dns": {
           "A": [
-            "186.64.119.45"
+            "13.227.110.68",
+            "13.227.110.44",
+            "13.227.110.27",
+            "13.227.110.123"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "AS52368",
-          "abuse": "",
-          "url": "",
-          "logo": "https://i.ibb.co/mCCBW4M5/pr-AS52368.png",
-          "method": "email",
-          "asn": "AS52368"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -220,10 +229,10 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (68a262.icefactory.cl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"68a262.icefactory.cl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009348; classtype:social-engineering; sid:6009348; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-14T17:46:59.917062+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (status-o2uk.spatialbuzz.net/loginmobile/)\"; flow:established,to_server; http.uri; content:\"/loginmobile/\"; startswith; fast_pattern; http.host; content:\"status-o2uk.spatialbuzz.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009348; classtype:social-engineering; sid:6009348; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
+  "updated_at": "2026-08-15T10:44:45.365830+00:00",
   "probe": {
-    "dns": "186.64.119.45",
+    "dns": "3.169.173.32",
     "whois": null,
     "status": "active"
   }

@@ -1,8 +1,8 @@
 {
   "sid": 6007557,
   "url_path": "/",
-  "url_base": "www.lost.com-isupport.help",
-  "msg": "AT related malicious URL (www.lost.com-isupport.help/)",
+  "url_base": "www.digitalplatforumu.com",
+  "msg": "AT related malicious URL (www.digitalplatforumu.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -18,12 +18,63 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://www.digitalplatforumu.com/",
+      "domain": "www.digitalplatforumu.com",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "193.233.253.208",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (62453)",
+      "sha256": "06164d8dba9e68c854db9032bba299215a64d6e9a9e93e52bc15e51deb14cb4f",
+      "md5": "939de113d99164169c68d0003009bbc1",
+      "cert": {
+        "subject_cn": "digitalplatforumu.com",
+        "subject_alt_names": [
+          "digitalplatforumu.com",
+          "*.digitalplatforumu.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-02T22:01:16+00:00",
+        "not_valid_after": "2026-10-31T22:59:43+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "168620300584151895633961010089804401868",
+        "fingerprint_sha1": "AA 1A 76 9C 33 52 93 7A D9 A0 8F A7 5B 70 B5 FB DF 40 CD BD",
+        "fingerprint_sha256": "64 5B 28 4D DD 84 AD E3 2B 57 32 80 68 5F 4F 3E 8C 43 0F 87 0D 33 42 53 D2 72 45 5C AE AD 98 31"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-08-13T02:41:13",
+      "first_seen_secs": 1786588873.0
+    },
     "phishdestroy": {
-      "domain": "lost.com-isupport.help",
-      "domain_defanged": "lost[.]com-isupport[.]help",
-      "case_id": "PD-20260814-332AE1",
-      "analyzed_at": "2026-08-14T16:04:14.155Z",
+      "domain": "digitalplatforumu.com",
+      "domain_defanged": "digitalplatforumu[.]com",
+      "case_id": "PD-20260814-247857",
+      "analyzed_at": "2026-08-14T16:12:04.876Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -32,25 +83,48 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/01a00104-4b99-727e-977b-056c5e999101/",
+          "url": "https://urlscan.io/result/01a0010b-7943-7525-9be2-ce7c30479e20/",
           "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "NameCheap, Inc.",
+        "created": "2026-03-11T22:52:24Z",
+        "expires": "2027-03-11T22:52:24Z",
+        "age_days": 155,
+        "nameservers": [
+          "KEANU.NS.CLOUDFLARE.COM",
+          "SLOAN.NS.CLOUDFLARE.COM"
+        ]
       },
       "infrastructure": {
-        "ip": "69.164.249.124",
+        "ip": "172.67.185.15",
         "ipinfo": null,
         "dns": {
           "A": [
-            "69.164.249.124"
+            "172.67.185.15",
+            "104.21.76.15"
+          ],
+          "AAAA": [
+            "2606:4700:3032::ac43:b90f",
+            "2606:4700:3031::6815:4c0f"
+          ],
+          "NS": [
+            "keanu.ns.cloudflare.com.",
+            "sloan.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
-        "registrar": null,
+        "registrar": {
+          "name": "Name SRS AB",
+          "abuse": "abuse@namesrs.com",
+          "url": "https://phish.report/contacts/Name-SRS-AB",
+          "logo": "https://i.ibb.co/kgH8Frhf/pr-Name-SRS-AB.png",
+          "method": "form",
+          "iana_ids": "638"
+        },
         "hosting": null
       },
       "report_services": [
@@ -174,14 +248,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.lost.com-isupport.help/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.lost.com-isupport.help\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007557; classtype:social-engineering; sid:6007557; rev:1; metadata: signature_severity Major, created_et 2026_08_08;)",
-  "updated_at": "2026-08-14T16:04:00.160070+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.digitalplatforumu.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.digitalplatforumu.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007557; classtype:social-engineering; sid:6007557; rev:1; metadata: signature_severity Major, created_et 2026_08_08;)",
+  "updated_at": "2026-08-15T09:14:49.491458+00:00",
   "probe": {
-    "dns": "69.164.249.124",
-    "whois": true,
+    "dns": "193.233.253.208",
+    "whois": null,
     "status": "active"
   }
 }

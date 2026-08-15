@@ -1,8 +1,8 @@
 {
   "sid": 6004513,
-  "url_path": "/com",
-  "url_base": "www.gov-parkingrs.shop",
-  "msg": "AT related malicious URL (www.gov-parkingrs.shop/com)",
+  "url_path": "/sharedfiles/filesdetails/id=35225482503/",
+  "url_base": "store.workshopscommunityratemods.com",
+  "msg": "AT related malicious URL (store.workshopscommunityratemods.com/sharedfiles/filesdetails/id=35225482503/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6004513"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.gov-parkingrs.shop/com",
-      "domain": "www.gov-parkingrs.shop",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://store.workshopscommunityratemods.com/sharedfiles/filesdetails/id=35225482503/",
+      "domain": "store.workshopscommunityratemods.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.156.9",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a231e8014fe7fb74-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (6101), with no line terminators",
+      "sha256": "d5e21c81e69613f7c902a287866539a2e58cb0b909850e6958d0d01ca2d6cac5",
+      "md5": "b35bb5e911a2a43de39b159aac33e48a",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T05:13:48",
+      "first_seen_secs": 1785388428.0
     },
     "phishdestroy": {
-      "domain": "gov-parkingrs.shop",
-      "domain_defanged": "gov-parkingrs[.]shop",
-      "case_id": "PD-20260814-48D6DD",
-      "analyzed_at": "2026-08-14T13:18:08.470Z",
+      "domain": "store.workshopscommunityratemods.com",
+      "domain_defanged": "store[.]workshopscommunityratemods[.]com",
+      "case_id": "PD-20260814-266929",
+      "analyzed_at": "2026-08-14T13:20:10.509Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a0006e-1659-706a-a9fc-5aa9e72c1fc8/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +74,18 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "104.21.56.216",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "104.21.56.216",
+            "172.67.156.9"
+          ],
+          "AAAA": [
+            "2606:4700:3037::ac43:9c09",
+            "2606:4700:3034::6815:38d8"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -196,11 +216,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gov-parkingrs.shop/com)\"; flow:established,to_server; http.uri; content:\"/com\"; startswith; fast_pattern; http.host; content:\"www.gov-parkingrs.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004513; classtype:social-engineering; sid:6004513; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T22:24:39.095688+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (store.workshopscommunityratemods.com/sharedfiles/filesdetails/id=35225482503/)\"; flow:established,to_server; http.uri; content:\"/sharedfiles/filesdetails/id=35225482503/\"; startswith; fast_pattern; http.host; content:\"store.workshopscommunityratemods.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004513; classtype:social-engineering; sid:6004513; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-15T06:49:45.906341+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.67.156.9",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6001930,
-  "url_path": "/pay/",
-  "url_base": "t-mobile.gmfbve.top",
-  "msg": "AT related malicious URL (t-mobile.gmfbve.top/pay/)",
+  "url_path": "/captcha.php",
+  "url_base": "marcel.hub5724557.pro",
+  "msg": "AT related malicious URL (marcel.hub5724557.pro/captcha.php)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6001930"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://t-mobile.gmfbve.top/pay/",
-      "domain": "t-mobile.gmfbve.top",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://marcel.hub5724557.pro/captcha.php",
+      "domain": "marcel.hub5724557.pro",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.12.182",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a11b9c349f58fef8-PDX",
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (507)",
+      "sha256": "c4ffa4be992df0034b38c066c544fd6533facd10c7e9c8c40ecd519d4af552a4",
+      "md5": "29ef6a9930d65611819838cf516ff7be",
+      "cert": {
+        "subject_cn": "hub5724557.pro",
+        "subject_alt_names": [
+          "hub5724557.pro",
+          "*.hub5724557.pro"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-06-04T01:40:55+00:00",
+        "not_valid_after": "2026-09-02T02:39:35+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "302638898880525446200516048877555823060",
+        "fingerprint_sha1": "B4 26 77 85 BD 5A 38 8D AC D7 8A 5E 1A 61 53 DB 43 F6 B2 0B",
+        "fingerprint_sha256": "97 57 0E 69 1A E6 D3 B0 43 73 96 19 A7 C8 53 E8 BD EC D1 6D C3 02 87 CD BA 9A D2 F2 0F 7A 9A 32"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-06-21T12:36:43",
+      "first_seen_secs": 1782045403.0
     },
     "phishdestroy": {
-      "domain": "t-mobile.gmfbve.top",
-      "domain_defanged": "t-mobile[.]gmfbve[.]top",
-      "case_id": "PD-20260814-36635F",
-      "analyzed_at": "2026-08-14T10:53:01.782Z",
+      "domain": "marcel.hub5724557.pro",
+      "domain_defanged": "marcel[.]hub5724557[.]pro",
+      "case_id": "PD-20260814-432914",
+      "analyzed_at": "2026-08-14T10:54:06.567Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -64,12 +88,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.67.132.54",
+        "ipinfo": {
+          "ip": "172.67.132.54",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:3034::6815:cb6",
+            "2606:4700:3035::ac43:8436"
+          ],
+          "A": [
+            "172.67.132.54",
+            "104.21.12.182"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -196,10 +244,10 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (t-mobile.gmfbve.top/pay/)\"; flow:established,to_server; http.uri; content:\"/pay/\"; startswith; fast_pattern; http.host; content:\"t-mobile.gmfbve.top\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001930; classtype:social-engineering; sid:6001930; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T20:11:26.350044+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (marcel.hub5724557.pro/captcha.php)\"; flow:established,to_server; http.uri; content:\"/captcha.php\"; startswith; fast_pattern; http.host; content:\"marcel.hub5724557.pro\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6001930; classtype:social-engineering; sid:6001930; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-15T04:55:39.481753+00:00",
   "probe": {
-    "dns": null,
+    "dns": "104.21.12.182",
     "whois": true,
     "status": "active"
   }

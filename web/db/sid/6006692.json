@@ -1,8 +1,8 @@
 {
   "sid": 6006692,
   "url_path": "/",
-  "url_base": "shopingee.shop",
-  "msg": "AT related malicious URL (shopingee.shop/)",
+  "url_base": "facebook.jmpost.cz",
+  "msg": "AT related malicious URL (facebook.jmpost.cz/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://shopingee.shop/",
-      "domain": "shopingee.shop",
+      "url": "http://facebook.jmpost.cz/",
+      "domain": "facebook.jmpost.cz",
       "url_count": 2,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "81.2.216.10",
+      "http_code": 404,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -39,24 +45,43 @@
       "flag": null,
       "filetype": null,
       "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "cert": {
+        "subject_cn": "Plesk",
+        "subject_alt_names": [],
+        "issuer_cn": "Plesk",
+        "issuer_org": "Plesk",
+        "issuer_country": "CH",
+        "not_valid_before": "2020-09-23T10:23:51+00:00",
+        "not_valid_after": "2021-09-23T10:23:51+00:00",
+        "is_expired": true,
+        "is_self_signed": "maybe",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "5F 6B 22 37",
+        "fingerprint_sha1": "BF 1E C7 B9 4A 28 F3 F6 BD C7 3B 3F 25 BE 3B 53 B2 70 3C 9E",
+        "fingerprint_sha256": "C6 51 6F CF 46 FC AB D4 CD 0D 3D 64 86 C7 D3 CE FE B5 22 69 B7 0C AE AF C4 F6 4F BF C0 7E 60 DB"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-13T02:40:27",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:21",
+      "first_seen_secs": 1786588881.0
     },
     "phishdestroy": {
-      "domain": "shopingee.shop",
-      "domain_defanged": "shopingee[.]shop",
-      "case_id": "PD-20260814-16FE30",
-      "analyzed_at": "2026-08-14T06:16:19.127Z",
+      "domain": "facebook.jmpost.cz",
+      "domain_defanged": "facebook[.]jmpost[.]cz",
+      "case_id": "PD-20260815-71E19C",
+      "analyzed_at": "2026-08-15T08:39:52.166Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00493-d368-702e-837b-097b75aca59a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +89,32 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "81.2.216.10",
+        "ipinfo": {
+          "ip": "81.2.216.10",
+          "hostname": "ganesha.jmpost.cz",
+          "city": "Prague",
+          "region": "Prague",
+          "country": "CZ",
+          "org": "AS24806 INTERNET CZ, a.s.",
+          "asn": "AS24806"
+        },
+        "dns": {
+          "A": [
+            "81.2.216.10"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AS35236, CZ",
+          "abuse": "abuse@uvtnet.cz",
+          "url": "mailto:abuse@uvtnet.cz",
+          "logo": "https://i.ibb.co/6Rt4wKVP/pr-AS35236-CZ.png",
+          "method": "email",
+          "asn": "AS24806"
+        }
       },
       "report_services": [
         {
@@ -192,14 +237,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shopingee.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"shopingee.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006692; classtype:social-engineering; sid:6006692; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-14T23:47:33.238839+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (facebook.jmpost.cz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"facebook.jmpost.cz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006692; classtype:social-engineering; sid:6006692; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
+  "updated_at": "2026-08-15T08:39:48.353354+00:00",
   "probe": {
-    "dns": null,
+    "dns": "81.2.216.10",
     "whois": true,
     "status": "active"
   }

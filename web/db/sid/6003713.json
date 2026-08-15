@@ -1,8 +1,8 @@
 {
   "sid": 6003713,
-  "url_path": "/a.php",
-  "url_base": "flnd-iph-icl.us",
-  "msg": "AT related malicious URL (flnd-iph-icl.us/a.php)",
+  "url_path": "/pay/login.php",
+  "url_base": "vdhd.fr",
+  "msg": "AT related malicious URL (vdhd.fr/pay/login.php)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://flnd-iph-icl.us/a.php",
-      "domain": "flnd-iph-icl.us",
+      "url": "http://vdhd.fr/pay/login.php",
+      "domain": "vdhd.fr",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "flnd-iph-icl.us",
-      "domain_defanged": "flnd-iph-icl[.]us",
-      "case_id": "PD-20260814-9B6941",
-      "analyzed_at": "2026-08-14T12:32:35.161Z",
+      "domain": "vdhd.fr",
+      "domain_defanged": "vdhd[.]fr",
+      "case_id": "PD-20260814-12ABA9",
+      "analyzed_at": "2026-08-14T12:34:42.879Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00044-7948-76b2-917c-83a60a12a52a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +68,45 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "217.160.0.128",
+        "ipinfo": {
+          "ip": "217.160.0.128",
+          "hostname": "217-160-0-128.elastic-ssl.ui-r.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS8560 IONOS SE",
+          "asn": "AS8560"
+        },
+        "dns": {
+          "MX": [
+            "10 mx01.ionos.fr.",
+            "10 mx00.ionos.fr."
+          ],
+          "A": [
+            "217.160.0.128"
+          ],
+          "AAAA": [
+            "2001:8d8:100f:f000::200"
+          ],
+          "NS": [
+            "ns1039.ui-dns.biz.",
+            "ns1087.ui-dns.com.",
+            "ns1055.ui-dns.de.",
+            "ns1044.ui-dns.org."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CRONON-AS",
+          "abuse": "abuse@vautron.de",
+          "url": "mailto:abuse@vautron.de",
+          "logo": "https://i.ibb.co/F4bxDB72/pr-CRONON-AS.png",
+          "method": "email",
+          "asn": "AS8560"
+        }
       },
       "report_services": [
         {
@@ -196,10 +233,10 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (flnd-iph-icl.us/a.php)\"; flow:established,to_server; http.uri; content:\"/a.php\"; startswith; fast_pattern; http.host; content:\"flnd-iph-icl.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003713; classtype:social-engineering; sid:6003713; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T21:34:35.656629+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (vdhd.fr/pay/login.php)\"; flow:established,to_server; http.uri; content:\"/pay/login.php\"; startswith; fast_pattern; http.host; content:\"vdhd.fr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003713; classtype:social-engineering; sid:6003713; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-15T06:15:21.242107+00:00",
   "probe": {
-    "dns": null,
+    "dns": "217.160.0.128",
     "whois": true,
     "status": "active"
   }

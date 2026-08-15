@@ -1,8 +1,8 @@
 {
   "sid": 6006802,
-  "url_path": "/FL26",
-  "url_base": "mail.icloudsmy-deviced.info",
-  "msg": "AT related malicious URL (mail.icloudsmy-deviced.info/FL26)",
+  "url_path": "/",
+  "url_base": "loginxfinty.weebly.com",
+  "msg": "AT related malicious URL (loginxfinty.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://mail.icloudsmy-deviced.info/FL26",
-      "domain": "mail.icloudsmy-deviced.info",
-      "url_count": 1,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://loginxfinty.weebly.com/",
+      "domain": "loginxfinty.weebly.com",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "74.115.51.8",
+      "http_code": 404,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a2a466588ea81ef3-PDX",
+        "cf_cache_status": "BYPASS",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (368)",
+      "sha256": "4d2e762682dddcaa437cc701c606dc3c2cba826a297384619339b7b95d975de2",
+      "md5": "9bc048e1450fc40040020a26b2c8a6c3",
+      "cert": {
+        "subject_cn": "weebly.com",
+        "subject_alt_names": [
+          "*.weebly.com",
+          "weebly.com"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-08T20:20:54+00:00",
+        "not_valid_after": "2026-11-06T20:20:53+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "558558999505569347721238567098172138507537",
+        "fingerprint_sha1": "3B CE 88 08 2E C3 E2 EB 4A C0 1D 92 81 0D A8 EA 57 65 16 10",
+        "fingerprint_sha256": "9F 07 F6 A9 D3 D9 A7 E7 75 E4 FB B0 06 34 28 35 F9 6F 7B B9 51 21 87 7D 4E 45 8D FA 52 B4 8B FB"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-06T06:03:23",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:10",
+      "first_seen_secs": 1786588870.0
     },
     "phishdestroy": {
-      "domain": "mail.icloudsmy-deviced.info",
-      "domain_defanged": "mail[.]icloudsmy-deviced[.]info",
-      "case_id": "PD-20260814-6A0E80",
-      "analyzed_at": "2026-08-14T06:22:08.628Z",
+      "domain": "loginxfinty.weebly.com",
+      "domain_defanged": "loginxfinty[.]weebly[.]com",
+      "case_id": "PD-20260815-520B46",
+      "analyzed_at": "2026-08-15T08:45:32.896Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00499-05a4-7702-ac23-736581ab939e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.8",
+        "ipinfo": {
+          "ip": "74.115.51.8",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.8",
+            "74.115.51.9"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -192,15 +241,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mail.icloudsmy-deviced.info/FL26)\"; flow:established,to_server; http.uri; content:\"/FL26\"; startswith; fast_pattern; http.host; content:\"mail.icloudsmy-deviced.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006802; classtype:social-engineering; sid:6006802; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-14T23:51:14.062190+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (loginxfinty.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"loginxfinty.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006802; classtype:social-engineering; sid:6006802; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
+  "updated_at": "2026-08-15T08:45:29.652355+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.8",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6008431,
-  "url_path": "/?i=1",
-  "url_base": "login-soporte.iceiy.com",
-  "msg": "AT related malicious URL (login-soporte.iceiy.com/?i=1)",
+  "url_path": "/help?mCR",
+  "url_base": "findmaps.us",
+  "msg": "AT related malicious URL (findmaps.us/help?mCR)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,8 +19,8 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://login-soporte.iceiy.com/?i=1",
-      "domain": "login-soporte.iceiy.com",
+      "url": "http://findmaps.us/help?mCR",
+      "domain": "findmaps.us",
       "url_count": 0,
       "city_data": true,
       "deep_analysis": false,
@@ -47,16 +47,20 @@
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "login-soporte.iceiy.com",
-      "domain_defanged": "login-soporte[.]iceiy[.]com",
-      "case_id": "PD-20260814-2A6DD2",
-      "analyzed_at": "2026-08-14T17:01:16.297Z",
+      "domain": "findmaps.us",
+      "domain_defanged": "findmaps[.]us",
+      "case_id": "PD-20260815-88717C",
+      "analyzed_at": "2026-08-15T09:59:34.878Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a004dc-cdd1-747d-b9c7-33856629c79a/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,17 +68,42 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.27.134.171",
-        "ipinfo": null,
+        "ip": "34.76.205.124",
+        "ipinfo": {
+          "ip": "34.76.205.124",
+          "hostname": "124.205.76.34.bc.googleusercontent.com",
+          "city": "Brussels",
+          "region": "Brussels Capital",
+          "country": "BE",
+          "org": "AS396982 Google LLC",
+          "asn": "AS396982"
+        },
         "dns": {
+          "AAAA": [
+            "2600:1901:0:51b9::"
+          ],
           "A": [
-            "185.27.134.171"
+            "34.76.205.124"
+          ],
+          "MX": [
+            "10 mx.all-harmless.domains."
+          ],
+          "NS": [
+            "ns1.all-harmless.domains.",
+            "ns2.all-harmless.domains."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -200,11 +229,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (login-soporte.iceiy.com/?i=1)\"; flow:established,to_server; http.uri; content:\"/?i=1\"; startswith; fast_pattern; http.host; content:\"login-soporte.iceiy.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008431; classtype:social-engineering; sid:6008431; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-14T17:01:12.738198+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (findmaps.us/help?mCR)\"; flow:established,to_server; http.uri; content:\"/help?mCR\"; startswith; fast_pattern; http.host; content:\"findmaps.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008431; classtype:social-engineering; sid:6008431; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
+  "updated_at": "2026-08-15T09:59:30.848209+00:00",
   "probe": {
-    "dns": "185.27.134.171",
-    "whois": null,
+    "dns": "34.76.205.124",
+    "whois": true,
     "status": "active"
   }
 }

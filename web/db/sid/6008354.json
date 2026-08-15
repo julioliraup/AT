@@ -1,8 +1,8 @@
 {
   "sid": 6008354,
   "url_path": "/",
-  "url_base": "am.sohll.lol",
-  "msg": "AT related malicious URL (am.sohll.lol/)",
+  "url_base": "ledgerlive-dowload.pages.dev",
+  "msg": "AT related malicious URL (ledgerlive-dowload.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://am.sohll.lol/",
-      "domain": "am.sohll.lol",
+      "url": "http://ledgerlive-dowload.pages.dev/",
+      "domain": "ledgerlive-dowload.pages.dev",
       "url_count": 2,
-      "city_data": false,
-      "deep_analysis": false,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.66.44.101",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2a46722acfd1f9b-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "2e53dd3b410ae96a8081a51e6e410edc0dcc4c6aa93322520c210c00d84d48af",
+      "md5": "1e267cf1900f1bca171c27cf6e92f91e",
+      "cert": {
+        "subject_cn": "ledgerlive-dowload.pages.dev",
+        "subject_alt_names": [
+          "ledgerlive-dowload.pages.dev",
+          "*.ledgerlive-dowload.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-06T14:32:09+00:00",
+        "not_valid_after": "2026-11-04T15:31:47+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "187570050812613958796784681155956307656",
+        "fingerprint_sha1": "DA F7 0A 5F 00 4C A3 49 01 E3 9A C5 66 C2 FC 0E D1 A6 B2 07",
+        "fingerprint_sha256": "7E A6 5A A0 11 7E 5E 45 76 8F 76 3C 30 B2 0E FE 31 F1 FE 64 40 76 4F 8B 1D F8 55 6E 2E A2 BB EB"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-08-13T02:41:24",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:16",
+      "first_seen_secs": 1786588876.0
     },
     "phishdestroy": {
-      "domain": "am.sohll.lol",
-      "domain_defanged": "am[.]sohll[.]lol",
-      "case_id": "PD-20260814-161E57",
-      "analyzed_at": "2026-08-14T16:56:53.139Z",
+      "domain": "ledgerlive-dowload.pages.dev",
+      "domain_defanged": "ledgerlive-dowload[.]pages[.]dev",
+      "case_id": "PD-20260815-11B6CD",
+      "analyzed_at": "2026-08-15T09:55:37.320Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a004d9-2deb-744b-a512-bce083803d54/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,40 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.66.47.155",
+        "ipinfo": {
+          "ip": "172.66.47.155",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2c65",
+            "2606:4700:310c::ac42:2f9b"
+          ],
+          "NS": [
+            "margo.ns.cloudflare.com.",
+            "wally.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.47.155",
+            "172.66.44.101"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -195,11 +251,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (am.sohll.lol/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"am.sohll.lol\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008354; classtype:social-engineering; sid:6008354; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-14T16:56:50.054472+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledgerlive-dowload.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledgerlive-dowload.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008354; classtype:social-engineering; sid:6008354; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
+  "updated_at": "2026-08-15T09:55:34.843258+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.66.44.101",
+    "whois": null,
     "status": "active"
   }
 }

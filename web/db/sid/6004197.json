@@ -1,8 +1,8 @@
 {
   "sid": 6004197,
-  "url_path": "/ICL264/",
-  "url_base": "myfindphone.help",
-  "msg": "AT related malicious URL (myfindphone.help/ICL264/)",
+  "url_path": "/",
+  "url_base": "micro.statichost.page",
+  "msg": "AT related malicious URL (micro.statichost.page/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6004197"
   ],
   "intel": {
@@ -19,10 +19,10 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://myfindphone.help/ICL264/",
-      "domain": "myfindphone.help",
-      "url_count": 1,
-      "city_data": false,
+      "url": "http://micro.statichost.page/",
+      "domain": "micro.statichost.page",
+      "url_count": 3,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": "WHITE",
@@ -43,20 +43,24 @@
       "md5": null,
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-06-21T15:46:52",
+      "first_seen": "2026-08-06T02:32:55",
       "first_seen_secs": null
     },
     "phishdestroy": {
-      "domain": "myfindphone.help",
-      "domain_defanged": "myfindphone[.]help",
-      "case_id": "PD-20260814-5E2892",
-      "analyzed_at": "2026-08-14T13:00:59.325Z",
+      "domain": "micro.statichost.page",
+      "domain_defanged": "micro[.]statichost[.]page",
+      "case_id": "PD-20260814-1ED36E",
+      "analyzed_at": "2026-08-14T13:02:46.320Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a0005e-292d-71d8-84e6-dbd870ef3eb1/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +68,27 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "sites.statichost.eu.",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "sites.statichost.eu.",
+            "46.225.58.80"
+          ],
+          "MX": [
+            "sites.statichost.eu."
+          ],
+          "CNAME": [
+            "sites.statichost.eu."
+          ],
+          "AAAA": [
+            "sites.statichost.eu.",
+            "2a01:4f8:1c19:d92e::1"
+          ],
+          "NS": [
+            "sites.statichost.eu."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -196,13 +219,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (myfindphone.help/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"myfindphone.help\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004197; classtype:social-engineering; sid:6004197; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T22:07:43.134483+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (micro.statichost.page/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"micro.statichost.page\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004197; classtype:social-engineering; sid:6004197; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
+  "updated_at": "2026-08-15T06:36:40.311460+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "46.225.58.80",
+    "whois": null,
+    "status": "active"
+  }
 }

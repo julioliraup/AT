@@ -1,8 +1,8 @@
 {
   "sid": 6007502,
-  "url_path": "/balolse/connect/1aba16981ea74690115f0e7fea2efeb21724ff3f5ff8f960e4b4a0145197ac27",
-  "url_base": "ebanklng.prlvat-klient.com",
-  "msg": "AT related malicious URL (ebanklng.prlvat-klient.com/balolse/connect/1aba16981ea74690115f0e7fea2efeb21724ff3f5ff8f960e4b4a0145197ac27)",
+  "url_path": "/",
+  "url_base": "newmidas.gamerstored.com",
+  "msg": "AT related malicious URL (newmidas.gamerstored.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://ebanklng.prlvat-klient.com/balolse/connect/1aba16981ea74690115f0e7fea2efeb21724ff3f5ff8f960e4b4a0145197ac27",
-      "domain": "ebanklng.prlvat-klient.com",
-      "url_count": 0,
+      "url": "http://newmidas.gamerstored.com/",
+      "domain": "newmidas.gamerstored.com",
+      "url_count": 2,
       "city_data": false,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "103.30.194.47",
+      "http_code": 200,
+      "http_response": {
+        "server": "LiteSpeed",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,47 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (909), with CRLF line terminators",
+      "sha256": "24d55b6d880cd71ee5235da5ab20ae77a24e30e54265ebc933c4642c654dab6c",
+      "md5": "5729518dbf67513945bf088949699d78",
+      "cert": {
+        "subject_cn": "newmidas.gamerstored.com",
+        "subject_alt_names": [
+          "newmidas.gamerstored.com"
+        ],
+        "issuer_cn": "YR1",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-27T16:23:26+00:00",
+        "not_valid_after": "2026-10-25T16:23:25+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "06 77 EC F1 6A 3B B5 50 0D E6 05 18 24 33 7A C7 A5 47",
+        "fingerprint_sha1": "5F 85 CE 3E 8F CA EB A6 2B 24 3B FA 6F B8 D8 33 C4 94 5F 88",
+        "fingerprint_sha256": "A4 FA 83 11 2D 5A AE A4 E3 AB DB A7 1B 33 5B C3 FE 0C 51 F8 56 D4 F5 9F A5 F8 81 55 18 75 77 A6"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:13",
+      "first_seen_secs": 1786588873.0
     },
     "phishdestroy": {
-      "domain": "ebanklng.prlvat-klient.com",
-      "domain_defanged": "ebanklng[.]prlvat-klient[.]com",
-      "case_id": "PD-20260814-7AC98B",
-      "analyzed_at": "2026-08-14T16:01:10.305Z",
+      "domain": "newmidas.gamerstored.com",
+      "domain_defanged": "newmidas[.]gamerstored[.]com",
+      "case_id": "PD-20260814-1C9BB3",
+      "analyzed_at": "2026-08-14T16:06:24.259Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00106-462a-763b-992a-3e5df9382812/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,8 +91,13 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "103.30.194.47",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "A": [
+            "103.30.194.47"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -192,16 +224,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ebanklng.prlvat-klient.com/balolse/connect/1aba16981ea74690115f0e7fea2efeb21724ff3f5ff8f960e4b4a0145197ac27)\"; flow:established,to_server; http.uri; content:\"/balolse/connect/1aba16981ea74690115f0e7fea2efeb21724ff3f5ff8f960e4b4a0145197ac27\"; startswith; fast_pattern; http.host; content:\"ebanklng.prlvat-klient.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007502; classtype:social-engineering; sid:6007502; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-14T16:00:55.425504+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (newmidas.gamerstored.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"newmidas.gamerstored.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007502; classtype:social-engineering; sid:6007502; rev:1; metadata: signature_severity Major, created_et 2026_08_08;)",
+  "updated_at": "2026-08-15T09:12:17.002174+00:00",
   "probe": {
-    "dns": false,
-    "whois": false,
-    "status": "stale",
-    "note": "dns-and-whois-unresponsive"
-  },
-  "rule_status": "stale"
+    "dns": "103.30.194.47",
+    "whois": null,
+    "status": "active"
+  }
 }

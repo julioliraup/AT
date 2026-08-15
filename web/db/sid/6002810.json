@@ -1,8 +1,8 @@
 {
   "sid": 6002810,
   "url_path": "/",
-  "url_base": "roevalleyresort.spahotel.guru",
-  "msg": "AT related malicious URL (roevalleyresort.spahotel.guru/)",
+  "url_base": "eng-ledgr-com.pages.dev",
+  "msg": "AT related malicious URL (eng-ledgr-com.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,19 +19,19 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://roevalleyresort.spahotel.guru/",
-      "domain": "roevalleyresort.spahotel.guru",
-      "url_count": 10,
+      "url": "http://eng-ledgr-com.pages.dev/",
+      "domain": "eng-ledgr-com.pages.dev",
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "52.29.26.157",
-      "http_code": 429,
+      "ip": "172.66.44.52",
+      "http_code": 403,
       "http_response": {
-        "server": null,
-        "content_type": "text/plain",
-        "cf_ray": null,
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a1127a0e3fd78864-PDX",
         "cf_cache_status": null,
         "alt_svc": null
       },
@@ -43,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": "text/plain",
-      "filemagic": "ASCII text, with no line terminators",
-      "sha256": "95a111e3185eb0061df633d8079c0e156c0a311679c168b6dec0f0887db0a938",
-      "md5": "efce4fc1964885ae24927ad760d8d6ba",
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (394)",
+      "sha256": "114e66a6b65c278eeccd08436e4c3599a02ee1e18473022e45fa182225862a95",
+      "md5": "339b6d6030776ab069ee2c1143499e6f",
+      "cert": {
+        "subject_cn": "eng-ledgr-com.pages.dev",
+        "subject_alt_names": [
+          "eng-ledgr-com.pages.dev",
+          "*.eng-ledgr-com.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-05-11T22:05:17+00:00",
+        "not_valid_after": "2026-08-09T23:03:59+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "46124873876081263039836828027109865056",
+        "fingerprint_sha1": "76 C9 87 82 10 E0 57 A9 85 0C BF 4E 48 59 C6 B5 EA 79 B5 27",
+        "fingerprint_sha256": "22 E4 4A 9F 63 0D 61 E7 43 DF 4C E8 03 6F 4B 60 29 DF A4 EA BB 26 D7 D6 4C 9E C0 FF 07 39 4D E2"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-07-30T04:09:06",
-      "first_seen_secs": null
+      "first_seen": "2026-06-25T07:49:34",
+      "first_seen_secs": 1782373774.0
     },
     "phishdestroy": {
-      "domain": "roevalleyresort.spahotel.guru",
-      "domain_defanged": "roevalleyresort[.]spahotel[.]guru",
-      "case_id": "PD-20260814-74A3B1",
-      "analyzed_at": "2026-08-14T20:51:44.151Z",
+      "domain": "eng-ledgr-com.pages.dev",
+      "domain_defanged": "eng-ledgr-com[.]pages[.]dev",
+      "case_id": "PD-20260814-3C1ED1",
+      "analyzed_at": "2026-08-14T20:53:01.004Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -70,11 +88,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "52.29.26.157",
+        "ip": "172.66.44.52",
         "ipinfo": null,
         "dns": {
           "A": [
-            "52.29.26.157"
+            "172.66.44.52",
+            "172.66.47.204"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2c34",
+            "2606:4700:310c::ac42:2fcc"
+          ],
+          "NS": [
+            "sky.ns.cloudflare.com.",
+            "yew.ns.cloudflare.com."
           ]
         }
       },
@@ -203,14 +230,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (roevalleyresort.spahotel.guru/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"roevalleyresort.spahotel.guru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002810; classtype:social-engineering; sid:6002810; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T20:51:40.457650+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (eng-ledgr-com.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"eng-ledgr-com.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002810; classtype:social-engineering; sid:6002810; rev:1; metadata: signature_severity Major, created_et 2026_06_09, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-15T05:38:58.984706+00:00",
   "probe": {
-    "dns": "52.29.26.157",
-    "whois": true,
+    "dns": "172.66.44.52",
+    "whois": null,
     "status": "active"
   }
 }

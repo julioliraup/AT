@@ -1,8 +1,8 @@
 {
   "sid": 6006859,
-  "url_path": "/raiffeisench/",
-  "url_base": "groupe-online.com",
-  "msg": "AT related malicious URL (groupe-online.com/raiffeisench/)",
+  "url_path": "/",
+  "url_base": "mailxfinty.weeblysite.com",
+  "msg": "AT related malicious URL (mailxfinty.weeblysite.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://groupe-online.com/raiffeisench/",
-      "domain": "groupe-online.com",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://mailxfinty.weeblysite.com/",
+      "domain": "mailxfinty.weeblysite.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "74.115.51.55",
+      "http_code": 404,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a29d3d0f7fafff19-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,46 +43,64 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "fc98b08cea2ac0eeaf6fd7f983b5b8022a7eac45d8b40ea8ff492e8b56cab818",
+      "md5": "aaf1690475c702975d4d8316cc31efb6",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-12T05:51:13",
+      "first_seen_secs": 1786513873.0
     },
     "phishdestroy": {
-      "domain": "groupe-online.com",
-      "domain_defanged": "groupe-online[.]com",
-      "case_id": "PD-20260814-718E66",
-      "analyzed_at": "2026-08-14T06:25:44.101Z",
+      "domain": "mailxfinty.weeblysite.com",
+      "domain_defanged": "mailxfinty[.]weeblysite[.]com",
+      "case_id": "PD-20260815-4C0FB9",
+      "analyzed_at": "2026-08-15T08:48:56.779Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a0049c-22d5-774d-b13f-2bacf0732897/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "registrar": "Ligne Web Services SAS dba LWS",
-        "created": "2026-02-17T00:50:49Z",
-        "expires": "2027-02-17T00:50:49Z",
-        "age_days": 178,
-        "nameservers": [
-          "PARKING1.LWSDNS.COM",
-          "PARKING2.LWSDNS.COM"
-        ]
+        "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.55",
+        "ipinfo": {
+          "ip": "74.115.51.55",
+          "hostname": "weeblysite.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.55",
+            "74.115.51.54"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -199,15 +223,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (groupe-online.com/raiffeisench/)\"; flow:established,to_server; http.uri; content:\"/raiffeisench/\"; startswith; fast_pattern; http.host; content:\"groupe-online.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006859; classtype:social-engineering; sid:6006859; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-14T23:53:34.113952+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mailxfinty.weeblysite.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"mailxfinty.weeblysite.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006859; classtype:social-engineering; sid:6006859; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
+  "updated_at": "2026-08-15T08:48:54.248078+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.55",
+    "whois": null,
     "status": "active"
   }
 }

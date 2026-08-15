@@ -1,8 +1,8 @@
 {
   "sid": 6007350,
   "url_path": "/",
-  "url_base": "www.yh9969.cn",
-  "msg": "AT related malicious URL (www.yh9969.cn/)",
+  "url_base": "imtokens.tronscoin.com",
+  "msg": "AT related malicious URL (imtokens.tronscoin.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.yh9969.cn/",
-      "domain": "www.yh9969.cn",
+      "url": "http://imtokens.tronscoin.com/",
+      "domain": "imtokens.tronscoin.com",
       "url_count": 2,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.67.188.88",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a2a468820ba43e6d-PDX",
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (5861), with no line terminators",
+      "sha256": "374c2dabb15b7d9c178350b8c9e684dc7a8bd3837abd0f457502a0f71276fbdd",
+      "md5": "040cbfacce5fa60468e66257534047e5",
+      "cert": {
+        "subject_cn": "tronscoin.com",
+        "subject_alt_names": [
+          "tronscoin.com",
+          "*.tronscoin.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-29T07:14:57+00:00",
+        "not_valid_after": "2026-10-27T08:13:49+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "8260742846272787582491219056965448044",
+        "fingerprint_sha1": "D2 2F 58 EA 7C 3D 3E 76 AD 1B 40 B8 18 52 57 8F 72 99 33 17",
+        "fingerprint_sha256": "F2 DE 67 B2 65 A8 2A 84 92 BE D2 BF B3 03 BC 96 6C 08 1F 2A E3 D8 1C A4 2F 58 0D 60 FE 11 01 73"
+      },
       "safebrowsing": [],
       "first_seen": "2026-08-13T02:41:11",
-      "first_seen_secs": null
+      "first_seen_secs": 1786588871.0
     },
     "phishdestroy": {
-      "domain": "yh9969.cn",
-      "domain_defanged": "yh9969[.]cn",
-      "case_id": "PD-20260814-736DB6",
-      "analyzed_at": "2026-08-14T15:52:37.742Z",
+      "domain": "imtokens.tronscoin.com",
+      "domain_defanged": "imtokens[.]tronscoin[.]com",
+      "case_id": "PD-20260814-900856",
+      "analyzed_at": "2026-08-14T15:56:09.780Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +83,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/01a000f9-ab6d-759c-93a4-55db09216b5e/",
+          "url": "https://urlscan.io/result/01a000fc-e673-71f5-90b9-dbb5c7caed83/",
           "pending": true
         }
       },
@@ -68,17 +92,16 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "156.244.232.178",
+        "ip": "172.67.188.88",
         "ipinfo": null,
         "dns": {
-          "NS": [
-            "ns1.domainnamedns.com.",
-            "ns3.domainnamedns.com.",
-            "ns4.domainnamedns.com.",
-            "ns2.domainnamedns.com."
+          "AAAA": [
+            "2606:4700:3035::6815:30e9",
+            "2606:4700:3033::ac43:bc58"
           ],
           "A": [
-            "156.244.232.178"
+            "172.67.188.88",
+            "104.21.48.233"
           ]
         }
       },
@@ -207,14 +230,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.yh9969.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.yh9969.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007350; classtype:social-engineering; sid:6007350; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-14T15:52:32.945869+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (imtokens.tronscoin.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"imtokens.tronscoin.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007350; classtype:social-engineering; sid:6007350; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
+  "updated_at": "2026-08-15T09:06:40.432259+00:00",
   "probe": {
-    "dns": "156.244.232.178",
-    "whois": true,
+    "dns": "172.67.188.88",
+    "whois": null,
     "status": "active"
   }
 }

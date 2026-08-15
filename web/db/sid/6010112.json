@@ -1,8 +1,8 @@
 {
   "sid": 6010112,
-  "url_path": "/?verified=1",
-  "url_base": "app.trezors-suites.com",
-  "msg": "AT related malicious URL (app.trezors-suites.com/?verified=1)",
+  "url_path": "/",
+  "url_base": "www.docusignsetup.icu",
+  "msg": "AT related malicious URL (www.docusignsetup.icu/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://app.trezors-suites.com/?verified=1",
-      "domain": "app.trezors-suites.com",
-      "url_count": 0,
+      "url": "http://www.docusignsetup.icu/",
+      "domain": "www.docusignsetup.icu",
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.45.48",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2628aac687d97a5-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (497)",
+      "sha256": "650f1fa6a5fd9c016ff19b66707021926f0210a4a3206b8ee9bc7df40cf27a3d",
+      "md5": "04a78b7c5bf61d66ae311f32cc729d8c",
+      "cert": {
+        "subject_cn": "docusignsetup.icu",
+        "subject_alt_names": [
+          "docusignsetup.icu",
+          "*.docusignsetup.icu"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-03T11:34:03+00:00",
+        "not_valid_after": "2026-11-01T12:32:36+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "65002907823617326390818000884865731568",
+        "fingerprint_sha1": "05 40 DB 8F 3D 02 9B 10 6F 4C 6F 1C 85 F0 88 10 B0 2B 20 51",
+        "fingerprint_sha256": "4A 16 0D 8D B0 5B 67 26 83 3C 15 A5 96 EE EC AC 39 5F 71 24 7E 96 2D B8 B9 AE DD C7 24 D9 EE 0B"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-05T02:49:33",
+      "first_seen_secs": 1785898173.0
     },
     "phishdestroy": {
-      "domain": "app.trezors-suites.com",
-      "domain_defanged": "app[.]trezors-suites[.]com",
-      "case_id": "PD-20260814-231A3B",
-      "analyzed_at": "2026-08-14T09:01:56.428Z",
+      "domain": "docusignsetup.icu",
+      "domain_defanged": "docusignsetup[.]icu",
+      "case_id": "PD-20260815-2C145C",
+      "analyzed_at": "2026-08-15T11:24:48.018Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,7 +83,7 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fff81-aa10-7311-8a8e-36d029604abc/",
+          "url": "https://urlscan.io/result/01a0052a-d310-714c-9fe9-2f408e65b216/",
           "pending": true
         }
       },
@@ -68,9 +92,9 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.161.198",
+        "ip": "104.21.45.48",
         "ipinfo": {
-          "ip": "172.67.161.198",
+          "ip": "104.21.45.48",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,12 +103,16 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:3036::ac43:a1c6",
-            "2606:4700:3037::6815:9f2"
+            "2606:4700:3034::6815:2d30",
+            "2606:4700:3034::ac43:d1b4"
           ],
           "A": [
-            "172.67.161.198",
-            "104.21.9.242"
+            "104.21.45.48",
+            "172.67.209.180"
+          ],
+          "NS": [
+            "beau.ns.cloudflare.com.",
+            "indie.ns.cloudflare.com."
           ]
         }
       },
@@ -220,15 +248,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app.trezors-suites.com/?verified=1)\"; flow:established,to_server; http.uri; content:\"/?verified=1\"; startswith; fast_pattern; http.host; content:\"app.trezors-suites.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010112; classtype:social-engineering; sid:6010112; rev:1; metadata: signature_severity Major, created_et 2026_08_13;)",
-  "updated_at": "2026-08-14T18:21:50.683873+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.docusignsetup.icu/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.docusignsetup.icu\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010112; classtype:social-engineering; sid:6010112; rev:1; metadata: signature_severity Major, created_et 2026_08_15;)",
+  "updated_at": "2026-08-15T11:24:45.040613+00:00",
   "probe": {
-    "dns": "172.67.161.198",
-    "whois": null,
+    "dns": "104.21.45.48",
+    "whois": true,
     "status": "active"
   }
 }

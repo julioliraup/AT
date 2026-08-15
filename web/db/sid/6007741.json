@@ -1,8 +1,8 @@
 {
   "sid": 6007741,
-  "url_path": "/?i=1",
-  "url_base": "www-itausegurancas.rf.gd",
-  "msg": "AT related malicious URL (www-itausegurancas.rf.gd/?i=1)",
+  "url_path": "/",
+  "url_base": "woen-dc91.urdgiusf.workers.dev",
+  "msg": "AT related malicious URL (woen-dc91.urdgiusf.workers.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www-itausegurancas.rf.gd/?i=1",
-      "domain": "www-itausegurancas.rf.gd",
-      "url_count": 0,
+      "url": "http://woen-dc91.urdgiusf.workers.dev/",
+      "domain": "woen-dc91.urdgiusf.workers.dev",
+      "url_count": 2,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.154.164",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2a467bdeb6dff19-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "22de9ea80f1dbafbd0e4447a2c8d957f89ac2c226aa58c0dd6cc545e7e6c186b",
+      "md5": "7ceb7c87729727ea01f56fd864c1f391",
+      "cert": {
+        "subject_cn": "urdgiusf.workers.dev",
+        "subject_alt_names": [
+          "urdgiusf.workers.dev",
+          "*.urdgiusf.workers.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-31T07:47:50+00:00",
+        "not_valid_after": "2026-10-29T08:42:24+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "75781344033812948677325986036380276403",
+        "fingerprint_sha1": "3A 8A 78 40 72 D0 5E AB 63 DF 30 24 38 23 8A 66 2D 94 CB 49",
+        "fingerprint_sha256": "A3 9A 4D 5E 3D 43 BE 92 8B 83 56 77 8F F4 60 A2 C2 A4 4A CF 84 52 5C 9E A9 29 9E 98 00 89 37 2F"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:11",
+      "first_seen_secs": 1786588871.0
     },
     "phishdestroy": {
-      "domain": "www-itausegurancas.rf.gd",
-      "domain_defanged": "www-itausegurancas[.]rf[.]gd",
-      "case_id": "PD-20260814-31049C",
-      "analyzed_at": "2026-08-14T16:22:51.457Z",
+      "domain": "woen-dc91.urdgiusf.workers.dev",
+      "domain_defanged": "woen-dc91[.]urdgiusf[.]workers[.]dev",
+      "case_id": "PD-20260814-32909C",
+      "analyzed_at": "2026-08-14T16:29:05.765Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -64,11 +88,16 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.27.134.94",
+        "ip": "172.67.154.164",
         "ipinfo": null,
         "dns": {
           "A": [
-            "185.27.134.94"
+            "172.67.154.164",
+            "104.21.5.140"
+          ],
+          "AAAA": [
+            "2606:4700:3030::ac43:9aa4",
+            "2606:4700:3032::6815:58c"
           ]
         }
       },
@@ -197,14 +226,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www-itausegurancas.rf.gd/?i=1)\"; flow:established,to_server; http.uri; content:\"/?i=1\"; startswith; fast_pattern; http.host; content:\"www-itausegurancas.rf.gd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007741; classtype:social-engineering; sid:6007741; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-14T16:22:47.410931+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (woen-dc91.urdgiusf.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"woen-dc91.urdgiusf.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007741; classtype:social-engineering; sid:6007741; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
+  "updated_at": "2026-08-15T09:26:43.755245+00:00",
   "probe": {
-    "dns": "185.27.134.94",
-    "whois": true,
+    "dns": "172.67.154.164",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6008475,
-  "url_path": "/nl",
-  "url_base": "orange-nl.comparecycle.com",
-  "msg": "AT related malicious URL (orange-nl.comparecycle.com/nl)",
+  "url_path": "/",
+  "url_base": "www.mooshimooshe.com",
+  "msg": "AT related malicious URL (www.mooshimooshe.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://orange-nl.comparecycle.com/nl",
-      "domain": "orange-nl.comparecycle.com",
-      "url_count": 0,
+      "url": "http://www.mooshimooshe.com/",
+      "domain": "www.mooshimooshe.com",
+      "url_count": 2,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.174.105",
+      "http_code": 522,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a2a468c89a771bed-PDX",
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,20 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (510)",
+      "sha256": "3ccae73a0930f25654007042098a608ac31e21cf5202f36553aff18096fd670f",
+      "md5": "9d86e72972ce7a0e92ec485e6dc82ba0",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:16",
+      "first_seen_secs": 1786588876.0
     },
     "phishdestroy": {
-      "domain": "orange-nl.comparecycle.com",
-      "domain_defanged": "orange-nl[.]comparecycle[.]com",
-      "case_id": "PD-20260814-6A2D2E",
-      "analyzed_at": "2026-08-14T07:39:15.216Z",
+      "domain": "mooshimooshe.com",
+      "domain_defanged": "mooshimooshe[.]com",
+      "case_id": "PD-20260815-195B71",
+      "analyzed_at": "2026-08-15T10:02:07.787Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -59,39 +65,63 @@
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/019fff35-f893-77f3-9ac8-d5ecfa6907d0/",
+          "url": "https://urlscan.io/result/01a004df-2329-7118-9e14-7236c7097f09/",
           "pending": true
         }
       },
       "detections": [],
       "domain_info": {
-        "age_days": null
+        "registrar": "NameCheap, Inc.",
+        "created": "2026-03-25T12:41:15Z",
+        "expires": "2027-03-25T12:41:15Z",
+        "age_days": 142,
+        "nameservers": [
+          "CHRIS.NS.CLOUDFLARE.COM",
+          "ELISABETH.NS.CLOUDFLARE.COM"
+        ]
       },
       "infrastructure": {
-        "ip": "next.comparecycle.com.",
-        "ipinfo": null,
+        "ip": "104.21.72.34",
+        "ipinfo": {
+          "ip": "104.21.72.34",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "next.comparecycle.com."
-          ],
-          "A": [
-            "next.comparecycle.com.",
-            "54.38.22.134"
-          ],
-          "MX": [
-            "next.comparecycle.com."
-          ],
-          "CNAME": [
-            "next.comparecycle.com."
+            "2606:4700:3034::6815:4822",
+            "2606:4700:3035::ac43:ae69"
           ],
           "NS": [
-            "next.comparecycle.com."
+            "chris.ns.cloudflare.com.",
+            "elisabeth.ns.cloudflare.com."
+          ],
+          "A": [
+            "104.21.72.34",
+            "172.67.174.105"
           ]
         }
       },
       "report_to": {
-        "registrar": null,
-        "hosting": null
+        "registrar": {
+          "name": "Name SRS AB",
+          "abuse": "abuse@namesrs.com",
+          "url": "https://phish.report/contacts/Name-SRS-AB",
+          "logo": "https://i.ibb.co/kgH8Frhf/pr-Name-SRS-AB.png",
+          "method": "form",
+          "iana_ids": "638"
+        },
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -214,14 +244,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (orange-nl.comparecycle.com/nl)\"; flow:established,to_server; http.uri; content:\"/nl\"; startswith; fast_pattern; http.host; content:\"orange-nl.comparecycle.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008475; classtype:social-engineering; sid:6008475; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-14T17:04:31.988875+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.mooshimooshe.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.mooshimooshe.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008475; classtype:social-engineering; sid:6008475; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
+  "updated_at": "2026-08-15T10:02:05.063578+00:00",
   "probe": {
-    "dns": "54.38.22.134",
+    "dns": "172.67.174.105",
     "whois": null,
     "status": "active"
   }

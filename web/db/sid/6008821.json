@@ -1,8 +1,8 @@
 {
   "sid": 6008821,
-  "url_path": "/flights/index.html",
-  "url_base": "yetteli.sbs",
-  "msg": "AT related malicious URL (yetteli.sbs/flights/index.html)",
+  "url_path": "/",
+  "url_base": "wx3bux7387x.pages.dev",
+  "msg": "AT related malicious URL (wx3bux7387x.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://yetteli.sbs/flights/index.html",
-      "domain": "yetteli.sbs",
-      "url_count": 0,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://wx3bux7387x.pages.dev/",
+      "domain": "wx3bux7387x.pages.dev",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.66.47.118",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2a4691d78efb1c2-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,48 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "8d71154c075521d5b7634e02272a7271cccfda59437f78112b524514084d60ba",
+      "md5": "92d055dbc5370bed9bf9861ea5d8c253",
+      "cert": {
+        "subject_cn": "wx3bux7387x.pages.dev",
+        "subject_alt_names": [
+          "*.wx3bux7387x.pages.dev",
+          "wx3bux7387x.pages.dev"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-28T21:31:43+00:00",
+        "not_valid_after": "2026-10-26T21:31:42+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "553417429858841227672951350293543601771488",
+        "fingerprint_sha1": "22 94 73 A0 F4 55 A4 F0 EA D4 95 14 F6 85 15 37 60 D3 AE 4A",
+        "fingerprint_sha256": "A5 8E 51 3D 5B 4F C2 38 AC EB 89 AA 82 4E BF 4F C0 CA AF 36 E6 45 E6 99 70 DB 49 2D 22 31 C0 81"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:18",
+      "first_seen_secs": 1786588878.0
     },
     "phishdestroy": {
-      "domain": "yetteli.sbs",
-      "domain_defanged": "yetteli[.]sbs",
-      "case_id": "PD-20260814-60E433",
-      "analyzed_at": "2026-08-14T17:22:26.723Z",
+      "domain": "wx3bux7387x.pages.dev",
+      "domain_defanged": "wx3bux7387x[.]pages[.]dev",
+      "case_id": "PD-20260815-48F907",
+      "analyzed_at": "2026-08-15T10:15:45.960Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a004eb-9f24-7249-9d1d-826686363cc3/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +92,40 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.66.47.118",
+        "ipinfo": {
+          "ip": "172.66.47.118",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2c8a",
+            "2606:4700:310c::ac42:2f76"
+          ],
+          "A": [
+            "172.66.47.118",
+            "172.66.44.138"
+          ],
+          "NS": [
+            "jamie.ns.cloudflare.com.",
+            "yahir.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -195,11 +251,11 @@
       ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (yetteli.sbs/flights/index.html)\"; flow:established,to_server; http.uri; content:\"/flights/index.html\"; startswith; fast_pattern; http.host; content:\"yetteli.sbs\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008821; classtype:social-engineering; sid:6008821; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-14T17:22:24.441079+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (wx3bux7387x.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"wx3bux7387x.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008821; classtype:social-engineering; sid:6008821; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
+  "updated_at": "2026-08-15T10:15:43.754807+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.66.47.118",
+    "whois": null,
     "status": "active"
   }
 }

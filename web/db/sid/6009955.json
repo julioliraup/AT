@@ -1,8 +1,8 @@
 {
   "sid": 6009955,
-  "url_path": "/",
-  "url_base": "3c0354.icefactory.cl",
-  "msg": "AT related malicious URL (3c0354.icefactory.cl/)",
+  "url_path": "/dkb_/login.php",
+  "url_base": "melioniserv.justns.ru",
+  "msg": "AT related malicious URL (melioniserv.justns.ru/dkb_/login.php)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://3c0354.icefactory.cl/",
-      "domain": "3c0354.icefactory.cl",
+      "url": "http://melioniserv.justns.ru/dkb_/login.php",
+      "domain": "melioniserv.justns.ru",
       "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "50.114.177.70",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with CRLF line terminators",
+      "sha256": "3412b696629c1f91e94f99a67939864a99a98da61c4bc5bf1f8ea4b1317a8a67",
+      "md5": "b93c29433a095be92013de55c735370e",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-08-13T22:15:17",
-      "first_seen_secs": null
+      "first_seen": "2026-08-14T02:27:07",
+      "first_seen_secs": 1786674427.0
     },
     "phishdestroy": {
-      "domain": "3c0354.icefactory.cl",
-      "domain_defanged": "3c0354[.]icefactory[.]cl",
-      "case_id": "PD-20260814-1C1D7A",
-      "analyzed_at": "2026-08-14T08:53:32.793Z",
+      "domain": "melioniserv.justns.ru",
+      "domain_defanged": "melioniserv[.]justns[.]ru",
+      "case_id": "PD-20260815-290EE1",
+      "analyzed_at": "2026-08-15T11:15:46.718Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00522-9049-7050-a14f-ee2803efccbe/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,31 +74,40 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "186.64.119.45",
+        "ip": "50.114.177.70",
         "ipinfo": {
-          "ip": "186.64.119.45",
-          "hostname": "pyme68.pymedns.net",
-          "city": "Curicó",
-          "region": "Maule Region",
-          "country": "CL",
-          "org": "AS52368 ZAM LTDA.",
-          "asn": "AS52368"
+          "ip": "50.114.177.70",
+          "city": "Toronto",
+          "region": "Ontario",
+          "country": "CA",
+          "org": "AS26383 Baxet Group Inc.",
+          "asn": "AS26383"
         },
         "dns": {
+          "MX": [
+            "10 mail.melioniserv.justns.ru."
+          ],
           "A": [
-            "186.64.119.45"
+            "50.114.177.70"
+          ],
+          "NS": [
+            "ns2.justhost.ru.",
+            "ns1.justhost.ru."
+          ],
+          "AAAA": [
+            "2605:e440:6::12"
           ]
         }
       },
       "report_to": {
         "registrar": null,
         "hosting": {
-          "name": "AS52368",
-          "abuse": "",
-          "url": "",
-          "logo": "https://i.ibb.co/mCCBW4M5/pr-AS52368.png",
+          "name": "ASNET",
+          "abuse": "abuse@baxetgroup.com",
+          "url": "mailto:abuse@baxetgroup.com",
+          "logo": "https://i.ibb.co/ZRSKN3xG/pr-ASBAXET.png",
           "method": "email",
-          "asn": "AS52368"
+          "asn": "AS26383"
         }
       },
       "report_services": [
@@ -212,14 +231,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (3c0354.icefactory.cl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"3c0354.icefactory.cl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009955; classtype:social-engineering; sid:6009955; rev:1; metadata: signature_severity Major, created_et 2026_08_13;)",
-  "updated_at": "2026-08-14T18:16:44.054265+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (melioniserv.justns.ru/dkb_/login.php)\"; flow:established,to_server; http.uri; content:\"/dkb_/login.php\"; startswith; fast_pattern; http.host; content:\"melioniserv.justns.ru\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009955; classtype:social-engineering; sid:6009955; rev:1; metadata: signature_severity Major, created_et 2026_08_13;)",
+  "updated_at": "2026-08-15T11:15:42.581129+00:00",
   "probe": {
-    "dns": "186.64.119.45",
+    "dns": "50.114.177.70",
     "whois": true,
     "status": "active"
   }

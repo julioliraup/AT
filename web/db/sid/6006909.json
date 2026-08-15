@@ -1,8 +1,8 @@
 {
   "sid": 6006909,
   "url_path": "/",
-  "url_base": "ilmax.info",
-  "msg": "AT related malicious URL (ilmax.info/)",
+  "url_base": "signinxfinity.weebly.com",
+  "msg": "AT related malicious URL (signinxfinity.weebly.com/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://ilmax.info/",
-      "domain": "ilmax.info",
-      "url_count": 2,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://signinxfinity.weebly.com/",
+      "domain": "signinxfinity.weebly.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "74.115.51.9",
+      "http_code": 404,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a2a46aa34c005939-PDX",
+        "cf_cache_status": "BYPASS",
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,26 +43,30 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (368)",
+      "sha256": "4d2e762682dddcaa437cc701c606dc3c2cba826a297384619339b7b95d975de2",
+      "md5": "9bc048e1450fc40040020a26b2c8a6c3",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-08-13T02:40:27",
-      "first_seen_secs": null
+      "first_seen": "2026-08-13T02:41:29",
+      "first_seen_secs": 1786588889.0
     },
     "phishdestroy": {
-      "domain": "ilmax.info",
-      "domain_defanged": "ilmax[.]info",
-      "case_id": "PD-20260814-2B660E",
-      "analyzed_at": "2026-08-14T06:28:56.998Z",
+      "domain": "signinxfinity.weebly.com",
+      "domain_defanged": "signinxfinity[.]weebly[.]com",
+      "case_id": "PD-20260815-19E341",
+      "analyzed_at": "2026-08-15T08:51:27.776Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a0049e-7005-7282-a31f-93afcd17cae9/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,12 +74,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "74.115.51.8",
+        "ipinfo": {
+          "ip": "74.115.51.8",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
+        "dns": {
+          "A": [
+            "74.115.51.8",
+            "74.115.51.9"
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -192,15 +223,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ilmax.info/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ilmax.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006909; classtype:social-engineering; sid:6006909; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
-  "updated_at": "2026-08-14T23:55:54.827287+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (signinxfinity.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"signinxfinity.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006909; classtype:social-engineering; sid:6006909; rev:1; metadata: signature_severity Major, created_et 2026_08_06;)",
+  "updated_at": "2026-08-15T08:51:25.188170+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "74.115.51.9",
+    "whois": null,
     "status": "active"
   }
 }

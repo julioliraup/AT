@@ -1,8 +1,8 @@
 {
   "sid": 6003803,
-  "url_path": "/",
-  "url_base": "fedxscan.com",
-  "msg": "AT related malicious URL (fedxscan.com/)",
+  "url_path": "/policy/",
+  "url_base": "www.puratonpothik.com",
+  "msg": "AT related malicious URL (www.puratonpothik.com/policy/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://fedxscan.com/",
-      "domain": "fedxscan.com",
-      "url_count": 9,
-      "city_data": false,
-      "deep_analysis": false,
+      "url": "http://www.puratonpothik.com/policy/",
+      "domain": "www.puratonpothik.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "161.248.189.34",
+      "http_code": 200,
+      "http_response": {
+        "server": "LiteSpeed",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,44 +43,70 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with CRLF line terminators",
+      "sha256": "b3d1c628d2e5e3f8cf1c6e6b5bd7f347529bfacec7f57800453e6aa97b1339b0",
+      "md5": "40ed39cc9d75fb78941bf7abb1eacca3",
       "cert": null,
       "safebrowsing": [],
-      "first_seen": "2026-07-30T03:12:10",
-      "first_seen_secs": null
+      "first_seen": "2026-06-17T03:44:26",
+      "first_seen_secs": 1781667866.0
     },
     "phishdestroy": {
-      "domain": "fedxscan.com",
-      "domain_defanged": "fedxscan[.]com",
-      "case_id": "PD-20260814-795EB2",
-      "analyzed_at": "2026-08-14T12:37:39.096Z",
+      "domain": "puratonpothik.com",
+      "domain_defanged": "puratonpothik[.]com",
+      "case_id": "PD-20260814-2F162F",
+      "analyzed_at": "2026-08-14T12:39:55.180Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00049-3d37-7700-beab-7503c586005b/",
+          "pending": true
         }
       },
       "detections": [],
       "domain_info": {
         "registrar": "NameSilo, LLC",
-        "created": "2026-06-13T08:54:43Z",
-        "expires": "2027-06-13T08:54:43Z",
-        "age_days": 62,
+        "created": "2026-02-25T09:30:41Z",
+        "expires": "2027-02-25T09:30:41Z",
+        "age_days": 170,
         "nameservers": [
-          "NS111.ASURAHOSTING.COM",
-          "NS111.MY-CONTROL-PANEL.COM",
-          "NS112.ASURAHOSTING.COM",
-          "NS112.MY-CONTROL-PANEL.COM"
+          "JOSH.NS.CLOUDFLARE.COM",
+          "MELINDA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
-        "dns": null
+        "ip": "172.67.130.93",
+        "ipinfo": {
+          "ip": "172.67.130.93",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
+        "dns": {
+          "A": [
+            "172.67.130.93",
+            "104.21.8.36"
+          ],
+          "AAAA": [
+            "2606:4700:3036::ac43:825d",
+            "2606:4700:3033::6815:824"
+          ],
+          "MX": [
+            "0 _dc-mx.217d22942c0e.puratonpothik.com."
+          ],
+          "NS": [
+            "josh.ns.cloudflare.com.",
+            "melinda.ns.cloudflare.com."
+          ]
+        }
       },
       "report_to": {
         "registrar": {
@@ -85,7 +117,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,11 +251,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fedxscan.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fedxscan.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003803; classtype:social-engineering; sid:6003803; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T21:39:10.357082+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.puratonpothik.com/policy/)\"; flow:established,to_server; http.uri; content:\"/policy/\"; startswith; fast_pattern; http.host; content:\"www.puratonpothik.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003803; classtype:social-engineering; sid:6003803; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-15T06:18:58.146244+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "161.248.189.34",
+    "whois": null,
     "status": "active"
   }
 }

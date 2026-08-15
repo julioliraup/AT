@@ -1,8 +1,8 @@
 {
   "sid": 6008698,
-  "url_path": "/week/hinet/index.php#hinet@hinet.net",
-  "url_base": "edusofia.mx",
-  "msg": "AT related malicious URL (edusofia.mx/week/hinet/index.php#hinet@hinet.net)",
+  "url_path": "/",
+  "url_base": "access-us-ledger.pages.dev",
+  "msg": "AT related malicious URL (access-us-ledger.pages.dev/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "phishstats.info",
+    "openphish.com",
     "julioliraup.github.io/AT/signature.html?sid=6008698"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://edusofia.mx/week/hinet/index.php#hinet@hinet.net",
-      "domain": "edusofia.mx",
-      "url_count": 0,
+      "url": "http://access-us-ledger.pages.dev/",
+      "domain": "access-us-ledger.pages.dev",
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.66.44.173",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "9cee2b6c79dab8b9-PDX",
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with CRLF line terminators",
+      "sha256": "6884775bad30753c957a3a69c4a654ec2af8b64770bc6b9ab09fd715b13a7a10",
+      "md5": "f6187499f122e166f9e95ac5109ee574",
+      "cert": {
+        "subject_cn": "access-us-ledger.pages.dev",
+        "subject_alt_names": [
+          "access-us-ledger.pages.dev",
+          "*.access-us-ledger.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-02-11T11:55:20+00:00",
+        "not_valid_after": "2026-05-12T12:52:03+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "56242536834150397319358147583841151729",
+        "fingerprint_sha1": "2F 89 B9 A7 A9 FA ED FD 0F 88 E6 94 E4 26 6F AE 79 0A 4C B4",
+        "fingerprint_sha256": "4F 89 58 F2 AC 2B 7F F0 64 65 13 F4 98 4E E3 FB E9 5A 7D 8A EC 57 99 2D 45 AD 38 ED 07 7E F5 24"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-02-12T05:21:49",
+      "first_seen_secs": 1770873709.0
     },
     "phishdestroy": {
-      "domain": "edusofia.mx",
-      "domain_defanged": "edusofia[.]mx",
-      "case_id": "PD-20260814-3C2F10",
-      "analyzed_at": "2026-08-14T17:13:41.737Z",
+      "domain": "access-us-ledger.pages.dev",
+      "domain_defanged": "access-us-ledger[.]pages[.]dev",
+      "case_id": "PD-20260814-14EEFE",
+      "analyzed_at": "2026-08-14T17:25:01.011Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -64,18 +88,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "209.188.21.16",
+        "ip": "172.66.44.173",
         "ipinfo": null,
         "dns": {
-          "NS": [
-            "ns1.tekohost.com.",
-            "ns2.tekohost.com."
-          ],
-          "MX": [
-            "0 edusofia.mx."
+          "AAAA": [
+            "2606:4700:310c::ac42:2f53",
+            "2606:4700:310c::ac42:2cad"
           ],
           "A": [
-            "209.188.21.16"
+            "172.66.44.173",
+            "172.66.47.83"
+          ],
+          "NS": [
+            "raina.ns.cloudflare.com.",
+            "zac.ns.cloudflare.com."
           ]
         }
       },
@@ -204,14 +230,15 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (edusofia.mx/week/hinet/index.php#hinet@hinet.net)\"; flow:established,to_server; http.uri; content:\"/week/hinet/index.php#hinet@hinet.net\"; startswith; fast_pattern; http.host; content:\"edusofia.mx\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6008698; classtype:social-engineering; sid:6008698; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-14T17:13:36.712170+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (access-us-ledger.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"access-us-ledger.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008698; classtype:social-engineering; sid:6008698; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
+  "updated_at": "2026-08-15T10:11:02.646578+00:00",
   "probe": {
-    "dns": "209.188.21.16",
-    "whois": true,
+    "dns": "172.66.44.173",
+    "whois": null,
     "status": "active"
   }
 }

@@ -1,8 +1,8 @@
 {
   "sid": 6003318,
   "url_path": "/",
-  "url_base": "www.cadastro-entregador.sbs",
-  "msg": "AT related malicious URL (www.cadastro-entregador.sbs/)",
+  "url_base": "n-jp.co",
+  "msg": "AT related malicious URL (n-jp.co/)",
   "protocol": "http",
   "classtype": "social-engineering",
   "rev": 1,
@@ -10,7 +10,7 @@
   "severity": "high",
   "risk_score": 85,
   "references": [
-    "openphish.com",
+    "phishstats.info",
     "julioliraup.github.io/AT/signature.html?sid=6003318"
   ],
   "intel": {
@@ -19,16 +19,22 @@
     "shodan": null,
     "ipinfo": null,
     "alienvault": {
-      "url": "http://www.cadastro-entregador.sbs/",
-      "domain": "www.cadastro-entregador.sbs",
-      "url_count": 9,
+      "url": "http://n-jp.co/",
+      "domain": "n-jp.co",
+      "url_count": 8,
       "city_data": false,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
+      "ip": "172.67.165.132",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a23151a2bfce613d-PDX",
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "1d2d55cfbd777ecf1928de4b23ee020864a72e4d857231bf033909b696b2d9fb",
+      "md5": "d7a1990e4e7af0ad6b59c26e064bee4c",
+      "cert": {
+        "subject_cn": "n-jp.co",
+        "subject_alt_names": [
+          "*.n-jp.co",
+          "n-jp.co"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-25T09:03:35+00:00",
+        "not_valid_after": "2026-10-23T09:03:34+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "590911711462017772496770271135213480786536",
+        "fingerprint_sha1": "22 5A 88 0D 0C 64 4C 6B CD F6 B0 72 7D 91 2D 02 CE 11 D7 2E",
+        "fingerprint_sha256": "01 19 0E 68 B2 23 FC 7F 2C CA CC 30 D2 DA 9E 7D 92 D1 AC 2E D4 6F 61 67 D1 F3 A4 97 82 C8 72 26"
+      },
       "safebrowsing": [],
-      "first_seen": "2026-07-30T03:57:55",
-      "first_seen_secs": null
+      "first_seen": "2026-07-30T03:20:36",
+      "first_seen_secs": 1785381636.0
     },
     "phishdestroy": {
-      "domain": "cadastro-entregador.sbs",
-      "domain_defanged": "cadastro-entregador[.]sbs",
-      "case_id": "PD-20260814-754B6D",
-      "analyzed_at": "2026-08-14T12:08:59.255Z",
+      "domain": "n-jp.co",
+      "domain_defanged": "n-jp[.]co",
+      "case_id": "PD-20260814-DC0E7F",
+      "analyzed_at": "2026-08-14T12:11:13.633Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
@@ -196,11 +220,11 @@
       "_cached": true
     }
   },
-  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.cadastro-entregador.sbs/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.cadastro-entregador.sbs\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003318; classtype:social-engineering; sid:6003318; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-14T21:13:44.743917+00:00",
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (n-jp.co/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"n-jp.co\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6003318; classtype:social-engineering; sid:6003318; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
+  "updated_at": "2026-08-15T05:58:15.538182+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
+    "dns": "172.67.165.132",
+    "whois": null,
     "status": "active"
   }
 }
