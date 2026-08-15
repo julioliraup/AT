@@ -940,8 +940,10 @@ try {
 
     if (domain) {
         // Verify that the requested domain exists in the signature data
-        const domainExists = Array.isArray(d.dns_feed?.domains) && d.dns_feed.domains.some(dom => dom.toLowerCase() === (domain || '').toLowerCase());
-        if (!domainExists) {
+        const inDomains = Array.isArray(d.dns_feed?.domains) && d.dns_feed.domains.some(dom => dom.toLowerCase() === (domain || '').toLowerCase());
+        const inAti = Array.isArray(d.dns_feed?.ati_domains) && d.dns_feed.ati_domains.some(dom => dom.toLowerCase() === (domain || '').toLowerCase());
+        
+        if (!inDomains && !inAti) {
             el.innerHTML = `
                 <div class="card" style="border-color:var(--neon-pink);text-align:center;padding:40px;">
                     <h1 style="color:var(--neon-pink);">[ ERROR: DOMAIN NOT FOUND ]</h1>

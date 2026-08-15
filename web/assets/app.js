@@ -3,10 +3,12 @@
 let DATA = [];
 let DNS_DOMAINS = [];
 let TLS_DOMAINS = [];
+let IP_LIST = [];
 let ATI_DOMAINS = new Set();
 
 const DNS_SID = 6000000;
 const TLS_SID = 6000001;
+const IP_SID = 6000002;
 
 async function load() {
   const r = await fetch('./db/index.json');
@@ -72,17 +74,24 @@ async function load() {
 
 async function loadFeedDomains() {
   try {
-    const [dRes, tRes] = await Promise.all([
+    const [dRes, tRes, iRes] = await Promise.all([
       fetch(`./db/sid/${DNS_SID}.json`),
       fetch(`./db/sid/${TLS_SID}.json`),
+      fetch(`./db/sid/${IP_SID}.json`),
     ]);
     const dData = await dRes.json();
     const tData = await tRes.json();
-    DNS_DOMAINS = (dData.dns_feed && dData.dns_feed.domains) || [];
-    TLS_DOMAINS = (tData.dns_feed && tData.dns_feed.domains) || [];
+    const iData = await iRes.json();
 
+    const dDomains = (dData.dns_feed && dData.dns_feed.domains) || [];
+    const tDomains = (tData.dns_feed && tData.dns_feed.domains) || [];
     const dAti = (dData.dns_feed && dData.dns_feed.ati_domains) || [];
     const tAti = (tData.dns_feed && tData.dns_feed.ati_domains) || [];
+
+    DNS_DOMAINS = [...new Set([...dDomains, ...dAti])];
+    TLS_DOMAINS = [...new Set([...tDomains, ...tAti])];
+    IP_LIST = (iData.ip_feed && iData.ip_feed.ips) || [];
+
     ATI_DOMAINS = new Set([...dAti, ...tAti].map(x => String(x).toLowerCase()));
   } catch (_) { }
 }
@@ -110,8 +119,9 @@ function renderCards(rows) {
     const severityClass = (x.severity || '').toLowerCase() === 'high' ? 'high' : '';
     const proto = protocolBadge(x.protocol);
     const label = x.domain ? x.domain : x.name;
+    const isIp = x.protocol === 'ip';
     const href = x.domain
-      ? `signature.html?sid=${x.sid}&domain=${encodeURIComponent(x.domain)}`
+      ? `signature.html?sid=${x.sid}&${isIp ? 'ip' : 'domain'}=${encodeURIComponent(x.domain)}`
       : `signature.html?sid=${x.sid}`;
     return `
       <div class="card glow" onclick="location='${href}'">
@@ -146,6 +156,24 @@ document.getElementById('search').oninput = async (e) => {
   cardsWidget.style.display = 'grid';
 
   if (!_feedLoaded) {
+    cardsWidget.innerHTML = `
+      <div id="feed-loader" style="grid-column: 1 / -1; text-align:center; padding: 40px;">
+        <h2 style="color:var(--cyan); font-family:'Orbitron', sans-serif; letter-spacing: 2px; margin-bottom: 20px;">
+          [ SYNCING THREAT INTELLIGENCE FEEDS ]
+        </h2>
+        <div style="width: 100%; max-width: 500px; background: rgba(0,229,255,0.05); border: 1px solid rgba(0,229,255,0.2); border-radius: 4px; height: 6px; margin: 0 auto; overflow: hidden; position: relative;">
+          <div style="width: 30%; height: 100%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); position: absolute; left: -30%; animation: loadbar 1.5s infinite ease-in-out;"></div>
+        </div>
+        <style>
+          @keyframes loadbar {
+            0% { left: -30%; }
+            100% { left: 100%; }
+          }
+        </style>
+        <p style="color:var(--text-muted); font-size: 0.85em; margin-top: 15px; text-transform: uppercase;">
+          Establishing secure connection to global datasets...
+        </p>
+      </div>`;
     await loadFeedDomains();
     _feedLoaded = true;
   }
@@ -168,6 +196,11 @@ document.getElementById('search').oninput = async (e) => {
   for (const d of tlsDomains.slice(0, 25)) {
     const isAti = ATI_DOMAINS.has(d.toLowerCase());
     results.push({ sid: TLS_SID, name: 'TLS feed', protocol: 'tls', severity: 'high', domain: d, is_ati: isAti });
+  }
+
+  const ips = IP_LIST.filter(ip => ip.includes(q));
+  for (const ip of ips.slice(0, 25)) {
+    results.push({ sid: IP_SID, name: 'IP feed', protocol: 'ip', severity: 'high', domain: ip, is_ati: false });
   }
 
   renderCards(results.slice(0, 50));
