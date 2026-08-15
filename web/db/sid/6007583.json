@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "facebooktrade.com",
       "domain_defanged": "facebooktrade[.]com",
-      "case_id": "PD-20260814-CD7D20",
-      "analyzed_at": "2026-08-14T16:15:38.985Z",
+      "case_id": "PD-20260815-CD7D20",
+      "analyzed_at": "2026-08-15T19:09:38.553Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a006d4-6557-7218-a6f8-959c1d1b182e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,15 +74,24 @@
         "registrar": "Cloudflare, Inc.",
         "created": "2026-08-07T11:05:16Z",
         "expires": "2027-08-07T11:05:16Z",
-        "age_days": 7,
+        "age_days": 8,
         "nameservers": [
           "CARTMAN.NS.CLOUDFLARE.COM",
           "LAILA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
+        "ip": "172.67.132.71",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "172.67.132.71",
+            "104.21.4.168"
+          ],
+          "AAAA": [
+            "2606:4700:3030::6815:4a8",
+            "2606:4700:3035::ac43:8447"
+          ],
           "NS": [
             "cartman.ns.cloudflare.com.",
             "laila.ns.cloudflare.com."
@@ -217,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (facebooktrade.com/instagram.html)\"; flow:established,to_server; http.uri; content:\"/instagram.html\"; startswith; fast_pattern; http.host; content:\"facebooktrade.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007583; classtype:social-engineering; sid:6007583; rev:1; metadata: signature_severity Major, created_et 2026_08_08;)",
-  "updated_at": "2026-08-15T09:17:08.122145+00:00",
+  "updated_at": "2026-08-15T19:09:34.000947+00:00",
   "probe": {
     "dns": "172.67.132.71",
     "whois": true,
