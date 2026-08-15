@@ -594,11 +594,44 @@ const buildPhishDestroyHtml = (pd) => {
 // Main loader
 // ---------------------------------------------------------------------------
 
+/**
+ * Build the IP feed table for the bare SID 6000002 page.
+ * Each row links to ?sid=6000002&ip=<ip> for a detail view.
+ *
+ * @param {object} ipFeed - Content of ip_feed from the SID JSON.
+ * @returns {string}
+ */
+const buildIpFeedHtml = (ipFeed) => {
+    if (!ipFeed || !ipFeed.ips || ipFeed.ips.length === 0) return '';
+    const ps = { color: '#ffaa00' };
+    const rows = ipFeed.ips.map(ip =>
+        `<div style="display:flex;justify-content:space-between;align-items:center;
+                     padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+            <span style="color:var(--text);font-family:monospace;font-size:0.9em;">${escapeHTML(ip)}</span>
+            <a href="?sid=6000002&ip=${encodeURIComponent(ip)}"
+               style="color:${ps.color};font-size:0.75em;text-decoration:none;border:1px solid ${ps.color};
+                      padding:2px 8px;border-radius:3px;transition:0.2s;
+                      background:rgba(255,170,0,0.07);white-space:nowrap;"
+               onmouseover="this.style.background='rgba(255,170,0,0.2)';"
+               onmouseout="this.style.background='rgba(255,170,0,0.07);'">
+                [ VIEW DETAIL ]
+            </a>
+         </div>`
+    ).join('');
+
+    return `
+    <h2 class="section-title" style="margin-top:40px;">IP FEED — ${ipFeed.ips_count.toLocaleString()} ENTRIES</h2>
+    <div class="card" style="padding:15px 20px;border-color:${ps.color};">
+        ${rows}
+    </div>`;
+};
+
 const PROTO_STYLE = {
-    dns: { label: 'DNS', color: 'var(--neon-pink)', bg: 'rgba(255,0,85,0.12)' },
-    tls: { label: 'TLS', color: '#00ff80', bg: 'rgba(0,255,128,0.08)' },
-    http: { label: 'HTTP', color: 'var(--cyan)', bg: 'rgba(0,229,255,0.1)' },
-    https: { label: 'HTTPS', color: 'var(--cyan)', bg: 'rgba(0,229,255,0.1)' },
+    dns:   { label: 'DNS',   color: 'var(--neon-pink)', bg: 'rgba(255,0,85,0.12)' },
+    tls:   { label: 'TLS',   color: '#00ff80',          bg: 'rgba(0,255,128,0.08)' },
+    ip:    { label: 'IP',    color: '#ffaa00',           bg: 'rgba(255,170,0,0.10)' },
+    http:  { label: 'HTTP',  color: 'var(--cyan)',       bg: 'rgba(0,229,255,0.1)' },
+    https: { label: 'HTTPS', color: 'var(--cyan)',       bg: 'rgba(0,229,255,0.1)' },
 };
 
 function protocolBadge(proto) {
@@ -747,6 +780,130 @@ function renderDomainView(el, d, domain) {
     </div>`;
 }
 
+/**
+ * Render the IP-feed detail view for a specific IP address.
+ * Mirrors renderDomainView() — same card structure, amber colour scheme.
+ *
+ * @param {HTMLElement} el
+ * @param {object} d      - SID JSON data (6000002.json)
+ * @param {string} ip     - The IP address from the URL param
+ */
+function renderIpView(el, d, ip) {
+    const ps = PROTO_STYLE.ip;
+    const feed = d.ip_feed || {};
+    const refs = Array.isArray(d.references) && d.references.length > 0;
+    const refsHtml = refs
+        ? `<ul class="ref-list">${d.references.map(r => `<li>${r}</li>`).join('')}</ul>`
+        : `<span class="data-value">No references</span>`;
+
+    el.innerHTML = `
+    <div class="card glow" style="border-top:4px solid ${ps.color};">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:15px;margin-bottom:20px;">
+            <h1 style="margin:0;font-size:2em;color:var(--text);word-break:break-all;font-family:'Orbitron',sans-serif;">
+                ${escapeHTML(ip)}
+            </h1>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                ${protocolBadge('ip')}
+                <span class="badge high" style="font-size:0.7em;">${val(d.severity, 'high')} severity</span>
+            </div>
+        </div>
+
+        <h2 style="color:var(--text-muted);font-size:1.1em;margin-bottom:30px;">${val(d.msg)}</h2>
+
+        <h2 class="section-title">FEED ENTRY</h2>
+        <div class="grid-2">
+            <div class="data-group">
+                <span class="data-label">Detection Layer</span>
+                <span class="data-value" style="color:${ps.color};text-transform:uppercase;">IP</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Threat Intel Source</span>
+                <span class="data-value">Phishing IP Feed</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">SID</span>
+                <span class="data-value" style="color:var(--cyan);">${d.sid}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">IP Address</span>
+                <span class="data-value" style="color:${ps.color};word-break:break-all;">${escapeHTML(ip)}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Class Type</span>
+                <span class="data-value">${val(d.classtype)}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Feed Size</span>
+                <span class="data-value">${(feed.ips_count || 0).toLocaleString()} IPs</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Risk Score</span>
+                <span class="data-value">${val(d.risk_score)}</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">Updated At</span>
+                <span class="data-value" style="font-size:0.85em;color:var(--text-muted);">${fmtDate(d.updated_at)}</span>
+            </div>
+        </div>
+
+        <div class="data-group" style="margin-top:20px;">
+            <span class="data-label">References</span>
+            ${refsHtml}
+        </div>
+    </div>`;
+
+    // Dynamically fetch IP geolocation via ipinfo.io
+    const loaderId = 'ip-loader-' + Date.now();
+    el.insertAdjacentHTML('beforeend',
+        `<div id="${loaderId}" style="text-align:center;margin-top:40px;color:${ps.color};font-family:'Orbitron',sans-serif;">[ FETCHING IP INTELLIGENCE... ]</div>`);
+
+    fetch(`https://ipinfo.io/${encodeURIComponent(ip)}/json`)
+        .then(r => { if (!r.ok) throw new Error('ipinfo error'); return r.json(); })
+        .then(info => {
+            document.getElementById(loaderId)?.remove();
+            const geoLine = [info.city, info.region, info.country].filter(Boolean).join(', ') || null;
+            const mapHtml = buildGlobalMapHtml({ intel: { ipinfo: info } });
+            const infoHtml = `
+            <h2 class="section-title" style="margin-top:40px;">IP GEOLOCATION & NETWORK</h2>
+            <div class="card" style="border-color:${ps.color};">
+                <div class="grid-2">
+                    <div class="data-group">
+                        <span class="data-label">Organization</span>
+                        <span class="data-value">${val(info.org)}</span>
+                    </div>
+                    <div class="data-group">
+                        <span class="data-label">Hostname</span>
+                        <span class="data-value" style="font-size:0.9em;color:var(--text-muted);">${val(info.hostname)}</span>
+                    </div>
+                    ${geoLine ? `<div class="data-group">
+                        <span class="data-label">Location</span>
+                        <span class="data-value">${escapeHTML(geoLine)}</span>
+                    </div>` : ''}
+                    ${info.country ? `<div class="data-group">
+                        <span class="data-label">Country</span>
+                        <span class="data-value" style="letter-spacing:3px;">${escapeHTML(info.country)}</span>
+                    </div>` : ''}
+                    ${info.postal ? `<div class="data-group">
+                        <span class="data-label">Postal</span>
+                        <span class="data-value">${escapeHTML(info.postal)}</span>
+                    </div>` : ''}
+                    ${info.timezone ? `<div class="data-group">
+                        <span class="data-label">Timezone</span>
+                        <span class="data-value">${escapeHTML(info.timezone)}</span>
+                    </div>` : ''}
+                </div>
+            </div>${mapHtml}`;
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = infoHtml;
+            el.appendChild(wrapper);
+        })
+        .catch(err => {
+            console.error('[ipinfo] fetch error:', err);
+            const loader = document.getElementById(loaderId);
+            if (loader) loader.innerHTML = `<span style="color:var(--text-muted);font-size:0.85em;">[ IP INTEL UNAVAILABLE ]</span>`;
+        });
+}
+
 const params = new URLSearchParams(window.location.search);
 const sid = params.get('sid');
 const domain = params.get('domain');
@@ -763,6 +920,24 @@ try {
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const d = await resp.json();
 
+    const ip = params.get('ip');
+
+    if (ip) {
+        // IP detail view (SID 6000002)
+        const ipExists = Array.isArray(d.ip_feed?.ips) && d.ip_feed.ips.includes(ip);
+        if (!ipExists) {
+            el.innerHTML = `
+                <div class="card" style="border-color:var(--neon-pink);text-align:center;padding:40px;">
+                    <h1 style="color:var(--neon-pink);">[ ERROR: IP NOT FOUND ]</h1>
+                    <p style="color:var(--text-muted);font-size:0.9em;">The IP "${escapeHTML(ip)}" does not exist in this feed.</p>
+                </div>`;
+            return;
+        }
+        document.title = `${escapeHTML(ip)} - SID ${d.sid} - Antiphishing`;
+        renderIpView(el, d, ip);
+        return;
+    }
+
     if (domain) {
         // Verify that the requested domain exists in the signature data
         const domainExists = Array.isArray(d.dns_feed?.domains) && d.dns_feed.domains.some(dom => dom.toLowerCase() === (domain || '').toLowerCase());
@@ -777,21 +952,15 @@ try {
         document.title = `${escapeHTML(domain)} - SID ${d.sid} - Antiphishing`;
         renderDomainView(el, d, domain);
 
-        // DYNAMICALLY FETCH THREAT INTEL FOR SPECIFIC DOMAIN VECTORS
         const loaderId = 'pd-loader-' + Date.now();
-        el.insertAdjacentHTML('beforeend', `<div id="${loaderId}" style="text-align:center; margin-top:40px; color:var(--cyan); font-family:'Orbitron', sans-serif;">[ FETCHING DYNAMIC THREAT INTEL... ]</div>`);
+        el.insertAdjacentHTML('beforeend', `<div id="${loaderId}" style="text-align:center;margin-top:40px;color:var(--cyan);font-family:'Orbitron',sans-serif;">[ FETCHING DYNAMIC THREAT INTEL... ]</div>`);
 
         fetch(`https://analyze.destroy.tools/v1/analyze?domain=${escapeHTML(domain)}`)
-            .then(r => {
-                if (!r.ok) throw new Error('API Error');
-                return r.json();
-            })
+            .then(r => { if (!r.ok) throw new Error('API Error'); return r.json(); })
             .then(pdData => {
                 document.getElementById(loaderId)?.remove();
-                // Reuse existing components without altering the API
                 const pdHtml = buildPhishDestroyHtml(pdData);
                 const mapHtml = buildGlobalMapHtml({ intel: { phishdestroy: pdData } });
-
                 if (pdHtml || mapHtml) {
                     const wrapper = document.createElement('div');
                     wrapper.innerHTML = pdHtml + mapHtml;
@@ -801,7 +970,7 @@ try {
             .catch(err => {
                 console.error('[phishdestroy] dynamic fetch error:', err);
                 const loader = document.getElementById(loaderId);
-                if (loader) loader.innerHTML = `<span style="color:var(--text-muted); font-size:0.85em;">[ LIVE INTEL UNAVAILABLE ]</span>`;
+                if (loader) loader.innerHTML = `<span style="color:var(--text-muted);font-size:0.85em;">[ LIVE INTEL UNAVAILABLE ]</span>`;
             });
 
         return;
@@ -838,7 +1007,7 @@ try {
         ` : '';
 
     const proto = d.protocol || '';
-    const protoBadgeHtml = (proto === 'dns' || proto === 'tls')
+    const protoBadgeHtml = (proto === 'dns' || proto === 'tls' || proto === 'ip')
         ? protocolBadge(proto)
         : '';
 
@@ -898,7 +1067,8 @@ try {
 
         ${buildOtxHtml(d.intel?.alienvault, ipinfoFallback)}
         ${buildPhishDestroyHtml(pdData)}
-        ${buildGlobalMapHtml(d)}`;
+        ${buildGlobalMapHtml(d)}
+        ${d.ip_feed ? buildIpFeedHtml(d.ip_feed) : ''}`;
 
 } catch (err) {
     console.error('[signature]', err);
