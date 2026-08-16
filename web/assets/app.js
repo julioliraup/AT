@@ -82,9 +82,11 @@ async function load() {
         <span class="v-label">Malicious IPs</span>
       </div>
       ${atiOrbHtml}
-      <div class="visualizer-orb" style="border-color: rgba(138, 43, 226, 0.5);">
-        <span class="v-value" style="color: #b050ff; text-shadow: 0 0 15px #b050ff;">${malicious_vectors}</span>
-        <span class="v-label">Threat vectors</span>
+      <div style="width: 100%; display: flex; justify-content: center; margin-top: 20px;">
+        <div class="card glow" style="width: 100%; border-color: rgba(138, 43, 226, 0.5); text-align: center; padding: 30px;">
+          <div style="color: #b050ff; text-shadow: 0 0 15px #b050ff; font-size: 3em; font-weight: bold; font-family: 'Orbitron', sans-serif;">${malicious_vectors}</div>
+          <div style="color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-size: 1.1em; margin-top: 10px;">Threat vectors</div>
+        </div>
       </div>
     `;
   }
