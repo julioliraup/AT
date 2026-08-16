@@ -55,17 +55,52 @@
     "phishdestroy": {
       "domain": "psee.io",
       "domain_defanged": "psee[.]io",
-      "case_id": "PD-20260814-114ADA",
-      "analyzed_at": "2026-08-14T21:08:28.933Z",
+      "case_id": "PD-20260816-114ADA",
+      "analyzed_at": "2026-08-16T00:44:12.108Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 1,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Malicious (alphaMountain.ai)",
+            "Sophos": "information technology",
+            "Forcepoint ThreatSeeker": "web infrastructure"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/01a004df-9165-7143-9f57-c1b6ab7cbabd.png",
+          "url": "https://urlscan.io/result/01a004df-9165-7143-9f57-c1b6ab7cbabd/",
+          "title": "Short Link Removed | PicSee URL Shortener"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -227,12 +262,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (psee.io/96lbzj)\"; flow:established,to_server; http.uri; content:\"/96lbzj\"; startswith; fast_pattern; http.host; content:\"psee.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003146; classtype:social-engineering; sid:6003146; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-15T14:50:05.061685+00:00",
+  "updated_at": "2026-08-16T00:44:08.200911+00:00",
   "probe": {
     "dns": "100.56.144.160",
     "whois": true,

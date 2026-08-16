@@ -25,6 +25,10 @@ async function load() {
     if (dnsEntry.ati_count) ati_count = dnsEntry.ati_count;
   }
 
+  const ipEntry = DATA.find(x => x.sid === IP_SID);
+  let ip_count = 0;
+  if (ipEntry && ipEntry.ips_count) ip_count = ipEntry.ips_count;
+
   if (domains_count === 0) {
     const dnsRule = DATA.find(x => x.protocol === 'dns' || x.protocol === 'tls');
     if (dnsRule) {
@@ -39,21 +43,31 @@ async function load() {
     }
   }
 
-  const malicious_vectors = urls + domains_count;
+  if (ip_count === 0 && ipEntry) {
+    try {
+      const res = await fetch(`./db/sid/${ipEntry.sid}.json`);
+      const detail = await res.json();
+      if (detail.ip_feed && detail.ip_feed.ips_count) {
+        ip_count = detail.ip_feed.ips_count;
+      }
+    } catch (_) { }
+  }
+
+  const malicious_vectors = urls + domains_count + ip_count;
 
   const statsEl = document.getElementById('stats-widget');
   if (statsEl) {
     const atiOrbHtml = ati_count > 0 ? `
       <div class="visualizer-orb" style="border-color: rgba(0, 229, 255, 0.4);">
         <span class="v-value" style="color: #00f0ff; text-shadow: 0 0 15px #00f0ff;">${ati_count}</span>
-        <span class="v-label">NRD - Antiphishing Threat Intel (ATI)</span>
+        <span class="v-label">Suspicious NRDs</span>
       </div>
     ` : '';
 
     statsEl.innerHTML = `
       <div class="visualizer-orb">
         <span class="v-value">${total}</span>
-        <span class="v-label">Total Signatures</span>
+        <span class="v-label">Total rules</span>
       </div>
       <div class="visualizer-orb" style="border-color: rgba(255, 170, 0, 0.3);">
         <span class="v-value" style="color: #ffaa00; text-shadow: 0 0 15px #ffaa00;">${urls}</span>
@@ -61,12 +75,16 @@ async function load() {
       </div>
       <div class="visualizer-orb" style="border-color: rgba(0, 255, 128, 0.3);">
         <span class="v-value" style="color: #00ff80; text-shadow: 0 0 15px #00ff80;">${domains_count}</span>
-        <span class="v-label">TLS SNI / DNS domanins</span>
+        <span class="v-label">DNS/TLS domains</span>
+      </div>
+      <div class="visualizer-orb" style="border-color: rgba(255, 0, 85, 0.3);">
+        <span class="v-value" style="color: #ff0055; text-shadow: 0 0 15px #ff0055;">${ip_count}</span>
+        <span class="v-label">Malicious IPs</span>
       </div>
       ${atiOrbHtml}
       <div class="visualizer-orb" style="border-color: rgba(138, 43, 226, 0.5);">
         <span class="v-value" style="color: #b050ff; text-shadow: 0 0 15px #b050ff;">${malicious_vectors}</span>
-        <span class="v-label">Malicious Vectors</span>
+        <span class="v-label">Threat vectors</span>
       </div>
     `;
   }
@@ -217,13 +235,13 @@ setTimeout(() => {
         <div style="position:fixed; bottom:20px; right:20px; background:rgba(20,20,20,0.95); border:1px solid var(--cyan); border-radius:8px; padding:20px; box-shadow:0 0 20px rgba(0,229,255,0.2); z-index:9999; max-width:350px; color:var(--text); font-family:'Orbitron', sans-serif;">
             <button onclick="this.parentElement.remove()" style="position:absolute; top:10px; right:10px; background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:20px; padding:0; line-height:1;">&times;</button>
             <h3 style="margin-top:0; color:var(--neon-pink); font-size:1.1em; display:flex; align-items:center; gap:8px;">
-                &#x26A0; Too many requests
+                &#x26A0; API RATE LIMIT REACHED
             </h3>
             <p style="font-size:0.9em; line-height:1.4; color:var(--text-muted); margin-bottom:15px;">
-                This is what we get when we try to list detailed information of the vectors. We can solve this by paying for APIs that meet our demand.
+                Detailed vector intelligence is currently limited by API rate limits. Funding additional API capacity would allow us to expand vector enrichment, analysis and public CTI coverage.
             </p>
-            <a href="https://github.com/sponsors/julioliraup" target="_blank" style="display:inline-block; background:rgba(0,229,255,0.1); border:1px solid var(--cyan); color:var(--cyan); padding:8px 15px; text-decoration:none; border-radius:4px; font-size:0.85em; transition:0.3s; text-transform:uppercase; letter-spacing:1px;" onmouseover="this.style.background='var(--cyan)'; this.style.color='#000';" onmouseout="this.style.background='rgba(0,229,255,0.1)'; this.style.color='var(--cyan)';">
-                Contribute
+            <a href="https://github.com/sponsors/julioliraup" target="_blank" style="display:inline-block; background:rgba(255,0,85,0.1); border:1px solid var(--neon-pink); color:var(--neon-pink); padding:8px 15px; text-decoration:none; border-radius:4px; font-size:0.85em; transition:0.3s; text-transform:uppercase; letter-spacing:1px;" onmouseover="this.style.background='var(--neon-pink)'; this.style.color='#000';" onmouseout="this.style.background='rgba(255,0,85,0.1)'; this.style.color='var(--neon-pink)';">
+                SUPPORT THE PROJECT
             </a>
         </div>
     `;

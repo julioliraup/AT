@@ -49,29 +49,163 @@
     "phishdestroy": {
       "domain": "uurl.at",
       "domain_defanged": "uurl[.]at",
-      "case_id": "PD-20260814-4A7A23",
-      "analyzed_at": "2026-08-14T20:42:37.969Z",
+      "case_id": "PD-20260816-4A7A23",
+      "analyzed_at": "2026-08-16T00:22:00.472Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 10,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Lionic",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SafeToOpen",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "VIPRE",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {
+            "BitDefender": "travel",
+            "Forcepoint ThreatSeeker": "phishing and other frauds",
+            "Webroot": "Phishing and Other Frauds",
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ff552-0eff-70fe-a3ed-6f57bc66d50e.png",
+          "url": "https://urlscan.io/result/019ff552-0eff-70fe-a3ed-6f57bc66d50e/",
+          "title": "UURL.at - Multi-URL Bundler | Bundle Multiple URLs into One Short Link. QR Codes, Redirect Destinations, Access Counter, and Free."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Lionic",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SafeToOpen",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: VIPRE",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "118.27.125.172",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "118.27.125.172",
+          "hostname": "118-27-125-172.virt.lolipop.jp",
+          "city": "Tokyo",
+          "region": "Tokyo",
+          "country": "JP",
+          "org": "AS7506 GMO Internet, Inc.",
+          "asn": "AS7506"
+        },
         "dns": {
-          "A": [
-            "118.27.125.172"
-          ],
           "MX": [
             "10 mx01.lolipop.jp."
+          ],
+          "A": [
+            "118.27.125.172"
           ],
           "NS": [
             "ns57.domaincontrol.com.",
@@ -81,7 +215,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "INTERQ GMO Internet,Inc, JP",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS7506"
+        }
       },
       "report_services": [
         {
@@ -204,12 +345,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (uurl.at/g9qQLi)\"; flow:established,to_server; http.uri; content:\"/g9qQLi\"; startswith; fast_pattern; http.host; content:\"uurl.at\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002579; classtype:social-engineering; sid:6002579; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-15T14:22:34.432968+00:00",
+  "updated_at": "2026-08-16T00:21:55.167645+00:00",
   "probe": {
     "dns": "118.27.125.172",
     "whois": true,

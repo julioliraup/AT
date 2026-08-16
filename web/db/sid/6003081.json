@@ -49,17 +49,80 @@
     "phishdestroy": {
       "domain": "ep-it-mq5kky6hr1dw3-b0gbaad7eghchacz.z02.azurefd.net",
       "domain_defanged": "ep-it-mq5kky6hr1dw3-b0gbaad7eghchacz[.]z02[.]azurefd[.]net",
-      "case_id": "PD-20260814-4012B3",
-      "analyzed_at": "2026-08-14T21:04:58.172Z",
+      "case_id": "PD-20260816-4012B3",
+      "analyzed_at": "2026-08-16T00:40:21.086Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Information Technology, Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ff569-6de4-709f-83ba-ff8f1bc1bfa6.png",
+          "url": "https://urlscan.io/result/019ff569-6de4-709f-83ba-ff8f1bc1bfa6/",
+          "title": "Page not found"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -69,11 +132,11 @@
         "dns": {
           "A": [
             "mr-z02.tm-azurefd.net.",
-            "150.171.110.37"
+            "150.171.110.42"
           ],
           "AAAA": [
             "mr-z02.tm-azurefd.net.",
-            "2603:1061:14:127::1"
+            "2603:1061:14:120::1"
           ],
           "MX": [
             "mr-z02.tm-azurefd.net."
@@ -88,7 +151,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -211,14 +281,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ep-it-mq5kky6hr1dw3-b0gbaad7eghchacz.z02.azurefd.net/Win20Errfb020/index.html)\"; flow:established,to_server; http.uri; content:\"/Win20Errfb020/index.html\"; startswith; fast_pattern; http.host; content:\"ep-it-mq5kky6hr1dw3-b0gbaad7eghchacz.z02.azurefd.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003081; classtype:social-engineering; sid:6003081; rev:1; metadata: signature_severity Major, created_et 2026_06_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-15T14:46:38.806379+00:00",
+  "updated_at": "2026-08-16T00:40:16.814681+00:00",
   "probe": {
-    "dns": "150.171.110.41",
+    "dns": "150.171.110.37",
     "whois": null,
     "status": "active"
   }
