@@ -49,27 +49,48 @@
     "phishdestroy": {
       "domain": "soporte-apple.us",
       "domain_defanged": "soporte-apple[.]us",
-      "case_id": "PD-20260815-228ACE",
-      "analyzed_at": "2026-08-15T21:46:55.014Z",
+      "case_id": "PD-20260817-228ACE",
+      "analyzed_at": "2026-08-17T04:52:03.630Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eea48-6cfb-7480-84cc-8dd714ee6db7.png",
+          "url": "https://urlscan.io/result/019eea48-6cfb-7480-84cc-8dd714ee6db7/",
+          "title": "iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
+        "ip": "207.174.215.249",
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
+          "abuse": "abuse@hostopia.com.au",
+          "url": "mailto:abuse@hostopia.com.au",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS46606"
+        }
       },
       "report_services": [
         {
@@ -192,12 +213,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (soporte-apple.us/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"soporte-apple.us\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000492; classtype:social-engineering; sid:6000492; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T15:02:53.289959+00:00",
+  "updated_at": "2026-08-17T04:52:00.299793+00:00",
   "probe": {
     "dns": null,
     "whois": true,

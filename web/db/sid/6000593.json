@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "aramex.com-ftlqv.life",
       "domain_defanged": "aramex[.]com-ftlqv[.]life",
-      "case_id": "PD-20260815-C14AE0",
-      "analyzed_at": "2026-08-15T21:54:54.857Z",
+      "case_id": "PD-20260817-C14AE0",
+      "analyzed_at": "2026-08-17T04:58:02.397Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e15-7425-746a-941e-6b54aa142941/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,22 +68,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.139.15",
-        "ipinfo": null,
+        "ip": "104.21.8.88",
+        "ipinfo": {
+          "ip": "104.21.8.88",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.67.139.15",
-            "104.21.8.88"
-          ],
           "AAAA": [
-            "2606:4700:3036::6815:858",
-            "2606:4700:3032::ac43:8b0f"
+            "2606:4700:3032::ac43:8b0f",
+            "2606:4700:3036::6815:858"
+          ],
+          "A": [
+            "104.21.8.88",
+            "172.67.139.15"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -202,14 +220,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aramex.com-ftlqv.life/a)\"; flow:established,to_server; http.uri; content:\"/a\"; startswith; fast_pattern; http.host; content:\"aramex.com-ftlqv.life\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000593; classtype:social-engineering; sid:6000593; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T15:07:24.194291+00:00",
+  "updated_at": "2026-08-17T04:57:59.621572+00:00",
   "probe": {
-    "dns": "172.67.139.15",
+    "dns": "104.21.8.88",
     "whois": true,
     "status": "active"
   }

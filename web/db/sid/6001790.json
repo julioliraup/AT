@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "bloxfit.ai",
       "domain_defanged": "bloxfit[.]ai",
-      "case_id": "PD-20260815-646A3B",
-      "analyzed_at": "2026-08-15T23:18:40.815Z",
+      "case_id": "PD-20260817-646A3B",
+      "analyzed_at": "2026-08-17T05:54:50.166Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e49-73bc-73b5-9ba8-237e8d5187b5/",
+          "pending": true
         }
       },
       "detections": [],
@@ -87,23 +91,30 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.14.18",
-        "ipinfo": null,
+        "ip": "104.26.15.18",
+        "ipinfo": {
+          "ip": "104.26.15.18",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "104.26.14.18",
-            "104.26.15.18",
-            "172.67.71.53"
-          ],
           "MX": [
             "78 route2.mx.cloudflare.net.",
             "88 route1.mx.cloudflare.net.",
             "9 route3.mx.cloudflare.net."
           ],
+          "A": [
+            "104.26.15.18",
+            "172.67.71.53",
+            "104.26.14.18"
+          ],
           "AAAA": [
-            "2606:4700:20::681a:f12",
+            "2606:4700:20::ac43:4735",
             "2606:4700:20::681a:e12",
-            "2606:4700:20::ac43:4735"
+            "2606:4700:20::681a:f12"
           ],
           "NS": [
             "aisha.ns.cloudflare.com.",
@@ -113,7 +124,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -236,12 +254,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bloxfit.ai/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bloxfit.ai\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001790; classtype:social-engineering; sid:6001790; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T16:24:29.133928+00:00",
+  "updated_at": "2026-08-17T05:54:47.099378+00:00",
   "probe": {
     "dns": "172.67.71.53",
     "whois": true,

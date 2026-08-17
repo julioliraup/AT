@@ -49,14 +49,19 @@
     "phishdestroy": {
       "domain": "buddhaindustries.screenconnect.com",
       "domain_defanged": "buddhaindustries[.]screenconnect[.]com",
-      "case_id": "PD-20260815-23324A",
-      "analyzed_at": "2026-08-15T21:49:08.515Z",
+      "case_id": "PD-20260817-23324A",
+      "analyzed_at": "2026-08-17T04:53:41.151Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ffb96-4f1e-741f-82b5-de66b29c8821.png",
+          "url": "https://urlscan.io/result/019ffb96-4f1e-741f-82b5-de66b29c8821/",
+          "title": "ScreenConnect Cloud"
         }
       },
       "detections": [],
@@ -67,18 +72,14 @@
         "ip": "parkinglot.screenconnect.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "parkinglot.screenconnect.com.",
-            "cloud.screenconnect.com."
-          ],
-          "AAAA": [
-            "parkinglot.screenconnect.com.",
-            "cloud.screenconnect.com."
-          ],
           "A": [
             "parkinglot.screenconnect.com.",
             "cloud.screenconnect.com.",
             "104.45.153.136"
+          ],
+          "AAAA": [
+            "parkinglot.screenconnect.com.",
+            "cloud.screenconnect.com."
           ],
           "CNAME": [
             "parkinglot.screenconnect.com."
@@ -86,12 +87,23 @@
           "NS": [
             "parkinglot.screenconnect.com.",
             "cloud.screenconnect.com."
+          ],
+          "MX": [
+            "parkinglot.screenconnect.com.",
+            "cloud.screenconnect.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -214,12 +226,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (buddhaindustries.screenconnect.com/Bin/ScreenConnect.ClientSetup.msi)\"; flow:established,to_server; http.uri; content:\"/Bin/ScreenConnect.ClientSetup.msi\"; startswith; fast_pattern; http.host; content:\"buddhaindustries.screenconnect.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000522; classtype:social-engineering; sid:6000522; rev:1; metadata: signature_severity Major, created_et 2026_06_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T15:04:16.179588+00:00",
+  "updated_at": "2026-08-17T04:53:37.666025+00:00",
   "probe": {
     "dns": "104.45.153.136",
     "whois": null,

@@ -49,29 +49,51 @@
     "phishdestroy": {
       "domain": "springboardpools.com",
       "domain_defanged": "springboardpools[.]com",
-      "case_id": "PD-20260815-277E91",
-      "analyzed_at": "2026-08-15T21:50:33.677Z",
+      "case_id": "PD-20260817-277E91",
+      "analyzed_at": "2026-08-17T04:55:02.053Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ef200-7ea8-771c-9299-3b15cccd7efb.png",
+          "url": "https://urlscan.io/result/019ef200-7ea8-771c-9299-3b15cccd7efb/",
+          "title": "Downloading Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2024-06-27T15:30:52Z",
         "expires": "2027-06-27T15:30:52Z",
-        "age_days": 779,
+        "age_days": 780,
         "nameservers": [
           "NS1.BLASTERWEBSERVICES.COM",
           "NS2.BLASTERWEBSERVICES.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "192.185.118.105",
+        "ipinfo": {
+          "ip": "192.185.118.105",
+          "hostname": "192-185-118-105.unifiedlayer.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +105,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -206,15 +235,16 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (springboardpools.com/wp-content/McCarthy_Holdings_Inc)\"; flow:established,to_server; http.uri; content:\"/wp-content/McCarthy_Holdings_Inc\"; startswith; fast_pattern; http.host; content:\"springboardpools.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000543; classtype:social-engineering; sid:6000543; rev:1; metadata: signature_severity Major, created_et 2026_06_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T15:05:10.227745+00:00",
+  "updated_at": "2026-08-17T04:54:42.917188+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

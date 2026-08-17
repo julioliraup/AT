@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "api.allegrostatus.pl",
       "domain_defanged": "api[.]allegrostatus[.]pl",
-      "case_id": "PD-20260815-7814E3",
-      "analyzed_at": "2026-08-15T22:15:08.028Z",
+      "case_id": "PD-20260817-7814E3",
+      "analyzed_at": "2026-08-17T05:10:17.314Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e20-aae2-71e9-b037-ebd533d078fb/",
+          "pending": true
         }
       },
       "detections": [],
@@ -90,14 +94,6 @@
         "ip": "ff5f6a7f.sorryapp.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "ff5f6a7f.sorryapp.com.",
-            "dualstack.n.sni.global.fastly.net.",
-            "2a04:4e42::347",
-            "2a04:4e42:200::347",
-            "2a04:4e42:400::347",
-            "2a04:4e42:600::347"
-          ],
           "A": [
             "ff5f6a7f.sorryapp.com.",
             "dualstack.n.sni.global.fastly.net.",
@@ -106,16 +102,24 @@
             "151.101.129.91",
             "151.101.193.91"
           ],
-          "MX": [
+          "AAAA": [
             "ff5f6a7f.sorryapp.com.",
-            "dualstack.n.sni.global.fastly.net."
+            "dualstack.n.sni.global.fastly.net.",
+            "2a04:4e42::347",
+            "2a04:4e42:200::347",
+            "2a04:4e42:400::347",
+            "2a04:4e42:600::347"
           ],
-          "NS": [
+          "MX": [
             "ff5f6a7f.sorryapp.com.",
             "dualstack.n.sni.global.fastly.net."
           ],
           "CNAME": [
             "ff5f6a7f.sorryapp.com."
+          ],
+          "NS": [
+            "ff5f6a7f.sorryapp.com.",
+            "dualstack.n.sni.global.fastly.net."
           ]
         }
       },
@@ -244,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (api.allegrostatus.pl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"api.allegrostatus.pl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000779; classtype:social-engineering; sid:6000779; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T15:14:06.976972+00:00",
+  "updated_at": "2026-08-17T05:10:14.141063+00:00",
   "probe": {
     "dns": "146.75.41.91",
     "whois": true,

@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "id.superhuman.com",
       "domain_defanged": "id[.]superhuman[.]com",
-      "case_id": "PD-20260815-6358F6",
-      "analyzed_at": "2026-08-15T22:24:12.146Z",
+      "case_id": "PD-20260817-6358F6",
+      "analyzed_at": "2026-08-17T05:15:42.124Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e25-9f79-775b-aea1-4f99fa74f880/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,20 +68,20 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "108.156.85.86",
+        "ip": "108.156.85.20",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "108.156.85.20",
+            "108.156.85.65",
+            "108.156.85.48",
+            "108.156.85.86"
+          ],
           "NS": [
             "ns-1055.awsdns-03.org.",
             "ns-1773.awsdns-29.co.uk.",
             "ns-249.awsdns-31.com.",
             "ns-516.awsdns-00.net."
-          ],
-          "A": [
-            "108.156.85.86",
-            "108.156.85.65",
-            "108.156.85.20",
-            "108.156.85.48"
           ]
         }
       },
@@ -206,14 +210,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (id.superhuman.com/signin?oauth_client_type=MEDIATED_WEB&correlation_id=rbwZWzcHPIJXlIbJCP5xFw&version=v4&client_id=superhumanDocs)\"; flow:established,to_server; http.uri; content:\"/signin?oauth_client_type=MEDIATED_WEB&correlation_id=rbwZWzcHPIJXlIbJCP5xFw&version=v4&client_id=superhumanDocs\"; startswith; fast_pattern; http.host; content:\"id.superhuman.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000922; classtype:social-engineering; sid:6000922; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T15:26:08.550118+00:00",
+  "updated_at": "2026-08-17T05:15:39.464984+00:00",
   "probe": {
-    "dns": "108.156.85.20",
+    "dns": "108.156.85.86",
     "whois": null,
     "status": "active"
   }

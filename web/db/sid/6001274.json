@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "globalmedia.lk",
       "domain_defanged": "globalmedia[.]lk",
-      "case_id": "PD-20260815-43E8BF",
-      "analyzed_at": "2026-08-15T22:46:48.155Z",
+      "case_id": "PD-20260817-43E8BF",
+      "analyzed_at": "2026-08-17T05:31:34.521Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e34-27f9-7064-a633-a2be85a9d592/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,16 +68,23 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.139.16",
-        "ipinfo": null,
+        "ip": "104.21.89.81",
+        "ipinfo": {
+          "ip": "104.21.89.81",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.67.139.16",
-            "104.21.89.81"
-          ],
           "AAAA": [
             "2606:4700:3033::ac43:8b10",
             "2606:4700:3035::6815:5951"
+          ],
+          "A": [
+            "104.21.89.81",
+            "172.67.139.16"
           ],
           "NS": [
             "annalise.ns.cloudflare.com.",
@@ -83,7 +94,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,14 +224,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (globalmedia.lk/www.made-in-china.com/index.html)\"; flow:established,to_server; http.uri; content:\"/www.made-in-china.com/index.html\"; startswith; fast_pattern; http.host; content:\"globalmedia.lk\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001274; classtype:social-engineering; sid:6001274; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T15:53:28.392221+00:00",
+  "updated_at": "2026-08-17T05:31:24.965031+00:00",
   "probe": {
-    "dns": "172.67.139.16",
+    "dns": "104.21.89.81",
     "whois": null,
     "status": "active"
   }

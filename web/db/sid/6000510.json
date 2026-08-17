@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "noah-scheurer.de",
       "domain_defanged": "noah-scheurer[.]de",
-      "case_id": "PD-20260815-3F9AB8",
-      "analyzed_at": "2026-08-15T21:48:08.219Z",
+      "case_id": "PD-20260817-3F9AB8",
+      "analyzed_at": "2026-08-17T04:52:53.265Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e10-bc62-726e-b6e3-a4139adabaf9/",
+          "pending": true
         }
       },
       "detections": [],
@@ -71,24 +75,39 @@
       },
       "infrastructure": {
         "ip": "193.34.145.201",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "193.34.145.201",
+          "hostname": "m2803.contaboserver.net",
+          "city": "Lauterbourg",
+          "region": "Grand Est",
+          "country": "FR",
+          "org": "AS51167 Contabo GmbH",
+          "asn": "AS51167"
+        },
         "dns": {
-          "MX": [
-            "10 mail.noah-scheurer.de."
-          ],
           "A": [
             "193.34.145.201"
           ],
+          "MX": [
+            "10 mail.noah-scheurer.de."
+          ],
           "NS": [
+            "ns2.contabo.net.",
             "ns3.contabo.net.",
-            "ns1.contabo.net.",
-            "ns2.contabo.net."
+            "ns1.contabo.net."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Contabo",
+          "abuse": "abuse@contabo.com",
+          "url": "mailto:abuse@contabo.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS51167"
+        }
       },
       "report_services": [
         {
@@ -211,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.noah-scheurer.de/BradySandahl/)\"; flow:established,to_server; http.uri; content:\"/BradySandahl/\"; startswith; fast_pattern; http.host; content:\"www.noah-scheurer.de\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000510; classtype:social-engineering; sid:6000510; rev:1; metadata: signature_severity Major, created_et 2026_06_23, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T15:03:32.453661+00:00",
+  "updated_at": "2026-08-17T04:52:49.861555+00:00",
   "probe": {
     "dns": "193.34.145.201",
     "whois": true,

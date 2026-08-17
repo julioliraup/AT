@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "msg-whatapp.hk.cn",
       "domain_defanged": "msg-whatapp[.]hk[.]cn",
-      "case_id": "PD-20260815-4349F8",
-      "analyzed_at": "2026-08-15T22:03:03.431Z",
+      "case_id": "PD-20260817-4349F8",
+      "analyzed_at": "2026-08-17T05:02:05.320Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e19-2906-7624-827d-43fffcf0fc5e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,21 +74,40 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "192.197.113.111",
-        "ipinfo": null,
+        "ip": "172.67.153.86",
+        "ipinfo": {
+          "ip": "172.67.153.86",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "NS": [
-            "ns1.kenpains.com.",
-            "ns2.kenpains.com."
+          "AAAA": [
+            "2606:4700:3036::ac43:9956",
+            "2606:4700:3035::6815:48b1"
           ],
           "A": [
-            "192.197.113.111"
+            "172.67.153.86",
+            "104.21.72.177"
+          ],
+          "NS": [
+            "alexa.ns.cloudflare.com.",
+            "buck.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -207,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.msg-whatapp.hk.cn/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.msg-whatapp.hk.cn\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000674; classtype:social-engineering; sid:6000674; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T15:10:12.746454+00:00",
+  "updated_at": "2026-08-17T05:02:00.775911+00:00",
   "probe": {
     "dns": "192.197.113.111",
     "whois": true,

@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "meta-aegis-u4o.pages.dev",
       "domain_defanged": "meta-aegis-u4o[.]pages[.]dev",
-      "case_id": "PD-20260815-39F16F",
-      "analyzed_at": "2026-08-15T23:10:32.754Z",
+      "case_id": "PD-20260817-39F16F",
+      "analyzed_at": "2026-08-17T05:49:48.499Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e44-d929-73b0-b5b6-9acd4594f640/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,16 +74,23 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.224",
-        "ipinfo": null,
+        "ip": "172.66.45.32",
+        "ipinfo": {
+          "ip": "172.66.45.32",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.66.46.224",
-            "172.66.45.32"
+            "172.66.45.32",
+            "172.66.46.224"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2d20",
-            "2606:4700:310c::ac42:2ee0"
+            "2606:4700:310c::ac42:2ee0",
+            "2606:4700:310c::ac42:2d20"
           ],
           "NS": [
             "keanu.ns.cloudflare.com.",
@@ -89,7 +100,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-aegis-u4o.pages.dev/appeals/submit-appeal-form/return)\"; flow:established,to_server; http.uri; content:\"/appeals/submit-appeal-form/return\"; startswith; fast_pattern; http.host; content:\"meta-aegis-u4o.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001676; classtype:social-engineering; sid:6001676; rev:1; metadata: signature_severity Major, created_et 2026_06_04, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T16:17:58.345008+00:00",
+  "updated_at": "2026-08-17T05:49:46.145045+00:00",
   "probe": {
     "dns": "172.66.45.32",
     "whois": null,

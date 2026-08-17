@@ -18,45 +18,22 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://urlvanish.com/3ccce1a7",
-      "domain": "urlvanish.com",
-      "url_count": 0,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "urlvanish.com",
       "domain_defanged": "urlvanish[.]com",
-      "case_id": "PD-20260815-267E16",
-      "analyzed_at": "2026-08-15T21:33:48.241Z",
+      "case_id": "PD-20260817-267E16",
+      "analyzed_at": "2026-08-17T04:43:35.865Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e08-38ff-716f-954e-10eeef30d89f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,22 +41,26 @@
         "registrar": "Internet Domain Service BS Corp",
         "created": "2024-12-27T15:51:53Z",
         "expires": "2026-12-27T15:51:53Z",
-        "age_days": 596,
+        "age_days": 597,
         "nameservers": [
           "ANDRONICUS.NS.CLOUDFLARE.COM",
           "MAGNOLIA.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.215.120",
-        "ipinfo": null,
+        "ip": "104.21.50.253",
+        "ipinfo": {
+          "ip": "104.21.50.253",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "MX": [
-            "10 mail.urlvanish.com."
-          ],
           "A": [
-            "172.67.215.120",
-            "104.21.50.253"
+            "104.21.50.253",
+            "172.67.215.120"
           ],
           "AAAA": [
             "2606:4700:3031::6815:32fd",
@@ -88,6 +69,9 @@
           "NS": [
             "andronicus.ns.cloudflare.com.",
             "magnolia.ns.cloudflare.com."
+          ],
+          "MX": [
+            "10 mail.urlvanish.com."
           ]
         }
       },
@@ -100,7 +84,14 @@
           "method": "form",
           "iana_ids": "49"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -223,14 +214,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (urlvanish.com/3ccce1a7)\"; flow:established,to_server; http.uri; content:\"/3ccce1a7\"; startswith; fast_pattern; http.host; content:\"urlvanish.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000349; classtype:social-engineering; sid:6000349; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T14:55:36.630754+00:00",
+  "updated_at": "2026-08-17T04:43:21.104447+00:00",
   "probe": {
-    "dns": "172.67.215.120",
+    "dns": "104.21.50.253",
     "whois": true,
     "status": "active"
   }

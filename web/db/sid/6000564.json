@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "chobanlokan.com",
       "domain_defanged": "chobanlokan[.]com",
-      "case_id": "PD-20260815-5F9DE3",
-      "analyzed_at": "2026-08-15T21:52:06.093Z",
+      "case_id": "PD-20260817-5F9DE3",
+      "analyzed_at": "2026-08-17T04:56:19.926Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00e13-e3da-764e-84fc-c8b658841ecd/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,7 +68,7 @@
         "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
         "created": "2026-01-19T00:50:15Z",
         "expires": "2027-01-19T00:50:15Z",
-        "age_days": 208,
+        "age_days": 210,
         "nameservers": [
           "INA1.REGISTRAR.EU",
           "INA2.REGISTRAR.EU",
@@ -73,15 +77,22 @@
       },
       "infrastructure": {
         "ip": "185.53.179.136",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.53.179.136",
+          "city": "Toronto",
+          "region": "Ontario",
+          "country": "CA",
+          "org": "AS206834 Team Internet AG",
+          "asn": "AS206834"
+        },
         "dns": {
           "A": [
             "185.53.179.136"
           ],
           "NS": [
-            "ina2.registrar.eu.",
             "ina3.registrar.eu.",
-            "ina1.registrar.eu."
+            "ina1.registrar.eu.",
+            "ina2.registrar.eu."
           ]
         }
       },
@@ -94,7 +105,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "TEAMINTERNET-CA-AS, DE",
+          "abuse": "abuse@teaminternet.com",
+          "url": "mailto:abuse@teaminternet.com",
+          "logo": "https://i.ibb.co/0yZnxXcx/pr-TEAMINTERNET-AS-DE.png",
+          "method": "email",
+          "asn": "AS206834"
+        }
       },
       "report_services": [
         {
@@ -217,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (chobanlokan.com/1.php)\"; flow:established,to_server; http.uri; content:\"/1.php\"; startswith; fast_pattern; http.host; content:\"chobanlokan.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000564; classtype:social-engineering; sid:6000564; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T15:06:15.736741+00:00",
+  "updated_at": "2026-08-17T04:56:15.685573+00:00",
   "probe": {
     "dns": "185.53.179.136",
     "whois": true,
