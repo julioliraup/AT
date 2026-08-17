@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "tmas.org.nz",
       "domain_defanged": "tmas[.]org[.]nz",
-      "case_id": "PD-20260815-67C608",
-      "analyzed_at": "2026-08-15T20:42:07.132Z",
+      "case_id": "PD-20260817-67C608",
+      "analyzed_at": "2026-08-17T02:36:50.728Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00d94-2fa0-718c-98cd-f571c67a72d4/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,28 +93,42 @@
       },
       "infrastructure": {
         "ip": "172.67.162.47",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.162.47",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3037::ac43:a22f",
+            "2606:4700:3031::6815:f6b"
+          ],
           "A": [
             "172.67.162.47",
             "104.21.15.107"
           ],
-          "AAAA": [
-            "2606:4700:3031::6815:f6b",
-            "2606:4700:3037::ac43:a22f"
+          "MX": [
+            "10 mail.tmas.org.nz."
           ],
           "NS": [
             "carol.ns.cloudflare.com.",
             "jason.ns.cloudflare.com."
-          ],
-          "MX": [
-            "10 mail.tmas.org.nz."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -237,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.tmas.org.nz/newww/)\"; flow:established,to_server; http.uri; content:\"/newww/\"; startswith; fast_pattern; http.host; content:\"www.tmas.org.nz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009355; classtype:social-engineering; sid:6009355; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-15T20:42:01.443689+00:00",
+  "updated_at": "2026-08-17T02:36:45.477341+00:00",
   "probe": {
     "dns": "172.67.162.47",
     "whois": true,

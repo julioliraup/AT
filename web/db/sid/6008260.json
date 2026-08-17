@@ -49,14 +49,19 @@
     "phishdestroy": {
       "domain": "rroblox.wf",
       "domain_defanged": "rroblox[.]wf",
-      "case_id": "PD-20260815-276E32",
-      "analyzed_at": "2026-08-15T19:51:59.898Z",
+      "case_id": "PD-20260817-276E32",
+      "analyzed_at": "2026-08-17T00:55:30.614Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/01a00b8b-1865-77bb-b11f-f7d256f08c96.png",
+          "url": "https://urlscan.io/result/01a00b8b-1865-77bb-b11f-f7d256f08c96/",
+          "title": "404 Not Found"
         }
       },
       "detections": [],
@@ -65,15 +70,22 @@
       },
       "infrastructure": {
         "ip": "172.67.195.25",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.195.25",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.67.195.25",
-            "104.21.36.143"
-          ],
           "AAAA": [
             "2606:4700:3033::ac43:c319",
             "2606:4700:3034::6815:248f"
+          ],
+          "A": [
+            "172.67.195.25",
+            "104.21.36.143"
           ],
           "NS": [
             "cash.ns.cloudflare.com.",
@@ -83,7 +95,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,14 +225,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rroblox.wf/share?code=96041925588136299153057679665385&type=Profile&source=ProfileShare&gameid=2753915549)\"; flow:established,to_server; http.uri; content:\"/share?code=96041925588136299153057679665385&type=Profile&source=ProfileShare&gameid=2753915549\"; startswith; fast_pattern; http.host; content:\"rroblox.wf\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008260; classtype:social-engineering; sid:6008260; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T05:00:25.423506+00:00",
+  "updated_at": "2026-08-17T00:55:25.041197+00:00",
   "probe": {
-    "dns": "104.21.36.143",
+    "dns": "172.67.195.25",
     "whois": true,
     "status": "active"
   }

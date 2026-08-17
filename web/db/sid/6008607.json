@@ -49,14 +49,19 @@
     "phishdestroy": {
       "domain": "accountservicescenter.co.za",
       "domain_defanged": "accountservicescenter[.]co[.]za",
-      "case_id": "PD-20260815-69C7D2",
-      "analyzed_at": "2026-08-15T20:09:20.537Z",
+      "case_id": "PD-20260817-69C7D2",
+      "analyzed_at": "2026-08-17T01:33:20.045Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/01a002df-bb57-73cc-886c-2f50bfb0b1d5.png",
+          "url": "https://urlscan.io/result/01a002df-bb57-73cc-886c-2f50bfb0b1d5/",
+          "title": "404 Not Found"
         }
       },
       "detections": [],
@@ -65,20 +70,35 @@
       },
       "infrastructure": {
         "ip": "98.91.9.77",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "98.91.9.77",
+          "hostname": "ec2-98-91-9-77.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
-          "A": [
-            "98.91.9.77"
-          ],
           "NS": [
             "dane.ns.cloudflare.com.",
             "jessica.ns.cloudflare.com."
+          ],
+          "A": [
+            "98.91.9.77"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -201,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (accountservicescenter.co.za/?r=2936e486-3960-4b99-9e03-f1a94bfde3ae&rg=eu)\"; flow:established,to_server; http.uri; content:\"/?r=2936e486-3960-4b99-9e03-f1a94bfde3ae&rg=eu\"; startswith; fast_pattern; http.host; content:\"accountservicescenter.co.za\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008607; classtype:social-engineering; sid:6008607; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:13:16.295442+00:00",
+  "updated_at": "2026-08-17T01:33:15.338861+00:00",
   "probe": {
     "dns": "98.91.9.77",
     "whois": true,

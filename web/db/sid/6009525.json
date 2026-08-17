@@ -49,24 +49,37 @@
     "phishdestroy": {
       "domain": "gorvanel-biz-zormutera-a1m9pc63.pages.dev",
       "domain_defanged": "gorvanel-biz-zormutera-a1m9pc63[.]pages[.]dev",
-      "case_id": "PD-20260815-6E96C3",
-      "analyzed_at": "2026-08-15T10:52:22.727Z",
+      "case_id": "PD-20260817-6E96C3",
+      "analyzed_at": "2026-08-17T02:48:44.662Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00a55-a477-713c-a241-030c3481ec2e.png",
+          "url": "https://urlscan.io/result/01a00a55-a477-713c-a241-030c3481ec2e/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.208",
+        "ip": "172.66.45.48",
         "ipinfo": {
-          "ip": "172.66.46.208",
+          "ip": "172.66.45.48",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -75,12 +88,12 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2d30",
-            "2606:4700:310c::ac42:2ed0"
+            "2606:4700:310c::ac42:2ed0",
+            "2606:4700:310c::ac42:2d30"
           ],
           "A": [
-            "172.66.46.208",
-            "172.66.45.48"
+            "172.66.45.48",
+            "172.66.46.208"
           ],
           "NS": [
             "blair.ns.cloudflare.com.",
@@ -220,12 +233,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (gorvanel-biz-zormutera-a1m9pc63.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"gorvanel-biz-zormutera-a1m9pc63.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009525; classtype:social-engineering; sid:6009525; rev:1; metadata: signature_severity Major, created_et 2026_08_13;)",
-  "updated_at": "2026-08-15T20:51:02.557770+00:00",
+  "updated_at": "2026-08-17T02:48:41.087566+00:00",
   "probe": {
     "dns": "172.66.45.48",
     "whois": null,

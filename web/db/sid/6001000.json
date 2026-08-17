@@ -73,35 +73,51 @@
     "phishdestroy": {
       "domain": "sp1ct6-plarnor-biz-drulvik-qolnex.pages.dev",
       "domain_defanged": "sp1ct6-plarnor-biz-drulvik-qolnex[.]pages[.]dev",
-      "case_id": "PD-20260815-45995C",
-      "analyzed_at": "2026-08-15T12:35:49.538Z",
+      "case_id": "PD-20260816-45995C",
+      "analyzed_at": "2026-08-16T15:33:21.511Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a0056b-d9a9-709f-a5ca-67f467d2af13/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00ad8-3896-77ea-a912-78d295aa4d9e.png",
+          "url": "https://urlscan.io/result/01a00ad8-3896-77ea-a912-78d295aa4d9e/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.47.87",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.87",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2f57",
-            "2606:4700:310c::ac42:2ca9"
-          ],
           "A": [
             "172.66.47.87",
             "172.66.44.169"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2ca9",
+            "2606:4700:310c::ac42:2f57"
           ],
           "NS": [
             "alexa.ns.cloudflare.com.",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp1ct6-plarnor-biz-drulvik-qolnex.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp1ct6-plarnor-biz-drulvik-qolnex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001000; classtype:social-engineering; sid:6001000; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T06:22:14.505966+00:00",
+  "updated_at": "2026-08-16T15:33:18.739888+00:00",
   "probe": {
     "dns": "172.66.47.87",
     "whois": null,

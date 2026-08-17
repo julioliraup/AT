@@ -18,77 +18,22 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://bacsigad.com/",
-      "domain": "bacsigad.com",
-      "url_count": 8,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "172.67.130.253",
-      "http_code": 403,
-      "http_response": {
-        "server": "cloudflare",
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": "a23150b58e2aa32d-PDX",
-        "cf_cache_status": "DYNAMIC",
-        "alt_svc": "h3=\":443\"; ma=86400"
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (516)",
-      "sha256": "2dcf14c9ee1a3a4c0b9fd913bf4b52f3ab24d5a62278fb0dda6bf40d09db6b38",
-      "md5": "119f67101b8abdccc637bdaecc5e15fc",
-      "cert": {
-        "subject_cn": "bacsigad.com",
-        "subject_alt_names": [
-          "bacsigad.com",
-          "*.bacsigad.com"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-06-13T11:23:58+00:00",
-        "not_valid_after": "2026-09-11T12:19:01+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "137945187809845054958845870532247490167",
-        "fingerprint_sha1": "51 C8 08 88 FC 0A 3D DF 86 4C 7D B1 75 27 25 B1 EE DB 25 CF",
-        "fingerprint_sha256": "36 36 19 5D 22 74 EA 71 F6 48 74 4B 89 8C 38 62 F3 05 D5 EE 5C 76 2A 78 BF D4 C7 42 48 DC CB 68"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-07-30T03:20:46",
-      "first_seen_secs": 1785381646.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "bacsigad.com",
       "domain_defanged": "bacsigad[.]com",
-      "case_id": "PD-20260815-1176E3",
-      "analyzed_at": "2026-08-15T06:57:50.907Z",
+      "case_id": "PD-20260816-1176E3",
+      "analyzed_at": "2026-08-16T19:44:04.100Z",
       "intel": {
         "virustotal": {
-          "malicious": 0,
-          "suspicious": 0,
-          "total": 91,
-          "detections": [],
-          "categories": {}
+          "error": "http_429"
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ff5bc-f81f-738c-aaf3-dc9393a2ce30.png",
-          "url": "https://urlscan.io/result/019ff5bc-f81f-738c-aaf3-dc9393a2ce30/"
+          "url": "https://urlscan.io/result/01a00c1a-4599-716e-a9c4-593a8ae92788/",
+          "pending": true
         }
       },
       "detections": [],
@@ -96,30 +41,23 @@
         "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
         "created": "2026-06-13T12:15:05Z",
         "expires": "2027-06-13T12:15:05Z",
-        "age_days": 62,
+        "age_days": 64,
         "nameservers": [
           "LILYANA.NS.CLOUDFLARE.COM",
           "RAZVAN.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.21.9.183",
-        "ipinfo": {
-          "ip": "104.21.9.183",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ip": "172.67.130.253",
+        "ipinfo": null,
         "dns": {
           "AAAA": [
             "2606:4700:3034::6815:9b7",
             "2606:4700:3034::ac43:82fd"
           ],
           "A": [
-            "104.21.9.183",
-            "172.67.130.253"
+            "172.67.130.253",
+            "104.21.9.183"
           ],
           "NS": [
             "lilyana.ns.cloudflare.com.",
@@ -136,14 +74,7 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -266,14 +197,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bacsigad.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bacsigad.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004705; classtype:social-engineering; sid:6004705; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T02:26:20.630013+00:00",
+  "updated_at": "2026-08-16T19:43:50.209986+00:00",
   "probe": {
-    "dns": "172.67.130.253",
+    "dns": "104.21.9.183",
     "whois": true,
     "status": "active"
   }

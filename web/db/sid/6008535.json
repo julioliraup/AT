@@ -49,29 +49,77 @@
     "phishdestroy": {
       "domain": "edusofia.mx",
       "domain_defanged": "edusofia[.]mx",
-      "case_id": "PD-20260815-3C2F10",
-      "analyzed_at": "2026-08-15T20:04:56.616Z",
+      "case_id": "PD-20260817-3C2F10",
+      "analyzed_at": "2026-08-17T01:24:29.456Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ffb30-79f0-712d-8c88-2094a6968680.png",
+          "url": "https://urlscan.io/result/019ffb30-79f0-712d-8c88-2094a6968680/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "209.188.21.16",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "209.188.21.16",
+          "hostname": "server1.tekohost.com",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS22612 Namecheap, Inc.",
+          "asn": "AS22612"
+        },
         "dns": {
-          "MX": [
-            "0 edusofia.mx."
-          ],
           "A": [
             "209.188.21.16"
+          ],
+          "MX": [
+            "0 edusofia.mx."
           ],
           "NS": [
             "ns1.tekohost.com.",
@@ -81,7 +129,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Namecheap Hosting",
+          "abuse": "abuse@namecheap.com",
+          "url": "https://support.namecheap.com/index.php?/Tickets/Submit",
+          "logo": "",
+          "method": "form",
+          "asn": "AS22612"
+        }
       },
       "report_services": [
         {
@@ -204,12 +259,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (edusofia.mx/week/hinet/index.php#hinet@hinet.net)\"; flow:established,to_server; http.uri; content:\"/week/hinet/index.php#hinet@hinet.net\"; startswith; fast_pattern; http.host; content:\"edusofia.mx\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6008535; classtype:social-engineering; sid:6008535; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:10:04.001531+00:00",
+  "updated_at": "2026-08-17T01:24:24.203820+00:00",
   "probe": {
     "dns": "209.188.21.16",
     "whois": true,

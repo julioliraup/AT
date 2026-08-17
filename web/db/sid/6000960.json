@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "httpsmybusiness.my.id",
       "domain_defanged": "httpsmybusiness[.]my[.]id",
-      "case_id": "PD-20260815-3CDC1C",
-      "analyzed_at": "2026-08-15T12:32:17.573Z",
+      "case_id": "PD-20260816-3CDC1C",
+      "analyzed_at": "2026-08-16T15:29:21.856Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb5b0-bfc1-73b9-8068-1f949927969d.png",
+          "url": "https://urlscan.io/result/019fb5b0-bfc1-73b9-8068-1f949927969d/",
+          "title": "𝗣𝗧.𝗘𝘀𝗽𝗮𝘆 𝗗𝗮𝗻𝗮 𝗜𝗻𝗱𝗼𝗻𝗲𝘀𝗶𝗮"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "103.112.244.90",
+        "ipinfo": {
+          "ip": "103.112.244.90",
+          "hostname": "newpinwheel.indowebsite.net",
+          "city": "Cikarang",
+          "region": "West Java",
+          "country": "ID",
+          "org": "AS136107 PT. Tujuh Ion Indonesia",
+          "asn": "AS136107"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "IDNIC-7ION-AS-ID",
+          "abuse": "abuse@apjii.or.id",
+          "url": "mailto:abuse@apjii.or.id",
+          "logo": "https://i.ibb.co/jvkCbrkj/pr-IDNIC-7-ION-AS-ID.png",
+          "method": "email",
+          "asn": "AS136107"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (httpsmybusiness.my.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"httpsmybusiness.my.id\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000960; classtype:social-engineering; sid:6000960; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T06:20:35.486525+00:00",
+  "updated_at": "2026-08-16T15:29:17.517003+00:00",
   "probe": {
     "dns": null,
     "whois": true,

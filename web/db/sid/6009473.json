@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "qwwqqw.pages.dev",
       "domain_defanged": "qwwqqw[.]pages[.]dev",
-      "case_id": "PD-20260815-52E430",
-      "analyzed_at": "2026-08-15T20:48:50.258Z",
+      "case_id": "PD-20260817-52E430",
+      "analyzed_at": "2026-08-17T02:45:59.172Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00d9c-8e0b-72de-a48a-ff5fec313987/",
+          "pending": true
         }
       },
       "detections": [],
@@ -89,15 +93,22 @@
       },
       "infrastructure": {
         "ip": "172.66.47.11",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.11",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.66.47.11",
             "172.66.44.245"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f0b",
-            "2606:4700:310c::ac42:2cf5"
+            "2606:4700:310c::ac42:2cf5",
+            "2606:4700:310c::ac42:2f0b"
           ],
           "NS": [
             "keenan.ns.cloudflare.com.",
@@ -107,7 +118,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +252,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (qwwqqw.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"qwwqqw.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009473; classtype:social-engineering; sid:6009473; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-15T20:48:48.071442+00:00",
+  "updated_at": "2026-08-17T02:45:56.797089+00:00",
   "probe": {
     "dns": "172.66.47.11",
     "whois": null,

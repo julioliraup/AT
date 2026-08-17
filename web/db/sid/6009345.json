@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "biichoios133.on-forge.com",
       "domain_defanged": "biichoios133[.]on-forge[.]com",
-      "case_id": "PD-20260815-5C57F1",
-      "analyzed_at": "2026-08-15T20:41:26.744Z",
+      "case_id": "PD-20260817-5C57F1",
+      "analyzed_at": "2026-08-17T02:35:43.484Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00d93-28fd-7107-b167-4ec6e32176b4/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,22 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.10.251",
-        "ipinfo": null,
+        "ip": "104.18.11.251",
+        "ipinfo": {
+          "ip": "104.18.11.251",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700::6812:bfb",
-            "2606:4700::6812:afb"
+            "2606:4700::6812:afb",
+            "2606:4700::6812:bfb"
           ],
           "A": [
-            "104.18.10.251",
-            "104.18.11.251"
+            "104.18.11.251",
+            "104.18.10.251"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (biichoios133.on-forge.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"biichoios133.on-forge.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009345; classtype:social-engineering; sid:6009345; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-15T20:41:24.068689+00:00",
+  "updated_at": "2026-08-17T02:35:25.472783+00:00",
   "probe": {
     "dns": "104.18.10.251",
     "whois": null,

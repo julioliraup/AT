@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "app-payment-console-redirect.online",
       "domain_defanged": "app-payment-console-redirect[.]online",
-      "case_id": "PD-20260815-594786",
-      "analyzed_at": "2026-08-15T19:45:15.585Z",
+      "case_id": "PD-20260817-594786",
+      "analyzed_at": "2026-08-17T00:47:01.433Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "PayPal"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019f9005-6365-7744-ad80-5e1a77a766e2.png",
+          "url": "https://urlscan.io/result/019f9005-6365-7744-ad80-5e1a77a766e2/",
+          "title": "Firefox"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: PayPal",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "94.176.234.97",
+        "ipinfo": {
+          "ip": "94.176.234.97",
+          "hostname": "5w2m.l.time4vps.cloud",
+          "city": "Vilnius",
+          "region": "Vilnius",
+          "country": "LT",
+          "org": "AS212531 Interneto vizija",
+          "asn": "AS212531"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "INTERNETO-VIZIJA, LT",
+          "abuse": "abuse@iv.lt",
+          "url": "mailto:abuse@iv.lt",
+          "logo": "https://i.ibb.co/vCCY8yVD/pr-INTERNETO-VIZIJA-LT.png",
+          "method": "email",
+          "asn": "AS212531"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app-payment-console-redirect.online/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"app-payment-console-redirect.online\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008154; classtype:social-engineering; sid:6008154; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T04:56:47.104764+00:00",
+  "updated_at": "2026-08-17T00:46:56.728753+00:00",
   "probe": {
     "dns": null,
     "whois": true,

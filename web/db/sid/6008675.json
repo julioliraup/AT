@@ -73,33 +73,60 @@
     "phishdestroy": {
       "domain": "web-trezor-io-start-app.typedream.app",
       "domain_defanged": "web-trezor-io-start-app[.]typedream[.]app",
-      "case_id": "PD-20260815-CDBD7B",
-      "analyzed_at": "2026-08-15T20:13:24.315Z",
+      "case_id": "PD-20260817-CDBD7B",
+      "analyzed_at": "2026-08-17T01:43:03.133Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00ca0-191e-7324-aaef-0872c2f7edea.png",
+          "url": "https://urlscan.io/result/01a00ca0-191e-7324-aaef-0872c2f7edea/",
+          "title": "Trezor Suite - suite.trezor.io"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.37.85",
-        "ipinfo": null,
+        "ip": "172.67.206.36",
+        "ipinfo": {
+          "ip": "172.67.206.36",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "104.21.37.85",
-            "172.67.206.36"
+            "172.67.206.36",
+            "104.21.37.85"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -222,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (web-trezor-io-start-app.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"web-trezor-io-start-app.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008675; classtype:social-engineering; sid:6008675; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:15:24.760576+00:00",
+  "updated_at": "2026-08-17T01:42:59.964394+00:00",
   "probe": {
     "dns": "172.67.206.36",
     "whois": null,

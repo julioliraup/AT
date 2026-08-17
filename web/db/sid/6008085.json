@@ -49,14 +49,19 @@
     "phishdestroy": {
       "domain": "kantox-preprod.com",
       "domain_defanged": "kantox-preprod[.]com",
-      "case_id": "PD-20260815-5BF26F",
-      "analyzed_at": "2026-08-15T19:41:05.606Z",
+      "case_id": "PD-20260817-5BF26F",
+      "analyzed_at": "2026-08-17T00:40:52.058Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ffb10-5ccd-705e-b326-a3ebf333de2d.png",
+          "url": "https://urlscan.io/result/019ffb10-5ccd-705e-b326-a3ebf333de2d/",
+          "title": "kantox-preprod.com"
         }
       },
       "detections": [],
@@ -64,7 +69,7 @@
         "registrar": "Amazon Registrar, Inc.",
         "created": "2016-07-18T10:17:26Z",
         "expires": "2027-07-18T10:17:26Z",
-        "age_days": 3680,
+        "age_days": 3681,
         "nameservers": [
           "NS-1289.AWSDNS-33.ORG",
           "NS-1582.AWSDNS-05.CO.UK",
@@ -74,19 +79,27 @@
       },
       "infrastructure": {
         "ip": "52.214.3.179",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "52.214.3.179",
+          "hostname": "ec2-52-214-3-179.eu-west-1.compute.amazonaws.com",
+          "city": "Dublin",
+          "region": "Leinster",
+          "country": "IE",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
+          "A": [
+            "52.214.3.179",
+            "54.78.143.5",
+            "108.128.81.148"
+          ],
           "MX": [
             "1 aspmx.l.google.com.",
             "10 aspmx2.googlemail.com.",
             "10 aspmx3.googlemail.com.",
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com."
-          ],
-          "A": [
-            "52.214.3.179",
-            "108.128.81.148",
-            "54.78.143.5"
           ],
           "NS": [
             "ns-1289.awsdns-33.org.",
@@ -105,7 +118,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -228,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kantox-preprod.com/fr/secure/login)\"; flow:established,to_server; http.uri; content:\"/fr/secure/login\"; startswith; fast_pattern; http.host; content:\"kantox-preprod.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008085; classtype:social-engineering; sid:6008085; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T04:54:16.690851+00:00",
+  "updated_at": "2026-08-17T00:40:46.869443+00:00",
   "probe": {
     "dns": "52.214.3.179",
     "whois": true,

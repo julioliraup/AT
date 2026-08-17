@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "leigerd-li-ve-learn.pages.dev",
       "domain_defanged": "leigerd-li-ve-learn[.]pages[.]dev",
-      "case_id": "PD-20260815-263342",
-      "analyzed_at": "2026-08-15T12:33:59.667Z",
+      "case_id": "PD-20260816-263342",
+      "analyzed_at": "2026-08-16T15:31:29.197Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a0056a-2c6f-7288-b527-287bae6a445e.png",
           "url": "https://urlscan.io/result/01a0056a-2c6f-7288-b527-287bae6a445e/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.46.239",
+        "ip": "172.66.45.17",
         "ipinfo": {
-          "ip": "172.66.46.239",
+          "ip": "172.66.45.17",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,17 +111,17 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2eef",
-            "2606:4700:310c::ac42:2d11"
-          ],
-          "A": [
-            "172.66.46.239",
-            "172.66.45.17"
-          ],
           "NS": [
             "adam.ns.cloudflare.com.",
             "magnolia.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.45.17",
+            "172.66.46.239"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2d11",
+            "2606:4700:310c::ac42:2eef"
           ]
         }
       },
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (leigerd-li-ve-learn.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"leigerd-li-ve-learn.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000978; classtype:social-engineering; sid:6000978; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T06:21:24.501407+00:00",
+  "updated_at": "2026-08-16T15:31:26.037153+00:00",
   "probe": {
     "dns": "172.66.45.17",
     "whois": null,

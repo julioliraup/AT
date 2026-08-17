@@ -49,23 +49,44 @@
     "phishdestroy": {
       "domain": "7ashwani7.github.io",
       "domain_defanged": "7ashwani7[.]github[.]io",
-      "case_id": "PD-20260815-5E459E",
-      "analyzed_at": "2026-08-15T19:45:07.702Z",
+      "case_id": "PD-20260817-5E459E",
+      "analyzed_at": "2026-08-17T00:46:52.052Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Spotify"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffdc2-eafc-7320-ac3a-5e4b7cdfbcaa.png",
+          "url": "https://urlscan.io/result/019ffdc2-eafc-7320-ac3a-5e4b7cdfbcaa/",
+          "title": "Spotify - Web Player : Music for everyone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Spotify",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.199.108.153",
+          "hostname": "cdn-185-199-108-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "AAAA": [
             "2606:50c0:8000::153",
@@ -76,14 +97,21 @@
           "A": [
             "185.199.108.153",
             "185.199.109.153",
-            "185.199.110.153",
-            "185.199.111.153"
+            "185.199.111.153",
+            "185.199.110.153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -206,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (7ashwani7.github.io/Spotify-Clone/)\"; flow:established,to_server; http.uri; content:\"/Spotify-Clone/\"; startswith; fast_pattern; http.host; content:\"7ashwani7.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008152; classtype:social-engineering; sid:6008152; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T04:56:44.098134+00:00",
+  "updated_at": "2026-08-17T00:46:48.629879+00:00",
   "probe": {
     "dns": "185.199.111.153",
     "whois": true,

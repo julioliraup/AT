@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp4ct-gorvurin-biz8-durem-fasol.pages.dev",
       "domain_defanged": "sp4ct-gorvurin-biz8-durem-fasol[.]pages[.]dev",
-      "case_id": "PD-20260815-4257B8",
-      "analyzed_at": "2026-08-15T12:35:57.510Z",
+      "case_id": "PD-20260816-4257B8",
+      "analyzed_at": "2026-08-16T15:33:29.366Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a0056b-f72e-71fb-b9e6-3685a3044661.png",
           "url": "https://urlscan.io/result/01a0056b-f72e-71fb-b9e6-3685a3044661/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.159",
+        "ip": "172.66.44.97",
         "ipinfo": {
-          "ip": "172.66.47.159",
+          "ip": "172.66.44.97",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -107,8 +116,8 @@
             "2606:4700:310c::ac42:2f9f"
           ],
           "A": [
-            "172.66.47.159",
-            "172.66.44.97"
+            "172.66.44.97",
+            "172.66.47.159"
           ],
           "NS": [
             "annabel.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp4ct-gorvurin-biz8-durem-fasol.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp4ct-gorvurin-biz8-durem-fasol.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001002; classtype:social-engineering; sid:6001002; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T06:22:17.243802+00:00",
+  "updated_at": "2026-08-16T15:33:26.358895+00:00",
   "probe": {
     "dns": "172.66.44.97",
     "whois": null,

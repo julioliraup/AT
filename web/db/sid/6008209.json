@@ -49,33 +49,60 @@
     "phishdestroy": {
       "domain": "comcastinc.vercel.app",
       "domain_defanged": "comcastinc[.]vercel[.]app",
-      "case_id": "PD-20260815-21CCF2",
-      "analyzed_at": "2026-08-15T19:48:27.746Z",
+      "case_id": "PD-20260817-21CCF2",
+      "analyzed_at": "2026-08-17T00:50:50.606Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Xfinity"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffb19-43ea-72a7-96ac-a456e6fd2a5d.png",
+          "url": "https://urlscan.io/result/019ffb19-43ea-72a7-96ac-a456e6fd2a5d/",
+          "title": "Sign in to Xfinity"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Xfinity",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "216.198.79.2",
-        "ipinfo": null,
+        "ip": "216.198.79.194",
+        "ipinfo": {
+          "ip": "216.198.79.194",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
-            "216.198.79.2",
-            "64.29.17.2"
+            "216.198.79.194",
+            "64.29.17.194"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -203,9 +230,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.comcastinc.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.comcastinc.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008209; classtype:social-engineering; sid:6008209; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T04:58:38.494946+00:00",
+  "updated_at": "2026-08-17T00:50:50.711114+00:00",
   "probe": {
-    "dns": "64.29.17.2",
+    "dns": "216.198.79.194",
     "whois": null,
     "status": "active"
   }

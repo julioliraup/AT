@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "shopee5155.blogspot.com",
       "domain_defanged": "shopee5155[.]blogspot[.]com",
-      "case_id": "PD-20260815-7B1D83",
-      "analyzed_at": "2026-08-15T10:16:42.426Z",
+      "case_id": "PD-20260817-7B1D83",
+      "analyzed_at": "2026-08-17T01:56:38.802Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Shopee"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a004ec-79cd-7772-bebb-b9a510acf33c.png",
           "url": "https://urlscan.io/result/01a004ec-79cd-7772-bebb-b9a510acf33c/",
-          "pending": true
+          "title": "shopee"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Shopee",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -71,16 +80,16 @@
         "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4001:837::2001"
-          ],
           "A": [
             "blogspot.l.googleusercontent.com.",
-            "172.217.28.193"
+            "142.251.135.225"
           ],
           "MX": [
             "blogspot.l.googleusercontent.com."
+          ],
+          "AAAA": [
+            "blogspot.l.googleusercontent.com.",
+            "2800:3f0:4001:841::2001"
           ],
           "CNAME": [
             "blogspot.l.googleusercontent.com."
@@ -92,7 +101,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -215,14 +231,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shopee5155.blogspot.com/?m=1)\"; flow:established,to_server; http.uri; content:\"/?m=1\"; startswith; fast_pattern; http.host; content:\"shopee5155.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008841; classtype:social-engineering; sid:6008841; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-16T05:21:49.552802+00:00",
+  "updated_at": "2026-08-17T01:56:34.765040+00:00",
   "probe": {
-    "dns": "142.250.219.33",
+    "dns": "142.250.78.193",
     "whois": null,
     "status": "active"
   }

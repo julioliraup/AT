@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp12ct-zafmor-biz-kersel-vandik.pages.dev",
       "domain_defanged": "sp12ct-zafmor-biz-kersel-vandik[.]pages[.]dev",
-      "case_id": "PD-20260815-28046C",
-      "analyzed_at": "2026-08-15T18:41:18.724Z",
+      "case_id": "PD-20260816-28046C",
+      "analyzed_at": "2026-08-16T23:03:34.522Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a006ba-7650-75ec-b83a-5973f892b50c.png",
           "url": "https://urlscan.io/result/01a006ba-7650-75ec-b83a-5973f892b50c/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -95,13 +104,13 @@
         "ip": "172.66.46.226",
         "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2d1e",
+            "2606:4700:310c::ac42:2ee2"
+          ],
           "A": [
             "172.66.46.226",
             "172.66.45.30"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2ee2",
-            "2606:4700:310c::ac42:2d1e"
           ],
           "NS": [
             "surina.ns.cloudflare.com.",
@@ -111,7 +120,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp12ct-zafmor-biz-kersel-vandik.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp12ct-zafmor-biz-kersel-vandik.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007148; classtype:social-engineering; sid:6007148; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-16T04:22:10.182275+00:00",
+  "updated_at": "2026-08-16T23:03:26.155385+00:00",
   "probe": {
     "dns": "172.66.46.226",
     "whois": null,

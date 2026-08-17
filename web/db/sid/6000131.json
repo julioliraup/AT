@@ -50,17 +50,30 @@
     "phishdestroy": {
       "domain": "solutionfun.info",
       "domain_defanged": "solutionfun[.]info",
-      "case_id": "PD-20260815-15086C",
-      "analyzed_at": "2026-08-15T11:42:22.191Z",
+      "case_id": "PD-20260816-15086C",
+      "analyzed_at": "2026-08-16T14:44:16.064Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a0087d-66d8-76b6-a3aa-9cdd607109df.png",
+          "url": "https://urlscan.io/result/01a0087d-66d8-76b6-a3aa-9cdd607109df/",
+          "title": "Sign in to your Microsoft account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -222,14 +235,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www .solutionfun .info/landingpage/cf1a9771-107e-471b-986d-361ea44c2f10/xsk53psqbrcsbx3tbjydsemzmjllzd0jtppsqfgavio)\"; flow:established,to_server; http.uri; content:\"/landingpage/cf1a9771-107e-471b-986d-361ea44c2f10/xsk53psqbrcsbx3tbjydsemzmjllzd0jtppsqfgavio\"; startswith; fast_pattern; http.host;  content:\"www.solutionfun.info\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000131; classtype:social-engineering; sid:6000131; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T05:34:32.038628+00:00",
+  "updated_at": "2026-08-16T14:44:10.816834+00:00",
   "probe": {
-    "dns": "3.174.26.107",
+    "dns": "3.174.26.88",
     "whois": true,
     "status": "active"
   }

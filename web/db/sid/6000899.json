@@ -73,27 +73,55 @@
     "phishdestroy": {
       "domain": "allegrolokalnie.ofera98823882.shop",
       "domain_defanged": "allegrolokalnie[.]ofera98823882[.]shop",
-      "case_id": "PD-20260815-6B5277",
-      "analyzed_at": "2026-08-15T12:27:39.733Z",
+      "case_id": "PD-20260816-6B5277",
+      "analyzed_at": "2026-08-16T15:24:19.698Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fdc8f-3d8e-770b-9304-fdcb6740cfe5.png",
+          "url": "https://urlscan.io/result/019fdc8f-3d8e-770b-9304-fdcb6740cfe5/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "188.114.97.3",
+        "ipinfo": {
+          "ip": "188.114.97.3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (allegrolokalnie.ofera98823882.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"allegrolokalnie.ofera98823882.shop\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000899; classtype:social-engineering; sid:6000899; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T06:17:47.836790+00:00",
+  "updated_at": "2026-08-16T15:24:16.354463+00:00",
   "probe": {
     "dns": "172.67.163.122",
     "whois": true,

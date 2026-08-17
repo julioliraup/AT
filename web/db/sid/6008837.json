@@ -49,29 +49,38 @@
     "phishdestroy": {
       "domain": "soyambuilds.github.io",
       "domain_defanged": "soyambuilds[.]github[.]io",
-      "case_id": "PD-20260815-73FE43",
-      "analyzed_at": "2026-08-15T10:16:31.149Z",
+      "case_id": "PD-20260817-73FE43",
+      "analyzed_at": "2026-08-17T01:56:22.605Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a004ec-4fb3-7038-8269-83669cd5ff73/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Spotify"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a0074a-19e8-71e3-bd7d-175cc021e376.png",
+          "url": "https://urlscan.io/result/01a0074a-19e8-71e3-bd7d-175cc021e376/",
+          "title": "Spotify - Web Player: Music for everyone"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Spotify",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "185.199.110.153",
         "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
+          "ip": "185.199.110.153",
+          "hostname": "cdn-185-199-110-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,16 +89,16 @@
         },
         "dns": {
           "A": [
-            "185.199.108.153",
-            "185.199.109.153",
             "185.199.110.153",
-            "185.199.111.153"
+            "185.199.111.153",
+            "185.199.109.153",
+            "185.199.108.153"
           ],
           "AAAA": [
-            "2606:50c0:8002::153",
-            "2606:50c0:8001::153",
+            "2606:50c0:8000::153",
             "2606:50c0:8003::153",
-            "2606:50c0:8000::153"
+            "2606:50c0:8001::153",
+            "2606:50c0:8002::153"
           ]
         }
       },
@@ -225,14 +234,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (soyambuilds.github.io/spotify_clone/)\"; flow:established,to_server; http.uri; content:\"/spotify_clone/\"; startswith; fast_pattern; http.host; content:\"soyambuilds.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008837; classtype:social-engineering; sid:6008837; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-16T05:21:40.789039+00:00",
+  "updated_at": "2026-08-17T01:56:18.798272+00:00",
   "probe": {
-    "dns": "185.199.111.153",
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }

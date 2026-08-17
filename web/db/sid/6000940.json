@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "marnavi-gld-belxora-p2t6hk17.pages.dev",
       "domain_defanged": "marnavi-gld-belxora-p2t6hk17[.]pages[.]dev",
-      "case_id": "PD-20260815-221508",
-      "analyzed_at": "2026-08-15T12:31:11.284Z",
+      "case_id": "PD-20260816-221508",
+      "analyzed_at": "2026-08-16T15:27:16.662Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a00567-9aa8-7410-a9d9-7d50b9d288a6/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a009ef-712b-753d-98ef-b077b729bf11.png",
+          "url": "https://urlscan.io/result/01a009ef-712b-753d-98ef-b077b729bf11/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -107,8 +116,8 @@
             "172.66.44.118"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f8a",
-            "2606:4700:310c::ac42:2c76"
+            "2606:4700:310c::ac42:2c76",
+            "2606:4700:310c::ac42:2f8a"
           ],
           "NS": [
             "hattie.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (marnavi-gld-belxora-p2t6hk17.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"marnavi-gld-belxora-p2t6hk17.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000940; classtype:social-engineering; sid:6000940; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T06:19:48.449764+00:00",
+  "updated_at": "2026-08-16T15:27:14.431879+00:00",
   "probe": {
     "dns": "172.66.47.138",
     "whois": null,

@@ -18,54 +18,48 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://28610d.icefactory.cl/",
-      "domain": "28610d.icefactory.cl",
-      "url_count": 1,
-      "city_data": true,
-      "deep_analysis": false,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": null,
-      "http_code": 0,
-      "http_response": null,
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
-      "safebrowsing": [],
-      "first_seen": "2026-08-13T02:41:26",
-      "first_seen_secs": null
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "28610d.icefactory.cl",
       "domain_defanged": "28610d[.]icefactory[.]cl",
-      "case_id": "PD-20260815-143F5F",
-      "analyzed_at": "2026-08-15T20:07:35.897Z",
+      "case_id": "PD-20260817-143F5F",
+      "analyzed_at": "2026-08-17T01:30:01.662Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffb34-1f2a-740a-9e36-3b0b07cafe1e.png",
+          "url": "https://urlscan.io/result/019ffb34-1f2a-740a-9e36-3b0b07cafe1e/",
+          "title": "Adobe Acrobat - Secure PDF Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "186.64.119.45",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "186.64.119.45",
+          "hostname": "pyme68.pymedns.net",
+          "city": "Curicó",
+          "region": "Maule Region",
+          "country": "CL",
+          "org": "AS52368 ZAM LTDA.",
+          "asn": "AS52368"
+        },
         "dns": {
           "A": [
             "186.64.119.45"
@@ -74,7 +68,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "AS52368",
+          "abuse": "",
+          "url": "",
+          "logo": "https://i.ibb.co/mCCBW4M5/pr-AS52368.png",
+          "method": "email",
+          "asn": "AS52368"
+        }
       },
       "report_services": [
         {
@@ -197,12 +198,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (28610d.icefactory.cl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"28610d.icefactory.cl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008577; classtype:social-engineering; sid:6008577; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:12:08.476563+00:00",
+  "updated_at": "2026-08-17T01:29:47.280206+00:00",
   "probe": {
     "dns": "186.64.119.45",
     "whois": true,

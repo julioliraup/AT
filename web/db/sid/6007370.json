@@ -73,27 +73,43 @@
     "phishdestroy": {
       "domain": "sales-ledger-dzw.pages.dev",
       "domain_defanged": "sales-ledger-dzw[.]pages[.]dev",
-      "case_id": "PD-20260815-1D30D0",
-      "analyzed_at": "2026-08-15T18:55:48.718Z",
+      "case_id": "PD-20260816-1D30D0",
+      "analyzed_at": "2026-08-16T23:25:21.507Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a006c7-bce8-712e-bd3c-a08145c1e813.png",
           "url": "https://urlscan.io/result/01a006c7-bce8-712e-bd3c-a08145c1e813/",
-          "pending": true
+          "title": "Ledger — Sales & Stock Tracker"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.44.186",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.44.186",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.66.44.186",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sales-ledger-dzw.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sales-ledger-dzw.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007370; classtype:social-engineering; sid:6007370; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-16T04:28:36.810048+00:00",
+  "updated_at": "2026-08-16T23:25:18.709337+00:00",
   "probe": {
     "dns": "172.66.44.186",
     "whois": null,

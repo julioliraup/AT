@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "fy.uqxiug.net",
       "domain_defanged": "fy[.]uqxiug[.]net",
-      "case_id": "PD-20260815-4A920E",
-      "analyzed_at": "2026-08-15T20:44:59.901Z",
+      "case_id": "PD-20260817-4A920E",
+      "analyzed_at": "2026-08-17T02:40:45.269Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00d97-c225-776c-a35a-8ea7af22ac69/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,23 +69,38 @@
       },
       "infrastructure": {
         "ip": "212.227.90.29",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "212.227.90.29",
+          "hostname": "ip212-227-90-29.pbiaas.com",
+          "city": "Logroño",
+          "region": "La Rioja",
+          "country": "ES",
+          "org": "AS8560 IONOS SE",
+          "asn": "AS8560"
+        },
         "dns": {
-          "NS": [
-            "ns1.frjxp.com.",
-            "ns2.frjxp.com."
-          ],
           "A": [
             "212.227.90.29"
           ],
           "MX": [
             "0 fy.uqxiug.net."
+          ],
+          "NS": [
+            "ns2.frjxp.com.",
+            "ns1.frjxp.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CRONON-AS",
+          "abuse": "abuse@vautron.de",
+          "url": "mailto:abuse@vautron.de",
+          "logo": "https://i.ibb.co/F4bxDB72/pr-CRONON-AS.png",
+          "method": "email",
+          "asn": "AS8560"
+        }
       },
       "report_services": [
         {
@@ -208,7 +227,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fy.uqxiug.net/vosbohio/vosbohio.html)\"; flow:established,to_server; http.uri; content:\"/vosbohio/vosbohio.html\"; startswith; fast_pattern; http.host; content:\"fy.uqxiug.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009397; classtype:social-engineering; sid:6009397; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-15T20:44:55.018978+00:00",
+  "updated_at": "2026-08-17T02:40:40.277813+00:00",
   "probe": {
     "dns": "212.227.90.29",
     "whois": null,

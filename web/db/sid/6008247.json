@@ -55,31 +55,51 @@
     "phishdestroy": {
       "domain": "sp13ct-frandel-biz-zormek-lavsel.pages.dev",
       "domain_defanged": "sp13ct-frandel-biz-zormek-lavsel[.]pages[.]dev",
-      "case_id": "PD-20260815-D99118",
-      "analyzed_at": "2026-08-15T19:50:49.741Z",
+      "case_id": "PD-20260817-D99118",
+      "analyzed_at": "2026-08-17T00:54:31.880Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffd45-abdd-71be-89f7-df2588a921f1.png",
+          "url": "https://urlscan.io/result/019ffd45-abdd-71be-89f7-df2588a921f1/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.45.14",
-        "ipinfo": null,
+        "ip": "172.66.46.242",
+        "ipinfo": {
+          "ip": "172.66.46.242",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2d0e",
-            "2606:4700:310c::ac42:2ef2"
-          ],
           "A": [
-            "172.66.45.14",
-            "172.66.46.242"
+            "172.66.46.242",
+            "172.66.45.14"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2ef2",
+            "2606:4700:310c::ac42:2d0e"
           ],
           "NS": [
             "corey.ns.cloudflare.com.",
@@ -89,7 +109,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -212,12 +239,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp13ct-frandel-biz-zormek-lavsel.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp13ct-frandel-biz-zormek-lavsel.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008247; classtype:social-engineering; sid:6008247; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T05:00:03.281318+00:00",
+  "updated_at": "2026-08-17T00:54:28.282155+00:00",
   "probe": {
     "dns": "172.66.45.14",
     "whois": null,

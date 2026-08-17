@@ -72,24 +72,37 @@
     "phishdestroy": {
       "domain": "ecommerce-website-nine-hazel.vercel.app",
       "domain_defanged": "ecommerce-website-nine-hazel[.]vercel[.]app",
-      "case_id": "PD-20260815-4B4AE6",
-      "analyzed_at": "2026-08-15T11:50:46.070Z",
+      "case_id": "PD-20260816-4B4AE6",
+      "analyzed_at": "2026-08-16T14:52:17.687Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fff9a-13f5-7682-9fc8-6d3369da9f09.png",
+          "url": "https://urlscan.io/result/019fff9a-13f5-7682-9fc8-6d3369da9f09/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.2",
+        "ip": "64.29.17.194",
         "ipinfo": {
-          "ip": "64.29.17.2",
+          "ip": "64.29.17.194",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -98,8 +111,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.2",
-            "216.198.79.2"
+            "64.29.17.194",
+            "216.198.79.194"
           ]
         }
       },
@@ -240,7 +253,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.ecommerce-website-nine-hazel.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.ecommerce-website-nine-hazel.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003887; classtype:social-engineering; sid:6003887; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T09:13:11.368386+00:00",
+  "updated_at": "2026-08-16T18:49:49.580370+00:00",
   "probe": {
     "dns": "64.29.17.3",
     "whois": null,

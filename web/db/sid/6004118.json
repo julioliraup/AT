@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "fraudoptix.com",
       "domain_defanged": "fraudoptix[.]com",
-      "case_id": "PD-20260815-69DAAD",
-      "analyzed_at": "2026-08-15T15:51:48.753Z",
+      "case_id": "PD-20260816-69DAAD",
+      "analyzed_at": "2026-08-16T19:07:01.167Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00bf8-5b13-70ee-87a1-a6a4d377011e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,7 +68,7 @@
         "registrar": "GoDaddy.com, LLC",
         "created": "2007-09-25T14:21:39Z",
         "expires": "2026-09-25T14:21:39Z",
-        "age_days": 6899,
+        "age_days": 6900,
         "nameservers": [
           "NS-1418.AWSDNS-49.ORG",
           "NS-1947.AWSDNS-51.CO.UK",
@@ -73,13 +77,17 @@
         ]
       },
       "infrastructure": {
-        "ip": "3.145.232.22",
-        "ipinfo": null,
+        "ip": "3.145.232.23",
+        "ipinfo": {
+          "ip": "3.145.232.23",
+          "hostname": "ec2-3-145-232-23.us-east-2.compute.amazonaws.com",
+          "city": "Columbus",
+          "region": "Ohio",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
-          "A": [
-            "3.145.232.22",
-            "3.145.232.23"
-          ],
           "MX": [
             "5 mailhost.spearphish.com."
           ],
@@ -88,6 +96,10 @@
             "ns-1947.awsdns-51.co.uk.",
             "ns-293.awsdns-36.com.",
             "ns-789.awsdns-34.net."
+          ],
+          "A": [
+            "3.145.232.23",
+            "3.145.232.22"
           ]
         }
       },
@@ -100,7 +112,14 @@
           "method": "form",
           "iana_ids": "3786"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -223,14 +242,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fraudoptix.com/vi22fe02226/792e0bff658f2ae7fbbaa7c2/index.php?id=40c92f7aa24713d87e3a9a66c2be7f13)\"; flow:established,to_server; http.uri; content:\"/vi22fe02226/792e0bff658f2ae7fbbaa7c2/index.php?id=40c92f7aa24713d87e3a9a66c2be7f13\"; startswith; fast_pattern; http.host; content:\"fraudoptix.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004118; classtype:social-engineering; sid:6004118; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T09:25:37.919192+00:00",
+  "updated_at": "2026-08-16T19:06:56.868155+00:00",
   "probe": {
-    "dns": "3.145.232.22",
+    "dns": "3.145.232.23",
     "whois": true,
     "status": "active"
   }

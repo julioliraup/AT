@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "sidrachaindexteam.com",
       "domain_defanged": "sidrachaindexteam[.]com",
-      "case_id": "PD-20260815-347EFF",
-      "analyzed_at": "2026-08-15T14:58:48.282Z",
+      "case_id": "PD-20260816-347EFF",
+      "analyzed_at": "2026-08-16T18:03:51.188Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00bbe-8699-75ce-9db3-81ece71ff43e/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,30 +68,37 @@
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2026-02-24T14:20:10Z",
         "expires": "2027-02-24T14:20:10Z",
-        "age_days": 172,
+        "age_days": 173,
         "nameservers": [
           "ARMFAZH.NS.CLOUDFLARE.COM",
           "SUZANNE.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "172.67.132.138",
-        "ipinfo": null,
+        "ip": "104.21.4.221",
+        "ipinfo": {
+          "ip": "104.21.4.221",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3031::6815:4dd",
-            "2606:4700:3031::ac43:848a"
+            "2606:4700:3031::ac43:848a",
+            "2606:4700:3031::6815:4dd"
           ],
           "A": [
-            "172.67.132.138",
-            "104.21.4.221"
+            "104.21.4.221",
+            "172.67.132.138"
+          ],
+          "MX": [
+            "10 mail.sidrachaindexteam.com."
           ],
           "NS": [
             "armfazh.ns.cloudflare.com.",
             "suzanne.ns.cloudflare.com."
-          ],
-          "MX": [
-            "10 mail.sidrachaindexteam.com."
           ]
         }
       },
@@ -100,7 +111,14 @@
           "method": "form",
           "iana_ids": "1509"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -223,15 +241,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sidrachaindexteam.com/wallets/connect/metamask/)\"; flow:established,to_server; http.uri; content:\"/wallets/connect/metamask/\"; startswith; fast_pattern; http.host; content:\"sidrachaindexteam.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003303; classtype:social-engineering; sid:6003303; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T08:38:10.164502+00:00",
+  "updated_at": "2026-08-16T18:03:46.201990+00:00",
   "probe": {
     "dns": "104.21.4.221",
-    "whois": null,
+    "whois": true,
     "status": "active"
   }
 }

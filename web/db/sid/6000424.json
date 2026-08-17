@@ -49,29 +49,51 @@
     "phishdestroy": {
       "domain": "apple-col.com",
       "domain_defanged": "apple-col[.]com",
-      "case_id": "PD-20260815-158867",
-      "analyzed_at": "2026-08-15T11:58:06.447Z",
+      "case_id": "PD-20260816-158867",
+      "analyzed_at": "2026-08-16T14:59:15.238Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019eecd8-c940-76cc-9b6e-ef03b48103aa.png",
+          "url": "https://urlscan.io/result/019eecd8-c940-76cc-9b6e-ef03b48103aa/",
+          "title": "iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameSilo, LLC",
         "created": "2026-06-20T19:59:51Z",
         "expires": "2027-06-20T19:59:51Z",
-        "age_days": 55,
+        "age_days": 56,
         "nameservers": [
           "NS1.MD-79.WEBHOSTBOX.NET",
           "NS2.MD-79.WEBHOSTBOX.NET"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "162.251.80.247",
+        "ipinfo": {
+          "ip": "162.251.80.247",
+          "hostname": "162-251-80-247.unifiedlayer.com",
+          "city": "Provo",
+          "region": "Utah",
+          "country": "US",
+          "org": "AS46606 Unified Layer",
+          "asn": "AS46606"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +105,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "HOSTOPIA-AU Hostopia Australia Web Pty Ltd, AU",
+          "abuse": "abuse@hostopia.com.au",
+          "url": "mailto:abuse@hostopia.com.au",
+          "logo": "https://i.ibb.co/dw58JytB/pr-BIZLAND-SD-US.png",
+          "method": "email",
+          "asn": "AS46606"
+        }
       },
       "report_services": [
         {
@@ -206,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (apple-col.com/ICL264/)\"; flow:established,to_server; http.uri; content:\"/ICL264/\"; startswith; fast_pattern; http.host; content:\"apple-col.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000424; classtype:social-engineering; sid:6000424; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T05:54:49.418036+00:00",
+  "updated_at": "2026-08-16T14:59:10.550386+00:00",
   "probe": {
     "dns": null,
     "whois": true,

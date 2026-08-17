@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "hibcoprotector.com",
       "domain_defanged": "hibcoprotector[.]com",
-      "case_id": "PD-20260815-67D86B",
-      "analyzed_at": "2026-08-15T15:51:12.070Z",
+      "case_id": "PD-20260816-67D86B",
+      "analyzed_at": "2026-08-16T19:06:23.800Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00bf7-c7d6-743d-af0f-29bf1af33297/",
+          "pending": true
         }
       },
       "detections": [],
@@ -64,7 +68,7 @@
         "registrar": "TuringSign Inc. d/b/a Cosmotown",
         "created": "2014-02-26T13:49:45Z",
         "expires": "2027-02-26T13:49:45Z",
-        "age_days": 4553,
+        "age_days": 4554,
         "nameservers": [
           "CLOUD1.IDEASERVERS.NET",
           "CLOUD2.IDEASERVERS.NET"
@@ -72,17 +76,25 @@
       },
       "infrastructure": {
         "ip": "135.181.130.90",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "135.181.130.90",
+          "hostname": "cloud.ideaservers.net",
+          "city": "Helsinki",
+          "region": "Uusimaa",
+          "country": "FI",
+          "org": "AS24940 Hetzner Online GmbH",
+          "asn": "AS24940"
+        },
         "dns": {
           "NS": [
             "cloud2.ideaservers.net.",
             "cloud1.ideaservers.net."
           ],
-          "A": [
-            "135.181.130.90"
-          ],
           "MX": [
             "0 hibcoprotector.com."
+          ],
+          "A": [
+            "135.181.130.90"
           ]
         }
       },
@@ -95,7 +107,14 @@
           "method": "form",
           "iana_ids": "1509"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Hetzner",
+          "abuse": "abuse@hetzner.com",
+          "url": "https://www.hetzner.com/legal/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS24940"
+        }
       },
       "report_services": [
         {
@@ -218,15 +237,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hibcoprotector.com/mac/secure_access-5.html)\"; flow:established,to_server; http.uri; content:\"/mac/secure_access-5.html\"; startswith; fast_pattern; http.host; content:\"hibcoprotector.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004109; classtype:social-engineering; sid:6004109; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T09:25:08.373078+00:00",
+  "updated_at": "2026-08-16T19:06:13.927537+00:00",
   "probe": {
     "dns": "135.181.130.90",
-    "whois": true,
+    "whois": null,
     "status": "active"
   }
 }

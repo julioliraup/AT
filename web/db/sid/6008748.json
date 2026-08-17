@@ -73,17 +73,31 @@
     "phishdestroy": {
       "domain": "ucdgxfhcgjhvkjblk-dp6se8xlrpxx.edgeone.dev",
       "domain_defanged": "ucdgxfhcgjhvkjblk-dp6se8xlrpxx[.]edgeone[.]dev",
-      "case_id": "PD-20260815-584BF8",
-      "analyzed_at": "2026-08-15T20:17:50.222Z",
+      "case_id": "PD-20260817-584BF8",
+      "analyzed_at": "2026-08-17T01:49:03.371Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic",
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffb42-ad74-745f-993a-99303b29866e.png",
+          "url": "https://urlscan.io/result/019ffb42-ad74-745f-993a-99303b29866e/",
+          "title": "계정 인증"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic, Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -94,19 +108,26 @@
           "AAAA": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ],
+          "CNAME": [
+            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
+          ],
           "A": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
             "43.174.247.29",
             "43.174.246.29"
-          ],
-          "CNAME": [
-            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -229,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ucdgxfhcgjhvkjblk-dp6se8xlrpxx.edgeone.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ucdgxfhcgjhvkjblk-dp6se8xlrpxx.edgeone.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008748; classtype:social-engineering; sid:6008748; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:17:59.868049+00:00",
+  "updated_at": "2026-08-17T01:48:58.570063+00:00",
   "probe": {
     "dns": "43.174.247.29",
     "whois": null,

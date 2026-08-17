@@ -49,27 +49,56 @@
     "phishdestroy": {
       "domain": "refund-paylater.online",
       "domain_defanged": "refund-paylater[.]online",
-      "case_id": "PD-20260815-34EC37",
-      "analyzed_at": "2026-08-15T20:08:30.289Z",
+      "case_id": "PD-20260817-34EC37",
+      "analyzed_at": "2026-08-17T01:31:28.122Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Shopee"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019feb62-43b1-76df-b0b5-a2b53c88c423.png",
+          "url": "https://urlscan.io/result/019feb62-43b1-76df-b0b5-a2b53c88c423/",
+          "title": "Tokopedia Care"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Shopee",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "35.157.26.135",
+        "ipinfo": {
+          "ip": "35.157.26.135",
+          "hostname": "ec2-35-157-26-135.eu-central-1.compute.amazonaws.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -192,12 +221,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.refund-paylater.online/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.refund-paylater.online\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008592; classtype:social-engineering; sid:6008592; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:12:44.814331+00:00",
+  "updated_at": "2026-08-17T01:31:23.040665+00:00",
   "probe": {
     "dns": null,
     "whois": true,

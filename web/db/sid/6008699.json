@@ -49,17 +49,30 @@
     "phishdestroy": {
       "domain": "5e20c6.icefactory.cl",
       "domain_defanged": "5e20c6[.]icefactory[.]cl",
-      "case_id": "PD-20260815-59C8C7",
-      "analyzed_at": "2026-08-15T20:14:40.582Z",
+      "case_id": "PD-20260817-59C8C7",
+      "analyzed_at": "2026-08-17T01:44:55.067Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffb3d-a11d-7795-b8fd-b220881dc1ab.png",
+          "url": "https://urlscan.io/result/019ffb3d-a11d-7795-b8fd-b220881dc1ab/",
+          "title": "Adobe Acrobat - Secure PDF Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -212,15 +225,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (5e20c6.icefactory.cl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"5e20c6.icefactory.cl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008699; classtype:social-engineering; sid:6008699; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:16:17.625506+00:00",
+  "updated_at": "2026-08-17T01:44:45.127035+00:00",
   "probe": {
     "dns": "186.64.119.45",
-    "whois": true,
+    "whois": null,
     "status": "active"
   }
 }

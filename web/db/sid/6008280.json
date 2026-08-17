@@ -49,22 +49,44 @@
     "phishdestroy": {
       "domain": "appeid.rcloud.me.farmbase.co.tz",
       "domain_defanged": "appeid[.]rcloud[.]me[.]farmbase[.]co[.]tz",
-      "case_id": "PD-20260815-2B4FAE",
-      "analyzed_at": "2026-08-15T19:53:10.968Z",
+      "case_id": "PD-20260817-2B4FAE",
+      "analyzed_at": "2026-08-17T00:57:33.890Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Apple"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff492-5db4-7648-88af-4d8571a5c944.png",
+          "url": "https://urlscan.io/result/019ff492-5db4-7648-88af-4d8571a5c944/",
+          "title": "iCloud"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Apple",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "185.146.22.250",
+        "ipinfo": {
+          "ip": "185.146.22.250",
+          "hostname": "nl1-sr100.supercp.com",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS209341 WHG Hosting Services Ltd",
+          "asn": "AS209341"
+        },
         "dns": null
       },
       "report_to": {
@@ -192,12 +214,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (appeid.rcloud.me.farmbase.co.tz/DUVzTTavlOw/?redirection=login)\"; flow:established,to_server; http.uri; content:\"/DUVzTTavlOw/?redirection=login\"; startswith; fast_pattern; http.host; content:\"appeid.rcloud.me.farmbase.co.tz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008280; classtype:social-engineering; sid:6008280; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T05:01:07.976316+00:00",
+  "updated_at": "2026-08-17T00:57:16.912405+00:00",
   "probe": {
     "dns": null,
     "whois": true,

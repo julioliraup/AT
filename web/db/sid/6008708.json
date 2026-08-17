@@ -49,17 +49,30 @@
     "phishdestroy": {
       "domain": "smilling-long-pannel.edgeone.dev",
       "domain_defanged": "smilling-long-pannel[.]edgeone[.]dev",
-      "case_id": "PD-20260815-44D9A0",
-      "analyzed_at": "2026-08-15T20:15:08.810Z",
+      "case_id": "PD-20260817-44D9A0",
+      "analyzed_at": "2026-08-17T01:45:45.073Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00255-fc01-735d-86e3-2d0f215f182e.png",
+          "url": "https://urlscan.io/result/01a00255-fc01-735d-86e3-2d0f215f182e/",
+          "title": "Sign In."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -70,19 +83,26 @@
           "AAAA": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ],
+          "CNAME": [
+            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
+          ],
           "A": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
             "43.174.246.29",
             "43.174.247.29"
-          ],
-          "CNAME": [
-            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -205,14 +225,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (smilling-long-pannel.edgeone.dev/?eta=torikpro@0f52f931ef5f3d9424a897162d0e1cfba9c2.com)\"; flow:established,to_server; http.uri; content:\"/?eta=torikpro@0f52f931ef5f3d9424a897162d0e1cfba9c2.com\"; startswith; fast_pattern; http.host; content:\"smilling-long-pannel.edgeone.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008708; classtype:social-engineering; sid:6008708; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:16:35.127575+00:00",
+  "updated_at": "2026-08-17T01:45:40.936102+00:00",
   "probe": {
-    "dns": "43.174.247.29",
+    "dns": "43.174.246.29",
     "whois": null,
     "status": "active"
   }

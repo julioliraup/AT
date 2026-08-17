@@ -73,27 +73,47 @@
     "phishdestroy": {
       "domain": "cf.1689888.xyz",
       "domain_defanged": "cf[.]1689888[.]xyz",
-      "case_id": "PD-20260815-4F5CD8",
-      "analyzed_at": "2026-08-15T20:19:43.238Z",
+      "case_id": "PD-20260817-4F5CD8",
+      "analyzed_at": "2026-08-17T01:51:49.432Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "China Central Television"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffb45-85b5-720e-96cf-40ee2add29d0.png",
+          "url": "https://urlscan.io/result/019ffb45-85b5-720e-96cf-40ee2add29d0/",
+          "title": "海外频道_央视网(cctv.com)"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: China Central Television",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.67.189.174",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.189.174",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:3035::6815:394c",
-            "2606:4700:3030::ac43:bdae"
+            "2606:4700:3030::ac43:bdae",
+            "2606:4700:3035::6815:394c"
           ],
           "A": [
             "172.67.189.174",
@@ -103,7 +123,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -226,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cf.1689888.xyz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cf.1689888.xyz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008782; classtype:social-engineering; sid:6008782; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:19:10.922575+00:00",
+  "updated_at": "2026-08-17T01:51:45.685228+00:00",
   "probe": {
     "dns": "172.67.189.174",
     "whois": true,

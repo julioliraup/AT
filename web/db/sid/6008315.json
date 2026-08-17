@@ -55,17 +55,32 @@
     "phishdestroy": {
       "domain": "p01--ar24docsecurity--qmjhcscz5dnb.code.run",
       "domain_defanged": "p01--ar24docsecurity--qmjhcscz5dnb[.]code[.]run",
-      "case_id": "PD-20260815-4FADDB",
-      "analyzed_at": "2026-08-15T19:55:29.908Z",
+      "case_id": "PD-20260817-4FADDB",
+      "analyzed_at": "2026-08-17T00:59:50.161Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "AR24",
+            "Yahoo",
+            "Orange"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a002ee-7fdc-717e-8d6c-d72c22431880.png",
+          "url": "https://urlscan.io/result/01a002ee-7fdc-717e-8d6c-d72c22431880/",
+          "title": "Connexion  - AR24"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: AR24, Yahoo, Orange",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -73,9 +88,6 @@
         "ip": "lb.687e727a561d701a95f00899.northflank.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "lb.687e727a561d701a95f00899.northflank.com."
-          ],
           "A": [
             "lb.687e727a561d701a95f00899.northflank.com.",
             "34.13.193.138"
@@ -83,17 +95,27 @@
           "MX": [
             "lb.687e727a561d701a95f00899.northflank.com."
           ],
-          "CNAME": [
+          "AAAA": [
             "lb.687e727a561d701a95f00899.northflank.com."
           ],
           "NS": [
+            "lb.687e727a561d701a95f00899.northflank.com."
+          ],
+          "CNAME": [
             "lb.687e727a561d701a95f00899.northflank.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS396982"
+        }
       },
       "report_services": [
         {
@@ -216,12 +238,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (p01--ar24docsecurity--qmjhcscz5dnb.code.run/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"p01--ar24docsecurity--qmjhcscz5dnb.code.run\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008315; classtype:social-engineering; sid:6008315; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T05:02:18.732937+00:00",
+  "updated_at": "2026-08-17T00:59:46.139398+00:00",
   "probe": {
     "dns": "34.13.193.138",
     "whois": true,

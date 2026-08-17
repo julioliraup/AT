@@ -237,11 +237,10 @@ setTimeout(() => {
         <div style="position:fixed; bottom:20px; right:20px; background:rgba(20,20,20,0.95); border:1px solid var(--cyan); border-radius:8px; padding:20px; box-shadow:0 0 20px rgba(0,229,255,0.2); z-index:9999; max-width:350px; color:var(--text); font-family:'Orbitron', sans-serif;">
             <button onclick="this.parentElement.remove()" style="position:absolute; top:10px; right:10px; background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:20px; padding:0; line-height:1;">&times;</button>
             <h3 style="margin-top:0; color:var(--neon-pink); font-size:1.1em; display:flex; align-items:center; gap:8px;">
-                &#x26A0; API RATE LIMIT REACHED
+                &#x26A0; RATE LIMIT REACHED
             </h3>
             <p style="font-size:0.9em; line-height:1.4; color:var(--text-muted); margin-bottom:15px;">
-                Detailed vector intelligence is currently limited by API rate limits. Funding additional API capacity would allow us to expand vector enrichment, analysis and public CTI coverage.
-            </p>
+Detailed vector enrichment is currently throttled due to public API constraints. Help us upgrade our backend pipelines and unlock full threat visibility by supporting the project.            </p>
             <a href="https://github.com/sponsors/julioliraup" target="_blank" style="display:inline-block; background:rgba(255,0,85,0.1); border:1px solid var(--neon-pink); color:var(--neon-pink); padding:8px 15px; text-decoration:none; border-radius:4px; font-size:0.85em; transition:0.3s; text-transform:uppercase; letter-spacing:1px;" onmouseover="this.style.background='var(--neon-pink)'; this.style.color='#000';" onmouseout="this.style.background='rgba(255,0,85,0.1)'; this.style.color='var(--neon-pink)';">
                 SUPPORT THE PROJECT
             </a>

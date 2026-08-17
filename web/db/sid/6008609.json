@@ -72,29 +72,50 @@
     "phishdestroy": {
       "domain": "secure-app-tre-jor.wasmer.app",
       "domain_defanged": "secure-app-tre-jor[.]wasmer[.]app",
-      "case_id": "PD-20260815-67E4A8",
-      "analyzed_at": "2026-08-15T20:09:26.483Z",
+      "case_id": "PD-20260817-67E4A8",
+      "analyzed_at": "2026-08-17T01:33:27.815Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trezor"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a001f5-4563-7680-a235-d7d8250ae0cc.png",
+          "url": "https://urlscan.io/result/01a001f5-4563-7680-a235-d7d8250ae0cc/",
+          "title": "Trezor — Start Guide (Demo)"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trezor",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "5.78.28.161",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "5.78.28.161",
+          "hostname": "static.161.28.78.5.clients.your-server.de",
+          "city": "Hillsboro",
+          "region": "Oregon",
+          "country": "US",
+          "org": "AS212317 Hetzner Online GmbH",
+          "asn": "AS212317"
+        },
         "dns": {
-          "AAAA": [
-            "2a01:4ff:1f2:5872::"
-          ],
           "A": [
             "5.78.28.161"
+          ],
+          "AAAA": [
+            "2a01:4ff:1f2:5872::"
           ],
           "NS": [
             "alpha.ns.wasmernet.com.",
@@ -227,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (secure-app-tre-jor.wasmer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"secure-app-tre-jor.wasmer.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008609; classtype:social-engineering; sid:6008609; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:13:21.271041+00:00",
+  "updated_at": "2026-08-17T01:33:23.962648+00:00",
   "probe": {
     "dns": "5.78.28.161",
     "whois": null,

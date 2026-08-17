@@ -75,23 +75,44 @@
     "phishdestroy": {
       "domain": "phost.com.br.cssi.com.br",
       "domain_defanged": "phost[.]com[.]br[.]cssi[.]com[.]br",
-      "case_id": "PD-20260815-4164D3",
-      "analyzed_at": "2026-08-15T19:44:44.774Z",
+      "case_id": "PD-20260817-4164D3",
+      "analyzed_at": "2026-08-17T00:46:18.285Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Carrefour"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffdc7-8233-721d-a052-346022d978e5.png",
+          "url": "https://urlscan.io/result/019ffdc7-8233-721d-a052-346022d978e5/",
+          "title": "Connexion à l’Espace Client"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Carrefour",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "187.110.165.199",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "187.110.165.199",
+          "hostname": "br68-cp.valueserver.com.br",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS53107 EVEO S.A.",
+          "asn": "AS53107"
+        },
         "dns": {
           "A": [
             "187.110.165.199"
@@ -223,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (phost.com.br.cssi.com.br/CB/DZ/CB/espace-client/user.php)\"; flow:established,to_server; http.uri; content:\"/CB/DZ/CB/espace-client/user.php\"; startswith; fast_pattern; http.host; content:\"phost.com.br.cssi.com.br\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008145; classtype:social-engineering; sid:6008145; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T04:56:29.147190+00:00",
+  "updated_at": "2026-08-17T00:46:14.120372+00:00",
   "probe": {
     "dns": "187.110.165.199",
     "whois": true,

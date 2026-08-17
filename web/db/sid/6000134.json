@@ -74,17 +74,30 @@
     "phishdestroy": {
       "domain": "sarvo-rixan-biz-paxru-zxid22526e-glanex.pages.dev",
       "domain_defanged": "sarvo-rixan-biz-paxru-zxid22526e-glanex[.]pages[.]dev",
-      "case_id": "PD-20260815-7F7230",
-      "analyzed_at": "2026-08-15T11:42:29.567Z",
+      "case_id": "PD-20260816-7F7230",
+      "analyzed_at": "2026-08-16T14:44:27.174Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a0086c-0155-703a-9509-205ae5980ed2.png",
+          "url": "https://urlscan.io/result/01a0086c-0155-703a-9509-205ae5980ed2/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -245,12 +258,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sarvo-rixan-biz-paxru-zxid22526e-glanex .pages .dev/system_violation_notification/)\"; flow:established,to_server; http.uri; content:\"/system_violation_notification/\"; startswith; fast_pattern; http.host;  content:\"sarvo-rixan-biz-paxru-zxid22526e-glanex.pages.dev\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000134; classtype:social-engineering; sid:6000134; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T05:34:37.382615+00:00",
+  "updated_at": "2026-08-16T14:44:23.454669+00:00",
   "probe": {
     "dns": "172.66.47.151",
     "whois": null,

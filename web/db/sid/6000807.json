@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "aktiffkan-paylater.jnn.my.id",
       "domain_defanged": "aktiffkan-paylater[.]jnn[.]my[.]id",
-      "case_id": "PD-20260815-4F1073",
-      "analyzed_at": "2026-08-15T12:21:39.607Z",
+      "case_id": "PD-20260816-4F1073",
+      "analyzed_at": "2026-08-16T15:15:32.524Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "DANA"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fb170-8d5a-712e-bf80-7daae935cacc.png",
+          "url": "https://urlscan.io/result/019fb170-8d5a-712e-bf80-7daae935cacc/",
+          "title": "Costumer Care"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: DANA",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2a06:98c1:3121::3",
+        "ipinfo": {
+          "ip": "2a06:98c1:3121::3",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aktiffkan-paylater.jnn.my.id/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"aktiffkan-paylater.jnn.my.id\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000807; classtype:social-engineering; sid:6000807; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T06:14:19.341677+00:00",
+  "updated_at": "2026-08-16T15:15:27.859684+00:00",
   "probe": {
     "dns": null,
     "whois": true,

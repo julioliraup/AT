@@ -72,14 +72,18 @@
     "phishdestroy": {
       "domain": "en-login-apps.de",
       "domain_defanged": "en-login-apps[.]de",
-      "case_id": "PD-20260815-26F87C",
-      "analyzed_at": "2026-08-15T20:49:06.435Z",
+      "case_id": "PD-20260817-26F87C",
+      "analyzed_at": "2026-08-17T02:46:18.523Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00d9c-d9a1-765a-8548-44b241d065f4/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,30 +92,45 @@
       },
       "infrastructure": {
         "ip": "46.38.249.60",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "46.38.249.60",
+          "hostname": "af93c.netcup.net",
+          "city": "Nuremberg",
+          "region": "Bavaria",
+          "country": "DE",
+          "org": "AS197540 netcup GmbH",
+          "asn": "AS197540"
+        },
         "dns": {
+          "MX": [
+            "10 mail.en-login-apps.de.",
+            "50 mxf93e.netcup.net."
+          ],
           "AAAA": [
             "2a03:4000:6d:17fa::24:4681"
-          ],
-          "MX": [
-            "50 mxf93e.netcup.net.",
-            "10 mail.en-login-apps.de."
           ],
           "A": [
             "46.38.249.60"
           ],
           "NS": [
+            "netcup.fourthns.systems.",
+            "netcup.fifthns.com.",
             "netcup.thirdns.de.",
             "netcup.secondns.at.",
-            "netcup.fourthns.systems.",
-            "netcup.firstns.cc.",
-            "netcup.fifthns.com."
+            "netcup.firstns.cc."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "IPX-AS15598",
+          "abuse": "abuse@ext-dc.de",
+          "url": "mailto:abuse@ext-dc.de",
+          "logo": "",
+          "method": "email",
+          "asn": "AS197540"
+        }
       },
       "report_services": [
         {
@@ -238,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.en-login-apps.de/2000/cloud.ai/0X6W71KO/)\"; flow:established,to_server; http.uri; content:\"/2000/cloud.ai/0X6W71KO/\"; startswith; fast_pattern; http.host; content:\"www.en-login-apps.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009478; classtype:social-engineering; sid:6009478; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-15T20:49:03.128293+00:00",
+  "updated_at": "2026-08-17T02:46:15.638971+00:00",
   "probe": {
     "dns": "46.38.249.60",
     "whois": true,

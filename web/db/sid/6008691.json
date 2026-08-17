@@ -49,31 +49,51 @@
     "phishdestroy": {
       "domain": "app-ledgr-downlod.pages.dev",
       "domain_defanged": "app-ledgr-downlod[.]pages[.]dev",
-      "case_id": "PD-20260815-5A585E",
-      "analyzed_at": "2026-08-15T20:14:18.769Z",
+      "case_id": "PD-20260817-5A585E",
+      "analyzed_at": "2026-08-17T01:43:58.398Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ffb3d-1c6d-71ef-bb5c-f3301a370d16.png",
+          "url": "https://urlscan.io/result/019ffb3d-1c6d-71ef-bb5c-f3301a370d16/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.47.92",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.92",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2f5c",
-            "2606:4700:310c::ac42:2ca4"
-          ],
           "A": [
             "172.66.47.92",
             "172.66.44.164"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2f5c",
+            "2606:4700:310c::ac42:2ca4"
           ],
           "NS": [
             "aldo.ns.cloudflare.com.",
@@ -83,7 +103,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,14 +233,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (app-ledgr-downlod.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"app-ledgr-downlod.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008691; classtype:social-engineering; sid:6008691; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:15:59.074170+00:00",
+  "updated_at": "2026-08-17T01:43:55.866001+00:00",
   "probe": {
-    "dns": "172.66.44.164",
+    "dns": "172.66.47.92",
     "whois": null,
     "status": "active"
   }

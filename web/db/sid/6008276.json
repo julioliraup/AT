@@ -49,37 +49,64 @@
     "phishdestroy": {
       "domain": "rapid-oak-629.injaltransferwillgonabaid.workers.dev",
       "domain_defanged": "rapid-oak-629[.]injaltransferwillgonabaid[.]workers[.]dev",
-      "case_id": "PD-20260815-1175CF",
-      "analyzed_at": "2026-08-15T19:52:53.051Z",
+      "case_id": "PD-20260817-1175CF",
+      "analyzed_at": "2026-08-17T00:56:53.362Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00206-e466-730f-a39a-abe4af7eafca.png",
+          "url": "https://urlscan.io/result/01a00206-e466-730f-a39a-abe4af7eafca/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.198.241",
-        "ipinfo": null,
+        "ip": "104.21.60.179",
+        "ipinfo": {
+          "ip": "104.21.60.179",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "A": [
-            "172.67.198.241",
-            "104.21.60.179"
-          ],
           "AAAA": [
             "2606:4700:3031::6815:3cb3",
             "2606:4700:3031::ac43:c6f1"
+          ],
+          "A": [
+            "104.21.60.179",
+            "172.67.198.241"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -202,14 +229,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rapid-oak-629.injaltransferwillgonabaid.workers.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"rapid-oak-629.injaltransferwillgonabaid.workers.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008276; classtype:social-engineering; sid:6008276; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T05:01:01.131023+00:00",
+  "updated_at": "2026-08-17T00:56:50.130824+00:00",
   "probe": {
-    "dns": "172.67.198.241",
+    "dns": "104.21.60.179",
     "whois": null,
     "status": "active"
   }

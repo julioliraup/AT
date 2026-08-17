@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "s.team-bn.com",
       "domain_defanged": "s[.]team-bn[.]com",
-      "case_id": "PD-20260815-3DF7B6",
-      "analyzed_at": "2026-08-15T20:41:30.504Z",
+      "case_id": "PD-20260817-3DF7B6",
+      "analyzed_at": "2026-08-17T02:35:51.570Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a00d93-46d0-71ba-bfea-a6371fc1f646/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,22 +92,36 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.90.229",
-        "ipinfo": null,
+        "ip": "172.67.162.53",
+        "ipinfo": {
+          "ip": "172.67.162.53",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
             "2606:4700:3031::6815:5ae5",
             "2606:4700:3037::ac43:a235"
           ],
           "A": [
-            "104.21.90.229",
-            "172.67.162.53"
+            "172.67.162.53",
+            "104.21.90.229"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (s.team-bn.com/p/sst-cgj/masdkgf/)\"; flow:established,to_server; http.uri; content:\"/p/sst-cgj/masdkgf/\"; startswith; fast_pattern; http.host; content:\"s.team-bn.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009346; classtype:social-engineering; sid:6009346; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-15T20:41:26.827223+00:00",
+  "updated_at": "2026-08-17T02:35:43.623089+00:00",
   "probe": {
     "dns": "104.21.90.229",
     "whois": null,

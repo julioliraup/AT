@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "m.vip365.app",
       "domain_defanged": "m[.]vip365[.]app",
-      "case_id": "PD-20260815-32D06A",
-      "analyzed_at": "2026-08-15T10:17:14.156Z",
+      "case_id": "PD-20260817-32D06A",
+      "analyzed_at": "2026-08-17T01:57:17.208Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a004ec-f7b2-7577-ae26-9d18e56d6625/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00d1a-cc72-738a-8b04-860e1a093bd7.png",
+          "url": "https://urlscan.io/result/01a00d1a-cc72-738a-8b04-860e1a093bd7/",
+          "title": "bet365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,11 +88,6 @@
         "dns": {
           "CNAME": [
             "m.vip365.app.securesdns.com."
-          ],
-          "MX": [
-            "m.vip365.app.securesdns.com.",
-            "m.vip365.app.fastliii.com.",
-            "cdn-210-cdn-210-b06-ws.fastliii.com."
           ],
           "AAAA": [
             "m.vip365.app.securesdns.com.",
@@ -96,6 +100,11 @@
             "cdn-210-cdn-210-b06-ws.fastliii.com.",
             "172.65.235.196"
           ],
+          "MX": [
+            "m.vip365.app.securesdns.com.",
+            "m.vip365.app.fastliii.com.",
+            "cdn-210-cdn-210-b06-ws.fastliii.com."
+          ],
           "NS": [
             "m.vip365.app.securesdns.com.",
             "m.vip365.app.fastliii.com.",
@@ -105,7 +114,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -228,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (m.vip365.app/eng/home/index)\"; flow:established,to_server; http.uri; content:\"/eng/home/index\"; startswith; fast_pattern; http.host; content:\"m.vip365.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008851; classtype:social-engineering; sid:6008851; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-16T05:22:10.796541+00:00",
+  "updated_at": "2026-08-17T01:57:12.548112+00:00",
   "probe": {
     "dns": "172.65.235.196",
     "whois": null,

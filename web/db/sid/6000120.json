@@ -74,14 +74,19 @@
     "phishdestroy": {
       "domain": "inner.website",
       "domain_defanged": "inner[.]website",
-      "case_id": "PD-20260815-773A89",
-      "analyzed_at": "2026-08-15T11:39:19.092Z",
+      "case_id": "PD-20260816-773A89",
+      "analyzed_at": "2026-08-16T14:34:41.616Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/01a0087e-2cd8-7544-ac62-b639df460ac5.png",
+          "url": "https://urlscan.io/result/01a0087e-2cd8-7544-ac62-b639df460ac5/",
+          "title": "404 page"
         }
       },
       "detections": [],
@@ -89,9 +94,9 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.26.2.170",
+        "ip": "104.26.3.170",
         "ipinfo": {
-          "ip": "104.26.2.170",
+          "ip": "104.26.3.170",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -99,23 +104,23 @@
           "asn": "AS13335"
         },
         "dns": {
+          "MX": [
+            "0 smtp.secureserver.net.",
+            "10 mailstore1.secureserver.net."
+          ],
           "AAAA": [
             "2606:4700:20::ac43:4938",
             "2606:4700:20::681a:3aa",
             "2606:4700:20::681a:2aa"
           ],
           "A": [
+            "104.26.3.170",
             "104.26.2.170",
-            "172.67.73.56",
-            "104.26.3.170"
+            "172.67.73.56"
           ],
           "NS": [
             "mona.ns.cloudflare.com.",
             "sean.ns.cloudflare.com."
-          ],
-          "MX": [
-            "0 smtp.secureserver.net.",
-            "10 mailstore1.secureserver.net."
           ]
         }
       },
@@ -256,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (inner .website/104e0f6021ac9941affa1a9f3f1f3b57ef70 .html)\"; flow:established,to_server; http.uri; content:\"/104e0f6021ac9941affa1a9f3f1f3b57ef70.html\"; startswith; fast_pattern; http.host;  content:\"inner.website\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000120; classtype:social-engineering; sid:6000120; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T05:34:07.394901+00:00",
+  "updated_at": "2026-08-16T14:43:40.879683+00:00",
   "probe": {
     "dns": "104.26.2.170",
     "whois": true,

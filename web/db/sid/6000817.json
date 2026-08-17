@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sso-s---ndax---io-auth.webflow.io",
       "domain_defanged": "sso-s---ndax---io-auth[.]webflow[.]io",
-      "case_id": "PD-20260815-33F6AA",
-      "analyzed_at": "2026-08-15T12:22:23.030Z",
+      "case_id": "PD-20260816-33F6AA",
+      "analyzed_at": "2026-08-16T15:16:12.476Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Crypto"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a0055f-8b36-713a-a434-0fc80a9cea3e.png",
           "url": "https://urlscan.io/result/01a0055f-8b36-713a-a434-0fc80a9cea3e/",
-          "pending": true
+          "title": "NDAX® | Login: Canada’s Most Secure Crypto Exchange"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Crypto",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.18.36.248",
+        "ip": "172.64.151.8",
         "ipinfo": {
-          "ip": "104.18.36.248",
+          "ip": "172.64.151.8",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "AAAA": [
-            "2a06:98c1:3102::ac40:9708",
-            "2a06:98c1:3105::6812:24f8"
+            "2a06:98c1:3105::6812:24f8",
+            "2a06:98c1:3102::ac40:9708"
           ],
           "A": [
-            "104.18.36.248",
-            "172.64.151.8"
+            "172.64.151.8",
+            "104.18.36.248"
           ]
         }
       },
@@ -244,12 +253,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sso-s---ndax---io-auth.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sso-s---ndax---io-auth.webflow.io\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000817; classtype:social-engineering; sid:6000817; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-16T06:14:35.789256+00:00",
+  "updated_at": "2026-08-16T15:16:08.599603+00:00",
   "probe": {
     "dns": "104.18.36.248",
     "whois": true,

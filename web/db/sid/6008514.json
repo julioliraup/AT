@@ -72,14 +72,23 @@
     "phishdestroy": {
       "domain": "dhltools.se",
       "domain_defanged": "dhltools[.]se",
-      "case_id": "PD-20260815-468884",
-      "analyzed_at": "2026-08-15T20:04:06.955Z",
+      "case_id": "PD-20260817-468884",
+      "analyzed_at": "2026-08-17T01:22:52.786Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/019ffb2e-84e4-7158-a960-ea22b559668e.png",
+          "url": "https://urlscan.io/result/019ffb2e-84e4-7158-a960-ea22b559668e/",
+          "title": "DHLTools"
         }
       },
       "detections": [],
@@ -88,23 +97,37 @@
       },
       "infrastructure": {
         "ip": "76.76.21.21",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "76.76.21.21",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "MX": [
             "10 mx.hover.com.cust.hostedemail.com."
           ],
-          "NS": [
-            "ns2.hover.com.",
-            "ns1.hover.com."
-          ],
           "A": [
             "76.76.21.21"
+          ],
+          "NS": [
+            "ns1.hover.com.",
+            "ns2.hover.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -227,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dhltools.se/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"dhltools.se\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008514; classtype:social-engineering; sid:6008514; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-16T05:09:15.625006+00:00",
+  "updated_at": "2026-08-17T01:22:47.322746+00:00",
   "probe": {
     "dns": "76.76.21.21",
     "whois": true,

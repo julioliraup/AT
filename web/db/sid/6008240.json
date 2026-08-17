@@ -73,17 +73,30 @@
     "phishdestroy": {
       "domain": "awsforensicl3ns-west1apprunner-dprd03feve9j.edgeone.dev",
       "domain_defanged": "awsforensicl3ns-west1apprunner-dprd03feve9j[.]edgeone[.]dev",
-      "case_id": "PD-20260815-3C1CF4",
-      "analyzed_at": "2026-08-15T19:50:17.117Z",
+      "case_id": "PD-20260817-3C1CF4",
+      "analyzed_at": "2026-08-17T00:53:36.179Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a004cf-3ff1-75f9-ae0c-3179f6009187.png",
+          "url": "https://urlscan.io/result/01a004cf-3ff1-75f9-ae0c-3179f6009187/",
+          "title": "Email Update"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -91,13 +104,13 @@
         "ip": "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
         "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
+          ],
           "A": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
             "43.174.246.29",
             "43.174.247.29"
-          ],
-          "AAAA": [
-            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ],
           "CNAME": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
@@ -106,7 +119,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -229,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (awsforensicl3ns-west1apprunner-dprd03feve9j.edgeone.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"awsforensicl3ns-west1apprunner-dprd03feve9j.edgeone.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008240; classtype:social-engineering; sid:6008240; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-16T04:59:41.480964+00:00",
+  "updated_at": "2026-08-17T00:53:33.113039+00:00",
   "probe": {
     "dns": "43.174.247.29",
     "whois": null,

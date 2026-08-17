@@ -49,22 +49,43 @@
     "phishdestroy": {
       "domain": "pedagioff.shop",
       "domain_defanged": "pedagioff[.]shop",
-      "case_id": "PD-20260815-3F8E99",
-      "analyzed_at": "2026-08-15T11:47:54.495Z",
+      "case_id": "PD-20260816-3F8E99",
+      "analyzed_at": "2026-08-16T14:50:09.056Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Pedágio Digital"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed689-f0b8-74ee-bd72-61e2b2d11fd4.png",
+          "url": "https://urlscan.io/result/019ed689-f0b8-74ee-bd72-61e2b2d11fd4/",
+          "title": "Pedágio Digital - Consulte e Pague Débitos Online | Pedagio Digital"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Pedágio Digital",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "88.80.17.203",
+        "ipinfo": {
+          "ip": "88.80.17.203",
+          "city": "Stockholm",
+          "region": "Stockholm",
+          "country": "SE",
+          "org": "AS33837 Fredrik Holmqvist",
+          "asn": "AS33837"
+        },
         "dns": null
       },
       "report_to": {
@@ -192,12 +213,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pedagioff.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"pedagioff.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000230; classtype:social-engineering; sid:6000230; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-16T05:40:13.930453+00:00",
+  "updated_at": "2026-08-16T14:50:04.302334+00:00",
   "probe": {
     "dns": null,
     "whois": true,
