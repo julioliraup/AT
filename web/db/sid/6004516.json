@@ -49,27 +49,50 @@
     "phishdestroy": {
       "domain": "onedrive1.vtcyntrax.org",
       "domain_defanged": "onedrive1[.]vtcyntrax[.]org",
-      "case_id": "PD-20260816-122993",
-      "analyzed_at": "2026-08-16T19:29:12.699Z",
+      "case_id": "PD-20260817-122993",
+      "analyzed_at": "2026-08-17T19:59:05.744Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft",
+            "Generic Email",
+            "Sharepoint"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fae89-e81c-74ac-8e18-bbf9ff6743f8.png",
+          "url": "https://urlscan.io/result/019fae89-e81c-74ac-8e18-bbf9ff6743f8/",
+          "title": "Sharing Link Validation"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft, Generic Email, Sharepoint",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
+        "ip": "2a02:4780:84:71b0:a94e:bb1e:f895:8888",
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Hostinger",
+          "abuse": "abuse@hostinger.com",
+          "url": "https://www.hostinger.com/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS47583"
+        }
       },
       "report_services": [
         {
@@ -192,12 +215,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (onedrive1.vtcyntrax.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"onedrive1.vtcyntrax.org\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004516; classtype:social-engineering; sid:6004516; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-17T08:16:21.878507+00:00",
+  "updated_at": "2026-08-17T19:58:59.777333+00:00",
   "probe": {
     "dns": null,
     "whois": true,

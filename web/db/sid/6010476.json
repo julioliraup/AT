@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "get-ledzer-us.pages.dev",
       "domain_defanged": "get-ledzer-us[.]pages[.]dev",
-      "case_id": "PD-20260817-23EC08",
-      "analyzed_at": "2026-08-17T03:56:09.837Z",
+      "case_id": "PD-20260818-23EC08",
+      "analyzed_at": "2026-08-18T05:04:32.876Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a01341-c563-760e-ade1-3b8a9105c5ac/",
+          "pending": true
         }
       },
       "detections": [],
@@ -88,16 +92,23 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.61",
-        "ipinfo": null,
+        "ip": "172.66.47.195",
+        "ipinfo": {
+          "ip": "172.66.47.195",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
             "2606:4700:310c::ac42:2c3d",
             "2606:4700:310c::ac42:2fc3"
           ],
           "A": [
-            "172.66.44.61",
-            "172.66.47.195"
+            "172.66.47.195",
+            "172.66.44.61"
           ],
           "NS": [
             "jule.ns.cloudflare.com.",
@@ -107,7 +118,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -230,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (get-ledzer-us.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"get-ledzer-us.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010476; classtype:social-engineering; sid:6010476; rev:1; metadata: signature_severity Major, created_et 2026_08_16;)",
-  "updated_at": "2026-08-17T14:08:47.521210+00:00",
+  "updated_at": "2026-08-18T05:04:30.203371+00:00",
   "probe": {
     "dns": "172.66.44.61",
     "whois": null,

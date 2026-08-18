@@ -49,27 +49,47 @@
     "phishdestroy": {
       "domain": "account.confirm-meta-badge.info",
       "domain_defanged": "account[.]confirm-meta-badge[.]info",
-      "case_id": "PD-20260816-21CEC7",
-      "analyzed_at": "2026-08-16T18:40:49.758Z",
+      "case_id": "PD-20260817-21CEC7",
+      "analyzed_at": "2026-08-17T19:06:35.965Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed3af-2887-73e0-9d00-c50e8ac61de8.png",
+          "url": "https://urlscan.io/result/019ed3af-2887-73e0-9d00-c50e8ac61de8/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
+        "ip": "104.21.33.206",
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +212,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (account.confirm-meta-badge.info/favicon.ico)\"; flow:established,to_server; http.uri; content:\"/favicon.ico\"; startswith; fast_pattern; http.host; content:\"account.confirm-meta-badge.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003761; classtype:social-engineering; sid:6003761; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-17T07:33:22.181578+00:00",
+  "updated_at": "2026-08-17T19:06:32.396235+00:00",
   "probe": {
     "dns": null,
     "whois": true,

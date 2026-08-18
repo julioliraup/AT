@@ -73,8 +73,8 @@
     "phishdestroy": {
       "domain": "bnbsafepay.netlify.app",
       "domain_defanged": "bnbsafepay[.]netlify[.]app",
-      "case_id": "PD-20260817-5D4806",
-      "analyzed_at": "2026-08-17T00:00:13.997Z",
+      "case_id": "PD-20260818-5D4806",
+      "analyzed_at": "2026-08-18T00:28:47.971Z",
       "intel": {
         "virustotal": {
           "malicious": 15,
@@ -175,9 +175,11 @@
           }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Trustwallet"
+          ],
           "screenshot": "https://urlscan.io/screenshots/019ff468-35a5-7703-bcc8-2821290f66b2.png",
           "url": "https://urlscan.io/result/019ff468-35a5-7703-bcc8-2821290f66b2/",
           "title": "Transfer Trust Wallet"
@@ -268,6 +270,11 @@
           "source": "VT: Webroot",
           "type": "malicious",
           "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Trustwallet",
+          "severity": "high"
         }
       ],
       "domain_info": {
@@ -275,7 +282,15 @@
       },
       "infrastructure": {
         "ip": "54.232.119.62",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "54.232.119.62",
+          "hostname": "ec2-54-232-119-62.sa-east-1.compute.amazonaws.com",
+          "city": "São Paulo",
+          "region": "São Paulo",
+          "country": "BR",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "A": [
             "54.232.119.62"
@@ -417,12 +432,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bnbsafepay.netlify.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bnbsafepay.netlify.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007745; classtype:social-engineering; sid:6007745; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-17T10:52:46.792167+00:00",
+  "updated_at": "2026-08-18T00:28:44.366447+00:00",
   "probe": {
     "dns": "13.52.188.95",
     "whois": null,

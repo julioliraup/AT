@@ -18,46 +18,99 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://sp10ct-rurek-biz8-folim-maven.pages.dev/",
+      "domain": "sp10ct-rurek-biz8-folim-maven.pages.dev",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.66.47.13",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a26aac0aee955ee5-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "dd924081146b8f711516a5739b1f297ed569a2b16e6b03f539bb2947376f71a5",
+      "md5": "43620983a48ad3cfb428ed1f7e1710d6",
+      "cert": {
+        "subject_cn": "sp10ct-rurek-biz8-folim-maven.pages.dev",
+        "subject_alt_names": [
+          "sp10ct-rurek-biz8-folim-maven.pages.dev",
+          "*.sp10ct-rurek-biz8-folim-maven.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-27T02:14:14+00:00",
+        "not_valid_after": "2026-10-25T03:11:39+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "139885262464667216533296795660806872609",
+        "fingerprint_sha1": "AC BD 94 33 D3 A8 41 1E E5 32 81 13 20 9F E1 6C 16 8D 11 AF",
+        "fingerprint_sha256": "11 3A 6B A6 8A 5F 59 A9 FE FB B9 4A 13 82 D5 81 D5 BA 8E 75 20 F4 F7 C8 65 34 63 DC 6C F9 06 85"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-08-06T02:32:40",
+      "first_seen_secs": 1785983560.0
+    },
     "phishdestroy": {
       "domain": "sp10ct-rurek-biz8-folim-maven.pages.dev",
       "domain_defanged": "sp10ct-rurek-biz8-folim-maven[.]pages[.]dev",
-      "case_id": "PD-20260816-30903F",
-      "analyzed_at": "2026-08-16T20:17:54.877Z",
+      "case_id": "PD-20260817-30903F",
+      "analyzed_at": "2026-08-17T20:38:10.494Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00c39-43bf-70e0-a189-87229b9b4c8c.png",
           "url": "https://urlscan.io/result/01a00c39-43bf-70e0-a189-87229b9b4c8c/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.47.13",
-        "ipinfo": {
-          "ip": "172.66.47.13",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ipinfo": null,
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2f0d",
+            "2606:4700:310c::ac42:2cf3"
+          ],
           "A": [
             "172.66.47.13",
             "172.66.44.243"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2cf3",
-            "2606:4700:310c::ac42:2f0d"
           ],
           "NS": [
             "aida.ns.cloudflare.com.",
@@ -197,14 +250,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp10ct-rurek-biz8-folim-maven.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp10ct-rurek-biz8-folim-maven.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6005112; classtype:social-engineering; sid:6005112; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-17T08:53:27.647214+00:00",
+  "updated_at": "2026-08-17T20:38:07.412299+00:00",
   "probe": {
-    "dns": "172.66.44.243",
+    "dns": "172.66.47.13",
     "whois": null,
     "status": "active"
   }

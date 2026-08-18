@@ -49,27 +49,49 @@
     "phishdestroy": {
       "domain": "z9vgtm.cfd",
       "domain_defanged": "z9vgtm[.]cfd",
-      "case_id": "PD-20260816-64B1B9",
-      "analyzed_at": "2026-08-16T15:52:08.687Z",
+      "case_id": "PD-20260817-64B1B9",
+      "analyzed_at": "2026-08-17T15:57:20.722Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "OLX Group",
+            "PKO Bank Polski"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019e8348-83f6-7483-a700-a62d61d3a2e1.png",
+          "url": "https://urlscan.io/result/019e8348-83f6-7483-a700-a62d61d3a2e1/",
+          "title": "Bank Millennium 1769963912159"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: OLX Group, PKO Bank Polski",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
+        "ip": "188.114.97.3",
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +214,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (z9vgtm.cfd/o/hxu17/1769963912159#selectedbank9)\"; flow:established,to_server; http.uri; content:\"/o/hxu17/1769963912159#selectedbank9\"; startswith; fast_pattern; http.host; content:\"z9vgtm.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6001250; classtype:social-engineering; sid:6001250; rev:1; metadata: signature_severity Major, created_et 2026_06_01, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-17T05:30:28.612315+00:00",
+  "updated_at": "2026-08-17T15:57:16.319309+00:00",
   "probe": {
     "dns": null,
     "whois": true,

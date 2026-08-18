@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "rbxlab.st",
       "domain_defanged": "rbxlab[.]st",
-      "case_id": "PD-20260817-5467F4",
-      "analyzed_at": "2026-08-17T03:57:05.184Z",
+      "case_id": "PD-20260818-5467F4",
+      "analyzed_at": "2026-08-18T05:05:34.067Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a01342-b478-749b-b3cb-a27a04d35897/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,23 +69,38 @@
       },
       "infrastructure": {
         "ip": "162.19.136.21",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "162.19.136.21",
+          "hostname": "ns3247981.ip-162-19-136.eu",
+          "city": "Frankfurt am Main",
+          "region": "Hesse",
+          "country": "DE",
+          "org": "AS16276 OVH SAS",
+          "asn": "AS16276"
+        },
         "dns": {
-          "A": [
-            "162.19.136.21"
+          "MX": [
+            "10 mail.hotwall.app."
           ],
           "NS": [
             "eva.ns.cloudflare.com.",
             "gabriel.ns.cloudflare.com."
           ],
-          "MX": [
-            "10 mail.hotwall.app."
+          "A": [
+            "162.19.136.21"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "OVH",
+          "abuse": "abuse@ovh.net",
+          "url": "https://www.ovh.com/abuse/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16276"
+        }
       },
       "report_services": [
         {
@@ -204,12 +223,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rbxlab.st/a/Search)\"; flow:established,to_server; http.uri; content:\"/a/Search\"; startswith; fast_pattern; http.host; content:\"rbxlab.st\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010488; classtype:social-engineering; sid:6010488; rev:1; metadata: signature_severity Major, created_et 2026_08_16;)",
-  "updated_at": "2026-08-17T14:09:49.532903+00:00",
+  "updated_at": "2026-08-18T05:05:26.831785+00:00",
   "probe": {
     "dns": "162.19.136.21",
     "whois": true,

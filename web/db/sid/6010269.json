@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "company-prod-limit-config.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "company-prod-limit-config[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260817-687233",
-      "analyzed_at": "2026-08-17T03:38:42.511Z",
+      "case_id": "PD-20260818-687233",
+      "analyzed_at": "2026-08-18T04:46:18.826Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a01331-13cd-746d-ac90-9d2dd4c1129f/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,7 +69,15 @@
       },
       "infrastructure": {
         "ip": "149.137.136.9",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "149.137.136.9",
+          "hostname": "s3.us-east-005.backblazeb2.com",
+          "city": "Leesburg",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS40401 Backblaze Inc",
+          "asn": "AS40401"
+        },
         "dns": {
           "AAAA": [
             "2605:72c0:6fc:b3::b005:1",
@@ -83,7 +95,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Backblaze",
+          "abuse": "abuse@backblaze.com",
+          "url": "mailto:abuse@backblaze.com",
+          "logo": "https://i.ibb.co/PvjyjPDm/pr-Backblaze.png",
+          "method": "email",
+          "asn": "AS40401"
+        }
       },
       "report_services": [
         {
@@ -206,12 +225,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (company-prod-limit-config.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"company-prod-limit-config.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010269; classtype:social-engineering; sid:6010269; rev:1; metadata: signature_severity Major, created_et 2026_08_15;)",
-  "updated_at": "2026-08-17T13:56:50.718118+00:00",
+  "updated_at": "2026-08-18T04:46:15.975295+00:00",
   "probe": {
     "dns": "149.137.140.9",
     "whois": null,

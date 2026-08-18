@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://online-zahlung-info.de/we/",
       "domain": "online-zahlung-info.de",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.3.34",
+      "http_code": 522,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a2ca0154ebe3fb74-PDX",
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,30 +43,44 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (510)",
+      "sha256": "b88a903c9904ebe7cb9695f711df1e218a694681a0c5481c27b4772ec39b48ad",
+      "md5": "3045ef29a2035b589ff71bdf54f644e5",
+      "cert": {
+        "subject_cn": "online-zahlung-info.de",
+        "subject_alt_names": [
+          "online-zahlung-info.de",
+          "*.online-zahlung-info.de"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-24T08:16:53+00:00",
+        "not_valid_after": "2026-10-22T09:14:33+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "205098600842459335936308222172385949990",
+        "fingerprint_sha1": "BD 22 09 EE 38 FD BA 34 8A FD FA 1E D8 60 22 D9 E8 BC 5C D7",
+        "fingerprint_sha256": "B7 F4 71 AC 83 CC D9 33 0F AB 82 68 75 8C 9F 5E EC 62 C9 25 18 1D 5E 0B B6 53 C4 55 91 B4 B1 74"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-17T16:19:45",
+      "first_seen_secs": 1786983585.0
     },
     "phishdestroy": {
       "domain": "online-zahlung-info.de",
       "domain_defanged": "online-zahlung-info[.]de",
-      "case_id": "PD-20260816-50DE16",
-      "analyzed_at": "2026-08-16T21:21:15.874Z",
+      "case_id": "PD-20260817-50DE16",
+      "analyzed_at": "2026-08-17T21:30:16.276Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a00c73-4366-778b-99f8-720339cd6266/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,16 +88,16 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.130.41",
+        "ip": "104.21.3.34",
         "ipinfo": null,
         "dns": {
           "A": [
-            "172.67.130.41",
-            "104.21.3.34"
+            "104.21.3.34",
+            "172.67.130.41"
           ],
           "AAAA": [
-            "2606:4700:3032::ac43:8229",
-            "2606:4700:3036::6815:322"
+            "2606:4700:3036::6815:322",
+            "2606:4700:3032::ac43:8229"
           ],
           "NS": [
             "ulla.ns.cloudflare.com.",
@@ -210,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (online-zahlung-info.de/we/)\"; flow:established,to_server; http.uri; content:\"/we/\"; startswith; fast_pattern; http.host; content:\"online-zahlung-info.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005956; classtype:social-engineering; sid:6005956; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-17T09:33:29.059412+00:00",
+  "updated_at": "2026-08-17T21:30:13.384817+00:00",
   "probe": {
     "dns": "104.21.3.34",
     "whois": true,

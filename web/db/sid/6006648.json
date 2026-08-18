@@ -49,27 +49,48 @@
     "phishdestroy": {
       "domain": "shopingee.shop",
       "domain_defanged": "shopingee[.]shop",
-      "case_id": "PD-20260816-16FE30",
-      "analyzed_at": "2026-08-16T22:18:48.854Z",
+      "case_id": "PD-20260817-16FE30",
+      "analyzed_at": "2026-08-17T22:34:38.355Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd556-5a0c-76fc-8ef8-3c40c90c3fb6.png",
+          "url": "https://urlscan.io/result/019fd556-5a0c-76fc-8ef8-3c40c90c3fb6/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
+        "ip": "104.21.63.179",
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,12 +213,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (shopingee.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"shopingee.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006648; classtype:social-engineering; sid:6006648; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-17T10:04:16.267429+00:00",
+  "updated_at": "2026-08-17T22:34:23.340183+00:00",
   "probe": {
     "dns": null,
     "whois": true,

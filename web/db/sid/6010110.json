@@ -55,22 +55,35 @@
     "phishdestroy": {
       "domain": "awscfdns.com",
       "domain_defanged": "awscfdns[.]com",
-      "case_id": "PD-20260817-3DA931",
-      "analyzed_at": "2026-08-17T03:28:44.390Z",
+      "case_id": "PD-20260818-3DA931",
+      "analyzed_at": "2026-08-18T04:33:13.135Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01263-fcb6-7248-a9f0-024d48eed9ac.png",
+          "url": "https://urlscan.io/result/01a01263-fcb6-7248-a9f0-024d48eed9ac/",
+          "title": "Amazon.com New Releases: The best-selling new & future releases on Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Squarespace Domains II LLC",
         "created": "2019-07-19T23:22:09Z",
         "expires": "2027-07-19T23:22:09Z",
-        "age_days": 2585,
+        "age_days": 2586,
         "nameservers": [
           "NS-CLOUD-A1.GOOGLEDOMAINS.COM",
           "NS-CLOUD-A2.GOOGLEDOMAINS.COM",
@@ -79,13 +92,21 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "52.84.150.36",
+        "ipinfo": {
+          "ip": "52.84.150.36",
+          "city": "Seattle",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
           "NS": [
-            "ns-cloud-a3.googledomains.com.",
             "ns-cloud-a1.googledomains.com.",
-            "ns-cloud-a4.googledomains.com.",
-            "ns-cloud-a2.googledomains.com."
+            "ns-cloud-a2.googledomains.com.",
+            "ns-cloud-a3.googledomains.com.",
+            "ns-cloud-a4.googledomains.com."
           ]
         }
       },
@@ -98,7 +119,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -221,12 +249,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.awscfdns.com/MICHAEL-BLURAY-DIGITAL-STEELBOOK-EXCLUSIVE/dp/B0GVNTYLPJ/ref=zg_bsnr_g_movies-tv_d_sccl_3/133-6697513-4245743)\"; flow:established,to_server; http.uri; content:\"/MICHAEL-BLURAY-DIGITAL-STEELBOOK-EXCLUSIVE/dp/B0GVNTYLPJ/ref=zg_bsnr_g_movies-tv_d_sccl_3/133-6697513-4245743\"; startswith; fast_pattern; http.host; content:\"www.awscfdns.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010110; classtype:social-engineering; sid:6010110; rev:1; metadata: signature_severity Major, created_et 2026_08_15;)",
-  "updated_at": "2026-08-17T13:40:01.759588+00:00",
+  "updated_at": "2026-08-18T04:33:05.957299+00:00",
   "probe": {
     "dns": "52.84.150.59",
     "whois": null,

@@ -49,30 +49,125 @@
     "phishdestroy": {
       "domain": "kocaman.github.io",
       "domain_defanged": "kocaman[.]github[.]io",
-      "case_id": "PD-20260817-24FFF9",
-      "analyzed_at": "2026-08-17T00:36:14.397Z",
+      "case_id": "PD-20260818-24FFF9",
+      "analyzed_at": "2026-08-18T01:03:35.015Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 8,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Sophos",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/019ffb0d-8338-75d9-b161-1dc6c976764b.png",
-          "url": "https://urlscan.io/result/019ffb0d-8338-75d9-b161-1dc6c976764b/",
-          "title": "Site not found · GitHub Pages"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00db6-cd5b-74d5-b9bd-6681141d4da6.png",
+          "url": "https://urlscan.io/result/01a00db6-cd5b-74d5-b9bd-6681141d4da6/",
+          "title": "Ledger — Workout Logger"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Sophos",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.110.153",
+        "ip": "185.199.109.153",
         "ipinfo": {
-          "ip": "185.199.110.153",
-          "hostname": "cdn-185-199-110-153.github.com",
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -80,17 +175,17 @@
           "asn": "AS54113"
         },
         "dns": {
+          "A": [
+            "185.199.109.153",
+            "185.199.111.153",
+            "185.199.108.153",
+            "185.199.110.153"
+          ],
           "AAAA": [
             "2606:50c0:8000::153",
             "2606:50c0:8001::153",
             "2606:50c0:8002::153",
             "2606:50c0:8003::153"
-          ],
-          "A": [
-            "185.199.110.153",
-            "185.199.109.153",
-            "185.199.111.153",
-            "185.199.108.153"
           ]
         }
       },
@@ -226,14 +321,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kocaman.github.io/workout)\"; flow:established,to_server; http.uri; content:\"/workout\"; startswith; fast_pattern; http.host; content:\"kocaman.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008024; classtype:social-engineering; sid:6008024; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-17T11:05:11.427872+00:00",
+  "updated_at": "2026-08-18T01:03:30.673534+00:00",
   "probe": {
-    "dns": "185.199.108.153",
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }

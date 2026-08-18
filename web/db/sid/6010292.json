@@ -49,17 +49,30 @@
     "phishdestroy": {
       "domain": "norquza-kxt-farmora-c7x3fq91.pages.dev",
       "domain_defanged": "norquza-kxt-farmora-c7x3fq91[.]pages[.]dev",
-      "case_id": "PD-20260817-6654EF",
-      "analyzed_at": "2026-08-17T03:40:40.199Z",
+      "case_id": "PD-20260818-6654EF",
+      "analyzed_at": "2026-08-18T04:48:19.536Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00985-b2f3-7186-9ce6-bd6a35d09261.png",
+          "url": "https://urlscan.io/result/01a00985-b2f3-7186-9ce6-bd6a35d09261/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -74,10 +87,6 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.66.44.209",
-            "172.66.47.47"
-          ],
           "AAAA": [
             "2606:4700:310c::ac42:2f2f",
             "2606:4700:310c::ac42:2cd1"
@@ -85,6 +94,10 @@
           "NS": [
             "isabel.ns.cloudflare.com.",
             "quinton.ns.cloudflare.com."
+          ],
+          "A": [
+            "172.66.44.209",
+            "172.66.47.47"
           ]
         }
       },
@@ -220,14 +233,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (norquza-kxt-farmora-c7x3fq91.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"norquza-kxt-farmora-c7x3fq91.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010292; classtype:social-engineering; sid:6010292; rev:1; metadata: signature_severity Major, created_et 2026_08_15;)",
-  "updated_at": "2026-08-17T13:58:40.543570+00:00",
+  "updated_at": "2026-08-18T04:48:15.584029+00:00",
   "probe": {
-    "dns": "172.66.44.209",
+    "dns": "172.66.47.47",
     "whois": null,
     "status": "active"
   }

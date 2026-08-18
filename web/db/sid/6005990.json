@@ -49,21 +49,35 @@
     "phishdestroy": {
       "domain": "j80d.vip",
       "domain_defanged": "j80d[.]vip",
-      "case_id": "PD-20260816-12E5F8",
-      "analyzed_at": "2026-08-16T21:24:09.836Z",
+      "case_id": "PD-20260817-12E5F8",
+      "analyzed_at": "2026-08-17T21:34:12.939Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fc876-a51d-70b8-8532-bde13de7a1f2.png",
+          "url": "https://urlscan.io/result/019fc876-a51d-70b8-8532-bde13de7a1f2/",
+          "title": "welcome-BET365"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
+        "ip": "154.39.104.132",
         "ipinfo": null,
         "dns": null
       },
@@ -192,12 +206,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (j80d.vip/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"j80d.vip\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005990; classtype:social-engineering; sid:6005990; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-17T09:35:42.641153+00:00",
+  "updated_at": "2026-08-17T21:34:05.850666+00:00",
   "probe": {
     "dns": null,
     "whois": true,

@@ -49,27 +49,47 @@
     "phishdestroy": {
       "domain": "volmyactive.shop",
       "domain_defanged": "volmyactive[.]shop",
-      "case_id": "PD-20260816-28545D",
-      "analyzed_at": "2026-08-16T17:05:38.910Z",
+      "case_id": "PD-20260817-28545D",
+      "analyzed_at": "2026-08-17T17:36:23.868Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ea4c0-beb5-7599-a765-2019948f3789.png",
+          "url": "https://urlscan.io/result/019ea4c0-beb5-7599-a765-2019948f3789/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
+        "ip": "154.220.96.222",
         "ipinfo": null,
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "MYCLOUD-AS-AP",
+          "abuse": "helpdesk@apnic.net",
+          "url": "mailto:helpdesk@apnic.net",
+          "logo": "https://i.ibb.co/5tYBLWX/pr-COMING-AS.jpg",
+          "method": "email",
+          "asn": "AS135097"
+        }
       },
       "report_services": [
         {
@@ -192,12 +212,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (volmyactive.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"volmyactive.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002387; classtype:social-engineering; sid:6002387; rev:1; metadata: signature_severity Major, created_et 2026_06_07, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-17T06:20:04.884972+00:00",
+  "updated_at": "2026-08-17T17:36:11.214055+00:00",
   "probe": {
     "dns": null,
     "whois": true,

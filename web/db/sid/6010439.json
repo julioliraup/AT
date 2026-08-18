@@ -49,17 +49,30 @@
     "phishdestroy": {
       "domain": "12g-fsc1lv-tfaq8a-sfi-5gt.pages.dev",
       "domain_defanged": "12g-fsc1lv-tfaq8a-sfi-5gt[.]pages[.]dev",
-      "case_id": "PD-20260817-51CF3B",
-      "analyzed_at": "2026-08-17T03:52:23.289Z",
+      "case_id": "PD-20260818-51CF3B",
+      "analyzed_at": "2026-08-18T05:00:53.645Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01010-3e7e-751c-974b-518e45875b04.png",
+          "url": "https://urlscan.io/result/01a01010-3e7e-751c-974b-518e45875b04/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,8 +92,8 @@
             "172.66.47.46"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2cd2",
-            "2606:4700:310c::ac42:2f2e"
+            "2606:4700:310c::ac42:2f2e",
+            "2606:4700:310c::ac42:2cd2"
           ],
           "NS": [
             "meg.ns.cloudflare.com.",
@@ -220,12 +233,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (12g-fsc1lv-tfaq8a-sfi-5gt.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"12g-fsc1lv-tfaq8a-sfi-5gt.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010439; classtype:social-engineering; sid:6010439; rev:1; metadata: signature_severity Major, created_et 2026_08_16;)",
-  "updated_at": "2026-08-17T14:07:17.777108+00:00",
+  "updated_at": "2026-08-18T05:00:49.651770+00:00",
   "probe": {
     "dns": "172.66.44.210",
     "whois": null,

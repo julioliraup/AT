@@ -49,11 +49,36 @@
     "phishdestroy": {
       "domain": "ghein4.systeme.io",
       "domain_defanged": "ghein4[.]systeme[.]io",
-      "case_id": "PD-20260817-22F5FA",
-      "analyzed_at": "2026-08-17T00:56:50.008Z",
+      "case_id": "PD-20260818-22F5FA",
+      "analyzed_at": "2026-08-18T01:29:13.132Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
@@ -63,15 +88,36 @@
           "url": "https://urlscan.io/result/01a0057c-4d0c-75be-ad0c-11b2270ca029/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "108.157.173.114",
+        "ip": "3.166.160.114",
         "ipinfo": {
-          "ip": "108.157.173.114",
-          "hostname": "server-108-157-173-114.mia3.r.cloudfront.net",
+          "ip": "3.166.160.114",
+          "hostname": "server-3-166-160-114.mia50.r.cloudfront.net",
           "city": "Miami",
           "region": "Florida",
           "country": "US",
@@ -80,10 +126,10 @@
         },
         "dns": {
           "A": [
-            "108.157.173.114",
-            "108.157.173.48",
-            "108.157.173.17",
-            "108.157.173.9"
+            "3.166.160.114",
+            "3.166.160.71",
+            "3.166.160.119",
+            "3.166.160.121"
           ]
         }
       },
@@ -219,14 +265,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ghein4.systeme.io/spectrum)\"; flow:established,to_server; http.uri; content:\"/spectrum\"; startswith; fast_pattern; http.host; content:\"ghein4.systeme.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008275; classtype:social-engineering; sid:6008275; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-17T11:15:03.150707+00:00",
+  "updated_at": "2026-08-18T01:29:09.471782+00:00",
   "probe": {
-    "dns": "108.157.173.9",
+    "dns": "3.166.160.121",
     "whois": true,
     "status": "active"
   }

@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "ledger-help-io.square.site",
       "domain_defanged": "ledger-help-io[.]square[.]site",
-      "case_id": "PD-20260817-3D7BF9",
-      "analyzed_at": "2026-08-17T03:22:52.590Z",
+      "case_id": "PD-20260818-3D7BF9",
+      "analyzed_at": "2026-08-18T04:24:37.473Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a00dbe-5431-735d-a9ab-6d256040e3c3/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00e36-5ff0-75fe-b576-aa8e378e9ec0.png",
+          "url": "https://urlscan.io/result/01a00e36-5ff0-75fe-b576-aa8e378e9ec0/",
+          "title": "Just a moment..."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -241,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledger-help-io.square.site/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledger-help-io.square.site\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010006; classtype:social-engineering; sid:6010006; rev:1; metadata: signature_severity Major, created_et 2026_08_13;)",
-  "updated_at": "2026-08-17T13:32:23.090177+00:00",
+  "updated_at": "2026-08-18T04:24:30.670510+00:00",
   "probe": {
     "dns": "74.115.51.4",
     "whois": true,

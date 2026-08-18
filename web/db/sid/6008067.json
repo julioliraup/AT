@@ -73,27 +73,53 @@
     "phishdestroy": {
       "domain": "cybersecuritynews.com",
       "domain_defanged": "cybersecuritynews[.]com",
-      "case_id": "PD-20260817-496B4D",
-      "analyzed_at": "2026-08-17T00:39:42.754Z",
+      "case_id": "PD-20260818-496B4D",
+      "analyzed_at": "2026-08-18T01:07:04.029Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "screenshot": "https://urlscan.io/screenshots/01a00bb0-f4cb-73f8-bdca-8ffa37e6c15a.png",
-          "url": "https://urlscan.io/result/01a00bb0-f4cb-73f8-bdca-8ffa37e6c15a/",
+          "screenshot": "https://urlscan.io/screenshots/01a0112b-1832-7405-961c-a25d4c955a22.png",
+          "url": "https://urlscan.io/result/01a0112b-1832-7405-961c-a25d4c955a22/",
           "title": "New Wi-Fi Auth Bypass Flaw Exposes Home & Enterprise Attacks"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "GoDaddy.com, LLC",
         "created": "2007-07-20T13:02:23Z",
         "expires": "2028-07-20T13:02:23Z",
-        "age_days": 6967,
+        "age_days": 6968,
         "nameservers": [
           "JULE.NS.CLOUDFLARE.COM",
           "KEVIN.NS.CLOUDFLARE.COM"
@@ -255,12 +281,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.cybersecuritynews.com/new-wi-fi-authentication-bypass-flaw/)\"; flow:established,to_server; http.uri; content:\"/new-wi-fi-authentication-bypass-flaw/\"; startswith; fast_pattern; http.host; content:\"www.cybersecuritynews.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008067; classtype:social-engineering; sid:6008067; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-17T11:06:59.720916+00:00",
+  "updated_at": "2026-08-18T01:07:00.491884+00:00",
   "probe": {
     "dns": "35.212.63.154",
     "whois": null,

@@ -72,27 +72,59 @@
     "phishdestroy": {
       "domain": "ql5b30.info",
       "domain_defanged": "ql5b30[.]info",
-      "case_id": "PD-20260816-1CCCD2",
-      "analyzed_at": "2026-08-16T23:58:53.767Z",
+      "case_id": "PD-20260818-1CCCD2",
+      "analyzed_at": "2026-08-18T00:27:09.647Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00d00-bbba-73e9-a7a5-bf53479b613c.png",
+          "url": "https://urlscan.io/result/01a00d00-bbba-73e9-a7a5-bf53479b613c/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3034::ac43:c02b",
+        "ipinfo": {
+          "ip": "2606:4700:3034::ac43:c02b",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -215,12 +247,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ql5b30.info/kbyxydvaa/)\"; flow:established,to_server; http.uri; content:\"/kbyxydvaa/\"; startswith; fast_pattern; http.host; content:\"ql5b30.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007733; classtype:social-engineering; sid:6007733; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-17T10:52:19.033472+00:00",
+  "updated_at": "2026-08-18T00:26:58.027277+00:00",
   "probe": {
     "dns": "47.74.45.115",
     "whois": true,

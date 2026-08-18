@@ -49,27 +49,72 @@
     "phishdestroy": {
       "domain": "ppt.cc",
       "domain_defanged": "ppt[.]cc",
-      "case_id": "PD-20260816-3A817D",
-      "analyzed_at": "2026-08-16T23:53:19.840Z",
+      "case_id": "PD-20260818-3A817D",
+      "analyzed_at": "2026-08-18T00:20:40.435Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "PrecisionSec",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/01a00cfe-7bd1-76cf-b28f-8b70cf584cee.png",
           "url": "https://urlscan.io/result/01a00cfe-7bd1-76cf-b28f-8b70cf584cee/",
-          "pending": true
+          "title": "來個 PPT 短網址 - 不記名，不排名，膴廣告，真正低調的短網址"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: PrecisionSec",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "59.120.118.168",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "59.120.118.168",
+          "hostname": "59-120-118-168.hinet-ip.hinet.net",
+          "city": "Kaohsiung",
+          "region": "Takao",
+          "country": "TW",
+          "org": "AS3462 Data Communication Business Group",
+          "asn": "AS3462"
+        },
         "dns": {
           "A": [
             "59.120.118.168"
@@ -89,7 +134,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CCU-TW",
+          "abuse": "steve@ccu.edu.tw",
+          "url": "mailto:steve@ccu.edu.tw",
+          "logo": "https://i.ibb.co/m5Df8Yz1/pr-CCU-TW.png",
+          "method": "email",
+          "asn": "AS3462"
+        }
       },
       "report_services": [
         {
@@ -212,12 +264,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ppt.cc/f3hUpx)\"; flow:established,to_server; http.uri; content:\"/f3hUpx\"; startswith; fast_pattern; http.host; content:\"ppt.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007671; classtype:social-engineering; sid:6007671; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-08-17T10:49:52.766151+00:00",
+  "updated_at": "2026-08-18T00:20:35.098131+00:00",
   "probe": {
     "dns": null,
     "whois": true,

@@ -73,34 +73,36 @@
     "phishdestroy": {
       "domain": "igvu7-7g17-p20-xsyh9g-uai0v.pages.dev",
       "domain_defanged": "igvu7-7g17-p20-xsyh9g-uai0v[.]pages[.]dev",
-      "case_id": "PD-20260816-2ACCC7",
-      "analyzed_at": "2026-08-16T19:17:36.430Z",
+      "case_id": "PD-20260817-2ACCC7",
+      "analyzed_at": "2026-08-17T19:44:28.011Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00c02-0d32-70af-af0e-a8d8929d1dab.png",
           "url": "https://urlscan.io/result/01a00c02-0d32-70af-af0e-a8d8929d1dab/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.44.55",
-        "ipinfo": {
-          "ip": "172.66.44.55",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ipinfo": null,
         "dns": {
           "AAAA": [
             "2606:4700:310c::ac42:2c37",
@@ -248,12 +250,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (igvu7-7g17-p20-xsyh9g-uai0v.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"igvu7-7g17-p20-xsyh9g-uai0v.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004320; classtype:social-engineering; sid:6004320; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-17T08:04:48.900201+00:00",
+  "updated_at": "2026-08-17T19:44:24.558117+00:00",
   "probe": {
     "dns": "172.66.44.55",
     "whois": null,

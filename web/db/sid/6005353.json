@@ -18,39 +18,106 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://sp3ct-drelok-biz8-havqen-misur.pages.dev/",
+      "domain": "sp3ct-drelok-biz8-havqen-misur.pages.dev",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.66.47.197",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a26aab31a93658d9-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "0f592c730a79534974e4259f9beb0506dcfe992bbfb06288fff3140ee41efcf7",
+      "md5": "52f6419cc61b4ba31768da67f6e1213c",
+      "cert": {
+        "subject_cn": "sp3ct-drelok-biz8-havqen-misur.pages.dev",
+        "subject_alt_names": [
+          "sp3ct-drelok-biz8-havqen-misur.pages.dev",
+          "*.sp3ct-drelok-biz8-havqen-misur.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-20T05:05:46+00:00",
+        "not_valid_after": "2026-10-18T06:04:16+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "337351348518319594859770292580961105754",
+        "fingerprint_sha1": "DB 21 50 C7 61 33 9C C9 04 65 2D B7 45 31 03 6E DD 62 2F 4B",
+        "fingerprint_sha256": "F4 C2 16 DE 49 7D E2 F7 46 21 5E 55 0E 32 2A 0F D5 CD 58 AD DF A5 E9 5B CD 10 FC FD A0 ED 91 6D"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-08-06T02:32:40",
+      "first_seen_secs": 1785983560.0
+    },
     "phishdestroy": {
       "domain": "sp3ct-drelok-biz8-havqen-misur.pages.dev",
       "domain_defanged": "sp3ct-drelok-biz8-havqen-misur[.]pages[.]dev",
-      "case_id": "PD-20260816-27A321",
-      "analyzed_at": "2026-08-16T20:42:41.578Z",
+      "case_id": "PD-20260817-27A321",
+      "analyzed_at": "2026-08-17T20:52:05.559Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00c4f-f2af-7425-8a81-4be8a9649c84.png",
           "url": "https://urlscan.io/result/01a00c4f-f2af-7425-8a81-4be8a9649c84/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.44.59",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.44.59",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
             "172.66.44.59",
             "172.66.47.197"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2c3b",
-            "2606:4700:310c::ac42:2fc5"
+            "2606:4700:310c::ac42:2fc5",
+            "2606:4700:310c::ac42:2c3b"
           ],
           "NS": [
             "irena.ns.cloudflare.com.",
@@ -60,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -183,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp3ct-drelok-biz8-havqen-misur.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp3ct-drelok-biz8-havqen-misur.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005353; classtype:social-engineering; sid:6005353; rev:1; metadata: signature_severity Major, created_et 2026_08_01;)",
-  "updated_at": "2026-08-17T09:06:04.026389+00:00",
+  "updated_at": "2026-08-17T20:51:55.627671+00:00",
   "probe": {
     "dns": "172.66.47.197",
     "whois": null,

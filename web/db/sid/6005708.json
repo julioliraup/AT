@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp12ct-hersel-biz-lomdor-zafrik.pages.dev",
       "domain_defanged": "sp12ct-hersel-biz-lomdor-zafrik[.]pages[.]dev",
-      "case_id": "PD-20260816-44C185",
-      "analyzed_at": "2026-08-16T21:07:34.950Z",
+      "case_id": "PD-20260817-44C185",
+      "analyzed_at": "2026-08-17T21:13:23.085Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a00c66-bc9c-77af-9e58-da880e917eea.png",
           "url": "https://urlscan.io/result/01a00c66-bc9c-77af-9e58-da880e917eea/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.121",
+        "ip": "172.66.44.135",
         "ipinfo": {
-          "ip": "172.66.47.121",
+          "ip": "172.66.44.135",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2f79",
-            "2606:4700:310c::ac42:2c87"
-          ],
           "A": [
-            "172.66.47.121",
-            "172.66.44.135"
+            "172.66.44.135",
+            "172.66.47.121"
+          ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2c87",
+            "2606:4700:310c::ac42:2f79"
           ],
           "NS": [
             "dina.ns.cloudflare.com.",
@@ -248,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp12ct-hersel-biz-lomdor-zafrik.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp12ct-hersel-biz-lomdor-zafrik.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6005708; classtype:social-engineering; sid:6005708; rev:1; metadata: signature_severity Major, created_et 2026_08_03;)",
-  "updated_at": "2026-08-17T09:21:50.572470+00:00",
+  "updated_at": "2026-08-17T21:13:18.395020+00:00",
   "probe": {
     "dns": "172.66.44.135",
     "whois": null,

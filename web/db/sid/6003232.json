@@ -49,14 +49,18 @@
     "phishdestroy": {
       "domain": "sam-string.github.io",
       "domain_defanged": "sam-string[.]github[.]io",
-      "case_id": "PD-20260816-5E8825",
-      "analyzed_at": "2026-08-16T17:59:29.641Z",
+      "case_id": "PD-20260817-5E8825",
+      "analyzed_at": "2026-08-17T18:34:13.614Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a01100-b10b-705d-a6d8-e8f302318b81/",
+          "pending": true
         }
       },
       "detections": [],
@@ -65,40 +69,25 @@
       },
       "infrastructure": {
         "ip": "185.199.108.153",
-        "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS54113 Fastly, Inc.",
-          "asn": "AS54113"
-        },
+        "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "2606:50c0:8000::153",
-            "2606:50c0:8001::153",
-            "2606:50c0:8002::153",
-            "2606:50c0:8003::153"
-          ],
           "A": [
             "185.199.108.153",
             "185.199.109.153",
             "185.199.110.153",
             "185.199.111.153"
+          ],
+          "AAAA": [
+            "2606:50c0:8000::153",
+            "2606:50c0:8002::153",
+            "2606:50c0:8003::153",
+            "2606:50c0:8001::153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Fastly",
-          "abuse": "abuse@fastly.com",
-          "url": "mailto:abuse@fastly.com",
-          "logo": "",
-          "method": "email",
-          "asn": "AS54113"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -221,14 +210,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sam-string.github.io/Amazon-website-clone-/)\"; flow:established,to_server; http.uri; content:\"/Amazon-website-clone-/\"; startswith; fast_pattern; http.host; content:\"sam-string.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003232; classtype:social-engineering; sid:6003232; rev:1; metadata: signature_severity Major, created_et 2026_06_11, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-17T07:02:08.891424+00:00",
+  "updated_at": "2026-08-17T18:34:10.986349+00:00",
   "probe": {
-    "dns": "185.199.111.153",
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }

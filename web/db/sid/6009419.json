@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "gerenciador-gov.online",
       "domain_defanged": "gerenciador-gov[.]online",
-      "case_id": "PD-20260817-6B696B",
-      "analyzed_at": "2026-08-17T02:41:57.431Z",
+      "case_id": "PD-20260818-6B696B",
+      "analyzed_at": "2026-08-18T03:30:26.894Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Caixa"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ff609-6de0-732c-bbd2-2e04da6d7f12.png",
+          "url": "https://urlscan.io/result/019ff609-6de0-732c-bbd2-2e04da6d7f12/",
+          "title": "Fale Conosco | CAIXA"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Caixa",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "64.111.93.171",
+        "ipinfo": {
+          "ip": "64.111.93.171",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS399629 BL Networks",
+          "asn": "AS399629"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "BLNWX",
+          "abuse": "",
+          "url": "",
+          "logo": "",
+          "method": "email",
+          "asn": "AS399629"
+        }
       },
       "report_services": [
         {
@@ -192,12 +220,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.gerenciador-gov.online/faleconosco/?auth=7d5fa2b0fd38194db)\"; flow:established,to_server; http.uri; content:\"/faleconosco/?auth=7d5fa2b0fd38194db\"; startswith; fast_pattern; http.host; content:\"www.gerenciador-gov.online\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6009419; classtype:social-engineering; sid:6009419; rev:1; metadata: signature_severity Major, created_et 2026_08_12;)",
-  "updated_at": "2026-08-17T12:38:49.279747+00:00",
+  "updated_at": "2026-08-18T03:30:20.904875+00:00",
   "probe": {
     "dns": null,
     "whois": true,

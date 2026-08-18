@@ -72,28 +72,37 @@
     "phishdestroy": {
       "domain": "hello-my-project-for-study.vercel.app",
       "domain_defanged": "hello-my-project-for-study[.]vercel[.]app",
-      "case_id": "PD-20260817-3D17F4",
-      "analyzed_at": "2026-08-17T04:07:37.651Z",
+      "case_id": "PD-20260818-3D17F4",
+      "analyzed_at": "2026-08-18T05:21:02.968Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a00de7-4ca8-747a-90ea-d792916ede04/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01322-b908-70cf-b2bb-f73ea54ecd24.png",
+          "url": "https://urlscan.io/result/01a01322-b908-70cf-b2bb-f73ea54ecd24/",
+          "title": "Facebook"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "64.29.17.130",
+        "ip": "216.198.79.66",
         "ipinfo": {
-          "ip": "64.29.17.130",
+          "ip": "216.198.79.66",
           "city": "Walnut",
           "region": "California",
           "country": "US",
@@ -102,8 +111,8 @@
         },
         "dns": {
           "A": [
-            "64.29.17.130",
-            "216.198.79.130"
+            "216.198.79.66",
+            "64.29.17.66"
           ]
         }
       },
@@ -239,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hello-my-project-for-study.vercel.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"hello-my-project-for-study.vercel.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010627; classtype:social-engineering; sid:6010627; rev:1; metadata: signature_severity Major, created_et 2026_08_16;)",
-  "updated_at": "2026-08-17T14:18:47.663175+00:00",
+  "updated_at": "2026-08-18T05:20:48.345608+00:00",
   "probe": {
     "dns": "64.29.17.195",
     "whois": null,
