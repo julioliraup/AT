@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "kucouinlogie.webflow.io",
       "domain_defanged": "kucouinlogie[.]webflow[.]io",
-      "case_id": "PD-20260818-556370",
-      "analyzed_at": "2026-08-18T05:47:51.355Z",
+      "case_id": "PD-20260819-556370",
+      "analyzed_at": "2026-08-19T02:22:04.224Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01369-6bbd-74e5-9a9b-8797a2f79fcb.png",
           "url": "https://urlscan.io/result/01a01369-6bbd-74e5-9a9b-8797a2f79fcb/",
-          "pending": true
+          "title": "Kucoin Login: Accessing Your Kucoin Account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,13 +93,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "172.64.151.8",
-            "104.18.36.248"
-          ],
           "AAAA": [
             "2a06:98c1:3105::6812:24f8",
             "2a06:98c1:3102::ac40:9708"
+          ],
+          "A": [
+            "172.64.151.8",
+            "104.18.36.248"
           ]
         }
       },
@@ -226,12 +235,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kucouinlogie.webflow.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kucouinlogie.webflow.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000218; classtype:social-engineering; sid:6000218; rev:1; metadata: signature_severity Major, created_et 2026_06_15, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-18T15:46:03.932441+00:00",
+  "updated_at": "2026-08-19T02:22:00.979500+00:00",
   "probe": {
     "dns": "104.18.36.248",
     "whois": true,

@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "get-io-trez-or-st-art.typedream.app",
       "domain_defanged": "get-io-trez-or-st-art[.]typedream[.]app",
-      "case_id": "PD-20260818-64E172",
-      "analyzed_at": "2026-08-18T15:50:00.099Z",
+      "case_id": "PD-20260819-64E172",
+      "analyzed_at": "2026-08-19T02:29:49.111Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01590-b39e-75df-a588-da5bbe3b5f7b.png",
           "url": "https://urlscan.io/result/01a01590-b39e-75df-a588-da5bbe3b5f7b/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -226,7 +235,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (get-io-trez-or-st-art.typedream.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"get-io-trez-or-st-art.typedream.app\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000284; classtype:social-engineering; sid:6000284; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-18T15:49:56.900400+00:00",
+  "updated_at": "2026-08-19T02:29:43.227424+00:00",
   "probe": {
     "dns": "172.67.206.36",
     "whois": null,

@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "linkedin.comunicazioni-sicure.it",
       "domain_defanged": "linkedin[.]comunicazioni-sicure[.]it",
-      "case_id": "PD-20260818-679EB3",
-      "analyzed_at": "2026-08-18T15:45:23.026Z",
+      "case_id": "PD-20260819-679EB3",
+      "analyzed_at": "2026-08-19T02:21:08.564Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Phishing Simulation"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a0158c-7959-7172-80c2-acce6ad7f53a.png",
           "url": "https://urlscan.io/result/01a0158c-7959-7172-80c2-acce6ad7f53a/",
-          "pending": true
+          "title": "linkedin.comunicazioni-sicure.it"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Phishing Simulation",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -74,26 +83,33 @@
           "MX": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ],
+          "AAAA": [
+            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
+          ],
           "A": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com.",
             "52.19.73.134",
             "54.194.90.103",
             "63.33.6.1"
           ],
-          "AAAA": [
+          "CNAME": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ],
           "NS": [
-            "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
-          ],
-          "CNAME": [
             "ae1251bec01e0425a9058bb80963ba4a-1253781406.eu-west-1.elb.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -220,9 +236,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (linkedin.comunicazioni-sicure.it/actionrequired?rid=RwQSixi)\"; flow:established,to_server; http.uri; content:\"/actionrequired?rid=RwQSixi\"; startswith; fast_pattern; http.host; content:\"linkedin.comunicazioni-sicure.it\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000206; classtype:social-engineering; sid:6000206; rev:1; metadata: signature_severity Major, created_et 2026_06_05, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-18T15:45:18.887562+00:00",
+  "updated_at": "2026-08-19T02:21:03.021099+00:00",
   "probe": {
-    "dns": "63.33.6.1",
+    "dns": "52.19.73.134",
     "whois": true,
     "status": "active"
   }
