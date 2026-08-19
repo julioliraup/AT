@@ -73,26 +73,63 @@
     "phishdestroy": {
       "domain": "fakinthefunk.net",
       "domain_defanged": "fakinthefunk[.]net",
-      "case_id": "PD-20260818-2E1286",
-      "analyzed_at": "2026-08-18T15:20:27.274Z",
+      "case_id": "PD-20260819-2E1286",
+      "analyzed_at": "2026-08-19T01:26:11.701Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/01a01575-a5c2-74eb-81ed-258991571da2/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/01a015f3-8b19-771e-8132-713c90415a5c.png",
+          "url": "https://urlscan.io/result/01a015f3-8b19-771e-8132-713c90415a5c/",
+          "title": "Fakin' The Funk? - Detect the true quality of your audio files in one batch."
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "registrar": "Mesh Digital Limited",
         "created": "2017-01-24T21:08:09Z",
         "expires": "2027-01-24T21:08:09Z",
-        "age_days": 3492,
+        "age_days": 3493,
         "nameservers": [
           "NS63.DOMAINCONTROL.COM",
           "NS64.DOMAINCONTROL.COM"
@@ -110,11 +147,11 @@
           "asn": "AS21499"
         },
         "dns": {
-          "MX": [
-            "0 fakinthefunk-net.mail.protection.outlook.com."
-          ],
           "A": [
             "92.205.175.206"
+          ],
+          "MX": [
+            "0 fakinthefunk-net.mail.protection.outlook.com."
           ],
           "NS": [
             "ns63.domaincontrol.com.",
@@ -258,7 +295,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.fakinthefunk.net/en/)\"; flow:established,to_server; http.uri; content:\"/en/\"; startswith; fast_pattern; http.host; content:\"www.fakinthefunk.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011044; classtype:social-engineering; sid:6011044; rev:1; metadata: signature_severity Major, created_et 2026_08_18;)",
-  "updated_at": "2026-08-18T15:20:24.194183+00:00",
+  "updated_at": "2026-08-19T01:26:06.820265+00:00",
   "probe": {
     "dns": "92.205.175.206",
     "whois": null,

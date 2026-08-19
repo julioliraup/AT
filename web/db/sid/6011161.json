@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "0g9ung-oqr-hlje-x32f0-99p.pages.dev",
       "domain_defanged": "0g9ung-oqr-hlje-x32f0-99p[.]pages[.]dev",
-      "case_id": "PD-20260818-4F727A",
-      "analyzed_at": "2026-08-18T15:31:03.516Z",
+      "case_id": "PD-20260819-4F727A",
+      "analyzed_at": "2026-08-19T01:38:29.113Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a0157f-5bde-7226-bf3b-bc8b4a82dee2/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a015e3-f0f0-75dc-919e-6b9d9b24e06f.png",
+          "url": "https://urlscan.io/result/01a015e3-f0f0-75dc-919e-6b9d9b24e06f/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.53",
+        "ip": "172.66.47.203",
         "ipinfo": {
-          "ip": "172.66.44.53",
+          "ip": "172.66.47.203",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "A": [
-            "172.66.44.53",
-            "172.66.47.203"
+            "172.66.47.203",
+            "172.66.44.53"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2fcb",
-            "2606:4700:310c::ac42:2c35"
+            "2606:4700:310c::ac42:2c35",
+            "2606:4700:310c::ac42:2fcb"
           ],
           "NS": [
             "karsyn.ns.cloudflare.com.",
@@ -252,7 +261,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (0g9ung-oqr-hlje-x32f0-99p.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"0g9ung-oqr-hlje-x32f0-99p.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011161; classtype:social-engineering; sid:6011161; rev:1; metadata: signature_severity Major, created_et 2026_08_18;)",
-  "updated_at": "2026-08-18T15:31:01.098825+00:00",
+  "updated_at": "2026-08-19T01:38:25.668255+00:00",
   "probe": {
     "dns": "172.66.47.203",
     "whois": null,

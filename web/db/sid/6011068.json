@@ -72,17 +72,39 @@
     "phishdestroy": {
       "domain": "365securitydevices.com",
       "domain_defanged": "365securitydevices[.]com",
-      "case_id": "PD-20260818-591CC5",
-      "analyzed_at": "2026-08-18T15:22:58.427Z",
+      "case_id": "PD-20260819-591CC5",
+      "analyzed_at": "2026-08-19T01:28:22.899Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Forcepoint ThreatSeeker": "phishing and other frauds",
+            "Google": "insurance"
+          }
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01623-1d03-7206-b964-cf9a35a6722f.png",
+          "url": "https://urlscan.io/result/01a01623-1d03-7206-b964-cf9a35a6722f/",
+          "title": "Sign in to your account"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "Cloudflare, Inc.",
         "created": "2024-04-29T09:21:02Z",
@@ -94,7 +116,15 @@
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2603:1061:14:22::1",
+        "ipinfo": {
+          "ip": "2603:1061:14:22::1",
+          "city": "Redmond",
+          "region": "Washington",
+          "country": "US",
+          "org": "AS8075 Microsoft Corporation",
+          "asn": "AS8075"
+        },
         "dns": {
           "MX": [
             "10 mail.inbox4biz.com."
@@ -114,7 +144,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Microsoft Azure",
+          "abuse": "abuse@microsoft.com",
+          "url": "https://msrc.microsoft.com/report/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS8075"
+        }
       },
       "report_services": [
         {
@@ -241,7 +278,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.365securitydevices.com/accountselectionpage/c)\"; flow:established,to_server; http.uri; content:\"/accountselectionpage/c\"; startswith; fast_pattern; http.host; content:\"www.365securitydevices.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011068; classtype:social-engineering; sid:6011068; rev:1; metadata: signature_severity Major, created_et 2026_08_18;)",
-  "updated_at": "2026-08-18T15:22:55.127140+00:00",
+  "updated_at": "2026-08-19T01:28:17.761981+00:00",
   "probe": {
     "dns": "13.107.226.70",
     "whois": null,

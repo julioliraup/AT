@@ -22,21 +22,80 @@
     "phishdestroy": {
       "domain": "avnerwinery.co.il",
       "domain_defanged": "avnerwinery[.]co[.]il",
-      "case_id": "PD-20260818-2BE742",
-      "analyzed_at": "2026-08-18T15:27:04.266Z",
+      "case_id": "PD-20260819-2BE742",
+      "analyzed_at": "2026-08-19T01:33:24.059Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 5,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "G-Data",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)"
+          }
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/01a0157b-b54c-7378-8082-1adb7ee7a508/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/01a015b5-25b1-7654-a3a8-39c3dcd9bd50.png",
+          "url": "https://urlscan.io/result/01a015b5-25b1-7654-a3a8-39c3dcd9bd50/",
+          "title": "503 Service Temporarily Unavailable"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: G-Data",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -52,15 +111,15 @@
           "asn": "AS44709"
         },
         "dns": {
-          "A": [
-            "185.106.128.67"
-          ],
           "MX": [
             "10 mail.avnerwinery.co.il."
           ],
           "NS": [
             "ns1.sitesdepot.com.",
             "ns2.sitesdepot.com."
+          ],
+          "A": [
+            "185.106.128.67"
           ]
         }
       },
@@ -200,7 +259,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.avnerwinery.co.il/modules/mod_login/weiqbrp/tuwngql/iebomrg/index.html)\"; flow:established,to_server; http.uri; content:\"/modules/mod_login/weiqbrp/tuwngql/iebomrg/index.html\"; startswith; fast_pattern; http.host; content:\"www.avnerwinery.co.il\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011115; classtype:social-engineering; sid:6011115; rev:1; metadata: signature_severity Major, created_et 2026_08_18;)",
-  "updated_at": "2026-08-18T15:26:49.827231+00:00",
+  "updated_at": "2026-08-19T01:33:08.539098+00:00",
   "probe": {
     "dns": "185.106.128.67",
     "whois": true,

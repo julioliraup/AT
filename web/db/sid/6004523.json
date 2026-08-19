@@ -55,17 +55,58 @@
     "phishdestroy": {
       "domain": "u.to",
       "domain_defanged": "u[.]to",
-      "case_id": "PD-20260817-35EA94",
-      "analyzed_at": "2026-08-17T19:59:28.585Z",
+      "case_id": "PD-20260819-35EA94",
+      "analyzed_at": "2026-08-19T00:13:09.126Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "SafeToOpen",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/01a016db-5ee6-71bd-9ce8-1c8866bf159f.png",
+          "url": "https://urlscan.io/result/01a016db-5ee6-71bd-9ce8-1c8866bf159f/",
+          "title": "u.to — URL-Verkürzungsdienst"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SafeToOpen",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -84,12 +125,12 @@
           "A": [
             "186.2.165.57"
           ],
+          "NS": [
+            "ns2.ucoz.net.",
+            "ns3.ucoz.net."
+          ],
           "MX": [
             "1 mx100.ucozmail.com."
-          ],
-          "NS": [
-            "ns3.ucoz.net.",
-            "ns2.ucoz.net."
           ]
         }
       },
@@ -225,12 +266,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (u.to/roblox-com-users-350357745-profile/oc_YIg)\"; flow:established,to_server; http.uri; content:\"/roblox-com-users-350357745-profile/oc_YIg\"; startswith; fast_pattern; http.host; content:\"u.to\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004523; classtype:social-engineering; sid:6004523; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-18T09:34:36.607906+00:00",
+  "updated_at": "2026-08-19T00:12:55.233645+00:00",
   "probe": {
     "dns": "179.43.150.242",
     "whois": null,

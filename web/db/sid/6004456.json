@@ -49,17 +49,47 @@
     "phishdestroy": {
       "domain": "cr-bind-fenix.s3.us-east-1.amazonaws.com",
       "domain_defanged": "cr-bind-fenix[.]s3[.]us-east-1[.]amazonaws[.]com",
-      "case_id": "PD-20260817-7F9AE6",
-      "analyzed_at": "2026-08-17T19:55:38.594Z",
+      "case_id": "PD-20260819-7F9AE6",
+      "analyzed_at": "2026-08-19T00:04:40.106Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "LevelBlue",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/01a00c09-7e48-706f-8823-0d1b36950106.png",
+          "url": "https://urlscan.io/result/01a00c09-7e48-706f-8823-0d1b36950106/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: LevelBlue",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -67,21 +97,24 @@
         "ip": "s3-r-w.us-east-1.amazonaws.com.",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "s3-r-w.us-east-1.amazonaws.com.",
+            "54.231.233.90",
+            "16.15.191.228",
+            "52.217.174.138",
+            "16.15.245.139",
+            "16.15.199.91",
+            "16.182.37.138",
+            "16.15.213.197",
+            "16.15.213.41"
+          ],
           "AAAA": [
             "s3-r-w.us-east-1.amazonaws.com."
           ],
-          "A": [
-            "s3-r-w.us-east-1.amazonaws.com.",
-            "52.217.237.10",
-            "52.216.246.24",
-            "16.15.253.233",
-            "16.15.253.66",
-            "16.15.183.211",
-            "16.15.245.138",
-            "52.216.59.114",
-            "16.15.253.248"
-          ],
           "MX": [
+            "s3-r-w.us-east-1.amazonaws.com."
+          ],
+          "CNAME": [
             "s3-r-w.us-east-1.amazonaws.com."
           ],
           "NS": [
@@ -90,15 +123,19 @@
             "ns-1567.awsdns-03.co.uk.",
             "ns-479.awsdns-59.com.",
             "ns-537.awsdns-03.net."
-          ],
-          "CNAME": [
-            "s3-r-w.us-east-1.amazonaws.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -221,14 +258,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cr-bind-fenix.s3.us-east-1.amazonaws.com/XAc6geBVOhc?email=redacted@abuse.ionos.com)\"; flow:established,to_server; http.uri; content:\"/XAc6geBVOhc?email=redacted@abuse.ionos.com\"; startswith; fast_pattern; http.host; content:\"cr-bind-fenix.s3.us-east-1.amazonaws.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004456; classtype:social-engineering; sid:6004456; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-18T09:31:18.898475+00:00",
+  "updated_at": "2026-08-19T00:04:35.314202+00:00",
   "probe": {
-    "dns": "54.231.226.202",
+    "dns": "16.15.199.32",
     "whois": null,
     "status": "active"
   }

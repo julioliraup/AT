@@ -49,21 +49,30 @@
     "phishdestroy": {
       "domain": "f2dc1f.icefactory.cl",
       "domain_defanged": "f2dc1f[.]icefactory[.]cl",
-      "case_id": "PD-20260818-832AF3",
-      "analyzed_at": "2026-08-18T15:30:18.532Z",
+      "case_id": "PD-20260819-832AF3",
+      "analyzed_at": "2026-08-19T01:37:03.259Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a0157e-ac21-701f-93e1-68fb2e9113b4.png",
           "url": "https://urlscan.io/result/01a0157e-ac21-701f-93e1-68fb2e9113b4/",
-          "pending": true
+          "title": "Adobe Acrobat - Secure PDF Document"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -220,7 +229,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (f2dc1f.icefactory.cl/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"f2dc1f.icefactory.cl\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011148; classtype:social-engineering; sid:6011148; rev:1; metadata: signature_severity Major, created_et 2026_08_18;)",
-  "updated_at": "2026-08-18T15:30:14.636662+00:00",
+  "updated_at": "2026-08-19T01:36:59.342699+00:00",
   "probe": {
     "dns": "186.64.119.45",
     "whois": true,

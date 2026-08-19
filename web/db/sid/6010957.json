@@ -49,29 +49,103 @@
     "phishdestroy": {
       "domain": "mrmeowcoder.github.io",
       "domain_defanged": "mrmeowcoder[.]github[.]io",
-      "case_id": "PD-20260818-7F9E9E",
-      "analyzed_at": "2026-08-18T15:13:51.353Z",
+      "case_id": "PD-20260819-7F9E9E",
+      "analyzed_at": "2026-08-19T01:17:52.413Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Fortinet",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a0156f-9bfd-7580-bfe5-e24b02b6c78b/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a015fc-0417-73dd-9673-62e408dab5a6.png",
+          "url": "https://urlscan.io/result/01a015fc-0417-73dd-9673-62e408dab5a6/",
+          "title": "Amazon"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Fortinet",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
+        "ip": "185.199.111.153",
         "ipinfo": {
-          "ip": "185.199.108.153",
-          "hostname": "cdn-185-199-108-153.github.com",
+          "ip": "185.199.111.153",
+          "hostname": "cdn-185-199-111-153.github.com",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -79,17 +153,17 @@
           "asn": "AS54113"
         },
         "dns": {
+          "A": [
+            "185.199.111.153",
+            "185.199.110.153",
+            "185.199.109.153",
+            "185.199.108.153"
+          ],
           "AAAA": [
-            "2606:50c0:8001::153",
+            "2606:50c0:8000::153",
             "2606:50c0:8003::153",
             "2606:50c0:8002::153",
-            "2606:50c0:8000::153"
-          ],
-          "A": [
-            "185.199.108.153",
-            "185.199.109.153",
-            "185.199.110.153",
-            "185.199.111.153"
+            "2606:50c0:8001::153"
           ]
         }
       },
@@ -229,9 +303,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mrmeowcoder.github.io/Amazon-Clone)\"; flow:established,to_server; http.uri; content:\"/Amazon-Clone\"; startswith; fast_pattern; http.host; content:\"mrmeowcoder.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010957; classtype:social-engineering; sid:6010957; rev:1; metadata: signature_severity Major, created_et 2026_08_18;)",
-  "updated_at": "2026-08-18T15:13:48.517099+00:00",
+  "updated_at": "2026-08-19T01:17:49.285462+00:00",
   "probe": {
-    "dns": "185.199.108.153",
+    "dns": "185.199.109.153",
     "whois": true,
     "status": "active"
   }
