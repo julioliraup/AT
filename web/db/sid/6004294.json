@@ -72,33 +72,50 @@
     "phishdestroy": {
       "domain": "official-leadgr-en.wasmer.app",
       "domain_defanged": "official-leadgr-en[.]wasmer[.]app",
-      "case_id": "PD-20260818-205EA3",
-      "analyzed_at": "2026-08-18T23:48:30.322Z",
+      "case_id": "PD-20260821-205EA3",
+      "analyzed_at": "2026-08-21T01:39:25.905Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a01746-c8f5-708c-8b0f-25ebc824535a/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Ledger"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01d79-31c0-775a-9c53-143ead8684cc.png",
+          "url": "https://urlscan.io/result/01a01d79-31c0-775a-9c53-143ead8684cc/",
+          "title": "Ledger.com/Start — Secure Your Cryptocurrency"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Ledger",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "5.161.23.223",
-        "ipinfo": null,
+        "ip": "5.78.31.66",
+        "ipinfo": {
+          "ip": "5.78.31.66",
+          "hostname": "static.66.31.78.5.clients.your-server.de",
+          "city": "Hillsboro",
+          "region": "Oregon",
+          "country": "US",
+          "org": "AS212317 Hetzner Online GmbH",
+          "asn": "AS212317"
+        },
         "dns": {
-          "AAAA": [
-            "2a01:4ff:f2:dc2e::1"
-          ],
           "A": [
-            "5.161.23.223"
+            "5.78.31.66"
+          ],
+          "AAAA": [
+            "2a01:4ff:1f2:f006::1"
           ],
           "NS": [
             "alpha.ns.wasmernet.com.",
@@ -231,12 +248,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (official-leadgr-en.wasmer.app/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"official-leadgr-en.wasmer.app\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004294; classtype:social-engineering; sid:6004294; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-19T07:37:51.104949+00:00",
+  "updated_at": "2026-08-21T01:39:17.137307+00:00",
   "probe": {
     "dns": "5.78.31.66",
     "whois": null,

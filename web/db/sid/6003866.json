@@ -22,7 +22,7 @@
       "url": "http://www.vimareo.com/wap",
       "domain": "www.vimareo.com",
       "url_count": 0,
-      "city_data": true,
+      "city_data": false,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,43 +49,61 @@
     "phishdestroy": {
       "domain": "vimareo.com",
       "domain_defanged": "vimareo[.]com",
-      "case_id": "PD-20260818-6DEE7C",
-      "analyzed_at": "2026-08-18T22:53:57.348Z",
+      "case_id": "PD-20260821-6DEE7C",
+      "analyzed_at": "2026-08-21T00:41:34.876Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {
+            "alphaMountain.ai": "Phishing (alphaMountain.ai)",
+            "BitDefender": "pets",
+            "Sophos": "phishing and fraud",
+            "Webroot": "Phishing and Other Frauds",
+            "Google": "gambling"
+          }
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a01714-d7e7-7089-a79e-878b629109c1/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Bet365"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a0173a-1c5a-7209-8a06-5d66606347db.png",
+          "url": "https://urlscan.io/result/01a0173a-1c5a-7209-8a06-5d66606347db/",
+          "title": "v66体育 · 专业体育资讯平台"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Bet365",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "OwnRegistrar, Inc.",
         "created": "2026-06-04T07:12:04Z",
         "expires": "2027-06-04T07:12:04Z",
-        "age_days": 75,
+        "age_days": 77,
         "nameservers": [
           "NS1.TAOA.COM",
           "NS2.TAOA.COM"
         ]
       },
       "infrastructure": {
-        "ip": "103.61.22.204",
-        "ipinfo": null,
-        "dns": {
-          "A": [
-            "103.61.22.204"
-          ],
-          "NS": [
-            "ns1.taoa.com.",
-            "ns2.taoa.com."
-          ]
-        }
+        "ip": "45.120.204.95",
+        "ipinfo": {
+          "ip": "45.120.204.95",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS26658 HT",
+          "asn": "AS26658"
+        },
+        "dns": null
       },
       "report_to": {
         "registrar": {
@@ -96,7 +114,14 @@
           "method": "form",
           "iana_ids": "1250"
         },
-        "hosting": null
+        "hosting": {
+          "name": "HENGTONG-IDC-LLC",
+          "abuse": "hengtongidc@outlook.com",
+          "url": "mailto:hengtongidc@outlook.com",
+          "logo": "https://i.ibb.co/v6nwGBD0/pr-ASSUNUCUYERI-TR.jpg",
+          "method": "email",
+          "asn": "AS26658"
+        }
       },
       "report_services": [
         {
@@ -219,12 +244,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.vimareo.com/wap)\"; flow:established,to_server; http.uri; content:\"/wap\"; startswith; fast_pattern; http.host; content:\"www.vimareo.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003866; classtype:social-engineering; sid:6003866; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T07:06:32.235876+00:00",
+  "updated_at": "2026-08-21T00:41:16.685263+00:00",
   "probe": {
     "dns": "103.61.22.204",
     "whois": null,

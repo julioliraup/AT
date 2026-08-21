@@ -49,21 +49,77 @@
     "phishdestroy": {
       "domain": "suemaisnovoupgradeaumento.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "suemaisnovoupgradeaumento[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260818-2157C5",
-      "analyzed_at": "2026-08-18T23:26:10.714Z",
+      "case_id": "PD-20260821-2157C5",
+      "analyzed_at": "2026-08-21T01:12:46.772Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 4,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/01a01732-581a-7176-ba22-106d74c4c3f3/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/01a01131-e9b2-7298-a03e-b486268ea25c.png",
+          "url": "https://urlscan.io/result/01a01131-e9b2-7298-a03e-b486268ea25c/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -79,17 +135,17 @@
           "asn": "AS40401"
         },
         "dns": {
-          "AAAA": [
-            "2605:72c0:6fc:b3::b005:1",
-            "2605:72c0:6fd:b3::b005:1",
-            "2605:72c0:6fe:b3::b005:1",
-            "2605:72c0:6ff:b3::b005:1"
-          ],
           "A": [
             "149.137.136.9",
             "149.137.137.254",
             "149.137.140.9",
             "149.137.141.9"
+          ],
+          "AAAA": [
+            "2605:72c0:6fc:b3::b005:1",
+            "2605:72c0:6fd:b3::b005:1",
+            "2605:72c0:6fe:b3::b005:1",
+            "2605:72c0:6ff:b3::b005:1"
           ]
         }
       },
@@ -225,12 +281,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (suemaisnovoupgradeaumento.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"suemaisnovoupgradeaumento.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004077; classtype:social-engineering; sid:6004077; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T07:22:48.977937+00:00",
+  "updated_at": "2026-08-21T01:12:42.321287+00:00",
   "probe": {
     "dns": "149.137.140.9",
     "whois": null,

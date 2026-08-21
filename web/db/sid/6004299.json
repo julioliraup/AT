@@ -73,35 +73,51 @@
     "phishdestroy": {
       "domain": "sp4ct-trenax-biz8-morix-faven.pages.dev",
       "domain_defanged": "sp4ct-trenax-biz8-morix-faven[.]pages[.]dev",
-      "case_id": "PD-20260818-33DD50",
-      "analyzed_at": "2026-08-18T23:48:46.353Z",
+      "case_id": "PD-20260821-33DD50",
+      "analyzed_at": "2026-08-21T01:40:15.235Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a01747-0792-72ce-9401-062828c15469/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01d4c-6c10-703b-8379-6d59b54e437b.png",
+          "url": "https://urlscan.io/result/01a01d4c-6c10-703b-8379-6d59b54e437b/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.179",
-        "ipinfo": null,
+        "ip": "172.66.47.77",
+        "ipinfo": {
+          "ip": "172.66.47.77",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f4d",
-            "2606:4700:310c::ac42:2cb3"
+            "2606:4700:310c::ac42:2cb3",
+            "2606:4700:310c::ac42:2f4d"
           ],
           "A": [
-            "172.66.44.179",
-            "172.66.47.77"
+            "172.66.47.77",
+            "172.66.44.179"
           ],
           "NS": [
             "luciana.ns.cloudflare.com.",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp4ct-trenax-biz8-morix-faven.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp4ct-trenax-biz8-morix-faven.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004299; classtype:social-engineering; sid:6004299; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-19T07:38:04.213487+00:00",
+  "updated_at": "2026-08-21T01:39:55.021912+00:00",
   "probe": {
     "dns": "172.66.47.77",
     "whois": null,

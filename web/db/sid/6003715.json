@@ -49,45 +49,106 @@
     "phishdestroy": {
       "domain": "aumento86.s3.us-east-005.backblazeb2.com",
       "domain_defanged": "aumento86[.]s3[.]us-east-005[.]backblazeb2[.]com",
-      "case_id": "PD-20260818-BB907F",
-      "analyzed_at": "2026-08-18T22:29:46.352Z",
+      "case_id": "PD-20260821-BB907F",
+      "analyzed_at": "2026-08-21T00:16:17.062Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 3,
+          "suspicious": 1,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Webroot",
+              "category": "malicious",
+              "result": "malicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/01a016fe-b3ef-7684-898c-72d04719c330/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/01a016fe-b3ef-7684-898c-72d04719c330.png",
+          "url": "https://urlscan.io/result/01a016fe-b3ef-7684-898c-72d04719c330/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Webroot",
+          "type": "malicious",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "149.137.136.9",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "149.137.136.9",
+          "hostname": "s3.us-east-005.backblazeb2.com",
+          "city": "Leesburg",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS40401 Backblaze Inc",
+          "asn": "AS40401"
+        },
         "dns": {
-          "A": [
-            "149.137.136.9",
-            "149.137.137.254",
-            "149.137.140.9",
-            "149.137.141.9"
-          ],
           "AAAA": [
             "2605:72c0:6fc:b3::b005:1",
             "2605:72c0:6fd:b3::b005:1",
             "2605:72c0:6fe:b3::b005:1",
             "2605:72c0:6ff:b3::b005:1"
+          ],
+          "A": [
+            "149.137.136.9",
+            "149.137.137.254",
+            "149.137.140.9",
+            "149.137.141.9"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Backblaze",
+          "abuse": "abuse@backblaze.com",
+          "url": "mailto:abuse@backblaze.com",
+          "logo": "https://i.ibb.co/PvjyjPDm/pr-Backblaze.png",
+          "method": "email",
+          "asn": "AS40401"
+        }
       },
       "report_services": [
         {
@@ -210,14 +271,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (aumento86.s3.us-east-005.backblazeb2.com/aumento.html)\"; flow:established,to_server; http.uri; content:\"/aumento.html\"; startswith; fast_pattern; http.host; content:\"aumento86.s3.us-east-005.backblazeb2.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003715; classtype:social-engineering; sid:6003715; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T06:58:08.879916+00:00",
+  "updated_at": "2026-08-21T00:16:13.363098+00:00",
   "probe": {
-    "dns": "149.137.140.9",
+    "dns": "149.137.141.9",
     "whois": null,
     "status": "active"
   }

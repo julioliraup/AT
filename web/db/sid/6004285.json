@@ -73,35 +73,51 @@
     "phishdestroy": {
       "domain": "sp5ct-foril-biz8-kurem-savon.pages.dev",
       "domain_defanged": "sp5ct-foril-biz8-kurem-savon[.]pages[.]dev",
-      "case_id": "PD-20260818-507165",
-      "analyzed_at": "2026-08-18T23:47:50.534Z",
+      "case_id": "PD-20260821-507165",
+      "analyzed_at": "2026-08-21T01:38:25.013Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a01746-2d8b-7609-a5b3-be9ee89ac5ec/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01d53-ec93-7794-876e-106f4a1a67b4.png",
+          "url": "https://urlscan.io/result/01a01d53-ec93-7794-876e-106f4a1a67b4/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.44.144",
-        "ipinfo": null,
+        "ip": "172.66.47.112",
+        "ipinfo": {
+          "ip": "172.66.47.112",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "A": [
-            "172.66.44.144",
-            "172.66.47.112"
+            "172.66.47.112",
+            "172.66.44.144"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2f70",
-            "2606:4700:310c::ac42:2c90"
+            "2606:4700:310c::ac42:2c90",
+            "2606:4700:310c::ac42:2f70"
           ],
           "NS": [
             "aria.ns.cloudflare.com.",
@@ -111,7 +127,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,12 +257,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp5ct-foril-biz8-kurem-savon.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp5ct-foril-biz8-kurem-savon.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004285; classtype:social-engineering; sid:6004285; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-19T07:36:54.787113+00:00",
+  "updated_at": "2026-08-21T01:38:15.493622+00:00",
   "probe": {
     "dns": "172.66.47.112",
     "whois": null,

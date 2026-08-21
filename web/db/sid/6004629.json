@@ -210,21 +210,30 @@
     "phishdestroy": {
       "domain": "kucoinlogginn.blogspot.com",
       "domain_defanged": "kucoinlogginn[.]blogspot[.]com",
-      "case_id": "PD-20260819-36A23E",
-      "analyzed_at": "2026-08-19T08:00:15.758Z",
+      "case_id": "PD-20260820-36A23E",
+      "analyzed_at": "2026-08-20T02:27:47.145Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Kucoin"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01908-ff96-72c4-9874-0d048d2ca29d.png",
           "url": "https://urlscan.io/result/01a01908-ff96-72c4-9874-0d048d2ca29d/",
-          "pending": true
+          "title": "Kucoin Login | Secure to Kucoin Login"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Kucoin",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -232,16 +241,16 @@
         "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
+          "A": [
             "blogspot.l.googleusercontent.com.",
-            "2800:3f0:4001:836::2001"
+            "192.178.50.65"
           ],
           "MX": [
             "blogspot.l.googleusercontent.com."
           ],
-          "A": [
+          "AAAA": [
             "blogspot.l.googleusercontent.com.",
-            "142.251.134.161"
+            "2607:f8b0:4008:803::2001"
           ],
           "CNAME": [
             "blogspot.l.googleusercontent.com."
@@ -253,7 +262,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -381,7 +397,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kucoinlogginn.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kucoinlogginn.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004629; classtype:social-engineering; sid:6004629; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T08:00:15.783083+00:00",
+  "updated_at": "2026-08-21T02:21:59.930296+00:00",
   "probe": {
     "dns": "142.251.150.119",
     "whois": null,

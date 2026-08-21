@@ -73,31 +73,51 @@
     "phishdestroy": {
       "domain": "en-ledgr-wllt.pages.dev",
       "domain_defanged": "en-ledgr-wllt[.]pages[.]dev",
-      "case_id": "PD-20260818-11125A",
-      "analyzed_at": "2026-08-18T23:42:04.112Z",
+      "case_id": "PD-20260821-11125A",
+      "analyzed_at": "2026-08-21T01:31:16.122Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 0,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [],
+          "categories": {}
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a01740-e457-75df-bbec-e02865c53c11/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01f76-f886-7368-8247-d54ddd6f271e.png",
+          "url": "https://urlscan.io/result/01a01f76-f886-7368-8247-d54ddd6f271e/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "172.66.47.105",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.105",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2f69",
-            "2606:4700:310c::ac42:2c97"
+            "2606:4700:310c::ac42:2c97",
+            "2606:4700:310c::ac42:2f69"
           ],
           "A": [
             "172.66.47.105",
@@ -111,7 +131,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,12 +261,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (en-ledgr-wllt.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"en-ledgr-wllt.pages.dev\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004220; classtype:social-engineering; sid:6004220; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-19T07:31:51.550593+00:00",
+  "updated_at": "2026-08-21T01:31:12.759031+00:00",
   "probe": {
     "dns": "172.66.47.105",
     "whois": null,

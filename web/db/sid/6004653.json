@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "learn-start--trezur.gitbook.io",
       "domain_defanged": "learn-start--trezur[.]gitbook[.]io",
-      "case_id": "PD-20260819-14CC88",
-      "analyzed_at": "2026-08-19T08:02:09.063Z",
+      "case_id": "PD-20260821-14CC88",
+      "analyzed_at": "2026-08-21T02:24:39.562Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a0190a-bb29-724d-9aaa-ab993b846745/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01d01-1f67-756a-a2f9-4e968cb12206.png",
+          "url": "https://urlscan.io/result/01a01d01-1f67-756a-a2f9-4e968cb12206/",
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -248,7 +257,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (learn-start--trezur.gitbook.io/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"learn-start--trezur.gitbook.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004653; classtype:social-engineering; sid:6004653; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T08:02:04.837104+00:00",
+  "updated_at": "2026-08-21T02:24:35.038737+00:00",
   "probe": {
     "dns": "172.64.147.209",
     "whois": true,

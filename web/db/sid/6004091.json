@@ -49,26 +49,93 @@
     "phishdestroy": {
       "domain": "sample-painting.com",
       "domain_defanged": "sample-painting[.]com",
-      "case_id": "PD-20260818-EE3769",
-      "analyzed_at": "2026-08-18T23:27:51.901Z",
+      "case_id": "PD-20260821-EE3769",
+      "analyzed_at": "2026-08-21T01:14:47.483Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Cluster25",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/01a01733-d666-7110-af4d-ec4335c69180.png",
           "url": "https://urlscan.io/result/01a01733-d666-7110-af4d-ec4335c69180/",
-          "pending": true
+          "title": "503 - SERVICE UNAVAILABLE"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Cluster25",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "eNom, LLC",
         "created": "2019-09-11T20:31:25Z",
         "expires": "2027-09-11T20:31:25Z",
-        "age_days": 2533,
+        "age_days": 2535,
         "nameservers": [
           "NS307.WEBSITEWELCOME.COM",
           "NS308.WEBSITEWELCOME.COM"
@@ -76,7 +143,15 @@
       },
       "infrastructure": {
         "ip": "192.185.103.89",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "192.185.103.89",
+          "hostname": "192-185-103-89.unifiedlayer.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS31898 Oracle Corporation",
+          "asn": "AS31898"
+        },
         "dns": {
           "MX": [
             "0 mail.sample-painting.com."
@@ -85,8 +160,8 @@
             "192.185.103.89"
           ],
           "NS": [
-            "ns308.websitewelcome.com.",
-            "ns307.websitewelcome.com."
+            "ns307.websitewelcome.com.",
+            "ns308.websitewelcome.com."
           ]
         }
       },
@@ -99,7 +174,14 @@
           "method": "form",
           "iana_ids": "48"
         },
-        "hosting": null
+        "hosting": {
+          "name": "ORACLE-BMC-31898, US",
+          "abuse": "abuse@oracleemaildelivery.com",
+          "url": "mailto:abuse@oracleemaildelivery.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS31898"
+        }
       },
       "report_services": [
         {
@@ -222,12 +304,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sample-painting.com/two.html)\"; flow:established,to_server; http.uri; content:\"/two.html\"; startswith; fast_pattern; http.host; content:\"sample-painting.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004091; classtype:social-engineering; sid:6004091; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T07:24:02.743417+00:00",
+  "updated_at": "2026-08-21T01:14:38.456619+00:00",
   "probe": {
     "dns": "192.185.103.89",
     "whois": true,

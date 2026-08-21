@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "sicpac.com",
       "domain_defanged": "sicpac[.]com",
-      "case_id": "PD-20260818-7712CB",
-      "analyzed_at": "2026-08-18T23:09:45.072Z",
+      "case_id": "PD-20260821-7712CB",
+      "analyzed_at": "2026-08-21T00:53:48.397Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Document Lure"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019edffa-feea-75e3-a361-ad12bb80e874.png",
+          "url": "https://urlscan.io/result/019edffa-feea-75e3-a361-ad12bb80e874/",
+          "title": "Authentication"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Document Lure",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "created": "2026-06-19T01:59:15Z",
         "expires": "2027-06-19T01:59:15Z",
-        "age_days": 60,
+        "age_days": 62,
         "nameservers": [
           "NS1.SUSPENDED-DOMAIN.COM",
           "NS2.SUSPENDED-DOMAIN.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "91.92.41.55",
+        "ipinfo": {
+          "ip": "91.92.41.55",
+          "city": "Amsterdam",
+          "region": "North Holland",
+          "country": "NL",
+          "org": "AS211443 SINO WORLDWIDE TRADING LIMITED",
+          "asn": "AS211443"
+        },
         "dns": null
       },
       "report_to": {
@@ -206,15 +227,16 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sicpac.com/sales)\"; flow:established,to_server; http.uri; content:\"/sales\"; startswith; fast_pattern; http.host; content:\"sicpac.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003963; classtype:social-engineering; sid:6003963; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T07:14:55.230031+00:00",
+  "updated_at": "2026-08-21T00:53:39.518153+00:00",
   "probe": {
-    "dns": null,
-    "whois": true,
-    "status": "active"
-  }
+    "dns": false,
+    "whois": false,
+    "status": "stale",
+    "note": "dns-and-whois-unresponsive"
+  },
+  "rule_status": "stale"
 }

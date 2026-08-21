@@ -49,30 +49,64 @@
     "phishdestroy": {
       "domain": "spacepotato08.neocities.org",
       "domain_defanged": "spacepotato08[.]neocities[.]org",
-      "case_id": "PD-20260818-41B146",
-      "analyzed_at": "2026-08-18T22:36:40.612Z",
+      "case_id": "PD-20260821-41B146",
+      "analyzed_at": "2026-08-21T00:23:13.764Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 2,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/01a01705-0611-7719-966d-d5561996e0e9/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/01a0206a-2cd4-701f-9600-81f241b7d44d.png",
+          "url": "https://urlscan.io/result/01a0206a-2cd4-701f-9600-81f241b7d44d/",
+          "title": "Lawn of Guests"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "23.143.32.12",
-        "ipinfo": null,
+        "ip": "23.143.32.10",
+        "ipinfo": {
+          "ip": "23.143.32.10",
+          "city": "Portland",
+          "region": "Oregon",
+          "country": "US",
+          "org": "AS395409 Neocities",
+          "asn": "AS395409"
+        },
         "dns": {
           "A": [
-            "23.143.32.12"
+            "23.143.32.10"
           ],
           "AAAA": [
             "2620:2:6000::a:1"
@@ -81,7 +115,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "NEOCITIES",
+          "abuse": "",
+          "url": "",
+          "logo": "https://i.ibb.co/B5SWWpzy/pr-NEOCITIES.png",
+          "method": "email",
+          "asn": "AS395409"
+        }
       },
       "report_services": [
         {
@@ -204,14 +245,13 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (spacepotato08.neocities.org/iclanda/)\"; flow:established,to_server; http.uri; content:\"/iclanda/\"; startswith; fast_pattern; http.host; content:\"spacepotato08.neocities.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003750; classtype:social-engineering; sid:6003750; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T07:00:08.545908+00:00",
+  "updated_at": "2026-08-21T00:23:01.448577+00:00",
   "probe": {
-    "dns": "23.143.32.14",
+    "dns": "23.143.32.10",
     "whois": true,
     "status": "active"
   }

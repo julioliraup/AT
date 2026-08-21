@@ -49,34 +49,51 @@
     "phishdestroy": {
       "domain": "link.infini.fr",
       "domain_defanged": "link[.]infini[.]fr",
-      "case_id": "PD-20260818-33995A",
-      "analyzed_at": "2026-08-18T23:53:47.023Z",
+      "case_id": "PD-20260821-33995A",
+      "analyzed_at": "2026-08-21T01:47:44.525Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a0174b-9e0e-7582-b946-6cbc206a6806/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Microsoft"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a01cbf-0fa1-75da-803a-56b4233ffb9c.png",
+          "url": "https://urlscan.io/result/01a01cbf-0fa1-75da-803a-56b4233ffb9c/",
+          "title": "Iniciar sesión en tu cuenta Microsoft"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Microsoft",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "185.245.249.202",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "185.245.249.202",
+          "hostname": "www.infini.fr",
+          "city": "Guipavas",
+          "region": "Brittany",
+          "country": "FR",
+          "org": "AS200322 XANKOM SARL",
+          "asn": "AS200322"
+        },
         "dns": {
           "A": [
             "185.245.249.202"
           ],
           "NS": [
-            "ns1.infini.fr.",
-            "ns2.infini.fr."
+            "ns2.infini.fr.",
+            "ns1.infini.fr."
           ]
         }
       },
@@ -205,12 +222,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (link.infini.fr/1rz0D9X5)\"; flow:established,to_server; http.uri; content:\"/1rz0D9X5\"; startswith; fast_pattern; http.host; content:\"link.infini.fr\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004360; classtype:social-engineering; sid:6004360; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-19T07:40:56.386305+00:00",
+  "updated_at": "2026-08-21T01:47:32.870249+00:00",
   "probe": {
     "dns": "185.245.249.202",
     "whois": true,

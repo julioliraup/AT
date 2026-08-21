@@ -55,26 +55,113 @@
     "phishdestroy": {
       "domain": "puratonpothik.com",
       "domain_defanged": "puratonpothik[.]com",
-      "case_id": "PD-20260818-2F162F",
-      "analyzed_at": "2026-08-18T22:45:01.476Z",
+      "case_id": "PD-20260821-2F162F",
+      "analyzed_at": "2026-08-21T00:33:12.134Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 8,
+          "suspicious": 0,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CRDF",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "MalwareURL",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "SOCRadar",
+              "category": "malicious",
+              "result": "phishing"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
+          "screenshot": "https://urlscan.io/screenshots/01a0170c-aaaa-755f-9b1e-2eaf8de7832a.png",
           "url": "https://urlscan.io/result/01a0170c-aaaa-755f-9b1e-2eaf8de7832a/",
-          "pending": true
+          "title": "puratonpothik.com"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CRDF",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: MalwareURL",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SOCRadar",
+          "type": "phishing",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "NameSilo, LLC",
         "created": "2026-02-25T09:30:41Z",
         "expires": "2027-02-25T09:30:41Z",
-        "age_days": 174,
+        "age_days": 176,
         "nameservers": [
           "JOSH.NS.CLOUDFLARE.COM",
           "MELINDA.NS.CLOUDFLARE.COM"
@@ -82,22 +169,29 @@
       },
       "infrastructure": {
         "ip": "172.67.130.93",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.130.93",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3036::ac43:825d",
+            "2606:4700:3033::6815:824"
+          ],
           "MX": [
             "0 _dc-mx.217d22942c0e.puratonpothik.com."
-          ],
-          "A": [
-            "172.67.130.93",
-            "104.21.8.36"
           ],
           "NS": [
             "josh.ns.cloudflare.com.",
             "melinda.ns.cloudflare.com."
           ],
-          "AAAA": [
-            "2606:4700:3036::ac43:825d",
-            "2606:4700:3033::6815:824"
+          "A": [
+            "172.67.130.93",
+            "104.21.8.36"
           ]
         }
       },
@@ -110,7 +204,14 @@
           "method": "form",
           "iana_ids": "638"
         },
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -233,12 +334,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.puratonpothik.com/policy/)\"; flow:established,to_server; http.uri; content:\"/policy/\"; startswith; fast_pattern; http.host; content:\"www.puratonpothik.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003803; classtype:social-engineering; sid:6003803; rev:1; metadata: signature_severity Major, created_et 2026_06_17, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T07:03:10.110600+00:00",
+  "updated_at": "2026-08-21T00:33:00.134743+00:00",
   "probe": {
     "dns": "161.248.189.34",
     "whois": null,

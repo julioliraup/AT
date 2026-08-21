@@ -49,27 +49,152 @@
     "phishdestroy": {
       "domain": "sin1.contabostorage.com",
       "domain_defanged": "sin1[.]contabostorage[.]com",
-      "case_id": "PD-20260818-E8EC83",
-      "analyzed_at": "2026-08-18T23:42:48.355Z",
+      "case_id": "PD-20260821-E8EC83",
+      "analyzed_at": "2026-08-21T01:32:16.349Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "malicious": 6,
+          "suspicious": 5,
+          "total": 91,
+          "detections": [
+            {
+              "engine": "Criminal IP",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "alphaMountain.ai",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "Chong Lua Dao",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "CyRadar",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "ESET",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Emsisoft",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "Forcepoint ThreatSeeker",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Gridinsoft",
+              "category": "suspicious",
+              "result": "suspicious"
+            },
+            {
+              "engine": "Netcraft",
+              "category": "malicious",
+              "result": "malicious"
+            },
+            {
+              "engine": "SafeToOpen",
+              "category": "malicious",
+              "result": "phishing"
+            },
+            {
+              "engine": "URLQuery",
+              "category": "suspicious",
+              "result": "suspicious"
+            }
+          ],
+          "categories": {}
         },
         "urlscan": {
           "malicious": false,
           "score": 0,
           "brands": [],
-          "url": "https://urlscan.io/result/01a01741-8f09-714b-9a12-c954056f9947/",
-          "pending": true
+          "screenshot": "https://urlscan.io/screenshots/01a01ef9-7192-7210-b00f-2ed29361d36a.png",
+          "url": "https://urlscan.io/result/01a01ef9-7192-7210-b00f-2ed29361d36a/",
+          "title": "Undangan Acara The Wedding of Reza & Isma"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "VT: Criminal IP",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: alphaMountain.ai",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Chong Lua Dao",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: CyRadar",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: ESET",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Emsisoft",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: Forcepoint ThreatSeeker",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Gridinsoft",
+          "type": "suspicious",
+          "severity": "medium"
+        },
+        {
+          "source": "VT: Netcraft",
+          "type": "malicious",
+          "severity": "high"
+        },
+        {
+          "source": "VT: SafeToOpen",
+          "type": "phishing",
+          "severity": "high"
+        },
+        {
+          "source": "VT: URLQuery",
+          "type": "suspicious",
+          "severity": "medium"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
         "ip": "103.164.55.84",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "103.164.55.84",
+          "hostname": "sin1.contabostorage.com",
+          "city": "Singapore",
+          "region": "Singapore",
+          "country": "SG",
+          "org": "AS141995 Contabo Asia Private Limited",
+          "asn": "AS141995"
+        },
         "dns": {
           "A": [
             "103.164.55.84",
@@ -79,7 +204,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "CAPL-AS-AP Contabo Asia Private Limited, SG",
+          "abuse": "abuse@contabo.de",
+          "url": "mailto:abuse@contabo.de",
+          "logo": "https://i.ibb.co/tTRFFqNx/pr-CAPL-AS-AP-Contabo-Asia-Private-Limited-SG.png",
+          "method": "email",
+          "asn": "AS141995"
+        }
       },
       "report_services": [
         {
@@ -202,12 +334,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sin1.contabostorage.com/d96fc17aeb3741e493b2e5b3a72a669f:appsuiteuser-domainappio.oxmailfolderdefault0server0update/netvvorkservice-netsolappsuitep0rt.html)\"; flow:established,to_server; http.uri; content:\"/d96fc17aeb3741e493b2e5b3a72a669f:appsuiteuser-domainappio.oxmailfolderdefault0server0update/netvvorkservice-netsolappsuitep0rt.html\"; startswith; fast_pattern; http.host; content:\"sin1.contabostorage.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004227; classtype:social-engineering; sid:6004227; rev:1; metadata: signature_severity Major, created_et 2026_07_31;)",
-  "updated_at": "2026-08-19T07:32:19.188997+00:00",
+  "updated_at": "2026-08-21T01:32:06.658448+00:00",
   "probe": {
     "dns": "103.164.55.84",
     "whois": null,

@@ -49,29 +49,50 @@
     "phishdestroy": {
       "domain": "morg-234.com",
       "domain_defanged": "morg-234[.]com",
-      "case_id": "PD-20260818-3790C2",
-      "analyzed_at": "2026-08-18T23:56:37.331Z",
+      "case_id": "PD-20260821-3790C2",
+      "analyzed_at": "2026-08-21T01:51:19.594Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Adobe"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ed2b9-ca1b-708a-b55f-1f3b40778eef.png",
+          "url": "https://urlscan.io/result/019ed2b9-ca1b-708a-b55f-1f3b40778eef/",
+          "title": "Adobe Acrobat Reader - Secure Document Access"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Adobe",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "registrar": "HOSTINGER operations, UAB",
         "created": "2026-06-13T14:20:05Z",
         "expires": "2027-06-13T14:20:05Z",
-        "age_days": 66,
+        "age_days": 68,
         "nameservers": [
           "BYTE.DNS-PARKING.COM",
           "PIXEL.DNS-PARKING.COM"
         ]
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "185.212.71.111",
+        "ipinfo": {
+          "ip": "185.212.71.111",
+          "city": "Phoenix",
+          "region": "Arizona",
+          "country": "US",
+          "org": "AS47583 Hostinger International Limited",
+          "asn": "AS47583"
+        },
         "dns": null
       },
       "report_to": {
@@ -83,7 +104,14 @@
           "method": "form",
           "iana_ids": ""
         },
-        "hosting": null
+        "hosting": {
+          "name": "Hostinger",
+          "abuse": "abuse@hostinger.com",
+          "url": "https://www.hostinger.com/abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS47583"
+        }
       },
       "report_services": [
         {
@@ -206,12 +234,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (morg-234.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"morg-234.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6004391; classtype:social-engineering; sid:6004391; rev:1; metadata: signature_severity Major, created_et 2026_06_16, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T07:42:36.365190+00:00",
+  "updated_at": "2026-08-21T01:51:15.282966+00:00",
   "probe": {
     "dns": null,
     "whois": true,

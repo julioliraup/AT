@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "yzab1c.shop",
       "domain_defanged": "yzab1c[.]shop",
-      "case_id": "PD-20260819-77072C",
-      "analyzed_at": "2026-08-19T08:01:41.067Z",
+      "case_id": "PD-20260821-77072C",
+      "analyzed_at": "2026-08-21T02:23:50.603Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Amazon"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019ecd1a-8400-734c-a7ed-5baea18e038b.png",
+          "url": "https://urlscan.io/result/019ecd1a-8400-734c-a7ed-5baea18e038b/",
+          "title": "Amazon.com: ANDERY Car Phone Holder for Magsafe [78+LBS Strongest Suction & 2400gf Strongest Magnetic] 360° Adjustable Car Phone Mount, Phone Holders for Your Car for iPhone 17-12 Pro Max Air Plus (Ca"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Amazon",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "47.251.185.114",
+        "ipinfo": {
+          "ip": "47.251.185.114",
+          "city": "Los Angeles",
+          "region": "California",
+          "country": "US",
+          "org": "AS45102 Alibaba (US) Technology Co., Ltd.",
+          "asn": "AS45102"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ALIBABA-CN-NET Alibaba US Technology Co., Ltd., CN",
+          "abuse": "abuse@alibaba-inc.com",
+          "url": "mailto:abuse@alibaba-inc.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS45102"
+        }
       },
       "report_services": [
         {
@@ -196,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (yzab1c.shop/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"yzab1c.shop\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6004647; classtype:social-engineering; sid:6004647; rev:1; metadata: signature_severity Major, created_et 2026_06_14, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T08:01:29.442819+00:00",
+  "updated_at": "2026-08-21T02:23:43.234455+00:00",
   "probe": {
     "dns": null,
     "whois": true,

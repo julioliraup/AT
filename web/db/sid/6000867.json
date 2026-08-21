@@ -18,59 +18,62 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://49.51.43.12/v3/signin/identifier?amp%3Bfollowup=https%3A%2F%2Faccounts.google.com%2F&amp%3Bifkv=ASKXGp36_CB8HzfrpuLLHTVjXxiUGDwO6Tj8yz4QrsaGyc3I4H4G7NxTTQJtpw0j07g9O5T5Tx4uyQ&amp%3Bpassive=1209600&continue=https%3A%2F%2Faccounts.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsNG2Re46ce8ruKNRRtvpULIjdaiWezib0CeC7yEBLZT5cso6Zo94XYzN5P2bHtgelX7mR19w&dsh=S1981722052%3A1785391344441517",
+      "domain": "49.51.43.12",
+      "url_count": 0,
+      "city_data": true,
+      "deep_analysis": false,
+      "has_file_analysis": false,
+      "tlp": null,
+      "ip": null,
+      "http_code": null,
+      "http_response": null,
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": null,
+      "filemagic": null,
+      "sha256": null,
+      "md5": null,
+      "cert": null,
+      "safebrowsing": [],
+      "first_seen": null,
+      "first_seen_secs": null
+    },
     "phishdestroy": {
       "domain": "49.51.43.12",
       "domain_defanged": "49[.]51[.]43[.]12",
-      "case_id": "PD-20260819-3A3DA7",
-      "analyzed_at": "2026-08-19T02:19:19.065Z",
+      "case_id": "PD-20260820-3A3DA7",
+      "analyzed_at": "2026-08-20T16:37:16.755Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Google"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/01a0178c-0f6f-728f-9e7c-eab4bdbf017c.png",
-          "url": "https://urlscan.io/result/01a0178c-0f6f-728f-9e7c-eab4bdbf017c/",
-          "title": "Kirjaudu sisään – Google-tilit"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a02008-b519-7626-80fd-9e27c99d9fb0/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Google",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "49.51.43.12",
-        "ipinfo": {
-          "ip": "49.51.43.12",
-          "city": "Santa Clara",
-          "region": "California",
-          "country": "US",
-          "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
-          "asn": "AS132203"
-        },
+        "ipinfo": null,
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "TENCENT-NET-AP-CN Tencent Building, Kejizhongyi Avenue, CN",
-          "abuse": "abuse@tencent.com",
-          "url": "mailto:abuse@tencent.com",
-          "logo": "https://i.ibb.co/CKq5JzLR/pr-TENCENT-NET-AP-Shenzhen-Tencent-Computer-Systems-Company-Limited-CN.png",
-          "method": "email",
-          "asn": "AS132203"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -198,7 +201,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (49.51.43.12/v3/signin/identifier?amp%3Bfollowup=https%3A%2F%2Faccounts.google.com%2F&amp%3Bifkv=ASKXGp36_CB8HzfrpuLLHTVjXxiUGDwO6Tj8yz4QrsaGyc3I4H4G7NxTTQJtpw0j07g9O5T5Tx4uyQ&amp%3Bpassive=1209600&continue=https%3A%2F%2Faccounts.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsNG2Re46ce8ruKNRRtvpULIjdaiWezib0CeC7yEBLZT5cso6Zo94XYzN5P2bHtgelX7mR19w&dsh=S1981722052%3A1785391344441517)\"; flow:established,to_server; http.uri; content:\"/v3/signin/identifier?amp%3Bfollowup=https%3A%2F%2Faccounts.google.com%2F&amp%3Bifkv=ASKXGp36_CB8HzfrpuLLHTVjXxiUGDwO6Tj8yz4QrsaGyc3I4H4G7NxTTQJtpw0j07g9O5T5Tx4uyQ&amp%3Bpassive=1209600&continue=https%3A%2F%2Faccounts.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=Ac50bxsNG2Re46ce8ruKNRRtvpULIjdaiWezib0CeC7yEBLZT5cso6Zo94XYzN5P2bHtgelX7mR19w&dsh=S1981722052%3A1785391344441517\"; startswith; fast_pattern; http.host; content:\"49.51.43.12\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6000867; classtype:social-engineering; sid:6000867; rev:1; metadata: signature_severity Major, created_et 2026_07_30;)",
-  "updated_at": "2026-08-19T03:26:59.877786+00:00",
+  "updated_at": "2026-08-20T18:07:06.817793+00:00",
   "probe": {
     "dns": "49.51.43.12",
     "whois": true,

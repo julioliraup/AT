@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://www.bozlmex.com/",
       "domain": "www.bozlmex.com",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.44.46",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2de1eb79842b18c-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,56 +43,65 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "fda593b780ce79c245b5bec83dc3713e0f38c50051551775d29c8a2f3d43b283",
+      "md5": "fc145390f661eff0c9b401957d9e6a7f",
+      "cert": {
+        "subject_cn": "bozlmex.com",
+        "subject_alt_names": [
+          "bozlmex.com",
+          "*.bozlmex.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-05T20:03:02+00:00",
+        "not_valid_after": "2026-11-03T21:02:42+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "86327799967046792781214922781627819990",
+        "fingerprint_sha1": "04 F0 32 55 89 78 84 22 F8 5A D7 83 4D A7 A6 FD FE 93 A5 92",
+        "fingerprint_sha256": "C8 6E 83 F7 25 76 16 7F 0A F1 18 C1 84 0D 9C 5C 8C AF CB 34 22 25 9A 6A 6B E1 46 D5 A6 36 E6 1B"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-20T02:38:09",
+      "first_seen_secs": 1787193489.0
     },
     "phishdestroy": {
       "domain": "bozlmex.com",
       "domain_defanged": "bozlmex[.]com",
-      "case_id": "PD-20260819-5FED90",
-      "analyzed_at": "2026-08-19T01:49:49.521Z",
+      "case_id": "PD-20260821-5FED90",
+      "analyzed_at": "2026-08-21T12:20:39.749Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Generic Cloudflare"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/01a015d3-0069-708c-a59c-74a123a77966.png",
-          "url": "https://urlscan.io/result/01a015d3-0069-708c-a59c-74a123a77966/",
-          "title": "Suspected Phishing | Cloudflare"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a02444-203b-736f-af40-649a8de5bd7e/",
+          "pending": true
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Generic Cloudflare",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "registrar": "Cloudflare, Inc.",
         "created": "2026-06-07T18:22:07Z",
         "expires": "2027-06-07T18:22:07Z",
-        "age_days": 72,
+        "age_days": 74,
         "nameservers": [
           "DARA.NS.CLOUDFLARE.COM",
           "LEX.NS.CLOUDFLARE.COM"
         ]
       },
       "infrastructure": {
-        "ip": "104.21.44.46",
+        "ip": "172.67.194.211",
         "ipinfo": {
-          "ip": "104.21.44.46",
+          "ip": "172.67.194.211",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -94,17 +109,17 @@
           "asn": "AS13335"
         },
         "dns": {
-          "AAAA": [
-            "2606:4700:3037::6815:2c2e",
-            "2606:4700:3037::ac43:c2d3"
-          ],
           "A": [
-            "104.21.44.46",
-            "172.67.194.211"
+            "172.67.194.211",
+            "104.21.44.46"
           ],
           "NS": [
             "dara.ns.cloudflare.com.",
             "lex.ns.cloudflare.com."
+          ],
+          "AAAA": [
+            "2606:4700:3037::ac43:c2d3",
+            "2606:4700:3037::6815:2c2e"
           ]
         }
       },
@@ -251,9 +266,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.bozlmex.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.bozlmex.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011269; classtype:social-engineering; sid:6011269; rev:1; metadata: signature_severity Major, created_et 2026_08_18;)",
-  "updated_at": "2026-08-19T01:49:45.293000+00:00",
+  "updated_at": "2026-08-21T12:20:36.116941+00:00",
   "probe": {
-    "dns": "172.67.194.211",
+    "dns": "104.21.44.46",
     "whois": null,
     "status": "active"
   }

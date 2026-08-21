@@ -55,21 +55,30 @@
     "phishdestroy": {
       "domain": "os.techto.com.br",
       "domain_defanged": "os[.]techto[.]com[.]br",
-      "case_id": "PD-20260818-1AA812",
-      "analyzed_at": "2026-08-18T23:05:39.749Z",
+      "case_id": "PD-20260821-1AA812",
+      "analyzed_at": "2026-08-21T00:51:23.089Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a0171f-8fa2-76d5-85e4-c83f33661bea/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Spectrum"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a019f2-f8c3-7737-af58-21a6996a0327.png",
+          "url": "https://urlscan.io/result/01a019f2-f8c3-7737-af58-21a6996a0327/",
+          "title": "Sign In to Get Started"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Spectrum",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -222,12 +231,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (os.techto.com.br/opening)\"; flow:established,to_server; http.uri; content:\"/opening\"; startswith; fast_pattern; http.host; content:\"os.techto.com.br\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003939; classtype:social-engineering; sid:6003939; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-19T07:12:03.081355+00:00",
+  "updated_at": "2026-08-21T00:51:17.344000+00:00",
   "probe": {
     "dns": "162.241.155.7",
     "whois": true,
