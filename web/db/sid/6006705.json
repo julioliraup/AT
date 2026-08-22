@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "sp4ct-nardevon-biz8-zurem-kasol.pages.dev",
       "domain_defanged": "sp4ct-nardevon-biz8-zurem-kasol[.]pages[.]dev",
-      "case_id": "PD-20260821-24E800",
-      "analyzed_at": "2026-08-21T05:39:08.805Z",
+      "case_id": "PD-20260822-24E800",
+      "analyzed_at": "2026-08-22T00:56:48.551Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a022d4-86da-76ae-bf78-ef9852bc9d65.png",
           "url": "https://urlscan.io/result/01a022d4-86da-76ae-bf78-ef9852bc9d65/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,8 +112,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2c4c",
-            "2606:4700:310c::ac42:2fb4"
+            "2606:4700:310c::ac42:2fb4",
+            "2606:4700:310c::ac42:2c4c"
           ],
           "A": [
             "172.66.47.180",
@@ -248,11 +257,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp4ct-nardevon-biz8-zurem-kasol.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp4ct-nardevon-biz8-zurem-kasol.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006705; classtype:social-engineering; sid:6006705; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-21T05:39:04.459670+00:00",
+  "updated_at": "2026-08-22T14:07:45.480664+00:00",
   "probe": {
     "dns": "172.66.47.180",
     "whois": null,

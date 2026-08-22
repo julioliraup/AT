@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "tastefuldelights.com.au",
       "domain_defanged": "tastefuldelights[.]com[.]au",
-      "case_id": "PD-20260820-2050DC",
-      "analyzed_at": "2026-08-20T23:25:39.399Z",
+      "case_id": "PD-20260821-2050DC",
+      "analyzed_at": "2026-08-21T19:50:24.429Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a0217e-954b-7658-a80c-8463747f07cb/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -80,20 +76,20 @@
         "dns": {
           "A": [
             "104.26.14.111",
-            "172.67.68.27",
-            "104.26.15.111"
+            "104.26.15.111",
+            "172.67.68.27"
           ],
-          "AAAA": [
-            "2606:4700:20::681a:f6f",
-            "2606:4700:20::ac43:441b",
-            "2606:4700:20::681a:e6f"
+          "MX": [
+            "10 mail.tastefuldelights.com.au."
           ],
           "NS": [
             "ligia.ns.cloudflare.com.",
             "luke.ns.cloudflare.com."
           ],
-          "MX": [
-            "10 mail.tastefuldelights.com.au."
+          "AAAA": [
+            "2606:4700:20::ac43:441b",
+            "2606:4700:20::681a:e6f",
+            "2606:4700:20::681a:f6f"
           ]
         }
       },
@@ -229,13 +225,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tastefuldelights.com.au/docusign/docusignaccess/Windows/utility.php)\"; flow:established,to_server; http.uri; content:\"/docusign/docusignaccess/Windows/utility.php\"; startswith; fast_pattern; http.host; content:\"tastefuldelights.com.au\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003404; classtype:social-engineering; sid:6003404; rev:1; metadata: signature_severity Major, created_et 2026_06_13, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-20T23:25:32.413048+00:00",
+  "updated_at": "2026-08-22T10:22:23.722338+00:00",
   "probe": {
-    "dns": "172.67.68.27",
+    "dns": "104.26.14.111",
     "whois": true,
     "status": "active"
   }

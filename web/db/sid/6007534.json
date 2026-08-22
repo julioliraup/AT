@@ -219,21 +219,30 @@
     "phishdestroy": {
       "domain": "comomensagemtodososamigosdofacebook.blogspot.com",
       "domain_defanged": "comomensagemtodososamigosdofacebook[.]blogspot[.]com",
-      "case_id": "PD-20260821-9A8CDF",
-      "analyzed_at": "2026-08-21T06:34:48.814Z",
+      "case_id": "PD-20260822-9A8CDF",
+      "analyzed_at": "2026-08-22T01:56:54.985Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a02307-7dad-74e5-83c3-4303ce6b14b9/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Facebook"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a026fc-bebf-73dd-92ec-bc5a58847e11.png",
+          "url": "https://urlscan.io/result/01a026fc-bebf-73dd-92ec-bc5a58847e11/",
+          "title": "FACEBOOK"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Facebook",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -241,16 +250,16 @@
         "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
         "dns": {
-          "MX": [
-            "blogspot.l.googleusercontent.com."
+          "AAAA": [
+            "blogspot.l.googleusercontent.com.",
+            "2607:f8b0:4004:c21::84"
           ],
           "A": [
             "blogspot.l.googleusercontent.com.",
-            "142.251.211.225"
+            "64.233.180.132"
           ],
-          "AAAA": [
-            "blogspot.l.googleusercontent.com.",
-            "2607:f8b0:4008:80c::2001"
+          "MX": [
+            "blogspot.l.googleusercontent.com."
           ],
           "CNAME": [
             "blogspot.l.googleusercontent.com."
@@ -262,7 +271,14 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Google Cloud",
+          "abuse": "google-cloud-compliance@google.com",
+          "url": "https://support.google.com/code/answer/33668",
+          "logo": "",
+          "method": "form",
+          "asn": "AS15169"
+        }
       },
       "report_services": [
         {
@@ -390,7 +406,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.comomensagemtodososamigosdofacebook.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.comomensagemtodososamigosdofacebook.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007534; classtype:social-engineering; sid:6007534; rev:1; metadata: signature_severity Major, created_et 2026_08_08;)",
-  "updated_at": "2026-08-21T06:49:30.943075+00:00",
+  "updated_at": "2026-08-22T14:55:44.877066+00:00",
   "probe": {
     "dns": "142.251.152.119",
     "whois": null,

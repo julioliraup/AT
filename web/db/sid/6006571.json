@@ -49,27 +49,55 @@
     "phishdestroy": {
       "domain": "hachiko.ajace.info",
       "domain_defanged": "hachiko[.]ajace[.]info",
-      "case_id": "PD-20260821-89F020",
-      "analyzed_at": "2026-08-21T05:28:14.803Z",
+      "case_id": "PD-20260822-89F020",
+      "analyzed_at": "2026-08-22T00:47:44.059Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Fedex"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/019fd308-1079-7144-95f7-4e83ce49157d.png",
+          "url": "https://urlscan.io/result/019fd308-1079-7144-95f7-4e83ce49157d/",
+          "title": "Sendung verfolgen | Schweiz"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Fedex",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ipinfo": null,
+        "ip": "2606:4700:3037::ac43:bdf1",
+        "ipinfo": {
+          "ip": "2606:4700:3037::ac43:bdf1",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": null
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -192,11 +220,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (hachiko.ajace.info/ga/click/2-17207680-21-14048-27506-15136-e173570ab6-b70925fa76)\"; flow:established,to_server; http.uri; content:\"/ga/click/2-17207680-21-14048-27506-15136-e173570ab6-b70925fa76\"; startswith; fast_pattern; http.host; content:\"hachiko.ajace.info\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006571; classtype:social-engineering; sid:6006571; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-21T05:28:10.058657+00:00",
+  "updated_at": "2026-08-22T13:58:33.810637+00:00",
   "probe": {
     "dns": null,
     "whois": true,

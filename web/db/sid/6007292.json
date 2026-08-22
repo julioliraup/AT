@@ -73,21 +73,30 @@
     "phishdestroy": {
       "domain": "main-ledgre-live.pages.dev",
       "domain_defanged": "main-ledgre-live[.]pages[.]dev",
-      "case_id": "PD-20260821-1BF5DD",
-      "analyzed_at": "2026-08-21T06:27:38.041Z",
+      "case_id": "PD-20260822-1BF5DD",
+      "analyzed_at": "2026-08-22T01:49:13.704Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a02300-eace-74ac-ac6f-298b8c25d686.png",
           "url": "https://urlscan.io/result/01a02300-eace-74ac-ac6f-298b8c25d686/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -103,8 +112,8 @@
         },
         "dns": {
           "AAAA": [
-            "2606:4700:310c::ac42:2cb2",
-            "2606:4700:310c::ac42:2f4e"
+            "2606:4700:310c::ac42:2f4e",
+            "2606:4700:310c::ac42:2cb2"
           ],
           "A": [
             "172.66.44.178",
@@ -248,11 +257,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (main-ledgre-live.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"main-ledgre-live.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007292; classtype:social-engineering; sid:6007292; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-21T06:27:29.983964+00:00",
+  "updated_at": "2026-08-22T14:41:24.608342+00:00",
   "probe": {
     "dns": "172.66.44.178",
     "whois": null,

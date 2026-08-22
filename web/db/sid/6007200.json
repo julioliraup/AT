@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "sp13ct-lersik-biz-prandel-hazkor.pages.dev",
       "domain_defanged": "sp13ct-lersik-biz-prandel-hazkor[.]pages[.]dev",
-      "case_id": "PD-20260821-5CE447",
-      "analyzed_at": "2026-08-21T06:20:03.071Z",
+      "case_id": "PD-20260822-5CE447",
+      "analyzed_at": "2026-08-22T01:40:48.753Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a022f9-fa18-75d4-a98d-20a654de44bb.png",
           "url": "https://urlscan.io/result/01a022f9-fa18-75d4-a98d-20a654de44bb/",
-          "pending": true
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.43",
+        "ip": "172.66.44.213",
         "ipinfo": {
-          "ip": "172.66.47.43",
+          "ip": "172.66.44.213",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -103,12 +112,12 @@
         },
         "dns": {
           "A": [
-            "172.66.47.43",
-            "172.66.44.213"
+            "172.66.44.213",
+            "172.66.47.43"
           ],
           "AAAA": [
-            "2606:4700:310c::ac42:2cd5",
-            "2606:4700:310c::ac42:2f2b"
+            "2606:4700:310c::ac42:2f2b",
+            "2606:4700:310c::ac42:2cd5"
           ],
           "NS": [
             "tom.ns.cloudflare.com.",
@@ -248,11 +257,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sp13ct-lersik-biz-prandel-hazkor.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sp13ct-lersik-biz-prandel-hazkor.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007200; classtype:social-engineering; sid:6007200; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-21T06:19:59.933350+00:00",
+  "updated_at": "2026-08-22T14:35:33.475528+00:00",
   "probe": {
     "dns": "172.66.47.43",
     "whois": null,

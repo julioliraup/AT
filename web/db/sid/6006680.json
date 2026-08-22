@@ -73,21 +73,29 @@
     "phishdestroy": {
       "domain": "quintessential-turquoise-qifxbber.edgeone.dev",
       "domain_defanged": "quintessential-turquoise-qifxbber[.]edgeone[.]dev",
-      "case_id": "PD-20260821-648143",
-      "analyzed_at": "2026-08-21T05:36:43.169Z",
+      "case_id": "PD-20260822-648143",
+      "analyzed_at": "2026-08-22T00:54:36.725Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a022d2-4e3c-760e-88b3-6557987102c4/",
-          "pending": true
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Email"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a022d2-4e3c-760e-88b3-6557987102c4.png",
+          "url": "https://urlscan.io/result/01a022d2-4e3c-760e-88b3-6557987102c4/"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Email",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -98,19 +106,26 @@
           "CNAME": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ],
-          "AAAA": [
-            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
-          ],
           "A": [
             "2354db541df20c20.edgeone.dev.pages.dnsoe6.com.",
             "43.174.247.29",
             "43.174.246.29"
+          ],
+          "AAAA": [
+            "2354db541df20c20.edgeone.dev.pages.dnsoe6.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "ACE-AS-AP",
+          "abuse": "as139341_abuse@aceville.net",
+          "url": "mailto:as139341_abuse@aceville.net",
+          "logo": "",
+          "method": "email",
+          "asn": "AS139341"
+        }
       },
       "report_services": [
         {
@@ -233,11 +248,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (quintessential-turquoise-qifxbber.edgeone.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"quintessential-turquoise-qifxbber.edgeone.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006680; classtype:social-engineering; sid:6006680; rev:1; metadata: signature_severity Major, created_et 2026_08_05;)",
-  "updated_at": "2026-08-21T05:36:41.110332+00:00",
+  "updated_at": "2026-08-22T14:06:19.155374+00:00",
   "probe": {
     "dns": "43.174.246.29",
     "whois": null,

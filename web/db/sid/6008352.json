@@ -73,14 +73,18 @@
     "phishdestroy": {
       "domain": "account-ledgr-start.pages.dev",
       "domain_defanged": "account-ledgr-start[.]pages[.]dev",
-      "case_id": "PD-20260821-7EA155",
-      "analyzed_at": "2026-08-21T07:59:13.943Z",
+      "case_id": "PD-20260822-7EA155",
+      "analyzed_at": "2026-08-22T03:13:48.413Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a02775-cfe4-723d-8844-9152337104c5/",
+          "pending": true
         }
       },
       "detections": [],
@@ -98,17 +102,17 @@
           "asn": "AS13335"
         },
         "dns": {
+          "A": [
+            "172.66.47.164",
+            "172.66.44.92"
+          ],
           "AAAA": [
-            "2606:4700:310c::ac42:2c5c",
-            "2606:4700:310c::ac42:2fa4"
+            "2606:4700:310c::ac42:2fa4",
+            "2606:4700:310c::ac42:2c5c"
           ],
           "NS": [
             "gracie.ns.cloudflare.com.",
             "kevin.ns.cloudflare.com."
-          ],
-          "A": [
-            "172.66.47.164",
-            "172.66.44.92"
           ]
         }
       },
@@ -244,11 +248,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (account-ledgr-start.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"account-ledgr-start.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008352; classtype:social-engineering; sid:6008352; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-21T07:59:11.135947+00:00",
+  "updated_at": "2026-08-22T16:27:07.807430+00:00",
   "probe": {
     "dns": "172.66.47.164",
     "whois": null,

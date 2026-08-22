@@ -49,18 +49,14 @@
     "phishdestroy": {
       "domain": "dev-goswami.github.io",
       "domain_defanged": "dev-goswami[.]github[.]io",
-      "case_id": "PD-20260820-286249",
-      "analyzed_at": "2026-08-20T17:17:48.079Z",
+      "case_id": "PD-20260821-286249",
+      "analyzed_at": "2026-08-21T14:26:10.235Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
-          "url": "https://urlscan.io/result/01a0202d-ce26-7357-b63a-7e3b1ebd6b9e/",
-          "pending": true
+          "error": "no_results"
         }
       },
       "detections": [],
@@ -68,26 +64,41 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "185.199.108.153",
-        "ipinfo": null,
+        "ip": "185.199.109.153",
+        "ipinfo": {
+          "ip": "185.199.109.153",
+          "hostname": "cdn-185-199-109-153.github.com",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS54113 Fastly, Inc.",
+          "asn": "AS54113"
+        },
         "dns": {
           "A": [
-            "185.199.108.153",
             "185.199.109.153",
+            "185.199.111.153",
             "185.199.110.153",
-            "185.199.111.153"
+            "185.199.108.153"
           ],
           "AAAA": [
+            "2606:50c0:8001::153",
             "2606:50c0:8003::153",
             "2606:50c0:8002::153",
-            "2606:50c0:8001::153",
             "2606:50c0:8000::153"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Fastly",
+          "abuse": "abuse@fastly.com",
+          "url": "mailto:abuse@fastly.com",
+          "logo": "",
+          "method": "email",
+          "asn": "AS54113"
+        }
       },
       "report_services": [
         {
@@ -210,13 +221,14 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dev-goswami.github.io/dev1Project/)\"; flow:established,to_server; http.uri; content:\"/dev1Project/\"; startswith; fast_pattern; http.host; content:\"dev-goswami.github.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000470; classtype:social-engineering; sid:6000470; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-20T17:17:44.329200+00:00",
+  "updated_at": "2026-08-22T06:24:39.327067+00:00",
   "probe": {
-    "dns": "185.199.111.153",
+    "dns": "185.199.108.153",
     "whois": true,
     "status": "active"
   }

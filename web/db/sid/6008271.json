@@ -55,14 +55,18 @@
     "phishdestroy": {
       "domain": "xfmailconnect.weebly.com",
       "domain_defanged": "xfmailconnect[.]weebly[.]com",
-      "case_id": "PD-20260821-5768D4",
-      "analyzed_at": "2026-08-21T07:53:15.115Z",
+      "case_id": "PD-20260822-5768D4",
+      "analyzed_at": "2026-08-22T02:48:29.870Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": false,
+          "score": 0,
+          "brands": [],
+          "url": "https://urlscan.io/result/01a0275e-a4e5-718f-b9c3-48e3dffcc2ae/",
+          "pending": true
         }
       },
       "detections": [],
@@ -70,18 +74,33 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "74.115.51.8",
-        "ipinfo": null,
+        "ip": "74.115.51.9",
+        "ipinfo": {
+          "ip": "74.115.51.9",
+          "hostname": "wildcard.weebly.com",
+          "city": "Oakland",
+          "region": "California",
+          "country": "US",
+          "org": "AS27647 Weebly, Inc.",
+          "asn": "AS27647"
+        },
         "dns": {
           "A": [
-            "74.115.51.8",
-            "74.115.51.9"
+            "74.115.51.9",
+            "74.115.51.8"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Weebly",
+          "abuse": "weebly-abuse@squareup.com",
+          "url": "mailto:weebly-abuse@squareup.com",
+          "logo": "https://i.ibb.co/xSXw4JbL/pr-Weebly.png",
+          "method": "email",
+          "asn": "AS27647"
+        }
       },
       "report_services": [
         {
@@ -204,11 +223,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.xfmailconnect.weebly.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.xfmailconnect.weebly.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008271; classtype:social-engineering; sid:6008271; rev:1; metadata: signature_severity Major, created_et 2026_08_10;)",
-  "updated_at": "2026-08-21T07:53:12.425054+00:00",
+  "updated_at": "2026-08-22T16:21:47.396466+00:00",
   "probe": {
     "dns": "74.115.51.9",
     "whois": null,

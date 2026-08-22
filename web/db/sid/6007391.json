@@ -73,28 +73,37 @@
     "phishdestroy": {
       "domain": "7.rewardingmyself.com",
       "domain_defanged": "7[.]rewardingmyself[.]com",
-      "case_id": "PD-20260821-15A253",
-      "analyzed_at": "2026-08-21T06:36:22.203Z",
+      "case_id": "PD-20260822-15A253",
+      "analyzed_at": "2026-08-22T01:58:09.734Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "malicious": false,
-          "score": 0,
-          "brands": [],
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a02308-ea61-72e9-8ed2-a95323a30c2e.png",
           "url": "https://urlscan.io/result/01a02308-ea61-72e9-8ed2-a95323a30c2e/",
-          "pending": true
+          "title": "Suspected Phishing | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "104.21.3.159",
+        "ip": "172.67.130.236",
         "ipinfo": {
-          "ip": "104.21.3.159",
+          "ip": "172.67.130.236",
           "city": "San Francisco",
           "region": "California",
           "country": "US",
@@ -102,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
-          "A": [
-            "104.21.3.159",
-            "172.67.130.236"
-          ],
           "AAAA": [
-            "2606:4700:3032::6815:39f",
-            "2606:4700:3032::ac43:82ec"
+            "2606:4700:3032::ac43:82ec",
+            "2606:4700:3032::6815:39f"
+          ],
+          "A": [
+            "172.67.130.236",
+            "104.21.3.159"
           ]
         }
       },
@@ -244,11 +253,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (7.rewardingmyself.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"7.rewardingmyself.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007391; classtype:social-engineering; sid:6007391; rev:1; metadata: signature_severity Major, created_et 2026_08_07;)",
-  "updated_at": "2026-08-21T06:36:18.260652+00:00",
+  "updated_at": "2026-08-22T14:47:23.620683+00:00",
   "probe": {
     "dns": "172.67.130.236",
     "whois": null,

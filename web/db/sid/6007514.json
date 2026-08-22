@@ -18,21 +18,85 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://kxztp5c80sk-mvrqlwur-9e4f1c-zd611a.pages.dev/",
+      "domain": "kxztp5c80sk-mvrqlwur-9e4f1c-zd611a.pages.dev",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.66.47.80",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2a466201f64706c-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "8a89f12d0bc8fb61f4f96862ad581d5f795114c7137662069cf01e16c31ab8b7",
+      "md5": "ba6392a2d490886fe6ba5ed4fc8eb149",
+      "cert": {
+        "subject_cn": "kxztp5c80sk-mvrqlwur-9e4f1c-zd611a.pages.dev",
+        "subject_alt_names": [
+          "kxztp5c80sk-mvrqlwur-9e4f1c-zd611a.pages.dev",
+          "*.kxztp5c80sk-mvrqlwur-9e4f1c-zd611a.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-05T01:31:45+00:00",
+        "not_valid_after": "2026-11-03T02:30:17+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "315360298329578644057750570249448696902",
+        "fingerprint_sha1": "EE 25 D5 AF 8E 3F FB DF DC 44 D8 9C 94 8D 52 B7 19 F5 FD 91",
+        "fingerprint_sha256": "FC B4 14 1D 28 A7 B2 69 BE CE 66 91 65 FD F4 D9 14 7E BD 68 F1 23 C8 48 9F 9E C7 78 43 9B A0 56"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-08-13T02:41:12",
+      "first_seen_secs": 1786588872.0
+    },
     "phishdestroy": {
       "domain": "kxztp5c80sk-mvrqlwur-9e4f1c-zd611a.pages.dev",
       "domain_defanged": "kxztp5c80sk-mvrqlwur-9e4f1c-zd611a[.]pages[.]dev",
-      "case_id": "PD-20260821-30833B",
-      "analyzed_at": "2026-08-21T06:47:43.144Z",
+      "case_id": "PD-20260822-30833B",
+      "analyzed_at": "2026-08-22T02:11:07.179Z",
       "intel": {
         "virustotal": {
           "error": "http_429"
         },
         "urlscan": {
-          "error": "no_results"
+          "malicious": true,
+          "score": 100,
+          "brands": [
+            "Generic Cloudflare"
+          ],
+          "screenshot": "https://urlscan.io/screenshots/01a019f5-2104-773f-8523-4d8893ef4835.png",
+          "url": "https://urlscan.io/result/01a019f5-2104-773f-8523-4d8893ef4835/",
+          "title": "Suspected Malware | Cloudflare"
         }
       },
-      "detections": [],
+      "detections": [
+        {
+          "source": "URLScan.io",
+          "type": "Targeting: Generic Cloudflare",
+          "severity": "high"
+        }
+      ],
       "domain_info": {
         "age_days": null
       },
@@ -47,13 +111,13 @@
           "asn": "AS13335"
         },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2f50",
+            "2606:4700:310c::ac42:2cb0"
+          ],
           "A": [
             "172.66.47.80",
             "172.66.44.176"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2cb0",
-            "2606:4700:310c::ac42:2f50"
           ],
           "NS": [
             "carl.ns.cloudflare.com.",
@@ -193,11 +257,12 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ]
+      ],
+      "_cached": true
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (kxztp5c80sk-mvrqlwur-9e4f1c-zd611a.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"kxztp5c80sk-mvrqlwur-9e4f1c-zd611a.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007514; classtype:social-engineering; sid:6007514; rev:1; metadata: signature_severity Major, created_et 2026_08_08;)",
-  "updated_at": "2026-08-21T06:47:30.724513+00:00",
+  "updated_at": "2026-08-22T14:54:44.256032+00:00",
   "probe": {
     "dns": "172.66.47.80",
     "whois": null,
