@@ -49,14 +49,14 @@
     "phishdestroy": {
       "domain": "dev-docusign-net-signing-document.pantheonsite.io",
       "domain_defanged": "dev-docusign-net-signing-document[.]pantheonsite[.]io",
-      "case_id": "PD-20260822-46066D",
-      "analyzed_at": "2026-08-22T16:28:41.453Z",
+      "case_id": "PD-20260824-46066D",
+      "analyzed_at": "2026-08-24T09:53:14.949Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "error": "no_key"
         },
         "urlscan": {
-          "error": "no_results"
+          "error": "no_key"
         }
       },
       "detections": [],
@@ -69,8 +69,11 @@
         "dns": {
           "AAAA": [
             "fe4.edge.pantheon.io.",
-            "2620:12a:8001::4",
-            "2620:12a:8000::4"
+            "2620:12a:8000::4",
+            "2620:12a:8001::4"
+          ],
+          "NS": [
+            "fe4.edge.pantheon.io."
           ],
           "A": [
             "fe4.edge.pantheon.io.",
@@ -80,9 +83,6 @@
             "fe4.edge.pantheon.io."
           ],
           "CNAME": [
-            "fe4.edge.pantheon.io."
-          ],
-          "NS": [
             "fe4.edge.pantheon.io."
           ]
         }
@@ -216,7 +216,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dev-docusign-net-signing-document.pantheonsite.io/?email=valor9@177290b2aaf56e788a7e9c66c16ee5e50c5e.com&company=FREEPORT%20FIRE/EMS)\"; flow:established,to_server; http.uri; content:\"/?email=valor9@177290b2aaf56e788a7e9c66c16ee5e50c5e.com&company=FREEPORT%20FIRE/EMS\"; startswith; fast_pattern; http.host; content:\"dev-docusign-net-signing-document.pantheonsite.io\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008373; classtype:social-engineering; sid:6008373; rev:1; metadata: signature_severity Major, created_et 2026_08_11;)",
-  "updated_at": "2026-08-22T16:28:38.532932+00:00",
+  "updated_at": "2026-08-24T09:53:12.139166+00:00",
   "probe": {
     "dns": "23.185.0.4",
     "whois": true,

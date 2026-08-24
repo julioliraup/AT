@@ -18,55 +18,86 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": null,
+    "alienvault": {
+      "url": "http://faq-ledger-live-download.pages.dev/",
+      "domain": "faq-ledger-live-download.pages.dev",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.66.44.121",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a2a4687fce2a97a5-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "0d7db6aa117ee9079b9416cdc1eaa828ec62deb22981a5ebfaca409edbb7b8a2",
+      "md5": "d7ae23d33baff8c3e11a2061b5f25831",
+      "cert": {
+        "subject_cn": "faq-ledger-live-download.pages.dev",
+        "subject_alt_names": [
+          "faq-ledger-live-download.pages.dev",
+          "*.faq-ledger-live-download.pages.dev"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-07T11:51:14+00:00",
+        "not_valid_after": "2026-10-05T12:49:35+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "40472416613246210173028449367584366965",
+        "fingerprint_sha1": "38 9A 56 0A 40 84 99 ED FF 45 80 56 22 AC C8 54 D5 4B 9A 15",
+        "fingerprint_sha256": "83 8F 86 F5 09 47 D5 F3 EF 5C 65 4F A9 69 6B 00 11 54 52 BE 85 A4 BE E3 E7 9F 2D 83 6C 74 D7 C1"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-08-13T02:41:11",
+      "first_seen_secs": 1786588871.0
+    },
     "phishdestroy": {
       "domain": "faq-ledger-live-download.pages.dev",
       "domain_defanged": "faq-ledger-live-download[.]pages[.]dev",
-      "case_id": "PD-20260822-5D7530",
-      "analyzed_at": "2026-08-22T02:17:14.041Z",
+      "case_id": "PD-20260824-5D7530",
+      "analyzed_at": "2026-08-24T09:07:40.478Z",
       "intel": {
         "virustotal": {
-          "error": "http_429"
+          "error": "no_key"
         },
         "urlscan": {
-          "malicious": true,
-          "score": 100,
-          "brands": [
-            "Generic Cloudflare"
-          ],
-          "screenshot": "https://urlscan.io/screenshots/01a01bef-84c9-7053-bea5-b3c9d1d35430.png",
-          "url": "https://urlscan.io/result/01a01bef-84c9-7053-bea5-b3c9d1d35430/",
-          "title": "Suspected Phishing | Cloudflare"
+          "error": "no_key"
         }
       },
-      "detections": [
-        {
-          "source": "URLScan.io",
-          "type": "Targeting: Generic Cloudflare",
-          "severity": "high"
-        }
-      ],
+      "detections": [],
       "domain_info": {
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.66.47.135",
-        "ipinfo": {
-          "ip": "172.66.47.135",
-          "city": "San Francisco",
-          "region": "California",
-          "country": "US",
-          "org": "AS13335 Cloudflare, Inc.",
-          "asn": "AS13335"
-        },
+        "ip": "188.114.96.3",
+        "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "2606:4700:310c::ac42:2f87",
-            "2606:4700:310c::ac42:2c79"
-          ],
           "A": [
-            "172.66.47.135",
-            "172.66.44.121"
+            "188.114.96.3",
+            "188.114.97.3"
+          ],
+          "AAAA": [
+            "2a06:98c1:3121::3",
+            "2a06:98c1:3120::3"
           ],
           "NS": [
             "achiel.ns.cloudflare.com.",
@@ -76,14 +107,7 @@
       },
       "report_to": {
         "registrar": null,
-        "hosting": {
-          "name": "Cloudflare",
-          "abuse": "abuse@cloudflare.com",
-          "url": "https://abuse.cloudflare.com/",
-          "logo": "",
-          "method": "form",
-          "asn": "AS13335"
-        }
+        "hosting": null
       },
       "report_services": [
         {
@@ -206,12 +230,11 @@
           "icon": "https://destroyico.pages.dev/assets/favicon-32x32.png",
           "desc": "Our tool suite"
         }
-      ],
-      "_cached": true
+      ]
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (faq-ledger-live-download.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"faq-ledger-live-download.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007550; classtype:social-engineering; sid:6007550; rev:1; metadata: signature_severity Major, created_et 2026_08_08;)",
-  "updated_at": "2026-08-22T14:57:05.266276+00:00",
+  "updated_at": "2026-08-24T09:07:38.430317+00:00",
   "probe": {
     "dns": "172.66.44.121",
     "whois": null,
