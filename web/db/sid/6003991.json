@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "url-shortener.me",
       "domain_defanged": "url-shortener[.]me",
-      "case_id": "PD-20260825-17A914",
-      "analyzed_at": "2026-08-25T09:31:32.268Z",
+      "case_id": "PD-20260826-17A914",
+      "analyzed_at": "2026-08-26T01:40:23.983Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -65,11 +65,16 @@
       },
       "infrastructure": {
         "ip": "54.221.144.189",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "54.221.144.189",
+          "hostname": "ec2-54-221-144-189.compute-1.amazonaws.com",
+          "city": "Ashburn",
+          "region": "Virginia",
+          "country": "US",
+          "org": "AS14618 Amazon.com, Inc.",
+          "asn": "AS14618"
+        },
         "dns": {
-          "A": [
-            "54.221.144.189"
-          ],
           "MX": [
             "10 mailstore1.secureserver.net.",
             "0 smtp.secureserver.net."
@@ -77,12 +82,22 @@
           "NS": [
             "ns43.domaincontrol.com.",
             "ns44.domaincontrol.com."
+          ],
+          "A": [
+            "54.221.144.189"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS14618"
+        }
       },
       "report_services": [
         {
@@ -209,7 +224,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (url-shortener.me/N5JS)\"; flow:established,to_server; http.uri; content:\"/N5JS\"; startswith; fast_pattern; http.host; content:\"url-shortener.me\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6003991; classtype:social-engineering; sid:6003991; rev:1; metadata: signature_severity Major, created_et 2026_06_19, updated_et 2026_06_25;)",
-  "updated_at": "2026-08-25T09:31:29.119963+00:00",
+  "updated_at": "2026-08-26T01:40:20.191667+00:00",
   "probe": {
     "dns": "54.221.144.189",
     "whois": true,
