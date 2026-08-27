@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://meta-verified-security-check.bolt.host/",
       "domain": "meta-verified-security-check.bolt.host",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.26.13.118",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a317c700be6f5ec3-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,39 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "75603a5b6bd8404567abbeba225aa819dfb6fd8c85b7f8580243ac908e615878",
+      "md5": "8d1e013d1b4244f41c21e100ff637de3",
+      "cert": {
+        "subject_cn": "bolt.host",
+        "subject_alt_names": [
+          "bolt.host",
+          "*.bolt.host",
+          "*.preview.bolt.host"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-31T20:30:45+00:00",
+        "not_valid_after": "2026-10-29T21:30:26+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "202139657184534617155582157086893748950",
+        "fingerprint_sha1": "05 1F 8E 5A 77 24 A6 C4 32 0F 73 78 4D 34 25 2B D9 8C 55 FE",
+        "fingerprint_sha256": "4B 36 90 08 C3 F1 4A 44 B7 92 9B D1 9B 95 C9 35 68 81 90 09 72 42 96 65 C9 1B CD 35 3E 7F C6 37"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-27T02:35:46",
+      "first_seen_secs": 1787798146.0
     },
     "phishdestroy": {
       "domain": "meta-verified-security-check.bolt.host",
       "domain_defanged": "meta-verified-security-check[.]bolt[.]host",
-      "case_id": "PD-20260826-11BA46",
-      "analyzed_at": "2026-08-26T10:41:43.909Z",
+      "case_id": "PD-20260827-11BA46",
+      "analyzed_at": "2026-08-27T14:33:51.438Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -67,15 +92,15 @@
         "ip": "104.26.12.118",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "2606:4700:20::ac43:4b09",
-            "2606:4700:20::681a:c76",
-            "2606:4700:20::681a:d76"
-          ],
           "A": [
             "104.26.12.118",
             "104.26.13.118",
             "172.67.75.9"
+          ],
+          "AAAA": [
+            "2606:4700:20::681a:c76",
+            "2606:4700:20::681a:d76",
+            "2606:4700:20::ac43:4b09"
           ]
         }
       },
@@ -208,7 +233,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (meta-verified-security-check.bolt.host/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"meta-verified-security-check.bolt.host\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6012194; classtype:social-engineering; sid:6012194; rev:1; metadata: signature_severity Major, created_et 2026_08_21;)",
-  "updated_at": "2026-08-26T10:41:40.192678+00:00",
+  "updated_at": "2026-08-27T14:33:48.440898+00:00",
   "probe": {
     "dns": "104.26.13.118",
     "whois": true,

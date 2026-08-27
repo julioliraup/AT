@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://directimages.com/",
       "domain": "directimages.com",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "141.193.213.11",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": "a317be5fde176c24-PDX",
+        "cf_cache_status": "EXPIRED",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,37 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (65515), with no line terminators",
+      "sha256": "2b771d6be4bc7168e59730e645089c419d8d54d6916fcad87202c8d5ddfd30fc",
+      "md5": "f7500107e5d0d584cf56cb6c137c1085",
+      "cert": {
+        "subject_cn": "directimages.com",
+        "subject_alt_names": [
+          "directimages.com"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-07-02T02:52:31+00:00",
+        "not_valid_after": "2026-09-30T02:52:30+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "490003209562178467358720766945040933171390",
+        "fingerprint_sha1": "89 8B 93 71 42 55 29 28 BB 7B 22 34 98 05 C1 59 64 FA 49 60",
+        "fingerprint_sha256": "5C BF 44 6A 6B 64 72 2D 8E 78 3C AF 0D 4A 8F AE 67 50 46 55 55 43 99 A5 4C 74 3E 8D 20 6D 40 50"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-08-27T02:33:16",
+      "first_seen_secs": 1787797996.0
     },
     "phishdestroy": {
       "domain": "directimages.com",
       "domain_defanged": "directimages[.]com",
-      "case_id": "PD-20260826-3D4282",
-      "analyzed_at": "2026-08-26T12:04:57.706Z",
+      "case_id": "PD-20260827-3D4282",
+      "analyzed_at": "2026-08-27T15:58:16.895Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -67,17 +90,17 @@
         "ip": "141.193.213.10",
         "ipinfo": null,
         "dns": {
-          "A": [
-            "141.193.213.10",
-            "141.193.213.11"
+          "NS": [
+            "ns51.domaincontrol.com.",
+            "ns52.domaincontrol.com."
           ],
           "MX": [
             "10 mx1-us1.ppe-hosted.com.",
             "20 mx2-us1.ppe-hosted.com."
           ],
-          "NS": [
-            "ns51.domaincontrol.com.",
-            "ns52.domaincontrol.com."
+          "A": [
+            "141.193.213.10",
+            "141.193.213.11"
           ]
         }
       },
@@ -210,9 +233,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (directimages.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"directimages.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6013388; classtype:social-engineering; sid:6013388; rev:1; metadata: signature_severity Major, created_et 2026_08_25;)",
-  "updated_at": "2026-08-26T12:04:52.586620+00:00",
+  "updated_at": "2026-08-27T15:58:12.146114+00:00",
   "probe": {
-    "dns": "141.193.213.10",
+    "dns": "141.193.213.11",
     "whois": true,
     "status": "active"
   }
