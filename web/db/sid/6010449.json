@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "mandtlogin.pages.dev",
       "domain_defanged": "mandtlogin[.]pages[.]dev",
-      "case_id": "PD-20260830-37F696",
-      "analyzed_at": "2026-08-30T10:44:42.497Z",
+      "case_id": "PD-20260901-37F696",
+      "analyzed_at": "2026-09-01T01:57:13.615Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -65,25 +65,39 @@
       },
       "infrastructure": {
         "ip": "172.66.47.175",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.47.175",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "NS": [
             "journey.ns.cloudflare.com.",
             "matteo.ns.cloudflare.com."
           ],
+          "AAAA": [
+            "2606:4700:310c::ac42:2faf",
+            "2606:4700:310c::ac42:2c51"
+          ],
           "A": [
             "172.66.47.175",
             "172.66.44.81"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c51",
-            "2606:4700:310c::ac42:2faf"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -210,9 +224,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (mandtlogin.pages.dev/favicon.ico)\"; flow:established,to_server; http.uri; content:\"/favicon.ico\"; startswith; fast_pattern; http.host; content:\"mandtlogin.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010449; classtype:social-engineering; sid:6010449; rev:1; metadata: signature_severity Major, created_et 2026_08_16;)",
-  "updated_at": "2026-08-30T10:44:40.438582+00:00",
+  "updated_at": "2026-09-01T01:57:11.926937+00:00",
   "probe": {
-    "dns": "172.66.47.175",
+    "dns": "172.66.44.81",
     "whois": null,
     "status": "active"
   }

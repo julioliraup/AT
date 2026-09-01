@@ -18,63 +18,12 @@
     "urlhaus": null,
     "shodan": null,
     "ipinfo": null,
-    "alienvault": {
-      "url": "http://scotiabank.net.pe/",
-      "domain": "scotiabank.net.pe",
-      "url_count": 2,
-      "city_data": true,
-      "deep_analysis": true,
-      "has_file_analysis": false,
-      "tlp": "WHITE",
-      "ip": "23.37.18.175",
-      "http_code": 200,
-      "http_response": {
-        "server": null,
-        "content_type": "text/html; charset=utf-8",
-        "cf_ray": null,
-        "cf_cache_status": null,
-        "alt_svc": null
-      },
-      "city": null,
-      "region": null,
-      "country_name": null,
-      "country_code": null,
-      "continent_code": null,
-      "latitude": null,
-      "longitude": null,
-      "flag": null,
-      "filetype": "application/javascript",
-      "filemagic": "JavaScript source, Unicode text, UTF-8 text, with very long lines (665), with CRLF, LF line terminators",
-      "sha256": "ed213c34ae7678bd8d99b93076c910c8f35a916a623451bf19bfdbc0fcccbd8f",
-      "md5": "0b0053c3607694b3c131228a8f804b2b",
-      "cert": {
-        "subject_cn": "scotiabank.net.pe",
-        "subject_alt_names": [
-          "scotiabank.net.pe",
-          "*.scotiabank.net.pe"
-        ],
-        "issuer_cn": "WE1",
-        "issuer_org": "Google Trust Services",
-        "issuer_country": "US",
-        "not_valid_before": "2026-07-18T01:53:42+00:00",
-        "not_valid_after": "2026-10-16T02:51:00+00:00",
-        "is_expired": false,
-        "is_self_signed": "no",
-        "signature_algorithm": "sha256_ecdsa",
-        "x509_version": "v3",
-        "serial_number": "269127688572201972442792550536401923069",
-        "fingerprint_sha1": "05 98 07 7B 86 D6 3F DB BB 08 4C B9 23 60 D0 6E BF 64 ED 31",
-        "fingerprint_sha256": "B1 A7 A4 A4 29 A4 F0 76 A6 05 9D A5 0C DE 8F A3 BE EA 69 1E 5D 79 A9 51 0C 50 64 76 E4 A7 2D DF"
-      },
-      "safebrowsing": [],
-      "first_seen": "2026-08-20T02:37:38",
-      "first_seen_secs": 1787193458.0
-    },
+    "alienvault": null,
     "phishdestroy": {
       "domain": "scotiabank.net.pe",
       "domain_defanged": "scotiabank[.]net[.]pe",
-      "case_id": "PD-20260830-77257D",
-      "analyzed_at": "2026-08-30T10:50:51.405Z",
+      "case_id": "PD-20260901-77257D",
+      "analyzed_at": "2026-09-01T02:04:27.037Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -89,8 +38,19 @@
       },
       "infrastructure": {
         "ip": "172.67.165.21",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.165.21",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3032::ac43:a515",
+            "2606:4700:3032::6815:b1b"
+          ],
           "A": [
             "172.67.165.21",
             "104.21.11.27"
@@ -98,16 +58,19 @@
           "NS": [
             "edna.ns.cloudflare.com.",
             "fattouche.ns.cloudflare.com."
-          ],
-          "AAAA": [
-            "2606:4700:3032::6815:b1b",
-            "2606:4700:3032::ac43:a515"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,9 +197,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (scotiabank.net.pe/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"scotiabank.net.pe\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010508; classtype:social-engineering; sid:6010508; rev:1; metadata: signature_severity Major, created_et 2026_08_16;)",
-  "updated_at": "2026-08-30T10:50:47.230387+00:00",
+  "updated_at": "2026-09-01T02:04:14.127988+00:00",
   "probe": {
-    "dns": "23.37.18.175",
+    "dns": "104.21.11.27",
     "whois": true,
     "status": "active"
   }
