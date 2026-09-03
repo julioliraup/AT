@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://siclustrade.com/",
       "domain": "siclustrade.com",
-      "url_count": 0,
+      "url_count": 2,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.201.211",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a3516d82be990ccf-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (16818)",
+      "sha256": "e789fbcfabde151c07ee33e161856ea99b3a976431c832c24f9d3660ec85d9b7",
+      "md5": "be795b166ce34f601af82242a6af8b84",
+      "cert": {
+        "subject_cn": "siclustrade.com",
+        "subject_alt_names": [
+          "siclustrade.com",
+          "*.siclustrade.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-24T06:30:56+00:00",
+        "not_valid_after": "2026-11-22T07:29:20+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "2131227331259274642320964107119417269",
+        "fingerprint_sha1": "D7 09 21 E9 49 9F 32 97 03 42 2F C0 7C 38 D1 F7 AC 59 85 D9",
+        "fingerprint_sha256": "40 1D DA 57 D7 50 48 69 10 3F AE 1C FE 58 7F 5C AB 22 43 43 E1 E0 3E 96 36 A8 E4 E0 E2 81 7C 9B"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-09-03T02:32:28",
+      "first_seen_secs": 1788402748.0
     },
     "phishdestroy": {
       "domain": "siclustrade.com",
       "domain_defanged": "siclustrade[.]com",
-      "case_id": "PD-20260902-737842",
-      "analyzed_at": "2026-09-02T23:37:57.682Z",
+      "case_id": "PD-20260903-737842",
+      "analyzed_at": "2026-09-03T15:32:53.017Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -64,9 +88,13 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.201.211",
+        "ip": "104.21.22.14",
         "ipinfo": null,
         "dns": {
+          "A": [
+            "104.21.22.14",
+            "172.67.201.211"
+          ],
           "NS": [
             "adam.ns.cloudflare.com.",
             "kara.ns.cloudflare.com."
@@ -74,10 +102,6 @@
           "AAAA": [
             "2606:4700:3033::ac43:c9d3",
             "2606:4700:3032::6815:160e"
-          ],
-          "A": [
-            "172.67.201.211",
-            "104.21.22.14"
           ]
         }
       },
@@ -210,9 +234,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (siclustrade.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"siclustrade.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015409; classtype:social-engineering; sid:6015409; rev:1; metadata: signature_severity Major, created_et 2026_08_31;)",
-  "updated_at": "2026-09-02T23:37:53.808259+00:00",
+  "updated_at": "2026-09-03T15:32:50.118543+00:00",
   "probe": {
-    "dns": "104.21.22.14",
+    "dns": "172.67.201.211",
     "whois": true,
     "status": "active"
   }

@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "urlvanish.com",
       "domain_defanged": "urlvanish[.]com",
-      "case_id": "PD-20260902-267E16",
-      "analyzed_at": "2026-09-02T05:41:16.712Z",
+      "case_id": "PD-20260903-267E16",
+      "analyzed_at": "2026-09-03T00:29:54.714Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -64,13 +64,16 @@
         "age_days": null
       },
       "infrastructure": {
-        "ip": "172.67.215.120",
-        "ipinfo": null,
+        "ip": "104.21.50.253",
+        "ipinfo": {
+          "ip": "104.21.50.253",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "AAAA": [
-            "2606:4700:3031::6815:32fd",
-            "2606:4700:3035::ac43:d778"
-          ],
           "NS": [
             "andronicus.ns.cloudflare.com.",
             "magnolia.ns.cloudflare.com."
@@ -78,15 +81,26 @@
           "MX": [
             "10 mail.urlvanish.com."
           ],
+          "AAAA": [
+            "2606:4700:3035::ac43:d778",
+            "2606:4700:3031::6815:32fd"
+          ],
           "A": [
-            "172.67.215.120",
-            "104.21.50.253"
+            "104.21.50.253",
+            "172.67.215.120"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -213,9 +227,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (urlvanish.com/3ccce1a7)\"; flow:established,to_server; http.uri; content:\"/3ccce1a7\"; startswith; fast_pattern; http.host; content:\"urlvanish.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000349; classtype:social-engineering; sid:6000349; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-09-02T05:41:09.594758+00:00",
+  "updated_at": "2026-09-03T00:29:50.364091+00:00",
   "probe": {
-    "dns": "172.67.215.120",
+    "dns": "104.21.50.253",
     "whois": true,
     "status": "active"
   }

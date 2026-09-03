@@ -21,16 +21,16 @@
     "alienvault": {
       "url": "http://www.sk-facebook.blogspot.com/",
       "domain": "www.sk-facebook.blogspot.com",
-      "url_count": 3,
+      "url_count": 4,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "142.251.153.119",
-      "http_code": 429,
+      "ip": "142.251.46.65",
+      "http_code": 200,
       "http_response": {
-        "server": "scaffolding on HTTPServer2",
-        "content_type": "text/html",
+        "server": "GSE",
+        "content_type": "text/html; charset=UTF-8",
         "cf_ray": null,
         "cf_cache_status": null,
         "alt_svc": null
@@ -44,9 +44,9 @@
       "longitude": null,
       "flag": null,
       "filetype": "text/html",
-      "filemagic": "HTML document, ASCII text, with very long lines (833)",
-      "sha256": "b6a49667c6138b122eced011389b891c686183ccb402fa75ef94f9793cb33e45",
-      "md5": "63c55d3c5d8b6668563160cd5b096ed1",
+      "filemagic": "HTML document, ASCII text, with very long lines (4048)",
+      "sha256": "99bcd156c1aefe00c11785ff181330b5d56cf64338f688d8b6033365f077401f",
+      "md5": "3c688d6be2107e3d6150a327a62bbc99",
       "cert": {
         "subject_cn": "*.googleusercontent.com",
         "subject_alt_names": [
@@ -94,6 +94,8 @@
           "*.executionbox.usercontent.goog",
           "*.aiplayables.usercontent.goog",
           "*.playground.usercontent.goog",
+          "rbm-smb-experience.business.usercontent.goog",
+          "rbm-smb-experience-autopush.business.usercontent.goog",
           "manifest.c.mail.googleusercontent.com",
           "manifest.lh3-da.googleusercontent.com",
           "manifest.lh3-db.googleusercontent.com",
@@ -195,30 +197,34 @@
           "*.kernels-staging.googleusercontent.com",
           "*.kernels-test.googleusercontent.com",
           "*.cloudshell.googleusercontent.com",
-          "*.cloudworkstations.googleusercontent.com"
+          "*.cloudworkstations.googleusercontent.com",
+          "*.vast.googleusercontent.com",
+          "*.vast-staging.googleusercontent.com",
+          "*.vast-autopush.googleusercontent.com",
+          "*.vast-sandbox.googleusercontent.com"
         ],
         "issuer_cn": "WR2",
         "issuer_org": "Google Trust Services",
         "issuer_country": "US",
-        "not_valid_before": "2026-06-29T08:39:13+00:00",
-        "not_valid_after": "2026-09-21T08:39:12+00:00",
+        "not_valid_before": "2026-08-10T08:38:59+00:00",
+        "not_valid_after": "2026-11-02T08:38:58+00:00",
         "is_expired": false,
         "is_self_signed": "no",
         "signature_algorithm": "sha256_rsa",
         "x509_version": "v3",
-        "serial_number": "EC 56 A6 00 7D D3 70 25 09 8B 3F 51 6E 8D F0 4A",
-        "fingerprint_sha1": "60 34 7E D2 A8 AF 38 5A 3F AA F3 F1 84 C9 80 37 09 B7 E1 05",
-        "fingerprint_sha256": "58 0B DF C7 7D D9 4B 40 83 F4 7D 1D F6 8D 7C 86 3E B8 EA FA 03 2A 1E 68 8C 46 CE 68 2A FB 23 B7"
+        "serial_number": "B3 33 8A DA D0 0A 10 BF 12 81 D3 18 67 0D D7 FF",
+        "fingerprint_sha1": "D2 78 6E E7 7F C9 36 ED B2 3C F6 4D 43 C0 49 19 18 A1 B7 53",
+        "fingerprint_sha256": "3A 58 DB 80 A6 70 00 F6 6A 29 70 72 01 45 A0 F5 80 12 D9 BC F6 40 AD E1 93 37 8C C4 E5 19 2F 05"
       },
       "safebrowsing": [],
-      "first_seen": "2026-07-30T04:04:42",
-      "first_seen_secs": 1785384282.0
+      "first_seen": "2026-09-03T02:37:51",
+      "first_seen_secs": 1788403071.0
     },
     "phishdestroy": {
       "domain": "sk-facebook.blogspot.com",
       "domain_defanged": "sk-facebook[.]blogspot[.]com",
-      "case_id": "PD-20260902-7210B3",
-      "analyzed_at": "2026-09-02T23:35:28.669Z",
+      "case_id": "PD-20260903-7210B3",
+      "analyzed_at": "2026-09-03T15:31:08.938Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -238,19 +244,19 @@
           "CNAME": [
             "blogspot.l.googleusercontent.com."
           ],
-          "AAAA": [
-            "blogspot.l.googleusercontent.com.",
-            "2a00:1450:4001:c0f::84"
-          ],
-          "A": [
-            "blogspot.l.googleusercontent.com.",
-            "192.178.183.132"
-          ],
           "MX": [
             "blogspot.l.googleusercontent.com."
           ],
+          "A": [
+            "blogspot.l.googleusercontent.com.",
+            "142.251.20.132"
+          ],
           "NS": [
             "blogspot.l.googleusercontent.com."
+          ],
+          "AAAA": [
+            "blogspot.l.googleusercontent.com.",
+            "2a00:1450:4001:c17::84"
           ]
         }
       },
@@ -383,9 +389,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.sk-facebook.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.sk-facebook.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015374; classtype:social-engineering; sid:6015374; rev:1; metadata: signature_severity Major, created_et 2026_08_31;)",
-  "updated_at": "2026-09-02T23:35:25.842521+00:00",
+  "updated_at": "2026-09-03T15:31:06.796671+00:00",
   "probe": {
-    "dns": "142.251.153.119",
+    "dns": "142.251.46.65",
     "whois": null,
     "status": "active"
   }

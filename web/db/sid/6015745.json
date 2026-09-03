@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://le-registres-des-societes-francaises.fr/",
       "domain": "le-registres-des-societes-francaises.fr",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.14.203",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a3516d19baeede1d-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,37 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (1308)",
+      "sha256": "7fed769ef680c315ba5290f4b793ad1f0a713030bcf46a93553e7532248498dc",
+      "md5": "f30ad5167c91cd43abda7b7281841357",
+      "cert": {
+        "subject_cn": "le-registres-des-societes-francaises.fr",
+        "subject_alt_names": [
+          "le-registres-des-societes-francaises.fr"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-09-01T10:04:28+00:00",
+        "not_valid_after": "2026-11-30T11:04:26+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "305589506984068450671058983500496005486",
+        "fingerprint_sha1": "18 85 D8 B2 C0 65 9E AF FF 6F DE 10 13 3C B5 99 39 AB 6A BA",
+        "fingerprint_sha256": "3A DB C1 3B 51 5E 73 7D 8E 70 13 14 A7 B4 4C C1 2E 89 05 67 AE 6B E0 F9 00 4B 30 E2 5E 7E FF A2"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-09-03T02:31:45",
+      "first_seen_secs": 1788402705.0
     },
     "phishdestroy": {
       "domain": "le-registres-des-societes-francaises.fr",
       "domain_defanged": "le-registres-des-societes-francaises[.]fr",
-      "case_id": "PD-20260902-273E87",
-      "analyzed_at": "2026-09-02T23:55:59.272Z",
+      "case_id": "PD-20260903-273E87",
+      "analyzed_at": "2026-09-03T15:51:09.983Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -67,17 +90,17 @@
         "ip": "188.114.97.3",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "2a06:98c1:3120::3",
-            "2a06:98c1:3121::3"
+          "NS": [
+            "aron.ns.cloudflare.com.",
+            "henrik.ns.cloudflare.com."
           ],
           "A": [
             "188.114.97.3",
             "188.114.96.3"
           ],
-          "NS": [
-            "aron.ns.cloudflare.com.",
-            "henrik.ns.cloudflare.com."
+          "AAAA": [
+            "2a06:98c1:3121::3",
+            "2a06:98c1:3120::3"
           ]
         }
       },
@@ -210,9 +233,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (le-registres-des-societes-francaises.fr/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"le-registres-des-societes-francaises.fr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015745; classtype:social-engineering; sid:6015745; rev:1; metadata: signature_severity Major, created_et 2026_09_02;)",
-  "updated_at": "2026-09-02T23:55:56.070851+00:00",
+  "updated_at": "2026-09-03T15:51:07.444202+00:00",
   "probe": {
-    "dns": "172.67.160.138",
+    "dns": "104.21.14.203",
     "whois": true,
     "status": "active"
   }
