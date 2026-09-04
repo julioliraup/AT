@@ -55,8 +55,8 @@
     "phishdestroy": {
       "domain": "facebooktrade.com",
       "domain_defanged": "facebooktrade[.]com",
-      "case_id": "PD-20260903-CD7D20",
-      "analyzed_at": "2026-09-03T08:37:12.750Z",
+      "case_id": "PD-20260904-CD7D20",
+      "analyzed_at": "2026-09-04T00:02:40.281Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -71,12 +71,15 @@
       },
       "infrastructure": {
         "ip": "104.21.4.168",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.4.168",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "NS": [
-            "cartman.ns.cloudflare.com.",
-            "laila.ns.cloudflare.com."
-          ],
           "AAAA": [
             "2606:4700:3030::6815:4a8",
             "2606:4700:3035::ac43:8447"
@@ -84,12 +87,23 @@
           "A": [
             "104.21.4.168",
             "172.67.132.71"
+          ],
+          "NS": [
+            "cartman.ns.cloudflare.com.",
+            "laila.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (facebooktrade.com/instagram.html)\"; flow:established,to_server; http.uri; content:\"/instagram.html\"; startswith; fast_pattern; http.host; content:\"facebooktrade.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6007583; classtype:social-engineering; sid:6007583; rev:1; metadata: signature_severity Major, created_et 2026_08_08;)",
-  "updated_at": "2026-09-03T08:37:10.391197+00:00",
+  "updated_at": "2026-09-04T00:02:37.630091+00:00",
   "probe": {
     "dns": "172.67.132.71",
     "whois": true,
