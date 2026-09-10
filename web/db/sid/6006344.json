@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "epic-launch.com",
       "domain_defanged": "epic-launch[.]com",
-      "case_id": "PD-20260909-5EBDA8",
-      "analyzed_at": "2026-09-09T04:51:44.579Z",
+      "case_id": "PD-20260910-5EBDA8",
+      "analyzed_at": "2026-09-10T00:33:57.929Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -65,8 +65,19 @@
       },
       "infrastructure": {
         "ip": "172.67.130.126",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.130.126",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "NS": [
+            "bella.ns.cloudflare.com.",
+            "paul.ns.cloudflare.com."
+          ],
           "MX": [
             "1 aspmx.l.google.com.",
             "10 alt3.aspmx.l.google.com.",
@@ -77,16 +88,19 @@
           "A": [
             "172.67.130.126",
             "104.21.3.82"
-          ],
-          "NS": [
-            "bella.ns.cloudflare.com.",
-            "paul.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -213,7 +227,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.epic-launch.com/wp-includes/assets/Email.account.html?=)\"; flow:established,to_server; http.uri; content:\"/wp-includes/assets/Email.account.html?=\"; startswith; fast_pattern; http.host; content:\"www.epic-launch.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6006344; classtype:social-engineering; sid:6006344; rev:1; metadata: signature_severity Major, created_et 2026_08_04;)",
-  "updated_at": "2026-09-09T04:51:42.444959+00:00",
+  "updated_at": "2026-09-10T00:33:55.023929+00:00",
   "probe": {
     "dns": "104.21.3.82",
     "whois": null,
