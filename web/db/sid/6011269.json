@@ -73,8 +73,8 @@
     "phishdestroy": {
       "domain": "bozlmex.com",
       "domain_defanged": "bozlmex[.]com",
-      "case_id": "PD-20260910-5FED90",
-      "analyzed_at": "2026-09-10T06:15:50.652Z",
+      "case_id": "PD-20260911-5FED90",
+      "analyzed_at": "2026-09-11T01:06:49.907Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -89,8 +89,19 @@
       },
       "infrastructure": {
         "ip": "172.67.194.211",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.67.194.211",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3037::ac43:c2d3",
+            "2606:4700:3037::6815:2c2e"
+          ],
           "NS": [
             "dara.ns.cloudflare.com.",
             "lex.ns.cloudflare.com."
@@ -98,16 +109,19 @@
           "A": [
             "172.67.194.211",
             "104.21.44.46"
-          ],
-          "AAAA": [
-            "2606:4700:3037::ac43:c2d3",
-            "2606:4700:3037::6815:2c2e"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.bozlmex.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.bozlmex.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6011269; classtype:social-engineering; sid:6011269; rev:1; metadata: signature_severity Major, created_et 2026_08_18;)",
-  "updated_at": "2026-09-10T06:15:49.106642+00:00",
+  "updated_at": "2026-09-11T01:06:38.910253+00:00",
   "probe": {
     "dns": "104.21.44.46",
     "whois": null,
