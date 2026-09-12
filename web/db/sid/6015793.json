@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "stored.steamcommunutty.com",
       "domain_defanged": "stored[.]steamcommunutty[.]com",
-      "case_id": "PD-20260911-4C4981",
-      "analyzed_at": "2026-09-11T06:29:59.031Z",
+      "case_id": "PD-20260912-4C4981",
+      "analyzed_at": "2026-09-12T01:22:11.329Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -65,21 +65,35 @@
       },
       "infrastructure": {
         "ip": "104.21.15.242",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.15.242",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:3035::ac43:d0d4",
+            "2606:4700:3031::6815:ff2"
+          ],
           "A": [
             "104.21.15.242",
             "172.67.208.212"
-          ],
-          "AAAA": [
-            "2606:4700:3031::6815:ff2",
-            "2606:4700:3035::ac43:d0d4"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -206,9 +220,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (stored.steamcommunutty.com/profiles/76561119133252110/)\"; flow:established,to_server; http.uri; content:\"/profiles/76561119133252110/\"; startswith; fast_pattern; http.host; content:\"stored.steamcommunutty.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6015793; classtype:social-engineering; sid:6015793; rev:1; metadata: signature_severity Major, created_et 2026_09_02;)",
-  "updated_at": "2026-09-11T06:29:57.339080+00:00",
+  "updated_at": "2026-09-12T01:22:07.314390+00:00",
   "probe": {
-    "dns": "104.21.15.242",
+    "dns": "172.67.208.212",
     "whois": null,
     "status": "active"
   }
