@@ -74,8 +74,8 @@
     "phishdestroy": {
       "domain": "inner.website",
       "domain_defanged": "inner[.]website",
-      "case_id": "PD-20260914-773A89",
-      "analyzed_at": "2026-09-14T06:43:59.150Z",
+      "case_id": "PD-20260915-773A89",
+      "analyzed_at": "2026-09-15T01:25:42.190Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -90,7 +90,14 @@
       },
       "infrastructure": {
         "ip": "104.26.3.170",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.26.3.170",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "MX": [
             "0 smtp.secureserver.net.",
@@ -101,20 +108,27 @@
             "2606:4700:20::681a:2aa",
             "2606:4700:20::681a:3aa"
           ],
-          "NS": [
-            "mona.ns.cloudflare.com.",
-            "sean.ns.cloudflare.com."
-          ],
           "A": [
             "104.26.3.170",
             "172.67.73.56",
             "104.26.2.170"
+          ],
+          "NS": [
+            "mona.ns.cloudflare.com.",
+            "sean.ns.cloudflare.com."
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -241,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (inner .website/x5118c60102cbd498cu89dc2773q5e7571b4 .html)\"; flow:established,to_server; http.uri; content:\"/x5118c60102cbd498cu89dc2773q5e7571b4.html\"; startswith; fast_pattern; http.host;  content:\"inner.website\"; endswith; reference:url,openphish.com; reference:url,github.com/julioliraup/Antiphishing; reference:url,julioliraup.github.io/AT/signature.html?sid=6000142; classtype:social-engineering; sid:6000142; rev:2; metadata: signature_severity Major, created_et 2026_05_10, updated_et 2026_06_25;)",
-  "updated_at": "2026-09-14T06:43:57.612915+00:00",
+  "updated_at": "2026-09-15T01:25:40.602140+00:00",
   "probe": {
     "dns": "172.67.73.56",
     "whois": true,

@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "redirect.me",
       "domain_defanged": "redirect[.]me",
-      "case_id": "PD-20260914-757064",
-      "analyzed_at": "2026-09-14T06:56:06.622Z",
+      "case_id": "PD-20260915-757064",
+      "analyzed_at": "2026-09-15T01:58:40.856Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -65,7 +65,14 @@
       },
       "infrastructure": {
         "ip": "104.26.0.244",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.26.0.244",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
           "MX": [
             "10 mx1.improvmx.com.",
@@ -75,21 +82,28 @@
             "carla.ns.cloudflare.com.",
             "rustam.ns.cloudflare.com."
           ],
+          "A": [
+            "104.26.0.244",
+            "104.26.1.244",
+            "172.67.68.136"
+          ],
           "AAAA": [
             "2606:4700:20::681a:1f4",
             "2606:4700:20::ac43:4488",
             "2606:4700:20::681a:f4"
-          ],
-          "A": [
-            "104.26.0.244",
-            "172.67.68.136",
-            "104.26.1.244"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -216,7 +230,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (redirect.me/r/yhejge)\"; flow:established,to_server; http.uri; content:\"/r/yhejge\"; startswith; fast_pattern; http.host; content:\"redirect.me\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6000365; classtype:social-engineering; sid:6000365; rev:1; metadata: signature_severity Major, created_et 2026_06_22, updated_et 2026_06_25;)",
-  "updated_at": "2026-09-14T06:56:01.072906+00:00",
+  "updated_at": "2026-09-15T01:58:39.083897+00:00",
   "probe": {
     "dns": "172.67.68.136",
     "whois": true,
