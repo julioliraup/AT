@@ -22,7 +22,7 @@
       "url": "http://sirhc.fr/v2/login",
       "domain": "sirhc.fr",
       "url_count": 0,
-      "city_data": false,
+      "city_data": true,
       "deep_analysis": false,
       "has_file_analysis": false,
       "tlp": null,
@@ -49,8 +49,8 @@
     "phishdestroy": {
       "domain": "sirhc.fr",
       "domain_defanged": "sirhc[.]fr",
-      "case_id": "PD-20260915-250533",
-      "analyzed_at": "2026-09-15T21:18:39.748Z",
+      "case_id": "PD-20260916-250533",
+      "analyzed_at": "2026-09-16T15:30:36.964Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -64,8 +64,27 @@
         "age_days": null
       },
       "infrastructure": {
+        "ip": "104.21.72.179",
         "ipinfo": null,
-        "dns": null
+        "dns": {
+          "NS": [
+            "coco.ns.cloudflare.com.",
+            "sri.ns.cloudflare.com."
+          ],
+          "A": [
+            "104.21.72.179",
+            "172.67.187.39"
+          ],
+          "AAAA": [
+            "2606:4700:3034::ac43:bb27",
+            "2606:4700:3030::6815:48b3"
+          ],
+          "MX": [
+            "24 route1.mx.cloudflare.net.",
+            "7 route2.mx.cloudflare.net.",
+            "70 route3.mx.cloudflare.net."
+          ]
+        }
       },
       "report_to": {
         "registrar": null,
@@ -196,9 +215,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sirhc.fr/v2/login)\"; flow:established,to_server; http.uri; content:\"/v2/login\"; startswith; fast_pattern; http.host; content:\"sirhc.fr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6018130; classtype:social-engineering; sid:6018130; rev:1; metadata: signature_severity Major, created_et 2026_09_14;)",
-  "updated_at": "2026-09-15T21:18:38.093340+00:00",
+  "updated_at": "2026-09-16T15:30:34.158939+00:00",
   "probe": {
-    "dns": null,
+    "dns": "172.67.187.39",
     "whois": true,
     "status": "active"
   }

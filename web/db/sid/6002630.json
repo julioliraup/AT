@@ -72,8 +72,8 @@
     "phishdestroy": {
       "domain": "microsoft-1ogin.duckdns.org",
       "domain_defanged": "microsoft-1ogin[.]duckdns[.]org",
-      "case_id": "PD-20260915-7F070D",
-      "analyzed_at": "2026-09-15T04:27:05.977Z",
+      "case_id": "PD-20260916-7F070D",
+      "analyzed_at": "2026-09-16T00:41:09.222Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -88,19 +88,33 @@
       },
       "infrastructure": {
         "ip": "216.198.79.1",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "216.198.79.1",
+          "city": "Walnut",
+          "region": "California",
+          "country": "US",
+          "org": "AS16509 Amazon.com, Inc.",
+          "asn": "AS16509"
+        },
         "dns": {
-          "A": [
-            "216.198.79.1"
-          ],
           "MX": [
             "50 microsoft-1ogin.duckdns.org."
+          ],
+          "A": [
+            "216.198.79.1"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Amazon AWS",
+          "abuse": "abuse@amazonaws.com",
+          "url": "https://support.aws.amazon.com/#/contacts/report-abuse",
+          "logo": "",
+          "method": "form",
+          "asn": "AS16509"
+        }
       },
       "report_services": [
         {
@@ -227,10 +241,10 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.microsoft-1ogin.duckdns.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.microsoft-1ogin.duckdns.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6002630; classtype:social-engineering; sid:6002630; rev:1; metadata: signature_severity Major, created_et 2026_06_08, updated_et 2026_06_25;)",
-  "updated_at": "2026-09-15T04:27:03.860041+00:00",
+  "updated_at": "2026-09-16T00:41:01.451887+00:00",
   "probe": {
     "dns": "216.198.79.1",
-    "whois": true,
+    "whois": null,
     "status": "active"
   }
 }
