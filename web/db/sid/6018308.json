@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://www.anticrueltv.biz/",
       "domain": "www.anticrueltv.biz",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "104.21.81.172",
+      "http_code": 200,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a3c4ccd928001d57-PDX",
+        "cf_cache_status": "DYNAMIC",
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (1304)",
+      "sha256": "dd3047e34b3fec804b9dc91b2a73c7f46cc229375e174b9b1c1184a8a381635b",
+      "md5": "9c2f66fdab91f44c63c5ee05c7a040ee",
+      "cert": {
+        "subject_cn": "anticrueltv.biz",
+        "subject_alt_names": [
+          "*.anticrueltv.biz",
+          "anticrueltv.biz"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-09-16T09:00:09+00:00",
+        "not_valid_after": "2026-12-15T09:00:08+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "590627380343928896908623193253523560108801",
+        "fingerprint_sha1": "FB 6B A6 2B 2C 0F 5A CE BC 18 F6 F4 4E 20 BB 76 3D E6 29 C7",
+        "fingerprint_sha256": "46 1D C7 C4 DD 62 C0 6E 07 B8 16 1D EC AB 3A 84 F9 BD 4B 22 80 DD 10 48 A2 BD 13 20 C7 06 55 9C"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-09-17T02:32:48",
+      "first_seen_secs": 1789612368.0
     },
     "phishdestroy": {
       "domain": "anticrueltv.biz",
       "domain_defanged": "anticrueltv[.]biz",
-      "case_id": "PD-20260916-716901",
-      "analyzed_at": "2026-09-16T15:49:16.829Z",
+      "case_id": "PD-20260917-716901",
+      "analyzed_at": "2026-09-17T07:49:35.859Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -67,17 +91,17 @@
         "ip": "172.67.162.183",
         "ipinfo": null,
         "dns": {
-          "NS": [
-            "rommy.ns.cloudflare.com.",
-            "suzanne.ns.cloudflare.com."
-          ],
           "AAAA": [
-            "2606:4700:3035::6815:51ac",
-            "2606:4700:3035::ac43:a2b7"
+            "2606:4700:3035::ac43:a2b7",
+            "2606:4700:3035::6815:51ac"
           ],
           "A": [
             "172.67.162.183",
             "104.21.81.172"
+          ],
+          "NS": [
+            "rommy.ns.cloudflare.com.",
+            "suzanne.ns.cloudflare.com."
           ]
         }
       },
@@ -210,9 +234,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.anticrueltv.biz/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.anticrueltv.biz\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6018308; classtype:social-engineering; sid:6018308; rev:1; metadata: signature_severity Major, created_et 2026_09_14;)",
-  "updated_at": "2026-09-16T15:49:13.907541+00:00",
+  "updated_at": "2026-09-17T07:49:30.062273+00:00",
   "probe": {
-    "dns": "172.67.162.183",
+    "dns": "104.21.81.172",
     "whois": true,
     "status": "active"
   }

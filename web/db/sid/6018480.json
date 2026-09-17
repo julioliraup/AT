@@ -21,14 +21,20 @@
     "alienvault": {
       "url": "http://dac8france.com/",
       "domain": "dac8france.com",
-      "url_count": 0,
+      "url_count": 1,
       "city_data": true,
-      "deep_analysis": false,
+      "deep_analysis": true,
       "has_file_analysis": false,
-      "tlp": null,
-      "ip": null,
-      "http_code": null,
-      "http_response": null,
+      "tlp": "WHITE",
+      "ip": "172.67.221.146",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a3c4c708bff3ef4f-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
       "city": null,
       "region": null,
       "country_name": null,
@@ -37,20 +43,38 @@
       "latitude": null,
       "longitude": null,
       "flag": null,
-      "filetype": null,
-      "filemagic": null,
-      "sha256": null,
-      "md5": null,
-      "cert": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (945)",
+      "sha256": "8070b200ec5e06d88146753114e013ac8138f4384779b3220135addc49e73f2a",
+      "md5": "248ca62cf0249430f61ab610368821e3",
+      "cert": {
+        "subject_cn": "dac8france.com",
+        "subject_alt_names": [
+          "dac8france.com",
+          "*.dac8france.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-08-29T19:52:25+00:00",
+        "not_valid_after": "2026-11-27T20:50:04+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "153788760537210733092161854034994567141",
+        "fingerprint_sha1": "6B D8 C6 7E 4C CD 7E FD 5C 37 87 DA D7 E8 89 6B AD 93 6F B8",
+        "fingerprint_sha256": "2C 83 C9 16 48 9B B9 6D 0E 92 68 FD 5E EB F1 C6 86 6A 97 B7 76 F6 9D 3B DD CA 0D 79 99 45 7C FC"
+      },
       "safebrowsing": [],
-      "first_seen": null,
-      "first_seen_secs": null
+      "first_seen": "2026-09-17T02:31:20",
+      "first_seen_secs": 1789612280.0
     },
     "phishdestroy": {
       "domain": "dac8france.com",
       "domain_defanged": "dac8france[.]com",
-      "case_id": "PD-20260916-4793B4",
-      "analyzed_at": "2026-09-16T16:03:24.817Z",
+      "case_id": "PD-20260917-4793B4",
+      "analyzed_at": "2026-09-17T07:57:34.272Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -67,13 +91,13 @@
         "ip": "104.21.94.86",
         "ipinfo": null,
         "dns": {
-          "NS": [
-            "casey.ns.cloudflare.com.",
-            "saanvi.ns.cloudflare.com."
-          ],
           "AAAA": [
             "2606:4700:3032::ac43:dd92",
             "2606:4700:3032::6815:5e56"
+          ],
+          "NS": [
+            "casey.ns.cloudflare.com.",
+            "saanvi.ns.cloudflare.com."
           ],
           "A": [
             "104.21.94.86",
@@ -210,9 +234,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (dac8france.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"dac8france.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6018480; classtype:social-engineering; sid:6018480; rev:1; metadata: signature_severity Major, created_et 2026_09_15;)",
-  "updated_at": "2026-09-16T16:03:11.169898+00:00",
+  "updated_at": "2026-09-17T07:57:27.047931+00:00",
   "probe": {
-    "dns": "104.21.94.86",
+    "dns": "172.67.221.146",
     "whois": null,
     "status": "active"
   }

@@ -73,8 +73,8 @@
     "phishdestroy": {
       "domain": "ledgrecomlive.pages.dev",
       "domain_defanged": "ledgrecomlive[.]pages[.]dev",
-      "case_id": "PD-20260916-659D21",
-      "analyzed_at": "2026-09-16T08:43:22.804Z",
+      "case_id": "PD-20260917-659D21",
+      "analyzed_at": "2026-09-17T01:58:36.712Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -89,8 +89,19 @@
       },
       "infrastructure": {
         "ip": "172.66.44.116",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "172.66.44.116",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
+          "AAAA": [
+            "2606:4700:310c::ac42:2f8c",
+            "2606:4700:310c::ac42:2c74"
+          ],
           "NS": [
             "george.ns.cloudflare.com.",
             "poppy.ns.cloudflare.com."
@@ -98,16 +109,19 @@
           "A": [
             "172.66.44.116",
             "172.66.47.140"
-          ],
-          "AAAA": [
-            "2606:4700:310c::ac42:2c74",
-            "2606:4700:310c::ac42:2f8c"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -234,7 +248,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (ledgrecomlive.pages.dev/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"ledgrecomlive.pages.dev\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6010776; classtype:social-engineering; sid:6010776; rev:1; metadata: signature_severity Major, created_et 2026_08_17;)",
-  "updated_at": "2026-09-16T08:43:16.534893+00:00",
+  "updated_at": "2026-09-17T01:58:35.194623+00:00",
   "probe": {
     "dns": "172.66.44.116",
     "whois": null,
