@@ -73,8 +73,8 @@
     "phishdestroy": {
       "domain": "alwayssecuredhub.net",
       "domain_defanged": "alwayssecuredhub[.]net",
-      "case_id": "PD-20260917-30C36C",
-      "analyzed_at": "2026-09-17T06:30:56.833Z",
+      "case_id": "PD-20260918-30C36C",
+      "analyzed_at": "2026-09-18T00:47:15.318Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -89,12 +89,15 @@
       },
       "infrastructure": {
         "ip": "104.21.21.13",
-        "ipinfo": null,
+        "ipinfo": {
+          "ip": "104.21.21.13",
+          "city": "San Francisco",
+          "region": "California",
+          "country": "US",
+          "org": "AS13335 Cloudflare, Inc.",
+          "asn": "AS13335"
+        },
         "dns": {
-          "NS": [
-            "arch.ns.cloudflare.com.",
-            "bella.ns.cloudflare.com."
-          ],
           "MX": [
             "1 aspmx.l.google.com.",
             "10 alt3.aspmx.l.google.com.",
@@ -102,19 +105,30 @@
             "5 alt1.aspmx.l.google.com.",
             "5 alt2.aspmx.l.google.com."
           ],
+          "NS": [
+            "arch.ns.cloudflare.com.",
+            "bella.ns.cloudflare.com."
+          ],
+          "AAAA": [
+            "2606:4700:3035::ac43:c3ab",
+            "2606:4700:3034::6815:150d"
+          ],
           "A": [
             "104.21.21.13",
             "172.67.195.171"
-          ],
-          "AAAA": [
-            "2606:4700:3034::6815:150d",
-            "2606:4700:3035::ac43:c3ab"
           ]
         }
       },
       "report_to": {
         "registrar": null,
-        "hosting": null
+        "hosting": {
+          "name": "Cloudflare",
+          "abuse": "abuse@cloudflare.com",
+          "url": "https://abuse.cloudflare.com/",
+          "logo": "",
+          "method": "form",
+          "asn": "AS13335"
+        }
       },
       "report_services": [
         {
@@ -241,7 +255,7 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.alwayssecuredhub.net/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.alwayssecuredhub.net\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6016514; classtype:social-engineering; sid:6016514; rev:1; metadata: signature_severity Major, created_et 2026_09_07;)",
-  "updated_at": "2026-09-17T06:30:55.346214+00:00",
+  "updated_at": "2026-09-18T00:47:13.886984+00:00",
   "probe": {
     "dns": "172.67.195.171",
     "whois": null,
