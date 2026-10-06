@@ -21,12 +21,12 @@
     "alienvault": {
       "url": "http://www.facebookcomfacebook.blogspot.com/",
       "domain": "www.facebookcomfacebook.blogspot.com",
-      "url_count": 1,
+      "url_count": 3,
       "city_data": true,
       "deep_analysis": true,
       "has_file_analysis": false,
       "tlp": "WHITE",
-      "ip": "142.250.73.65",
+      "ip": "142.251.45.129",
       "http_code": 200,
       "http_response": {
         "server": "GSE",
@@ -45,8 +45,8 @@
       "flag": null,
       "filetype": "text/html",
       "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (4338)",
-      "sha256": "7a67eec214613f09f77ee7a7e645dba293947cc8aa768ca75dc4cca3ecdef55f",
-      "md5": "956badc2d3af04c20690f66e8e382f63",
+      "sha256": "7c8cbee159cf4a191644bf9d78e6f1f0bcb953c9c1ce88a5762cdd18dea94a3b",
+      "md5": "e5dbc504133fed141e52bb3ee260ad69",
       "cert": {
         "subject_cn": "*.googleusercontent.com",
         "subject_alt_names": [
@@ -94,6 +94,9 @@
           "*.executionbox.usercontent.goog",
           "*.aiplayables.usercontent.goog",
           "*.playground.usercontent.goog",
+          "*.labs-studios.usercontent.goog",
+          "rbm-smb-experience.business.usercontent.goog",
+          "rbm-smb-experience-autopush.business.usercontent.goog",
           "manifest.c.mail.googleusercontent.com",
           "manifest.lh3-da.googleusercontent.com",
           "manifest.lh3-db.googleusercontent.com",
@@ -195,30 +198,34 @@
           "*.kernels-staging.googleusercontent.com",
           "*.kernels-test.googleusercontent.com",
           "*.cloudshell.googleusercontent.com",
-          "*.cloudworkstations.googleusercontent.com"
+          "*.cloudworkstations.googleusercontent.com",
+          "*.vast.googleusercontent.com",
+          "*.vast-staging.googleusercontent.com",
+          "*.vast-autopush.googleusercontent.com",
+          "*.vast-sandbox.googleusercontent.com"
         ],
         "issuer_cn": "WR2",
         "issuer_org": "Google Trust Services",
         "issuer_country": "US",
-        "not_valid_before": "2026-06-22T08:37:12+00:00",
-        "not_valid_after": "2026-09-14T08:37:11+00:00",
+        "not_valid_before": "2026-09-10T19:23:17+00:00",
+        "not_valid_after": "2026-12-03T19:23:16+00:00",
         "is_expired": false,
         "is_self_signed": "no",
         "signature_algorithm": "sha256_rsa",
         "x509_version": "v3",
-        "serial_number": "AB 90 DC 2A 7B A3 84 4C 0A FD 26 E4 11 B4 C4 AD",
-        "fingerprint_sha1": "24 73 61 3C EF 1A 5A 94 C4 ED 62 E6 85 33 3B 93 6B FE 77 24",
-        "fingerprint_sha256": "39 75 DE 69 D7 F1 6B 77 CD 4A 3F E0 A0 E0 7C 1A E5 6E 7A 23 48 71 06 9B 92 9A 68 99 BD 3C 8E E0"
+        "serial_number": "72 7C 51 10 15 66 09 BA 0A AA 91 F9 A1 EA E0 A4",
+        "fingerprint_sha1": "A2 84 05 9D 1B 65 D4 E7 26 FF 0D 6F DC 71 23 08 E1 57 D1 1D",
+        "fingerprint_sha256": "F2 A4 61 73 FB 76 4B 50 35 5C 10 C3 72 86 29 C7 AC AB 25 B8 A9 D6 E0 36 58 01 AC B6 F6 8A BC FB"
       },
       "safebrowsing": [],
-      "first_seen": "2026-07-11T22:46:22",
-      "first_seen_secs": 1783809982.0
+      "first_seen": "2026-10-01T05:44:36",
+      "first_seen_secs": 1790833476.0
     },
     "phishdestroy": {
       "domain": "facebookcomfacebook.blogspot.com",
       "domain_defanged": "facebookcomfacebook[.]blogspot[.]com",
-      "case_id": "PD-20260919-6E5A94",
-      "analyzed_at": "2026-09-19T06:37:02.122Z",
+      "case_id": "PD-20261006-6E5A94",
+      "analyzed_at": "2026-10-06T06:29:38.050Z",
       "intel": {
         "virustotal": {
           "error": "no_key"
@@ -235,22 +242,22 @@
         "ip": "blogspot.l.googleusercontent.com.",
         "ipinfo": null,
         "dns": {
-          "AAAA": [
-            "blogspot.l.googleusercontent.com.",
-            "2a00:1450:4001:c0f::84"
-          ],
-          "MX": [
+          "CNAME": [
             "blogspot.l.googleusercontent.com."
           ],
           "NS": [
             "blogspot.l.googleusercontent.com."
           ],
-          "CNAME": [
-            "blogspot.l.googleusercontent.com."
-          ],
           "A": [
             "blogspot.l.googleusercontent.com.",
-            "192.178.183.132"
+            "142.251.20.132"
+          ],
+          "MX": [
+            "blogspot.l.googleusercontent.com."
+          ],
+          "AAAA": [
+            "blogspot.l.googleusercontent.com.",
+            "2a00:1450:4001:c15::84"
           ]
         }
       },
@@ -383,9 +390,9 @@
     }
   },
   "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.facebookcomfacebook.blogspot.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.facebookcomfacebook.blogspot.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6008022; classtype:social-engineering; sid:6008022; rev:1; metadata: signature_severity Major, created_et 2026_08_09;)",
-  "updated_at": "2026-09-19T06:36:48.969105+00:00",
+  "updated_at": "2026-10-06T06:29:36.280093+00:00",
   "probe": {
-    "dns": "142.250.73.65",
+    "dns": "142.251.45.129",
     "whois": null,
     "status": "active"
   }
