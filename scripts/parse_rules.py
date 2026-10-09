@@ -803,6 +803,7 @@ def _whois_responsive(domain):
             ['whois', domain],
             capture_output=True,
             text=True,
+            errors='replace',
             timeout=6,
         )
         stdout = (result.stdout or '').strip()

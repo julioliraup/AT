@@ -183,6 +183,14 @@ class IncrementalPipelineTests(unittest.TestCase):
         self.assertIsNone(obj['intel']['phishdestroy'])
         self.assertIsNone(obj['intel']['ipinfo'])
 
+    def test_whois_uses_replacement_for_invalid_utf8(self):
+        result = MagicMock(returncode=0, stdout='registrar: �')
+        with patch.object(parse_rules.shutil, 'which', return_value='/usr/bin/whois'), \
+                patch.object(parse_rules.subprocess, 'run', return_value=result) as run:
+            self.assertTrue(parse_rules._whois_responsive('invalid-encoding.test'))
+
+        self.assertEqual(run.call_args.kwargs['errors'], 'replace')
+
     def test_validator_rejects_partial_ruleset(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
