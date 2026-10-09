@@ -1,8 +1,9 @@
 import json
+import io
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import sys
 
@@ -88,6 +89,69 @@ class IncrementalPipelineTests(unittest.TestCase):
                 )
                 parse_rules._CACHE_ITEMS = None
                 parse_rules._CACHE_KEY_LOCKS.clear()
+
+    def test_ipinfo_retries_rate_limited_requests(self):
+        rate_limited = parse_rules.urllib.error.HTTPError(
+            'https://ipinfo.io/192.0.2.1/json',
+            429,
+            'Too Many Requests',
+            {'Retry-After': '0'},
+            io.BytesIO(),
+        )
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.read.return_value = b'{"ip": "192.0.2.1"}'
+        obj = {'intel': {}}
+
+        with patch.object(parse_rules, '_resolve_domain_ip', return_value='192.0.2.1'), \
+                patch.object(
+                    parse_rules, '_rate_limited_request',
+                    side_effect=lambda service, interval, fetch: fetch(),
+                ), \
+                patch.object(
+                    parse_rules, '_cached_json',
+                    side_effect=lambda key, fetch: fetch(),
+                ), \
+                patch.object(
+                    parse_rules.urllib.request, 'urlopen',
+                    side_effect=[rate_limited, response],
+                ) as urlopen, \
+                patch.object(parse_rules.time, 'sleep') as sleep:
+            parse_rules.enrich_ipinfo(obj)
+
+        self.assertEqual(obj['intel']['ipinfo'], {'ip': '192.0.2.1'})
+        self.assertEqual(urlopen.call_count, 2)
+        sleep.assert_called_once_with(0)
+
+    def test_ipinfo_rate_limit_exhaustion_does_not_fail_enrichment(self):
+        rate_limited = parse_rules.urllib.error.HTTPError(
+            'https://ipinfo.io/192.0.2.1/json',
+            429,
+            'Too Many Requests',
+            {'Retry-After': '0'},
+            io.BytesIO(),
+        )
+        obj = {'intel': {}}
+
+        with patch.object(parse_rules, '_resolve_domain_ip', return_value='192.0.2.1'), \
+                patch.object(
+                    parse_rules, '_rate_limited_request',
+                    side_effect=lambda service, interval, fetch: fetch(),
+                ), \
+                patch.object(
+                    parse_rules, '_cached_json',
+                    side_effect=lambda key, fetch: fetch(),
+                ), \
+                patch.object(
+                    parse_rules.urllib.request, 'urlopen',
+                    side_effect=[rate_limited, rate_limited, rate_limited],
+                ) as urlopen, \
+                patch.object(parse_rules.time, 'sleep'), \
+                patch.object(sys, 'stderr', io.StringIO()):
+            parse_rules.enrich_ipinfo(obj)
+
+        self.assertIsNone(obj['intel']['ipinfo'])
+        self.assertEqual(urlopen.call_count, 3)
 
     def test_validator_rejects_partial_ruleset(self):
         with tempfile.TemporaryDirectory() as temp_dir:

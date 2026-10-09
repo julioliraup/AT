@@ -30,6 +30,7 @@ Each valid rule produces one JSON file under ``web/db/sid/<sid>.json``.
 
 import json
 import hashlib
+import email.utils
 import os
 import shutil
 import socket
@@ -891,8 +892,32 @@ def enrich_ipinfo(obj):
         )
         try:
             def request_json():
-                with urllib.request.urlopen(req, timeout=5) as resp:
-                    return json.loads(resp.read().decode('utf-8'))
+                for attempt in range(3):
+                    try:
+                        with urllib.request.urlopen(req, timeout=5) as resp:
+                            return json.loads(resp.read().decode('utf-8'))
+                    except urllib.error.HTTPError as exc:
+                        if exc.code != 429 or attempt == 2:
+                            raise
+
+                        retry_after = exc.headers.get('Retry-After')
+                        try:
+                            delay = float(retry_after)
+                        except (TypeError, ValueError):
+                            try:
+                                retry_at = email.utils.parsedate_to_datetime(
+                                    retry_after
+                                )
+                                delay = (
+                                    retry_at - datetime.now(timezone.utc)
+                                ).total_seconds()
+                            except (TypeError, ValueError, OverflowError):
+                                delay = 2 ** attempt
+
+                        exc.close()
+                        if delay > 60:
+                            raise
+                        time.sleep(max(0, delay))
 
             return _rate_limited_request('ipinfo', 0.25, request_json)
         except (urllib.error.URLError, json.JSONDecodeError, OSError) as exc:
@@ -1077,8 +1102,12 @@ def main():
     _save_enrichment_cache()
 
     if errors:
+        details = '; '.join(
+            f'SID {sid}: {exc}' for sid, exc in errors
+        )
         raise RuntimeError(
-            f'{len(errors)} SID record(s) failed; successful records were saved'
+            f'{len(errors)} SID record(s) failed; successful records were saved: '
+            f'{details}'
         )
 
     print(
