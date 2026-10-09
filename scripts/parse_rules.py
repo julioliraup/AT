@@ -861,7 +861,10 @@ def enrich_phishdestroy(obj):
                     return json.loads(resp.read().decode('utf-8'))
 
             return _rate_limited_request('phishdestroy', 0.25, request_json)
-        except (urllib.error.URLError, json.JSONDecodeError, OSError) as exc:
+        except (
+            urllib.error.URLError, json.JSONDecodeError,
+            UnicodeDecodeError, OSError,
+        ) as exc:
             print(f'[phishdestroy] Request failed for {domain}: {exc}', file=sys.stderr)
             return None
 
@@ -920,7 +923,10 @@ def enrich_ipinfo(obj):
                         time.sleep(max(0, delay))
 
             return _rate_limited_request('ipinfo', 0.25, request_json)
-        except (urllib.error.URLError, json.JSONDecodeError, OSError) as exc:
+        except (
+            urllib.error.URLError, json.JSONDecodeError,
+            UnicodeDecodeError, OSError,
+        ) as exc:
             print(f'[ipinfo] Request failed for {ip}: {exc}', file=sys.stderr)
             return None
 

@@ -153,6 +153,36 @@ class IncrementalPipelineTests(unittest.TestCase):
         self.assertIsNone(obj['intel']['ipinfo'])
         self.assertEqual(urlopen.call_count, 3)
 
+    def test_invalid_utf8_enrichment_responses_are_nonfatal(self):
+        invalid_response = MagicMock()
+        invalid_response.__enter__.return_value = invalid_response
+        invalid_response.read.return_value = b'{"name": "\xf1"}'
+        obj = {
+            'url_base': 'example.test',
+            'intel': {},
+        }
+
+        with patch.object(
+                parse_rules, '_resolve_domain_ip', return_value='192.0.2.1'), \
+                patch.object(
+                    parse_rules, '_rate_limited_request',
+                    side_effect=lambda service, interval, fetch: fetch(),
+                ), \
+                patch.object(
+                    parse_rules, '_cached_json',
+                    side_effect=lambda key, fetch: fetch(),
+                ), \
+                patch.object(
+                    parse_rules.urllib.request, 'urlopen',
+                    return_value=invalid_response,
+                ), \
+                patch.object(sys, 'stderr', io.StringIO()):
+            parse_rules.enrich_phishdestroy(obj)
+            parse_rules.enrich_ipinfo(obj)
+
+        self.assertIsNone(obj['intel']['phishdestroy'])
+        self.assertIsNone(obj['intel']['ipinfo'])
+
     def test_validator_rejects_partial_ruleset(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
