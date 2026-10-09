@@ -1,0 +1,91 @@
+{
+  "sid": 6023649,
+  "url_path": "/",
+  "url_base": "fortgrind.com",
+  "msg": "AT related malicious URL (fortgrind.com/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6023649"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "62.60.226.148",
+      "city": "Frankfurt am Main",
+      "region": "Hesse",
+      "country": "DE",
+      "loc": "50.1155,8.6842",
+      "org": "AS214351 FEMO IT SOLUTIONS LIMITED",
+      "postal": "60306",
+      "timezone": "Europe/Berlin",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": {
+      "url": "http://fortgrind.com/",
+      "domain": "fortgrind.com",
+      "url_count": 15,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "62.60.226.148",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx/1.25.5",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=2592000"
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text",
+      "sha256": "3f47d1c7d29d45e464a5eab7c2c379657880cc8242fd571b0daa07288017f46f",
+      "md5": "8d41b985ef64007ee8f9bbc084c1a607",
+      "cert": {
+        "subject_cn": "fortgrind.com",
+        "subject_alt_names": [
+          "fortgrind.com"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-09-19T17:03:06+00:00",
+        "not_valid_after": "2026-12-18T17:03:05+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "587609050238785079784873178128222002165172",
+        "fingerprint_sha1": "51 03 74 B8 CB 34 34 F5 F0 55 7B C6 77 A3 83 F4 CE C4 9B F5",
+        "fingerprint_sha256": "E0 DB F8 A7 EF 99 79 78 58 8C C0 6F FD 9C 99 CB 41 06 D0 DD A5 15 62 6E 7D 60 2E AB 24 D2 9C F1"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-10-09T02:33:13",
+      "first_seen_secs": 1791513193.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fortgrind.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fortgrind.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6023649; classtype:social-engineering; sid:6023649; rev:1; metadata: signature_severity Major, created_et 2026_10_05;)",
+  "updated_at": "2026-10-09T21:43:03.452398+00:00",
+  "probe": {
+    "dns": "62.60.226.148",
+    "whois": true,
+    "status": "active"
+  }
+}

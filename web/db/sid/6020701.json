@@ -1,0 +1,92 @@
+{
+  "sid": 6020701,
+  "url_path": "/",
+  "url_base": "www.standrem.de",
+  "msg": "AT related malicious URL (www.standrem.de/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6020701"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "31.76.120.174",
+      "city": "Helsinki",
+      "region": "Uusimaa",
+      "country": "FI",
+      "loc": "60.1695,24.9354",
+      "org": "AS198550 NODE HOST LIMITED",
+      "postal": "00100",
+      "timezone": "Europe/Helsinki",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": {
+      "url": "http://www.standrem.de/",
+      "domain": "www.standrem.de",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "31.76.120.174",
+      "http_code": 200,
+      "http_response": {
+        "server": "Apache/2.4.68 (Debian)",
+        "content_type": "text/html; charset=UTF-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (1877)",
+      "sha256": "62e84ae708d515ddf7aec0a05292b6819ac99752b0e38bfd46881446c21f22b5",
+      "md5": "ce2572d1d0b6978d37c3bd270c837c82",
+      "cert": {
+        "subject_cn": "standrem.de",
+        "subject_alt_names": [
+          "*.standrem.de",
+          "standrem.de"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-09-23T17:08:24+00:00",
+        "not_valid_after": "2026-12-22T17:08:23+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "495165070638896321621543340470755343950496",
+        "fingerprint_sha1": "AB 26 3D 95 EF BE 10 92 E1 9D 1B DA 78 30 92 81 5A 72 59 89",
+        "fingerprint_sha256": "C7 11 97 B5 42 C8 2C CC A8 86 68 7A 15 27 0A DC FF 6C CF D2 01 EB 2E 66 25 25 91 65 71 BF 25 73"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-10-01T05:36:12",
+      "first_seen_secs": 1790832972.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.standrem.de/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"www.standrem.de\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6020701; classtype:social-engineering; sid:6020701; rev:1; metadata: signature_severity Major, created_et 2026_09_27;)",
+  "updated_at": "2026-10-09T21:43:03.393631+00:00",
+  "probe": {
+    "dns": "31.76.120.174",
+    "whois": true,
+    "status": "active"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "sid": 6022703,
+  "url_path": "/",
+  "url_base": "example6.com",
+  "msg": "AT related malicious URL (example6.com/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "phishstats.info",
+    "julioliraup.github.io/AT/signature.html?sid=6022703"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "104.21.59.130",
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US",
+      "loc": "37.7621,-122.3971",
+      "org": "AS13335 Cloudflare, Inc.",
+      "postal": "94107",
+      "timezone": "America/Los_Angeles",
+      "readme": "https://ipinfo.io/missingauth",
+      "anycast": true
+    },
+    "alienvault": {
+      "url": "http://example6.com/",
+      "domain": "example6.com",
+      "url_count": 2,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "104.21.59.130",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a471ce608d9bef4f-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "8be17a5d10fa24fe52612393673650e33ca1f14d702a322660905f1074ad5985",
+      "md5": "f63cce701a1d551cb0137e1f88d60d73",
+      "cert": {
+        "subject_cn": "example6.com",
+        "subject_alt_names": [
+          "example6.com",
+          "*.example6.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-09-18T13:04:22+00:00",
+        "not_valid_after": "2026-12-17T14:03:02+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "90338237669427999607614508335955745875",
+        "fingerprint_sha1": "68 BC 34 B5 46 6E 19 AF 42 6B BC 9B 66 03 63 8D 25 87 3A 87",
+        "fingerprint_sha256": "AC A0 3E F8 3A 7B 95 63 E0 4A 53 DD D4 70 11 EA BF DB 5A C8 CC FD 38 61 09 75 CF D7 CC 18 D8 71"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-10-08T02:32:12",
+      "first_seen_secs": 1791426732.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (example6.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"example6.com\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6022703; classtype:social-engineering; sid:6022703; rev:1; metadata: signature_severity Major, created_et 2026_10_02;)",
+  "updated_at": "2026-10-09T21:43:03.434351+00:00",
+  "probe": {
+    "dns": "104.21.59.130",
+    "whois": true,
+    "status": "active"
+  }
+}
