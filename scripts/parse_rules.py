@@ -29,16 +29,21 @@ Each valid rule produces one JSON file under ``web/db/sid/<sid>.json``.
 """
 
 import json
+import hashlib
 import os
 import shutil
 import socket
 import subprocess
 import re
 import sys
+import threading
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 
 
@@ -77,6 +82,145 @@ _REF_RE = re.compile(r'reference:url,([^;]+);')
 
 OUT_DIR = Path('web/db/sid')
 OUT_DIR.mkdir(parents=True, exist_ok=True)
+CACHE_DIR = Path('.cache')
+ENRICHMENT_CACHE_PATH = CACHE_DIR / 'at-enrichment-cache.json'
+SID_FINGERPRINTS_PATH = CACHE_DIR / 'sid-fingerprints.json'
+CHANGED_SIDS_PATH = Path('.at-work/changed-sids.json')
+
+try:
+    WORKER_COUNT = max(1, min(int(os.environ.get('AT_WORKERS', '16')), 32))
+except ValueError:
+    WORKER_COUNT = 16
+
+_CACHE_LOCK = threading.Lock()
+_CACHE_ITEMS = None
+_CACHE_KEY_LOCKS = {}
+_REQUEST_RATE_LOCK = threading.Lock()
+_NEXT_REQUEST_AT = {}
+
+
+def _rate_limited_request(service, interval, fetch):
+    with _REQUEST_RATE_LOCK:
+        now = time.monotonic()
+        request_at = max(now, _NEXT_REQUEST_AT.get(service, now))
+        _NEXT_REQUEST_AT[service] = request_at + interval
+    delay = request_at - now
+    if delay > 0:
+        time.sleep(delay)
+    return fetch()
+
+
+def _atomic_write_json(path, data):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = path.with_name(
+        f'.{path.name}.{os.getpid()}.{threading.get_ident()}.tmp'
+    )
+    try:
+        with temp_path.open('w', encoding='utf-8') as handle:
+            json.dump(data, handle, indent=2, ensure_ascii=False)
+            handle.write('\n')
+        os.replace(temp_path, path)
+    finally:
+        if temp_path.exists():
+            temp_path.unlink()
+
+
+def _write_json_if_changed(path, data, ignore_updated_at=False):
+    path = Path(path)
+    if path.is_file():
+        try:
+            existing = json.loads(path.read_text(encoding='utf-8'))
+            comparable = dict(data)
+            if ignore_updated_at:
+                existing.pop('updated_at', None)
+                comparable.pop('updated_at', None)
+            if existing == comparable:
+                return False
+        except (OSError, json.JSONDecodeError):
+            pass
+    _atomic_write_json(path, data)
+    return True
+
+
+def _get_cache_items():
+    global _CACHE_ITEMS
+    with _CACHE_LOCK:
+        if _CACHE_ITEMS is None:
+            items = {}
+            try:
+                saved = json.loads(
+                    ENRICHMENT_CACHE_PATH.read_text(encoding='utf-8')
+                )
+                if saved.get('version') == 1 and isinstance(saved.get('items'), dict):
+                    items = saved['items']
+            except (OSError, json.JSONDecodeError, AttributeError):
+                pass
+            _CACHE_ITEMS = items
+        return _CACHE_ITEMS
+
+
+def _cached_json(key, fetch):
+    with _CACHE_LOCK:
+        lock = _CACHE_KEY_LOCKS.setdefault(key, threading.Lock())
+    with lock:
+        items = _get_cache_items()
+        now = time.time()
+        with _CACHE_LOCK:
+            entry = items.get(key)
+            if entry and entry.get('expires_at', 0) > now:
+                return entry.get('value')
+
+        value = fetch()
+        ttl = 7 * 24 * 60 * 60 if value is not None else 30 * 60
+        with _CACHE_LOCK:
+            items[key] = {'expires_at': now + ttl, 'value': value}
+        return value
+
+
+def _save_enrichment_cache():
+    items = _get_cache_items()
+    now = time.time()
+    with _CACHE_LOCK:
+        valid_items = {
+            key: entry for key, entry in items.items()
+            if entry.get('expires_at', 0) > now
+        }
+    _atomic_write_json(
+        ENRICHMENT_CACHE_PATH,
+        {'version': 1, 'items': valid_items},
+    )
+
+
+def _rule_fingerprint(rule_raw):
+    return hashlib.sha256(rule_raw.encode('utf-8')).hexdigest()
+
+
+def _load_sid_fingerprints():
+    try:
+        saved = json.loads(SID_FINGERPRINTS_PATH.read_text(encoding='utf-8'))
+        if saved.get('version') == 1 and isinstance(saved.get('sids'), dict):
+            return saved['sids']
+    except (OSError, json.JSONDecodeError, AttributeError):
+        pass
+
+    fingerprints = {}
+    for sid_file in OUT_DIR.glob('*.json'):
+        try:
+            record = json.loads(sid_file.read_text(encoding='utf-8'))
+            rule_raw = record.get('rule_raw')
+            if rule_raw:
+                fingerprints[str(record['sid'])] = _rule_fingerprint(rule_raw)
+        except (OSError, json.JSONDecodeError, KeyError, TypeError):
+            continue
+    return fingerprints
+
+
+def _save_sid_fingerprints(fingerprints):
+    _atomic_write_json(
+        SID_FINGERPRINTS_PATH,
+        {'version': 1, 'sids': fingerprints},
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -240,6 +384,7 @@ def build_dns_tls_sids(domains_file, explicit_nrd_path=None):
     domains = _decode_domains(domains_file)
     nrd_domains = _load_nrd_domains(domains_file, explicit_nrd_path)
     nrd_list = sorted(list(nrd_domains))
+    changed_sids = set()
 
     from collections import Counter
     tld_counts = Counter(_tld(d) for d in domains)
@@ -274,9 +419,12 @@ def build_dns_tls_sids(domains_file, explicit_nrd_path=None):
             },
         }
         out = OUT_DIR / f"{meta['sid']}.json"
-        with open(out, 'w', encoding='utf-8') as wf:
-            json.dump(record, wf, indent=2, ensure_ascii=False)
-        print(f'[dns/tls] wrote {out} ({len(domains)} domains, {len(nrd_list)} ATI NRD domains)', file=sys.stderr)
+        changed = _write_json_if_changed(out, record, ignore_updated_at=True)
+        if changed:
+            changed_sids.add(meta['sid'])
+        state = 'updated' if changed else 'unchanged'
+        print(f'[dns/tls] {state}: {out}', file=sys.stderr)
+    return changed_sids
 
 
 def _load_ips(ips_file):
@@ -327,9 +475,10 @@ def build_ip_sid(ips_file):
         },
     }
     out = OUT_DIR / '6000002.json'
-    with open(out, 'w', encoding='utf-8') as wf:
-        json.dump(record, wf, indent=2, ensure_ascii=False)
-    print(f'[ip] wrote {out} ({len(ips)} IPs)', file=sys.stderr)
+    changed = _write_json_if_changed(out, record, ignore_updated_at=True)
+    state = 'updated' if changed else 'unchanged'
+    print(f'[ip] {state}: {out}', file=sys.stderr)
+    return changed
 
 
 # ---------------------------------------------------------------------------
@@ -345,29 +494,35 @@ def _otx_get(endpoint):
     if not OTX_API_KEY:
         return None
 
-    url = f'{OTX_BASE_URL}{endpoint}'
-    req = urllib.request.Request(
-        url,
-        headers={
-            'X-OTX-API-KEY': OTX_API_KEY,
-            'User-Agent': (
-                'AT-Parser/1.0 (+https://github.com/julioliraup/AT)'
-            ),
-            'Accept': 'application/json',
-        },
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
-            return json.loads(resp.read().decode('utf-8'))
-    except urllib.error.HTTPError as exc:
-        print(f'[otx] HTTP {exc.code}: {url}', file=sys.stderr)
-    except urllib.error.URLError as exc:
-        print(f'[otx] URL error: {exc.reason} ({url})', file=sys.stderr)
-    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-        print(f'[otx] Decode error: {exc}', file=sys.stderr)
-    except OSError as exc:
-        print(f'[otx] OS error: {exc}', file=sys.stderr)
-    return None
+    def fetch():
+        url = f'{OTX_BASE_URL}{endpoint}'
+        req = urllib.request.Request(
+            url,
+            headers={
+                'X-OTX-API-KEY': OTX_API_KEY,
+                'User-Agent': (
+                    'AT-Parser/1.0 (+https://github.com/julioliraup/AT)'
+                ),
+                'Accept': 'application/json',
+            },
+        )
+        try:
+            def request_json():
+                with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
+                    return json.loads(resp.read().decode('utf-8'))
+
+            return _rate_limited_request('otx', 0.25, request_json)
+        except urllib.error.HTTPError as exc:
+            print(f'[otx] HTTP {exc.code}: {url}', file=sys.stderr)
+        except urllib.error.URLError as exc:
+            print(f'[otx] URL error: {exc.reason} ({url})', file=sys.stderr)
+        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+            print(f'[otx] Decode error: {exc}', file=sys.stderr)
+        except OSError as exc:
+            print(f'[otx] OS error: {exc}', file=sys.stderr)
+        return None
+
+    return _cached_json(f'otx:{endpoint}', fetch)
 
 
 def _build_monitored_url(obj):
@@ -613,16 +768,22 @@ def _resolve_domain_ip(obj):
     if url_base == 'unknown':
         return None
 
+    return _resolve_ipv4(url_base)
+
+
+@lru_cache(maxsize=50000)
+def _resolve_ipv4(domain):
     try:
-        results = socket.getaddrinfo(url_base, None, socket.AF_INET)
+        results = socket.getaddrinfo(domain, None, socket.AF_INET)
         if results:
             return results[0][4][0]
     except socket.gaierror as exc:
-        print(f'[Down] DNS resolution failed for {url_base}: {exc}',
+        print(f'[Down] DNS resolution failed for {domain}: {exc}',
               file=sys.stderr)
     return None
 
 
+@lru_cache(maxsize=50000)
 def _whois_responsive(domain):
     """Probe WHOIS for the monitored domain.
 
@@ -688,16 +849,24 @@ def enrich_phishdestroy(obj):
         obj['intel']['phishdestroy'] = None
         return obj
 
-    req = urllib.request.Request(
-        f'https://analyze.destroy.tools/v1/analyze?domain={domain}',
-        headers={'User-Agent': 'Mozilla/5.0'},
+    def fetch():
+        req = urllib.request.Request(
+            f'https://analyze.destroy.tools/v1/analyze?domain={domain}',
+            headers={'User-Agent': 'Mozilla/5.0'},
+        )
+        try:
+            def request_json():
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    return json.loads(resp.read().decode('utf-8'))
+
+            return _rate_limited_request('phishdestroy', 0.25, request_json)
+        except (urllib.error.URLError, json.JSONDecodeError, OSError) as exc:
+            print(f'[phishdestroy] Request failed for {domain}: {exc}', file=sys.stderr)
+            return None
+
+    obj['intel']['phishdestroy'] = _cached_json(
+        f'phishdestroy:{domain.lower()}', fetch
     )
-    try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            obj['intel']['phishdestroy'] = json.loads(resp.read().decode('utf-8'))
-    except (urllib.error.URLError, json.JSONDecodeError, OSError) as exc:
-        print(f'[phishdestroy] Request failed for {domain}: {exc}', file=sys.stderr)
-        obj['intel']['phishdestroy'] = None
     return obj
 
 
@@ -715,16 +884,22 @@ def enrich_ipinfo(obj):
         obj['intel']['ipinfo'] = None
         return obj
 
-    req = urllib.request.Request(
-        f'https://ipinfo.io/{ip}/json',
-        headers={'User-Agent': 'Mozilla/5.0'},
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=5) as resp:
-            obj['intel']['ipinfo'] = json.loads(resp.read().decode('utf-8'))
-    except (urllib.error.URLError, json.JSONDecodeError, OSError) as exc:
-        print(f'[ipinfo] Request failed for {ip}: {exc}', file=sys.stderr)
-        obj['intel']['ipinfo'] = None
+    def fetch():
+        req = urllib.request.Request(
+            f'https://ipinfo.io/{ip}/json',
+            headers={'User-Agent': 'Mozilla/5.0'},
+        )
+        try:
+            def request_json():
+                with urllib.request.urlopen(req, timeout=5) as resp:
+                    return json.loads(resp.read().decode('utf-8'))
+
+            return _rate_limited_request('ipinfo', 0.25, request_json)
+        except (urllib.error.URLError, json.JSONDecodeError, OSError) as exc:
+            print(f'[ipinfo] Request failed for {ip}: {exc}', file=sys.stderr)
+            return None
+
+    obj['intel']['ipinfo'] = _cached_json(f'ipinfo:{ip}', fetch)
     return obj
 
 
@@ -732,13 +907,81 @@ def enrich_ipinfo(obj):
 # Entry point
 # ---------------------------------------------------------------------------
 
-def main():
-    """Parse the rules file and write one enriched JSON record per SID.
+def _load_rules_by_sid(rules_path):
+    rules = {}
+    with open(rules_path, encoding='utf-8') as handle:
+        for raw_line in handle:
+            line = raw_line.strip()
+            if not line or line.startswith('#'):
+                continue
+            obj = parse_rule(line)
+            if obj and obj['sid'] not in (6000000, 6000001, 6000002):
+                rules[obj['sid']] = obj
+    return rules
 
-    After writing all current SIDs, orphaned JSON files (produced by
-    previous runs for SIDs that no longer exist in the rules file) are
-    removed so the index stays consistent.
-    """
+
+def _read_sid_record(sid):
+    path = OUT_DIR / f'{sid}.json'
+    try:
+        return json.loads(path.read_text(encoding='utf-8'))
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
+def _process_rule(obj, previous, domains_path, nrd_path):
+    if previous:
+        same_target = all(
+            obj.get(key) == previous.get(key)
+            for key in ('protocol', 'url_base', 'url_path')
+        )
+    else:
+        same_target = False
+
+    if same_target:
+        obj['intel'] = previous.get('intel') or obj['intel']
+        for key in ('probe', 'rule_status'):
+            if key in previous:
+                obj[key] = previous[key]
+        obj = enrich_dns(obj, domains_path, explicit_nrd_path=nrd_path)
+    else:
+        obj = enrich_dns(obj, domains_path, explicit_nrd_path=nrd_path)
+        obj = enrich_otx(obj)
+        obj = enrich_staleness(obj)
+        obj = enrich_phishdestroy(obj)
+        if not obj['intel'].get('phishdestroy'):
+            obj = enrich_ipinfo(obj)
+
+    _atomic_write_json(OUT_DIR / f"{obj['sid']}.json", obj)
+    return obj['sid']
+
+
+def _read_pending_changes():
+    try:
+        pending = json.loads(CHANGED_SIDS_PATH.read_text(encoding='utf-8'))
+        return (
+            set(pending.get('changed_sids', [])),
+            set(pending.get('removed_sids', [])),
+        )
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return set(), set()
+
+
+def _select_changed_rules(rules, fingerprints):
+    candidates = []
+    unchanged = 0
+    for sid, obj in rules.items():
+        sid_string = str(sid)
+        sid_path = OUT_DIR / f'{sid}.json'
+        fingerprint = _rule_fingerprint(obj['rule_raw'])
+        if fingerprints.get(sid_string) == fingerprint and sid_path.is_file():
+            unchanged += 1
+            continue
+        candidates.append((obj, _read_sid_record(sid)))
+    return candidates, unchanged
+
+
+def main():
+    """Diff current rules against saved SID records and process only changes."""
     if len(sys.argv) < 3:
         print(
             'Usage: parse_rules.py <rules_file> <domains_file> [nrd_file]',
@@ -752,52 +995,97 @@ def main():
     # Derive the IP-feed file path from the domains file location.
     ips_path = Path(domains_path).parent / 'phishing_ips.lst'
 
-    # SIDs generated by feed builders are always kept.
-    build_dns_tls_sids(domains_path, explicit_nrd_path=nrd_path)
-    build_ip_sid(ips_path)
-    valid_sids = {6000000, 6000001, 6000002}
+    changed_sids = build_dns_tls_sids(
+        domains_path, explicit_nrd_path=nrd_path
+    )
+    if build_ip_sid(ips_path):
+        changed_sids.add(6000002)
 
-    with open(rules_path, encoding='utf-8') as fh:
-        for raw_line in fh:
-            line = raw_line.strip()
-            if not line or line.startswith('#'):
-                continue
+    rules = _load_rules_by_sid(rules_path)
+    valid_sids = set(rules) | {6000000, 6000001, 6000002}
+    fingerprints = _load_sid_fingerprints()
+    fingerprint_sids = set(fingerprints)
+    current_sid_strings = {str(sid) for sid in rules}
+    removed_sids = {
+        int(sid) for sid in fingerprint_sids - current_sid_strings
+        if sid.isdigit()
+    }
+    candidates, unchanged = _select_changed_rules(rules, fingerprints)
 
-            obj = parse_rule(line)
-            if obj is None:
-                continue
+    for sid in removed_sids:
+        path = OUT_DIR / f'{sid}.json'
+        if path.exists():
+            path.unlink()
+            print(f'[cleanup] removed orphaned SID {sid}', file=sys.stderr)
+        fingerprints.pop(str(sid), None)
 
-            if obj['sid'] in (6000000, 6000001, 6000002):
-                continue
-
-            obj = enrich_dns(obj, domains_path, explicit_nrd_path=nrd_path)
-            obj = enrich_otx(obj)
-            obj = enrich_staleness(obj)
-
-            obj = enrich_phishdestroy(obj)
-            if not obj['intel'].get('phishdestroy'):
-                obj = enrich_ipinfo(obj)
-
-            out_file = OUT_DIR / f"{obj['sid']}.json"
-            # mode 'w' already overwrites any previous content.
-            with open(out_file, 'w', encoding='utf-8') as wf:
-                json.dump(obj, wf, indent=2, ensure_ascii=False)
-
-            valid_sids.add(obj['sid'])
-
-    # ------------------------------------------------------------------
-    # Cleanup: remove JSON files whose SID is no longer in the ruleset.
-    # This handles SID reallocation runs that shift numeric identifiers.
-    # ------------------------------------------------------------------
     for stale in OUT_DIR.glob('*.json'):
         try:
             file_sid = int(stale.stem)
         except ValueError:
-            continue  # skip non-numeric filenames
-
+            continue
         if file_sid not in valid_sids:
             stale.unlink()
+            removed_sids.add(file_sid)
+            fingerprints.pop(str(file_sid), None)
             print(f'[cleanup] removed orphaned SID {file_sid}', file=sys.stderr)
+
+    pending_changed, pending_removed = _read_pending_changes()
+    pending_changed.update(changed_sids)
+    pending_changed.update(obj['sid'] for obj, _ in candidates)
+    pending_changed.difference_update(removed_sids)
+    pending_removed.update(removed_sids)
+    pending_removed.difference_update(pending_changed)
+    _atomic_write_json(CHANGED_SIDS_PATH, {
+        'changed_sids': sorted(pending_changed),
+        'removed_sids': sorted(pending_removed),
+    })
+
+    print(
+        f'[diff] {len(candidates)} added/changed, {unchanged} unchanged, '
+        f'{len(removed_sids)} removed; workers={WORKER_COUNT}',
+        file=sys.stderr,
+    )
+
+    errors = []
+    completed = 0
+    with ThreadPoolExecutor(max_workers=WORKER_COUNT) as executor:
+        futures = {
+            executor.submit(
+                _process_rule, obj, previous, domains_path, nrd_path
+            ): obj
+            for obj, previous in candidates
+        }
+        for future in as_completed(futures):
+            obj = futures[future]
+            try:
+                sid = future.result()
+                fingerprints[str(sid)] = _rule_fingerprint(obj['rule_raw'])
+                changed_sids.add(sid)
+                completed += 1
+                if completed % 100 == 0:
+                    _save_sid_fingerprints(fingerprints)
+                    print(
+                        f'[progress] {completed}/{len(candidates)} changed SIDs',
+                        file=sys.stderr,
+                    )
+            except Exception as exc:
+                errors.append((obj['sid'], exc))
+                print(f"[error] SID {obj['sid']}: {exc}", file=sys.stderr)
+
+    _save_sid_fingerprints(fingerprints)
+    _save_enrichment_cache()
+
+    if errors:
+        raise RuntimeError(
+            f'{len(errors)} SID record(s) failed; successful records were saved'
+        )
+
+    print(
+        f'[done] wrote {len(changed_sids)} changed records; '
+        f'{unchanged} rule records reused',
+        file=sys.stderr,
+    )
 
 
 if __name__ == '__main__':

@@ -1,0 +1,77 @@
+name: Sync Antiphishing sources
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'rules/antiphishing.rules'
+      - 'rules/phishing.lst'
+      - 'rules/phishing_ips.lst'
+      - 'rules/nrd_suspicious_domains.txt'
+      - 'scripts/parse_rules.py'
+      - 'scripts/build_index.py'
+      - '.github/workflows/antiphishing-sync.yml'
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: antiphishing-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      AT_WORKERS: 16
+      OTX_API_KEY: ${{ secrets.OTX_API_KEY }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Restore parser caches
+        id: parser-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache
+          key: ${{ runner.os }}-at-parser-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-at-parser-${{ github.ref_name }}-
+
+      - name: Sync upstream Antiphishing feeds and rules
+        id: sync
+        shell: bash
+        run: |
+          python3 scripts/sync_antiphishing.py
+
+      - name: Rebuild AT dataset when upstream changed
+        if: steps.sync.outputs.changed == 'true' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          python3 scripts/parse_rules.py rules/antiphishing.rules rules/phishing.lst rules/nrd_suspicious_domains.txt
+          python3 scripts/build_index.py
+          python3 scripts/validate.py
+
+      - name: Save parser caches
+        if: always() && (steps.sync.outputs.changed == 'true' || github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        uses: actions/cache/save@v4
+        with:
+          path: .cache
+          key: ${{ runner.os }}-at-parser-${{ github.ref_name }}-${{ github.run_id }}
+
+      - name: Commit and push updated data
+        if: steps.sync.outputs.changed == 'true' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          git config user.name "julioliraup"
+          git config user.email "jul10l1r4@disroot.org"
+          git add rules web/db/index.json web/db/sid
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: sync upstream antiphishing data"
+          git push
