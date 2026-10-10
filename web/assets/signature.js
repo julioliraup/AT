@@ -82,6 +82,265 @@ const tlpColour = (tlp) => {
     return map[(tlp || '').toUpperCase()] || 'var(--text-muted)';
 };
 
+const reportText = (value) => {
+    if (value === null || value === undefined || value === '') return 'Not available in source data';
+    return String(value).replace(/\s+/g, ' ').trim();
+};
+
+function buildExecutiveReport(data, context) {
+    if (!data || typeof data !== 'object' || !data.sid) {
+        throw new Error('Required signature data (SID) is missing.');
+    }
+
+    const generatedAt = new Date();
+    const generatedDate = generatedAt.toISOString().slice(0, 10);
+    const indicator = context.domain || context.ip || `SID ${data.sid}`;
+    const missing = [];
+    const field = (label, value) => {
+        const text = reportText(value);
+        if (text === 'Not available in source data') missing.push(label);
+        return `${label}: ${text}`;
+    };
+    const references = Array.isArray(data.references) && data.references.length
+        ? data.references.map(reference => {
+            const value = reportText(reference);
+            return /^https?:\/\//i.test(value) ? value : `https://${value}`;
+        })
+        : [];
+    if (!references.length) missing.push('References');
+
+    const evidence = [];
+    if (context.domain) {
+        const domain = context.domain.toLowerCase();
+        const feedDomains = Array.isArray(data.dns_feed?.domains) ? data.dns_feed.domains : [];
+        const atiDomains = Array.isArray(data.dns_feed?.ati_domains) ? data.dns_feed.ati_domains : [];
+        const listed = feedDomains.some(value => String(value).toLowerCase() === domain);
+        const listedAsAti = atiDomains.some(value => String(value).toLowerCase() === domain);
+        evidence.push(`DNS feed membership: ${listed ? 'listed' : 'not listed or not present in this record'}`);
+        evidence.push(`Suspicious NRD feed membership: ${listedAsAti ? 'listed' : 'not listed or not present in this record'}`);
+    } else if (context.ip) {
+        const feedIps = Array.isArray(data.ip_feed?.ips) ? data.ip_feed.ips : [];
+        const listed = feedIps.some(value => String(value) === context.ip);
+        evidence.push(`IP feed membership: ${listed ? 'listed' : 'not listed or not present in this record'}`);
+    } else {
+        evidence.push('Subject: Suricata signature record; no individual domain or IP was selected.');
+    }
+    if (data.dns_feed?.domains_count !== undefined) {
+        evidence.push(`DNS feed size: ${data.dns_feed.domains_count} domains`);
+    }
+    if (data.ip_feed?.ips_count !== undefined) {
+        evidence.push(`IP feed size: ${data.ip_feed.ips_count} addresses`);
+    }
+
+    const otx = data.intel?.alienvault;
+    const pd = data.intel?.phishdestroy;
+    const ipinfo = data.intel?.ipinfo || pd?.infrastructure?.ipinfo;
+    const threatIntel = [
+        `AlienVault OTX: ${otx ? 'data available' : 'not available in source data'}`,
+        ...(otx ? [
+            `OTX domain: ${reportText(otx.domain)}`,
+            `OTX IP: ${reportText(otx.ip)}`,
+            `OTX HTTP status: ${reportText(otx.http_code)}`,
+            `OTX first seen: ${reportText(otx.first_seen)}`,
+            `Google Safe Browsing hits: ${Array.isArray(otx.safebrowsing) ? otx.safebrowsing.map(hit => hit.threat_type).join(', ') || 'none reported' : 'not available'}`,
+            `TLS certificate subject: ${reportText(otx.cert?.subject_cn)}`,
+            `SHA-256: ${reportText(otx.sha256)}`,
+        ] : []),
+        `PhishDestroy: ${pd ? 'data available' : 'not available in source data'}`,
+        ...(pd ? [
+            `Analyzed at: ${reportText(pd.analyzed_at)}`,
+            `Defanged domain: ${reportText(pd.domain_defanged)}`,
+            `VirusTotal detections: ${pd.intel?.virustotal ? `${reportText(pd.intel.virustotal.malicious)} of ${reportText(pd.intel.virustotal.total)}` : 'not available'}`,
+            `URLScan score: ${reportText(pd.intel?.urlscan?.score)}`,
+            `Threat detections: ${Array.isArray(pd.detections) ? pd.detections.map(item => `${reportText(item.source)} (${reportText(item.type)})`).join(', ') || 'none reported' : 'not available'}`,
+            `Infrastructure DNS A: ${pd.infrastructure?.dns?.A?.join(', ') || 'not available'}`,
+            `Infrastructure DNS AAAA: ${pd.infrastructure?.dns?.AAAA?.join(', ') || 'not available'}`,
+        ] : []),
+        `IP geolocation: ${ipinfo ? [ipinfo.city, ipinfo.region, ipinfo.country].filter(Boolean).join(', ') || 'available; no location fields' : 'not available in source data'}`,
+        ...(ipinfo ? [
+            `IP network organization: ${reportText(ipinfo.org)}`,
+            `IP hostname: ${reportText(ipinfo.hostname)}`,
+            `IP timezone: ${reportText(ipinfo.timezone)}`,
+        ] : []),
+    ];
+
+    const sourceUrl = window.location.href;
+    const rows = [
+        { type: 'title', text: 'EXECUTIVE CYBERSECURITY REPORT' },
+        { type: 'meta', text: 'ANTIPHISHING THREAT INTELLIGENCE | BETA - FOR ANALYST REVIEW' },
+        { type: 'meta', text: `Report date (UTC): ${generatedAt.toISOString()}` },
+        { type: 'meta', text: `Subject: ${indicator}` },
+        { type: 'meta', text: `Source page: ${sourceUrl}` },
+        { type: 'heading', text: '1. EXECUTIVE SUMMARY' },
+        { type: 'text', text: `The Antiphishing public threat-intelligence dataset reports the subject as part of signature SID ${data.sid}. The classification and severity below are source-provided indicators, not an independently verified incident determination.` },
+        { type: 'text', text: 'Potential business impact (if activity is confirmed): credential compromise, fraudulent activity, malware exposure or reputational harm. Actual impact depends on the organization context and has not been assessed by this report.' },
+        { type: 'heading', text: '2. FINDING AND SOURCE DATA' },
+        { type: 'text', text: field('Signature ID', data.sid) },
+        { type: 'text', text: field('Indicator / subject', indicator) },
+        { type: 'text', text: field('Description', data.msg) },
+        { type: 'text', text: field('Protocol', data.protocol) },
+        { type: 'text', text: field('Source severity', data.severity) },
+        { type: 'text', text: field('Source risk score', data.risk_score) },
+        { type: 'text', text: field('Source confidence', data.confidence) },
+        { type: 'text', text: field('Recommended rule action', data.action) },
+        { type: 'text', text: field('Classification', data.classtype) },
+        { type: 'text', text: field('Rule revision', data.rev) },
+        { type: 'text', text: field('Rule status', data.rule_status) },
+        { type: 'text', text: field('Last updated', data.updated_at) },
+        { type: 'heading', text: '3. AVAILABLE EVIDENCE' },
+        ...evidence.map(item => ({ type: 'bullet', text: item })),
+        { type: 'text', text: field('Raw Suricata rule', data.rule_raw) },
+        { type: 'heading', text: '4. ENRICHED THREAT INTELLIGENCE' },
+        ...threatIntel.map(item => ({ type: 'text', text: item })),
+        { type: 'heading', text: '5. RECOMMENDED EXECUTIVE ACTIONS' },
+        { type: 'bullet', text: 'Validate the indicator against current DNS, proxy, endpoint and network telemetry before taking action.' },
+        { type: 'bullet', text: 'If activity is confirmed, apply containment and blocking controls in accordance with the organization incident-response process.' },
+        { type: 'bullet', text: 'Preserve relevant logs and evidence; document the decision, owner and review time.' },
+        { type: 'heading', text: '6. REFERENCES AND PROVENANCE' },
+        { type: 'text', text: 'Data source: Antiphishing Threat Intelligence (AT), public signature database.' },
+        { type: 'text', text: `Source record: ${new URL(`./db/sid/${encodeURIComponent(data.sid)}.json`, window.location.href).href}` },
+        { type: 'text', text: 'Reporting guidance (structure only; no conformity claim): NIST Cybersecurity Framework 2.0 - https://doi.org/10.6028/NIST.CSWP.29' },
+        { type: 'text', text: 'Incident response guidance: NIST SP 800-61 Rev. 3 - https://doi.org/10.6028/NIST.SP.800-61r3' },
+        ...(references.length
+            ? references.map(reference => ({ type: 'text', text: `Reference: ${reference}` }))
+            : [{ type: 'text', text: 'References: Not available in source data' }]),
+        { type: 'heading', text: '7. LIMITATIONS AND DATA GAPS' },
+        { type: 'text', text: 'This report reproduces available public feed data. It does not establish that an organization was compromised, validate the indicator independently, or replace a formal risk assessment or incident investigation. Validate source freshness and applicability in the local environment.' },
+        { type: 'text', text: `Missing source fields: ${missing.length ? [...new Set(missing)].join(', ') : 'None of the report fields were missing.'}` },
+    ];
+
+    return { rows, generatedDate, indicator, sid: data.sid };
+}
+
+const pdfSafeText = (value) => String(value)
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\x20-\x7e]/g, '?')
+    .replace(/[\\()]/g, '\\$&');
+
+const wrapPdfText = (text, maxLength = 96) => {
+    const words = pdfSafeText(text).split(/\s+/);
+    const lines = [];
+    let line = '';
+    for (const word of words) {
+        if (word.length > maxLength) {
+            if (line) lines.push(line);
+            line = '';
+            for (let offset = 0; offset < word.length; offset += maxLength) {
+                lines.push(word.slice(offset, offset + maxLength));
+            }
+            continue;
+        }
+        if (line && `${line} ${word}`.length > maxLength) {
+            lines.push(line);
+            line = word;
+        } else {
+            line = line ? `${line} ${word}` : word;
+        }
+    }
+    if (line) lines.push(line);
+    return lines.length ? lines : [''];
+};
+
+function createReportPdf(report) {
+    const pages = [[]];
+    let page = pages[0];
+    let y = 744;
+    for (const item of report.rows) {
+        const lines = wrapPdfText(item.text);
+        for (const line of lines) {
+            const lineHeight = item.type === 'title' ? 25 : item.type === 'heading' ? 18 : 13;
+            if (y - lineHeight < 58) {
+                page = [];
+                pages.push(page);
+                y = 744;
+            }
+            page.push({ ...item, text: line, y });
+            y -= lineHeight;
+        }
+        if (item.type === 'heading') y -= 2;
+    }
+
+    const encode = text => new TextEncoder().encode(text).length;
+    const objects = [];
+    const setObject = (id, value) => { objects[id] = value; };
+    setObject(1, '<< /Type /Catalog /Pages 2 0 R >>');
+    setObject(3, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
+    setObject(4, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>');
+
+    const pageRefs = [];
+    pages.forEach((pageRows, index) => {
+        const pageId = 5 + index * 2;
+        const contentId = pageId + 1;
+        pageRefs.push(`${pageId} 0 R`);
+        const commands = pageRows.map(row => {
+            const font = row.type === 'title' || row.type === 'heading' ? 'F2' : 'F1';
+            const size = row.type === 'title' ? 16 : row.type === 'heading' ? 10.5 : row.type === 'meta' ? 8.5 : 9;
+            const prefix = row.type === 'bullet' ? '- ' : '';
+            return `BT /${font} ${size} Tf 52 ${row.y} Td (${pdfSafeText(prefix + row.text)}) Tj ET`;
+        });
+        commands.push(`BT /F1 8 Tf 52 38 Td (Antiphishing AT | Public threat-intelligence data | Page ${index + 1} of ${pages.length}) Tj ET`);
+        const stream = commands.join('\n');
+        setObject(pageId, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ${contentId} 0 R >>`);
+        setObject(contentId, `<< /Length ${encode(stream)} >>\nstream\n${stream}\nendstream`);
+    });
+    setObject(2, `<< /Type /Pages /Kids [${pageRefs.join(' ')}] /Count ${pages.length} >>`);
+
+    let pdf = '%PDF-1.4\n';
+    const offsets = [0];
+    for (let id = 1; id < objects.length; id++) {
+        offsets[id] = encode(pdf);
+        pdf += `${id} 0 obj\n${objects[id]}\nendobj\n`;
+    }
+    const xrefOffset = encode(pdf);
+    pdf += `xref\n0 ${objects.length}\n0000000000 65535 f \n`;
+    for (let id = 1; id < objects.length; id++) {
+        pdf += `${String(offsets[id]).padStart(10, '0')} 00000 n \n`;
+    }
+    pdf += `trailer\n<< /Size ${objects.length} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
+    return new Blob([pdf], { type: 'application/pdf' });
+}
+
+function addReportAction(container, data, context) {
+    const actions = document.createElement('div');
+    actions.className = 'report-actions';
+    actions.innerHTML = `
+        <button class="report-btn" type="button">[ MAKE EXECUTIVE REPORT ]</button>
+        <span class="report-beta">BETA</span>
+        <span class="report-status" role="status" aria-live="polite"></span>`;
+    const button = actions.querySelector('button');
+    const status = actions.querySelector('.report-status');
+    button.addEventListener('click', () => {
+        button.disabled = true;
+        status.textContent = 'Generating printable PDF...';
+        try {
+            const report = buildExecutiveReport(data, context);
+            const pdf = createReportPdf(report);
+            const url = URL.createObjectURL(pdf);
+            const link = document.createElement('a');
+            const safeName = String(report.indicator).replace(/[^a-z0-9.-]+/gi, '-').replace(/^-|-$/g, '');
+            link.href = url;
+            link.download = `antiphishing-executive-report-${safeName}-${report.generatedDate}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+            status.textContent = 'PDF generated and download started.';
+        } catch (err) {
+            console.error('[signature report]', err);
+            status.textContent = `Report could not be generated: ${err.message}`;
+        } finally {
+            button.disabled = false;
+        }
+    });
+    container.prepend(actions);
+}
+
+function finishDetailLoading() {
+    const loader = document.getElementById('detail-loader');
+    if (loader) loader.hidden = true;
+}
+
 // ---------------------------------------------------------------------------
 // HTML fragment builders
 // ---------------------------------------------------------------------------
@@ -861,6 +1120,8 @@ function renderIpView(el, d, ip) {
         .then(r => { if (!r.ok) throw new Error('ipinfo error'); return r.json(); })
         .then(info => {
             document.getElementById(loaderId)?.remove();
+            d.intel = d.intel || {};
+            d.intel.ipinfo = info;
             const geoLine = [info.city, info.region, info.country].filter(Boolean).join(', ') || null;
             const mapHtml = buildGlobalMapHtml({ intel: { ipinfo: info } });
             const infoHtml = `
@@ -911,11 +1172,14 @@ const el = document.getElementById('detail');
 (async () => {
 
 if (!sid) {
+    finishDetailLoading();
     el.innerHTML = `<h1 style="color:var(--neon-pink);">[ ERROR: SID NOT SPECIFIED ]</h1>`;
     return;
 }
 
 try {
+    const loaderCaption = document.getElementById('detail-loader-caption');
+    if (loaderCaption) loaderCaption.textContent = 'Fetching signature metadata and feed evidence...';
     const resp = await fetch(`./db/sid/${sid}.json`);
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const d = await resp.json();
@@ -931,10 +1195,13 @@ try {
                     <h1 style="color:var(--neon-pink);">[ ERROR: IP NOT FOUND ]</h1>
                     <p style="color:var(--text-muted);font-size:0.9em;">The IP "${escapeHTML(ip)}" does not exist in this feed.</p>
                 </div>`;
+            finishDetailLoading();
             return;
         }
         document.title = `${escapeHTML(ip)} - SID ${d.sid} - Antiphishing`;
         renderIpView(el, d, ip);
+        addReportAction(el, d, { ip });
+        finishDetailLoading();
         return;
     }
 
@@ -949,10 +1216,13 @@ try {
                     <h1 style="color:var(--neon-pink);">[ ERROR: DOMAIN NOT FOUND ]</h1>
                     <p style="color:var(--text-muted);font-size:0.9em;">The domain "${escapeHTML(domain)}" does not exist in this signature.</p>
                 </div>`;
+            finishDetailLoading();
             return;
         }
         document.title = `${escapeHTML(domain)} - SID ${d.sid} - Antiphishing`;
         renderDomainView(el, d, domain);
+        addReportAction(el, d, { domain });
+        finishDetailLoading();
 
         const loaderId = 'pd-loader-' + Date.now();
         el.insertAdjacentHTML('beforeend', `<div id="${loaderId}" style="text-align:center;margin-top:40px;color:var(--cyan);font-family:'Orbitron',sans-serif;">[ FETCHING DYNAMIC THREAT INTEL... ]</div>`);
@@ -961,6 +1231,8 @@ try {
             .then(r => { if (!r.ok) throw new Error('API Error'); return r.json(); })
             .then(pdData => {
                 document.getElementById(loaderId)?.remove();
+                d.intel = d.intel || {};
+                d.intel.phishdestroy = pdData;
                 const pdHtml = buildPhishDestroyHtml(pdData);
                 const mapHtml = buildGlobalMapHtml({ intel: { phishdestroy: pdData } });
                 if (pdHtml || mapHtml) {
@@ -1071,9 +1343,12 @@ try {
         ${buildPhishDestroyHtml(pdData)}
         ${buildGlobalMapHtml(d)}
         ${d.ip_feed ? buildIpFeedHtml(d.ip_feed) : ''}`;
+    addReportAction(el, d, {});
+    finishDetailLoading();
 
 } catch (err) {
     console.error('[signature]', err);
+    finishDetailLoading();
     el.innerHTML = `
         <div class="card" style="border-color:var(--neon-pink);text-align:center;padding:50px;">
             <h1 style="color:var(--neon-pink);">[ DATA_CORRUPTED // NOT_FOUND ]</h1>

@@ -177,21 +177,13 @@ document.getElementById('search').oninput = async (e) => {
 
   if (!_feedLoaded) {
     cardsWidget.innerHTML = `
-      <div id="feed-loader" style="grid-column: 1 / -1; text-align:center; padding: 40px;">
-        <h2 style="color:var(--cyan); font-family:'Orbitron', sans-serif; letter-spacing: 2px; margin-bottom: 20px;">
+      <div id="feed-loader" class="loading-panel" role="status" aria-live="polite" style="grid-column: 1 / -1;">
+        <h2>
           [ SYNCING THREAT INTELLIGENCE FEEDS ]
         </h2>
-        <div style="width: 100%; max-width: 500px; background: rgba(0,229,255,0.05); border: 1px solid rgba(0,229,255,0.2); border-radius: 4px; height: 6px; margin: 0 auto; overflow: hidden; position: relative;">
-          <div style="width: 30%; height: 100%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); position: absolute; left: -30%; animation: loadbar 1.5s infinite ease-in-out;"></div>
-        </div>
-        <style>
-          @keyframes loadbar {
-            0% { left: -30%; }
-            100% { left: 100%; }
-          }
-        </style>
-        <p style="color:var(--text-muted); font-size: 0.85em; margin-top: 15px; text-transform: uppercase;">
-          Establishing secure connection to global datasets...
+        <div class="loading-bar" aria-hidden="true"><div class="loading-bar-fill"></div></div>
+        <p>
+          Loading DNS, TLS, IP and suspicious newly registered domain datasets...
         </p>
       </div>`;
     await loadFeedDomains();
