@@ -83,11 +83,12 @@ const tlpColour = (tlp) => {
 };
 
 const reportText = (value) => {
-    if (value === null || value === undefined || value === '') return 'Not available in source data';
-    return String(value).replace(/\s+/g, ' ').trim();
+    if (value === null || value === undefined) return '';
+    const text = String(value).replace(/\s+/g, ' ').trim();
+    return text === 'null' || text === 'undefined' ? '' : text;
 };
 
-function buildExecutiveReport(data, context) {
+function buildThreatReport(data, context) {
     if (!data || typeof data !== 'object' || !data.sid) {
         throw new Error('Required signature data (SID) is missing.');
     }
@@ -95,131 +96,155 @@ function buildExecutiveReport(data, context) {
     const generatedAt = new Date();
     const generatedDate = generatedAt.toISOString().slice(0, 10);
     const indicator = context.domain || context.ip || `SID ${data.sid}`;
-    const missing = [];
-    const field = (label, value) => {
+    const field = (label, value, type = 'text') => {
         const text = reportText(value);
-        if (text === 'Not available in source data') missing.push(label);
-        return `${label}: ${text}`;
+        return text ? { type, text: `${label}: ${text}` } : null;
     };
     const references = Array.isArray(data.references) && data.references.length
         ? data.references.map(reference => {
             const value = reportText(reference);
-            return /^https?:\/\//i.test(value) ? value : `https://${value}`;
+            return value ? (/^https?:\/\//i.test(value) ? value : `https://${value}`) : '';
         })
+        .filter(Boolean)
         : [];
-    if (!references.length) missing.push('References');
 
     const evidence = [];
     if (context.domain) {
         const domain = context.domain.toLowerCase();
-        const feedDomains = Array.isArray(data.dns_feed?.domains) ? data.dns_feed.domains : [];
-        const atiDomains = Array.isArray(data.dns_feed?.ati_domains) ? data.dns_feed.ati_domains : [];
-        const listed = feedDomains.some(value => String(value).toLowerCase() === domain);
-        const listedAsAti = atiDomains.some(value => String(value).toLowerCase() === domain);
-        evidence.push(`DNS feed membership: ${listed ? 'listed' : 'not listed or not present in this record'}`);
-        evidence.push(`Suspicious NRD feed membership: ${listedAsAti ? 'listed' : 'not listed or not present in this record'}`);
+        const feedDomains = data.dns_feed?.domains;
+        if (Array.isArray(feedDomains)) {
+            const listed = feedDomains.some(value => String(value).toLowerCase() === domain);
+            evidence.push({ type: 'bullet', text: `DNS feed membership: ${listed ? 'listed' : 'not listed in the selected feed record'}` });
+        }
+        const atiDomains = data.dns_feed?.ati_domains;
+        if (Array.isArray(atiDomains)) {
+            const listed = atiDomains.some(value => String(value).toLowerCase() === domain);
+            evidence.push({ type: 'bullet', text: `Suspicious NRD feed membership: ${listed ? 'listed' : 'not listed in the selected feed record'}` });
+        }
     } else if (context.ip) {
-        const feedIps = Array.isArray(data.ip_feed?.ips) ? data.ip_feed.ips : [];
-        const listed = feedIps.some(value => String(value) === context.ip);
-        evidence.push(`IP feed membership: ${listed ? 'listed' : 'not listed or not present in this record'}`);
+        const feedIps = data.ip_feed?.ips;
+        if (Array.isArray(feedIps)) {
+            const listed = feedIps.some(value => String(value) === context.ip);
+            evidence.push({ type: 'bullet', text: `IP feed membership: ${listed ? 'listed' : 'not listed in the selected feed record'}` });
+        }
     } else {
-        evidence.push('Subject: Suricata signature record; no individual domain or IP was selected.');
-    }
-    if (data.dns_feed?.domains_count !== undefined) {
-        evidence.push(`DNS feed size: ${data.dns_feed.domains_count} domains`);
-    }
-    if (data.ip_feed?.ips_count !== undefined) {
-        evidence.push(`IP feed size: ${data.ip_feed.ips_count} addresses`);
+        evidence.push({ type: 'bullet', text: 'Assessment scope: Suricata signature record; no individual domain or IP was selected.' });
     }
 
     const otx = data.intel?.alienvault;
     const pd = data.intel?.phishdestroy;
     const ipinfo = data.intel?.ipinfo || pd?.infrastructure?.ipinfo;
-    const threatIntel = [
-        `AlienVault OTX: ${otx ? 'data available' : 'not available in source data'}`,
-        ...(otx ? [
-            `OTX domain: ${reportText(otx.domain)}`,
-            `OTX IP: ${reportText(otx.ip)}`,
-            `OTX HTTP status: ${reportText(otx.http_code)}`,
-            `OTX first seen: ${reportText(otx.first_seen)}`,
-            `Google Safe Browsing hits: ${Array.isArray(otx.safebrowsing) ? otx.safebrowsing.map(hit => hit.threat_type).join(', ') || 'none reported' : 'not available'}`,
-            `TLS certificate subject: ${reportText(otx.cert?.subject_cn)}`,
-            `SHA-256: ${reportText(otx.sha256)}`,
-        ] : []),
-        `PhishDestroy: ${pd ? 'data available' : 'not available in source data'}`,
-        ...(pd ? [
-            `Analyzed at: ${reportText(pd.analyzed_at)}`,
-            `Defanged domain: ${reportText(pd.domain_defanged)}`,
-            `VirusTotal detections: ${pd.intel?.virustotal ? `${reportText(pd.intel.virustotal.malicious)} of ${reportText(pd.intel.virustotal.total)}` : 'not available'}`,
-            `URLScan score: ${reportText(pd.intel?.urlscan?.score)}`,
-            `Threat detections: ${Array.isArray(pd.detections) ? pd.detections.map(item => `${reportText(item.source)} (${reportText(item.type)})`).join(', ') || 'none reported' : 'not available'}`,
-            `Infrastructure DNS A: ${pd.infrastructure?.dns?.A?.join(', ') || 'not available'}`,
-            `Infrastructure DNS AAAA: ${pd.infrastructure?.dns?.AAAA?.join(', ') || 'not available'}`,
-        ] : []),
-        `IP geolocation: ${ipinfo ? [ipinfo.city, ipinfo.region, ipinfo.country].filter(Boolean).join(', ') || 'available; no location fields' : 'not available in source data'}`,
-        ...(ipinfo ? [
-            `IP network organization: ${reportText(ipinfo.org)}`,
-            `IP hostname: ${reportText(ipinfo.hostname)}`,
-            `IP timezone: ${reportText(ipinfo.timezone)}`,
-        ] : []),
-    ];
+    const threatIntel = [];
+    if (otx && typeof otx === 'object') {
+        threatIntel.push({ type: 'subheading', text: 'AlienVault OTX' });
+        threatIntel.push(
+            field('Domain', otx.domain),
+            field('IP address', otx.ip),
+            field('HTTP status', otx.http_code),
+            field('First seen', otx.first_seen),
+            field('TLS certificate subject', otx.cert?.subject_cn),
+            field('SHA-256', otx.sha256),
+        );
+        if (Array.isArray(otx.safebrowsing) && otx.safebrowsing.length) {
+            threatIntel.push(field('Google Safe Browsing detections',
+                otx.safebrowsing.map(hit => reportText(hit.threat_type)).filter(Boolean).join(', ')));
+        }
+    }
+    if (pd && typeof pd === 'object') {
+        threatIntel.push({ type: 'subheading', text: 'PhishDestroy' });
+        threatIntel.push(
+            field('Analyzed at', pd.analyzed_at),
+            field('Defanged domain', pd.domain_defanged),
+        );
+        const vt = pd.intel?.virustotal;
+        if (vt && (reportText(vt.malicious) || reportText(vt.total))) {
+            threatIntel.push(field('VirusTotal detections',
+                [reportText(vt.malicious), reportText(vt.total)].filter(Boolean).join(' / ')));
+        }
+        threatIntel.push(field('URLScan score', pd.intel?.urlscan?.score));
+        if (Array.isArray(pd.detections) && pd.detections.length) {
+            threatIntel.push(field('Threat detections', pd.detections
+                .map(item => [reportText(item.source), reportText(item.type)].filter(Boolean).join(' - '))
+                .filter(Boolean).join('; ')));
+        }
+        threatIntel.push(
+            field('Infrastructure DNS A', pd.infrastructure?.dns?.A?.join(', ')),
+            field('Infrastructure DNS AAAA', pd.infrastructure?.dns?.AAAA?.join(', ')),
+        );
+    }
+    if (ipinfo && typeof ipinfo === 'object') {
+        threatIntel.push(
+            field('IP location', [ipinfo.city, ipinfo.region, ipinfo.country].map(reportText).filter(Boolean).join(', ')),
+            field('Network organization', ipinfo.org),
+            field('Hostname', ipinfo.hostname),
+            field('Timezone', ipinfo.timezone),
+        );
+    }
 
     const sourceUrl = window.location.href;
-    const rows = [
-        { type: 'title', text: 'EXECUTIVE CYBERSECURITY REPORT' },
-        { type: 'meta', text: 'ANTIPHISHING THREAT INTELLIGENCE | BETA - FOR ANALYST REVIEW' },
-        { type: 'meta', text: `Report date (UTC): ${generatedAt.toISOString()}` },
-        { type: 'meta', text: `Subject: ${indicator}` },
-        { type: 'meta', text: `Source page: ${sourceUrl}` },
-        { type: 'heading', text: '1. EXECUTIVE SUMMARY' },
-        { type: 'text', text: `The Antiphishing public threat-intelligence dataset reports the subject as part of signature SID ${data.sid}. The classification and severity below are source-provided indicators, not an independently verified incident determination.` },
-        { type: 'text', text: 'Potential business impact (if activity is confirmed): credential compromise, fraudulent activity, malware exposure or reputational harm. Actual impact depends on the organization context and has not been assessed by this report.' },
-        { type: 'heading', text: '2. FINDING AND SOURCE DATA' },
-        { type: 'text', text: field('Signature ID', data.sid) },
-        { type: 'text', text: field('Indicator / subject', indicator) },
-        { type: 'text', text: field('Description', data.msg) },
-        { type: 'text', text: field('Protocol', data.protocol) },
-        { type: 'text', text: field('Source severity', data.severity) },
-        { type: 'text', text: field('Source risk score', data.risk_score) },
-        { type: 'text', text: field('Source confidence', data.confidence) },
-        { type: 'text', text: field('Recommended rule action', data.action) },
-        { type: 'text', text: field('Classification', data.classtype) },
-        { type: 'text', text: field('Rule revision', data.rev) },
-        { type: 'text', text: field('Rule status', data.rule_status) },
-        { type: 'text', text: field('Last updated', data.updated_at) },
-        { type: 'heading', text: '3. AVAILABLE EVIDENCE' },
-        ...evidence.map(item => ({ type: 'bullet', text: item })),
-        { type: 'text', text: field('Raw Suricata rule', data.rule_raw) },
-        { type: 'heading', text: '4. ENRICHED THREAT INTELLIGENCE' },
-        ...threatIntel.map(item => ({ type: 'text', text: item })),
-        { type: 'heading', text: '5. RECOMMENDED EXECUTIVE ACTIONS' },
-        { type: 'bullet', text: 'Validate the indicator against current DNS, proxy, endpoint and network telemetry before taking action.' },
-        { type: 'bullet', text: 'If activity is confirmed, apply containment and blocking controls in accordance with the organization incident-response process.' },
-        { type: 'bullet', text: 'Preserve relevant logs and evidence; document the decision, owner and review time.' },
-        { type: 'heading', text: '6. REFERENCES AND PROVENANCE' },
-        { type: 'text', text: 'Data source: Antiphishing Threat Intelligence (AT), public signature database.' },
-        { type: 'text', text: `Source record: ${new URL(`./db/sid/${encodeURIComponent(data.sid)}.json`, window.location.href).href}` },
+    const rows = [];
+    let sectionNumber = 0;
+    const addSection = (title, items) => {
+        const availableItems = items.filter(Boolean);
+        if (availableItems.length) {
+            sectionNumber += 1;
+            rows.push({ type: 'heading', text: `${sectionNumber}. ${title}` }, ...availableItems);
+        }
+    };
+
+    addSection('ASSESSMENT SUMMARY', [
+        field('Indicator', indicator),
+        field('Signature ID', data.sid),
+        field('Description', data.msg),
+        data.severity ? field('Source severity', data.severity) : null,
+        field('Source risk score', data.risk_score),
+        { type: 'text', text: 'This assessment summarizes the cited public threat-intelligence feed; its indicators are not independent confirmation of compromise or malicious activity in a specific organization.' },
+    ]);
+    addSection('TECHNICAL DETAILS', [
+        field('Protocol', data.protocol),
+        field('Classification', data.classtype),
+        field('Action', data.action),
+        field('Rule revision', data.rev),
+        field('Rule status', data.rule_status),
+        field('Record last updated (UTC)', data.updated_at),
+        field('Raw Suricata rule', data.rule_raw),
+    ]);
+    addSection('INDICATOR EVIDENCE', evidence);
+    const availableIntel = threatIntel.filter(item => item?.text);
+    const nonEmptyIntel = availableIntel.filter((item, index) =>
+        item.type !== 'subheading' || availableIntel[index + 1]?.type === 'text'
+    );
+    addSection('ENRICHMENT DATA', nonEmptyIntel);
+    addSection('OPERATIONAL CONSIDERATIONS', [
+        { type: 'bullet', text: 'Correlate the indicator with current DNS, proxy, endpoint and network telemetry before blocking or declaring an incident.' },
+        { type: 'bullet', text: 'If observed in the environment, follow the organization incident-response process, preserve evidence and document containment decisions.' },
+        { type: 'bullet', text: 'Verify indicator freshness and applicability; public feed entries can become stale or produce false positives.' },
+    ]);
+    addSection('SOURCES AND REFERENCES', [
+        field('Source page', sourceUrl),
+        field('Source record', new URL(`./db/sid/${encodeURIComponent(data.sid)}.json`, window.location.href).href),
+        ...references.map(reference => field('Feed reference', reference)),
+        { type: 'text', text: 'Handling marking: FIRST Traffic Light Protocol v2.0 - https://www.first.org/tlp/' },
         { type: 'text', text: 'Reporting guidance (structure only; no conformity claim): NIST Cybersecurity Framework 2.0 - https://doi.org/10.6028/NIST.CSWP.29' },
         { type: 'text', text: 'Incident response guidance: NIST SP 800-61 Rev. 3 - https://doi.org/10.6028/NIST.SP.800-61r3' },
-        ...(references.length
-            ? references.map(reference => ({ type: 'text', text: `Reference: ${reference}` }))
-            : [{ type: 'text', text: 'References: Not available in source data' }]),
-        { type: 'heading', text: '7. LIMITATIONS AND DATA GAPS' },
-        { type: 'text', text: 'This report reproduces available public feed data. It does not establish that an organization was compromised, validate the indicator independently, or replace a formal risk assessment or incident investigation. Validate source freshness and applicability in the local environment.' },
-        { type: 'text', text: `Missing source fields: ${missing.length ? [...new Set(missing)].join(', ') : 'None of the report fields were missing.'}` },
-    ];
+    ]);
+    addSection('SCOPE AND LIMITATIONS', [
+        { type: 'text', text: 'This technical threat-intelligence assessment summarizes public feed data available at generation time. It does not verify an incident, assess organization-specific impact or replace local investigation and risk assessment.' },
+        { type: 'text', text: 'Handling: TLP:CLEAR. This report is generated from public-source data only. Reassess its marking before distribution if non-public organizational information is added.' },
+    ]);
 
-    return { rows, generatedDate, indicator, sid: data.sid };
+    return { rows, generatedDate, generatedAt: generatedAt.toISOString(), indicator, sid: data.sid };
 }
 
-const pdfSafeText = (value) => String(value)
+const pdfPlainText = (value) => String(value)
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^\x20-\x7e]/g, '?')
-    .replace(/[\\()]/g, '\\$&');
+    .replace(/[^\x20-\x7e]/g, '?');
+
+const pdfSafeText = (value) => pdfPlainText(value).replace(/[\\()]/g, '\\$&');
 
 const wrapPdfText = (text, maxLength = 96) => {
-    const words = pdfSafeText(text).split(/\s+/);
+    const words = pdfPlainText(text).split(/\s+/);
     const lines = [];
     let line = '';
     for (const word of words) {
@@ -242,20 +267,42 @@ const wrapPdfText = (text, maxLength = 96) => {
     return lines.length ? lines : [''];
 };
 
-function createReportPdf(report) {
-    const pages = [[]];
+async function loadReportLogo() {
+    const response = await fetch(new URL('./assets/antiphishing-logo.png', window.location.href));
+    if (!response.ok) throw new Error(`Logo could not be loaded (HTTP ${response.status}).`);
+    const bitmap = await createImageBitmap(await response.blob());
+    const canvas = document.createElement('canvas');
+    canvas.width = bitmap.width;
+    canvas.height = bitmap.height;
+    const context = canvas.getContext('2d');
+    if (!context) throw new Error('Logo could not be prepared for the PDF.');
+    context.fillStyle = '#ffffff';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(bitmap, 0, 0);
+    bitmap.close();
+    const encoded = canvas.toDataURL('image/jpeg', 0.82).split(',')[1];
+    const binary = atob(encoded);
+    let hex = '';
+    for (let offset = 0; offset < binary.length; offset++) {
+        hex += binary.charCodeAt(offset).toString(16).padStart(2, '0');
+    }
+    return { width: canvas.width, height: canvas.height, hex };
+}
+
+function createReportPdf(report, logo) {
+    const pages = [{ rows: [], first: true }];
     let page = pages[0];
-    let y = 744;
+    let y = 682;
     for (const item of report.rows) {
-        const lines = wrapPdfText(item.text);
+        const lines = wrapPdfText(item.text, 88);
         for (const line of lines) {
-            const lineHeight = item.type === 'title' ? 25 : item.type === 'heading' ? 18 : 13;
+            const lineHeight = item.type === 'heading' ? 19 : item.type === 'subheading' ? 16 : 14;
             if (y - lineHeight < 58) {
-                page = [];
+                page = { rows: [], first: false };
                 pages.push(page);
-                y = 744;
+                y = 756;
             }
-            page.push({ ...item, text: line, y });
+            page.rows.push({ ...item, text: line, y });
             y -= lineHeight;
         }
         if (item.type === 'heading') y -= 2;
@@ -267,21 +314,38 @@ function createReportPdf(report) {
     setObject(1, '<< /Type /Catalog /Pages 2 0 R >>');
     setObject(3, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
     setObject(4, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>');
+    setObject(5, `<< /Type /XObject /Subtype /Image /Width ${logo.width} /Height ${logo.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter [/ASCIIHexDecode /DCTDecode] /Length ${logo.hex.length + 1} >>\nstream\n${logo.hex}>\nendstream`);
 
     const pageRefs = [];
-    pages.forEach((pageRows, index) => {
-        const pageId = 5 + index * 2;
+    pages.forEach((pageData, index) => {
+        const pageId = 6 + index * 2;
         const contentId = pageId + 1;
         pageRefs.push(`${pageId} 0 R`);
-        const commands = pageRows.map(row => {
-            const font = row.type === 'title' || row.type === 'heading' ? 'F2' : 'F1';
-            const size = row.type === 'title' ? 16 : row.type === 'heading' ? 10.5 : row.type === 'meta' ? 8.5 : 9;
+        const commands = [];
+        if (pageData.first) {
+            commands.push('q 64 0 0 64 56 732 cm /Logo Do Q');
+            commands.push('BT /F2 20 Tf 0.05 0.10 0.15 rg 134 786 Td (THREAT INTELLIGENCE REPORT) Tj ET');
+            commands.push('BT /F2 9 Tf 0.05 0.36 0.42 rg 134 764 Td (INDICATOR ASSESSMENT | BETA) Tj ET');
+            commands.push('BT /F2 9 Tf 0.05 0.36 0.42 rg 134 744 Td (TLP:CLEAR - PUBLIC SOURCE DATA) Tj ET');
+            commands.push(`BT /F1 8.5 Tf 0.20 0.25 0.30 rg 134 724 Td (${pdfSafeText(`Generated (UTC): ${report.generatedAt}`)}) Tj ET`);
+            commands.push('0.05 0.36 0.42 RG 1.2 w 56 708 m 539 708 l S');
+        } else {
+            commands.push('BT /F2 9 Tf 0.05 0.36 0.42 rg 56 786 Td (ANTIPHISHING | THREAT INTELLIGENCE REPORT | TLP:CLEAR) Tj ET');
+            commands.push('0.05 0.36 0.42 RG 0.8 w 56 774 m 539 774 l S');
+        }
+        for (const row of pageData.rows) {
+            const font = row.type === 'heading' || row.type === 'subheading' ? 'F2' : 'F1';
+            const size = row.type === 'heading' ? 12 : row.type === 'subheading' ? 10.5 : row.type === 'text' ? 10.5 : 9;
             const prefix = row.type === 'bullet' ? '- ' : '';
-            return `BT /${font} ${size} Tf 52 ${row.y} Td (${pdfSafeText(prefix + row.text)}) Tj ET`;
-        });
-        commands.push(`BT /F1 8 Tf 52 38 Td (Antiphishing AT | Public threat-intelligence data | Page ${index + 1} of ${pages.length}) Tj ET`);
+            const x = row.type === 'bullet' ? 66 : 56;
+            const color = row.type === 'heading' ? '0.05 0.36 0.42 rg' : '0.08 0.10 0.12 rg';
+            commands.push(`BT /${font} ${size} Tf ${color} ${x} ${row.y} Td (${pdfSafeText(prefix + row.text)}) Tj ET`);
+        }
+        commands.push('0.05 0.36 0.42 RG 0.5 w 56 50 m 539 50 l S');
+        commands.push(`BT /F2 8 Tf 0.05 0.36 0.42 rg 56 34 Td (TLP:CLEAR) Tj ET`);
+        commands.push(`BT /F1 8 Tf 0.20 0.25 0.30 rg 116 34 Td (Public-source threat intelligence | Page ${index + 1} of ${pages.length}) Tj ET`);
         const stream = commands.join('\n');
-        setObject(pageId, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ${contentId} 0 R >>`);
+        setObject(pageId, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> /XObject << /Logo 5 0 R >> >> /Contents ${contentId} 0 R >>`);
         setObject(contentId, `<< /Length ${encode(stream)} >>\nstream\n${stream}\nendstream`);
     });
     setObject(2, `<< /Type /Pages /Kids [${pageRefs.join(' ')}] /Count ${pages.length} >>`);
@@ -302,25 +366,27 @@ function createReportPdf(report) {
 }
 
 function addReportAction(container, data, context) {
+    if (!container) throw new Error('Report action container is missing.');
     const actions = document.createElement('div');
     actions.className = 'report-actions';
     actions.innerHTML = `
-        <button class="report-btn" type="button">[ MAKE EXECUTIVE REPORT ]</button>
+        <button class="report-btn" type="button">[ MAKE THREAT REPORT ]</button>
         <span class="report-beta">BETA</span>
         <span class="report-status" role="status" aria-live="polite"></span>`;
     const button = actions.querySelector('button');
     const status = actions.querySelector('.report-status');
-    button.addEventListener('click', () => {
+    button.addEventListener('click', async () => {
         button.disabled = true;
-        status.textContent = 'Generating printable PDF...';
+        status.textContent = 'Preparing print-ready threat report...';
         try {
-            const report = buildExecutiveReport(data, context);
-            const pdf = createReportPdf(report);
+            const report = buildThreatReport(data, context);
+            const logo = await loadReportLogo();
+            const pdf = createReportPdf(report, logo);
             const url = URL.createObjectURL(pdf);
             const link = document.createElement('a');
             const safeName = String(report.indicator).replace(/[^a-z0-9.-]+/gi, '-').replace(/^-|-$/g, '');
             link.href = url;
-            link.download = `antiphishing-executive-report-${safeName}-${report.generatedDate}.pdf`;
+            link.download = `antiphishing-threat-report-${safeName}-${report.generatedDate}.pdf`;
             document.body.appendChild(link);
             link.click();
             link.remove();
@@ -333,7 +399,7 @@ function addReportAction(container, data, context) {
             button.disabled = false;
         }
     });
-    container.prepend(actions);
+    container.append(actions);
 }
 
 function finishDetailLoading() {
@@ -1169,6 +1235,7 @@ const params = new URLSearchParams(window.location.search);
 const sid = params.get('sid');
 const domain = params.get('domain');
 const el = document.getElementById('detail');
+const reportActionsSlot = document.getElementById('report-actions-slot');
 (async () => {
 
 if (!sid) {
@@ -1200,7 +1267,7 @@ try {
         }
         document.title = `${escapeHTML(ip)} - SID ${d.sid} - Antiphishing`;
         renderIpView(el, d, ip);
-        addReportAction(el, d, { ip });
+        addReportAction(reportActionsSlot, d, { ip });
         finishDetailLoading();
         return;
     }
@@ -1221,7 +1288,7 @@ try {
         }
         document.title = `${escapeHTML(domain)} - SID ${d.sid} - Antiphishing`;
         renderDomainView(el, d, domain);
-        addReportAction(el, d, { domain });
+        addReportAction(reportActionsSlot, d, { domain });
         finishDetailLoading();
 
         const loaderId = 'pd-loader-' + Date.now();
@@ -1343,7 +1410,7 @@ try {
         ${buildPhishDestroyHtml(pdData)}
         ${buildGlobalMapHtml(d)}
         ${d.ip_feed ? buildIpFeedHtml(d.ip_feed) : ''}`;
-    addReportAction(el, d, {});
+    addReportAction(reportActionsSlot, d, {});
     finishDetailLoading();
 
 } catch (err) {
