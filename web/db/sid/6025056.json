@@ -1,0 +1,92 @@
+{
+  "sid": 6025056,
+  "url_path": "/",
+  "url_base": "caixagerencia.com",
+  "msg": "AT related malicious URL (caixagerencia.com/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6025056"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "172.66.44.250",
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US",
+      "loc": "37.7621,-122.3971",
+      "org": "AS13335 Cloudflare, Inc.",
+      "postal": "94107",
+      "timezone": "America/Los_Angeles",
+      "readme": "https://ipinfo.io/missingauth",
+      "anycast": true
+    },
+    "alienvault": {
+      "url": "http://caixagerencia.com/",
+      "domain": "caixagerencia.com",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.66.44.250",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a482000c3a15ad66-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (396)",
+      "sha256": "2c55968e5fc5e7e21b9d320218c1414e7da886c763bcf30cef52179fc9e3d78d",
+      "md5": "2b4cd399bbd76818b4e9d9502db62317",
+      "cert": {
+        "subject_cn": "caixagerencia.com",
+        "subject_alt_names": [
+          "caixagerencia.com"
+        ],
+        "issuer_cn": "WE1",
+        "issuer_org": "Google Trust Services",
+        "issuer_country": "US",
+        "not_valid_before": "2026-10-09T14:31:18+00:00",
+        "not_valid_after": "2027-01-07T15:31:10+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "25708452956625082982783444423828602013",
+        "fingerprint_sha1": "9D AA FF 24 D6 D4 25 14 B2 AD 02 41 AA E2 45 FB A8 DB DA 3E",
+        "fingerprint_sha256": "BB F6 07 FE 25 4C 68 8D 4D 5D DA 77 AD 07 3B 50 94 9D D6 D2 85 A1 0A 69 4C 8C 1F BB 3E 18 B0 7B"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-10-10T01:54:56",
+      "first_seen_secs": 1791597296.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (caixagerencia.com/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"caixagerencia.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6025056; classtype:social-engineering; sid:6025056; rev:1; metadata: signature_severity Major, created_et 2026_10_10;)",
+  "updated_at": "2026-10-10T04:57:49.149003+00:00",
+  "probe": {
+    "dns": "172.66.44.250",
+    "whois": true,
+    "status": "active"
+  }
+}
