@@ -1,0 +1,42 @@
+{
+  "sid": 6026575,
+  "url_path": "/",
+  "url_base": "sogeco.v6.rocks",
+  "msg": "AT related malicious URL (sogeco.v6.rocks/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6026575"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "185.80.131.162",
+      "hostname": "2131162.vpsnet.cloud",
+      "city": "Vilnius",
+      "region": "Vilnius",
+      "country": "LT",
+      "loc": "54.6892,25.2798",
+      "org": "AS61053 UAB ESNET",
+      "postal": "01001",
+      "timezone": "Europe/Vilnius",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": null,
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (sogeco.v6.rocks/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"sogeco.v6.rocks\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6026575; classtype:social-engineering; sid:6026575; rev:1; metadata: signature_severity Major, created_et 2026_10_14;)",
+  "updated_at": "2026-10-14T05:23:58.657750+00:00",
+  "probe": {
+    "dns": "185.80.131.162",
+    "whois": true,
+    "status": "active"
+  }
+}
