@@ -1,0 +1,91 @@
+{
+  "sid": 6034184,
+  "url_path": "/",
+  "url_base": "fortdag.pro",
+  "msg": "AT related malicious URL (fortdag.pro/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6034184"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "138.226.236.192",
+      "city": "Frankfurt am Main",
+      "region": "Hesse",
+      "country": "DE",
+      "loc": "50.1155,8.6842",
+      "org": "AS219200 Cryphora Limited",
+      "postal": "60306",
+      "timezone": "Europe/Berlin",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": {
+      "url": "http://fortdag.pro/",
+      "domain": "fortdag.pro",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "138.226.236.192",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx/1.30.4",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (10112)",
+      "sha256": "1f75161b139fb492624e2aa43dcf1b66202d23e02179e4266c0c62833c31f79b",
+      "md5": "db9683e020129bf76e29a6f56c978e45",
+      "cert": {
+        "subject_cn": "fortdag.pro",
+        "subject_alt_names": [
+          "fortdag.pro"
+        ],
+        "issuer_cn": "YE1",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-09-04T16:22:32+00:00",
+        "not_valid_after": "2026-12-03T16:22:31+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "585618801091527346019311568001947371606578",
+        "fingerprint_sha1": "EE 50 8E E2 3B 0C DA F4 F6 28 BA 74 DE 1B C3 1F 0E 6C 07 C2",
+        "fingerprint_sha256": "A2 FD C7 77 5D EC DD 38 56 B0 8D 36 B2 4B 9C DC 1D 6F 5C 86 71 F9 64 26 A9 DC A1 97 7E 50 32 09"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-10-08T10:49:27",
+      "first_seen_secs": 1791456567.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fortdag.pro/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"fortdag.pro\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6034184; classtype:social-engineering; sid:6034184; rev:1; metadata: signature_severity Major, created_et 2026_11_03;)",
+  "updated_at": "2026-11-03T16:28:49.091999+00:00",
+  "probe": {
+    "dns": "138.226.236.192",
+    "whois": true,
+    "status": "active"
+  }
+}
