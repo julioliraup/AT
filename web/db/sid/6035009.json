@@ -1,0 +1,93 @@
+{
+  "sid": 6035009,
+  "url_path": "/",
+  "url_base": "tekeu.org",
+  "msg": "AT related malicious URL (tekeu.org/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6035009"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "172.67.208.171",
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US",
+      "loc": "37.7621,-122.3971",
+      "org": "AS13335 Cloudflare, Inc.",
+      "postal": "94107",
+      "timezone": "America/Los_Angeles",
+      "readme": "https://ipinfo.io/missingauth",
+      "anycast": true
+    },
+    "alienvault": {
+      "url": "http://tekeu.org/",
+      "domain": "tekeu.org",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "172.67.208.171",
+      "http_code": 403,
+      "http_response": {
+        "server": "cloudflare",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": "a55e840a0dc9c62a-PDX",
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (1121)",
+      "sha256": "56467ea0e55ccb6c6d643f67e4aba777a27755044c541ad6efe2abba833f5640",
+      "md5": "b468e5533ac2d2020c8d49cb43f9cf06",
+      "cert": {
+        "subject_cn": "tekeu.org",
+        "subject_alt_names": [
+          "*.tekeu.org",
+          "tekeu.org"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-11-02T13:39:57+00:00",
+        "not_valid_after": "2027-01-31T13:39:56+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "555224157037486559743040825600587537515630",
+        "fingerprint_sha1": "5D 51 41 A8 3B E2 2B 6E 39 C7 8D 04 26 44 C2 6B 02 99 D9 5F",
+        "fingerprint_sha256": "5F 0A 69 E6 28 04 70 DF 49 6D 53 70 57 45 A0 2D 51 80 41 1F F6 FA BE 3C F0 09 B7 9D BC 8E CC 21"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-11-05T19:59:56",
+      "first_seen_secs": 1793908796.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (tekeu.org/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"tekeu.org\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6035009; classtype:social-engineering; sid:6035009; rev:1; metadata: signature_severity Major, created_et 2026_11_05;)",
+  "updated_at": "2026-11-05T23:44:32.059864+00:00",
+  "probe": {
+    "dns": "172.67.208.171",
+    "whois": true,
+    "status": "active"
+  }
+}
