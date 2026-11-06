@@ -1,0 +1,41 @@
+{
+  "sid": 6035292,
+  "url_path": "/com.us",
+  "url_base": "fedex.cqgty.cfd",
+  "msg": "AT related malicious URL (fedex.cqgty.cfd/com.us)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6035292"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "47.89.137.76",
+      "city": "Virginia Beach",
+      "region": "Virginia",
+      "country": "US",
+      "loc": "36.8529,-75.9780",
+      "org": "AS45102 Alibaba (US) Technology Co., Ltd.",
+      "postal": "23451",
+      "timezone": "America/New_York",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": null,
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (fedex.cqgty.cfd/com.us)\"; flow:established,to_server; http.uri; content:\"/com.us\"; startswith; fast_pattern; http.host; content:\"fedex.cqgty.cfd\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6035292; classtype:social-engineering; sid:6035292; rev:1; metadata: signature_severity Major, created_et 2026_11_06;)",
+  "updated_at": "2026-11-06T23:28:59.601452+00:00",
+  "probe": {
+    "dns": "47.89.137.76",
+    "whois": true,
+    "status": "active"
+  }
+}
