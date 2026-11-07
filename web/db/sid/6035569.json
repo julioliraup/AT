@@ -1,0 +1,42 @@
+{
+  "sid": 6035569,
+  "url_path": "/",
+  "url_base": "pncverify.pagekite.me",
+  "msg": "AT related malicious URL (pncverify.pagekite.me/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6035569"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "69.164.211.158",
+      "hostname": "ns1.pagekite.net",
+      "city": "Cedar Knolls",
+      "region": "New Jersey",
+      "country": "US",
+      "loc": "40.8220,-74.4488",
+      "org": "AS63949 Akamai Connected Cloud",
+      "postal": "07927",
+      "timezone": "America/New_York",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": null,
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pncverify.pagekite.me/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"pncverify.pagekite.me\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6035569; classtype:social-engineering; sid:6035569; rev:1; metadata: signature_severity Major, created_et 2026_11_07;)",
+  "updated_at": "2026-11-07T03:09:43.637815+00:00",
+  "probe": {
+    "dns": "69.164.211.158",
+    "whois": true,
+    "status": "active"
+  }
+}
