@@ -1,0 +1,42 @@
+{
+  "sid": 6037033,
+  "url_path": "/public/login.php",
+  "url_base": "main.foxmarkusa.com",
+  "msg": "AT related malicious URL (main.foxmarkusa.com/public/login.php)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6037033"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "172.67.131.144",
+      "city": "San Francisco",
+      "region": "California",
+      "country": "US",
+      "loc": "37.7621,-122.3971",
+      "org": "AS13335 Cloudflare, Inc.",
+      "postal": "94107",
+      "timezone": "America/Los_Angeles",
+      "readme": "https://ipinfo.io/missingauth",
+      "anycast": true
+    },
+    "alienvault": null,
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (main.foxmarkusa.com/public/login.php)\"; flow:established,to_server; http.uri; content:\"/public/login.php\"; startswith; fast_pattern; http.host; content:\"main.foxmarkusa.com\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6037033; classtype:social-engineering; sid:6037033; rev:1; metadata: signature_severity Major, created_et 2026_11_11;)",
+  "updated_at": "2026-11-11T17:28:08.838580+00:00",
+  "probe": {
+    "dns": "172.67.131.144",
+    "whois": null,
+    "status": "active"
+  }
+}
