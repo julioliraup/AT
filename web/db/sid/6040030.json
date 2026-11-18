@@ -1,0 +1,93 @@
+{
+  "sid": 6040030,
+  "url_path": "/p/mail",
+  "url_base": "pageforge.fr",
+  "msg": "AT related malicious URL (pageforge.fr/p/mail)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6040030"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "37.27.215.218",
+      "hostname": "mail.novospin.app",
+      "city": "Helsinki",
+      "region": "Uusimaa",
+      "country": "FI",
+      "loc": "60.1695,24.9354",
+      "org": "AS24940 Hetzner Online GmbH",
+      "postal": "00100",
+      "timezone": "Europe/Helsinki",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": {
+      "url": "http://pageforge.fr/p/mail",
+      "domain": "pageforge.fr",
+      "url_count": 1,
+      "city_data": false,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "37.27.215.218",
+      "http_code": 200,
+      "http_response": {
+        "server": "nginx",
+        "content_type": "text/html; charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (589), with CRLF, LF line terminators",
+      "sha256": "aebab7d347625be2da521ed1547acd517e0dc79e26941ee1f811a79d81ebfabe",
+      "md5": "98f67dbd69fa0fb017d5fbbdf9693ebf",
+      "cert": {
+        "subject_cn": "page.pcmagency.fr",
+        "subject_alt_names": [
+          "page.pcmagency.fr",
+          "pageforge.fr"
+        ],
+        "issuer_cn": "YR2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-09-04T07:57:44+00:00",
+        "not_valid_after": "2026-12-03T07:57:43+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "05 B1 C7 42 85 2C 8D 29 DB 74 15 88 01 9A 25 8E 1B B9",
+        "fingerprint_sha1": "A4 C5 AB 26 6E 3C 12 89 21 D7 D0 88 EB 10 29 78 73 A6 B6 DE",
+        "fingerprint_sha256": "D8 A0 58 4E AD 6B F6 86 C0 B7 42 4C E7 E8 6A 0F D1 EE CC 33 AC 12 29 93 9F 4C 91 FB 98 0D 89 29"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-11-18T02:28:55",
+      "first_seen_secs": 1794968935.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (pageforge.fr/p/mail)\"; flow:established,to_server; http.uri; content:\"/p/mail\"; startswith; fast_pattern; http.host; content:\"pageforge.fr\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6040030; classtype:social-engineering; sid:6040030; rev:1; metadata: signature_severity Major, created_et 2026_11_18;)",
+  "updated_at": "2026-11-18T05:17:46.300095+00:00",
+  "probe": {
+    "dns": "37.27.215.218",
+    "whois": true,
+    "status": "active"
+  }
+}
