@@ -1,0 +1,92 @@
+{
+  "sid": 6040722,
+  "url_path": "/",
+  "url_base": "bolson.site",
+  "msg": "AT related malicious URL (bolson.site/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6040722"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "195.35.60.186",
+      "city": "Asheville",
+      "region": "North Carolina",
+      "country": "US",
+      "loc": "35.6009,-82.5540",
+      "org": "AS47583 Hostinger International Limited",
+      "postal": "28801",
+      "timezone": "America/New_York",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": {
+      "url": "http://bolson.site/",
+      "domain": "bolson.site",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "195.35.60.186",
+      "http_code": 403,
+      "http_response": {
+        "server": "hcdn",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": "h3=\":443\"; ma=86400"
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (5768), with no line terminators",
+      "sha256": "69eacef2f355c22ff53745adb39ff0076d2093a767a72e38070ca83c7c5569df",
+      "md5": "e0ba6360dd808949de78a96f877b904b",
+      "cert": {
+        "subject_cn": "bolson.site",
+        "subject_alt_names": [
+          "bolson.site",
+          "www.bolson.site"
+        ],
+        "issuer_cn": "YE1",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-09-25T03:03:51+00:00",
+        "not_valid_after": "2026-12-24T03:03:50+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "537427433223019062806183131098186042668813",
+        "fingerprint_sha1": "51 39 0B 4D 43 D9 08 27 80 CB BC 01 19 F8 5C CB 34 C0 DA 49",
+        "fingerprint_sha256": "C5 71 A7 25 01 F0 81 FD 24 8A 0D EE BB E1 BF 59 56 A4 9C 62 2D E8 85 16 E3 0D CD 90 8C 9F 28 CF"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-11-19T01:14:59",
+      "first_seen_secs": 1795050899.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (bolson.site/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"bolson.site\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6040722; classtype:social-engineering; sid:6040722; rev:1; metadata: signature_severity Major, created_et 2026_11_19;)",
+  "updated_at": "2026-11-19T03:40:55.245339+00:00",
+  "probe": {
+    "dns": "195.35.60.186",
+    "whois": true,
+    "status": "active"
+  }
+}
