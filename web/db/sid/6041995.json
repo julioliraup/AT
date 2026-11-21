@@ -1,0 +1,91 @@
+{
+  "sid": 6041995,
+  "url_path": "/",
+  "url_base": "cerroipse.sbs",
+  "msg": "AT related malicious URL (cerroipse.sbs/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6041995"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "161.120.175.240",
+      "city": "Singapore",
+      "region": "Singapore",
+      "country": "SG",
+      "loc": "1.2842,103.8525",
+      "org": "AS132203 Tencent Building, Kejizhongyi Avenue",
+      "postal": "049318",
+      "timezone": "Asia/Singapore",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": {
+      "url": "http://cerroipse.sbs/",
+      "domain": "cerroipse.sbs",
+      "url_count": 1,
+      "city_data": false,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "161.120.175.240",
+      "http_code": 200,
+      "http_response": {
+        "server": "workerman",
+        "content_type": "text/html;charset=utf-8",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, Unicode text, UTF-8 text, with very long lines (5108)",
+      "sha256": "0f52aa4f531f4585792fc646e45a66e7ef78f8b3762e06ed61eb7a70a9bd8997",
+      "md5": "3b0cca9e8feaf4edf1ea19a60d03c148",
+      "cert": {
+        "subject_cn": "cerroipse.sbs",
+        "subject_alt_names": [
+          "cerroipse.sbs"
+        ],
+        "issuer_cn": "YE2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-11-20T12:53:19+00:00",
+        "not_valid_after": "2027-02-18T12:53:18+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha384_ecdsa",
+        "x509_version": "v3",
+        "serial_number": "460552483225913342497097018451185318717285",
+        "fingerprint_sha1": "25 42 10 A0 5A 35 19 03 0E A8 D1 4C CF BE 79 0E C8 D7 6F DF",
+        "fingerprint_sha256": "D4 E8 50 CF 32 57 44 F9 AA 5D 8E 5B 85 B6 69 14 7C 42 F4 16 86 65 29 C0 30 3F 84 2C 29 EE AB 7F"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-11-21T16:24:24",
+      "first_seen_secs": 1795278264.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (cerroipse.sbs/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"cerroipse.sbs\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6041995; classtype:social-engineering; sid:6041995; rev:1; metadata: signature_severity Major, created_et 2026_11_21;)",
+  "updated_at": "2026-11-21T21:01:27.632070+00:00",
+  "probe": {
+    "dns": "161.120.175.240",
+    "whois": true,
+    "status": "active"
+  }
+}
