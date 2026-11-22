@@ -1,0 +1,41 @@
+{
+  "sid": 6042317,
+  "url_path": "/card/",
+  "url_base": "www.takashimaya-fp.co.jp",
+  "msg": "AT related malicious URL (www.takashimaya-fp.co.jp/card/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "phishstats.info",
+    "julioliraup.github.io/AT/signature.html?sid=6042317"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "202.17.152.49",
+      "city": "Tokyo",
+      "region": "Tokyo",
+      "country": "JP",
+      "loc": "35.6895,139.6917",
+      "org": "AS2514 NTT PC Communications, Inc.",
+      "postal": "101-8656",
+      "timezone": "Asia/Tokyo",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": null,
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (www.takashimaya-fp.co.jp/card/)\"; flow:established,to_server; http.uri; content:\"/card/\"; startswith; fast_pattern; http.host; content:\"www.takashimaya-fp.co.jp\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6042317; classtype:social-engineering; sid:6042317; rev:1; metadata: signature_severity Major, created_et 2026_11_22;)",
+  "updated_at": "2026-11-22T21:58:10.933095+00:00",
+  "probe": {
+    "dns": "202.17.152.49",
+    "whois": true,
+    "status": "active"
+  }
+}
