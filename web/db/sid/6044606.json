@@ -1,0 +1,41 @@
+{
+  "sid": 6044606,
+  "url_path": "/okp/index.php",
+  "url_base": "base.education-clinical.sbs",
+  "msg": "AT related malicious URL (base.education-clinical.sbs/okp/index.php)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "phishstats.info",
+    "julioliraup.github.io/AT/signature.html?sid=6044606"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "130.12.183.214",
+      "city": "Louisville",
+      "region": "Kentucky",
+      "country": "US",
+      "loc": "38.1313,-85.5754",
+      "org": "AS197769 VPS Dedicated LLC",
+      "postal": "40291",
+      "timezone": "America/Kentucky/Louisville",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": null,
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (base.education-clinical.sbs/okp/index.php)\"; flow:established,to_server; http.uri; content:\"/okp/index.php\"; startswith; fast_pattern; http.host; content:\"base.education-clinical.sbs\"; endswith; reference:url,phishstats.info; reference:url,julioliraup.github.io/AT/signature.html?sid=6044606; classtype:social-engineering; sid:6044606; rev:1; metadata: signature_severity Major, created_et 2026_11_27;)",
+  "updated_at": "2026-11-27T22:41:25.536706+00:00",
+  "probe": {
+    "dns": "130.12.183.214",
+    "whois": true,
+    "status": "active"
+  }
+}

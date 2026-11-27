@@ -1,0 +1,92 @@
+{
+  "sid": 6044758,
+  "url_path": "/",
+  "url_base": "rbup.cc",
+  "msg": "AT related malicious URL (rbup.cc/)",
+  "protocol": "http",
+  "classtype": "social-engineering",
+  "rev": 1,
+  "action": "alert",
+  "severity": "high",
+  "risk_score": 85,
+  "references": [
+    "openphish.com",
+    "julioliraup.github.io/AT/signature.html?sid=6044758"
+  ],
+  "intel": {
+    "virustotal": null,
+    "urlhaus": null,
+    "shodan": null,
+    "ipinfo": {
+      "ip": "194.145.208.36",
+      "city": "Amsterdam",
+      "region": "North Holland",
+      "country": "NL",
+      "loc": "52.3740,4.8897",
+      "org": "AS200514 KnownSRV Ltd.",
+      "postal": "1012",
+      "timezone": "Europe/Amsterdam",
+      "readme": "https://ipinfo.io/missingauth"
+    },
+    "alienvault": {
+      "url": "http://rbup.cc/",
+      "domain": "rbup.cc",
+      "url_count": 1,
+      "city_data": true,
+      "deep_analysis": true,
+      "has_file_analysis": false,
+      "tlp": "WHITE",
+      "ip": "194.145.208.36",
+      "http_code": 200,
+      "http_response": {
+        "server": "openresty/1.31.1.1",
+        "content_type": "text/html",
+        "cf_ray": null,
+        "cf_cache_status": null,
+        "alt_svc": null
+      },
+      "city": null,
+      "region": null,
+      "country_name": null,
+      "country_code": null,
+      "continent_code": null,
+      "latitude": null,
+      "longitude": null,
+      "flag": null,
+      "filetype": "text/html",
+      "filemagic": "HTML document, ASCII text, with very long lines (4942)",
+      "sha256": "d9b21273a2577452ae03611fedd008403329eae57745d91f4685565543801eb0",
+      "md5": "3aa668143a01666af49724c54cbdfe42",
+      "cert": {
+        "subject_cn": "*.rbup.cc",
+        "subject_alt_names": [
+          "*.rbup.cc",
+          "rbup.cc"
+        ],
+        "issuer_cn": "YR2",
+        "issuer_org": "Let's Encrypt",
+        "issuer_country": "US",
+        "not_valid_before": "2026-11-06T15:39:05+00:00",
+        "not_valid_after": "2027-02-04T15:39:04+00:00",
+        "is_expired": false,
+        "is_self_signed": "no",
+        "signature_algorithm": "sha256_rsa",
+        "x509_version": "v3",
+        "serial_number": "06 FB 33 57 7A B3 97 C8 26 5A E7 D7 BD 54 70 00 67 5A",
+        "fingerprint_sha1": "0B B0 6E 05 59 71 E9 E2 66 9A 5E 12 9F 66 A1 2F 7B 1E 75 37",
+        "fingerprint_sha256": "16 32 0C EF 66 29 47 E0 2E C3 AB 5F 9A 0D 2E 43 BE 7D AE D4 21 18 91 60 32 4B 5C 9D 9C 57 AD C2"
+      },
+      "safebrowsing": [],
+      "first_seen": "2026-11-27T19:03:32",
+      "first_seen_secs": 1795806212.0
+    },
+    "phishdestroy": null
+  },
+  "rule_raw": "alert http $HOME_NET any -> any any (msg:\"AT related malicious URL (rbup.cc/)\"; flow:established,to_server; http.uri; content:\"/\"; startswith; fast_pattern; http.host; content:\"rbup.cc\"; endswith; reference:url,openphish.com; reference:url,julioliraup.github.io/AT/signature.html?sid=6044758; classtype:social-engineering; sid:6044758; rev:1; metadata: signature_severity Major, created_et 2026_11_27;)",
+  "updated_at": "2026-11-27T22:41:25.539454+00:00",
+  "probe": {
+    "dns": "194.145.208.36",
+    "whois": true,
+    "status": "active"
+  }
+}
